@@ -84,7 +84,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     __asm__ volatile("mov %0, %%cr3" : : "r"(pml4_phys));
 
     console::init(console::Backend::VGA);
-    console::write("[ OK ] VGA Text");
+    console::write("[ OK ] VGA Text initialized");
     
     for(;;);
 }

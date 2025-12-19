@@ -22,5 +22,5 @@ jobs:
     - name: Upload ISO
       uses: actions/upload-artifact@v4
       with:
-        name: kernel-iso
+        name: kernel.iso
         path: dist/x86_64/kernel.iso
