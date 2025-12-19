@@ -1,0 +1,10 @@
+<map id="src/impl/x86_64/console.cpp" name="src/impl/x86_64/console.cpp">
+<area shape="rect" id="Node000001" title="Implementation of kernel console abstraction." alt="" coords="5,5,212,31"/>
+<area shape="rect" id="Node000002" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="19,79,103,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,33,78,69,74,66,99,30"/>
+<area shape="rect" id="Node000004" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="127,79,186,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="119,30,144,66,139,69,114,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="73,152,144,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="71,103,96,139,91,142,66,106"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="151,106,126,142,122,139,147,103"/>
+</map>

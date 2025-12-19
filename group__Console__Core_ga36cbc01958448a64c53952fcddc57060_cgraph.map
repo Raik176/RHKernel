@@ -1,0 +1,7 @@
+<map id="console::disable_cursor" name="console::disable_cursor">
+<area shape="rect" id="Node000001" title="Disable the hardware cursor." alt="" coords="5,5,180,31"/>
+<area shape="rect" id="Node000002" href="$group__VGA__Output.html#gadca32e66e7fd904784b4411f7e6f03a7" title="Disable the hardware cursor." alt="" coords="228,5,376,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,15,214,15,214,21,180,21"/>
+<area shape="rect" id="Node000003" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="424,5,475,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="376,15,410,15,410,21,376,21"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="src/impl/x86_64/vga.cpp" name="src/impl/x86_64/vga.cpp">
+<area shape="rect" id="Node000001" title="Implementation of VGA text&#45;mode driver." alt="" coords="5,5,185,31"/>
+<area shape="rect" id="Node000002" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="26,79,85,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,32,71,68,66,65,86,30"/>
+<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions and macros." alt="" coords="109,79,164,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="104,30,125,65,121,68,100,32"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="20,152,91,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="58,104,58,138,53,138,53,104"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="125,106,81,145,77,141,122,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="115,152,190,177"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="142,104,150,138,145,139,137,105"/>
+</map>

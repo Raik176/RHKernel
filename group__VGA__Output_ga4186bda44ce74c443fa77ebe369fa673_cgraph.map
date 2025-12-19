@@ -1,0 +1,10 @@
+<map id="vga::enable_cursor" name="vga::enable_cursor">
+<area shape="rect" id="Node000001" title="Enable the hardware cursor." alt="" coords="5,56,151,81"/>
+<area shape="rect" id="Node000002" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="261,5,303,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,53,247,24,248,29,131,58"/>
+<area shape="rect" id="Node000003" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="413,85,464,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,72,400,92,400,98,151,77"/>
+<area shape="rect" id="Node000004" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="199,106,365,146"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="125,79,198,100,197,105,123,84"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="365,108,399,102,400,107,366,114"/>
+</map>

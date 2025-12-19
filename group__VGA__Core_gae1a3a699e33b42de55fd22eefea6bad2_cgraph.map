@@ -1,0 +1,17 @@
+<map id="vga::init" name="vga::init">
+<area shape="rect" id="Node000001" title="Initialize VGA text mode." alt="" coords="5,92,80,117"/>
+<area shape="rect" id="Node000002" href="$group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad" title="Clear the screen." alt="" coords="157,63,244,88"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,95,143,83,144,89,81,100"/>
+<area shape="rect" id="Node000006" href="$group__VGA__Output.html#ga4186bda44ce74c443fa77ebe369fa673" title="Enable the hardware cursor." alt="" coords="128,116,273,141"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="80,108,114,113,113,118,80,113"/>
+<area shape="rect" id="Node000003" href="$namespacevga.html#a593adfc7e63593f5cbb7aeaf6ccf8e6b" title=" " alt="" coords="339,5,470,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="243,61,345,32,347,37,245,66"/>
+<area shape="rect" id="Node000004" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="321,55,488,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="244,73,308,73,308,78,244,78"/>
+<area shape="rect" id="Node000005" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="536,92,587,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="489,88,523,95,522,100,488,94"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="250,113,314,96,315,101,251,118"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="273,121,522,105,523,110,274,127"/>
+<area shape="rect" id="Node000007" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="383,171,426,196"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="249,139,371,172,369,177,248,144"/>
+</map>

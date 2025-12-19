@@ -1,0 +1,14 @@
+<map id="console::putchar" name="console::putchar">
+<area shape="rect" id="Node000001" title="Write a single character to the console." alt="" coords="5,31,135,56"/>
+<area shape="rect" id="Node000002" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="183,31,285,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,41,169,41,169,46,135,46"/>
+<area shape="rect" id="Node000003" href="$namespacevga.html#a593adfc7e63593f5cbb7aeaf6ccf8e6b" title=" " alt="" coords="548,5,679,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="274,28,333,15,438,9,534,10,534,15,438,14,334,21,276,33"/>
+<area shape="rect" id="Node000004" href="$namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="364,31,469,56"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="285,41,350,41,350,46,285,46"/>
+<area shape="rect" id="Node000005" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="333,81,500,121"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="276,54,340,74,339,79,274,59"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="469,34,534,25,535,31,470,39"/>
+<area shape="rect" id="Node000006" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="588,88,639,113"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="500,98,574,98,574,103,500,103"/>
+</map>

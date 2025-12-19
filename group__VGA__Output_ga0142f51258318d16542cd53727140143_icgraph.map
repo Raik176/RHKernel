@@ -1,0 +1,5 @@
+<map id="vga::move_cursor" name="vga::move_cursor">
+<area shape="rect" id="Node000001" title="Move the hardware cursor." alt="" coords="217,5,356,31"/>
+<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga9342e94a12a86c2367bddb6f7a9cb69f" title="Move the cursor to a specific position." alt="" coords="5,5,169,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,21,170,21,170,15,204,15"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="src/intf/console.h" name="src/intf/console.h">
+<area shape="rect" id="Node000001" title="Abstraction layer for kernel console output." alt="" coords="153,5,286,31"/>
+<area shape="rect" id="Node000002" href="$console_8cpp.html" title="Implementation of kernel console abstraction." alt="" coords="5,79,212,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,40,128,81,125,76,189,36"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title="Kernel entry point and initial memory setup." alt="" coords="237,79,426,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,36,314,76,312,81,248,40"/>
+</map>

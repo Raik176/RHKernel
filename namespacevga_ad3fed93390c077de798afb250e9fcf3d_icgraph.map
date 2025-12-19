@@ -1,0 +1,29 @@
+<map id="vga::update_hardware_cursor" name="vga::update_hardware_cursor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="689,122,856,162"/>
+<area shape="rect" id="Node000002" href="$group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad" title="Clear the screen." alt="" coords="525,55,612,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="708,119,640,94,608,83,610,78,642,89,710,114"/>
+<area shape="rect" id="Node000007" href="$group__VGA__Output.html#ga4186bda44ce74c443fa77ebe369fa673" title="Enable the hardware cursor." alt="" coords="496,104,641,129"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="675,133,641,128,642,123,676,127"/>
+<area shape="rect" id="Node000009" href="$group__VGA__Output.html#ga0142f51258318d16542cd53727140143" title="Move the hardware cursor." alt="" coords="499,153,638,179"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="676,156,639,160,638,155,675,151"/>
+<area shape="rect" id="Node000011" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="517,203,620,228"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="706,169,642,193,607,205,605,200,640,187,704,164"/>
+<area shape="rect" id="Node000003" href="$group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66" title="Clear the screen." alt="" coords="307,5,419,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="511,57,416,33,417,28,513,51"/>
+<area shape="rect" id="Node000004" href="$group__VGA__Core.html#gae1a3a699e33b42de55fd22eefea6bad2" title="Initialize VGA text mode." alt="" coords="325,55,400,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="512,70,401,70,401,65,512,65"/>
+<area shape="rect" id="Node000005" href="$group__Console__Core.html#ga2fc08bef3ef147afae33cbb7183e84d9" title="Initialize the console with a specific backend." alt="" coords="122,80,223,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="312,77,224,89,223,83,312,71"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title="Kernel main entry function." alt="" coords="5,129,68,155"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="125,113,69,133,67,128,124,107"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="501,103,400,79,401,74,503,98"/>
+<area shape="rect" id="Node000008" href="$group__Console__Core.html#ga958b79f80b128cef01b815246c292b10" title="Enable the hardware cursor." alt="" coords="277,104,448,129"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="482,119,448,119,448,114,482,114"/>
+<area shape="rect" id="Node000010" href="$group__Console__Output.html#ga9342e94a12a86c2367bddb6f7a9cb69f" title="Move the cursor to a specific position." alt="" coords="281,153,445,179"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="485,169,445,169,445,163,485,163"/>
+<area shape="rect" id="Node000012" href="$group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174" title="Write a single character to the console." alt="" coords="298,203,427,228"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="504,218,428,218,428,213,504,213"/>
+<area shape="rect" id="Node000013" href="$group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="116,153,229,179"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="299,202,222,181,223,176,301,197"/>
+<area shape="poly" id="edge14_Node000013_Node000006" title=" " alt="" coords="102,156,68,150,69,145,103,151"/>
+</map>

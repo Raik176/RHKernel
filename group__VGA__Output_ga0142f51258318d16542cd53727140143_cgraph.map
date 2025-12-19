@@ -1,0 +1,7 @@
+<map id="vga::move_cursor" name="vga::move_cursor">
+<area shape="rect" id="Node000001" title="Move the hardware cursor." alt="" coords="5,13,144,38"/>
+<area shape="rect" id="Node000002" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="192,5,359,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,23,178,23,178,28,144,28"/>
+<area shape="rect" id="Node000003" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="407,13,457,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="359,23,392,23,392,28,359,28"/>
+</map>

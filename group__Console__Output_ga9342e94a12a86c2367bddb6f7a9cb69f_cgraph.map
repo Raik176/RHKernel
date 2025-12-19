@@ -1,0 +1,9 @@
+<map id="console::move_cursor" name="console::move_cursor">
+<area shape="rect" id="Node000001" title="Move the cursor to a specific position." alt="" coords="5,13,169,38"/>
+<area shape="rect" id="Node000002" href="$group__VGA__Output.html#ga0142f51258318d16542cd53727140143" title="Move the hardware cursor." alt="" coords="217,13,356,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,23,204,23,204,28,170,28"/>
+<area shape="rect" id="Node000003" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="404,5,571,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,23,390,23,390,28,356,28"/>
+<area shape="rect" id="Node000004" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="619,13,669,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="571,23,604,23,604,28,571,28"/>
+</map>

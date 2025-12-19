@@ -1,0 +1,9 @@
+<map id="vga::clear" name="vga::clear">
+<area shape="rect" id="Node000001" title="Clear the screen." alt="" coords="5,35,92,60"/>
+<area shape="rect" id="Node000002" href="$namespacevga.html#a593adfc7e63593f5cbb7aeaf6ccf8e6b" title=" " alt="" coords="158,5,289,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,38,144,29,144,34,93,43"/>
+<area shape="rect" id="Node000003" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="140,55,307,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,52,127,57,126,62,92,57"/>
+<area shape="rect" id="Node000004" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="355,63,405,88"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="307,73,340,73,340,78,307,78"/>
+</map>

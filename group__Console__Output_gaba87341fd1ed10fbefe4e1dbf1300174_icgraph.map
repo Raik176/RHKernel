@@ -1,0 +1,7 @@
+<map id="console::putchar" name="console::putchar">
+<area shape="rect" id="Node000001" title="Write a single character to the console." alt="" coords="277,5,407,31"/>
+<area shape="rect" id="Node000002" href="$group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="116,5,229,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,21,230,21,230,15,264,15"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title="Kernel main entry function." alt="" coords="5,5,68,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>

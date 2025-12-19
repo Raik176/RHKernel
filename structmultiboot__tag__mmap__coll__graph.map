@@ -1,0 +1,5 @@
+<map id="multiboot_tag_mmap" name="multiboot_tag_mmap">
+<area shape="rect" id="Node000001" title="Memory map tag." alt="" coords="11,93,174,119"/>
+<area shape="rect" id="Node000002" href="$structmultiboot__mmap__entry.html" title="Single memory map entry." alt="" coords="5,5,180,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,45,95,93,90,93,90,45"/>
+</map>
