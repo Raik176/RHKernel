@@ -2,3 +2,6 @@
 /dist/
 tools/
 qemu.log
+.vscode/
+.idea/
+doc/

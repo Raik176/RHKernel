@@ -36,17 +36,18 @@ COMMON_CFLAGS := \
 	-Wall -Wextra \
 	-I src/intf
 
+NASMFLAGS := -f elf64 -w-zeroing
+
 ifeq ($(DEBUG),1)
 	CFLAGS  := $(COMMON_CFLAGS) -O0 -g
 	LDFLAGS :=
-	NASMFLAGS := -f elf64 -g -F dwarf
+	NASMFLAGS := $(NASMFLAGS) -g -F dwarf
 else
 	CFLAGS  := $(COMMON_CFLAGS) -O2
 	LDFLAGS := -s
-	NASMFLAGS := -f elf64
 endif
 
-CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti
+CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit
 
 # --- Rules ---
 
@@ -107,3 +108,7 @@ debug: build-x86_64
 .PHONY: clean
 clean:
 	rm -rf build dist
+
+.PHONY: doc
+doc:
+	doxygen Doxyfile

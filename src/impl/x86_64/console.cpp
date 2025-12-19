@@ -1,8 +1,14 @@
+/**
+ * @file console.cpp
+ * @brief Implementation of kernel console abstraction
+ */
+
 #include "console.h"
 #include "vga.h"
 
 namespace console {
 
+/** @internal Currently active console backend */
 static Backend active_backend;
 
 void init(Backend backend) {

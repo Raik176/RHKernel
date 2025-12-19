@@ -1,32 +1,80 @@
+/**
+ * @file console.h
+ * @brief Abstraction layer for kernel console output
+ *
+ * Provides a unified interface for writing characters and strings to
+ * different backends.
+ */
+
 #pragma once
 #include <stdint.h>
 
 namespace console {
 
+/**
+ * @brief Available console backends
+ */
 enum class Backend {
-    VGA,
-    FRAMEBUFFER
+    VGA,          ///< Use VGA text mode
+    FRAMEBUFFER   ///< @todo Implement framebuffer support
 };
 
-// Initialize console backend
+/** @defgroup Console_Core Console Core Functions
+ * Initialization and basic console operations
+ * @{
+ */
+
+/**
+ * @brief Initialize the console with a specific backend
+ * @param backend The console backend to use (VGA, FRAMEBUFFER)
+ */
 void init(Backend backend);
 
-// Print a single character
-void putchar(char c);
-
-// Print a null-terminated string
-void write(const char* str);
-
-// Clear the screen
+/**
+ * @brief Clear the screen
+ *
+ * Clears the output using the active backend and resets the cursor.
+ */
 void clear();
 
-// Move cursor to (x, y)
-void move_cursor(uint16_t x, uint16_t y);
-
-// Enable hardware cursor
+/**
+ * @brief Enable the hardware cursor
+ *
+ * Only effective if the backend supports a visible cursor.
+ */
 void enable_cursor();
 
-// Disable hardware cursor
+/**
+ * @brief Disable the hardware cursor
+ */
 void disable_cursor();
+
+/** @} */
+
+/** @defgroup Console_Output Character Output
+ * Functions for writing characters and strings
+ * @{
+ */
+
+/**
+ * @brief Write a single character to the console
+ * @param c Character to write
+ */
+void putchar(char c);
+
+/**
+ * @brief Write a null-terminated string to the console
+ * @param str Pointer to the string
+ */
+void write(const char* str);
+
+/**
+ * @brief Move the cursor to a specific position
+ * @param x Column (0-based)
+ * @param y Row (0-based)
+ */
+void move_cursor(uint16_t x, uint16_t y);
+
+/** @} */
 
 }

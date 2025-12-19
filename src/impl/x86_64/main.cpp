@@ -1,3 +1,11 @@
+/**
+ * @file main.cpp
+ * @brief Kernel entry point and initial memory setup
+ *
+ * This file contains the kernel's entry function (`kmain`), sets up
+ * basic paging, maps VGA memory, and initializes other systems.
+ */
+
 #include "multiboot2.h"
 #include "util.h"
 #include "vga.h"
@@ -43,6 +51,14 @@ void map_page(uint64_t* pml4_virt, uint64_t virt, uint64_t phys) {
     pt[pt_idx] = phys | PT_PRESENT | PT_WRITABLE;
 }
 
+/**
+ * @brief Kernel main entry function
+ * @param mb_phys_addr Physical address of the Multiboot2 information structure
+ *
+ * Performs early memory setup by mapping all available physical memory,
+ * sets up the PML4 page table, maps the VGA text buffer, and initializes all
+ * other systems.
+ */
 extern "C" void kmain(uint64_t mb_phys_addr) {
     struct multiboot_tag_mmap *mmap_tag = 0;
     struct multiboot_tag *tag;
@@ -84,6 +100,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     __asm__ volatile("mov %0, %%cr3" : : "r"(pml4_phys));
 
     console::init(console::Backend::VGA);
+    console::disable_cursor();
     console::write("[ OK ] VGA Text initialized");
     
     for(;;);

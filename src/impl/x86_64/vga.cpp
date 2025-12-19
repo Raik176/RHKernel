@@ -1,17 +1,44 @@
+/**
+ * @file vga.cpp
+ * @brief Implementation of VGA text-mode driver
+ */
+
 #include "vga.h"
-#include "util.h" // for outb/inb
+#include "util.h"
 
 namespace vga {
 
+/**
+ * @internal
+ * VGA text buffer pointer
+ */
 static volatile uint16_t* buffer = (volatile uint16_t*)VGA_VIRT;
-static uint16_t cursor_x = 0;
-static uint16_t cursor_y = 0;
+
+/**
+ * @name Current cursor position
+ * @{
+ */
+static uint16_t cursor_x = 0; ///< X Position
+static uint16_t cursor_y = 0; ///< Y Position
+/** @} */
+
+/** @internal Current text color (foreground | background << 4) */
 static uint8_t color = (uint8_t)Color::LightGray | ((uint8_t)Color::Black << 4);
 
+/**
+ * @internal
+ * Create a VGA entry from a character and color
+ * @param c Character
+ * @return 16-bit VGA entry
+ */
 static inline uint16_t make_entry(char c) {
     return (uint16_t)c | ((uint16_t)color << 8);
 }
 
+/**
+ * @internal
+ * Update hardware cursor to current `cursor_x` and `cursor_y`
+ */
 static void update_hardware_cursor() {
     uint16_t pos = cursor_y * WIDTH + cursor_x;
     outb(0x3D4, 0x0F);
@@ -36,6 +63,10 @@ void clear() {
     update_hardware_cursor();
 }
 
+/**
+ * @internal
+ * Handle newline and scrolling
+ */
 static void newline() {
     cursor_x = 0;
     cursor_y++;
@@ -82,7 +113,7 @@ void enable_cursor(uint8_t start, uint8_t end) {
 
 void disable_cursor() {
     outb(0x3D4, 0x0A);
-    outb(0x3D5, 0x20); // disable cursor
+    outb(0x3D5, 0x20);
 }
 
 }
