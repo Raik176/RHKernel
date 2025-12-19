@@ -17,6 +17,15 @@ x86_64_object_files := $(x86_64_asm_object_files) $(x86_64_c_object_files) $(x86
 # Default to Release build (DEBUG=0). To debug, run: make DEBUG=1
 DEBUG ?= 0
 
+TOOLS_DIR := tools
+TOOLS_ZIP := $(TOOLS_DIR)/x86_64-elf-tools-linux.zip
+TOOLS_STAMP := $(TOOLS_DIR)/.installed
+TOOLS_URL := https://github.com/lordmilko/i686-elf-tools/releases/download/15.2.0/x86_64-elf-tools-linux.zip
+
+CC  := $(TOOLS_DIR)/bin/x86_64-elf-gcc
+CXX := $(TOOLS_DIR)/bin/x86_64-elf-g++
+LD  := $(TOOLS_DIR)/bin/x86_64-elf-ld
+
 COMMON_CFLAGS := \
 	-ffreestanding \
 	-fno-unwind-tables \
@@ -41,22 +50,33 @@ CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti
 
 # --- Rules ---
 
+$(TOOLS_STAMP):
+	mkdir -p $(TOOLS_DIR)
+	curl -L $(TOOLS_URL) -o $(TOOLS_ZIP)
+	unzip -o $(TOOLS_ZIP) -d $(TOOLS_DIR)
+	touch $@
+
+.PHONY: clean-tools
+clean-tools:
+	rm -rf tools
+
+
 build/x86_64/%.asm.o: src/impl/x86_64/%.asm
 	mkdir -p $(dir $@) && \
 	nasm $(NASMFLAGS) $< -o $@
 
-build/x86_64/%.c.o: src/impl/x86_64/%.c
+build/x86_64/%.c.o: src/impl/x86_64/%.c | $(TOOLS_STAMP)
 	mkdir -p $(dir $@)
-	x86_64-elf-gcc -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@
 
-build/x86_64/%.cpp.o: src/impl/x86_64/%.cpp
-	mkdir -p $(dir $@) && \
-	x86_64-elf-g++ -c $(CXXFLAGS) $< -o $@
+build/x86_64/%.cpp.o: src/impl/x86_64/%.cpp | $(TOOLS_STAMP)
+	mkdir -p $(dir $@)
+	$(CXX) -c $(CXXFLAGS) $< -o $@
 
 .PHONY: build-x86_64
-build-x86_64: $(x86_64_object_files)
+build-x86_64: $(TOOLS_STAMP) $(x86_64_object_files)
 	mkdir -p dist/x86_64
-	x86_64-elf-ld -n $(ld_flags) -o dist/x86_64/kernel.bin -T targets/x86_64/linker.ld $(x86_64_object_files)
+	$(LD) -n $(LFDLAGS) -o dist/x86_64/kernel.bin -T targets/x86_64/linker.ld $(x86_64_object_files)
 	mkdir -p targets/x86_64/iso/boot
 	cp dist/x86_64/kernel.bin targets/x86_64/iso/boot/kernel.bin
 	grub-mkrescue /usr/lib/grub/i386-pc -o dist/x86_64/kernel.iso targets/x86_64/iso

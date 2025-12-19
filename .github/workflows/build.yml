@@ -1,0 +1,26 @@
+name: Build Kernel
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y unzip curl build-essential nasm qemu-system-x86_64 grub-pc-bin
+
+    - name: Build kernel
+      run: make build-x86_64
+    - name: Upload ISO
+      uses: actions/upload-artifact@v3
+      with:
+        name: kernel-iso
+        path: dist/x86_64/kernel.iso
