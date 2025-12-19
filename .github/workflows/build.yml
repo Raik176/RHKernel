@@ -15,7 +15,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y unzip curl build-essential nasm qemu-system grub-pc-bin xorriso
+        sudo apt-get install -y unzip curl build-essential nasm qemu-system grub-pc-bin xorriso mtools
 
     - name: Build kernel
       run: make build-x86_64
