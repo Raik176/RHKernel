@@ -8,6 +8,7 @@
 
 #pragma once
 #include <stdint.h>
+#include "multiboot2.h"
 
 namespace console {
 
@@ -28,7 +29,7 @@ enum class Backend {
  * @brief Initialize the console with a specific backend
  * @param backend The console backend to use (VGA, FRAMEBUFFER)
  */
-void init(Backend backend);
+void init(Backend backend, multiboot_tag_framebuffer* fb_tag);
 
 /**
  * @brief Clear the screen
@@ -62,11 +63,17 @@ void disable_cursor();
  */
 void putchar(char c);
 
+void putnum(uint64_t n);
+
+void puthex(uint64_t n);
+
 /**
  * @brief Write a null-terminated string to the console
  * @param str Pointer to the string
  */
 void write(const char* str);
+
+void printf(const char* fmt, ...);
 
 /**
  * @brief Move the cursor to a specific position

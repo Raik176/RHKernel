@@ -1,5 +1,6 @@
 global start
 global pml4_table
+global pdp_table
 global page_directory
 extern long_mode_start
 
@@ -7,7 +8,6 @@ section .early_text
 bits 32
 
 start:
-    cli
     mov esp, stack_top
     
     call check_cpuid

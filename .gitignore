@@ -8,3 +8,4 @@ qemu.log
 /.idea/
 /doc/
 /.venv/
+targets/x86_64/iso/boot/kernel.bin

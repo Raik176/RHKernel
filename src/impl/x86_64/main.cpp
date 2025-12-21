@@ -1,107 +1,65 @@
-/**
- * @file main.cpp
- * @brief Kernel entry point and initial memory setup
- *
- * This file contains the kernel's entry function (`kmain`), sets up
- * basic paging, maps VGA memory, and initializes other systems.
- */
+// running in higher half
 
-#include "multiboot2.h"
 #include "util.h"
 #include "vga.h"
 #include "console.h"
+#include "pmm.h"
+#include "vmm.h"
+#include "idt.h"
+#include "gdt.h"
+#include "heap.h"
+#include "multiboot2.h"
 
-#define PT_PRESENT         (1ULL << 0)
-#define PT_WRITABLE        (1ULL << 1)
-
-extern uint8_t _kernel_phys_start[];
-extern uint8_t _kernel_phys_end[];
-
-uint64_t next_free_page;
-
-void map_page(uint64_t* pml4_virt, uint64_t virt, uint64_t phys) {
-    uint64_t pml4_idx = (virt >> 39) & 0x1FF;
-    uint64_t pdpt_idx = (virt >> 30) & 0x1FF;
-    uint64_t pd_idx   = (virt >> 21) & 0x1FF;
-    uint64_t pt_idx   = (virt >> 12) & 0x1FF;
-
-    uint64_t* pml4 = pml4_virt;
-
-    // PML4 -> PDPT
-    if (!(pml4[pml4_idx] & PT_PRESENT)) {
-        pml4[pml4_idx] = next_free_page | PT_PRESENT | PT_WRITABLE;
-        next_free_page += PAGE_SIZE;
-    }
-    
-    uint64_t* pdpt = (uint64_t*)p2v(pml4[pml4_idx] & ~0xFFF);
-    // PDPT -> PD
-    if (!(pdpt[pdpt_idx] & PT_PRESENT)) {
-        pdpt[pdpt_idx] = next_free_page | PT_PRESENT | PT_WRITABLE;
-        next_free_page += PAGE_SIZE;
-    }
-
-    uint64_t* pd = (uint64_t*)p2v(pdpt[pdpt_idx] & ~0xFFF);
-    // PD -> PT
-    if (!(pd[pd_idx] & PT_PRESENT)) {
-        pd[pd_idx] = next_free_page | PT_PRESENT | PT_WRITABLE;
-        next_free_page += PAGE_SIZE;
-    }
-
-    uint64_t* pt = (uint64_t*)p2v(pd[pd_idx] & ~0xFFF);
-    pt[pt_idx] = phys | PT_PRESENT | PT_WRITABLE;
-}
-
-/**
- * @brief Kernel main entry function
- * @param mb_phys_addr Physical address of the Multiboot2 information structure
- *
- * Performs early memory setup by mapping all available physical memory,
- * sets up the PML4 page table, maps the VGA text buffer, and initializes all
- * other systems.
- */
 extern "C" void kmain(uint64_t mb_phys_addr) {
-    struct multiboot_tag_mmap *mmap_tag = 0;
-    struct multiboot_tag *tag;
+    {
+        uint8_t* mb_info = (uint8_t*)(uintptr_t)mb_phys_addr;
+        multiboot_tag_framebuffer* fb_tag = nullptr;
 
-    uint8_t* mb_ptr = (uint8_t*)p2v(mb_phys_addr);
-    
-    for (tag = (struct multiboot_tag *)(mb_ptr + 8);
-         tag->type != 0;
-         tag = (struct multiboot_tag *)((uint8_t *)tag + ((tag->size + 7) & ~7))) {
-        if (tag->type == 6) {
-            mmap_tag = (struct multiboot_tag_mmap *)tag;
-            break;
-        }
-    }
+        for (uint8_t* tag = mb_info + 8; 
+            tag < mb_info + *(uint32_t*)mb_info; 
+            tag += ((*(uint32_t*)(tag + 4) + 7) & ~7)) {
 
-    next_free_page = (uint64_t)_kernel_phys_end;
+            uint32_t type = *(uint32_t*)tag;
 
-    uint64_t pml4_phys = next_free_page;
-    next_free_page += PAGE_SIZE;
-    uint64_t* pml4_virt = (uint64_t*)p2v(pml4_phys);
+            if (type == 0) break; // End tag
 
-    for(int i = 0; i < 512; i++) pml4_virt[i] = 0;
-
-    uint32_t entry_count = (mmap_tag->size - sizeof(*mmap_tag)) / mmap_tag->entry_size;
-    for (uint32_t i = 0; i < entry_count; i++) {
-        if (mmap_tag->entries[i].type == 1) {
-            uint64_t addr = mmap_tag->entries[i].addr;
-            uint64_t length = mmap_tag->entries[i].len;
-
-            for (uint64_t offset = 0; offset < length; offset += PAGE_SIZE) {
-                uint64_t phys = addr + offset;
-                map_page(pml4_virt, KERNEL_VIRT_OFFSET + phys, phys);
+            if (type == 8) { // Framebuffer tag
+                fb_tag = (multiboot_tag_framebuffer*)tag;
+                break;
             }
         }
+
+        if (fb_tag) {
+            console::init(console::Backend::FRAMEBUFFER, fb_tag);
+            console::printf("[ OK ] Framebuffer initialized (%dx%d); Type=%d\n", fb_tag->width, fb_tag->height, fb_tag->framebuffer_type);
+        } else {
+            console::init(console::Backend::VGA, nullptr);
+            console::printf("[ OK ] VGA Text initialized.\n");
+        }
     }
 
-    map_page(pml4_virt, VGA_VIRT, 0xB8000);
+    gdt::init();
+    console::printf("[ OK ] GDT initialized.\n");
+    idt::init();
+    console::printf("[ OK ] IDT initialized.\n");
 
-    __asm__ volatile("mov %0, %%cr3" : : "r"(pml4_phys));
+    pmm::init(mb_phys_addr);
 
-    console::init(console::Backend::VGA);
-    console::disable_cursor();
-    console::write("[ OK ] VGA Text initialized");
-    
+    uint64_t total_kb = (uint64_t)pmm::get_total_kb();
+    uint64_t free_kb  = (uint64_t)pmm::get_free_kb();
+    uint64_t used_kb  = total_kb - free_kb;
+
+    console::printf("[ OK ] PMM initialized.\n");
+    console::printf("       Memory: %d KiB / %d KiB used\n", 
+                    (int)used_kb, 
+                    (int)(total_kb));
+    console::printf("       Free:   %d KiB\n", (int)free_kb);
+
+    vmm::init();
+    console::printf("[ OK ] VMM initialized.\n");
+
+    heap::init();
+    console::printf("[ OK ] Heap initialized.\n");
+
     for(;;);
 }

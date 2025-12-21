@@ -12,7 +12,7 @@ namespace vga {
  * @internal
  * VGA text buffer pointer
  */
-static volatile uint16_t* buffer = (volatile uint16_t*)VGA_VIRT;
+static volatile uint16_t* buffer = (volatile uint16_t*)0xFFFFFFFF800B8000;
 
 /**
  * @name Current cursor position
@@ -31,7 +31,7 @@ static uint8_t color = (uint8_t)Color::LightGray | ((uint8_t)Color::Black << 4);
  * @param c Character
  * @return 16-bit VGA entry
  */
-static inline uint16_t make_entry(char c) {
+static inline uint16_t make_entry(uint8_t c) {
     return (uint16_t)c | ((uint16_t)color << 8);
 }
 
@@ -71,7 +71,6 @@ static void newline() {
     cursor_x = 0;
     cursor_y++;
     if (cursor_y >= HEIGHT) {
-        // scroll
         for (uint16_t y = 1; y < HEIGHT; y++)
             for (uint16_t x = 0; x < WIDTH; x++)
                 buffer[(y - 1) * WIDTH + x] = buffer[y * WIDTH + x];

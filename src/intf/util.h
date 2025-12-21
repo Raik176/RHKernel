@@ -15,27 +15,42 @@
  *
  * All physical addresses are mapped at this offset in the virtual address space
  */
-#define KERNEL_VIRT_OFFSET 0xFFFFFFFF80000000
-/**
- * @brief Page size used by the kernel
- */
-#define PAGE_SIZE          4096
+#define KERNEL_VIRT_OFFSET 0xFFFFFFFF80000000ULL
+#define PHYS_MAP_BASE 0xFFFF880000000000ULL
 
 /**
  * @brief Convert a physical address to a virtual address
  * @param phys The physical address
- * @return The corresponding kernel virtual address
+ * @return The corresponding virtual address
  */
 static inline void* p2v(uint64_t phys) {
-    return (void*)(phys + KERNEL_VIRT_OFFSET);
+    return (void*)(phys + PHYS_MAP_BASE);
 }
 
 /**
  * @brief Convert a virtual address to a physical address
- * @param virt The kernel virtual address
+ * @param virt The virtual address
  * @return The corresponding physical address
  */
 static inline uint64_t v2p(void* virt) {
+    return (uint64_t)virt - PHYS_MAP_BASE;
+}
+
+/**
+ * @brief Convert a physical address to a kernel virtual address
+ * @param phys The physical address
+ * @return The corresponding kernel virtual address
+ */
+static inline void* kp2v(uint64_t phys) {
+    return (void*)(phys + KERNEL_VIRT_OFFSET);
+}
+
+/**
+ * @brief Convert a kernel virtual address to a physical address
+ * @param virt The kernel virtual address
+ * @return The corresponding physical address
+ */
+static inline uint64_t kv2p(void* virt) {
     return (uint64_t)virt - KERNEL_VIRT_OFFSET;
 }
 
@@ -47,6 +62,16 @@ static inline uint64_t v2p(void* virt) {
  */
 static inline uint64_t align_up(uint64_t addr, uint64_t align) {
     return (addr + align - 1) & ~(align - 1);
+}
+
+/**
+ * @brief Align an address downward to the nearest multiple of `align`
+ * @param addr The address to align
+ * @param align The alignment boundary (must be a power of two)
+ * @return The aligned address
+ */
+static inline uint64_t align_down(uint64_t addr, uint64_t align) {
+    return addr & ~(align - 1);
 }
 
 /**

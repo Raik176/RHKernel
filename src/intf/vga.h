@@ -9,9 +9,6 @@
 #pragma once
 #include <stdint.h>
 
-/// VGA text buffer virtual address
-#define VGA_VIRT 0xFFFF8000000B8000ULL
-
 namespace vga {
 
 /**

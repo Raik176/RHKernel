@@ -19,7 +19,20 @@ header_start:
     
     .end_of_info_request:
 
-	align 8
+    align 8
+
+    .framebuffer_tag:
+        dw 5              ; Type = 5 (Framebuffer)
+        dw 0              ; Flags = 0 (optional, but usually 0)
+        dd .framebuffer_tag_end - .framebuffer_tag
+
+        dd 0              ; Width  = 0 (no preference)
+        dd 0              ; Height = 0 (no preference)
+        dd 0              ; Depth  = 0 (no preference)
+
+    .framebuffer_tag_end:
+
+    align 8
     
     ; --- End Tag ---
     dw 0            ; Type = 0

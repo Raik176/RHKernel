@@ -26,10 +26,26 @@ CC  := $(TOOLS_DIR)/bin/x86_64-elf-gcc
 CXX := $(TOOLS_DIR)/bin/x86_64-elf-g++
 LD  := $(TOOLS_DIR)/bin/x86_64-elf-ld
 
+FONT_TTF    := src/assets/font.ttf
+FONT_BIN    := build/assets/font.bin
+FONT_SCRIPT := tools/scripts/gen_font.py
+
+VENV           := .venv
+VENV_PYTHON    := $(VENV)/bin/python3
+VENV_STAMP     := $(VENV)/.installed
+
+QEMUFLAGS := -d int,cpu_reset \
+			-D qemu.log \
+			-cpu qemu64,+pdpe1gb \
+			-cdrom dist/x86_64/kernel.iso \
+			-serial stdio
+
 COMMON_CFLAGS := \
 	-ffreestanding \
 	-fno-unwind-tables \
 	-fno-asynchronous-unwind-tables \
+	-fno-stack-protector \
+	-fno-pic \
 	-mcmodel=kernel \
 	-mno-red-zone \
 	-m64 \
@@ -39,7 +55,7 @@ COMMON_CFLAGS := \
 NASMFLAGS := -f elf64 -w-zeroing
 
 ifeq ($(DEBUG),1)
-	CFLAGS  := $(COMMON_CFLAGS) -O0 -g
+	CFLAGS  := $(COMMON_CFLAGS) -O0 -g -DDEBUG
 	LDFLAGS :=
 	NASMFLAGS := $(NASMFLAGS) -g -F dwarf
 else
@@ -61,8 +77,20 @@ $(TOOLS_STAMP):
 clean-tools:
 	rm -rf tools
 
+$(VENV_STAMP):
+	test -d $(VENV) || python3 -m venv $(VENV)
+	$(VENV_PYTHON) -m pip install Pillow
+	touch $@
 
-build/x86_64/%.asm.o: src/impl/x86_64/%.asm
+.PHONY: clean-venv
+clean-tools:
+	rm -rf $(VENV)
+
+$(FONT_BIN): $(FONT_TTF) $(FONT_SCRIPT) | $(VENV_STAMP)
+	@mkdir -p $(dir $@)
+	$(VENV_PYTHON) $(FONT_SCRIPT) $(FONT_TTF) $@
+
+build/x86_64/%.asm.o: src/impl/x86_64/%.asm | $(FONT_BIN)
 	mkdir -p $(dir $@) && \
 	nasm $(NASMFLAGS) $< -o $@
 
@@ -82,18 +110,16 @@ build-x86_64: $(TOOLS_STAMP) $(x86_64_object_files)
 	cp dist/x86_64/kernel.bin targets/x86_64/iso/boot/kernel.bin
 	grub-mkrescue /usr/lib/grub/i386-pc -o dist/x86_64/kernel.iso targets/x86_64/iso
 
-# --- Run & Debug Targets ---
-
 .PHONY: run
 run: build-x86_64
-	qemu-system-x86_64 -d int,cpu_reset -D qemu.log -cdrom dist/x86_64/kernel.iso
+	qemu-system-x86_64 $(QEMUFLAGS)
 
 .PHONY: debug
 debug: build-x86_64
 	@set -e; set -x; \
 	qemu-system-x86_64 \
-		-cdrom dist/x86_64/kernel.iso \
-		-S -s -d int -no-shutdown -no-reboot & \
+		$(QEMUFLAGS) \
+		-S -s -no-shutdown -no-reboot & \
 	QEMU_PID=$$!; \
 	\
 	gdb dist/x86_64/kernel.bin \
@@ -108,6 +134,10 @@ debug: build-x86_64
 .PHONY: clean
 clean:
 	rm -rf build dist
+
+.PHONY: clean-all
+clean-all: clean clean-venv clean-tools
+	
 
 .PHONY: doc
 doc:
