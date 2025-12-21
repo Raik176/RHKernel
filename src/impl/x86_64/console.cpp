@@ -1,6 +1,10 @@
 /**
  * @file console.cpp
  * @brief Implementation of kernel console abstraction
+ *
+ * This file implements the console interface declared in console.h.
+ * It handles output to different backends (VGA, framebuffer) and
+ * optionally to the serial port when DEBUG is enabled.
  */
 
 #include "console.h"
@@ -16,6 +20,11 @@ namespace console {
 /** @internal Currently active console backend */
 static Backend active_backend;
 
+
+/**
+ * @internal
+ * Stores the active backend and initializes the relevant hardware.
+ */
 void init(Backend backend, struct multiboot_tag_framebuffer* fb_tag) {
     active_backend = backend;
 
@@ -34,6 +43,11 @@ void init(Backend backend, struct multiboot_tag_framebuffer* fb_tag) {
 #endif
 }
 
+/**
+ * @internal
+ * Write a single character to the currently active backend.
+ * Also sends the character to the serial port if DEBUG is enabled.
+ */
 void putchar(char c) {
     switch (active_backend) {
         case Backend::VGA:
@@ -49,13 +63,19 @@ void putchar(char c) {
 #endif
 }
 
+/**
+ * @internal
+ * Print an unsigned integer in decimal format to the console.
+ *
+ * @param n Number to print
+ */
 void putnum(uint64_t n) {
     if (n == 0) {
         putchar('0');
         return;
     }
 
-    char buf[20];
+    char buf[20];  ///< Temporary buffer for digits
     int i = 0;
     while (n > 0) {
         buf[i++] = (n % 10) + '0';
@@ -67,6 +87,12 @@ void putnum(uint64_t n) {
     }
 }
 
+/**
+ * @internal
+ * Print an unsigned integer in hexadecimal format with "0x" prefix.
+ *
+ * @param n Number to print
+ */
 void puthex(uint64_t n) {
     const char* hex_digits = "0123456789ABCDEF";
     
@@ -77,7 +103,7 @@ void puthex(uint64_t n) {
         return;
     }
 
-    char buf[16];
+    char buf[16]; ///< Temporary buffer for digits
     int i = 0;
 
     while (n > 0) {
@@ -90,10 +116,30 @@ void puthex(uint64_t n) {
     }
 }
 
+/**
+ * @internal
+ * Write a null-terminated string to the console by calling putchar repeatedly.
+ *
+ * @param str Pointer to string
+ */
 void write(const char* str) {
     while (*str) putchar(*str++);
 }
 
+/**
+ * @internal
+ * Simplified printf implementation.
+ *
+ * Supports:
+ * - %s: null-terminated string
+ * - %d: unsigned decimal
+ * - %x: unsigned hexadecimal
+ * - %p: pointer (printed as hexadecimal)
+ * - %%: literal '%'
+ *
+ * @param fmt Format string
+ * @param ... Variable arguments
+ */
 void printf(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
@@ -138,6 +184,10 @@ void printf(const char* fmt, ...) {
     va_end(args);
 }
 
+/**
+ * @internal
+ * Clear the console using the currently active backend.
+ */
 void clear() {
     switch (active_backend) {
         case Backend::VGA:
@@ -149,6 +199,13 @@ void clear() {
     }
 }
 
+/**
+ * @internal
+ * Move the cursor to a specific column and row on the active backend.
+ *
+ * @param x Column (0-based)
+ * @param y Row (0-based)
+ */
 void move_cursor(uint16_t x, uint16_t y) {
     switch (active_backend) {
         case Backend::VGA:
@@ -160,6 +217,10 @@ void move_cursor(uint16_t x, uint16_t y) {
     }
 }
 
+/**
+ * @internal
+ * Enable the cursor on the active backend.
+ */
 void enable_cursor() {
     switch (active_backend) {
         case Backend::VGA:
@@ -171,6 +232,10 @@ void enable_cursor() {
     }
 }
 
+/**
+ * @internal
+ * Disable the hardware cursor on the active backend.
+ */
 void disable_cursor() {
     switch (active_backend) {
         case Backend::VGA:
@@ -182,4 +247,4 @@ void disable_cursor() {
     }
 }
 
-}
+} // namespace console

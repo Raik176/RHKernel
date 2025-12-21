@@ -1,3 +1,12 @@
+/**
+ * @file pmm.cpp
+ * @brief Implementation of the Physical Memory Manager (PMM)
+ *
+ * Uses a buddy allocator to manage physical memory.
+ * Provides functions for allocating/freeing pages, initializing memory,
+ * and querying memory statistics.
+ */
+
 #include "pmm.h"
 #include "util.h"
 #include "multiboot2.h"
@@ -16,23 +25,28 @@ extern "C" {
 }
 
 namespace {
-    size_t managed_bytes = 0;
-    size_t free_bytes = 0;
-    size_t system_bytes = 0;
+    size_t managed_bytes = 0; ///< Total memory managed by PMM
+    size_t free_bytes    = 0; ///< Currently free memory
+    size_t system_bytes  = 0; ///< Total system RAM detected
 }
 
 namespace pmm {
 
+/**
+ * @internal Linked list node representing a free memory block
+ */
 struct FreeBlock {
     FreeBlock* next;
 };
 
-static FreeBlock* free_lists[MAX_ORDER + 1];
+static FreeBlock* free_lists[MAX_ORDER + 1]; ///< Free block lists per buddy order
 
-static inline size_t align_up(size_t x, size_t a) {
-    return (x + a - 1) & ~(a - 1);
-}
-
+/**
+ * @brief Convert a size in bytes to buddy allocator order
+ *
+ * @param size Size in bytes
+ * @return Minimum order that can hold `size`
+ */
 size_t size_to_order(size_t size) {
     size = align_up(size, PAGE_SIZE);
     size_t pages = size / PAGE_SIZE;
@@ -41,14 +55,23 @@ size_t size_to_order(size_t size) {
     return order;
 }
 
+/**
+ * @internal Return block size for a given order
+ */
 static uint64_t block_size(size_t order) {
     return (1ULL << order) * PAGE_SIZE;
 }
 
+/**
+ * @internal Compute the buddy address of a block
+ */
 static uint64_t buddy_of(uint64_t addr, size_t order) {
     return addr ^ block_size(order);
 }
 
+/**
+ * @internal Push a free block into its free list
+ */
 static void push_block(uint64_t addr, size_t order) {
     FreeBlock* block = (FreeBlock*)p2v(addr);
     block->next = free_lists[order];
@@ -57,6 +80,9 @@ static void push_block(uint64_t addr, size_t order) {
     free_bytes += block_size(order);
 }
 
+/**
+ * @internal Pop a free block from the free list
+ */
 static uint64_t pop_block(size_t order) {
     FreeBlock* block = free_lists[order];
     if (!block) return 0;
@@ -66,10 +92,20 @@ static uint64_t pop_block(size_t order) {
     return v2p(block);
 }
 
+/**
+ * @internal Check if two memory regions overlap
+ */
 static inline bool overlaps(uint64_t start, uint64_t len, uint64_t r_start, uint64_t r_size) {
     return (start < r_start + r_size) && (r_start < start + len);
 }
 
+/**
+ * @internal Remove a specific block from the free list
+ *
+ * @param phys_addr Physical address of block
+ * @param order Order of the block
+ * @return True if block was found and removed
+ */
 static bool remove_block(uint64_t phys_addr, size_t order) {
     FreeBlock** cur = &free_lists[order];
     FreeBlock* target_virt = (FreeBlock*)p2v(phys_addr);
@@ -84,6 +120,9 @@ static bool remove_block(uint64_t phys_addr, size_t order) {
     return false;
 }
 
+/**
+ * @internal Add a contiguous memory span to free lists
+ */
 void add_span(uint64_t start, uint64_t end) {
     uint64_t curr = align_up(start, PAGE_SIZE);
     uint64_t last = align_down(end, PAGE_SIZE);
@@ -109,7 +148,7 @@ void add_span(uint64_t start, uint64_t end) {
 }
 
 /**
- * Recursively carves a reserved range out of an available range.
+ * @internal Free a memory region while respecting reserved areas
  */
 void free_with_reservation(uint64_t start, uint64_t end, const uint64_t* reserved, size_t res_count) {
     if (start >= end) return;
@@ -118,23 +157,26 @@ void free_with_reservation(uint64_t start, uint64_t end, const uint64_t* reserve
         uint64_t res_start = reserved[i * 2];
         uint64_t res_end = reserved[i * 2 + 1];
 
-        // If this reserved block overlaps the current range
         if (start < res_end && res_start < end) {
-            // Region before the reservation
             if (start < res_start) {
                 free_with_reservation(start, res_start, reserved + (i + 1) * 2, res_count - (i + 1));
             }
-            // Region after the reservation
             if (end > res_end) {
                 free_with_reservation(res_end, end, reserved + (i + 1) * 2, res_count - (i + 1));
             }
             return;
         }
     }
-    // No more overlaps, add this "clean" span
     add_span(start, end);
 }
 
+/**
+ * @brief Initialize the PMM using the Multiboot memory map
+ *
+ * Sets up free lists and reserves memory used by the kernel and critical structures.
+ *
+ * @param mb_phys_addr Physical address of the multiboot memory map
+ */
 void init(uint64_t mb_phys_addr) {
     managed_bytes = 0;
     free_bytes = 0;
@@ -183,6 +225,14 @@ void init(uint64_t mb_phys_addr) {
     }
 }
 
+/**
+ * @brief Free a previously allocated physical memory block
+ *
+ * Attempts to coalesce with its buddy before returning to the free list.
+ *
+ * @param phys Physical address of the block
+ * @param size Size in bytes
+ */
 void free(uint64_t phys, size_t size) {
     if (!phys || size == 0) return;
     size_t order = size_to_order(size);
@@ -196,6 +246,14 @@ void free(uint64_t phys, size_t size) {
     push_block(addr, order);
 }
 
+/**
+ * @brief Allocate a physical memory block
+ *
+ * Finds the smallest suitable block and splits larger blocks if necessary.
+ *
+ * @param size Size in bytes
+ * @return Physical address of the allocated block or 0 if unavailable
+ */
 uint64_t alloc(size_t size) {
     if (size == 0) return 0;
     size_t order = size_to_order(size);
@@ -213,16 +271,25 @@ uint64_t alloc(size_t size) {
     return 0;
 }
 
-size_t get_total_kb() { 
-    return managed_bytes / 1024; 
+/**
+ * @brief Get total memory managed in bytes
+ */
+size_t get_total_bytes() { 
+    return managed_bytes; 
 }
 
-size_t get_free_kb() { 
-    return free_bytes / 1024; 
+/**
+ * @brief Get free memory in bytes
+ */
+size_t get_free_bytes() { 
+    return free_bytes; 
 }
 
-size_t get_system_kb() {
-    return system_bytes / 1024;
+/**
+ * @brief Get total system RAM in bytes
+ */
+size_t get_system_bytes() {
+    return system_bytes;
 }
 
 } // namespace pmm

@@ -66,7 +66,7 @@ namespace vmm {
         map_range(_data_start,   _data_end,   PageFlags::Write | PageFlags::NX);
         map_range(_bss_start,    _bss_end,    PageFlags::Write | PageFlags::NX);
 
-        for (uint64_t p = 0; p < pmm::get_system_kb() * 1024; p += 2 * 1024 * 1024) { // 2MiB steps
+        for (uint64_t p = 0; p < pmm::get_system_bytes(); p += 2 * 1024 * 1024) { // 2MiB steps
             uint64_t v = p + PHYS_MAP_BASE;
     
             uint64_t pml4_idx = (v >> 39) & 0x1FF;

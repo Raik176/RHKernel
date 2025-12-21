@@ -1,34 +1,59 @@
+/**
+ * @file framebuffer.cpp
+ * @brief Implementation of the framebuffer console backend
+ *
+ * Provides support for writing characters, pixels, and managing the cursor
+ * in VGA, indexed, and RGB framebuffer modes. Handles scrolling, cursor
+ * drawing, and font rendering.
+ */
+
 #include "framebuffer.h"
 #include "util.h"
 
 extern "C" {
-    extern uint8_t font_bitmap_start;
-    extern uint8_t font_bitmap_end;
+    extern uint8_t font_bitmap_start; ///< Start of embedded font bitmap
+    extern uint8_t font_bitmap_end;   ///< End of embedded font bitmap
 }
 
 namespace framebuffer {
 
+/**
+ * @internal
+ * Stores information about the active framebuffer
+ */
 struct FramebufferInfo {
-    uint8_t* addr;
-    uint32_t pitch;
-    uint32_t width;
-    uint32_t height;
-    uint8_t  bpp;
-    uint8_t  type;
+    uint8_t* addr;     ///< Framebuffer base address
+    uint32_t pitch;    ///< Bytes per row
+    uint32_t width;    ///< Screen width in pixels
+    uint32_t height;   ///< Screen height in pixels
+    uint8_t  bpp;      ///< Bits per pixel
+    uint8_t  type;     ///< Framebuffer type (RGB, indexed, EGA)
     struct {
         uint8_t r_pos, r_size;
         uint8_t g_pos, g_size;
         uint8_t b_pos, b_size;
-    } rgb;
+    } rgb;             ///< RGB bit positions and sizes
 };
 
+/// Active framebuffer info
 static FramebufferInfo fb;
-static uint32_t cursor_x = 0;
-static uint32_t cursor_y = 0;
-static bool cursor_visible = true;
+/// Cursor coordinates and visibility state
+static uint32_t cursor_x = 0; ///< Cursor X
+static uint32_t cursor_y = 0; ///< Cursor Y
+static bool cursor_visible = true; ///< Cursor Visible
 
+/// Function pointer for mode-specific putpixel
 static void (*putpixel_raw)(uint32_t x, uint32_t y, uint32_t color) = nullptr;
 
+/**
+ * @internal
+ * Pack RGB values into the framebuffer's native color format
+ *
+ * @param r Red component (0-255)
+ * @param g Green component (0-255)
+ * @param b Blue component (0-255)
+ * @return Packed framebuffer color
+ */
 uint32_t pack_color(uint8_t r, uint8_t g, uint8_t b) {
     if (fb.type == 2) { // MULTIBOOT_FRAMEBUFFER_TYPE_EGA
         return 0x0F; // White text attribute
@@ -41,6 +66,12 @@ uint32_t pack_color(uint8_t r, uint8_t g, uint8_t b) {
            ((uint32_t)b >> (8 - fb.rgb.b_size) << fb.rgb.b_pos);
 }
 
+/**
+ * @internal
+ * Update the visual representation of the cursor
+ *
+ * @param show If true, draw the cursor; otherwise hide it
+ */
 static void update_cursor_visual(bool show) {
     if (!cursor_visible) return;
     if (fb.type == 2) { // EGA
@@ -54,8 +85,6 @@ static void update_cursor_visual(bool show) {
         }
     }
 }
-
-// --- Mode Specific Implementations ---
 
 static void putpixel_rgb(uint32_t x, uint32_t y, uint32_t color) {
     if (x >= fb.width || y >= fb.height) return;
@@ -76,6 +105,10 @@ static void putpixel_ega(uint32_t x, uint32_t y, uint32_t color) {
     ((uint16_t*)fb.addr)[y * fb.width + x] = (uint16_t)color;
 }
 
+/**
+ * @internal
+ * Scroll the framebuffer content up by one line
+ */
 void scroll() {
     update_cursor_visual(false);
     if (fb.type == 2) { // EGA
@@ -99,8 +132,6 @@ void scroll() {
     }
 }
 
-// --- API ---
-
 void init(multiboot_tag_framebuffer* tag) {
     if (!tag) return;
     fb.addr = (uint8_t*)p2v(tag->addr);
@@ -119,6 +150,12 @@ void init(multiboot_tag_framebuffer* tag) {
     clear(pack_color(0, 0, 0));
 }
 
+/**
+ * @internal
+ * Draw a character at the current cursor position, handling
+ * newline, carriage return, tab, and wrapping. Calls scroll
+ * if necessary.
+ */
 void putchar(char c) {
     update_cursor_visual(false);
 
@@ -187,6 +224,12 @@ void putchar(char c) {
     update_cursor_visual(true);
 }
 
+/**
+ * @internal
+ * Clear the framebuffer with a specified color
+ *
+ * @param color ARGB color to fill the screen with
+ */
 void clear(uint32_t color) {
     if (fb.type == MULTIBOOT_FRAMEBUFFER_TYPE_EGA) {
         uint16_t clear_val = (uint16_t)((0x07 << 8) | ' ');
@@ -200,6 +243,13 @@ void clear(uint32_t color) {
     update_cursor_visual(true);
 }
 
+
+/**
+ * @internal
+ * Set cursor enabled/disabled state
+ *
+ * @param enabled true to enable cursor, false to disable
+ */
 void set_cursor_enabled(bool enabled) {
     update_cursor_visual(false);
     cursor_visible = enabled;

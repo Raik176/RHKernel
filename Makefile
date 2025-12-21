@@ -36,6 +36,7 @@ VENV_STAMP     := $(VENV)/.installed
 
 QEMUFLAGS := -d int,cpu_reset \
 			-D qemu.log \
+			-m 1G \
 			-cpu qemu64,+pdpe1gb \
 			-cdrom dist/x86_64/kernel.iso \
 			-serial stdio

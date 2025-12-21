@@ -1,5 +1,3 @@
-// running in higher half
-
 #include "util.h"
 #include "vga.h"
 #include "console.h"
@@ -45,8 +43,8 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     pmm::init(mb_phys_addr);
 
-    uint64_t total_kb = (uint64_t)pmm::get_total_kb();
-    uint64_t free_kb  = (uint64_t)pmm::get_free_kb();
+    uint64_t total_kb = (uint64_t)pmm::get_total_bytes() / 1024;
+    uint64_t free_kb  = (uint64_t)pmm::get_free_bytes() / 1024;
     uint64_t used_kb  = total_kb - free_kb;
 
     console::printf("[ OK ] PMM initialized.\n");

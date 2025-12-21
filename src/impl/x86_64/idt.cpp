@@ -1,3 +1,11 @@
+/**
+ * @file idt.cpp
+ * @brief Implementation of the Interrupt Descriptor Table (IDT)
+ *
+ * Sets up the IDT, default exception handlers, and provides
+ * infrastructure for handling CPU interrupts and exceptions.
+ */
+
 #include "idt.h"
 #include "string.h"
 #include "console.h"
@@ -36,12 +44,14 @@ extern "C" {
     extern void isr30();
     extern void isr31();
 
-
-extern "C" {
+    /**
+     * @internal Common exception handler called by ISR stubs
+     *
+     * Prints a kernel panic message and halts the system.
+     *
+     * @param r Pointer to the CPU register state pushed during the interrupt
+     */
     void isr_handler(struct regs *r) {
-        // We use a 2D array [count][length] instead of an array of pointers.
-        // This makes the strings "local" to the kernel image and allows 
-        // the compiler to use RIP-relative addressing, avoiding relocation errors.
         static const char exception_messages[32][30] = {
             "Division By Zero",
             "Debug",
@@ -82,12 +92,10 @@ extern "C" {
         console::write("\nError Code: ");
         console::putnum(r->err_code);
 
-        // Special case: Page Fault (14) provides the failing address in CR2
         if (r->int_no == 14) {
             uint64_t faulting_address;
             __asm__ volatile("mov %%cr2, %0" : "=r" (faulting_address));
             console::write("\nFaulting Address (CR2): 0x");
-            // Assuming you have a puthex or similar; if not, use putnum
             console::putnum(faulting_address); 
         }
 
@@ -96,22 +104,35 @@ extern "C" {
 
         console::write("\nHalting system...");
         
-        // Hang the system
         for (;;) {
             __asm__ volatile("cli; hlt");
         }
     }
 }
-}
 
 namespace idt {
-    struct idt_entry idt[256];
-    struct idt_ptr idtp;
+    struct idt_entry idt[256]; ///< IDT table
+    struct idt_ptr idtp;       ///< Pointer structure used by lidt
 
+    /**
+     * @internal Load the IDT into the CPU
+     *
+     * Wraps the `lidt` instruction.
+     */
     inline void load(void) {
         __asm__ volatile ("lidt %0" : : "m" (idtp));
     }
 
+    /**
+     * @brief Set an entry in the IDT
+     *
+     * Configures a single interrupt gate with the specified handler, selector, and flags.
+     *
+     * @param num Interrupt number (0-255)
+     * @param base Address of the ISR handler
+     * @param sel Code segment selector from GDT
+     * @param flags Type and attribute flags for the entry
+     */
     void set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags) {
         idt[num] = {
             .offset_low  = static_cast<uint16_t>(base & 0xFFFF),
@@ -124,6 +145,12 @@ namespace idt {
         };
     }
 
+    /**
+     * @brief Initialize the IDT
+     *
+     * Clears the IDT, sets up default exception handlers (ISRs 0-31),
+     * and loads the IDT into the CPU.
+     */
     void init(void) {
         idtp.limit = sizeof(idt) - 1;
         idtp.base = reinterpret_cast<uint64_t>(&idt);

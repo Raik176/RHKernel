@@ -1,3 +1,11 @@
+/**
+ * @file heap.cpp
+ * @brief Implementation of kernel slab allocator
+ *
+ * Provides memory allocation for the kernel using a slab allocator.
+ * Supports kmalloc/kfree and C++ new/delete operators.
+ */
+
 #include "heap.h"
 #include "pmm.h"
 #include "vmm.h"
@@ -5,21 +13,24 @@
 
 namespace heap {
 
+/** @internal Represents a single slab (page) in the allocator */
 struct SlabHeader {
-    uint32_t slot_size;
-    uint32_t used_slots;
-    uint32_t total_slots;
-    void* free_list;
-    SlabHeader *next, *prev;
+    uint32_t slot_size;     ///< Size of each allocation slot
+    uint32_t used_slots;    ///< Number of slots currently in use
+    uint32_t total_slots;   ///< Total number of slots in the slab
+    void* free_list;        ///< Linked list of free slots
+    SlabHeader *next, *prev; ///< Links for partial/full slab lists
 };
 
+/** @internal Cache for slabs of a specific allocation size */
 struct SlabCache {
-    size_t slot_size;
-    SlabHeader* partial_slabs; // Slabs that have some free slots
-    SlabHeader* full_slabs;    // Slabs with no free slots
+    size_t slot_size;          ///< Size of each allocation slot
+    SlabHeader* partial_slabs; ///< Slabs with some free slots
+    SlabHeader* full_slabs;    ///< Slabs completely used
 };
 
-// Common allocation sizes for a kernel
+
+/** @internal Predefined slab caches for common kernel allocation sizes */
 static SlabCache caches[] = {
     {16, nullptr, nullptr},
     {32, nullptr, nullptr},
@@ -33,6 +44,12 @@ static SlabCache caches[] = {
 
 static const size_t CACHE_COUNT = sizeof(caches) / sizeof(SlabCache);
 
+/**
+ * @internal Remove a slab from a linked list
+ *
+ * @param head Pointer to the head of the list
+ * @param slab Slab to remove
+ */
 static void list_remove(SlabHeader** head, SlabHeader* slab) {
     if (slab->prev) slab->prev->next = slab->next;
     if (slab->next) slab->next->prev = slab->prev;
@@ -40,7 +57,12 @@ static void list_remove(SlabHeader** head, SlabHeader* slab) {
     slab->next = slab->prev = nullptr;
 }
 
-// Helper to push a slab to the front of a list
+/**
+ * @internal Push a slab to the front of a linked list
+ *
+ * @param head Pointer to the head of the list
+ * @param slab Slab to push
+ */
 static void list_push(SlabHeader** head, SlabHeader* slab) {
     slab->next = *head;
     if (*head) (*head)->prev = slab;
@@ -48,29 +70,37 @@ static void list_push(SlabHeader** head, SlabHeader* slab) {
     slab->prev = nullptr;
 }
 
+/**
+ * @brief Initialize the kernel heap
+ *
+ * Currently, this only sets up internal slab structures.
+ * In a more complex system, mutexes and bookkeeping would also be initialized.
+ */
 void init() {
-    // In a more complex version, you'd initialize mutexes here
+
 }
 
+/**
+ * @internal Create a new slab for a specific slot size
+ *
+ * Allocates a physical page from PMM, maps it to a slab header, and initializes the free list.
+ *
+ * @param slot_size Size of each allocation in this slab
+ * @return Pointer to the newly created SlabHeader, or nullptr on failure
+ */
 static SlabHeader* create_slab(size_t slot_size) {
-    // 1. Get a physical page
     uint64_t phys = pmm::alloc(pmm::PAGE_SIZE);
     if (!phys) return nullptr;
 
-    // 2. We assume the VMM has a direct mapping (Higher Half)
-    // If not, you must map this phys page to a virtual address first
     SlabHeader* slab = (SlabHeader*)p2v(phys);
 
-    // 3. Setup the header
     slab->next = nullptr;
     slab->used_slots = 0;
     
-    // We store the header at the start, slots follow
     size_t header_size = align_up(sizeof(SlabHeader), 16);
     size_t available_space = pmm::PAGE_SIZE - header_size;
     slab->total_slots = available_space / slot_size;
 
-    // 4. Build the internal linked list of free slots
     uint8_t* first_slot = (uint8_t*)slab + header_size;
     slab->free_list = (void*)first_slot;
 
@@ -79,13 +109,21 @@ static SlabHeader* create_slab(size_t slot_size) {
         *current = (void*)(first_slot + ((i + 1) * slot_size));
     }
     
-    // Last slot points to null
     void** last = (void**)(first_slot + ((slab->total_slots - 1) * slot_size));
     *last = nullptr;
 
     return slab;
 }
 
+/**
+ * @brief Allocate memory from the kernel heap
+ *
+ * Finds a suitable slab cache for the requested size and returns a free slot.
+ * If no suitable slab exists, a new slab is created.
+ *
+ * @param size Number of bytes requested
+ * @return Pointer to allocated memory, or nullptr if allocation fails
+ */
 void* kmalloc(size_t size) {
     SlabCache* cache = nullptr;
     for (size_t i = 0; i < CACHE_COUNT; i++) {
@@ -97,7 +135,7 @@ void* kmalloc(size_t size) {
 
     if (!cache) {
         size_t order = pmm::size_to_order(size + pmm::PAGE_SIZE);
-        size_t actual_size = (1ULL << order) * pmm::PAGE_SIZE; // The real size allocated
+        size_t actual_size = (1ULL << order) * pmm::PAGE_SIZE;
         uint64_t phys = pmm::alloc(actual_size);
         if (!phys) return nullptr;
 
@@ -120,7 +158,6 @@ void* kmalloc(size_t size) {
     slab->free_list = *(void**)ptr;
     slab->used_slots++;
 
-    // If slab is now full, move it to full_slabs
     if (slab->used_slots == slab->total_slots) {
         list_remove(&cache->partial_slabs, slab);
         list_push(&cache->full_slabs, slab);
@@ -129,6 +166,13 @@ void* kmalloc(size_t size) {
     return ptr;
 }
 
+/**
+ * @brief Free previously allocated memory
+ *
+ * Returns memory to the appropriate slab or frees large allocations back to PMM.
+ *
+ * @param ptr Pointer to memory previously allocated with kmalloc
+ */
 void kfree(void* ptr) {
     if (!ptr) return;
 
@@ -154,20 +198,16 @@ void kfree(void* ptr) {
 
     bool was_full = (slab->used_slots == slab->total_slots);
 
-    // 2. Return the slot to the free list
     *(void**)ptr = slab->free_list;
     slab->free_list = ptr;
     slab->used_slots--;
 
-    // 3. Logic: Returning empty slabs to PMM
     if (slab->used_slots == 0) {
-        // Remove from partial list and give page back to physical memory
         list_remove(&cache->partial_slabs, slab);
         pmm::free(v2p(slab), pmm::PAGE_SIZE);
         return;
     }
 
-    // 4. Logic: Move from Full to Partial
     if (was_full) {
         list_remove(&cache->full_slabs, slab);
         list_push(&cache->partial_slabs, slab);

@@ -1,9 +1,11 @@
 /**
  * @file console.h
- * @brief Abstraction layer for kernel console output
+ * @brief Abstraction layer for kernel console output.
  *
- * Provides a unified interface for writing characters and strings to
- * different backends.
+ * This file provides a unified interface for writing characters and strings
+ * to different console backends. It supports VGA text mode and framebuffer
+ * backends, and provides basic operations such as clearing the screen,
+ * moving the cursor, and formatted output.
  */
 
 #pragma once
@@ -13,70 +15,102 @@
 namespace console {
 
 /**
- * @brief Available console backends
+ * @brief Console backends that can be used for output
  */
 enum class Backend {
-    VGA,          ///< Use VGA text mode
-    FRAMEBUFFER   ///< @todo Implement framebuffer support
+    VGA,          ///< VGA text mode output
+    FRAMEBUFFER   ///< Framebuffer output
 };
 
 /** @defgroup Console_Core Console Core Functions
- * Initialization and basic console operations
- * @{
+ *  @brief Initialization and basic console operations
+ *  @{
  */
 
 /**
  * @brief Initialize the console with a specific backend
- * @param backend The console backend to use (VGA, FRAMEBUFFER)
+ *
+ * Sets up the console for output and prepares the cursor.
+ *
+ * @param backend The backend to use (VGA or FRAMEBUFFER)
+ * @param fb_tag Optional pointer to a multiboot framebuffer tag (required for FRAMEBUFFER)
  */
 void init(Backend backend, multiboot_tag_framebuffer* fb_tag);
 
 /**
- * @brief Clear the screen
+ * @brief Clear the console screen
  *
- * Clears the output using the active backend and resets the cursor.
+ * Clears all output using the active backend and resets the cursor to (0,0).
  */
 void clear();
 
 /**
  * @brief Enable the hardware cursor
  *
- * Only effective if the backend supports a visible cursor.
+ * Makes the cursor visible if the backend supports it.
  */
 void enable_cursor();
 
 /**
  * @brief Disable the hardware cursor
+ *
+ * Hides the cursor if the backend supports it.
  */
 void disable_cursor();
 
 /** @} */
 
 /** @defgroup Console_Output Character Output
- * Functions for writing characters and strings
- * @{
+ *  @brief Functions for writing characters and strings to the console
+ *  @{
  */
 
 /**
  * @brief Write a single character to the console
+ *
  * @param c Character to write
  */
 void putchar(char c);
 
+/**
+ * @brief Write an unsigned integer in decimal format
+ *
+ * @param n Number to write
+ */
 void putnum(uint64_t n);
 
+/**
+ * @brief Write an unsigned integer in hexadecimal format
+ *
+ * @param n Number to write in hexadecimal
+ */
 void puthex(uint64_t n);
 
 /**
  * @brief Write a null-terminated string to the console
+ *
  * @param str Pointer to the string
  */
 void write(const char* str);
 
+/**
+ * @brief Formatted output to the console
+ *
+ * Supports:
+ * - %s: null-terminated string
+ * - %d: unsigned decimal
+ * - %x: unsigned hexadecimal
+ * - %p: pointer (printed as hexadecimal)
+ * - %%: literal '%'
+ *
+ * @param fmt Format string
+ * @param ... Additional arguments
+ */
 void printf(const char* fmt, ...);
 
 /**
  * @brief Move the cursor to a specific position
+ *
  * @param x Column (0-based)
  * @param y Row (0-based)
  */
@@ -84,4 +118,4 @@ void move_cursor(uint16_t x, uint16_t y);
 
 /** @} */
 
-}
+} // namespace console

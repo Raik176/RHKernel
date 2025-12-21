@@ -1,9 +1,29 @@
+/**
+ * @file gdt.cpp
+ * @brief Implementation of the Global Descriptor Table (GDT)
+ *
+ * Sets up the standard kernel GDT entries and loads the GDT into the CPU.
+ * Supports null, kernel code, and kernel data segments.
+ */
+
 #include "gdt.h"
 
 namespace gdt {
+    /** @internal Array of GDT entries */
     static GDTEntry gdt_entries[3];
+    /** @internal GDT pointer passed to lgdt instruction */
     static GDTPtr gdt_ptr;
 
+    /**
+     * @internal
+     * Set a single GDT entry.
+     *
+     * @param idx Index of the GDT entry to set
+     * @param base Base address of the segment
+     * @param limit Limit of the segment
+     * @param access Access flags (present, ring, type)
+     * @param gran Granularity flags (size, long mode, upper limit bits)
+     */
     static void set_entry(int idx, uint32_t base, uint32_t limit, uint8_t access, uint8_t gran) {
         gdt_entries[idx].limit_low    = limit & 0xFFFF;
         gdt_entries[idx].base_low     = base & 0xFFFF;
@@ -14,8 +34,15 @@ namespace gdt {
         gdt_entries[idx].base_high    = (base >> 24) & 0xFF;
     }
 
+    /** @internal Assembly routine to load the GDT pointer into the CPU */
     extern "C" void gdt_load(uint64_t gdt_ptr_addr);
 
+    /**
+     * @brief Initialize the GDT
+     *
+     * Sets up the standard null, kernel code, and kernel data segments,
+     * constructs the GDT pointer, and loads it using `lgdt`.
+     */
     void init() {
         // Null descriptor
         set_entry(0, 0, 0, 0, 0);
@@ -37,6 +64,11 @@ namespace gdt {
         gdt_load(reinterpret_cast<uint64_t>(&gdt_ptr));
     }
 
+    /**
+     * @brief Retrieve the current GDT pointer
+     *
+     * @return GDTPtr containing base address and limit of the GDT
+     */
     GDTPtr get_gdt_ptr() {
         return gdt_ptr;
     }
