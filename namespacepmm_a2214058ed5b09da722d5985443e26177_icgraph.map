@@ -1,19 +1,19 @@
 <map id="pmm::pop_block" name="pmm::pop_block">
 <area shape="rect" id="Node000001" title=" " alt="" coords="815,105,945,131"/>
-<area shape="rect" id="Node000002" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="672,105,767,131"/>
+<area shape="rect" id="Node000002" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="672,105,767,131"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="801,121,767,121,767,115,801,115"/>
 <area shape="rect" id="Node000003" href="$namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="475,29,612,55"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="678,102,623,76,576,57,578,52,625,72,681,97"/>
-<area shape="rect" id="Node000004" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title=" " alt="" coords="291,29,406,55"/>
+<area shape="rect" id="Node000004" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="291,29,406,55"/>
 <area shape="poly" id="edge12_Node000002_Node000004" title=" " alt="" coords="658,109,462,69,406,57,407,51,463,63,659,103"/>
 <area shape="rect" id="Node000007" href="$namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="463,131,624,156"/>
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="658,129,624,134,624,129,658,124"/>
 <area shape="rect" id="Node000008" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="133,131,218,156"/>
 <area shape="poly" id="edge11_Node000002_Node000008" title=" " alt="" coords="690,141,660,158,625,171,530,189,455,192,379,184,282,171,218,158,219,153,283,166,379,179,455,187,530,184,623,166,657,153,688,136"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="461,45,406,45,406,39,461,39"/>
-<area shape="rect" id="Node000005" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="121,5,229,31"/>
+<area shape="rect" id="Node000005" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="121,5,229,31"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="277,35,229,28,230,23,278,30"/>
-<area shape="rect" id="Node000006" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="116,55,235,80"/>
+<area shape="rect" id="Node000006" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="116,55,235,80"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="278,55,235,61,234,56,277,50"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="473,131,414,122,349,118,283,122,219,134,218,129,282,117,349,112,415,117,474,125"/>
 <area shape="rect" id="Node000010" href="$namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="283,131,415,156"/>

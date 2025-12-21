@@ -111,10 +111,13 @@ Collaboration diagram for heap::SlabCache:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a26eefc9a4e26fb34e41fe9cffce02c7e" id="r_a26eefc9a4e26fb34e41fe9cffce02c7e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabCache.html#a26eefc9a4e26fb34e41fe9cffce02c7e">slot_size</a></td></tr>
+<tr class="memdesc:a26eefc9a4e26fb34e41fe9cffce02c7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of each allocation slot.  <br /></td></tr>
 <tr class="separator:a26eefc9a4e26fb34e41fe9cffce02c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f8c53b8da51239b586406bbb8f52576" id="r_a3f8c53b8da51239b586406bbb8f52576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabCache.html#a3f8c53b8da51239b586406bbb8f52576">partial_slabs</a></td></tr>
+<tr class="memdesc:a3f8c53b8da51239b586406bbb8f52576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slabs with some free slots.  <br /></td></tr>
 <tr class="separator:a3f8c53b8da51239b586406bbb8f52576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a993cf0d2ab69585314e2cbaf267268ad" id="r_a993cf0d2ab69585314e2cbaf267268ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabCache.html#a993cf0d2ab69585314e2cbaf267268ad">full_slabs</a></td></tr>
+<tr class="memdesc:a993cf0d2ab69585314e2cbaf267268ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slabs completely used.  <br /></td></tr>
 <tr class="separator:a993cf0d2ab69585314e2cbaf267268ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -130,6 +133,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Slabs completely used. </p>
+
 </div>
 </div>
 <a id="a3f8c53b8da51239b586406bbb8f52576" name="a3f8c53b8da51239b586406bbb8f52576"></a>
@@ -144,6 +149,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Slabs with some free slots. </p>
+
 </div>
 </div>
 <a id="a26eefc9a4e26fb34e41fe9cffce02c7e" name="a26eefc9a4e26fb34e41fe9cffce02c7e"></a>
@@ -157,6 +164,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Size of each allocation slot. </p>
 
 </div>
 </div>

@@ -101,17 +101,22 @@ $(document).ready(function(){initNavTree('namespaceidt.html',''); initResizable(
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structidt_1_1idt__entry.html">idt_entry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry in the Interrupt Descriptor Table (IDT)  <a href="structidt_1_1idt__entry.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structidt_1_1idt__ptr.html">idt_ptr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer structure for loading the IDT.  <a href="structidt_1_1idt__ptr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a70c71e8f0fb85318fc510571445c6e36" id="r_a70c71e8f0fb85318fc510571445c6e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a70c71e8f0fb85318fc510571445c6e36">load</a> (void)</td></tr>
+<tr class="memdesc:a70c71e8f0fb85318fc510571445c6e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the IDT into the CPU.  <br /></td></tr>
 <tr class="separator:a70c71e8f0fb85318fc510571445c6e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a241eccc3e87b3e7c19ef23a547c86b88" id="r_a241eccc3e87b3e7c19ef23a547c86b88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88">set_gate</a> (uint8_t num, uint64_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint16_t sel, uint8_t <a class="el" href="idt_8h.html#aa2585d779da0ab21273a8d92de9a0ebe">flags</a>)</td></tr>
+<tr class="memdesc:a241eccc3e87b3e7c19ef23a547c86b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an entry in the IDT.  <br /></td></tr>
 <tr class="separator:a241eccc3e87b3e7c19ef23a547c86b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a2f66e62a6c1b073aa94f90a44db50a" id="r_a6a2f66e62a6c1b073aa94f90a44db50a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a">init</a> (void)</td></tr>
+<tr class="memdesc:a6a2f66e62a6c1b073aa94f90a44db50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the IDT.  <br /></td></tr>
 <tr class="separator:a6a2f66e62a6c1b073aa94f90a44db50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05a09d6694d991235f95bfcd7171a85a" id="r_a05a09d6694d991235f95bfcd7171a85a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structidt_1_1idt__entry.html">idt::idt_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a05a09d6694d991235f95bfcd7171a85a">__attribute__</a> ((packed))</td></tr>
 <tr class="separator:a05a09d6694d991235f95bfcd7171a85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,8 +124,10 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:adf41cef4d7cf207215b25d30326dd48b" id="r_adf41cef4d7cf207215b25d30326dd48b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structidt_1_1idt__entry.html">idt_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#adf41cef4d7cf207215b25d30326dd48b">idt</a> [256]</td></tr>
+<tr class="memdesc:adf41cef4d7cf207215b25d30326dd48b"><td class="mdescLeft">&#160;</td><td class="mdescRight">IDT table.  <br /></td></tr>
 <tr class="separator:adf41cef4d7cf207215b25d30326dd48b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4871bbadf82a31090453cde2d2d742b7" id="r_a4871bbadf82a31090453cde2d2d742b7"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structidt_1_1idt__ptr.html">idt_ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a4871bbadf82a31090453cde2d2d742b7">idtp</a></td></tr>
+<tr class="memdesc:a4871bbadf82a31090453cde2d2d742b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer structure used by lidt.  <br /></td></tr>
 <tr class="separator:a4871bbadf82a31090453cde2d2d742b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -157,12 +164,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize the IDT. </p>
+<p>Clears the IDT, sets up default exception handlers (ISRs 0-31), and loads the IDT into the CPU.</p>
+<p>Sets up default entries and prepares the IDT for loading. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph.png" border="0" usemap="#anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph" alt=""/></div>
 <map name="anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph" id="anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,844,73,869"/>
+<area shape="rect" title="Initialize the IDT." alt="" coords="5,844,73,869"/>
 <area shape="rect" href="idt_8cpp.html#af88eb8e98d943aa0461c01de3cb53493" title=" " alt="" coords="149,5,196,31"/>
 <area shape="poly" title=" " alt="" coords="39,844,46,686,62,431,86,182,102,92,110,60,119,40,135,27,138,31,123,44,115,62,107,93,92,183,67,432,51,687,44,844"/>
 <area shape="rect" href="idt_8cpp.html#aeab0ed9ae661801c25f7dc9089c19f72" title=" " alt="" coords="149,55,196,80"/>
@@ -227,11 +238,11 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="43,870,46,983,57,1163,67,1258,81,1346,100,1420,111,1449,123,1471,139,1484,135,1488,119,1474,106,1451,95,1422,76,1347,62,1258,52,1163,41,983,38,870"/>
 <area shape="rect" href="idt_8cpp.html#aacb7c8490cbd623a3a2bf933ffedd131" title=" " alt="" coords="149,1535,196,1560"/>
 <area shape="poly" title=" " alt="" coords="43,870,45,991,54,1185,64,1289,79,1385,98,1465,110,1496,123,1520,138,1533,135,1537,119,1524,105,1498,93,1466,73,1386,59,1289,49,1186,40,991,38,870"/>
-<area shape="rect" href="namespaceidt.html#a70c71e8f0fb85318fc510571445c6e36" title=" " alt="" coords="135,1584,210,1609"/>
+<area shape="rect" href="namespaceidt.html#a70c71e8f0fb85318fc510571445c6e36" title="Load the IDT into the CPU." alt="" coords="135,1584,210,1609"/>
 <area shape="poly" title=" " alt="" coords="43,869,44,999,52,1208,62,1319,76,1423,96,1510,109,1544,124,1570,127,1574,123,1577,119,1573,104,1546,91,1511,71,1424,56,1320,47,1208,38,999,38,869"/>
-<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title=" " alt="" coords="135,1633,211,1659"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="135,1633,211,1659"/>
 <area shape="poly" title=" " alt="" coords="43,870,43,1007,50,1231,59,1350,74,1461,95,1554,108,1591,124,1619,127,1623,123,1626,119,1622,103,1593,90,1556,68,1462,54,1351,44,1231,37,1007,38,870"/>
-<area shape="rect" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88" title=" " alt="" coords="121,1683,224,1708"/>
+<area shape="rect" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88" title="Set an entry in the IDT." alt="" coords="121,1683,224,1708"/>
 <area shape="poly" title=" " alt="" coords="44,869,51,1026,68,1281,92,1529,107,1619,115,1650,124,1669,127,1672,123,1676,119,1671,110,1652,102,1620,87,1530,62,1281,46,1027,39,870"/>
 </map>
 </div>
@@ -240,7 +251,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_icgraph.png" border="0" usemap="#anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_icgraph" alt=""/></div>
 <map name="anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_icgraph" id="anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_icgraph">
-<area shape="rect" title=" " alt="" coords="116,5,184,31"/>
+<area shape="rect" title="Initialize the IDT." alt="" coords="116,5,184,31"/>
 <area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
 <area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
 </map>
@@ -271,13 +282,16 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Load the IDT into the CPU. </p>
+<p>Wraps the <code>lidt</code> instruction. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceidt_a70c71e8f0fb85318fc510571445c6e36_icgraph.png" border="0" usemap="#anamespaceidt_a70c71e8f0fb85318fc510571445c6e36_icgraph" alt=""/></div>
 <map name="anamespaceidt_a70c71e8f0fb85318fc510571445c6e36_icgraph" id="anamespaceidt_a70c71e8f0fb85318fc510571445c6e36_icgraph">
-<area shape="rect" title=" " alt="" coords="232,5,307,31"/>
-<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title=" " alt="" coords="116,5,184,31"/>
+<area shape="rect" title="Load the IDT into the CPU." alt="" coords="232,5,307,31"/>
+<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="116,5,184,31"/>
 <area shape="poly" title=" " alt="" coords="218,21,184,21,184,15,218,15"/>
 <area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
 <area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
@@ -323,13 +337,35 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set an entry in the IDT. </p>
+<p>Configures a single interrupt gate with the specified handler, selector, and flags.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>Interrupt number (0-255) </td></tr>
+    <tr><td class="paramname">base</td><td>Address of the ISR handler </td></tr>
+    <tr><td class="paramname">sel</td><td>Code segment selector from GDT </td></tr>
+    <tr><td class="paramname">flags</td><td>Type and attribute flags for the entry</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Configures a single interrupt gate.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>Interrupt number (0-255) </td></tr>
+    <tr><td class="paramname">base</td><td>Address of the ISR handler </td></tr>
+    <tr><td class="paramname">sel</td><td>Code segment selector from GDT </td></tr>
+    <tr><td class="paramname">flags</td><td>Type and attribute flags for the entry </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceidt_a241eccc3e87b3e7c19ef23a547c86b88_icgraph.png" border="0" usemap="#anamespaceidt_a241eccc3e87b3e7c19ef23a547c86b88_icgraph" alt=""/></div>
 <map name="anamespaceidt_a241eccc3e87b3e7c19ef23a547c86b88_icgraph" id="anamespaceidt_a241eccc3e87b3e7c19ef23a547c86b88_icgraph">
-<area shape="rect" title=" " alt="" coords="232,5,335,31"/>
-<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title=" " alt="" coords="116,5,184,31"/>
+<area shape="rect" title="Set an entry in the IDT." alt="" coords="232,5,335,31"/>
+<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="116,5,184,31"/>
 <area shape="poly" title=" " alt="" coords="218,21,184,21,184,15,218,15"/>
 <area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
 <area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
@@ -351,6 +387,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>IDT table. </p>
+
 </div>
 </div>
 <a id="a4871bbadf82a31090453cde2d2d742b7" name="a4871bbadf82a31090453cde2d2d742b7"></a>
@@ -364,6 +402,8 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Pointer structure used by lidt. </p>
 
 </div>
 </div>

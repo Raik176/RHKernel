@@ -1,14 +1,14 @@
 <map id="isr_handler" name="isr_handler">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,229,100,254"/>
-<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title=" " alt="" coords="148,204,279,229"/>
+<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title="Write an unsigned integer in decimal format." alt="" coords="148,204,279,229"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,232,134,226,135,231,101,237"/>
 <area shape="rect" id="Node000018" href="$group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="157,253,270,278"/>
 <area shape="poly" id="edge22_Node000001_Node000018" title=" " alt="" coords="101,246,144,253,143,258,100,251"/>
 <area shape="rect" id="Node000003" href="$group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174" title="Write a single character to the console." alt="" coords="327,229,456,254"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,223,313,228,313,233,279,228"/>
-<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title=" " alt="" coords="504,93,660,118"/>
+<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="504,93,660,118"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="409,227,550,125,553,129,412,231"/>
-<area shape="rect" id="Node000009" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title=" " alt="" coords="525,229,639,254"/>
+<area shape="rect" id="Node000009" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="525,229,639,254"/>
 <area shape="poly" id="edge12_Node000003_Node000009" title=" " alt="" coords="456,239,511,239,511,244,456,244"/>
 <area shape="rect" id="Node000013" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="531,329,633,354"/>
 <area shape="poly" id="edge16_Node000003_Node000013" title=" " alt="" coords="418,252,546,320,543,325,416,257"/>

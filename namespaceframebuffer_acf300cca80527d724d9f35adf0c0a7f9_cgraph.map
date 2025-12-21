@@ -1,5 +1,5 @@
 <map id="framebuffer::enable_cursor" name="framebuffer::enable_cursor">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,156,45"/>
+<area shape="rect" id="Node000001" title="Enable the cursor." alt="" coords="5,5,156,45"/>
 <area shape="rect" id="Node000002" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="204,5,356,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,23,190,23,190,28,156,28"/>
 <area shape="rect" id="Node000003" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="404,13,581,38"/>

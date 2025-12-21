@@ -97,13 +97,16 @@ $(document).ready(function(){initNavTree('gdt_8cpp.html',''); initResizable(); }
   <div class="headertitle"><div class="title">gdt.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of the Global Descriptor Table (GDT)  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="gdt_8h_source.html">gdt.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for gdt.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="gdt_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2gdt_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2gdt_8cpp" id="asrc_2impl_2x86__64_2gdt_8cpp">
-<area shape="rect" title=" " alt="" coords="5,5,183,31"/>
+<area shape="rect" title="Implementation of the Global Descriptor Table (GDT)" alt="" coords="5,5,183,31"/>
 <area shape="rect" href="gdt_8h.html" title=" " alt="" coords="67,79,121,104"/>
 <area shape="poly" title=" " alt="" coords="97,31,97,65,91,65,91,31"/>
 <area shape="rect" title=" " alt="" coords="59,152,129,177"/>
@@ -123,8 +126,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ad71ded752899f558e6555fa02504fdf0" id="r_ad71ded752899f558e6555fa02504fdf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ad71ded752899f558e6555fa02504fdf0">gdt::gdt_load</a> (uint64_t gdt_ptr_addr)</td></tr>
 <tr class="separator:ad71ded752899f558e6555fa02504fdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2640a2f60da951c7e5f3ec497924c165" id="r_a2640a2f60da951c7e5f3ec497924c165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a2640a2f60da951c7e5f3ec497924c165">gdt::init</a> ()</td></tr>
+<tr class="memdesc:a2640a2f60da951c7e5f3ec497924c165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the GDT.  <br /></td></tr>
 <tr class="separator:a2640a2f60da951c7e5f3ec497924c165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e7f329972e893e4af69835d489a1d62" id="r_a8e7f329972e893e4af69835d489a1d62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a8e7f329972e893e4af69835d489a1d62">gdt::get_gdt_ptr</a> ()</td></tr>
+<tr class="memdesc:a8e7f329972e893e4af69835d489a1d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the current GDT pointer.  <br /></td></tr>
 <tr class="separator:a8e7f329972e893e4af69835d489a1d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -134,7 +139,10 @@ Variables</h2></td></tr>
 <tr class="memitem:a58a614d471498f89cb9651b76bb59366" id="r_a58a614d471498f89cb9651b76bb59366"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a58a614d471498f89cb9651b76bb59366">gdt::gdt_ptr</a></td></tr>
 <tr class="separator:a58a614d471498f89cb9651b76bb59366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of the Global Descriptor Table (GDT) </p>
+<p>Sets up the standard kernel GDT entries and loads the GDT into the CPU. Supports null, kernel code, and kernel data segments. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

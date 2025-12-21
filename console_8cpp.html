@@ -145,16 +145,19 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaba87341fd1ed10fbefe4e1dbf1300174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single character to the console.  <br /></td></tr>
 <tr class="separator:gaba87341fd1ed10fbefe4e1dbf1300174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9a41564fc009b7339df8f2b2a4394eb2" id="r_ga9a41564fc009b7339df8f2b2a4394eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2">console::putnum</a> (uint64_t n)</td></tr>
+<tr class="memdesc:ga9a41564fc009b7339df8f2b2a4394eb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an unsigned integer in decimal format.  <br /></td></tr>
 <tr class="separator:ga9a41564fc009b7339df8f2b2a4394eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga278e61a8aa1cda0b57e50aa56cfd49ce" id="r_ga278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce">console::puthex</a> (uint64_t n)</td></tr>
+<tr class="memdesc:ga278e61a8aa1cda0b57e50aa56cfd49ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an unsigned integer in hexadecimal format.  <br /></td></tr>
 <tr class="separator:ga278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae2713614e37ba234a7af6abc42460964" id="r_gae2713614e37ba234a7af6abc42460964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#gae2713614e37ba234a7af6abc42460964">console::write</a> (const char *str)</td></tr>
 <tr class="memdesc:gae2713614e37ba234a7af6abc42460964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a null-terminated string to the console.  <br /></td></tr>
 <tr class="separator:gae2713614e37ba234a7af6abc42460964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0522c4a859d7c82e6aab7c54f4209df2" id="r_ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2">console::printf</a> (const char *fmt,...)</td></tr>
+<tr class="memdesc:ga0522c4a859d7c82e6aab7c54f4209df2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formatted output to the console.  <br /></td></tr>
 <tr class="separator:ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga035f2f624f6a23ed646c9654d4510a66" id="r_ga035f2f624f6a23ed646c9654d4510a66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66">console::clear</a> ()</td></tr>
-<tr class="memdesc:ga035f2f624f6a23ed646c9654d4510a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the screen.  <br /></td></tr>
+<tr class="memdesc:ga035f2f624f6a23ed646c9654d4510a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the console screen.  <br /></td></tr>
 <tr class="separator:ga035f2f624f6a23ed646c9654d4510a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9342e94a12a86c2367bddb6f7a9cb69f" id="r_ga9342e94a12a86c2367bddb6f7a9cb69f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga9342e94a12a86c2367bddb6f7a9cb69f">console::move_cursor</a> (uint16_t x, uint16_t y)</td></tr>
 <tr class="memdesc:ga9342e94a12a86c2367bddb6f7a9cb69f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the cursor to a specific position.  <br /></td></tr>
@@ -173,6 +176,7 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of kernel console abstraction. </p>
+<p>This file implements the console interface declared in <a class="el" href="console_8h.html" title="Abstraction layer for kernel console output.">console.h</a>. It handles output to different backends (VGA, framebuffer) and optionally to the serial port when DEBUG is enabled. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

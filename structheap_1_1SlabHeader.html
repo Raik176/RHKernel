@@ -109,16 +109,21 @@ Collaboration diagram for heap::SlabHeader:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a9175aeb42acfd6b4277cccd7ab5e9fe5" id="r_a9175aeb42acfd6b4277cccd7ab5e9fe5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a9175aeb42acfd6b4277cccd7ab5e9fe5">slot_size</a></td></tr>
+<tr class="memdesc:a9175aeb42acfd6b4277cccd7ab5e9fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of each allocation slot.  <br /></td></tr>
 <tr class="separator:a9175aeb42acfd6b4277cccd7ab5e9fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65655a7ada199a076b21d5d9d1fcec0f" id="r_a65655a7ada199a076b21d5d9d1fcec0f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a65655a7ada199a076b21d5d9d1fcec0f">used_slots</a></td></tr>
+<tr class="memdesc:a65655a7ada199a076b21d5d9d1fcec0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of slots currently in use.  <br /></td></tr>
 <tr class="separator:a65655a7ada199a076b21d5d9d1fcec0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a019af2b26ee984d0b364b76e8af1ba16" id="r_a019af2b26ee984d0b364b76e8af1ba16"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a019af2b26ee984d0b364b76e8af1ba16">total_slots</a></td></tr>
+<tr class="memdesc:a019af2b26ee984d0b364b76e8af1ba16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of slots in the slab.  <br /></td></tr>
 <tr class="separator:a019af2b26ee984d0b364b76e8af1ba16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19c951d03cfe6b9849de4e5da84e7286" id="r_a19c951d03cfe6b9849de4e5da84e7286"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a19c951d03cfe6b9849de4e5da84e7286">free_list</a></td></tr>
+<tr class="memdesc:a19c951d03cfe6b9849de4e5da84e7286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linked list of free slots.  <br /></td></tr>
 <tr class="separator:a19c951d03cfe6b9849de4e5da84e7286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72cfaf37cd0feff4ea51bd56e3ee0cec" id="r_a72cfaf37cd0feff4ea51bd56e3ee0cec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a72cfaf37cd0feff4ea51bd56e3ee0cec">next</a></td></tr>
 <tr class="separator:a72cfaf37cd0feff4ea51bd56e3ee0cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a686e782b191596a55aa7504b447e6d1c" id="r_a686e782b191596a55aa7504b447e6d1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a686e782b191596a55aa7504b447e6d1c">prev</a></td></tr>
+<tr class="memdesc:a686e782b191596a55aa7504b447e6d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Links for partial/full slab lists.  <br /></td></tr>
 <tr class="separator:a686e782b191596a55aa7504b447e6d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -133,6 +138,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Linked list of free slots. </p>
 
 </div>
 </div>
@@ -162,6 +169,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Links for partial/full slab lists. </p>
+
 </div>
 </div>
 <a id="a9175aeb42acfd6b4277cccd7ab5e9fe5" name="a9175aeb42acfd6b4277cccd7ab5e9fe5"></a>
@@ -175,6 +184,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Size of each allocation slot. </p>
 
 </div>
 </div>
@@ -190,6 +201,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Total number of slots in the slab. </p>
+
 </div>
 </div>
 <a id="a65655a7ada199a076b21d5d9d1fcec0f" name="a65655a7ada199a076b21d5d9d1fcec0f"></a>
@@ -203,6 +216,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Number of slots currently in use. </p>
 
 </div>
 </div>

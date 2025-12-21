@@ -90,11 +90,12 @@ $(document).ready(function(){initNavTree('string_8h.html',''); initResizable(); 
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">string.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Basic memory and string manipulation functions for kernel.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -102,7 +103,7 @@ Include dependency graph for string.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="string_8h__incl.png" border="0" usemap="#asrc_2intf_2string_8h" alt=""/></div>
 <map name="asrc_2intf_2string_8h" id="asrc_2intf_2string_8h">
-<area shape="rect" title=" " alt="" coords="31,5,151,31"/>
+<area shape="rect" title="Basic memory and string manipulation functions for kernel." alt="" coords="31,5,151,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,80,104"/>
 <area shape="poly" title=" " alt="" coords="85,33,60,69,56,66,81,30"/>
 <area shape="rect" title=" " alt="" coords="105,79,175,104"/>
@@ -114,8 +115,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="string_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2string_8hdep" alt=""/></div>
 <map name="asrc_2intf_2string_8hdep" id="asrc_2intf_2string_8hdep">
-<area shape="rect" title=" " alt="" coords="135,5,255,31"/>
-<area shape="rect" href="idt_8cpp.html" title=" " alt="" coords="5,79,179,104"/>
+<area shape="rect" title="Basic memory and string manipulation functions for kernel." alt="" coords="135,5,255,31"/>
+<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="5,79,179,104"/>
 <area shape="poly" title=" " alt="" coords="168,41,110,81,107,76,165,36"/>
 <area shape="rect" href="vmm_8cpp.html" title=" " alt="" coords="203,79,394,104"/>
 <area shape="poly" title=" " alt="" coords="224,36,283,76,280,81,221,41"/>
@@ -126,28 +127,43 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Memory Functions</div></td></tr>
 <tr class="memitem:a8a853f677c69b562669a40f0d8e55064" id="r_a8a853f677c69b562669a40f0d8e55064"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064">memcpy</a> (void *dest, const void *src, size_t n)</td></tr>
+<tr class="memdesc:a8a853f677c69b562669a40f0d8e55064"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy memory from source to destination.  <br /></td></tr>
 <tr class="separator:a8a853f677c69b562669a40f0d8e55064"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68108ee6aab23b0f7cd925f449354da4" id="r_a68108ee6aab23b0f7cd925f449354da4"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4">memset</a> (void *s, int c, size_t n)</td></tr>
+<tr class="memdesc:a68108ee6aab23b0f7cd925f449354da4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill memory with a constant byte.  <br /></td></tr>
 <tr class="separator:a68108ee6aab23b0f7cd925f449354da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae166e143dcc0d44f63442f67ad2af5f8" id="r_ae166e143dcc0d44f63442f67ad2af5f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#ae166e143dcc0d44f63442f67ad2af5f8">memzero</a> (void *ptr, size_t size)</td></tr>
+<tr class="memdesc:ae166e143dcc0d44f63442f67ad2af5f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zero out memory.  <br /></td></tr>
 <tr class="separator:ae166e143dcc0d44f63442f67ad2af5f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1920090da3c7d87b99fb9b4972e47b6f" id="r_a1920090da3c7d87b99fb9b4972e47b6f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a1920090da3c7d87b99fb9b4972e47b6f">memcmp</a> (const void *s1, const void *s2, size_t n)</td></tr>
+<tr class="memdesc:a1920090da3c7d87b99fb9b4972e47b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two memory regions.  <br /></td></tr>
 <tr class="separator:a1920090da3c7d87b99fb9b4972e47b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">String Functions</div></td></tr>
 <tr class="memitem:aa6cc9f852e7dce55e590e952677649bd" id="r_aa6cc9f852e7dce55e590e952677649bd"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#aa6cc9f852e7dce55e590e952677649bd">strlen</a> (const char *s)</td></tr>
+<tr class="memdesc:aa6cc9f852e7dce55e590e952677649bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute length of a null-terminated string.  <br /></td></tr>
 <tr class="separator:aa6cc9f852e7dce55e590e952677649bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42a9fb2c74818b2f3c66c960ef1edb49" id="r_a42a9fb2c74818b2f3c66c960ef1edb49"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a42a9fb2c74818b2f3c66c960ef1edb49">strcpy</a> (char *dest, const char *src)</td></tr>
+<tr class="memdesc:a42a9fb2c74818b2f3c66c960ef1edb49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy null-terminated string.  <br /></td></tr>
 <tr class="separator:a42a9fb2c74818b2f3c66c960ef1edb49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab75063fc83351626a5f60dbb27202b24" id="r_ab75063fc83351626a5f60dbb27202b24"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#ab75063fc83351626a5f60dbb27202b24">strncpy</a> (char *dest, const char *src, size_t n)</td></tr>
+<tr class="memdesc:ab75063fc83351626a5f60dbb27202b24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy string with maximum length.  <br /></td></tr>
 <tr class="separator:ab75063fc83351626a5f60dbb27202b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b86051229282f1d6e676c0b6c41969e" id="r_a4b86051229282f1d6e676c0b6c41969e"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a4b86051229282f1d6e676c0b6c41969e">strcat</a> (char *dest, const char *src)</td></tr>
+<tr class="memdesc:a4b86051229282f1d6e676c0b6c41969e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate null-terminated strings.  <br /></td></tr>
 <tr class="separator:a4b86051229282f1d6e676c0b6c41969e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10a2361d963a01cad4951eade2f63576" id="r_a10a2361d963a01cad4951eade2f63576"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a10a2361d963a01cad4951eade2f63576">strcmp</a> (const char *s1, const char *s2)</td></tr>
+<tr class="memdesc:a10a2361d963a01cad4951eade2f63576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two null-terminated strings.  <br /></td></tr>
 <tr class="separator:a10a2361d963a01cad4951eade2f63576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2232295460866ac58a41541e48555489" id="r_a2232295460866ac58a41541e48555489"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a2232295460866ac58a41541e48555489">strncmp</a> (const char *s1, const char *s2, size_t n)</td></tr>
+<tr class="memdesc:a2232295460866ac58a41541e48555489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare up to n characters of two strings.  <br /></td></tr>
 <tr class="separator:a2232295460866ac58a41541e48555489"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Basic memory and string manipulation functions for kernel. </p>
+<p>Provides freestanding implementations of standard C library functions such as memcpy, memset, memcmp, strlen, strcpy, strncpy, strcat, strcmp, and strncmp. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a1920090da3c7d87b99fb9b4972e47b6f" name="a1920090da3c7d87b99fb9b4972e47b6f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1920090da3c7d87b99fb9b4972e47b6f">&#9670;&#160;</a></span>memcmp()</h2>
 
@@ -187,6 +203,17 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Compare two memory regions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>Pointer to first memory </td></tr>
+    <tr><td class="paramname">s2</td><td>Pointer to second memory </td></tr>
+    <tr><td class="paramname">n</td><td>Number of bytes to compare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if equal, negative if s1&lt;s2, positive if s1&gt;s2 </dd></dl>
 
 </div>
 </div>
@@ -230,6 +257,17 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Copy memory from source to destination. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>Destination pointer </td></tr>
+    <tr><td class="paramname">src</td><td>Source pointer </td></tr>
+    <tr><td class="paramname">n</td><td>Number of bytes to copy </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to destination </dd></dl>
+
 </div>
 </div>
 <a id="a68108ee6aab23b0f7cd925f449354da4" name="a68108ee6aab23b0f7cd925f449354da4"></a>
@@ -271,17 +309,28 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Fill memory with a constant byte. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Pointer to memory </td></tr>
+    <tr><td class="paramname">c</td><td>Byte value to set </td></tr>
+    <tr><td class="paramname">n</td><td>Number of bytes to set </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to memory </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="string_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph.png" border="0" usemap="#astring_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph" alt=""/></div>
 <map name="astring_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph" id="astring_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph">
-<area shape="rect" title=" " alt="" coords="639,75,715,101"/>
+<area shape="rect" title="Fill memory with a constant byte." alt="" coords="639,75,715,101"/>
 <area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="429,25,591,50"/>
 <area shape="poly" title=" " alt="" coords="625,75,552,53,553,48,626,70"/>
 <area shape="rect" href="namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="116,38,201,63"/>
 <area shape="poly" title=" " alt="" coords="625,89,458,81,249,65,201,60,202,54,250,60,458,76,625,84"/>
-<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title=" " alt="" coords="281,126,349,151"/>
+<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="281,126,349,151"/>
 <area shape="poly" title=" " alt="" coords="626,103,591,109,457,128,350,139,349,133,457,122,590,104,625,97"/>
 <area shape="poly" title=" " alt="" coords="449,24,355,10,302,9,250,15,214,26,183,40,181,36,212,21,249,10,302,3,355,5,450,19"/>
 <area shape="rect" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="249,25,381,50"/>
@@ -329,6 +378,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Zero out memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr</td><td>Pointer to memory </td></tr>
+    <tr><td class="paramname">size</td><td>Number of bytes to zero </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a4b86051229282f1d6e676c0b6c41969e" name="a4b86051229282f1d6e676c0b6c41969e"></a>
@@ -364,6 +422,16 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Concatenate null-terminated strings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>Destination buffer (must be large enough) </td></tr>
+    <tr><td class="paramname">src</td><td>Source string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to destination </dd></dl>
 
 </div>
 </div>
@@ -401,6 +469,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Compare two null-terminated strings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>First string </td></tr>
+    <tr><td class="paramname">s2</td><td>Second string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if equal, negative if s1&lt;s2, positive if s1&gt;s2 </dd></dl>
+
 </div>
 </div>
 <a id="a42a9fb2c74818b2f3c66c960ef1edb49" name="a42a9fb2c74818b2f3c66c960ef1edb49"></a>
@@ -437,6 +515,16 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Copy null-terminated string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>Destination buffer </td></tr>
+    <tr><td class="paramname">src</td><td>Source string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to destination </dd></dl>
+
 </div>
 </div>
 <a id="aa6cc9f852e7dce55e590e952677649bd" name="aa6cc9f852e7dce55e590e952677649bd"></a>
@@ -462,6 +550,15 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Compute length of a null-terminated string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Pointer to string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of characters before null terminator </dd></dl>
 
 </div>
 </div>
@@ -505,6 +602,17 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Compare up to n characters of two strings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s1</td><td>First string </td></tr>
+    <tr><td class="paramname">s2</td><td>Second string </td></tr>
+    <tr><td class="paramname">n</td><td>Maximum number of characters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if equal, negative if s1&lt;s2, positive if s1&gt;s2 </dd></dl>
+
 </div>
 </div>
 <a id="ab75063fc83351626a5f60dbb27202b24" name="ab75063fc83351626a5f60dbb27202b24"></a>
@@ -546,6 +654,18 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Copy string with maximum length. </p>
+<p>Pads with null bytes if src is shorter than n</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>Destination buffer </td></tr>
+    <tr><td class="paramname">src</td><td>Source string </td></tr>
+    <tr><td class="paramname">n</td><td>Maximum number of characters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to destination </dd></dl>
 
 </div>
 </div>

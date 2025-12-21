@@ -98,6 +98,9 @@ $(document).ready(function(){initNavTree('framebuffer_8cpp.html',''); initResiza
   <div class="headertitle"><div class="title">framebuffer.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of the framebuffer console backend.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="framebuffer_8h_source.html">framebuffer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -105,7 +108,7 @@ Include dependency graph for framebuffer.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="framebuffer_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2framebuffer_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2framebuffer_8cpp" id="asrc_2impl_2x86__64_2framebuffer_8cpp">
-<area shape="rect" title=" " alt="" coords="5,5,237,31"/>
+<area shape="rect" title="Implementation of the framebuffer console backend." alt="" coords="5,5,237,31"/>
 <area shape="rect" href="framebuffer_8h.html" title=" " alt="" coords="19,79,130,104"/>
 <area shape="poly" title=" " alt="" coords="116,32,92,69,88,66,111,30"/>
 <area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="151,152,206,177"/>
@@ -147,39 +150,54 @@ Functions</h2></td></tr>
 <tr class="memitem:af87642a7e5ab87d050605d434dd2af16" id="r_af87642a7e5ab87d050605d434dd2af16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16">framebuffer::scroll</a> ()</td></tr>
 <tr class="separator:af87642a7e5ab87d050605d434dd2af16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba7f2e3745cab7d1f4f546d21cd48ff6" id="r_aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6">framebuffer::init</a> (<a class="el" href="structmultiboot__tag__framebuffer.html">multiboot_tag_framebuffer</a> *fb_tag)</td></tr>
-<tr class="memdesc:aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the framebuffer with data from Multiboot2.  <br /></td></tr>
+<tr class="memdesc:aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the framebuffer.  <br /></td></tr>
 <tr class="separator:aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a728cab1f5444849809207cc42e11c43c" id="r_a728cab1f5444849809207cc42e11c43c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c">framebuffer::putchar</a> (char c)</td></tr>
+<tr class="memdesc:a728cab1f5444849809207cc42e11c43c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single character to the framebuffer.  <br /></td></tr>
 <tr class="separator:a728cab1f5444849809207cc42e11c43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa121f4170e112c3ef44be3e481f8706b" id="r_aa121f4170e112c3ef44be3e481f8706b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#aa121f4170e112c3ef44be3e481f8706b">framebuffer::clear</a> (uint32_t color)</td></tr>
-<tr class="separator:aa121f4170e112c3ef44be3e481f8706b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf29831b8817c8c3322536b078fdb265" id="r_adf29831b8817c8c3322536b078fdb265"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265">framebuffer::clear</a> (uint32_t color=0x000000)</td></tr>
+<tr class="memdesc:adf29831b8817c8c3322536b078fdb265"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the framebuffer with a specific color.  <br /></td></tr>
+<tr class="separator:adf29831b8817c8c3322536b078fdb265"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6566fe025d7a87028d97562cdb567852" id="r_a6566fe025d7a87028d97562cdb567852"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a6566fe025d7a87028d97562cdb567852">framebuffer::set_cursor_enabled</a> (bool enabled)</td></tr>
 <tr class="separator:a6566fe025d7a87028d97562cdb567852"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cce465cb2c8f88ac6856c01284b9288" id="r_a8cce465cb2c8f88ac6856c01284b9288"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a8cce465cb2c8f88ac6856c01284b9288">framebuffer::move_cursor</a> (uint16_t x, uint16_t y)</td></tr>
+<tr class="memdesc:a8cce465cb2c8f88ac6856c01284b9288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the cursor to a specific position on the screen.  <br /></td></tr>
 <tr class="separator:a8cce465cb2c8f88ac6856c01284b9288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf300cca80527d724d9f35adf0c0a7f9" id="r_acf300cca80527d724d9f35adf0c0a7f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#acf300cca80527d724d9f35adf0c0a7f9">framebuffer::enable_cursor</a> ()</td></tr>
+<tr class="memdesc:acf300cca80527d724d9f35adf0c0a7f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the cursor.  <br /></td></tr>
 <tr class="separator:acf300cca80527d724d9f35adf0c0a7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8a4ff85af0f78bc8322752dc9bdb076" id="r_aa8a4ff85af0f78bc8322752dc9bdb076"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#aa8a4ff85af0f78bc8322752dc9bdb076">framebuffer::disable_cursor</a> ()</td></tr>
+<tr class="memdesc:aa8a4ff85af0f78bc8322752dc9bdb076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the cursor.  <br /></td></tr>
 <tr class="separator:aa8a4ff85af0f78bc8322752dc9bdb076"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ac8c97706a1bfbf3e8ae6817572addb08" id="r_ac8c97706a1bfbf3e8ae6817572addb08"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="framebuffer_8cpp.html#ac8c97706a1bfbf3e8ae6817572addb08">font_bitmap_start</a></td></tr>
+<tr class="memdesc:ac8c97706a1bfbf3e8ae6817572addb08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start of embedded font bitmap.  <br /></td></tr>
 <tr class="separator:ac8c97706a1bfbf3e8ae6817572addb08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a368611c12e7c391d9886e3a0ab9864a5" id="r_a368611c12e7c391d9886e3a0ab9864a5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="framebuffer_8cpp.html#a368611c12e7c391d9886e3a0ab9864a5">font_bitmap_end</a></td></tr>
+<tr class="memdesc:a368611c12e7c391d9886e3a0ab9864a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">End of embedded font bitmap.  <br /></td></tr>
 <tr class="separator:a368611c12e7c391d9886e3a0ab9864a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b6ebe25bec3afc28a667e3e474590e2" id="r_a5b6ebe25bec3afc28a667e3e474590e2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structframebuffer_1_1FramebufferInfo.html">FramebufferInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a5b6ebe25bec3afc28a667e3e474590e2">framebuffer::fb</a></td></tr>
+<tr class="memdesc:a5b6ebe25bec3afc28a667e3e474590e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active framebuffer info.  <br /></td></tr>
 <tr class="separator:a5b6ebe25bec3afc28a667e3e474590e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf41438d127fac16cf0d42fb76ec7201" id="r_acf41438d127fac16cf0d42fb76ec7201"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#acf41438d127fac16cf0d42fb76ec7201">framebuffer::cursor_x</a> = 0</td></tr>
+<tr class="memdesc:acf41438d127fac16cf0d42fb76ec7201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor coordinates and visibility state.  <br /></td></tr>
 <tr class="separator:acf41438d127fac16cf0d42fb76ec7201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a013291908241ee0da1922b04d097c5dc" id="r_a013291908241ee0da1922b04d097c5dc"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a013291908241ee0da1922b04d097c5dc">framebuffer::cursor_y</a> = 0</td></tr>
+<tr class="memdesc:a013291908241ee0da1922b04d097c5dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor Y.  <br /></td></tr>
 <tr class="separator:a013291908241ee0da1922b04d097c5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3012713e97b1d3c08f7096e941f7884e" id="r_a3012713e97b1d3c08f7096e941f7884e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a3012713e97b1d3c08f7096e941f7884e">framebuffer::cursor_visible</a> = true</td></tr>
+<tr class="memdesc:a3012713e97b1d3c08f7096e941f7884e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cursor Visible.  <br /></td></tr>
 <tr class="separator:a3012713e97b1d3c08f7096e941f7884e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ebf1c339054a920268e44d1d20ec234" id="r_a1ebf1c339054a920268e44d1d20ec234"><td class="memItemLeft" align="right" valign="top">static void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a1ebf1c339054a920268e44d1d20ec234">framebuffer::putpixel_raw</a> )(uint32_t x, uint32_t y, uint32_t color) = nullptr</td></tr>
+<tr class="memdesc:a1ebf1c339054a920268e44d1d20ec234"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function pointer for mode-specific putpixel.  <br /></td></tr>
 <tr class="separator:a1ebf1c339054a920268e44d1d20ec234"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Variable Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of the framebuffer console backend. </p>
+<p>Provides support for writing characters, pixels, and managing the cursor in VGA, indexed, and RGB framebuffer modes. Handles scrolling, cursor drawing, and font rendering. </p>
+</div><h2 class="groupheader">Variable Documentation</h2>
 <a id="a368611c12e7c391d9886e3a0ab9864a5" name="a368611c12e7c391d9886e3a0ab9864a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a368611c12e7c391d9886e3a0ab9864a5">&#9670;&#160;</a></span>font_bitmap_end</h2>
 
@@ -199,6 +217,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>End of embedded font bitmap. </p>
 
 </div>
 </div>
@@ -221,6 +241,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Start of embedded font bitmap. </p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 <map id="serial::putchar" name="serial::putchar">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,120,56"/>
+<area shape="rect" id="Node000001" title="Write a single character to the serial port." alt="" coords="5,31,120,56"/>
 <area shape="rect" id="Node000002" href="$namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="168,5,319,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,33,154,28,155,33,121,38"/>
 <area shape="rect" id="Node000004" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="196,55,291,80"/>

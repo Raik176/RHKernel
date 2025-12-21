@@ -8,7 +8,7 @@
 <area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="365,31,365,65,359,65,359,31"/>
 <area shape="rect" id="Node000007" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="176,152,281,177"/>
 <area shape="poly" id="edge23_Node000001_Node000007" title=" " alt="" coords="351,33,301,80,248,142,244,139,297,77,347,29"/>
-<area shape="rect" id="Node000008" href="$pmm_8h.html" title=" " alt="" coords="84,152,152,177"/>
+<area shape="rect" id="Node000008" href="$pmm_8h.html" title="Physical Memory Manager (PMM) interface." alt="" coords="84,152,152,177"/>
 <area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="344,33,151,147,148,143,341,29"/>
 <area shape="rect" id="Node000009" href="$vmm_8h.html" title=" " alt="" coords="559,79,627,104"/>
 <area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="400,28,546,73,545,78,398,33"/>

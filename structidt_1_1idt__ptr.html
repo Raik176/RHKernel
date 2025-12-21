@@ -97,16 +97,24 @@ $(document).ready(function(){initNavTree('structidt_1_1idt__ptr.html',''); initR
 </div><!--header-->
 <div class="contents">
 
+<p>Pointer structure for loading the IDT.  
+ <a href="structidt_1_1idt__ptr.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="idt_8h_source.html">idt.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a2648fd37065f1354ceff11bf746390bc" id="r_a2648fd37065f1354ceff11bf746390bc"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structidt_1_1idt__ptr.html#a2648fd37065f1354ceff11bf746390bc">limit</a></td></tr>
+<tr class="memdesc:a2648fd37065f1354ceff11bf746390bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the IDT minus 1.  <br /></td></tr>
 <tr class="separator:a2648fd37065f1354ceff11bf746390bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac979731000c606139de8d5c13bf55b8c" id="r_ac979731000c606139de8d5c13bf55b8c"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structidt_1_1idt__ptr.html#ac979731000c606139de8d5c13bf55b8c">base</a></td></tr>
+<tr class="memdesc:ac979731000c606139de8d5c13bf55b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the first IDT entry.  <br /></td></tr>
 <tr class="separator:ac979731000c606139de8d5c13bf55b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Pointer structure for loading the IDT. </p>
+<p>Passed to the <code>lidt</code> instruction to tell the CPU where the IDT resides. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="ac979731000c606139de8d5c13bf55b8c" name="ac979731000c606139de8d5c13bf55b8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac979731000c606139de8d5c13bf55b8c">&#9670;&#160;</a></span>base</h2>
 
@@ -118,6 +126,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Address of the first IDT entry. </p>
 
 </div>
 </div>
@@ -132,6 +142,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Size of the IDT minus 1. </p>
 
 </div>
 </div>

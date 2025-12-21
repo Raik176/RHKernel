@@ -97,16 +97,24 @@ $(document).ready(function(){initNavTree('structgdt_1_1GDTPtr.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
+<p>Pointer structure used to load the GDT.  
+ <a href="structgdt_1_1GDTPtr.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="gdt_8h_source.html">gdt.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad6acabe7f1a1b6ca659b3eefeeecc29c" id="r_ad6acabe7f1a1b6ca659b3eefeeecc29c"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTPtr.html#ad6acabe7f1a1b6ca659b3eefeeecc29c">limit</a></td></tr>
+<tr class="memdesc:ad6acabe7f1a1b6ca659b3eefeeecc29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the GDT minus 1.  <br /></td></tr>
 <tr class="separator:ad6acabe7f1a1b6ca659b3eefeeecc29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5730e748a00668d6a5df7348a52f5660" id="r_a5730e748a00668d6a5df7348a52f5660"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTPtr.html#a5730e748a00668d6a5df7348a52f5660">base</a></td></tr>
+<tr class="memdesc:a5730e748a00668d6a5df7348a52f5660"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the first GDT entry.  <br /></td></tr>
 <tr class="separator:a5730e748a00668d6a5df7348a52f5660"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Pointer structure used to load the GDT. </p>
+<p>Passed to the <code>lgdt</code> instruction. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a5730e748a00668d6a5df7348a52f5660" name="a5730e748a00668d6a5df7348a52f5660"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5730e748a00668d6a5df7348a52f5660">&#9670;&#160;</a></span>base</h2>
 
@@ -118,6 +126,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Address of the first GDT entry. </p>
 
 </div>
 </div>
@@ -132,6 +142,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Size of the GDT minus 1. </p>
 
 </div>
 </div>

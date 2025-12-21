@@ -3,7 +3,7 @@
 <area shape="rect" id="Node000002" href="$namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="249,29,456,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="490,45,456,45,456,39,490,39"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="387,19,377,11,353,8,332,10,322,15,319,20,325,28,321,31,314,21,318,11,331,5,353,3,379,6,390,15"/>
-<area shape="rect" id="Node000003" href="$namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the physical memory manager." alt="" coords="116,29,201,55"/>
+<area shape="rect" id="Node000003" href="$namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the PMM using the Multiboot memory map." alt="" coords="116,29,201,55"/>
 <area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="235,45,202,45,202,39,235,39"/>
 <area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,29,68,55"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="102,45,68,45,68,39,102,39"/>

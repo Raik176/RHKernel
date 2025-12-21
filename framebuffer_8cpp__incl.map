@@ -1,5 +1,5 @@
 <map id="src/impl/x86_64/framebuffer.cpp" name="src/impl/x86_64/framebuffer.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,237,31"/>
+<area shape="rect" id="Node000001" title="Implementation of the framebuffer console backend." alt="" coords="5,5,237,31"/>
 <area shape="rect" id="Node000002" href="$framebuffer_8h.html" title=" " alt="" coords="19,79,130,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,32,92,69,88,66,111,30"/>
 <area shape="rect" id="Node000006" href="$util_8h.html" title="Utility functions and macros." alt="" coords="151,152,206,177"/>

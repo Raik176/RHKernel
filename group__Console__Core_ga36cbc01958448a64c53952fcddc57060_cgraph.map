@@ -1,6 +1,6 @@
 <map id="console::disable_cursor" name="console::disable_cursor">
 <area shape="rect" id="Node000001" title="Disable the hardware cursor." alt="" coords="5,42,180,67"/>
-<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#aa8a4ff85af0f78bc8322752dc9bdb076" title=" " alt="" coords="228,5,383,45"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#aa8a4ff85af0f78bc8322752dc9bdb076" title="Disable the cursor." alt="" coords="228,5,383,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,40,214,35,215,40,180,45"/>
 <area shape="rect" id="Node000005" href="$group__VGA__Output.html#gadca32e66e7fd904784b4411f7e6f03a7" title="Disable the hardware cursor." alt="" coords="231,70,379,95"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="180,63,218,69,217,74,180,69"/>

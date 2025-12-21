@@ -1,8 +1,8 @@
 <map id="console::putchar" name="console::putchar">
 <area shape="rect" id="Node000001" title="Write a single character to the console." alt="" coords="5,229,135,254"/>
-<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title=" " alt="" coords="183,93,339,118"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="183,93,339,118"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,227,229,125,232,129,91,231"/>
-<area shape="rect" id="Node000007" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title=" " alt="" coords="203,229,318,254"/>
+<area shape="rect" id="Node000007" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="203,229,318,254"/>
 <area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="135,239,190,239,190,244,135,244"/>
 <area shape="rect" id="Node000011" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="209,329,312,354"/>
 <area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="97,252,225,320,222,325,94,257"/>

@@ -1,10 +1,10 @@
 <map id="console::init" name="console::init">
 <area shape="rect" id="Node000001" title="Initialize the console with a specific backend." alt="" coords="5,104,107,129"/>
-<area shape="rect" id="Node000002" href="$namespaceserial.html#a88bfeee91e14e29f5f2c8320af9bd1e0" title=" " alt="" coords="175,27,262,52"/>
+<area shape="rect" id="Node000002" href="$namespaceserial.html#a88bfeee91e14e29f5f2c8320af9bd1e0" title="Initialize the serial port." alt="" coords="175,27,262,52"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,101,177,56,180,60,85,106"/>
 <area shape="rect" id="Node000004" href="$group__VGA__Core.html#gae1a3a699e33b42de55fd22eefea6bad2" title="Initialize VGA text mode." alt="" coords="181,104,256,129"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="107,114,167,114,167,119,107,119"/>
-<area shape="rect" id="Node000011" href="$namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer with data from Multiboot2." alt="" coords="155,336,283,361"/>
+<area shape="rect" id="Node000011" href="$namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer." alt="" coords="155,336,283,361"/>
 <area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="68,128,203,323,199,326,64,131"/>
 <area shape="rect" id="Node000003" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="379,15,473,40"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="262,34,365,28,365,34,263,40"/>
@@ -22,7 +22,7 @@
 <area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="499,122,834,104,834,109,499,127"/>
 <area shape="rect" id="Node000010" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="631,171,674,196"/>
 <area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="480,139,618,173,617,178,479,144"/>
-<area shape="rect" id="Node000012" href="$namespaceframebuffer.html#aa121f4170e112c3ef44be3e481f8706b" title=" " alt="" coords="357,231,495,256"/>
+<area shape="rect" id="Node000012" href="$namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265" title="Clear the framebuffer with a specific color." alt="" coords="357,231,495,256"/>
 <area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="237,334,278,306,329,277,373,258,375,263,332,282,281,311,240,338"/>
 <area shape="rect" id="Node000014" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="784,256,961,281"/>
 <area shape="poly" id="edge17_Node000011_Node000014" title=" " alt="" coords="272,333,330,322,566,292,770,273,771,278,567,297,331,327,273,339"/>

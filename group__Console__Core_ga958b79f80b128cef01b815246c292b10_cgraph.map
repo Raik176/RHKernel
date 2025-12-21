@@ -1,6 +1,6 @@
 <map id="console::enable_cursor" name="console::enable_cursor">
 <area shape="rect" id="Node000001" title="Enable the hardware cursor." alt="" coords="5,67,176,93"/>
-<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#acf300cca80527d724d9f35adf0c0a7f9" title=" " alt="" coords="224,19,375,59"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#acf300cca80527d724d9f35adf0c0a7f9" title="Enable the cursor." alt="" coords="224,19,375,59"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,65,210,54,211,59,156,70"/>
 <area shape="rect" id="Node000005" href="$group__VGA__Output.html#ga4186bda44ce74c443fa77ebe369fa673" title="Enable the hardware cursor." alt="" coords="227,95,372,121"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="177,89,213,94,213,99,176,94"/>

@@ -121,7 +121,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" title=" " alt="" coords="151,5,309,31"/>
 <area shape="rect" href="console_8cpp.html" title="Implementation of kernel console abstraction." alt="" coords="5,79,212,104"/>
 <area shape="poly" title=" " alt="" coords="200,40,130,81,127,76,197,35"/>
-<area shape="rect" href="framebuffer_8cpp.html" title=" " alt="" coords="237,79,469,104"/>
+<area shape="rect" href="framebuffer_8cpp.html" title="Implementation of the framebuffer console backend." alt="" coords="237,79,469,104"/>
 <area shape="poly" title=" " alt="" coords="263,35,334,76,331,81,260,40"/>
 </map>
 </div>
@@ -136,19 +136,25 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aba7f2e3745cab7d1f4f546d21cd48ff6" id="r_aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6">framebuffer::init</a> (<a class="el" href="structmultiboot__tag__framebuffer.html">multiboot_tag_framebuffer</a> *fb_tag)</td></tr>
-<tr class="memdesc:aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the framebuffer with data from Multiboot2.  <br /></td></tr>
+<tr class="memdesc:aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the framebuffer.  <br /></td></tr>
 <tr class="separator:aba7f2e3745cab7d1f4f546d21cd48ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a728cab1f5444849809207cc42e11c43c" id="r_a728cab1f5444849809207cc42e11c43c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c">framebuffer::putchar</a> (char c)</td></tr>
+<tr class="memdesc:a728cab1f5444849809207cc42e11c43c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single character to the framebuffer.  <br /></td></tr>
 <tr class="separator:a728cab1f5444849809207cc42e11c43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa121f4170e112c3ef44be3e481f8706b" id="r_aa121f4170e112c3ef44be3e481f8706b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#aa121f4170e112c3ef44be3e481f8706b">framebuffer::clear</a> (uint32_t color)</td></tr>
-<tr class="separator:aa121f4170e112c3ef44be3e481f8706b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf29831b8817c8c3322536b078fdb265" id="r_adf29831b8817c8c3322536b078fdb265"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265">framebuffer::clear</a> (uint32_t color=0x000000)</td></tr>
+<tr class="memdesc:adf29831b8817c8c3322536b078fdb265"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the framebuffer with a specific color.  <br /></td></tr>
+<tr class="separator:adf29831b8817c8c3322536b078fdb265"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2211ad36527182275ba20077f357d180" id="r_a2211ad36527182275ba20077f357d180"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a2211ad36527182275ba20077f357d180">framebuffer::putpixel</a> (uint32_t x, uint32_t y, uint32_t color)</td></tr>
+<tr class="memdesc:a2211ad36527182275ba20077f357d180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a single pixel at a specific location.  <br /></td></tr>
 <tr class="separator:a2211ad36527182275ba20077f357d180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cce465cb2c8f88ac6856c01284b9288" id="r_a8cce465cb2c8f88ac6856c01284b9288"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#a8cce465cb2c8f88ac6856c01284b9288">framebuffer::move_cursor</a> (uint16_t x, uint16_t y)</td></tr>
+<tr class="memdesc:a8cce465cb2c8f88ac6856c01284b9288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the cursor to a specific position on the screen.  <br /></td></tr>
 <tr class="separator:a8cce465cb2c8f88ac6856c01284b9288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf300cca80527d724d9f35adf0c0a7f9" id="r_acf300cca80527d724d9f35adf0c0a7f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#acf300cca80527d724d9f35adf0c0a7f9">framebuffer::enable_cursor</a> ()</td></tr>
+<tr class="memdesc:acf300cca80527d724d9f35adf0c0a7f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the cursor.  <br /></td></tr>
 <tr class="separator:acf300cca80527d724d9f35adf0c0a7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8a4ff85af0f78bc8322752dc9bdb076" id="r_aa8a4ff85af0f78bc8322752dc9bdb076"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceframebuffer.html#aa8a4ff85af0f78bc8322752dc9bdb076">framebuffer::disable_cursor</a> ()</td></tr>
+<tr class="memdesc:aa8a4ff85af0f78bc8322752dc9bdb076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the cursor.  <br /></td></tr>
 <tr class="separator:aa8a4ff85af0f78bc8322752dc9bdb076"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

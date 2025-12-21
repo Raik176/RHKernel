@@ -122,7 +122,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" title="Multiboot2 data structures and tag type definitions." alt="" coords="365,5,520,31"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="5,152,195,177"/>
 <area shape="poly" title=" " alt="" coords="404,39,128,154,126,149,401,34"/>
-<area shape="rect" href="pmm_8cpp.html" title=" " alt="" coords="219,152,410,177"/>
+<area shape="rect" href="pmm_8cpp.html" title="Implementation of the Physical Memory Manager (PMM)" alt="" coords="219,152,410,177"/>
 <area shape="poly" title=" " alt="" coords="425,43,327,154,323,150,421,40"/>
 <area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="404,79,537,104"/>
 <area shape="poly" title=" " alt="" coords="455,43,469,78,464,80,450,45"/>
@@ -132,12 +132,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="poly" title=" " alt="" coords="434,112,341,154,339,149,432,107"/>
 <area shape="rect" href="console_8cpp.html" title="Implementation of kernel console abstraction." alt="" coords="847,152,1054,177"/>
 <area shape="poly" title=" " alt="" coords="551,102,874,149,873,155,550,107"/>
-<area shape="rect" href="idt_8cpp.html" title=" " alt="" coords="435,152,608,177"/>
+<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="435,152,608,177"/>
 <area shape="poly" title=" " alt="" coords="489,114,515,150,511,153,485,117"/>
 <area shape="rect" href="vmm_8cpp.html" title=" " alt="" coords="633,152,823,177"/>
 <area shape="poly" title=" " alt="" coords="526,105,687,149,686,154,524,110"/>
 <area shape="poly" title=" " alt="" coords="953,118,953,152,948,152,948,118"/>
-<area shape="rect" href="framebuffer_8cpp.html" title=" " alt="" coords="1079,152,1311,177"/>
+<area shape="rect" href="framebuffer_8cpp.html" title="Implementation of the framebuffer console backend." alt="" coords="1079,152,1311,177"/>
 <area shape="poly" title=" " alt="" coords="1004,105,1156,149,1154,154,1002,110"/>
 </map>
 </div>
@@ -147,7 +147,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmultiboot__tag.html">multiboot_tag</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic Multiboot2 tag.  <a href="structmultiboot__tag.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic Multiboot2 tag header.  <a href="structmultiboot__tag.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmultiboot__mmap__entry.html">multiboot_mmap_entry</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Single memory map entry.  <a href="structmultiboot__mmap__entry.html#details">More...</a><br /></td></tr>
@@ -156,17 +156,22 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory map tag.  <a href="structmultiboot__tag__mmap.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmultiboot__color.html">multiboot_color</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an RGB color.  <a href="structmultiboot__color.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structmultiboot__tag__framebuffer.html">multiboot_tag_framebuffer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Framebuffer information tag.  <a href="structmultiboot__tag__framebuffer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a8e2af641ff42074bb807c3ec9e33b2e0" id="r_a8e2af641ff42074bb807c3ec9e33b2e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#a8e2af641ff42074bb807c3ec9e33b2e0">MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a8e2af641ff42074bb807c3ec9e33b2e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Framebuffer types.  <br /></td></tr>
 <tr class="separator:a8e2af641ff42074bb807c3ec9e33b2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34b2f01226ea42de22e06db7f652fbb1" id="r_a34b2f01226ea42de22e06db7f652fbb1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#a34b2f01226ea42de22e06db7f652fbb1">MULTIBOOT_FRAMEBUFFER_TYPE_RGB</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a34b2f01226ea42de22e06db7f652fbb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct RGB.  <br /></td></tr>
 <tr class="separator:a34b2f01226ea42de22e06db7f652fbb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ddc4055067128352ffe2cfb6e0add92" id="r_a2ddc4055067128352ffe2cfb6e0add92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#a2ddc4055067128352ffe2cfb6e0add92">MULTIBOOT_FRAMEBUFFER_TYPE_EGA</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memdesc:a2ddc4055067128352ffe2cfb6e0add92"><td class="mdescLeft">&#160;</td><td class="mdescRight">EGA text mode.  <br /></td></tr>
 <tr class="separator:a2ddc4055067128352ffe2cfb6e0add92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Multiboot2 Tag Types</div></td></tr>
 <tr class="memitem:a9ba1adbd7639e20f723e51dd9668a981" id="r_a9ba1adbd7639e20f723e51dd9668a981"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#a9ba1adbd7639e20f723e51dd9668a981">MULTIBOOT_TAG_TYPE_END</a>&#160;&#160;&#160;0</td></tr>
@@ -176,7 +181,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:a3a78959903ddf23a09f22d755fe11ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kernel command line string.  <br /></td></tr>
 <tr class="separator:a3a78959903ddf23a09f22d755fe11ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe69dc4711fc7f5dc9604977b2393218" id="r_afe69dc4711fc7f5dc9604977b2393218"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#afe69dc4711fc7f5dc9604977b2393218">MULTIBOOT_TAG_TYPE_BOOT_LOADER_NAME</a>&#160;&#160;&#160;2</td></tr>
-<tr class="memdesc:afe69dc4711fc7f5dc9604977b2393218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the bootloader.  <br /></td></tr>
+<tr class="memdesc:afe69dc4711fc7f5dc9604977b2393218"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bootloader name.  <br /></td></tr>
 <tr class="separator:afe69dc4711fc7f5dc9604977b2393218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10b78479319b8790657f13414cf34736" id="r_a10b78479319b8790657f13414cf34736"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#a10b78479319b8790657f13414cf34736">MULTIBOOT_TAG_TYPE_MODULE</a>&#160;&#160;&#160;3</td></tr>
 <tr class="memdesc:a10b78479319b8790657f13414cf34736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loaded module information.  <br /></td></tr>
@@ -188,7 +193,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:a92170b084bd536b0e30e2373263f6685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boot device information.  <br /></td></tr>
 <tr class="separator:a92170b084bd536b0e30e2373263f6685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5e7a09f39f1f37e50be39000af2af4e" id="r_ad5e7a09f39f1f37e50be39000af2af4e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#ad5e7a09f39f1f37e50be39000af2af4e">MULTIBOOT_TAG_TYPE_MMAP</a>&#160;&#160;&#160;6</td></tr>
-<tr class="memdesc:ad5e7a09f39f1f37e50be39000af2af4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory map (full physical memory layout)  <br /></td></tr>
+<tr class="memdesc:ad5e7a09f39f1f37e50be39000af2af4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory map (physical memory layout)  <br /></td></tr>
 <tr class="separator:ad5e7a09f39f1f37e50be39000af2af4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af589b0f71833031d3c6c289d3accfab6" id="r_af589b0f71833031d3c6c289d3accfab6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="multiboot2_8h.html#af589b0f71833031d3c6c289d3accfab6">MULTIBOOT_TAG_TYPE_VBE</a>&#160;&#160;&#160;7</td></tr>
 <tr class="memdesc:af589b0f71833031d3c6c289d3accfab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">VBE (VESA BIOS Extensions) info.  <br /></td></tr>
@@ -247,12 +252,12 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="multiboot2_8h.html#acf6aecce05b4f983f063de6ef7d5ea4bae18c856e44c1e0cf0c8a0e192f9dbe7e">MULTIBOOT_MEMORY_BADRAM</a> = 5
 <br />
  }</td></tr>
-<tr class="memdesc:acf6aecce05b4f983f063de6ef7d5ea4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiboot2 Memory Region Types.  <a href="multiboot2_8h.html#acf6aecce05b4f983f063de6ef7d5ea4b">More...</a><br /></td></tr>
+<tr class="memdesc:acf6aecce05b4f983f063de6ef7d5ea4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiboot2 memory region types.  <a href="multiboot2_8h.html#acf6aecce05b4f983f063de6ef7d5ea4b">More...</a><br /></td></tr>
 <tr class="separator:acf6aecce05b4f983f063de6ef7d5ea4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Multiboot2 data structures and tag type definitions. </p>
-<p>Definitions of structures provided by the Multiboot2 bootloader for passing information to the kernel. Includes memory map, module info, bootloader name, VBE info, and more. </p>
+<p>This file defines structures provided by the Multiboot2 bootloader for passing information to the kernel. Includes memory map, module info, bootloader name, VBE info, framebuffer, and other tags. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a2ddc4055067128352ffe2cfb6e0add92" name="a2ddc4055067128352ffe2cfb6e0add92"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ddc4055067128352ffe2cfb6e0add92">&#9670;&#160;</a></span>MULTIBOOT_FRAMEBUFFER_TYPE_EGA</h2>
@@ -265,6 +270,8 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>EGA text mode. </p>
 
 </div>
 </div>
@@ -280,6 +287,9 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Framebuffer types. </p>
+<p>Indexed color </p>
+
 </div>
 </div>
 <a id="a34b2f01226ea42de22e06db7f652fbb1" name="a34b2f01226ea42de22e06db7f652fbb1"></a>
@@ -293,6 +303,8 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Direct RGB. </p>
 
 </div>
 </div>
@@ -372,7 +384,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Name of the bootloader. </p>
+<p>Bootloader name. </p>
 
 </div>
 </div>
@@ -580,7 +592,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Memory map (full physical memory layout) </p>
+<p>Memory map (physical memory layout) </p>
 
 </div>
 </div>
@@ -661,17 +673,17 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Multiboot2 Memory Region Types. </p>
+<p>Multiboot2 memory region types. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4ba8de3fdf0ba5fd7d2b2289d08f17d0a38" name="acf6aecce05b4f983f063de6ef7d5ea4ba8de3fdf0ba5fd7d2b2289d08f17d0a38"></a>MULTIBOOT_MEMORY_AVAILABLE&#160;</td><td class="fielddoc"><p>Available RAM. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4ba8de3fdf0ba5fd7d2b2289d08f17d0a38" name="acf6aecce05b4f983f063de6ef7d5ea4ba8de3fdf0ba5fd7d2b2289d08f17d0a38"></a>MULTIBOOT_MEMORY_AVAILABLE&#160;</td><td class="fielddoc"><p>RAM available for use. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4ba58fe5985e5be367c9987caa7ba58557d" name="acf6aecce05b4f983f063de6ef7d5ea4ba58fe5985e5be367c9987caa7ba58557d"></a>MULTIBOOT_MEMORY_RESERVED&#160;</td><td class="fielddoc"><p>Reserved (unusable) </p>
+<tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4ba58fe5985e5be367c9987caa7ba58557d" name="acf6aecce05b4f983f063de6ef7d5ea4ba58fe5985e5be367c9987caa7ba58557d"></a>MULTIBOOT_MEMORY_RESERVED&#160;</td><td class="fielddoc"><p>Reserved memory. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4ba10aad2fc25899e78709a1ca49d47097c" name="acf6aecce05b4f983f063de6ef7d5ea4ba10aad2fc25899e78709a1ca49d47097c"></a>MULTIBOOT_MEMORY_ACPI_RECLAIMABLE&#160;</td><td class="fielddoc"><p>ACPI tables. </p>
+<tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4ba10aad2fc25899e78709a1ca49d47097c" name="acf6aecce05b4f983f063de6ef7d5ea4ba10aad2fc25899e78709a1ca49d47097c"></a>MULTIBOOT_MEMORY_ACPI_RECLAIMABLE&#160;</td><td class="fielddoc"><p>ACPI reclaimable memory. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4ba107bf6674294e9759db741fe3b7c893e" name="acf6aecce05b4f983f063de6ef7d5ea4ba107bf6674294e9759db741fe3b7c893e"></a>MULTIBOOT_MEMORY_NVS&#160;</td><td class="fielddoc"><p>Non-volatile storage. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4bae18c856e44c1e0cf0c8a0e192f9dbe7e" name="acf6aecce05b4f983f063de6ef7d5ea4bae18c856e44c1e0cf0c8a0e192f9dbe7e"></a>MULTIBOOT_MEMORY_BADRAM&#160;</td><td class="fielddoc"><p>Defective RAM modules. </p>
+<tr><td class="fieldname"><a id="acf6aecce05b4f983f063de6ef7d5ea4bae18c856e44c1e0cf0c8a0e192f9dbe7e" name="acf6aecce05b4f983f063de6ef7d5ea4bae18c856e44c1e0cf0c8a0e192f9dbe7e"></a>MULTIBOOT_MEMORY_BADRAM&#160;</td><td class="fielddoc"><p>Defective memory. </p>
 </td></tr>
 </table>
 

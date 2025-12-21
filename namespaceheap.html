@@ -112,12 +112,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ac719b36c7cd898d205a3e1f6b37d436e" id="r_ac719b36c7cd898d205a3e1f6b37d436e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e">list_push</a> (<a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> **head, <a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *slab)</td></tr>
 <tr class="separator:ac719b36c7cd898d205a3e1f6b37d436e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29e4f4fff523485e2b9be5a143f84e52" id="r_a29e4f4fff523485e2b9be5a143f84e52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#a29e4f4fff523485e2b9be5a143f84e52">init</a> ()</td></tr>
+<tr class="memdesc:a29e4f4fff523485e2b9be5a143f84e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the kernel heap.  <br /></td></tr>
 <tr class="separator:a29e4f4fff523485e2b9be5a143f84e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a529e144f6a600e93ce7f5c4c1ac66e92" id="r_a529e144f6a600e93ce7f5c4c1ac66e92"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92">create_slab</a> (size_t slot_size)</td></tr>
 <tr class="separator:a529e144f6a600e93ce7f5c4c1ac66e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac0b35dbbed2e4574a8a83b4f1789ac8" id="r_aac0b35dbbed2e4574a8a83b4f1789ac8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8">kmalloc</a> (size_t size)</td></tr>
+<tr class="memdesc:aac0b35dbbed2e4574a8a83b4f1789ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate memory from the kernel heap.  <br /></td></tr>
 <tr class="separator:aac0b35dbbed2e4574a8a83b4f1789ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10b9e8469bdca98b345adf04f0586f98" id="r_a10b9e8469bdca98b345adf04f0586f98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98">kfree</a> (void *ptr)</td></tr>
+<tr class="memdesc:a10b9e8469bdca98b345adf04f0586f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free previously allocated memory.  <br /></td></tr>
 <tr class="separator:a10b9e8469bdca98b345adf04f0586f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -157,27 +160,26 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="namespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_cgraph.png" border="0" usemap="#anamespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_cgraph" alt=""/></div>
 <map name="anamespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_cgraph" id="anamespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_cgraph">
 <area shape="rect" title=" " alt="" coords="5,105,143,131"/>
-<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="199,56,277,81"/>
-<area shape="poly" title=" " alt="" coords="116,103,185,82,187,87,118,108"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="191,105,285,131"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="559,5,637,31"/>
+<area shape="poly" title=" " alt="" coords="98,103,198,57,264,33,333,15,389,8,447,6,546,10,546,15,447,11,390,13,334,21,266,38,200,62,100,108"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="191,105,285,131"/>
 <area shape="poly" title=" " alt="" coords="143,115,177,115,177,121,143,121"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="575,181,621,207"/>
-<area shape="poly" title=" " alt="" coords="109,128,208,162,270,179,334,191,396,197,458,199,560,195,561,200,458,204,395,203,333,197,269,184,207,167,107,133"/>
-<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="532,105,664,131"/>
-<area shape="poly" title=" " alt="" coords="286,115,518,115,518,121,286,121"/>
-<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="343,55,474,80"/>
-<area shape="poly" title=" " alt="" coords="281,103,351,81,353,87,282,108"/>
-<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="340,156,477,181"/>
-<area shape="poly" title=" " alt="" coords="282,128,353,149,351,155,281,133"/>
-<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title=" " alt="" coords="333,5,484,31"/>
-<area shape="poly" title=" " alt="" coords="265,103,284,91,297,77,307,65,316,52,332,40,343,34,345,38,335,44,320,56,311,68,302,81,287,95,267,107"/>
-<area shape="poly" title=" " alt="" coords="458,78,537,99,536,104,456,83"/>
-<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="575,55,621,80"/>
-<area shape="poly" title=" " alt="" coords="474,65,561,65,561,70,474,70"/>
-<area shape="poly" title=" " alt="" coords="456,153,536,132,537,137,458,158"/>
-<area shape="poly" title=" " alt="" coords="478,175,561,186,560,192,477,180"/>
-<area shape="rect" href="namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30" title=" " alt="" coords="539,5,657,31"/>
-<area shape="poly" title=" " alt="" coords="484,15,525,15,525,21,484,21"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="575,207,621,232"/>
+<area shape="poly" title=" " alt="" coords="100,128,200,175,266,199,334,217,396,224,458,226,561,221,561,226,458,232,395,230,333,222,264,204,198,180,98,133"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="532,131,664,156"/>
+<area shape="poly" title=" " alt="" coords="286,119,518,135,518,140,285,124"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="343,80,474,105"/>
+<area shape="poly" title=" " alt="" coords="285,108,329,102,330,107,286,114"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="340,181,477,207"/>
+<area shape="poly" title=" " alt="" coords="267,128,334,160,366,174,364,178,332,164,265,133"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="333,31,484,56"/>
+<area shape="poly" title=" " alt="" coords="259,103,332,65,350,58,352,63,334,70,262,108"/>
+<area shape="poly" title=" " alt="" coords="458,103,537,124,536,130,456,108"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="575,80,621,105"/>
+<area shape="poly" title=" " alt="" coords="474,90,561,90,561,95,474,95"/>
+<area shape="poly" title=" " alt="" coords="456,179,536,157,537,162,458,184"/>
+<area shape="poly" title=" " alt="" coords="478,201,561,212,560,217,477,206"/>
+<area shape="poly" title=" " alt="" coords="484,31,545,22,546,28,485,36"/>
 </map>
 </div>
 <div class="dynheader">
@@ -186,11 +188,11 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="namespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_icgraph.png" border="0" usemap="#anamespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_icgraph" alt=""/></div>
 <map name="anamespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_icgraph" id="anamespaceheap_a529e144f6a600e93ce7f5c4c1ac66e92_icgraph">
 <area shape="rect" title=" " alt="" coords="335,31,472,56"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title=" " alt="" coords="172,31,287,56"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="172,31,287,56"/>
 <area shape="poly" title=" " alt="" coords="321,46,287,46,287,41,321,41"/>
-<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="11,5,119,31"/>
+<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="11,5,119,31"/>
 <area shape="poly" title=" " alt="" coords="158,35,118,29,119,24,159,30"/>
-<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="5,55,124,80"/>
+<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="5,55,124,80"/>
 <area shape="poly" title=" " alt="" coords="159,56,125,61,124,56,158,51"/>
 </map>
 </div>
@@ -211,12 +213,16 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize the kernel heap. </p>
+<p>Currently, this only sets up internal slab structures. In a more complex system, mutexes and bookkeeping would also be initialized.</p>
+<p>Sets up the slab allocator structures and prepares memory for dynamic allocation using kmalloc/kfree. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceheap_a29e4f4fff523485e2b9be5a143f84e52_icgraph.png" border="0" usemap="#anamespaceheap_a29e4f4fff523485e2b9be5a143f84e52_icgraph" alt=""/></div>
 <map name="anamespaceheap_a29e4f4fff523485e2b9be5a143f84e52_icgraph" id="anamespaceheap_a29e4f4fff523485e2b9be5a143f84e52_icgraph">
-<area shape="rect" title=" " alt="" coords="116,5,199,31"/>
+<area shape="rect" title="Initialize the kernel heap." alt="" coords="116,5,199,31"/>
 <area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
 <area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
 </map>
@@ -239,13 +245,29 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Free previously allocated memory. </p>
+<p>Returns memory to the appropriate slab or frees large allocations back to PMM.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr</td><td>Pointer to memory previously allocated with kmalloc</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Returns the memory block pointed to by <code>ptr</code> back to the heap.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr</td><td>Pointer to memory previously allocated with kmalloc </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceheap_a10b9e8469bdca98b345adf04f0586f98_cgraph.png" border="0" usemap="#anamespaceheap_a10b9e8469bdca98b345adf04f0586f98_cgraph" alt=""/></div>
 <map name="anamespaceheap_a10b9e8469bdca98b345adf04f0586f98_cgraph" id="anamespaceheap_a10b9e8469bdca98b345adf04f0586f98_cgraph">
-<area shape="rect" title=" " alt="" coords="5,153,101,179"/>
-<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free physical memory." alt="" coords="173,79,264,104"/>
+<area shape="rect" title="Free previously allocated memory." alt="" coords="5,153,101,179"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="173,79,264,104"/>
 <area shape="poly" title=" " alt="" coords="75,151,148,113,164,106,166,111,150,118,78,156"/>
 <area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="159,128,279,153"/>
 <area shape="poly" title=" " alt="" coords="101,156,145,149,145,155,102,161"/>
@@ -259,7 +281,7 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="264,83,331,75,332,80,265,88"/>
 <area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="336,104,492,129"/>
 <area shape="poly" title=" " alt="" coords="265,95,323,102,322,107,264,100"/>
-<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title=" " alt="" coords="339,153,489,179"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="339,153,489,179"/>
 <area shape="poly" title=" " alt="" coords="260,102,289,113,337,138,358,146,356,151,335,143,287,118,258,107"/>
 <area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="540,55,672,80"/>
 <area shape="poly" title=" " alt="" coords="465,28,543,49,542,54,463,33"/>
@@ -268,8 +290,8 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="465,77,570,105,569,110,463,83"/>
 <area shape="poly" title=" " alt="" coords="463,101,542,81,543,86,465,107"/>
 <area shape="poly" title=" " alt="" coords="492,114,569,114,569,119,492,119"/>
-<area shape="rect" href="namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30" title=" " alt="" coords="547,153,665,179"/>
-<area shape="poly" title=" " alt="" coords="490,163,533,163,533,169,490,169"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="567,153,645,179"/>
+<area shape="poly" title=" " alt="" coords="490,163,553,163,553,169,490,169"/>
 </map>
 </div>
 <div class="dynheader">
@@ -277,14 +299,14 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceheap_a10b9e8469bdca98b345adf04f0586f98_icgraph.png" border="0" usemap="#anamespaceheap_a10b9e8469bdca98b345adf04f0586f98_icgraph" alt=""/></div>
 <map name="anamespaceheap_a10b9e8469bdca98b345adf04f0586f98_icgraph" id="anamespaceheap_a10b9e8469bdca98b345adf04f0586f98_icgraph">
-<area shape="rect" title=" " alt="" coords="185,80,281,105"/>
-<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title=" " alt="" coords="10,5,133,31"/>
+<area shape="rect" title="Free previously allocated memory." alt="" coords="185,80,281,105"/>
+<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="10,5,133,31"/>
 <area shape="poly" title=" " alt="" coords="197,75,136,44,109,33,111,28,138,40,199,71"/>
-<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title=" " alt="" coords="10,55,133,80"/>
+<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="10,55,133,80"/>
 <area shape="poly" title=" " alt="" coords="171,86,132,80,133,74,172,80"/>
-<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title=" " alt="" coords="5,104,137,129"/>
+<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="5,104,137,129"/>
 <area shape="poly" title=" " alt="" coords="172,104,138,110,137,104,171,99"/>
-<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title=" " alt="" coords="5,153,137,179"/>
+<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="5,153,137,179"/>
 <area shape="poly" title=" " alt="" coords="198,114,138,143,108,156,106,151,136,138,195,109"/>
 </map>
 </div>
@@ -306,42 +328,59 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Allocate memory from the kernel heap. </p>
+<p>Finds a suitable slab cache for the requested size and returns a free slot. If no suitable slab exists, a new slab is created.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Number of bytes requested </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to allocated memory, or nullptr if allocation fails</dd></dl>
+<p>Allocates a memory block of at least <code>size</code> bytes using the slab allocator.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Number of bytes to allocate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated memory, or nullptr if allocation fails </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_cgraph.png" border="0" usemap="#anamespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_cgraph" alt=""/></div>
 <map name="anamespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_cgraph" id="anamespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_cgraph">
-<area shape="rect" title=" " alt="" coords="5,152,120,178"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="355,127,449,152"/>
-<area shape="poly" title=" " alt="" coords="120,158,341,141,341,147,121,163"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="739,26,785,51"/>
-<area shape="poly" title=" " alt="" coords="71,150,108,105,136,81,167,61,242,32,322,14,403,5,482,3,557,6,625,12,725,28,724,33,624,18,557,11,482,8,403,10,323,20,244,38,169,66,139,85,112,109,75,154"/>
-<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title=" " alt="" coords="497,227,648,252"/>
-<area shape="poly" title=" " alt="" coords="121,171,484,224,483,229,120,176"/>
-<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="169,76,306,102"/>
-<area shape="poly" title=" " alt="" coords="92,150,194,105,196,110,94,155"/>
-<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="177,228,297,254"/>
-<area shape="poly" title=" " alt="" coords="94,175,196,220,194,225,92,180"/>
-<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="168,278,307,303"/>
-<area shape="poly" title=" " alt="" coords="76,176,114,219,140,243,169,264,180,270,178,275,167,269,137,247,110,222,72,179"/>
-<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="696,127,828,152"/>
-<area shape="poly" title=" " alt="" coords="450,137,682,137,682,142,450,142"/>
-<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="507,178,638,203"/>
-<area shape="poly" title=" " alt="" coords="446,150,517,171,515,176,445,155"/>
-<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="504,76,641,102"/>
-<area shape="poly" title=" " alt="" coords="445,124,515,103,517,108,446,129"/>
-<area shape="poly" title=" " alt="" coords="425,150,451,170,474,193,499,213,510,219,508,224,496,218,471,197,448,174,421,155"/>
-<area shape="poly" title=" " alt="" coords="620,175,700,153,701,159,622,180"/>
-<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="739,178,785,203"/>
-<area shape="poly" title=" " alt="" coords="638,188,725,188,725,193,638,193"/>
-<area shape="poly" title=" " alt="" coords="622,99,701,121,700,126,620,104"/>
-<area shape="poly" title=" " alt="" coords="620,74,725,45,726,50,622,79"/>
-<area shape="rect" href="namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30" title=" " alt="" coords="703,227,821,252"/>
-<area shape="poly" title=" " alt="" coords="648,237,689,237,689,242,648,242"/>
-<area shape="poly" title=" " alt="" coords="280,99,347,120,346,125,279,104"/>
-<area shape="poly" title=" " alt="" coords="289,74,354,61,460,49,564,42,725,36,725,41,564,47,460,55,355,66,290,79"/>
-<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="363,76,441,102"/>
-<area shape="poly" title=" " alt="" coords="306,86,350,86,350,92,306,92"/>
+<area shape="rect" title="Allocate memory from the kernel heap." alt="" coords="5,284,120,309"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="355,107,449,132"/>
+<area shape="poly" title=" " alt="" coords="67,283,80,254,101,217,130,180,167,149,209,130,255,118,300,113,341,112,341,118,300,119,256,124,211,135,169,154,134,183,105,220,84,257,71,285"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="739,157,785,183"/>
+<area shape="poly" title=" " alt="" coords="75,282,114,249,139,232,167,218,244,194,325,176,406,165,485,159,625,158,725,164,724,169,625,163,485,165,407,171,326,182,246,199,169,223,142,236,117,253,78,286"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="497,309,648,335"/>
+<area shape="poly" title=" " alt="" coords="120,297,484,315,483,320,120,302"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="169,233,306,259"/>
+<area shape="poly" title=" " alt="" coords="107,281,179,260,180,265,108,286"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="177,360,297,385"/>
+<area shape="poly" title=" " alt="" coords="94,307,196,352,194,357,92,312"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="168,409,307,435"/>
+<area shape="poly" title=" " alt="" coords="76,308,114,350,140,375,169,396,180,402,178,406,167,400,137,379,110,354,72,311"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="696,56,828,81"/>
+<area shape="poly" title=" " alt="" coords="444,104,497,91,593,78,682,70,683,75,594,83,498,97,445,109"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="507,5,638,31"/>
+<area shape="poly" title=" " alt="" coords="417,104,452,77,496,48,524,34,526,39,499,52,455,81,420,109"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="504,107,641,132"/>
+<area shape="poly" title=" " alt="" coords="450,117,490,117,490,122,450,122"/>
+<area shape="poly" title=" " alt="" coords="416,130,554,297,550,300,412,134"/>
+<area shape="poly" title=" " alt="" coords="622,28,701,50,700,55,620,33"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="739,5,785,31"/>
+<area shape="poly" title=" " alt="" coords="638,15,725,15,725,21,638,21"/>
+<area shape="poly" title=" " alt="" coords="620,104,700,82,701,88,622,109"/>
+<area shape="poly" title=" " alt="" coords="622,130,726,158,725,163,620,135"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="723,284,801,309"/>
+<area shape="poly" title=" " alt="" coords="648,309,709,301,710,306,649,315"/>
+<area shape="poly" title=" " alt="" coords="254,231,372,139,375,143,257,235"/>
+<area shape="poly" title=" " alt="" coords="306,234,648,186,724,174,725,179,648,191,306,240"/>
+<area shape="poly" title=" " alt="" coords="307,250,709,289,709,294,306,255"/>
 </map>
 </div>
 <div class="dynheader">
@@ -349,10 +388,10 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_icgraph.png" border="0" usemap="#anamespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_icgraph" alt=""/></div>
 <map name="anamespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_icgraph" id="anamespaceheap_aac0b35dbbed2e4574a8a83b4f1789ac8_icgraph">
-<area shape="rect" title=" " alt="" coords="172,31,287,56"/>
-<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="11,5,119,31"/>
+<area shape="rect" title="Allocate memory from the kernel heap." alt="" coords="172,31,287,56"/>
+<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="11,5,119,31"/>
 <area shape="poly" title=" " alt="" coords="158,35,118,29,119,24,159,30"/>
-<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="5,55,124,80"/>
+<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="5,55,124,80"/>
 <area shape="poly" title=" " alt="" coords="159,56,125,61,124,56,158,51"/>
 </map>
 </div>
@@ -398,21 +437,21 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="namespaceheap_ac719b36c7cd898d205a3e1f6b37d436e_icgraph.png" border="0" usemap="#anamespaceheap_ac719b36c7cd898d205a3e1f6b37d436e_icgraph" alt=""/></div>
 <map name="anamespaceheap_ac719b36c7cd898d205a3e1f6b37d436e_icgraph" id="anamespaceheap_ac719b36c7cd898d205a3e1f6b37d436e_icgraph">
 <area shape="rect" title=" " alt="" coords="348,153,468,179"/>
-<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title=" " alt="" coords="195,104,291,129"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="195,104,291,129"/>
 <area shape="poly" title=" " alt="" coords="351,152,286,132,287,127,353,147"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title=" " alt="" coords="185,203,300,228"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="185,203,300,228"/>
 <area shape="poly" title=" " alt="" coords="353,185,287,205,286,200,351,180"/>
-<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title=" " alt="" coords="10,5,133,31"/>
+<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="10,5,133,31"/>
 <area shape="poly" title=" " alt="" coords="214,97,178,70,136,44,111,33,113,28,139,40,181,66,217,93"/>
-<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title=" " alt="" coords="10,55,133,80"/>
+<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="10,55,133,80"/>
 <area shape="poly" title=" " alt="" coords="184,103,116,83,117,78,185,97"/>
-<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title=" " alt="" coords="5,104,137,129"/>
+<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="5,104,137,129"/>
 <area shape="poly" title=" " alt="" coords="181,119,138,119,138,114,181,114"/>
-<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title=" " alt="" coords="5,153,137,179"/>
+<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="5,153,137,179"/>
 <area shape="poly" title=" " alt="" coords="185,136,117,156,116,151,184,131"/>
-<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="17,203,125,228"/>
+<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="17,203,125,228"/>
 <area shape="poly" title=" " alt="" coords="171,218,126,218,126,213,171,213"/>
-<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="12,252,131,277"/>
+<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="12,252,131,277"/>
 <area shape="poly" title=" " alt="" coords="185,235,117,254,116,249,184,229"/>
 </map>
 </div>
@@ -458,21 +497,21 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="namespaceheap_a7fdcbb207e5a5f301cd197909d2c9711_icgraph.png" border="0" usemap="#anamespaceheap_a7fdcbb207e5a5f301cd197909d2c9711_icgraph" alt=""/></div>
 <map name="anamespaceheap_a7fdcbb207e5a5f301cd197909d2c9711_icgraph" id="anamespaceheap_a7fdcbb207e5a5f301cd197909d2c9711_icgraph">
 <area shape="rect" title=" " alt="" coords="348,153,487,179"/>
-<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title=" " alt="" coords="195,104,291,129"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="195,104,291,129"/>
 <area shape="poly" title=" " alt="" coords="358,152,288,132,289,127,359,147"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title=" " alt="" coords="185,203,300,228"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="185,203,300,228"/>
 <area shape="poly" title=" " alt="" coords="359,185,289,205,288,200,358,180"/>
-<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title=" " alt="" coords="10,5,133,31"/>
+<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="10,5,133,31"/>
 <area shape="poly" title=" " alt="" coords="214,97,178,70,136,44,111,33,113,28,139,40,181,66,217,93"/>
-<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title=" " alt="" coords="10,55,133,80"/>
+<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="10,55,133,80"/>
 <area shape="poly" title=" " alt="" coords="184,103,116,83,117,78,185,97"/>
-<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title=" " alt="" coords="5,104,137,129"/>
+<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="5,104,137,129"/>
 <area shape="poly" title=" " alt="" coords="181,119,138,119,138,114,181,114"/>
-<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title=" " alt="" coords="5,153,137,179"/>
+<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="5,153,137,179"/>
 <area shape="poly" title=" " alt="" coords="185,136,117,156,116,151,184,131"/>
-<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="17,203,125,228"/>
+<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="17,203,125,228"/>
 <area shape="poly" title=" " alt="" coords="171,218,126,218,126,213,171,213"/>
-<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="12,252,131,277"/>
+<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="12,252,131,277"/>
 <area shape="poly" title=" " alt="" coords="185,235,117,254,116,249,184,229"/>
 </map>
 </div>

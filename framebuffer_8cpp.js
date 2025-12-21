@@ -1,7 +1,7 @@
 var framebuffer_8cpp =
 [
     [ "framebuffer::FramebufferInfo", "structframebuffer_1_1FramebufferInfo.html", "structframebuffer_1_1FramebufferInfo" ],
-    [ "clear", "framebuffer_8cpp.html#aa121f4170e112c3ef44be3e481f8706b", null ],
+    [ "clear", "framebuffer_8cpp.html#adf29831b8817c8c3322536b078fdb265", null ],
     [ "disable_cursor", "framebuffer_8cpp.html#aa8a4ff85af0f78bc8322752dc9bdb076", null ],
     [ "enable_cursor", "framebuffer_8cpp.html#acf300cca80527d724d9f35adf0c0a7f9", null ],
     [ "init", "framebuffer_8cpp.html#aba7f2e3745cab7d1f4f546d21cd48ff6", null ],

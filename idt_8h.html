@@ -115,7 +115,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="idt_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2idt_8hdep" alt=""/></div>
 <map name="asrc_2intf_2idt_8hdep" id="asrc_2intf_2idt_8hdep">
 <area shape="rect" title=" " alt="" coords="145,5,245,31"/>
-<area shape="rect" href="idt_8cpp.html" title=" " alt="" coords="5,79,179,104"/>
+<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="5,79,179,104"/>
 <area shape="poly" title=" " alt="" coords="168,41,110,81,107,76,165,36"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="203,79,392,104"/>
 <area shape="poly" title=" " alt="" coords="224,36,282,76,279,81,221,41"/>
@@ -127,10 +127,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structregs.html">regs</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPU register state structure.  <a href="structregs.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structidt_1_1idt__entry.html">idt::idt_entry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry in the Interrupt Descriptor Table (IDT)  <a href="structidt_1_1idt__entry.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structidt_1_1idt__ptr.html">idt::idt_ptr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer structure for loading the IDT.  <a href="structidt_1_1idt__ptr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -145,75 +148,109 @@ Functions</h2></td></tr>
 <tr class="memitem:a05a09d6694d991235f95bfcd7171a85a" id="r_a05a09d6694d991235f95bfcd7171a85a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structidt_1_1idt__entry.html">idt::idt_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a05a09d6694d991235f95bfcd7171a85a">idt::__attribute__</a> ((packed))</td></tr>
 <tr class="separator:a05a09d6694d991235f95bfcd7171a85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a241eccc3e87b3e7c19ef23a547c86b88" id="r_a241eccc3e87b3e7c19ef23a547c86b88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88">idt::set_gate</a> (uint8_t num, uint64_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint16_t sel, uint8_t <a class="el" href="idt_8h.html#aa2585d779da0ab21273a8d92de9a0ebe">flags</a>)</td></tr>
+<tr class="memdesc:a241eccc3e87b3e7c19ef23a547c86b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an entry in the IDT.  <br /></td></tr>
 <tr class="separator:a241eccc3e87b3e7c19ef23a547c86b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a2f66e62a6c1b073aa94f90a44db50a" id="r_a6a2f66e62a6c1b073aa94f90a44db50a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a">idt::init</a> (void)</td></tr>
+<tr class="memdesc:a6a2f66e62a6c1b073aa94f90a44db50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the IDT.  <br /></td></tr>
 <tr class="separator:a6a2f66e62a6c1b073aa94f90a44db50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70c71e8f0fb85318fc510571445c6e36" id="r_a70c71e8f0fb85318fc510571445c6e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a70c71e8f0fb85318fc510571445c6e36">idt::load</a> (void)</td></tr>
+<tr class="memdesc:a70c71e8f0fb85318fc510571445c6e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the IDT into the CPU.  <br /></td></tr>
 <tr class="separator:a70c71e8f0fb85318fc510571445c6e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a88c0b64834f9e74a82375b66aebee207" id="r_a88c0b64834f9e74a82375b66aebee207"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a88c0b64834f9e74a82375b66aebee207">r15</a></td></tr>
+<tr class="memdesc:a88c0b64834f9e74a82375b66aebee207"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R15.  <br /></td></tr>
 <tr class="separator:a88c0b64834f9e74a82375b66aebee207"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a035e4a25722738af6914767d3e90bf46" id="r_a035e4a25722738af6914767d3e90bf46"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a035e4a25722738af6914767d3e90bf46">r14</a></td></tr>
+<tr class="memdesc:a035e4a25722738af6914767d3e90bf46"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R14.  <br /></td></tr>
 <tr class="separator:a035e4a25722738af6914767d3e90bf46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73627200093b3cc3dd28586a8a68962a" id="r_a73627200093b3cc3dd28586a8a68962a"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a73627200093b3cc3dd28586a8a68962a">r13</a></td></tr>
+<tr class="memdesc:a73627200093b3cc3dd28586a8a68962a"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R13.  <br /></td></tr>
 <tr class="separator:a73627200093b3cc3dd28586a8a68962a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81851bdb2d1f3807d556089ba028635c" id="r_a81851bdb2d1f3807d556089ba028635c"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a81851bdb2d1f3807d556089ba028635c">r12</a></td></tr>
+<tr class="memdesc:a81851bdb2d1f3807d556089ba028635c"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R12.  <br /></td></tr>
 <tr class="separator:a81851bdb2d1f3807d556089ba028635c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fc079aa0f66433a06c5fcc4d20bec15" id="r_a9fc079aa0f66433a06c5fcc4d20bec15"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a9fc079aa0f66433a06c5fcc4d20bec15">r11</a></td></tr>
+<tr class="memdesc:a9fc079aa0f66433a06c5fcc4d20bec15"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R11.  <br /></td></tr>
 <tr class="separator:a9fc079aa0f66433a06c5fcc4d20bec15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a672542f94403b54948dff9d8fa7cb0f1" id="r_a672542f94403b54948dff9d8fa7cb0f1"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a672542f94403b54948dff9d8fa7cb0f1">r10</a></td></tr>
+<tr class="memdesc:a672542f94403b54948dff9d8fa7cb0f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R10.  <br /></td></tr>
 <tr class="separator:a672542f94403b54948dff9d8fa7cb0f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a478d9f99683e61a00d104d13f0739f64" id="r_a478d9f99683e61a00d104d13f0739f64"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a478d9f99683e61a00d104d13f0739f64">r9</a></td></tr>
+<tr class="memdesc:a478d9f99683e61a00d104d13f0739f64"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R9.  <br /></td></tr>
 <tr class="separator:a478d9f99683e61a00d104d13f0739f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a338c714a93a43aa16b7b45f969e22e31" id="r_a338c714a93a43aa16b7b45f969e22e31"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a338c714a93a43aa16b7b45f969e22e31">r8</a></td></tr>
+<tr class="memdesc:a338c714a93a43aa16b7b45f969e22e31"><td class="mdescLeft">&#160;</td><td class="mdescRight">General-purpose register R8.  <br /></td></tr>
 <tr class="separator:a338c714a93a43aa16b7b45f969e22e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d073dc105e374fd995ca8f3308cb0df" id="r_a9d073dc105e374fd995ca8f3308cb0df"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a9d073dc105e374fd995ca8f3308cb0df">rbp</a></td></tr>
+<tr class="memdesc:a9d073dc105e374fd995ca8f3308cb0df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base pointer register.  <br /></td></tr>
 <tr class="separator:a9d073dc105e374fd995ca8f3308cb0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5764734a394146dcf093f9295c2fd5b4" id="r_a5764734a394146dcf093f9295c2fd5b4"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a5764734a394146dcf093f9295c2fd5b4">rdi</a></td></tr>
+<tr class="memdesc:a5764734a394146dcf093f9295c2fd5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destination index register.  <br /></td></tr>
 <tr class="separator:a5764734a394146dcf093f9295c2fd5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac778707d44587840c5bd1269e8644eb9" id="r_ac778707d44587840c5bd1269e8644eb9"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#ac778707d44587840c5bd1269e8644eb9">rsi</a></td></tr>
+<tr class="memdesc:ac778707d44587840c5bd1269e8644eb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Source index register.  <br /></td></tr>
 <tr class="separator:ac778707d44587840c5bd1269e8644eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e87c5e2faab8a404c01084ddeed4588" id="r_a7e87c5e2faab8a404c01084ddeed4588"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a7e87c5e2faab8a404c01084ddeed4588">rdx</a></td></tr>
+<tr class="memdesc:a7e87c5e2faab8a404c01084ddeed4588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data register.  <br /></td></tr>
 <tr class="separator:a7e87c5e2faab8a404c01084ddeed4588"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a914f17516921c8917ca4a809893138d6" id="r_a914f17516921c8917ca4a809893138d6"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a914f17516921c8917ca4a809893138d6">rcx</a></td></tr>
+<tr class="memdesc:a914f17516921c8917ca4a809893138d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter register.  <br /></td></tr>
 <tr class="separator:a914f17516921c8917ca4a809893138d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49647568f68fbd9082c6be345350f483" id="r_a49647568f68fbd9082c6be345350f483"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a49647568f68fbd9082c6be345350f483">rbx</a></td></tr>
+<tr class="memdesc:a49647568f68fbd9082c6be345350f483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base register.  <br /></td></tr>
 <tr class="separator:a49647568f68fbd9082c6be345350f483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afae317c0ec04889d6c9452dc30711975" id="r_afae317c0ec04889d6c9452dc30711975"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#afae317c0ec04889d6c9452dc30711975">rax</a></td></tr>
+<tr class="memdesc:afae317c0ec04889d6c9452dc30711975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulator register.  <br /></td></tr>
 <tr class="separator:afae317c0ec04889d6c9452dc30711975"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ad5b66cfac3d431cefbde4bb2ce085c" id="r_a1ad5b66cfac3d431cefbde4bb2ce085c"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a1ad5b66cfac3d431cefbde4bb2ce085c">int_no</a></td></tr>
+<tr class="memdesc:a1ad5b66cfac3d431cefbde4bb2ce085c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt number.  <br /></td></tr>
 <tr class="separator:a1ad5b66cfac3d431cefbde4bb2ce085c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f9a68a13dccfe1c1d52bac3c988f7c9" id="r_a0f9a68a13dccfe1c1d52bac3c988f7c9"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a0f9a68a13dccfe1c1d52bac3c988f7c9">err_code</a></td></tr>
+<tr class="memdesc:a0f9a68a13dccfe1c1d52bac3c988f7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code, if applicable.  <br /></td></tr>
 <tr class="separator:a0f9a68a13dccfe1c1d52bac3c988f7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90e28f434559f0582a69699dc4dbc286" id="r_a90e28f434559f0582a69699dc4dbc286"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a90e28f434559f0582a69699dc4dbc286">rip</a></td></tr>
+<tr class="memdesc:a90e28f434559f0582a69699dc4dbc286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instruction pointer.  <br /></td></tr>
 <tr class="separator:a90e28f434559f0582a69699dc4dbc286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea3e8b50ef91f54dad11c01a77675324" id="r_aea3e8b50ef91f54dad11c01a77675324"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#aea3e8b50ef91f54dad11c01a77675324">cs</a></td></tr>
+<tr class="memdesc:aea3e8b50ef91f54dad11c01a77675324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Code segment.  <br /></td></tr>
 <tr class="separator:aea3e8b50ef91f54dad11c01a77675324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac67e007ae346a1499c5a276869bfd1bb" id="r_ac67e007ae346a1499c5a276869bfd1bb"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#ac67e007ae346a1499c5a276869bfd1bb">rflags</a></td></tr>
+<tr class="memdesc:ac67e007ae346a1499c5a276869bfd1bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPU flags register.  <br /></td></tr>
 <tr class="separator:ac67e007ae346a1499c5a276869bfd1bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e218c31298bb17b5041cfc61646d6b9" id="r_a8e218c31298bb17b5041cfc61646d6b9"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a8e218c31298bb17b5041cfc61646d6b9">rsp</a></td></tr>
+<tr class="memdesc:a8e218c31298bb17b5041cfc61646d6b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack pointer.  <br /></td></tr>
 <tr class="separator:a8e218c31298bb17b5041cfc61646d6b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a515ae478df5d026d97c16d466d1d2611" id="r_a515ae478df5d026d97c16d466d1d2611"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a515ae478df5d026d97c16d466d1d2611">ss</a></td></tr>
+<tr class="memdesc:a515ae478df5d026d97c16d466d1d2611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stack segment.  <br /></td></tr>
 <tr class="separator:a515ae478df5d026d97c16d466d1d2611"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11b1c6ed61493da558a28e77fa1efee6" id="r_a11b1c6ed61493da558a28e77fa1efee6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a11b1c6ed61493da558a28e77fa1efee6">offset_low</a></td></tr>
+<tr class="memdesc:a11b1c6ed61493da558a28e77fa1efee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower 16 bits of handler address.  <br /></td></tr>
 <tr class="separator:a11b1c6ed61493da558a28e77fa1efee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c44289c163c1460544d6ee0900d02ba" id="r_a1c44289c163c1460544d6ee0900d02ba"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a1c44289c163c1460544d6ee0900d02ba">selector</a></td></tr>
+<tr class="memdesc:a1c44289c163c1460544d6ee0900d02ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Code segment selector in GDT.  <br /></td></tr>
 <tr class="separator:a1c44289c163c1460544d6ee0900d02ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a254d5bd1552992f9c17e038f363987ec" id="r_a254d5bd1552992f9c17e038f363987ec"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a254d5bd1552992f9c17e038f363987ec">ist</a></td></tr>
+<tr class="memdesc:a254d5bd1552992f9c17e038f363987ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt Stack Table index.  <br /></td></tr>
 <tr class="separator:a254d5bd1552992f9c17e038f363987ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2585d779da0ab21273a8d92de9a0ebe" id="r_aa2585d779da0ab21273a8d92de9a0ebe"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#aa2585d779da0ab21273a8d92de9a0ebe">flags</a></td></tr>
+<tr class="memdesc:aa2585d779da0ab21273a8d92de9a0ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type and attributes.  <br /></td></tr>
 <tr class="separator:aa2585d779da0ab21273a8d92de9a0ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53f1fc81461c3837b1f868359f547b18" id="r_a53f1fc81461c3837b1f868359f547b18"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a53f1fc81461c3837b1f868359f547b18">offset_mid</a></td></tr>
+<tr class="memdesc:a53f1fc81461c3837b1f868359f547b18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Middle 16 bits of handler address.  <br /></td></tr>
 <tr class="separator:a53f1fc81461c3837b1f868359f547b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ae200aa7aa01feab491177777fc0dd9" id="r_a8ae200aa7aa01feab491177777fc0dd9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a8ae200aa7aa01feab491177777fc0dd9">offset_high</a></td></tr>
+<tr class="memdesc:a8ae200aa7aa01feab491177777fc0dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upper 32 bits of handler address.  <br /></td></tr>
 <tr class="separator:a8ae200aa7aa01feab491177777fc0dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85a38ad3adb021b224bf4d87a0465119" id="r_a85a38ad3adb021b224bf4d87a0465119"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#a85a38ad3adb021b224bf4d87a0465119">zero</a></td></tr>
+<tr class="memdesc:a85a38ad3adb021b224bf4d87a0465119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reserved, must be 0.  <br /></td></tr>
 <tr class="separator:a85a38ad3adb021b224bf4d87a0465119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab28e82ae69032cb4ad3ec3a0be3d7129" id="r_ab28e82ae69032cb4ad3ec3a0be3d7129"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#ab28e82ae69032cb4ad3ec3a0be3d7129">limit</a></td></tr>
+<tr class="memdesc:ab28e82ae69032cb4ad3ec3a0be3d7129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the IDT minus 1.  <br /></td></tr>
 <tr class="separator:ab28e82ae69032cb4ad3ec3a0be3d7129"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeca790c0426654358d031f8180e84aca" id="r_aeca790c0426654358d031f8180e84aca"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8h.html#aeca790c0426654358d031f8180e84aca">base</a></td></tr>
+<tr class="memdesc:aeca790c0426654358d031f8180e84aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address of the first IDT entry.  <br /></td></tr>
 <tr class="separator:aeca790c0426654358d031f8180e84aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -248,6 +285,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Address of the first IDT entry. </p>
+
 </div>
 </div>
 <a id="aea3e8b50ef91f54dad11c01a77675324" name="aea3e8b50ef91f54dad11c01a77675324"></a>
@@ -261,6 +300,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Code segment. </p>
 
 </div>
 </div>
@@ -276,6 +317,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Error code, if applicable. </p>
+
 </div>
 </div>
 <a id="aa2585d779da0ab21273a8d92de9a0ebe" name="aa2585d779da0ab21273a8d92de9a0ebe"></a>
@@ -289,6 +332,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Type and attributes. </p>
 
 </div>
 </div>
@@ -304,6 +349,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Interrupt number. </p>
+
 </div>
 </div>
 <a id="a254d5bd1552992f9c17e038f363987ec" name="a254d5bd1552992f9c17e038f363987ec"></a>
@@ -317,6 +364,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Interrupt Stack Table index. </p>
 
 </div>
 </div>
@@ -332,6 +381,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Size of the IDT minus 1. </p>
+
 </div>
 </div>
 <a id="a8ae200aa7aa01feab491177777fc0dd9" name="a8ae200aa7aa01feab491177777fc0dd9"></a>
@@ -345,6 +396,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Upper 32 bits of handler address. </p>
 
 </div>
 </div>
@@ -360,6 +413,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Lower 16 bits of handler address. </p>
+
 </div>
 </div>
 <a id="a53f1fc81461c3837b1f868359f547b18" name="a53f1fc81461c3837b1f868359f547b18"></a>
@@ -373,6 +428,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Middle 16 bits of handler address. </p>
 
 </div>
 </div>
@@ -388,6 +445,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>General-purpose register R10. </p>
+
 </div>
 </div>
 <a id="a9fc079aa0f66433a06c5fcc4d20bec15" name="a9fc079aa0f66433a06c5fcc4d20bec15"></a>
@@ -401,6 +460,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>General-purpose register R11. </p>
 
 </div>
 </div>
@@ -416,6 +477,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>General-purpose register R12. </p>
+
 </div>
 </div>
 <a id="a73627200093b3cc3dd28586a8a68962a" name="a73627200093b3cc3dd28586a8a68962a"></a>
@@ -429,6 +492,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>General-purpose register R13. </p>
 
 </div>
 </div>
@@ -444,6 +509,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>General-purpose register R14. </p>
+
 </div>
 </div>
 <a id="a88c0b64834f9e74a82375b66aebee207" name="a88c0b64834f9e74a82375b66aebee207"></a>
@@ -457,6 +524,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>General-purpose register R15. </p>
 
 </div>
 </div>
@@ -472,6 +541,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>General-purpose register R8. </p>
+
 </div>
 </div>
 <a id="a478d9f99683e61a00d104d13f0739f64" name="a478d9f99683e61a00d104d13f0739f64"></a>
@@ -485,6 +556,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>General-purpose register R9. </p>
 
 </div>
 </div>
@@ -500,6 +573,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Accumulator register. </p>
+
 </div>
 </div>
 <a id="a9d073dc105e374fd995ca8f3308cb0df" name="a9d073dc105e374fd995ca8f3308cb0df"></a>
@@ -513,6 +588,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Base pointer register. </p>
 
 </div>
 </div>
@@ -528,6 +605,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Base register. </p>
+
 </div>
 </div>
 <a id="a914f17516921c8917ca4a809893138d6" name="a914f17516921c8917ca4a809893138d6"></a>
@@ -541,6 +620,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Counter register. </p>
 
 </div>
 </div>
@@ -556,6 +637,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Destination index register. </p>
+
 </div>
 </div>
 <a id="a7e87c5e2faab8a404c01084ddeed4588" name="a7e87c5e2faab8a404c01084ddeed4588"></a>
@@ -569,6 +652,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Data register. </p>
 
 </div>
 </div>
@@ -584,6 +669,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>CPU flags register. </p>
+
 </div>
 </div>
 <a id="a90e28f434559f0582a69699dc4dbc286" name="a90e28f434559f0582a69699dc4dbc286"></a>
@@ -597,6 +684,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Instruction pointer. </p>
 
 </div>
 </div>
@@ -612,6 +701,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Source index register. </p>
+
 </div>
 </div>
 <a id="a8e218c31298bb17b5041cfc61646d6b9" name="a8e218c31298bb17b5041cfc61646d6b9"></a>
@@ -625,6 +716,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Stack pointer. </p>
 
 </div>
 </div>
@@ -640,6 +733,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Code segment selector in GDT. </p>
+
 </div>
 </div>
 <a id="a515ae478df5d026d97c16d466d1d2611" name="a515ae478df5d026d97c16d466d1d2611"></a>
@@ -654,6 +749,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Stack segment. </p>
+
 </div>
 </div>
 <a id="a85a38ad3adb021b224bf4d87a0465119" name="a85a38ad3adb021b224bf4d87a0465119"></a>
@@ -667,6 +764,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reserved, must be 0. </p>
 
 </div>
 </div>

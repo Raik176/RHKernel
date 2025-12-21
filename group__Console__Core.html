@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('group__Console__Core.html',''); initRe
   <div class="headertitle"><div class="title">Console Core Functions</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Initialization and basic console operations.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -102,7 +105,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the console with a specific backend.  <br /></td></tr>
 <tr class="separator:gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga035f2f624f6a23ed646c9654d4510a66" id="r_ga035f2f624f6a23ed646c9654d4510a66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66">console::clear</a> ()</td></tr>
-<tr class="memdesc:ga035f2f624f6a23ed646c9654d4510a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the screen.  <br /></td></tr>
+<tr class="memdesc:ga035f2f624f6a23ed646c9654d4510a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the console screen.  <br /></td></tr>
 <tr class="separator:ga035f2f624f6a23ed646c9654d4510a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga958b79f80b128cef01b815246c292b10" id="r_ga958b79f80b128cef01b815246c292b10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga958b79f80b128cef01b815246c292b10">console::enable_cursor</a> ()</td></tr>
 <tr class="memdesc:ga958b79f80b128cef01b815246c292b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the hardware cursor.  <br /></td></tr>
@@ -112,7 +115,7 @@ Functions</h2></td></tr>
 <tr class="separator:ga36cbc01958448a64c53952fcddc57060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>Initialization and basic console operations </p>
+<p>Initialization and basic console operations. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga035f2f624f6a23ed646c9654d4510a66" name="ga035f2f624f6a23ed646c9654d4510a66"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga035f2f624f6a23ed646c9654d4510a66">&#9670;&#160;</a></span>clear()</h2>
@@ -129,17 +132,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Clear the screen. </p>
-<p>Clears the output using the active backend and resets the cursor. </p>
+<p>Clear the console screen. </p>
+<p>Clears all output using the active backend and resets the cursor to (0,0). </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__Console__Core_ga035f2f624f6a23ed646c9654d4510a66_cgraph.png" border="0" usemap="#agroup__Console__Core_ga035f2f624f6a23ed646c9654d4510a66_cgraph" alt=""/></div>
 <map name="agroup__Console__Core_ga035f2f624f6a23ed646c9654d4510a66_cgraph" id="agroup__Console__Core_ga035f2f624f6a23ed646c9654d4510a66_cgraph">
-<area shape="rect" title="Clear the screen." alt="" coords="5,95,117,120"/>
+<area shape="rect" title="Clear the console screen." alt="" coords="5,95,117,120"/>
 <area shape="rect" href="group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad" title="Clear the screen." alt="" coords="191,63,278,88"/>
 <area shape="poly" title=" " alt="" coords="117,94,177,83,178,88,118,100"/>
-<area shape="rect" href="namespaceframebuffer.html#aa121f4170e112c3ef44be3e481f8706b" title=" " alt="" coords="165,119,304,144"/>
+<area shape="rect" href="namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265" title="Clear the framebuffer with a specific color." alt="" coords="165,119,304,144"/>
 <area shape="poly" title=" " alt="" coords="118,112,152,117,151,122,117,118"/>
 <area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="370,5,501,31"/>
 <area shape="poly" title=" " alt="" coords="278,60,376,32,378,37,279,66"/>
@@ -172,13 +175,14 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Disable the hardware cursor. </p>
+<p>Hides the cursor if the backend supports it. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__Console__Core_ga36cbc01958448a64c53952fcddc57060_cgraph.png" border="0" usemap="#agroup__Console__Core_ga36cbc01958448a64c53952fcddc57060_cgraph" alt=""/></div>
 <map name="agroup__Console__Core_ga36cbc01958448a64c53952fcddc57060_cgraph" id="agroup__Console__Core_ga36cbc01958448a64c53952fcddc57060_cgraph">
 <area shape="rect" title="Disable the hardware cursor." alt="" coords="5,42,180,67"/>
-<area shape="rect" href="namespaceframebuffer.html#aa8a4ff85af0f78bc8322752dc9bdb076" title=" " alt="" coords="228,5,383,45"/>
+<area shape="rect" href="namespaceframebuffer.html#aa8a4ff85af0f78bc8322752dc9bdb076" title="Disable the cursor." alt="" coords="228,5,383,45"/>
 <area shape="poly" title=" " alt="" coords="180,40,214,35,215,40,180,45"/>
 <area shape="rect" href="group__VGA__Output.html#gadca32e66e7fd904784b4411f7e6f03a7" title="Disable the hardware cursor." alt="" coords="231,70,379,95"/>
 <area shape="poly" title=" " alt="" coords="180,63,218,69,217,74,180,69"/>
@@ -209,14 +213,14 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Enable the hardware cursor. </p>
-<p>Only effective if the backend supports a visible cursor. </p>
+<p>Makes the cursor visible if the backend supports it. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="group__Console__Core_ga958b79f80b128cef01b815246c292b10_cgraph.png" border="0" usemap="#agroup__Console__Core_ga958b79f80b128cef01b815246c292b10_cgraph" alt=""/></div>
 <map name="agroup__Console__Core_ga958b79f80b128cef01b815246c292b10_cgraph" id="agroup__Console__Core_ga958b79f80b128cef01b815246c292b10_cgraph">
 <area shape="rect" title="Enable the hardware cursor." alt="" coords="5,67,176,93"/>
-<area shape="rect" href="namespaceframebuffer.html#acf300cca80527d724d9f35adf0c0a7f9" title=" " alt="" coords="224,19,375,59"/>
+<area shape="rect" href="namespaceframebuffer.html#acf300cca80527d724d9f35adf0c0a7f9" title="Enable the cursor." alt="" coords="224,19,375,59"/>
 <area shape="poly" title=" " alt="" coords="155,65,210,54,211,59,156,70"/>
 <area shape="rect" href="group__VGA__Output.html#ga4186bda44ce74c443fa77ebe369fa673" title="Enable the hardware cursor." alt="" coords="227,95,372,121"/>
 <area shape="poly" title=" " alt="" coords="177,89,213,94,213,99,176,94"/>
@@ -263,9 +267,11 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Initialize the console with a specific backend. </p>
+<p>Sets up the console for output and prepares the cursor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">backend</td><td>The console backend to use (VGA, FRAMEBUFFER) </td></tr>
+    <tr><td class="paramname">backend</td><td>The backend to use (VGA or FRAMEBUFFER) </td></tr>
+    <tr><td class="paramname">fb_tag</td><td>Optional pointer to a multiboot framebuffer tag (required for FRAMEBUFFER) </td></tr>
   </table>
   </dd>
 </dl>
@@ -275,11 +281,11 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="group__Console__Core_gacac6ff3ba4cf67cd89b78395e7759dbb_cgraph.png" border="0" usemap="#agroup__Console__Core_gacac6ff3ba4cf67cd89b78395e7759dbb_cgraph" alt=""/></div>
 <map name="agroup__Console__Core_gacac6ff3ba4cf67cd89b78395e7759dbb_cgraph" id="agroup__Console__Core_gacac6ff3ba4cf67cd89b78395e7759dbb_cgraph">
 <area shape="rect" title="Initialize the console with a specific backend." alt="" coords="5,104,107,129"/>
-<area shape="rect" href="namespaceserial.html#a88bfeee91e14e29f5f2c8320af9bd1e0" title=" " alt="" coords="175,27,262,52"/>
+<area shape="rect" href="namespaceserial.html#a88bfeee91e14e29f5f2c8320af9bd1e0" title="Initialize the serial port." alt="" coords="175,27,262,52"/>
 <area shape="poly" title=" " alt="" coords="83,101,177,56,180,60,85,106"/>
 <area shape="rect" href="group__VGA__Core.html#gae1a3a699e33b42de55fd22eefea6bad2" title="Initialize VGA text mode." alt="" coords="181,104,256,129"/>
 <area shape="poly" title=" " alt="" coords="107,114,167,114,167,119,107,119"/>
-<area shape="rect" href="namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer with data from Multiboot2." alt="" coords="155,336,283,361"/>
+<area shape="rect" href="namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer." alt="" coords="155,336,283,361"/>
 <area shape="poly" title=" " alt="" coords="68,128,203,323,199,326,64,131"/>
 <area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="379,15,473,40"/>
 <area shape="poly" title=" " alt="" coords="262,34,365,28,365,34,263,40"/>
@@ -297,7 +303,7 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="499,122,834,104,834,109,499,127"/>
 <area shape="rect" href="util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="631,171,674,196"/>
 <area shape="poly" title=" " alt="" coords="480,139,618,173,617,178,479,144"/>
-<area shape="rect" href="namespaceframebuffer.html#aa121f4170e112c3ef44be3e481f8706b" title=" " alt="" coords="357,231,495,256"/>
+<area shape="rect" href="namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265" title="Clear the framebuffer with a specific color." alt="" coords="357,231,495,256"/>
 <area shape="poly" title=" " alt="" coords="237,334,278,306,329,277,373,258,375,263,332,282,281,311,240,338"/>
 <area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="784,256,961,281"/>
 <area shape="poly" title=" " alt="" coords="272,333,330,322,566,292,770,273,771,278,567,297,331,327,273,339"/>

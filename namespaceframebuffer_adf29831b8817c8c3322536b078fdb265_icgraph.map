@@ -1,8 +1,8 @@
 <map id="framebuffer::clear" name="framebuffer::clear">
-<area shape="rect" id="Node000001" title=" " alt="" coords="441,31,580,56"/>
-<area shape="rect" id="Node000002" href="$group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66" title="Clear the screen." alt="" coords="273,5,385,31"/>
+<area shape="rect" id="Node000001" title="Clear the framebuffer with a specific color." alt="" coords="441,31,580,56"/>
+<area shape="rect" id="Node000002" href="$group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66" title="Clear the console screen." alt="" coords="273,5,385,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="427,34,385,28,386,23,428,29"/>
-<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer with data from Multiboot2." alt="" coords="265,55,393,80"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer." alt="" coords="265,55,393,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="428,57,394,61,393,56,428,52"/>
 <area shape="rect" id="Node000004" href="$group__Console__Core.html#gacac6ff3ba4cf67cd89b78395e7759dbb" title="Initialize the console with a specific backend." alt="" coords="116,55,217,80"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="252,70,218,70,218,65,252,65"/>

@@ -98,6 +98,9 @@ $(document).ready(function(){initNavTree('pmm_8cpp.html',''); initResizable(); }
   <div class="headertitle"><div class="title">pmm.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of the Physical Memory Manager (PMM)  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="pmm_8h_source.html">pmm.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="multiboot2_8h_source.html">multiboot2.h</a>&quot;</code><br />
@@ -107,8 +110,8 @@ Include dependency graph for pmm.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="pmm_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2pmm_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2pmm_8cpp" id="asrc_2impl_2x86__64_2pmm_8cpp">
-<area shape="rect" title=" " alt="" coords="48,5,239,31"/>
-<area shape="rect" href="pmm_8h.html" title=" " alt="" coords="84,152,152,177"/>
+<area shape="rect" title="Implementation of the Physical Memory Manager (PMM)" alt="" coords="48,5,239,31"/>
+<area shape="rect" href="pmm_8h.html" title="Physical Memory Manager (PMM) interface." alt="" coords="84,152,152,177"/>
 <area shape="poly" title=" " alt="" coords="144,32,125,139,120,138,139,31"/>
 <area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="5,152,60,177"/>
 <area shape="poly" title=" " alt="" coords="136,33,52,142,48,139,132,29"/>
@@ -141,9 +144,8 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae004ad0d792c19ea9cec7d73dec15e30" id="r_ae004ad0d792c19ea9cec7d73dec15e30"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30">pmm::align_up</a> (size_t x, size_t a)</td></tr>
-<tr class="separator:ae004ad0d792c19ea9cec7d73dec15e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a69003868fcf2b5a7cd0da910b14af5" id="r_a1a69003868fcf2b5a7cd0da910b14af5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5">pmm::size_to_order</a> (size_t size)</td></tr>
+<tr class="memdesc:a1a69003868fcf2b5a7cd0da910b14af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a size in bytes to buddy allocator order.  <br /></td></tr>
 <tr class="separator:a1a69003868fcf2b5a7cd0da910b14af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a090cda5827fca84294fd419db582d837" id="r_a090cda5827fca84294fd419db582d837"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#a090cda5827fca84294fd419db582d837">pmm::block_size</a> (size_t order)</td></tr>
 <tr class="separator:a090cda5827fca84294fd419db582d837"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,20 +164,23 @@ Functions</h2></td></tr>
 <tr class="memitem:ae9df95fdabb45589a27ca687bd5df67a" id="r_ae9df95fdabb45589a27ca687bd5df67a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a">pmm::free_with_reservation</a> (uint64_t start, uint64_t end, const uint64_t *reserved, size_t res_count)</td></tr>
 <tr class="separator:ae9df95fdabb45589a27ca687bd5df67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1167bc262b850ba527a98a0419fbebd3" id="r_a1167bc262b850ba527a98a0419fbebd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3">pmm::init</a> (uint64_t mb_phys_addr)</td></tr>
-<tr class="memdesc:a1167bc262b850ba527a98a0419fbebd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the physical memory manager.  <br /></td></tr>
+<tr class="memdesc:a1167bc262b850ba527a98a0419fbebd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the PMM using the Multiboot memory map.  <br /></td></tr>
 <tr class="separator:a1167bc262b850ba527a98a0419fbebd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaafd3da45c639b539e0554f5634aba1e" id="r_aaafd3da45c639b539e0554f5634aba1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e">pmm::free</a> (uint64_t phys, size_t size)</td></tr>
-<tr class="memdesc:aaafd3da45c639b539e0554f5634aba1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free physical memory.  <br /></td></tr>
+<tr class="memdesc:aaafd3da45c639b539e0554f5634aba1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a previously allocated physical memory block.  <br /></td></tr>
 <tr class="separator:aaafd3da45c639b539e0554f5634aba1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad997679635eceee62746483ab37138b5" id="r_ad997679635eceee62746483ab37138b5"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#ad997679635eceee62746483ab37138b5">pmm::alloc</a> (size_t size)</td></tr>
-<tr class="memdesc:ad997679635eceee62746483ab37138b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate physical memory.  <br /></td></tr>
+<tr class="memdesc:ad997679635eceee62746483ab37138b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a physical memory block.  <br /></td></tr>
 <tr class="separator:ad997679635eceee62746483ab37138b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4515ac2a6c9265688f1faa74ddcc02c" id="r_aa4515ac2a6c9265688f1faa74ddcc02c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#aa4515ac2a6c9265688f1faa74ddcc02c">pmm::get_total_kb</a> ()</td></tr>
-<tr class="separator:aa4515ac2a6c9265688f1faa74ddcc02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39726914ffd1962710d2315074eb0e52" id="r_a39726914ffd1962710d2315074eb0e52"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#a39726914ffd1962710d2315074eb0e52">pmm::get_free_kb</a> ()</td></tr>
-<tr class="separator:a39726914ffd1962710d2315074eb0e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5065cb3919397985dcec57294b29262a" id="r_a5065cb3919397985dcec57294b29262a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#a5065cb3919397985dcec57294b29262a">pmm::get_system_kb</a> ()</td></tr>
-<tr class="separator:a5065cb3919397985dcec57294b29262a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ea68919c1f83b676d55255f52968cd5" id="r_a6ea68919c1f83b676d55255f52968cd5"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#a6ea68919c1f83b676d55255f52968cd5">pmm::get_total_bytes</a> ()</td></tr>
+<tr class="memdesc:a6ea68919c1f83b676d55255f52968cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get total memory managed in bytes.  <br /></td></tr>
+<tr class="separator:a6ea68919c1f83b676d55255f52968cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab87ab8296e1757335ae668a0186cfad3" id="r_ab87ab8296e1757335ae668a0186cfad3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#ab87ab8296e1757335ae668a0186cfad3">pmm::get_free_bytes</a> ()</td></tr>
+<tr class="memdesc:ab87ab8296e1757335ae668a0186cfad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get free memory in bytes.  <br /></td></tr>
+<tr class="separator:ab87ab8296e1757335ae668a0186cfad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa32fc658cd7ed18137a993df3566a2fa" id="r_aa32fc658cd7ed18137a993df3566a2fa"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#aa32fc658cd7ed18137a993df3566a2fa">pmm::get_system_bytes</a> ()</td></tr>
+<tr class="memdesc:aa32fc658cd7ed18137a993df3566a2fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get total system RAM in bytes.  <br /></td></tr>
+<tr class="separator:aa32fc658cd7ed18137a993df3566a2fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -198,9 +203,13 @@ Variables</h2></td></tr>
 <tr class="memitem:a660073ecba2a1828620bf9d79ef3125d" id="r_a660073ecba2a1828620bf9d79ef3125d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pmm_8cpp.html#a660073ecba2a1828620bf9d79ef3125d">high_pd_table</a> []</td></tr>
 <tr class="separator:a660073ecba2a1828620bf9d79ef3125d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22a12d745bcf272c48223c19b842f1c5" id="r_a22a12d745bcf272c48223c19b842f1c5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structpmm_1_1FreeBlock.html">FreeBlock</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepmm.html#a22a12d745bcf272c48223c19b842f1c5">pmm::free_lists</a> [<a class="el" href="namespacepmm.html#aa2debac832507ddc7a11cea9c65b8d2c">MAX_ORDER</a>+1]</td></tr>
+<tr class="memdesc:a22a12d745bcf272c48223c19b842f1c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free block lists per buddy order.  <br /></td></tr>
 <tr class="separator:a22a12d745bcf272c48223c19b842f1c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Variable Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of the Physical Memory Manager (PMM) </p>
+<p>Uses a buddy allocator to manage physical memory. Provides functions for allocating/freeing pages, initializing memory, and querying memory statistics. </p>
+</div><h2 class="groupheader">Variable Documentation</h2>
 <a id="ae90b20189b8aa9c4463cfc645c52b954" name="ae90b20189b8aa9c4463cfc645c52b954"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae90b20189b8aa9c4463cfc645c52b954">&#9670;&#160;</a></span>_kernel_phys_end</h2>
 

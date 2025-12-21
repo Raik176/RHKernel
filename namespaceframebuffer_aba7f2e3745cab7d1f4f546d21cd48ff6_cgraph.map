@@ -1,6 +1,6 @@
 <map id="framebuffer::init" name="framebuffer::init">
-<area shape="rect" id="Node000001" title="Initialize the framebuffer with data from Multiboot2." alt="" coords="5,146,133,171"/>
-<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#aa121f4170e112c3ef44be3e481f8706b" title=" " alt="" coords="207,15,346,41"/>
+<area shape="rect" id="Node000001" title="Initialize the framebuffer." alt="" coords="5,146,133,171"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265" title="Clear the framebuffer with a specific color." alt="" coords="207,15,346,41"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,143,123,104,180,62,219,43,221,48,183,66,126,108,85,147"/>
 <area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="620,42,797,67"/>
 <area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="92,143,133,124,181,107,262,92,374,78,606,59,606,64,374,84,263,97,182,112,135,129,95,148"/>

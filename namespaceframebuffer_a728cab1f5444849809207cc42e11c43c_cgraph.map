@@ -1,5 +1,5 @@
 <map id="framebuffer::putchar" name="framebuffer::putchar">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,60,161,86"/>
+<area shape="rect" id="Node000001" title="Write a single character to the framebuffer." alt="" coords="5,60,161,86"/>
 <area shape="rect" id="Node000002" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="639,86,816,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,58,207,34,324,12,390,5,458,3,525,7,591,20,622,30,652,45,700,75,697,80,649,49,620,35,590,25,525,13,458,8,390,10,325,17,209,39,124,63"/>
 <area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="400,35,591,60"/>

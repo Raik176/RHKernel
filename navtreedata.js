@@ -25,7 +25,6 @@
 var NAVTREE =
 [
   [ "RHKernel", "index.html", [
-    [ "Todo List", "todo.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -62,7 +61,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c",
-"structheap_1_1SlabHeader.html#a9175aeb42acfd6b4277cccd7ab5e9fe5"
+"structidt_1_1idt__entry.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,10 +1,10 @@
 <map id="console::putnum" name="console::putnum">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,229,136,254"/>
+<area shape="rect" id="Node000001" title="Write an unsigned integer in decimal format." alt="" coords="5,229,136,254"/>
 <area shape="rect" id="Node000002" href="$group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174" title="Write a single character to the console." alt="" coords="184,229,313,254"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,239,170,239,170,244,136,244"/>
-<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title=" " alt="" coords="361,93,517,118"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="361,93,517,118"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,227,407,125,411,129,269,231"/>
-<area shape="rect" id="Node000008" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title=" " alt="" coords="382,229,497,254"/>
+<area shape="rect" id="Node000008" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="382,229,497,254"/>
 <area shape="poly" id="edge11_Node000002_Node000008" title=" " alt="" coords="314,239,369,239,369,244,314,244"/>
 <area shape="rect" id="Node000012" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="388,329,491,354"/>
 <area shape="poly" id="edge15_Node000002_Node000012" title=" " alt="" coords="275,252,403,320,401,325,273,257"/>

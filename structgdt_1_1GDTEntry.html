@@ -97,24 +97,36 @@ $(document).ready(function(){initNavTree('structgdt_1_1GDTEntry.html',''); initR
 </div><!--header-->
 <div class="contents">
 
+<p>Represents a single Global Descriptor Table (GDT) entry.  
+ <a href="structgdt_1_1GDTEntry.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="gdt_8h_source.html">gdt.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:adec7c46fb58f1630c7f3a492a183be55" id="r_adec7c46fb58f1630c7f3a492a183be55"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTEntry.html#adec7c46fb58f1630c7f3a492a183be55">limit_low</a></td></tr>
+<tr class="memdesc:adec7c46fb58f1630c7f3a492a183be55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower 16 bits of the segment limit.  <br /></td></tr>
 <tr class="separator:adec7c46fb58f1630c7f3a492a183be55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dd0b42dd2548fa5e3eb8f97e2f4e0a1" id="r_a8dd0b42dd2548fa5e3eb8f97e2f4e0a1"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTEntry.html#a8dd0b42dd2548fa5e3eb8f97e2f4e0a1">base_low</a></td></tr>
+<tr class="memdesc:a8dd0b42dd2548fa5e3eb8f97e2f4e0a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower 16 bits of the segment base address.  <br /></td></tr>
 <tr class="separator:a8dd0b42dd2548fa5e3eb8f97e2f4e0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04cfcc5c40bfa61b2243d0f70e818936" id="r_a04cfcc5c40bfa61b2243d0f70e818936"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTEntry.html#a04cfcc5c40bfa61b2243d0f70e818936">base_middle</a></td></tr>
+<tr class="memdesc:a04cfcc5c40bfa61b2243d0f70e818936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Next 8 bits of the segment base address.  <br /></td></tr>
 <tr class="separator:a04cfcc5c40bfa61b2243d0f70e818936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4700f7086bc578fcc25cbf6e2253a7e" id="r_ac4700f7086bc578fcc25cbf6e2253a7e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTEntry.html#ac4700f7086bc578fcc25cbf6e2253a7e">access</a></td></tr>
+<tr class="memdesc:ac4700f7086bc578fcc25cbf6e2253a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access flags defining segment type and permissions.  <br /></td></tr>
 <tr class="separator:ac4700f7086bc578fcc25cbf6e2253a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8c2b61f6335b304c61ee06b725816ca" id="r_ab8c2b61f6335b304c61ee06b725816ca"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTEntry.html#ab8c2b61f6335b304c61ee06b725816ca">granularity</a></td></tr>
+<tr class="memdesc:ab8c2b61f6335b304c61ee06b725816ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Granularity flags and upper 4 bits of the segment limit.  <br /></td></tr>
 <tr class="separator:ab8c2b61f6335b304c61ee06b725816ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3f36558a4d832772923cd1f31e25c1b" id="r_ac3f36558a4d832772923cd1f31e25c1b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTEntry.html#ac3f36558a4d832772923cd1f31e25c1b">base_high</a></td></tr>
+<tr class="memdesc:ac3f36558a4d832772923cd1f31e25c1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last 8 bits of the segment base address.  <br /></td></tr>
 <tr class="separator:ac3f36558a4d832772923cd1f31e25c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a single Global Descriptor Table (GDT) entry. </p>
+<p>Each entry defines a memory segment with a base, limit, and access flags. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="ac4700f7086bc578fcc25cbf6e2253a7e" name="ac4700f7086bc578fcc25cbf6e2253a7e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac4700f7086bc578fcc25cbf6e2253a7e">&#9670;&#160;</a></span>access</h2>
 
@@ -126,6 +138,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Access flags defining segment type and permissions. </p>
 
 </div>
 </div>
@@ -141,6 +155,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Last 8 bits of the segment base address. </p>
+
 </div>
 </div>
 <a id="a8dd0b42dd2548fa5e3eb8f97e2f4e0a1" name="a8dd0b42dd2548fa5e3eb8f97e2f4e0a1"></a>
@@ -154,6 +170,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Lower 16 bits of the segment base address. </p>
 
 </div>
 </div>
@@ -169,6 +187,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Next 8 bits of the segment base address. </p>
+
 </div>
 </div>
 <a id="ab8c2b61f6335b304c61ee06b725816ca" name="ab8c2b61f6335b304c61ee06b725816ca"></a>
@@ -183,6 +203,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Granularity flags and upper 4 bits of the segment limit. </p>
+
 </div>
 </div>
 <a id="adec7c46fb58f1630c7f3a492a183be55" name="adec7c46fb58f1630c7f3a492a183be55"></a>
@@ -196,6 +218,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Lower 16 bits of the segment limit. </p>
 
 </div>
 </div>

@@ -2,11 +2,11 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="124,5,315,31"/>
 <area shape="rect" id="Node000002" href="$vmm_8h.html" title=" " alt="" coords="409,79,477,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,28,397,73,396,78,255,33"/>
-<area shape="rect" id="Node000004" href="$pmm_8h.html" title=" " alt="" coords="100,152,168,177"/>
+<area shape="rect" id="Node000004" href="$pmm_8h.html" title="Physical Memory Manager (PMM) interface." alt="" coords="100,152,168,177"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="215,32,150,141,146,139,210,30"/>
 <area shape="rect" id="Node000006" href="$util_8h.html" title="Utility functions and macros." alt="" coords="192,152,247,177"/>
 <area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="222,31,222,138,217,138,217,31"/>
-<area shape="rect" id="Node000007" href="$string_8h.html" title=" " alt="" coords="5,152,76,177"/>
+<area shape="rect" id="Node000007" href="$string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="5,152,76,177"/>
 <area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="206,33,67,145,64,141,203,29"/>
 <area shape="rect" id="Node000008" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="281,79,365,104"/>
 <area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="238,28,296,68,293,73,235,33"/>

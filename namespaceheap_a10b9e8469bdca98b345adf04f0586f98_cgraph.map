@@ -1,6 +1,6 @@
 <map id="heap::kfree" name="heap::kfree">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,153,101,179"/>
-<area shape="rect" id="Node000002" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free physical memory." alt="" coords="173,79,264,104"/>
+<area shape="rect" id="Node000001" title="Free previously allocated memory." alt="" coords="5,153,101,179"/>
+<area shape="rect" id="Node000002" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="173,79,264,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,151,148,113,164,106,166,111,150,118,78,156"/>
 <area shape="rect" id="Node000010" href="$namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="159,128,279,153"/>
 <area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="101,156,145,149,145,155,102,161"/>
@@ -14,7 +14,7 @@
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="264,83,331,75,332,80,265,88"/>
 <area shape="rect" id="Node000007" href="$namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="336,104,492,129"/>
 <area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="265,95,323,102,322,107,264,100"/>
-<area shape="rect" id="Node000008" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title=" " alt="" coords="339,153,489,179"/>
+<area shape="rect" id="Node000008" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="339,153,489,179"/>
 <area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="260,102,289,113,337,138,358,146,356,151,335,143,287,118,258,107"/>
 <area shape="rect" id="Node000004" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="540,55,672,80"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="465,28,543,49,542,54,463,33"/>
@@ -23,6 +23,6 @@
 <area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="465,77,570,105,569,110,463,83"/>
 <area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="463,101,542,81,543,86,465,107"/>
 <area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="492,114,569,114,569,119,492,119"/>
-<area shape="rect" id="Node000009" href="$namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30" title=" " alt="" coords="547,153,665,179"/>
-<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="490,163,533,163,533,169,490,169"/>
+<area shape="rect" id="Node000009" href="$util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="567,153,645,179"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="490,163,553,163,553,169,490,169"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="framebuffer::disable_cursor" name="framebuffer::disable_cursor">
-<area shape="rect" id="Node000001" title=" " alt="" coords="228,5,383,45"/>
+<area shape="rect" id="Node000001" title="Disable the cursor." alt="" coords="228,5,383,45"/>
 <area shape="rect" id="Node000002" href="$group__Console__Core.html#ga36cbc01958448a64c53952fcddc57060" title="Disable the hardware cursor." alt="" coords="5,13,180,38"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,28,180,28,180,23,214,23"/>
 </map>

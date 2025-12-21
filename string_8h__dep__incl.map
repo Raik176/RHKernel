@@ -1,6 +1,6 @@
 <map id="src/intf/string.h" name="src/intf/string.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="135,5,255,31"/>
-<area shape="rect" id="Node000002" href="$idt_8cpp.html" title=" " alt="" coords="5,79,179,104"/>
+<area shape="rect" id="Node000001" title="Basic memory and string manipulation functions for kernel." alt="" coords="135,5,255,31"/>
+<area shape="rect" id="Node000002" href="$idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="5,79,179,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,41,110,81,107,76,165,36"/>
 <area shape="rect" id="Node000003" href="$vmm_8cpp.html" title=" " alt="" coords="203,79,394,104"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,36,283,76,280,81,221,41"/>

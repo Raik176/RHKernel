@@ -1,5 +1,5 @@
 <map id="idt::init" name="idt::init">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,844,73,869"/>
+<area shape="rect" id="Node000001" title="Initialize the IDT." alt="" coords="5,844,73,869"/>
 <area shape="rect" id="Node000002" href="$idt_8cpp.html#af88eb8e98d943aa0461c01de3cb53493" title=" " alt="" coords="149,5,196,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="39,844,46,686,62,431,86,182,102,92,110,60,119,40,135,27,138,31,123,44,115,62,107,93,92,183,67,432,51,687,44,844"/>
 <area shape="rect" id="Node000003" href="$idt_8cpp.html#aeab0ed9ae661801c25f7dc9089c19f72" title=" " alt="" coords="149,55,196,80"/>
@@ -64,10 +64,10 @@
 <area shape="poly" id="edge31_Node000001_Node000032" title=" " alt="" coords="43,870,46,983,57,1163,67,1258,81,1346,100,1420,111,1449,123,1471,139,1484,135,1488,119,1474,106,1451,95,1422,76,1347,62,1258,52,1163,41,983,38,870"/>
 <area shape="rect" id="Node000033" href="$idt_8cpp.html#aacb7c8490cbd623a3a2bf933ffedd131" title=" " alt="" coords="149,1535,196,1560"/>
 <area shape="poly" id="edge32_Node000001_Node000033" title=" " alt="" coords="43,870,45,991,54,1185,64,1289,79,1385,98,1465,110,1496,123,1520,138,1533,135,1537,119,1524,105,1498,93,1466,73,1386,59,1289,49,1186,40,991,38,870"/>
-<area shape="rect" id="Node000034" href="$namespaceidt.html#a70c71e8f0fb85318fc510571445c6e36" title=" " alt="" coords="135,1584,210,1609"/>
+<area shape="rect" id="Node000034" href="$namespaceidt.html#a70c71e8f0fb85318fc510571445c6e36" title="Load the IDT into the CPU." alt="" coords="135,1584,210,1609"/>
 <area shape="poly" id="edge33_Node000001_Node000034" title=" " alt="" coords="43,869,44,999,52,1208,62,1319,76,1423,96,1510,109,1544,124,1570,127,1574,123,1577,119,1573,104,1546,91,1511,71,1424,56,1320,47,1208,38,999,38,869"/>
-<area shape="rect" id="Node000035" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title=" " alt="" coords="135,1633,211,1659"/>
+<area shape="rect" id="Node000035" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="135,1633,211,1659"/>
 <area shape="poly" id="edge34_Node000001_Node000035" title=" " alt="" coords="43,870,43,1007,50,1231,59,1350,74,1461,95,1554,108,1591,124,1619,127,1623,123,1626,119,1622,103,1593,90,1556,68,1462,54,1351,44,1231,37,1007,38,870"/>
-<area shape="rect" id="Node000036" href="$namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88" title=" " alt="" coords="121,1683,224,1708"/>
+<area shape="rect" id="Node000036" href="$namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88" title="Set an entry in the IDT." alt="" coords="121,1683,224,1708"/>
 <area shape="poly" id="edge35_Node000001_Node000036" title=" " alt="" coords="44,869,51,1026,68,1281,92,1529,107,1619,115,1650,124,1669,127,1672,123,1676,119,1671,110,1652,102,1620,87,1530,62,1281,46,1027,39,870"/>
 </map>

@@ -4,11 +4,11 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="945,94,911,94,911,89,945,89"/>
 <area shape="rect" id="Node000003" href="$group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174" title="Write a single character to the console." alt="" coords="631,79,760,104"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="794,94,760,94,760,89,794,89"/>
-<area shape="rect" id="Node000004" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title=" " alt="" coords="116,53,231,79"/>
+<area shape="rect" id="Node000004" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="116,53,231,79"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="657,75,621,59,582,45,498,22,431,10,364,10,279,23,235,38,198,56,195,51,233,33,278,18,364,5,432,5,499,17,583,40,623,54,660,70"/>
-<area shape="rect" id="Node000006" href="$group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce" title=" " alt="" coords="279,155,404,180"/>
+<area shape="rect" id="Node000006" href="$group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce" title="Write an unsigned integer in hexadecimal format." alt="" coords="279,155,404,180"/>
 <area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="660,113,623,129,583,143,490,161,405,168,404,163,489,156,582,138,621,125,657,108"/>
-<area shape="rect" id="Node000007" href="$group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title=" " alt="" coords="452,53,583,79"/>
+<area shape="rect" id="Node000007" href="$group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title="Write an unsigned integer in decimal format." alt="" coords="452,53,583,79"/>
 <area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="617,83,582,78,583,73,617,78"/>
 <area shape="rect" id="Node000009" href="$group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="461,103,574,128"/>
 <area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="617,105,574,111,574,105,616,99"/>

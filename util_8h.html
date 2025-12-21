@@ -119,13 +119,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="util_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2util_8hdep" alt=""/></div>
 <map name="asrc_2intf_2util_8hdep" id="asrc_2intf_2util_8hdep">
 <area shape="rect" title="Utility functions and macros." alt="" coords="624,5,728,31"/>
-<area shape="rect" href="framebuffer_8cpp.html" title=" " alt="" coords="5,79,237,104"/>
+<area shape="rect" href="framebuffer_8cpp.html" title="Implementation of the framebuffer console backend." alt="" coords="5,79,237,104"/>
 <area shape="poly" title=" " alt="" coords="611,30,211,81,210,76,610,25"/>
-<area shape="rect" href="heap_8cpp.html" title=" " alt="" coords="262,79,450,104"/>
+<area shape="rect" href="heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="262,79,450,104"/>
 <area shape="poly" title=" " alt="" coords="612,36,408,81,407,76,611,31"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="475,79,664,104"/>
 <area shape="poly" title=" " alt="" coords="649,40,588,81,585,76,646,36"/>
-<area shape="rect" href="pmm_8cpp.html" title=" " alt="" coords="689,79,879,104"/>
+<area shape="rect" href="pmm_8cpp.html" title="Implementation of the Physical Memory Manager (PMM)" alt="" coords="689,79,879,104"/>
 <area shape="poly" title=" " alt="" coords="706,36,768,76,765,81,703,40"/>
 <area shape="rect" href="vga_8cpp.html" title="Implementation of VGA text&#45;mode driver." alt="" coords="903,79,1083,104"/>
 <area shape="poly" title=" " alt="" coords="741,31,943,76,941,81,740,36"/>
@@ -267,7 +267,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="249,29,456,55"/>
 <area shape="poly" title=" " alt="" coords="490,45,456,45,456,39,490,39"/>
 <area shape="poly" title=" " alt="" coords="387,19,377,11,353,8,332,10,322,15,319,20,325,28,321,31,314,21,318,11,331,5,353,3,379,6,390,15"/>
-<area shape="rect" href="namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the physical memory manager." alt="" coords="116,29,201,55"/>
+<area shape="rect" href="namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the PMM using the Multiboot memory map." alt="" coords="116,29,201,55"/>
 <area shape="poly" title=" " alt="" coords="235,45,202,45,202,39,235,39"/>
 <area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,29,68,55"/>
 <area shape="poly" title=" " alt="" coords="102,45,68,45,68,39,102,39"/>
@@ -324,15 +324,52 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="util_8h_a14103feec4f0f7c368f72540d45be16a_icgraph.png" border="0" usemap="#autil_8h_a14103feec4f0f7c368f72540d45be16a_icgraph" alt=""/></div>
 <map name="autil_8h_a14103feec4f0f7c368f72540d45be16a_icgraph" id="autil_8h_a14103feec4f0f7c368f72540d45be16a_icgraph">
-<area shape="rect" title="Align an address upward to the nearest multiple of align" alt="" coords="520,31,597,56"/>
-<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="335,31,472,56"/>
-<area shape="poly" title=" " alt="" coords="506,46,472,46,472,41,506,41"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title=" " alt="" coords="172,31,287,56"/>
-<area shape="poly" title=" " alt="" coords="321,46,287,46,287,41,321,41"/>
-<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="11,5,119,31"/>
-<area shape="poly" title=" " alt="" coords="158,35,118,29,119,24,159,30"/>
-<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="5,55,124,80"/>
-<area shape="poly" title=" " alt="" coords="159,56,125,61,124,56,158,51"/>
+<area shape="rect" title="Align an address upward to the nearest multiple of align" alt="" coords="1125,245,1203,271"/>
+<area shape="rect" href="namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="939,171,1065,196"/>
+<area shape="poly" title=" " alt="" coords="1122,242,1029,198,1031,194,1124,237"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="475,245,612,271"/>
+<area shape="poly" title=" " alt="" coords="1112,261,612,261,612,255,1112,255"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="927,296,1077,321"/>
+<area shape="poly" title=" " alt="" coords="1113,277,1044,299,1042,293,1111,272"/>
+<area shape="rect" href="namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="672,69,879,95"/>
+<area shape="poly" title=" " alt="" coords="959,167,804,97,806,92,961,162"/>
+<area shape="poly" title=" " alt="" coords="816,60,805,51,775,48,751,50,738,55,736,60,742,67,738,71,730,61,735,51,750,45,775,43,807,47,819,56"/>
+<area shape="rect" href="namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the PMM using the Multiboot memory map." alt="" coords="133,5,218,31"/>
+<area shape="poly" title=" " alt="" coords="687,70,558,50,414,33,308,25,218,22,218,16,309,20,415,27,559,45,687,64"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,43,68,68"/>
+<area shape="poly" title=" " alt="" coords="120,36,69,50,67,45,119,30"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="291,245,406,271"/>
+<area shape="poly" title=" " alt="" coords="461,261,406,261,406,255,461,255"/>
+<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="121,271,229,296"/>
+<area shape="poly" title=" " alt="" coords="278,271,230,278,229,273,277,266"/>
+<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="116,221,235,247"/>
+<area shape="poly" title=" " alt="" coords="277,251,234,245,235,240,278,246"/>
+<area shape="poly" title=" " alt="" coords="912,312,706,307,584,299,462,286,397,273,398,268,463,281,585,294,707,301,912,307"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="728,195,823,220"/>
+<area shape="poly" title=" " alt="" coords="959,293,804,222,806,218,961,288"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="730,347,821,372"/>
+<area shape="poly" title=" " alt="" coords="931,327,821,352,820,347,930,322"/>
+<area shape="poly" title=" " alt="" coords="715,223,603,248,602,243,714,218"/>
+<area shape="poly" title=" " alt="" coords="715,213,598,221,463,237,404,248,403,243,462,231,597,216,714,208"/>
+<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="463,93,624,119"/>
+<area shape="poly" title=" " alt="" coords="734,191,623,140,576,121,578,116,625,136,737,186"/>
+<area shape="rect" href="namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="133,80,218,105"/>
+<area shape="poly" title=" " alt="" coords="714,198,218,103,219,98,715,193"/>
+<area shape="poly" title=" " alt="" coords="449,105,218,97,218,92,449,100"/>
+<area shape="rect" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="283,43,415,68"/>
+<area shape="poly" title=" " alt="" coords="480,92,397,71,399,65,481,87"/>
+<area shape="poly" title=" " alt="" coords="119,80,67,66,69,61,120,75"/>
+<area shape="poly" title=" " alt="" coords="276,74,219,86,218,81,275,68"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="495,347,591,372"/>
+<area shape="poly" title=" " alt="" coords="716,362,592,362,592,357,716,357"/>
+<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="287,444,410,469"/>
+<area shape="poly" title=" " alt="" coords="512,382,416,435,389,446,387,441,414,430,510,377"/>
+<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="287,296,410,321"/>
+<area shape="poly" title=" " alt="" coords="481,346,397,324,399,319,482,341"/>
+<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="283,345,415,371"/>
+<area shape="poly" title=" " alt="" coords="482,362,415,361,415,356,482,356"/>
+<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="283,395,415,420"/>
+<area shape="poly" title=" " alt="" coords="483,377,402,397,400,392,481,372"/>
 </map>
 </div>
 
@@ -568,17 +605,17 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="885,204,988,229"/>
 <area shape="poly" title=" " alt="" coords="1109,155,1025,195,989,207,987,202,1023,190,1107,150"/>
 <area shape="poly" title=" " alt="" coords="879,108,753,79,754,74,880,103"/>
-<area shape="rect" href="group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66" title="Clear the screen." alt="" coords="660,105,772,131"/>
+<area shape="rect" href="group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66" title="Clear the console screen." alt="" coords="660,105,772,131"/>
 <area shape="poly" title=" " alt="" coords="880,121,772,121,772,115,880,115"/>
 <area shape="rect" href="group__Console__Output.html#ga9342e94a12a86c2367bddb6f7a9cb69f" title="Move the cursor to a specific position." alt="" coords="634,155,798,180"/>
 <area shape="poly" title=" " alt="" coords="853,170,798,170,798,165,853,165"/>
 <area shape="rect" href="group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174" title="Write a single character to the console." alt="" coords="651,205,781,231"/>
 <area shape="poly" title=" " alt="" coords="872,220,781,220,781,215,872,214"/>
-<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title=" " alt="" coords="116,156,231,181"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="116,156,231,181"/>
 <area shape="poly" title=" " alt="" coords="637,206,582,197,493,181,404,170,341,168,279,170,231,170,231,165,279,165,341,163,404,165,494,175,583,191,638,201"/>
-<area shape="rect" href="group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce" title=" " alt="" coords="279,308,404,333"/>
+<area shape="rect" href="group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce" title="Write an unsigned integer in hexadecimal format." alt="" coords="279,308,404,333"/>
 <area shape="poly" title=" " alt="" coords="688,241,640,270,584,295,538,307,490,315,404,323,404,318,490,310,536,302,582,290,638,265,685,236"/>
-<area shape="rect" href="group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title=" " alt="" coords="452,205,583,231"/>
+<area shape="rect" href="group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title="Write an unsigned integer in decimal format." alt="" coords="452,205,583,231"/>
 <area shape="poly" title=" " alt="" coords="637,221,583,221,583,215,637,215"/>
 <area shape="rect" href="group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="461,255,574,280"/>
 <area shape="poly" title=" " alt="" coords="652,237,570,257,569,252,650,231"/>
@@ -680,7 +717,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Convert a physical address to a virtual address." alt="" coords="1120,300,1167,325"/>
 <area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="497,148,635,173"/>
 <area shape="poly" title=" " alt="" coords="1125,290,1101,262,1071,239,1036,225,988,212,870,192,743,177,635,168,635,162,743,172,871,187,990,207,1038,220,1073,234,1105,259,1129,287"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title=" " alt="" coords="291,149,406,174"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="291,149,406,174"/>
 <area shape="poly" title=" " alt="" coords="1129,288,1106,244,1089,221,1070,201,1020,161,974,131,930,109,887,95,841,85,791,78,669,64,609,54,562,44,540,42,517,44,492,51,464,64,447,79,440,97,432,117,416,137,393,151,390,147,413,133,428,114,435,95,443,76,461,59,490,46,516,39,539,37,562,39,610,48,670,59,792,72,842,80,888,90,932,104,977,126,1023,156,1074,197,1094,218,1110,241,1134,286"/>
 <area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="485,549,647,574"/>
 <area shape="poly" title=" " alt="" coords="1127,338,1103,364,1074,389,1018,422,960,450,840,497,728,530,636,552,635,546,726,525,838,492,958,445,1016,417,1070,385,1100,361,1123,334"/>
@@ -688,18 +725,18 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="1106,315,794,315,565,315,482,309,415,301,384,301,353,306,320,318,284,340,259,362,238,389,221,418,207,449,189,507,181,549,176,548,184,506,202,447,216,416,233,386,255,358,281,335,318,313,352,301,384,295,415,295,482,303,565,310,794,310,1106,310"/>
 <area shape="rect" href="namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="717,574,868,600"/>
 <area shape="poly" title=" " alt="" coords="1138,339,1115,398,1097,431,1074,460,1020,502,959,536,899,560,847,577,845,572,897,555,957,531,1017,498,1070,456,1093,428,1111,396,1133,337"/>
-<area shape="rect" href="namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer with data from Multiboot2." alt="" coords="930,676,1058,701"/>
+<area shape="rect" href="namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer." alt="" coords="930,676,1058,701"/>
 <area shape="poly" title=" " alt="" coords="1139,340,1116,438,1097,499,1074,559,1039,627,1007,677,1002,674,1034,624,1070,557,1092,497,1110,436,1134,338"/>
-<area shape="rect" href="namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the physical memory manager." alt="" coords="306,98,391,124"/>
+<area shape="rect" href="namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the PMM using the Multiboot memory map." alt="" coords="306,98,391,124"/>
 <area shape="poly" title=" " alt="" coords="1136,286,1129,252,1117,211,1098,170,1070,134,1046,113,1023,98,979,82,929,73,867,62,754,32,664,12,620,8,574,10,523,19,464,35,434,48,406,65,365,100,361,96,403,61,431,43,462,30,522,14,574,5,620,3,665,7,756,27,869,56,930,68,980,76,1025,93,1049,109,1074,130,1102,167,1122,209,1134,251,1141,285"/>
 <area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="925,249,1063,274"/>
 <area shape="poly" title=" " alt="" coords="1106,303,1031,277,1033,272,1108,298"/>
 <area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="916,350,1072,376"/>
 <area shape="poly" title=" " alt="" coords="1108,327,1033,353,1031,348,1106,322"/>
 <area shape="poly" title=" " alt="" coords="483,163,406,164,406,159,483,158"/>
-<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="121,198,229,224"/>
+<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="121,198,229,224"/>
 <area shape="poly" title=" " alt="" coords="291,181,222,201,220,196,290,176"/>
-<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="116,149,235,174"/>
+<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="116,149,235,174"/>
 <area shape="poly" title=" " alt="" coords="278,164,235,164,235,159,278,159"/>
 <area shape="poly" title=" " alt="" coords="472,564,218,564,218,559,472,559"/>
 <area shape="rect" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="283,600,415,625"/>
@@ -716,9 +753,9 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="292,103,249,100,203,102,157,114,136,124,118,138,97,169,80,217,67,276,57,340,45,465,41,549,36,549,40,465,52,340,62,275,75,215,92,167,114,134,133,120,155,109,202,97,249,94,293,98"/>
 <area shape="rect" href="namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="729,122,856,148"/>
 <area shape="poly" title=" " alt="" coords="960,244,813,150,816,146,963,239"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="745,249,840,274"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="745,249,840,274"/>
 <area shape="poly" title=" " alt="" coords="911,264,840,264,840,259,911,259"/>
-<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free physical memory." alt="" coords="747,350,838,376"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="747,350,838,376"/>
 <area shape="poly" title=" " alt="" coords="957,283,820,353,818,348,954,278"/>
 <area shape="rect" href="namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="463,98,669,124"/>
 <area shape="poly" title=" " alt="" coords="715,130,669,125,670,119,716,124"/>
@@ -728,15 +765,15 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="731,251,406,177,407,172,732,246"/>
 <area shape="poly" title=" " alt="" coords="768,285,743,310,720,339,704,365,695,388,686,410,672,438,623,503,581,551,577,547,619,499,667,435,682,408,690,386,699,363,715,336,739,307,764,282"/>
 <area shape="poly" title=" " alt="" coords="732,260,621,256,489,257,424,261,366,268,318,280,284,296,255,323,232,355,214,392,201,429,185,499,180,549,175,548,180,499,196,428,209,390,227,353,251,319,281,291,316,275,365,263,424,255,489,251,621,251,732,255"/>
-<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title=" " alt="" coords="518,400,614,425"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="518,400,614,425"/>
 <area shape="poly" title=" " alt="" coords="734,378,615,405,614,399,733,373"/>
-<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title=" " alt="" coords="287,350,410,376"/>
+<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="287,350,410,376"/>
 <area shape="poly" title=" " alt="" coords="504,401,405,378,406,373,505,396"/>
-<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title=" " alt="" coords="287,400,410,425"/>
+<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="287,400,410,425"/>
 <area shape="poly" title=" " alt="" coords="504,415,410,415,410,410,504,410"/>
-<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title=" " alt="" coords="283,449,415,474"/>
+<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="283,449,415,474"/>
 <area shape="poly" title=" " alt="" coords="505,429,406,452,405,446,504,424"/>
-<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title=" " alt="" coords="283,498,415,524"/>
+<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="283,498,415,524"/>
 <area shape="poly" title=" " alt="" coords="530,434,416,489,388,501,386,496,414,485,528,429"/>
 <area shape="poly" title=" " alt="" coords="902,366,838,366,838,360,902,360"/>
 </map>
@@ -782,32 +819,32 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="util_8h_a953aa7d2c54a0688f6968f813988a598_icgraph.png" border="0" usemap="#autil_8h_a953aa7d2c54a0688f6968f813988a598_icgraph" alt=""/></div>
 <map name="autil_8h_a953aa7d2c54a0688f6968f813988a598_icgraph" id="autil_8h_a953aa7d2c54a0688f6968f813988a598_icgraph">
 <area shape="rect" title="Convert a virtual address to a physical address." alt="" coords="1031,153,1077,179"/>
-<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title=" " alt="" coords="869,104,965,129"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="869,104,965,129"/>
 <area shape="poly" title=" " alt="" coords="1017,156,952,132,954,127,1019,151"/>
 <area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="852,177,983,203"/>
 <area shape="poly" title=" " alt="" coords="1018,175,984,181,983,176,1017,170"/>
-<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title=" " alt="" coords="677,5,799,31"/>
+<area shape="rect" href="heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="677,5,799,31"/>
 <area shape="poly" title=" " alt="" coords="887,98,848,71,803,44,777,33,779,28,805,40,851,66,890,93"/>
-<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title=" " alt="" coords="677,55,799,80"/>
+<area shape="rect" href="heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="677,55,799,80"/>
 <area shape="poly" title=" " alt="" coords="856,103,785,83,786,78,858,98"/>
-<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title=" " alt="" coords="672,104,804,129"/>
+<area shape="rect" href="heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="672,104,804,129"/>
 <area shape="poly" title=" " alt="" coords="856,119,804,119,804,114,856,114"/>
-<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title=" " alt="" coords="672,153,804,179"/>
+<area shape="rect" href="heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="672,153,804,179"/>
 <area shape="poly" title=" " alt="" coords="858,136,786,156,785,151,856,131"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="691,203,785,228"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="691,203,785,228"/>
 <area shape="poly" title=" " alt="" coords="839,204,786,211,785,206,838,199"/>
 <area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="475,127,612,152"/>
 <area shape="poly" title=" " alt="" coords="690,200,671,192,576,155,578,150,673,188,692,195"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title=" " alt="" coords="291,127,406,152"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="291,127,406,152"/>
 <area shape="poly" title=" " alt="" coords="677,207,462,166,406,154,407,149,463,161,678,202"/>
 <area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="463,228,624,253"/>
 <area shape="poly" title=" " alt="" coords="677,226,624,233,624,228,676,221"/>
 <area shape="rect" href="namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="133,228,218,253"/>
 <area shape="poly" title=" " alt="" coords="705,237,667,255,625,269,530,285,454,287,378,281,282,269,218,256,219,250,283,263,379,275,454,282,529,279,623,263,665,250,703,232"/>
 <area shape="poly" title=" " alt="" coords="461,142,406,142,406,137,461,137"/>
-<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title=" " alt="" coords="121,103,229,128"/>
+<area shape="rect" href="heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="121,103,229,128"/>
 <area shape="poly" title=" " alt="" coords="277,132,229,125,230,120,278,127"/>
-<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title=" " alt="" coords="116,152,235,177"/>
+<area shape="rect" href="heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="116,152,235,177"/>
 <area shape="poly" title=" " alt="" coords="278,152,235,159,234,153,277,147"/>
 <area shape="poly" title=" " alt="" coords="473,228,414,219,349,215,283,219,219,232,218,226,282,214,349,210,415,214,474,223"/>
 <area shape="rect" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="283,228,415,253"/>
