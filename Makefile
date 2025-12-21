@@ -84,7 +84,7 @@ $(VENV_STAMP):
 	touch $@
 
 .PHONY: clean-venv
-clean-tools:
+clean-venv:
 	rm -rf $(VENV)
 
 $(FONT_BIN): $(FONT_TTF) $(FONT_SCRIPT) | $(VENV_STAMP)
