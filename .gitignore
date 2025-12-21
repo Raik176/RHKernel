@@ -1,7 +1,10 @@
 /build/
 /dist/
-tools/
+/tools/*
+!tools/scripts/
+!tools/scripts/**
 qemu.log
 .vscode/
-.idea/
-doc/
+/.idea/
+/doc/
+/.venv/
