@@ -5,6 +5,7 @@ var string_8h =
     [ "memset", "string_8h.html#a68108ee6aab23b0f7cd925f449354da4", null ],
     [ "memzero", "string_8h.html#ae166e143dcc0d44f63442f67ad2af5f8", null ],
     [ "strcat", "string_8h.html#a4b86051229282f1d6e676c0b6c41969e", null ],
+    [ "strchr", "string_8h.html#a45ebc5961fec3e8e993ab39f6344d0dd", null ],
     [ "strcmp", "string_8h.html#a10a2361d963a01cad4951eade2f63576", null ],
     [ "strcpy", "string_8h.html#a42a9fb2c74818b2f3c66c960ef1edb49", null ],
     [ "strlen", "string_8h.html#aa6cc9f852e7dce55e590e952677649bd", null ],

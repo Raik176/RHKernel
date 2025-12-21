@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['framebufferinfo_0',['FramebufferInfo',['../structframebuffer_1_1FramebufferInfo.html',1,'framebuffer']]],
-  ['freeblock_1',['FreeBlock',['../structpmm_1_1FreeBlock.html',1,'pmm']]]
+  ['cpio_5fnewc_5fheader_0',['cpio_newc_header',['../structcpio__newc__header.html',1,'']]]
 ];

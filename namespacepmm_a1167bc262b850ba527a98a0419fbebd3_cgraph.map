@@ -1,9 +1,11 @@
 <map id="pmm::init" name="pmm::init">
-<area shape="rect" id="Node000001" title="Initialize the PMM using the Multiboot memory map." alt="" coords="5,181,91,207"/>
+<area shape="rect" id="Node000001" title="Initialize the PMM using the Multiboot memory map." alt="" coords="5,207,91,232"/>
 <area shape="rect" id="Node000002" href="$namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="139,131,345,156"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,180,179,157,181,162,92,186"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,204,195,159,197,164,82,209"/>
 <area shape="rect" id="Node000008" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="796,181,843,207"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="91,191,782,191,782,197,91,197"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="91,215,782,193,782,198,91,221"/>
+<area shape="rect" id="Node000009" href="$string_8h.html#a10a2361d963a01cad4951eade2f63576" title="Compare two null&#45;terminated strings." alt="" coords="209,257,275,283"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="92,228,195,255,194,260,90,233"/>
 <area shape="poly" id="edge9_Node000002_Node000002" title=" " alt="" coords="210,132,204,122,207,112,220,106,242,104,268,108,279,116,276,120,266,112,242,109,222,111,211,116,209,122,215,129"/>
 <area shape="rect" id="Node000003" href="$namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="393,105,520,131"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,128,380,124,380,130,346,134"/>

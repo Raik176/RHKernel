@@ -1,7 +1,11 @@
 <map id="console::puthex" name="console::puthex">
-<area shape="rect" id="Node000001" title="Write an unsigned integer in hexadecimal format." alt="" coords="279,5,404,31"/>
-<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="116,5,231,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,21,231,21,231,15,265,15"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<area shape="rect" id="Node000001" title="Write an unsigned integer in hexadecimal format." alt="" coords="460,55,585,80"/>
+<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="297,55,412,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="446,70,412,70,412,65,446,65"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#aa11bc80bd1372731cea7f6c63d999132" title=" " alt="" coords="116,29,249,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,60,249,54,250,49,284,54"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="284,70,68,70,68,65,284,65"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="207,18,200,11,183,8,168,10,160,15,158,20,163,28,158,30,153,21,156,11,166,5,183,3,203,6,211,15"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="103,59,69,65,68,59,102,53"/>
 </map>

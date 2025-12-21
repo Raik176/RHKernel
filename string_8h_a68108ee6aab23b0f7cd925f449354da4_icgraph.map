@@ -1,16 +1,22 @@
 <map id="memset" name="memset">
-<area shape="rect" id="Node000001" title="Fill memory with a constant byte." alt="" coords="639,75,715,101"/>
-<area shape="rect" id="Node000002" href="$namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="429,25,591,50"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="625,75,552,53,553,48,626,70"/>
-<area shape="rect" id="Node000003" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="116,38,201,63"/>
-<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="625,89,458,81,249,65,201,60,202,54,250,60,458,76,625,84"/>
-<area shape="rect" id="Node000006" href="$namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="281,126,349,151"/>
-<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="626,103,591,109,457,128,350,139,349,133,457,122,590,104,625,97"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="449,24,355,10,302,9,250,15,214,26,183,40,181,36,212,21,249,10,302,3,355,5,450,19"/>
-<area shape="rect" id="Node000005" href="$namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="249,25,381,50"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="415,40,382,40,382,35,415,35"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,75,68,101"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="104,70,69,81,67,76,103,65"/>
-<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="236,47,202,50,201,45,236,42"/>
-<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="268,133,68,96,69,91,269,128"/>
+<area shape="rect" id="Node000001" title="Fill memory with a constant byte." alt="" coords="664,127,740,153"/>
+<area shape="rect" id="Node000002" href="$namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="455,26,616,51"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="675,119,647,96,615,73,574,54,576,49,617,68,650,91,679,115"/>
+<area shape="rect" id="Node000003" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="129,51,214,77"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="650,131,616,124,389,91,214,71,215,65,390,85,616,119,651,125"/>
+<area shape="rect" id="Node000006" href="$namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="305,127,376,153"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="650,143,376,143,376,137,650,137"/>
+<area shape="rect" id="Node000007" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,178,227,203"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="650,147,227,188,226,183,650,142"/>
+<area shape="rect" id="Node000008" href="$namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="501,229,569,254"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="679,165,650,189,617,212,570,233,568,228,615,207,647,184,675,161"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="477,25,433,16,382,10,328,9,275,16,230,33,193,54,190,49,228,28,274,11,328,4,382,5,434,11,478,20"/>
+<area shape="rect" id="Node000005" href="$namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="275,26,407,51"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="441,41,407,41,407,36,441,36"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,153,68,178"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="144,87,56,155,53,150,141,83"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="261,53,214,60,214,55,261,48"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="292,147,68,165,68,160,291,141"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="102,180,68,174,69,169,103,175"/>
+<area shape="poly" id="edge12_Node000008_Node000004" title=" " alt="" coords="487,249,414,253,320,252,217,242,165,232,115,218,80,201,51,181,54,176,82,196,117,213,166,227,218,237,321,247,414,247,487,243"/>
 </map>

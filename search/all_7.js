@@ -13,12 +13,14 @@ var searchData=
   ['get_5ffree_5fbytes_10',['get_free_bytes',['../namespacepmm.html#ab87ab8296e1757335ae668a0186cfad3',1,'pmm']]],
   ['get_5fgdt_5fptr_11',['get_gdt_ptr',['../namespacegdt.html#a8e7f329972e893e4af69835d489a1d62',1,'gdt']]],
   ['get_5fnext_5ftable_12',['get_next_table',['../namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817',1,'vmm']]],
-  ['get_5fsystem_5fbytes_13',['get_system_bytes',['../namespacepmm.html#aa32fc658cd7ed18137a993df3566a2fa',1,'pmm']]],
-  ['get_5ftable_5fptr_14',['get_table_ptr',['../namespacevmm.html#aa604160270551f1cb1a67a113b5167a2',1,'vmm']]],
-  ['get_5ftotal_5fbytes_15',['get_total_bytes',['../namespacepmm.html#a6ea68919c1f83b676d55255f52968cd5',1,'pmm']]],
-  ['global_16',['Global',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8',1,'vmm']]],
-  ['granularity_17',['granularity',['../structgdt_1_1GDTEntry.html#ab8c2b61f6335b304c61ee06b725816ca',1,'gdt::GDTEntry::granularity'],['../gdt_8h.html#acfea365f69e71368a2db03333d4afd6f',1,'granularity:&#160;gdt.h']]],
-  ['green_18',['green',['../structmultiboot__color.html#a15975bef4fd99d2c5139e32ead7bab85',1,'multiboot_color::green'],['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ad382816a3cbeed082c9e216e7392eed1',1,'vga::Green']]],
-  ['green_5ffield_5fposition_19',['green_field_position',['../structmultiboot__tag__framebuffer.html#a18c61b24c3ab90484d4bacbbc24d9941',1,'multiboot_tag_framebuffer']]],
-  ['green_5fmask_5fsize_20',['green_mask_size',['../structmultiboot__tag__framebuffer.html#abb69283b2ea0c640eff9d782ffb66a1e',1,'multiboot_tag_framebuffer']]]
+  ['get_5froot_13',['get_root',['../namespacevfs.html#a97cc57fd10da78746b300acb28b54908',1,'vfs']]],
+  ['get_5fsystem_5fbytes_14',['get_system_bytes',['../namespacepmm.html#aa32fc658cd7ed18137a993df3566a2fa',1,'pmm']]],
+  ['get_5ftable_5fptr_15',['get_table_ptr',['../namespacevmm.html#aa604160270551f1cb1a67a113b5167a2',1,'vmm']]],
+  ['get_5ftotal_5fbytes_16',['get_total_bytes',['../namespacepmm.html#a6ea68919c1f83b676d55255f52968cd5',1,'pmm']]],
+  ['gid_17',['gid',['../structcpio__newc__header.html#a251bb3dd0ac5416c4972dc5d22af78b3',1,'cpio_newc_header::gid'],['../initramfs_8h.html#ae468eaa9841efa58e7d6808a6c62e0dc',1,'gid:&#160;initramfs.h']]],
+  ['global_18',['Global',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8',1,'vmm']]],
+  ['granularity_19',['granularity',['../structgdt_1_1GDTEntry.html#ab8c2b61f6335b304c61ee06b725816ca',1,'gdt::GDTEntry::granularity'],['../gdt_8h.html#acfea365f69e71368a2db03333d4afd6f',1,'granularity:&#160;gdt.h']]],
+  ['green_20',['green',['../structmultiboot__color.html#a15975bef4fd99d2c5139e32ead7bab85',1,'multiboot_color::green'],['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ad382816a3cbeed082c9e216e7392eed1',1,'vga::Green']]],
+  ['green_5ffield_5fposition_21',['green_field_position',['../structmultiboot__tag__framebuffer.html#a18c61b24c3ab90484d4bacbbc24d9941',1,'multiboot_tag_framebuffer']]],
+  ['green_5fmask_5fsize_22',['green_mask_size',['../structmultiboot__tag__framebuffer.html#abb69283b2ea0c640eff9d782ffb66a1e',1,'multiboot_tag_framebuffer']]]
 ];

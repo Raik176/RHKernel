@@ -115,11 +115,17 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="string_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2string_8hdep" alt=""/></div>
 <map name="asrc_2intf_2string_8hdep" id="asrc_2intf_2string_8hdep">
-<area shape="rect" title="Basic memory and string manipulation functions for kernel." alt="" coords="135,5,255,31"/>
-<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="5,79,179,104"/>
-<area shape="poly" title=" " alt="" coords="168,41,110,81,107,76,165,36"/>
-<area shape="rect" href="vmm_8cpp.html" title=" " alt="" coords="203,79,394,104"/>
-<area shape="poly" title=" " alt="" coords="224,36,283,76,280,81,221,41"/>
+<area shape="rect" title="Basic memory and string manipulation functions for kernel." alt="" coords="379,5,499,31"/>
+<area shape="rect" href="initramfs_8cpp.html" title=" " alt="" coords="5,79,155,119"/>
+<area shape="poly" title=" " alt="" coords="374,36,155,84,154,78,373,31"/>
+<area shape="rect" href="vfs_8cpp.html" title=" " alt="" coords="179,79,328,119"/>
+<area shape="poly" title=" " alt="" coords="400,38,299,81,297,76,398,33"/>
+<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="352,86,525,111"/>
+<area shape="poly" title=" " alt="" coords="441,44,441,86,436,86,436,44"/>
+<area shape="rect" href="pmm_8cpp.html" title="Implementation of the Physical Memory Manager (PMM)" alt="" coords="550,86,741,111"/>
+<area shape="poly" title=" " alt="" coords="482,33,616,83,614,88,481,38"/>
+<area shape="rect" href="vmm_8cpp.html" title=" " alt="" coords="765,86,955,111"/>
+<area shape="poly" title=" " alt="" coords="513,30,799,83,798,89,512,36"/>
 </map>
 </div>
 </div>
@@ -159,6 +165,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2232295460866ac58a41541e48555489" id="r_a2232295460866ac58a41541e48555489"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a2232295460866ac58a41541e48555489">strncmp</a> (const char *s1, const char *s2, size_t n)</td></tr>
 <tr class="memdesc:a2232295460866ac58a41541e48555489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare up to n characters of two strings.  <br /></td></tr>
 <tr class="separator:a2232295460866ac58a41541e48555489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ebc5961fec3e8e993ab39f6344d0dd" id="r_a45ebc5961fec3e8e993ab39f6344d0dd"><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a45ebc5961fec3e8e993ab39f6344d0dd">strchr</a> (const char *s, int c)</td></tr>
+<tr class="memdesc:a45ebc5961fec3e8e993ab39f6344d0dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Locate first occurrence of character in string.  <br /></td></tr>
+<tr class="separator:a45ebc5961fec3e8e993ab39f6344d0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Basic memory and string manipulation functions for kernel. </p>
@@ -214,6 +223,18 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if equal, negative if s1&lt;s2, positive if s1&gt;s2 </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a1920090da3c7d87b99fb9b4972e47b6f_icgraph.png" border="0" usemap="#astring_8h_a1920090da3c7d87b99fb9b4972e47b6f_icgraph" alt=""/></div>
+<map name="astring_8h_a1920090da3c7d87b99fb9b4972e47b6f_icgraph" id="astring_8h_a1920090da3c7d87b99fb9b4972e47b6f_icgraph">
+<area shape="rect" title="Compare two memory regions." alt="" coords="275,5,359,31"/>
+<area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,5,227,31"/>
+<area shape="poly" title=" " alt="" coords="261,21,227,21,227,15,261,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -325,20 +346,26 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="string_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph.png" border="0" usemap="#astring_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph" alt=""/></div>
 <map name="astring_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph" id="astring_8h_a68108ee6aab23b0f7cd925f449354da4_icgraph">
-<area shape="rect" title="Fill memory with a constant byte." alt="" coords="639,75,715,101"/>
-<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="429,25,591,50"/>
-<area shape="poly" title=" " alt="" coords="625,75,552,53,553,48,626,70"/>
-<area shape="rect" href="namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="116,38,201,63"/>
-<area shape="poly" title=" " alt="" coords="625,89,458,81,249,65,201,60,202,54,250,60,458,76,625,84"/>
-<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="281,126,349,151"/>
-<area shape="poly" title=" " alt="" coords="626,103,591,109,457,128,350,139,349,133,457,122,590,104,625,97"/>
-<area shape="poly" title=" " alt="" coords="449,24,355,10,302,9,250,15,214,26,183,40,181,36,212,21,249,10,302,3,355,5,450,19"/>
-<area shape="rect" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="249,25,381,50"/>
-<area shape="poly" title=" " alt="" coords="415,40,382,40,382,35,415,35"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,75,68,101"/>
-<area shape="poly" title=" " alt="" coords="104,70,69,81,67,76,103,65"/>
-<area shape="poly" title=" " alt="" coords="236,47,202,50,201,45,236,42"/>
-<area shape="poly" title=" " alt="" coords="268,133,68,96,69,91,269,128"/>
+<area shape="rect" title="Fill memory with a constant byte." alt="" coords="664,127,740,153"/>
+<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="455,26,616,51"/>
+<area shape="poly" title=" " alt="" coords="675,119,647,96,615,73,574,54,576,49,617,68,650,91,679,115"/>
+<area shape="rect" href="namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="129,51,214,77"/>
+<area shape="poly" title=" " alt="" coords="650,131,616,124,389,91,214,71,215,65,390,85,616,119,651,125"/>
+<area shape="rect" href="namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="305,127,376,153"/>
+<area shape="poly" title=" " alt="" coords="650,143,376,143,376,137,650,137"/>
+<area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,178,227,203"/>
+<area shape="poly" title=" " alt="" coords="650,147,227,188,226,183,650,142"/>
+<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="501,229,569,254"/>
+<area shape="poly" title=" " alt="" coords="679,165,650,189,617,212,570,233,568,228,615,207,647,184,675,161"/>
+<area shape="poly" title=" " alt="" coords="477,25,433,16,382,10,328,9,275,16,230,33,193,54,190,49,228,28,274,11,328,4,382,5,434,11,478,20"/>
+<area shape="rect" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="275,26,407,51"/>
+<area shape="poly" title=" " alt="" coords="441,41,407,41,407,36,441,36"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,153,68,178"/>
+<area shape="poly" title=" " alt="" coords="144,87,56,155,53,150,141,83"/>
+<area shape="poly" title=" " alt="" coords="261,53,214,60,214,55,261,48"/>
+<area shape="poly" title=" " alt="" coords="292,147,68,165,68,160,291,141"/>
+<area shape="poly" title=" " alt="" coords="102,180,68,174,69,169,103,175"/>
+<area shape="poly" title=" " alt="" coords="487,249,414,253,320,252,217,242,165,232,115,218,80,201,51,181,54,176,82,196,117,213,166,227,218,237,321,247,414,247,487,243"/>
 </map>
 </div>
 
@@ -435,6 +462,64 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a45ebc5961fec3e8e993ab39f6344d0dd" name="a45ebc5961fec3e8e993ab39f6344d0dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ebc5961fec3e8e993ab39f6344d0dd">&#9670;&#160;</a></span>strchr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static char * strchr </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Locate first occurrence of character in string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Null-terminated string to search </td></tr>
+    <tr><td class="paramname">c</td><td>Character to find (interpreted as unsigned char) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to first occurrence of c, or nullptr if not found </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a45ebc5961fec3e8e993ab39f6344d0dd_icgraph.png" border="0" usemap="#astring_8h_a45ebc5961fec3e8e993ab39f6344d0dd_icgraph" alt=""/></div>
+<map name="astring_8h_a45ebc5961fec3e8e993ab39f6344d0dd_icgraph" id="astring_8h_a45ebc5961fec3e8e993ab39f6344d0dd_icgraph">
+<area shape="rect" title="Locate first occurrence of character in string." alt="" coords="275,5,333,31"/>
+<area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,5,227,31"/>
+<area shape="poly" title=" " alt="" coords="261,21,227,21,227,15,261,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a10a2361d963a01cad4951eade2f63576" name="a10a2361d963a01cad4951eade2f63576"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10a2361d963a01cad4951eade2f63576">&#9670;&#160;</a></span>strcmp()</h2>
 
@@ -478,6 +563,24 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if equal, negative if s1&lt;s2, positive if s1&gt;s2 </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a10a2361d963a01cad4951eade2f63576_icgraph.png" border="0" usemap="#astring_8h_a10a2361d963a01cad4951eade2f63576_icgraph" alt=""/></div>
+<map name="astring_8h_a10a2361d963a01cad4951eade2f63576_icgraph" id="astring_8h_a10a2361d963a01cad4951eade2f63576_icgraph">
+<area shape="rect" title="Compare two null&#45;terminated strings." alt="" coords="413,56,480,81"/>
+<area shape="rect" href="namespacevfs.html#a239656d07bb446b6b167328138e14004" title=" " alt="" coords="275,5,365,31"/>
+<area shape="poly" title=" " alt="" coords="401,53,352,33,354,28,403,48"/>
+<area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,56,227,81"/>
+<area shape="poly" title=" " alt="" coords="399,71,227,71,227,66,399,66"/>
+<area shape="rect" href="namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the PMM using the Multiboot memory map." alt="" coords="129,105,214,131"/>
+<area shape="poly" title=" " alt="" coords="400,80,215,113,214,108,399,74"/>
+<area shape="poly" title=" " alt="" coords="270,38,210,58,209,53,268,33"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,81,68,107"/>
+<area shape="poly" title=" " alt="" coords="103,84,69,91,68,86,102,79"/>
+<area shape="poly" title=" " alt="" coords="115,111,68,102,69,97,116,105"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -524,6 +627,21 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to destination </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a42a9fb2c74818b2f3c66c960ef1edb49_icgraph.png" border="0" usemap="#astring_8h_a42a9fb2c74818b2f3c66c960ef1edb49_icgraph" alt=""/></div>
+<map name="astring_8h_a42a9fb2c74818b2f3c66c960ef1edb49_icgraph" id="astring_8h_a42a9fb2c74818b2f3c66c960ef1edb49_icgraph">
+<area shape="rect" title="Copy null&#45;terminated string." alt="" coords="275,31,337,56"/>
+<area shape="rect" href="namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="136,5,207,31"/>
+<area shape="poly" title=" " alt="" coords="260,37,206,27,207,22,261,32"/>
+<area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,55,227,80"/>
+<area shape="poly" title=" " alt="" coords="261,54,227,60,226,55,260,49"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
+<area shape="poly" title=" " alt="" coords="123,30,69,40,68,35,122,25"/>
+<area shape="poly" title=" " alt="" coords="102,58,68,51,69,46,103,52"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -559,6 +677,18 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of characters before null terminator </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_aa6cc9f852e7dce55e590e952677649bd_icgraph.png" border="0" usemap="#astring_8h_aa6cc9f852e7dce55e590e952677649bd_icgraph" alt=""/></div>
+<map name="astring_8h_aa6cc9f852e7dce55e590e952677649bd_icgraph" id="astring_8h_aa6cc9f852e7dce55e590e952677649bd_icgraph">
+<area shape="rect" title="Compute length of a null&#45;terminated string." alt="" coords="275,5,333,31"/>
+<area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,5,227,31"/>
+<area shape="poly" title=" " alt="" coords="261,21,227,21,227,15,261,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
 
 </div>
 </div>

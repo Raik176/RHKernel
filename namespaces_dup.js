@@ -21,6 +21,10 @@ var namespaces_dup =
     [ "gdt", "namespacegdt.html", "namespacegdt" ],
     [ "heap", "namespaceheap.html", "namespaceheap" ],
     [ "idt", "namespaceidt.html", "namespaceidt" ],
+    [ "initramfs", "namespaceinitramfs.html", [
+      [ "hex_to_int", "namespaceinitramfs.html#a4f476d652f3f1197ce0fc383858a49c5", null ],
+      [ "init", "namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a", null ]
+    ] ],
     [ "pmm", "namespacepmm.html", "namespacepmm" ],
     [ "serial", "namespaceserial.html", [
       [ "can_transmit", "namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a", null ],
@@ -30,6 +34,7 @@ var namespaces_dup =
       [ "putchar", "namespaceserial.html#ad567538c84655cbcba5df0a319e957b4", null ],
       [ "COM1", "namespaceserial.html#a9b4f31a56f16e48f19a6ac95e0a4b2a6", null ]
     ] ],
+    [ "vfs", "namespacevfs.html", "namespacevfs" ],
     [ "vga", "namespacevga.html", [
       [ "Color", "namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08", [
         [ "Black", "namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ae90dfb84e30edf611e326eeb04d680de", null ],

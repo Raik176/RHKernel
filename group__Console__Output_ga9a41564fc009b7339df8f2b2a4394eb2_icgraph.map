@@ -1,9 +1,13 @@
 <map id="console::putnum" name="console::putnum">
-<area shape="rect" id="Node000001" title="Write an unsigned integer in decimal format." alt="" coords="279,31,409,56"/>
-<area shape="rect" id="Node000002" href="$idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff" title=" " alt="" coords="126,5,221,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,34,221,28,221,22,265,29"/>
-<area shape="rect" id="Node000003" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="116,55,231,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="265,57,231,62,231,57,265,52"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="102,70,68,70,68,65,102,65"/>
+<area shape="rect" id="Node000001" title="Write an unsigned integer in decimal format." alt="" coords="460,31,591,56"/>
+<area shape="rect" id="Node000002" href="$idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff" title=" " alt="" coords="307,5,402,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="446,34,402,28,403,22,446,29"/>
+<area shape="rect" id="Node000003" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="297,55,412,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="447,57,413,62,412,57,446,52"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#aa11bc80bd1372731cea7f6c63d999132" title=" " alt="" coords="116,29,249,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="283,60,249,54,250,49,284,54"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="284,70,68,70,68,65,284,65"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="207,18,200,11,183,8,168,10,160,15,158,20,163,28,158,30,153,21,156,11,166,5,183,3,203,6,211,15"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="103,59,69,65,68,59,102,53"/>
 </map>

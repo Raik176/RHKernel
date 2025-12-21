@@ -1,19 +1,27 @@
 <map id="heap::list_push" name="heap::list_push">
-<area shape="rect" id="Node000001" title=" " alt="" coords="348,153,468,179"/>
-<area shape="rect" id="Node000002" href="$namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="195,104,291,129"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="351,152,286,132,287,127,353,147"/>
-<area shape="rect" id="Node000007" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="185,203,300,228"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="353,185,287,205,286,200,351,180"/>
-<area shape="rect" id="Node000003" href="$heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="10,5,133,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="214,97,178,70,136,44,111,33,113,28,139,40,181,66,217,93"/>
-<area shape="rect" id="Node000004" href="$heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="10,55,133,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="184,103,116,83,117,78,185,97"/>
-<area shape="rect" id="Node000005" href="$heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="5,104,137,129"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="181,119,138,119,138,114,181,114"/>
-<area shape="rect" id="Node000006" href="$heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="5,153,137,179"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="185,136,117,156,116,151,184,131"/>
-<area shape="rect" id="Node000008" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="17,203,125,228"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="171,218,126,218,126,213,171,213"/>
-<area shape="rect" id="Node000009" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="12,252,131,277"/>
-<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="185,235,117,254,116,249,184,229"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="459,203,579,228"/>
+<area shape="rect" id="Node000002" href="$namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="305,129,401,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="476,199,382,157,384,152,478,195"/>
+<area shape="rect" id="Node000009" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="296,252,411,277"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="463,235,398,254,396,249,462,229"/>
+<area shape="rect" id="Node000003" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="127,203,237,228"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="314,163,249,192,218,205,216,200,247,188,312,158"/>
+<area shape="rect" id="Node000005" href="$heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="121,5,243,31"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="331,121,294,82,247,44,224,33,226,28,249,40,298,78,335,117"/>
+<area shape="rect" id="Node000006" href="$heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="121,55,243,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,125,247,94,219,83,220,78,249,89,317,121"/>
+<area shape="rect" id="Node000007" href="$heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="116,104,248,129"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="291,136,248,129,249,124,292,130"/>
+<area shape="rect" id="Node000008" href="$heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="116,153,248,179"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="292,153,249,159,248,154,291,148"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,228,68,253"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,230,69,238,68,233,112,225"/>
+<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="294,251,226,231,228,226,296,245"/>
+<area shape="rect" id="Node000010" href="$namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="147,252,217,277"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="282,267,218,267,218,262,282,262"/>
+<area shape="rect" id="Node000011" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="128,301,236,327"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="296,284,228,304,226,299,294,279"/>
+<area shape="rect" id="Node000012" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="123,351,241,376"/>
+<area shape="poly" id="edge13_Node000009_Node000012" title=" " alt="" coords="328,288,292,315,249,342,224,353,222,348,247,337,289,311,325,284"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="133,259,68,248,68,243,133,254"/>
 </map>

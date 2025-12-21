@@ -1,0 +1,31 @@
+<map id="src/impl/x86_64/file/initramfs.cpp" name="src/impl/x86_64/file/initramfs.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="151,5,301,45"/>
+<area shape="rect" id="Node000002" href="$initramfs_8h.html" title=" " alt="" coords="215,93,333,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,44,262,80,257,83,235,47"/>
+<area shape="rect" id="Node000003" href="$util_8h.html" title="Utility functions and macros." alt="" coords="269,240,324,265"/>
+<area shape="poly" id="edge19_Node000001_Node000003" title=" " alt="" coords="287,43,320,63,335,76,347,92,354,110,357,129,350,167,334,202,316,231,312,228,330,199,345,165,351,129,349,111,342,95,331,80,317,67,284,48"/>
+<area shape="rect" id="Node000006" href="$vfs_8h.html" title=" " alt="" coords="204,167,259,192"/>
+<area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="219,47,207,80,204,99,206,118,220,153,215,155,201,119,199,99,202,79,214,45"/>
+<area shape="rect" id="Node000007" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="5,167,89,192"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="184,48,147,69,110,95,83,125,63,156,58,153,79,122,107,91,144,64,182,43"/>
+<area shape="rect" id="Node000009" href="$heap_8h.html" title=" " alt="" coords="349,240,415,265"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="302,43,339,62,356,76,370,92,385,125,392,162,392,197,389,227,384,226,387,197,387,162,380,127,365,95,352,80,336,67,299,48"/>
+<area shape="rect" id="Node000010" href="$string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="175,240,245,265"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="218,47,199,94,190,143,194,192,203,226,198,228,189,192,185,142,194,93,213,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="278,119,295,226,290,227,273,120"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="269,120,247,156,243,154,265,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="259,313,334,339"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="299,266,299,300,294,300,294,266"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="164,313,235,339"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="283,268,228,307,225,303,279,263"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="244,191,279,228,275,232,240,194"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="43,193,30,228,29,247,35,264,58,287,88,303,120,314,151,319,150,324,119,319,86,308,55,291,30,267,23,247,25,226,38,191"/>
+<area shape="rect" id="Node000008" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="45,240,151,265"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="58,191,84,227,80,230,54,194"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="131,263,252,306,250,311,129,268"/>
+<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="116,263,173,303,170,307,113,268"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="370,267,323,307,319,302,367,263"/>
+<area shape="poly" id="edge15_Node000009_Node000005" title=" " alt="" coords="354,268,243,311,241,306,352,263"/>
+<area shape="poly" id="edge17_Node000010_Node000004" title=" " alt="" coords="226,263,274,302,270,307,222,267"/>
+<area shape="poly" id="edge18_Node000010_Node000005" title=" " alt="" coords="211,266,206,300,200,299,206,265"/>
+</map>

@@ -5,6 +5,7 @@ var multiboot2_8h =
     [ "multiboot_tag_mmap", "structmultiboot__tag__mmap.html", "structmultiboot__tag__mmap" ],
     [ "multiboot_color", "structmultiboot__color.html", "structmultiboot__color" ],
     [ "multiboot_tag_framebuffer", "structmultiboot__tag__framebuffer.html", "structmultiboot__tag__framebuffer" ],
+    [ "multiboot_tag_module", "structmultiboot__tag__module.html", "structmultiboot__tag__module" ],
     [ "MULTIBOOT_FRAMEBUFFER_TYPE_EGA", "multiboot2_8h.html#a2ddc4055067128352ffe2cfb6e0add92", null ],
     [ "MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED", "multiboot2_8h.html#a8e2af641ff42074bb807c3ec9e33b2e0", null ],
     [ "MULTIBOOT_FRAMEBUFFER_TYPE_RGB", "multiboot2_8h.html#a34b2f01226ea42de22e06db7f652fbb1", null ],

@@ -1,9 +1,16 @@
 <map id="heap::create_slab" name="heap::create_slab">
-<area shape="rect" id="Node000001" title=" " alt="" coords="335,31,472,56"/>
-<area shape="rect" id="Node000002" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="172,31,287,56"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="321,46,287,46,287,41,321,41"/>
-<area shape="rect" id="Node000003" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="11,5,119,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="158,35,118,29,119,24,159,30"/>
-<area shape="rect" id="Node000004" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="5,55,124,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="159,56,125,61,124,56,158,51"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="445,80,583,105"/>
+<area shape="rect" id="Node000002" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="283,80,397,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="432,95,398,95,398,90,432,90"/>
+<area shape="rect" id="Node000003" href="$namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="140,5,211,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="300,76,234,44,208,33,210,28,236,40,303,71"/>
+<area shape="rect" id="Node000005" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="120,55,231,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="269,84,231,78,232,73,269,79"/>
+<area shape="rect" id="Node000006" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="121,104,229,129"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="269,106,230,111,229,106,269,100"/>
+<area shape="rect" id="Node000007" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="116,153,235,179"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="300,114,236,143,207,156,205,151,234,138,298,109"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="127,30,69,40,68,35,126,24"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="106,58,68,51,69,46,107,53"/>
 </map>

@@ -18,10 +18,15 @@ var annotated_dup =
     [ "pmm", "namespacepmm.html", [
       [ "FreeBlock", "structpmm_1_1FreeBlock.html", "structpmm_1_1FreeBlock" ]
     ] ],
+    [ "vfs", "namespacevfs.html", [
+      [ "vfs_node", "structvfs_1_1vfs__node.html", "structvfs_1_1vfs__node" ]
+    ] ],
+    [ "cpio_newc_header", "structcpio__newc__header.html", "structcpio__newc__header" ],
     [ "multiboot_color", "structmultiboot__color.html", "structmultiboot__color" ],
     [ "multiboot_mmap_entry", "structmultiboot__mmap__entry.html", "structmultiboot__mmap__entry" ],
     [ "multiboot_tag", "structmultiboot__tag.html", "structmultiboot__tag" ],
     [ "multiboot_tag_framebuffer", "structmultiboot__tag__framebuffer.html", "structmultiboot__tag__framebuffer" ],
     [ "multiboot_tag_mmap", "structmultiboot__tag__mmap.html", "structmultiboot__tag__mmap" ],
+    [ "multiboot_tag_module", "structmultiboot__tag__module.html", "structmultiboot__tag__module" ],
     [ "regs", "structregs.html", "structregs" ]
 ];

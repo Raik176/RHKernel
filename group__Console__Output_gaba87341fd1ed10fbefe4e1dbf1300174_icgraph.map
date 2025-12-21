@@ -1,20 +1,24 @@
 <map id="console::putchar" name="console::putchar">
-<area shape="rect" id="Node000001" title="Write a single character to the console." alt="" coords="631,79,760,104"/>
-<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="116,53,231,79"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="657,75,621,59,582,45,498,22,431,10,364,10,279,23,235,38,198,56,195,51,233,33,278,18,364,5,432,5,499,17,583,40,623,54,660,70"/>
-<area shape="rect" id="Node000004" href="$group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce" title="Write an unsigned integer in hexadecimal format." alt="" coords="279,155,404,180"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="660,113,623,129,583,143,490,161,405,168,404,163,489,156,582,138,621,125,657,108"/>
-<area shape="rect" id="Node000005" href="$group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title="Write an unsigned integer in decimal format." alt="" coords="452,53,583,79"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="617,83,582,78,583,73,617,78"/>
-<area shape="rect" id="Node000007" href="$group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="461,103,574,128"/>
-<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="617,105,574,111,574,105,616,99"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,53,68,79"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,69,68,69,68,63,102,63"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="301,151,277,138,191,81,194,77,280,133,303,146"/>
-<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="454,53,404,45,341,40,279,45,220,56,219,51,278,39,341,35,404,39,454,48"/>
-<area shape="rect" id="Node000006" href="$idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff" title=" " alt="" coords="294,53,389,79"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="439,69,389,69,389,63,439,63"/>
-<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="447,114,366,106,278,94,220,81,222,76,279,89,366,101,447,108"/>
-<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="461,135,386,157,384,152,460,130"/>
-<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="458,102,387,82,388,76,459,96"/>
+<area shape="rect" id="Node000001" title="Write a single character to the console." alt="" coords="812,80,941,105"/>
+<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="297,55,412,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="839,76,803,60,763,46,679,24,613,12,545,11,461,25,416,39,379,57,377,52,414,34,459,19,545,6,613,6,681,18,765,41,805,55,841,71"/>
+<area shape="rect" id="Node000005" href="$group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce" title="Write an unsigned integer in hexadecimal format." alt="" coords="460,156,585,181"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="841,114,805,131,765,145,671,162,586,170,585,164,671,157,763,139,803,126,839,109"/>
+<area shape="rect" id="Node000006" href="$group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title="Write an unsigned integer in decimal format." alt="" coords="633,55,764,80"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="798,84,764,79,764,74,799,79"/>
+<area shape="rect" id="Node000008" href="$group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="642,104,755,129"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="798,106,756,112,755,106,798,101"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#aa11bc80bd1372731cea7f6c63d999132" title=" " alt="" coords="116,29,249,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,60,249,54,250,49,284,54"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="284,70,68,70,68,65,284,65"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="207,18,200,11,183,8,168,10,160,15,158,20,163,28,158,30,153,21,156,11,166,5,183,3,203,6,211,15"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="103,59,69,65,68,59,102,53"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="482,152,459,139,373,82,375,78,461,134,485,147"/>
+<area shape="poly" id="edge10_Node000006_Node000002" title=" " alt="" coords="635,54,585,46,523,41,460,46,402,57,401,52,460,41,523,36,586,41,636,49"/>
+<area shape="rect" id="Node000007" href="$idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff" title=" " alt="" coords="475,55,570,80"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="620,70,570,70,570,65,620,65"/>
+<area shape="poly" id="edge13_Node000008_Node000002" title=" " alt="" coords="628,115,547,107,460,95,402,83,403,77,460,90,548,102,629,110"/>
+<area shape="poly" id="edge14_Node000008_Node000005" title=" " alt="" coords="643,136,567,158,566,153,641,131"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="639,103,568,83,570,78,640,98"/>
 </map>

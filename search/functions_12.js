@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['v2p_0',['v2p',['../util_8h.html#a953aa7d2c54a0688f6968f813988a598',1,'util.h']]]
+  ['update_5fcursor_5fvisual_0',['update_cursor_visual',['../namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896',1,'framebuffer']]],
+  ['update_5fhardware_5fcursor_1',['update_hardware_cursor',['../namespacevga.html#ad3fed93390c077de798afb250e9fcf3d',1,'vga']]]
 ];
