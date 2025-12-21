@@ -1,0 +1,17 @@
+<map id="pmm::free_with_reservation" name="pmm::free_with_reservation">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,212,105"/>
+<area shape="poly" id="edge8_Node000001_Node000001" title=" " alt="" coords="74,82,66,72,70,62,85,56,109,53,138,57,150,66,147,70,136,62,109,59,86,61,74,66,71,71,78,78"/>
+<area shape="rect" id="Node000002" href="$namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="260,80,387,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,90,246,90,246,95,212,95"/>
+<area shape="rect" id="Node000003" href="$util_8h.html#ab86e3ffa8573baff6320d8ceb3806fc0" title="Align an address downward to the nearest multiple of align" alt="" coords="455,5,551,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="350,77,434,40,451,33,453,38,436,44,352,82"/>
+<area shape="rect" id="Node000004" href="$namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30" title=" " alt="" coords="444,55,563,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="386,81,430,75,431,80,387,86"/>
+<area shape="rect" id="Node000005" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="620,107,752,132"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="387,95,606,111,606,116,387,100"/>
+<area shape="rect" id="Node000006" href="$namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="435,156,572,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="355,103,461,148,459,153,353,108"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="550,153,624,133,626,138,552,159"/>
+<area shape="rect" id="Node000007" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="663,156,709,181"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="572,166,649,166,649,171,572,171"/>
+</map>

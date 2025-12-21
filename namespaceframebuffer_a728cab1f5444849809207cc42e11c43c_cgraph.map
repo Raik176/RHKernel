@@ -1,0 +1,15 @@
+<map id="framebuffer::putchar" name="framebuffer::putchar">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,60,161,86"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="639,86,816,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,58,207,34,324,12,390,5,458,3,525,7,591,20,622,30,652,45,700,75,697,80,649,49,620,35,590,25,525,13,458,8,390,10,325,17,209,39,124,63"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="400,35,591,60"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,66,386,52,387,57,162,71"/>
+<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="209,86,352,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,80,196,85,196,90,161,86"/>
+<area shape="rect" id="Node000005" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="419,136,571,176"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="111,83,157,103,210,121,311,140,406,149,405,155,310,145,209,126,155,108,109,88"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="352,96,625,96,625,101,352,101"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="335,83,427,61,428,66,336,88"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="330,108,408,130,406,135,328,114"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="571,134,661,112,662,117,572,139"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="framebuffer::putpixel_indexed" name="framebuffer::putpixel_indexed">
+<area shape="rect" id="Node000001" title=" " alt="" coords="441,5,600,45"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#aba7f2e3745cab7d1f4f546d21cd48ff6" title="Initialize the framebuffer with data from Multiboot2." alt="" coords="265,13,393,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="428,28,394,28,394,23,428,23"/>
+<area shape="rect" id="Node000003" href="$group__Console__Core.html#gacac6ff3ba4cf67cd89b78395e7759dbb" title="Initialize the console with a specific backend." alt="" coords="116,13,217,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="252,28,218,28,218,23,252,23"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,13,68,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="102,28,68,28,68,23,102,23"/>
+</map>

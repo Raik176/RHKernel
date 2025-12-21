@@ -1,6 +1,5 @@
 var vga_8h =
 [
-    [ "VGA_VIRT", "vga_8h.html#a1237f8a59604e864d3a33f449ce77722", null ],
     [ "Color", "vga_8h.html#aef6795f7dcb3e2685394eb74946a9c08", [
       [ "Black", "vga_8h.html#aef6795f7dcb3e2685394eb74946a9c08ae90dfb84e30edf611e326eeb04d680de", null ],
       [ "Blue", "vga_8h.html#aef6795f7dcb3e2685394eb74946a9c08a9594eec95be70e7b1710f730fdda33d9", null ],

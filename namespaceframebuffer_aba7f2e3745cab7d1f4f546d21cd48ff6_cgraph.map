@@ -1,0 +1,18 @@
+<map id="framebuffer::init" name="framebuffer::init">
+<area shape="rect" id="Node000001" title="Initialize the framebuffer with data from Multiboot2." alt="" coords="5,146,133,171"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#aa121f4170e112c3ef44be3e481f8706b" title=" " alt="" coords="207,15,346,41"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,143,123,104,180,62,219,43,221,48,183,66,126,108,85,147"/>
+<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="620,42,797,67"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="92,143,133,124,181,107,262,92,374,78,606,59,606,64,374,84,263,97,182,112,135,129,95,148"/>
+<area shape="rect" id="Node000005" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="253,121,300,146"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="133,148,239,135,240,140,134,154"/>
+<area shape="rect" id="Node000006" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="181,170,372,195"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="134,163,168,167,167,173,133,169"/>
+<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#a9c8e0a23d48e1282f5ffc8483047de9d" title=" " alt="" coords="197,220,356,260"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="99,169,182,206,202,213,200,218,180,210,97,174"/>
+<area shape="rect" id="Node000008" href="$namespaceframebuffer.html#a440653d090cc4cf5ad0553fba4395019" title=" " alt="" coords="183,285,370,310"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="81,170,122,219,150,246,183,270,198,277,196,282,180,274,147,250,118,222,77,173"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="420,5,572,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,24,406,24,406,29,347,30"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="573,33,607,38,606,43,572,38"/>
+</map>

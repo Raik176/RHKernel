@@ -1,0 +1,21 @@
+<map id="src/impl/x86_64/pmm.cpp" name="src/impl/x86_64/pmm.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="48,5,239,31"/>
+<area shape="rect" id="Node000002" href="$pmm_8h.html" title=" " alt="" coords="84,152,152,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,32,125,139,120,138,139,31"/>
+<area shape="rect" id="Node000005" href="$util_8h.html" title="Utility functions and macros." alt="" coords="5,152,60,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="136,33,52,142,48,139,132,29"/>
+<area shape="rect" id="Node000006" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="176,152,281,177"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="153,30,217,139,213,141,148,32"/>
+<area shape="rect" id="Node000007" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="207,79,291,104"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="162,28,222,69,219,73,159,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="187,225,257,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,175,195,215,192,219,133,180"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="81,225,155,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="121,178,121,212,115,212,115,178"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="61,174,180,218,178,223,59,179"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="48,175,95,214,92,219,45,179"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="230,178,227,212,222,212,225,177"/>
+<area shape="poly" id="edge9_Node000006_Node000004" title=" " alt="" coords="212,180,149,220,146,215,209,175"/>
+<area shape="poly" id="edge11_Node000007_Node000003" title=" " alt="" coords="265,103,292,136,300,157,296,178,279,202,258,220,254,216,275,199,292,176,294,157,287,138,261,106"/>
+<area shape="poly" id="edge12_Node000007_Node000006" title=" " alt="" coords="248,105,238,140,233,138,243,104"/>
+</map>

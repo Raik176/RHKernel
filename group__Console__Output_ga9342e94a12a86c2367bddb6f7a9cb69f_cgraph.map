@@ -1,9 +1,15 @@
 <map id="console::move_cursor" name="console::move_cursor">
-<area shape="rect" id="Node000001" title="Move the cursor to a specific position." alt="" coords="5,13,169,38"/>
-<area shape="rect" id="Node000002" href="$group__VGA__Output.html#ga0142f51258318d16542cd53727140143" title="Move the hardware cursor." alt="" coords="217,13,356,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,23,204,23,204,28,170,28"/>
-<area shape="rect" id="Node000003" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="404,5,571,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,23,390,23,390,28,356,28"/>
-<area shape="rect" id="Node000004" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="619,13,669,38"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="571,23,604,23,604,28,571,28"/>
+<area shape="rect" id="Node000001" title="Move the cursor to a specific position." alt="" coords="5,46,169,71"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#a8cce465cb2c8f88ac6856c01284b9288" title=" " alt="" coords="217,17,408,42"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,45,203,41,204,46,170,51"/>
+<area shape="rect" id="Node000005" href="$group__VGA__Output.html#ga0142f51258318d16542cd53727140143" title="Move the hardware cursor." alt="" coords="243,70,382,95"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="170,65,230,71,230,77,169,70"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="463,5,615,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,25,450,24,450,30,408,30"/>
+<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="671,13,848,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="615,23,657,23,657,28,615,28"/>
+<area shape="rect" id="Node000006" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="456,69,623,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="383,82,442,84,442,89,382,87"/>
+<area shape="rect" id="Node000007" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="734,77,785,102"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="623,87,721,87,721,92,623,92"/>
 </map>

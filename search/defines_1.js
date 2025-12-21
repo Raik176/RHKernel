@@ -1,6 +1,28 @@
 var searchData=
 [
-  ['page_5fsize_0',['PAGE_SIZE',['../util_8h.html#a7d467c1d283fdfa1f2081ba1e0d01b6e',1,'util.h']]],
-  ['pt_5fpresent_1',['PT_PRESENT',['../main_8cpp.html#a14e7c41a3518a5aad69885a493c3fe5e',1,'main.cpp']]],
-  ['pt_5fwritable_2',['PT_WRITABLE',['../main_8cpp.html#a4b4031d5b36d5deb8b4970e63e008121',1,'main.cpp']]]
+  ['multiboot_5fframebuffer_5ftype_5fega_0',['MULTIBOOT_FRAMEBUFFER_TYPE_EGA',['../multiboot2_8h.html#a2ddc4055067128352ffe2cfb6e0add92',1,'multiboot2.h']]],
+  ['multiboot_5fframebuffer_5ftype_5findexed_1',['MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED',['../multiboot2_8h.html#a8e2af641ff42074bb807c3ec9e33b2e0',1,'multiboot2.h']]],
+  ['multiboot_5fframebuffer_5ftype_5frgb_2',['MULTIBOOT_FRAMEBUFFER_TYPE_RGB',['../multiboot2_8h.html#a34b2f01226ea42de22e06db7f652fbb1',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5facpi_5fnew_3',['MULTIBOOT_TAG_TYPE_ACPI_NEW',['../multiboot2_8h.html#afa32c43ce21ca35f6b0062bddbedf37d',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5facpi_5fold_4',['MULTIBOOT_TAG_TYPE_ACPI_OLD',['../multiboot2_8h.html#acc29d9aee9a932ee12628ba57fdfb3a4',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fapm_5',['MULTIBOOT_TAG_TYPE_APM',['../multiboot2_8h.html#af602f72aea03554c227e39e153dc9e50',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fbasic_5fmeminfo_6',['MULTIBOOT_TAG_TYPE_BASIC_MEMINFO',['../multiboot2_8h.html#ae64c134a04cf27a23a036c3330ef827a',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fboot_5floader_5fname_7',['MULTIBOOT_TAG_TYPE_BOOT_LOADER_NAME',['../multiboot2_8h.html#afe69dc4711fc7f5dc9604977b2393218',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fbootdev_8',['MULTIBOOT_TAG_TYPE_BOOTDEV',['../multiboot2_8h.html#a92170b084bd536b0e30e2373263f6685',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fcmdline_9',['MULTIBOOT_TAG_TYPE_CMDLINE',['../multiboot2_8h.html#a3a78959903ddf23a09f22d755fe11ec4',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fefi32_10',['MULTIBOOT_TAG_TYPE_EFI32',['../multiboot2_8h.html#a71df44140fc5999f9d602095b46dad94',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fefi32_5fih_11',['MULTIBOOT_TAG_TYPE_EFI32_IH',['../multiboot2_8h.html#ad01989e09be1cdbb4db9c99058c49560',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fefi64_12',['MULTIBOOT_TAG_TYPE_EFI64',['../multiboot2_8h.html#ab6121d81742a285af07d6c44a8c0af8f',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fefi64_5fih_13',['MULTIBOOT_TAG_TYPE_EFI64_IH',['../multiboot2_8h.html#a149ae8c9ded2508fc5f499c779ff8813',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fefi_5fbs_14',['MULTIBOOT_TAG_TYPE_EFI_BS',['../multiboot2_8h.html#a8a77877e4fde46c2f7230911974135ee',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fefi_5fmmap_15',['MULTIBOOT_TAG_TYPE_EFI_MMAP',['../multiboot2_8h.html#a46cf9e061b4000644be5810844430afc',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5felf_5fsections_16',['MULTIBOOT_TAG_TYPE_ELF_SECTIONS',['../multiboot2_8h.html#ae528c08823c57db7e04bd1888c2b8bb4',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fend_17',['MULTIBOOT_TAG_TYPE_END',['../multiboot2_8h.html#a9ba1adbd7639e20f723e51dd9668a981',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fframebuffer_18',['MULTIBOOT_TAG_TYPE_FRAMEBUFFER',['../multiboot2_8h.html#ad173069cc56a0b2734d796577a1bd857',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fload_5fbase_5faddr_19',['MULTIBOOT_TAG_TYPE_LOAD_BASE_ADDR',['../multiboot2_8h.html#ab28e2f0c217713188d0868ccc29a19e4',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fmmap_20',['MULTIBOOT_TAG_TYPE_MMAP',['../multiboot2_8h.html#ad5e7a09f39f1f37e50be39000af2af4e',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fmodule_21',['MULTIBOOT_TAG_TYPE_MODULE',['../multiboot2_8h.html#a10b78479319b8790657f13414cf34736',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fnetwork_22',['MULTIBOOT_TAG_TYPE_NETWORK',['../multiboot2_8h.html#a12327fcbac594a8d93c18a2870998bcf',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fsmbios_23',['MULTIBOOT_TAG_TYPE_SMBIOS',['../multiboot2_8h.html#a9e51bc9a0f05a5d31bc7cd09419dba8a',1,'multiboot2.h']]],
+  ['multiboot_5ftag_5ftype_5fvbe_24',['MULTIBOOT_TAG_TYPE_VBE',['../multiboot2_8h.html#af589b0f71833031d3c6c289d3accfab6',1,'multiboot2.h']]]
 ];

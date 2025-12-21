@@ -1,0 +1,9 @@
+<map id="serial::putchar" name="serial::putchar">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,120,56"/>
+<area shape="rect" id="Node000002" href="$namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="168,5,319,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,33,154,28,155,33,121,38"/>
+<area shape="rect" id="Node000004" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="196,55,291,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="121,48,183,57,182,62,120,54"/>
+<area shape="rect" id="Node000003" href="$namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="367,5,453,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="319,15,353,15,353,21,319,21"/>
+</map>

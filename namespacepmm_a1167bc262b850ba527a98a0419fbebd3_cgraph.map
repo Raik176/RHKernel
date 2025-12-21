@@ -1,0 +1,20 @@
+<map id="pmm::init" name="pmm::init">
+<area shape="rect" id="Node000001" title="Initialize the physical memory manager." alt="" coords="5,181,91,207"/>
+<area shape="rect" id="Node000002" href="$namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="139,131,345,156"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,180,179,157,181,162,92,186"/>
+<area shape="rect" id="Node000008" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="796,181,843,207"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="91,191,782,191,782,197,91,197"/>
+<area shape="poly" id="edge9_Node000002_Node000002" title=" " alt="" coords="210,132,204,122,207,112,220,106,242,104,268,108,279,116,276,120,266,112,242,109,222,111,211,116,209,122,215,129"/>
+<area shape="rect" id="Node000003" href="$namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="393,105,520,131"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,128,380,124,380,130,346,134"/>
+<area shape="rect" id="Node000004" href="$util_8h.html#ab86e3ffa8573baff6320d8ceb3806fc0" title="Align an address downward to the nearest multiple of align" alt="" coords="589,5,685,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="472,103,514,72,567,40,580,33,583,38,569,44,517,77,475,107"/>
+<area shape="rect" id="Node000005" href="$namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30" title=" " alt="" coords="577,55,696,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="502,103,577,81,578,86,503,108"/>
+<area shape="rect" id="Node000006" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="753,132,885,157"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="520,120,739,136,739,141,520,125"/>
+<area shape="rect" id="Node000007" href="$namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="568,156,705,181"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="503,128,578,150,577,155,502,133"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="705,157,739,152,740,158,706,162"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="706,176,783,186,782,192,705,181"/>
+</map>

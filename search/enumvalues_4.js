@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['green_0',['Green',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ad382816a3cbeed082c9e216e7392eed1',1,'vga']]]
+  ['framebuffer_0',['FRAMEBUFFER',['../namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498aa8b6aa3e7817e792024c8b4ef6cf7349',1,'console']]]
 ];

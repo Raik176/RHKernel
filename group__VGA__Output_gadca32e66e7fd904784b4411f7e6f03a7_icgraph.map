@@ -1,7 +1,5 @@
 <map id="vga::disable_cursor" name="vga::disable_cursor">
-<area shape="rect" id="Node000001" title="Disable the hardware cursor." alt="" coords="339,5,487,31"/>
-<area shape="rect" id="Node000002" href="$group__Console__Core.html#ga36cbc01958448a64c53952fcddc57060" title="Disable the hardware cursor." alt="" coords="116,5,291,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="325,21,291,21,291,15,325,15"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title="Kernel main entry function." alt="" coords="5,5,68,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<area shape="rect" id="Node000001" title="Disable the hardware cursor." alt="" coords="228,5,376,31"/>
+<area shape="rect" id="Node000002" href="$group__Console__Core.html#ga36cbc01958448a64c53952fcddc57060" title="Disable the hardware cursor." alt="" coords="5,5,180,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,21,180,21,180,15,214,15"/>
 </map>

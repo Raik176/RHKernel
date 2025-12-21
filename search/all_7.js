@@ -1,4 +1,24 @@
 var searchData=
 [
-  ['green_0',['Green',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ad382816a3cbeed082c9e216e7392eed1',1,'vga']]]
+  ['g_5fpos_0',['g_pos',['../structframebuffer_1_1FramebufferInfo.html#aab3a3035e9dabc0e2184cf7ed08c67ac',1,'framebuffer::FramebufferInfo']]],
+  ['g_5fsize_1',['g_size',['../structframebuffer_1_1FramebufferInfo.html#a382b869a7ab75ff9b8922fd35fc5dafd',1,'framebuffer::FramebufferInfo']]],
+  ['gdt_2',['gdt',['../namespacegdt.html',1,'']]],
+  ['gdt_2ecpp_3',['gdt.cpp',['../gdt_8cpp.html',1,'']]],
+  ['gdt_2eh_4',['gdt.h',['../gdt_8h.html',1,'']]],
+  ['gdt_5fentries_5',['gdt_entries',['../namespacegdt.html#a516da56d7481e733f0fa9e164136e5be',1,'gdt']]],
+  ['gdt_5fload_6',['gdt_load',['../namespacegdt.html#ad71ded752899f558e6555fa02504fdf0',1,'gdt']]],
+  ['gdt_5fptr_7',['gdt_ptr',['../namespacegdt.html#a58a614d471498f89cb9651b76bb59366',1,'gdt']]],
+  ['gdtentry_8',['GDTEntry',['../structgdt_1_1GDTEntry.html',1,'gdt']]],
+  ['gdtptr_9',['GDTPtr',['../structgdt_1_1GDTPtr.html',1,'gdt']]],
+  ['get_5ffree_5fkb_10',['get_free_kb',['../namespacepmm.html#a39726914ffd1962710d2315074eb0e52',1,'pmm']]],
+  ['get_5fgdt_5fptr_11',['get_gdt_ptr',['../namespacegdt.html#a8e7f329972e893e4af69835d489a1d62',1,'gdt']]],
+  ['get_5fnext_5ftable_12',['get_next_table',['../namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817',1,'vmm']]],
+  ['get_5fsystem_5fkb_13',['get_system_kb',['../namespacepmm.html#a5065cb3919397985dcec57294b29262a',1,'pmm']]],
+  ['get_5ftable_5fptr_14',['get_table_ptr',['../namespacevmm.html#aa604160270551f1cb1a67a113b5167a2',1,'vmm']]],
+  ['get_5ftotal_5fkb_15',['get_total_kb',['../namespacepmm.html#aa4515ac2a6c9265688f1faa74ddcc02c',1,'pmm']]],
+  ['global_16',['Global',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8',1,'vmm']]],
+  ['granularity_17',['granularity',['../structgdt_1_1GDTEntry.html#ab8c2b61f6335b304c61ee06b725816ca',1,'gdt::GDTEntry::granularity'],['../gdt_8h.html#acfea365f69e71368a2db03333d4afd6f',1,'granularity:&#160;gdt.h']]],
+  ['green_18',['green',['../structmultiboot__color.html#a15975bef4fd99d2c5139e32ead7bab85',1,'multiboot_color::green'],['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ad382816a3cbeed082c9e216e7392eed1',1,'vga::Green']]],
+  ['green_5ffield_5fposition_19',['green_field_position',['../structmultiboot__tag__framebuffer.html#a18c61b24c3ab90484d4bacbbc24d9941',1,'multiboot_tag_framebuffer']]],
+  ['green_5fmask_5fsize_20',['green_mask_size',['../structmultiboot__tag__framebuffer.html#abb69283b2ea0c640eff9d782ffb66a1e',1,'multiboot_tag_framebuffer']]]
 ];

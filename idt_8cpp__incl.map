@@ -1,0 +1,19 @@
+<map id="src/impl/x86_64/idt.cpp" name="src/impl/x86_64/idt.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="48,5,221,31"/>
+<area shape="rect" id="Node000002" href="$idt_8h.html" title=" " alt="" coords="5,79,56,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,33,61,73,58,68,116,28"/>
+<area shape="rect" id="Node000004" href="$string_8h.html" title=" " alt="" coords="225,152,295,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="148,29,191,77,244,139,240,143,187,80,144,33"/>
+<area shape="rect" id="Node000006" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="93,79,177,104"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="137,31,137,65,132,65,132,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="67,225,138,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="39,103,93,212,88,214,34,106"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="236,180,142,222,140,217,234,175"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="192,225,267,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="257,179,242,214,237,212,252,177"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="122,106,102,126,86,153,84,168,84,183,93,212,88,213,79,184,78,167,82,151,98,123,118,102"/>
+<area shape="rect" id="Node000007" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="95,152,201,177"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="139,104,146,138,141,139,134,105"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="143,179,120,215,115,212,138,176"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="163,175,208,214,204,218,159,179"/>
+</map>

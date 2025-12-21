@@ -4,7 +4,7 @@ var vga_8cpp =
     [ "disable_cursor", "vga_8cpp.html#gadca32e66e7fd904784b4411f7e6f03a7", null ],
     [ "enable_cursor", "vga_8cpp.html#ga4186bda44ce74c443fa77ebe369fa673", null ],
     [ "init", "vga_8cpp.html#gae1a3a699e33b42de55fd22eefea6bad2", null ],
-    [ "make_entry", "vga_8cpp.html#a593adfc7e63593f5cbb7aeaf6ccf8e6b", null ],
+    [ "make_entry", "vga_8cpp.html#abdd0eae02537e3409e2abd61b9002899", null ],
     [ "move_cursor", "vga_8cpp.html#ga0142f51258318d16542cd53727140143", null ],
     [ "newline", "vga_8cpp.html#a0f5f3cba8da79d1153b434192b4f46b7", null ],
     [ "putchar", "vga_8cpp.html#gaad3f0e4b13fe8b1f80046306237373ec", null ],

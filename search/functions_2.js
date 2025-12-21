@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['disable_5fcursor_0',['disable_cursor',['../group__Console__Core.html#ga36cbc01958448a64c53952fcddc57060',1,'console::disable_cursor()'],['../group__VGA__Output.html#gadca32e66e7fd904784b4411f7e6f03a7',1,'vga::disable_cursor()']]]
+  ['block_5fsize_0',['block_size',['../namespacepmm.html#a090cda5827fca84294fd419db582d837',1,'pmm']]],
+  ['buddy_5fof_1',['buddy_of',['../namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538',1,'pmm']]]
 ];

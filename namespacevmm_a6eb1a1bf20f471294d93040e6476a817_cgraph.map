@@ -1,0 +1,27 @@
+<map id="vmm::get_next_table" name="vmm::get_next_table">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,167,257"/>
+<area shape="rect" id="Node000002" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="243,105,337,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,230,255,136,258,140,109,234"/>
+<area shape="rect" id="Node000007" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="655,207,701,232"/>
+<area shape="poly" id="edge14_Node000001_Node000007" title=" " alt="" coords="167,239,641,218,641,224,167,244"/>
+<area shape="rect" id="Node000010" href="$namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="215,257,365,283"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="167,252,201,256,200,262,167,257"/>
+<area shape="rect" id="Node000011" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title=" " alt="" coords="252,307,328,332"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="119,255,216,293,240,301,238,306,214,298,117,260"/>
+<area shape="rect" id="Node000003" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="612,105,744,131"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="337,115,598,115,598,121,337,121"/>
+<area shape="rect" id="Node000004" href="$namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="423,55,554,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="337,103,424,81,426,86,338,109"/>
+<area shape="rect" id="Node000006" href="$namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="420,156,557,181"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="338,127,426,150,424,155,337,133"/>
+<area shape="rect" id="Node000008" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title=" " alt="" coords="413,5,564,31"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="307,103,354,72,412,40,428,33,430,38,414,44,356,77,310,107"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="538,78,617,99,616,104,536,83"/>
+<area shape="rect" id="Node000005" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="655,55,701,80"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="554,65,641,65,641,70,554,70"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="536,153,616,132,617,137,538,158"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="538,179,642,207,641,212,536,184"/>
+<area shape="rect" id="Node000009" href="$namespacepmm.html#ae004ad0d792c19ea9cec7d73dec15e30" title=" " alt="" coords="619,5,737,31"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="564,15,605,15,605,21,564,21"/>
+<area shape="poly" id="edge12_Node000010_Node000007" title=" " alt="" coords="365,260,564,235,640,223,641,228,564,241,366,265"/>
+</map>

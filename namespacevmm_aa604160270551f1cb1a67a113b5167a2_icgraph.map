@@ -1,0 +1,14 @@
+<map id="vmm::get_table_ptr" name="vmm::get_table_ptr">
+<area shape="rect" id="Node000001" title=" " alt="" coords="639,56,789,81"/>
+<area shape="rect" id="Node000002" href="$namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="429,5,591,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="648,55,561,33,562,28,650,50"/>
+<area shape="rect" id="Node000003" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="116,56,201,81"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="625,85,546,95,451,102,350,103,249,95,198,84,199,79,250,90,350,97,451,96,545,89,625,80"/>
+<area shape="rect" id="Node000005" href="$namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="249,56,381,81"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="625,71,382,71,382,66,625,66"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="416,26,335,33,250,46,200,58,199,53,249,41,334,28,415,20"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="448,37,365,59,364,53,446,32"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,56,68,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="102,71,68,71,68,66,102,66"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="235,71,202,71,202,66,235,66"/>
+</map>

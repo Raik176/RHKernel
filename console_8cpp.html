@@ -102,19 +102,32 @@ $(document).ready(function(){initNavTree('console_8cpp.html',''); initResizable(
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vga_8h_source.html">vga.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="framebuffer_8h_source.html">framebuffer.h</a>&quot;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for console.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="console_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2console_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2console_8cpp" id="asrc_2impl_2x86__64_2console_8cpp">
-<area shape="rect" title="Implementation of kernel console abstraction." alt="" coords="5,5,212,31"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="19,79,103,104"/>
-<area shape="poly" title=" " alt="" coords="103,33,78,69,74,66,99,30"/>
-<area shape="rect" href="vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="127,79,186,104"/>
-<area shape="poly" title=" " alt="" coords="119,30,144,66,139,69,114,33"/>
-<area shape="rect" title=" " alt="" coords="73,152,144,177"/>
-<area shape="poly" title=" " alt="" coords="71,103,96,139,91,142,66,106"/>
-<area shape="poly" title=" " alt="" coords="151,106,126,142,122,139,147,103"/>
+<area shape="rect" title="Implementation of kernel console abstraction." alt="" coords="119,5,325,31"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="140,79,224,104"/>
+<area shape="poly" title=" " alt="" coords="218,32,198,68,193,65,213,30"/>
+<area shape="rect" href="vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="233,152,291,177"/>
+<area shape="poly" title=" " alt="" coords="228,30,258,138,253,139,223,32"/>
+<area shape="rect" href="framebuffer_8h.html" title=" " alt="" coords="5,79,116,104"/>
+<area shape="poly" title=" " alt="" coords="197,33,101,75,98,71,195,28"/>
+<area shape="rect" title=" " alt="" coords="299,79,374,104"/>
+<area shape="poly" title=" " alt="" coords="242,28,308,69,305,74,239,33"/>
+<area shape="rect" title=" " alt="" coords="160,225,231,251"/>
+<area shape="poly" title=" " alt="" coords="186,104,196,211,190,212,180,105"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="52,152,157,177"/>
+<area shape="poly" title=" " alt="" coords="171,106,129,144,126,141,168,102"/>
+<area shape="poly" title=" " alt="" coords="121,175,171,214,168,219,118,179"/>
+<area shape="rect" title=" " alt="" coords="61,225,135,251"/>
+<area shape="poly" title=" " alt="" coords="106,178,103,212,98,212,101,177"/>
+<area shape="poly" title=" " alt="" coords="253,179,217,217,214,213,249,176"/>
+<area shape="poly" title=" " alt="" coords="55,105,38,139,36,158,42,176,57,189,83,201,147,222,146,227,81,206,54,193,37,179,31,159,33,138,50,103"/>
+<area shape="poly" title=" " alt="" coords="70,103,93,139,88,142,66,106"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -125,15 +138,21 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga2fc08bef3ef147afae33cbb7183e84d9" id="r_ga2fc08bef3ef147afae33cbb7183e84d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga2fc08bef3ef147afae33cbb7183e84d9">console::init</a> (<a class="el" href="namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498">Backend</a> backend)</td></tr>
-<tr class="memdesc:ga2fc08bef3ef147afae33cbb7183e84d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the console with a specific backend.  <br /></td></tr>
-<tr class="separator:ga2fc08bef3ef147afae33cbb7183e84d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacac6ff3ba4cf67cd89b78395e7759dbb" id="r_gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#gacac6ff3ba4cf67cd89b78395e7759dbb">console::init</a> (<a class="el" href="namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498">Backend</a> backend, <a class="el" href="structmultiboot__tag__framebuffer.html">multiboot_tag_framebuffer</a> *fb_tag)</td></tr>
+<tr class="memdesc:gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the console with a specific backend.  <br /></td></tr>
+<tr class="separator:gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaba87341fd1ed10fbefe4e1dbf1300174" id="r_gaba87341fd1ed10fbefe4e1dbf1300174"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174">console::putchar</a> (char c)</td></tr>
 <tr class="memdesc:gaba87341fd1ed10fbefe4e1dbf1300174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single character to the console.  <br /></td></tr>
 <tr class="separator:gaba87341fd1ed10fbefe4e1dbf1300174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a41564fc009b7339df8f2b2a4394eb2" id="r_ga9a41564fc009b7339df8f2b2a4394eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2">console::putnum</a> (uint64_t n)</td></tr>
+<tr class="separator:ga9a41564fc009b7339df8f2b2a4394eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga278e61a8aa1cda0b57e50aa56cfd49ce" id="r_ga278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce">console::puthex</a> (uint64_t n)</td></tr>
+<tr class="separator:ga278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae2713614e37ba234a7af6abc42460964" id="r_gae2713614e37ba234a7af6abc42460964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#gae2713614e37ba234a7af6abc42460964">console::write</a> (const char *str)</td></tr>
 <tr class="memdesc:gae2713614e37ba234a7af6abc42460964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a null-terminated string to the console.  <br /></td></tr>
 <tr class="separator:gae2713614e37ba234a7af6abc42460964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0522c4a859d7c82e6aab7c54f4209df2" id="r_ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2">console::printf</a> (const char *fmt,...)</td></tr>
+<tr class="separator:ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga035f2f624f6a23ed646c9654d4510a66" id="r_ga035f2f624f6a23ed646c9654d4510a66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66">console::clear</a> ()</td></tr>
 <tr class="memdesc:ga035f2f624f6a23ed646c9654d4510a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the screen.  <br /></td></tr>
 <tr class="separator:ga035f2f624f6a23ed646c9654d4510a66"><td class="memSeparator" colspan="2">&#160;</td></tr>

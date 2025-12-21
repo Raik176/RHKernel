@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vga_0',['vga',['../namespacevga.html',1,'']]]
+  ['framebuffer_0',['framebuffer',['../namespaceframebuffer.html',1,'']]]
 ];

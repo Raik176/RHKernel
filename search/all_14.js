@@ -5,5 +5,7 @@ var searchData=
   ['vga_20core_20functions_2',['VGA Core Functions',['../group__VGA__Core.html',1,'']]],
   ['vga_2ecpp_3',['vga.cpp',['../vga_8cpp.html',1,'']]],
   ['vga_2eh_4',['vga.h',['../vga_8h.html',1,'']]],
-  ['vga_5fvirt_5',['VGA_VIRT',['../vga_8h.html#a1237f8a59604e864d3a33f449ce77722',1,'vga.h']]]
+  ['vmm_5',['vmm',['../namespacevmm.html',1,'']]],
+  ['vmm_2ecpp_6',['vmm.cpp',['../vmm_8cpp.html',1,'']]],
+  ['vmm_2eh_7',['vmm.h',['../vmm_8h.html',1,'']]]
 ];

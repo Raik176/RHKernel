@@ -1,4 +1,30 @@
 var searchData=
 [
-  ['red_0',['Red',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08aee38e4d5dd68c4e440825018d549cb47',1,'vga']]]
+  ['r10_0',['r10',['../structregs.html#a11fc8a6289c3cadd683de7fabe2b292c',1,'regs::r10'],['../idt_8h.html#a672542f94403b54948dff9d8fa7cb0f1',1,'r10:&#160;idt.h']]],
+  ['r11_1',['r11',['../idt_8h.html#a9fc079aa0f66433a06c5fcc4d20bec15',1,'r11:&#160;idt.h'],['../structregs.html#ae5b5f2bc3c251fe827510d863d7f7c93',1,'regs::r11']]],
+  ['r12_2',['r12',['../structregs.html#a76fafe76d93a6b521d08a7a0d2a2110f',1,'regs::r12'],['../idt_8h.html#a81851bdb2d1f3807d556089ba028635c',1,'r12:&#160;idt.h']]],
+  ['r13_3',['r13',['../idt_8h.html#a73627200093b3cc3dd28586a8a68962a',1,'r13:&#160;idt.h'],['../structregs.html#af7fb5a1a0a8b543ad48b6b2c9a0ea538',1,'regs::r13']]],
+  ['r14_4',['r14',['../idt_8h.html#a035e4a25722738af6914767d3e90bf46',1,'r14:&#160;idt.h'],['../structregs.html#a051b0cd431c6d9dbe6099a9f65173341',1,'regs::r14']]],
+  ['r15_5',['r15',['../structregs.html#abcef38c7de0dbba3b9a7086abeeb987c',1,'regs::r15'],['../idt_8h.html#a88c0b64834f9e74a82375b66aebee207',1,'r15:&#160;idt.h']]],
+  ['r8_6',['r8',['../structregs.html#acaa3b1e804f78df4c46c61721fb2b40e',1,'regs::r8'],['../idt_8h.html#a338c714a93a43aa16b7b45f969e22e31',1,'r8:&#160;idt.h']]],
+  ['r9_7',['r9',['../idt_8h.html#a478d9f99683e61a00d104d13f0739f64',1,'r9:&#160;idt.h'],['../structregs.html#afaa47585525e6d60a5add7b03904a185',1,'regs::r9']]],
+  ['r_5fpos_8',['r_pos',['../structframebuffer_1_1FramebufferInfo.html#a3990802ab54d34bff83393b09f4e62e4',1,'framebuffer::FramebufferInfo']]],
+  ['r_5fsize_9',['r_size',['../structframebuffer_1_1FramebufferInfo.html#aeb77844fb488fa4a0b9855069fe4ba22',1,'framebuffer::FramebufferInfo']]],
+  ['rax_10',['rax',['../idt_8h.html#afae317c0ec04889d6c9452dc30711975',1,'rax:&#160;idt.h'],['../structregs.html#aae9ba1492f82e154b123c02213cddc73',1,'regs::rax']]],
+  ['rbp_11',['rbp',['../structregs.html#a36c545c949b2d34766aec3ef66b85dd3',1,'regs::rbp'],['../idt_8h.html#a9d073dc105e374fd995ca8f3308cb0df',1,'rbp:&#160;idt.h']]],
+  ['rbx_12',['rbx',['../structregs.html#aed300af9f5faf786f20d368c690e5ea1',1,'regs::rbx'],['../idt_8h.html#a49647568f68fbd9082c6be345350f483',1,'rbx:&#160;idt.h']]],
+  ['rcx_13',['rcx',['../structregs.html#a0398d6498c352fc82dc59c7485104c66',1,'regs::rcx'],['../idt_8h.html#a914f17516921c8917ca4a809893138d6',1,'rcx:&#160;idt.h']]],
+  ['rdi_14',['rdi',['../idt_8h.html#a5764734a394146dcf093f9295c2fd5b4',1,'rdi:&#160;idt.h'],['../structregs.html#a4c7ccfb8cdd9dfe84824cf6c3047d367',1,'regs::rdi']]],
+  ['rdx_15',['rdx',['../idt_8h.html#a7e87c5e2faab8a404c01084ddeed4588',1,'rdx:&#160;idt.h'],['../structregs.html#a060e31d513f60a7b33e02d34861adaba',1,'regs::rdx']]],
+  ['red_16',['red',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08aee38e4d5dd68c4e440825018d549cb47',1,'vga::Red'],['../structmultiboot__color.html#a39fe822d89356e224fc211f79f8d1725',1,'multiboot_color::red']]],
+  ['red_5ffield_5fposition_17',['red_field_position',['../structmultiboot__tag__framebuffer.html#ac12f1ca14bde9d9dddc56129096d11ab',1,'multiboot_tag_framebuffer']]],
+  ['red_5fmask_5fsize_18',['red_mask_size',['../structmultiboot__tag__framebuffer.html#ae3db772bf0a7357ab8f38c487987fc56',1,'multiboot_tag_framebuffer']]],
+  ['regs_19',['regs',['../structregs.html',1,'']]],
+  ['remove_5fblock_20',['remove_block',['../namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764',1,'pmm']]],
+  ['reserved_21',['reserved',['../structmultiboot__tag__framebuffer.html#ac8c21c26e2e4d7aa47462f8189dbc1ef',1,'multiboot_tag_framebuffer']]],
+  ['rflags_22',['rflags',['../idt_8h.html#ac67e007ae346a1499c5a276869bfd1bb',1,'rflags:&#160;idt.h'],['../structregs.html#a8cddf90c22cb15aba70be26b9c6ec0b6',1,'regs::rflags']]],
+  ['rgb_23',['rgb',['../structmultiboot__tag__framebuffer.html#a8e9359be473225a36a1e6681edebc4f1',1,'multiboot_tag_framebuffer::rgb'],['../structframebuffer_1_1FramebufferInfo.html#a756bef9806cd85e8681d6eeab05b15b7',1,'framebuffer::FramebufferInfo::rgb']]],
+  ['rip_24',['rip',['../structregs.html#af9868b8985582a7f8aa545fccd541a95',1,'regs::rip'],['../idt_8h.html#a90e28f434559f0582a69699dc4dbc286',1,'rip:&#160;idt.h']]],
+  ['rsi_25',['rsi',['../structregs.html#a50322f2ffb8acb83c912b16a8f775db8',1,'regs::rsi'],['../idt_8h.html#ac778707d44587840c5bd1269e8644eb9',1,'rsi:&#160;idt.h']]],
+  ['rsp_26',['rsp',['../structregs.html#a4f66d7e49623442eeb9161b83d53abda',1,'regs::rsp'],['../idt_8h.html#a8e218c31298bb17b5041cfc61646d6b9',1,'rsp:&#160;idt.h']]]
 ];

@@ -101,14 +101,20 @@ $(document).ready(function(){initNavTree('console_8h.html',''); initResizable();
 <p>Abstraction layer for kernel console output.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="multiboot2_8h_source.html">multiboot2.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for console.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="console_8h__incl.png" border="0" usemap="#asrc_2intf_2console_8h" alt=""/></div>
 <map name="asrc_2intf_2console_8h" id="asrc_2intf_2console_8h">
-<area shape="rect" title="Abstraction layer for kernel console output." alt="" coords="5,5,139,31"/>
-<area shape="rect" title=" " alt="" coords="37,79,107,104"/>
-<area shape="poly" title=" " alt="" coords="75,31,75,65,69,65,69,31"/>
+<area shape="rect" title="Abstraction layer for kernel console output." alt="" coords="19,5,153,31"/>
+<area shape="rect" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" title=" " alt="" coords="85,32,51,140,46,138,80,30"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="79,79,184,104"/>
+<area shape="poly" title=" " alt="" coords="96,30,119,66,114,69,91,32"/>
+<area shape="poly" title=" " alt="" coords="118,106,68,145,65,141,115,102"/>
+<area shape="rect" title=" " alt="" coords="101,152,175,177"/>
+<area shape="poly" title=" " alt="" coords="135,104,138,138,133,139,130,105"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -116,11 +122,17 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="console_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2console_8hdep" alt=""/></div>
 <map name="asrc_2intf_2console_8hdep" id="asrc_2intf_2console_8hdep">
-<area shape="rect" title="Abstraction layer for kernel console output." alt="" coords="153,5,286,31"/>
+<area shape="rect" title="Abstraction layer for kernel console output." alt="" coords="462,5,595,31"/>
 <area shape="rect" href="console_8cpp.html" title="Implementation of kernel console abstraction." alt="" coords="5,79,212,104"/>
-<area shape="poly" title=" " alt="" coords="191,40,128,81,125,76,189,36"/>
-<area shape="rect" href="main_8cpp.html" title="Kernel entry point and initial memory setup." alt="" coords="237,79,426,104"/>
-<area shape="poly" title=" " alt="" coords="251,36,314,76,312,81,248,40"/>
+<area shape="poly" title=" " alt="" coords="449,35,177,81,176,76,448,30"/>
+<area shape="rect" href="idt_8cpp.html" title=" " alt="" coords="237,79,410,104"/>
+<area shape="poly" title=" " alt="" coords="484,38,357,81,356,76,482,33"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="434,79,623,104"/>
+<area shape="poly" title=" " alt="" coords="531,44,531,79,526,79,526,44"/>
+<area shape="rect" href="pmm_8cpp.html" title=" " alt="" coords="648,79,839,104"/>
+<area shape="poly" title=" " alt="" coords="577,32,709,76,708,81,575,37"/>
+<area shape="rect" href="vmm_8cpp.html" title=" " alt="" coords="863,79,1053,104"/>
+<area shape="poly" title=" " alt="" coords="610,30,889,76,888,81,609,35"/>
 </map>
 </div>
 </div>
@@ -141,9 +153,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga2fc08bef3ef147afae33cbb7183e84d9" id="r_ga2fc08bef3ef147afae33cbb7183e84d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga2fc08bef3ef147afae33cbb7183e84d9">console::init</a> (<a class="el" href="namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498">Backend</a> backend)</td></tr>
-<tr class="memdesc:ga2fc08bef3ef147afae33cbb7183e84d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the console with a specific backend.  <br /></td></tr>
-<tr class="separator:ga2fc08bef3ef147afae33cbb7183e84d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacac6ff3ba4cf67cd89b78395e7759dbb" id="r_gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#gacac6ff3ba4cf67cd89b78395e7759dbb">console::init</a> (<a class="el" href="namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498">Backend</a> backend, <a class="el" href="structmultiboot__tag__framebuffer.html">multiboot_tag_framebuffer</a> *fb_tag)</td></tr>
+<tr class="memdesc:gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the console with a specific backend.  <br /></td></tr>
+<tr class="separator:gacac6ff3ba4cf67cd89b78395e7759dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga035f2f624f6a23ed646c9654d4510a66" id="r_ga035f2f624f6a23ed646c9654d4510a66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66">console::clear</a> ()</td></tr>
 <tr class="memdesc:ga035f2f624f6a23ed646c9654d4510a66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the screen.  <br /></td></tr>
 <tr class="separator:ga035f2f624f6a23ed646c9654d4510a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,9 +168,15 @@ Functions</h2></td></tr>
 <tr class="memitem:gaba87341fd1ed10fbefe4e1dbf1300174" id="r_gaba87341fd1ed10fbefe4e1dbf1300174"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174">console::putchar</a> (char c)</td></tr>
 <tr class="memdesc:gaba87341fd1ed10fbefe4e1dbf1300174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a single character to the console.  <br /></td></tr>
 <tr class="separator:gaba87341fd1ed10fbefe4e1dbf1300174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a41564fc009b7339df8f2b2a4394eb2" id="r_ga9a41564fc009b7339df8f2b2a4394eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2">console::putnum</a> (uint64_t n)</td></tr>
+<tr class="separator:ga9a41564fc009b7339df8f2b2a4394eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga278e61a8aa1cda0b57e50aa56cfd49ce" id="r_ga278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga278e61a8aa1cda0b57e50aa56cfd49ce">console::puthex</a> (uint64_t n)</td></tr>
+<tr class="separator:ga278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae2713614e37ba234a7af6abc42460964" id="r_gae2713614e37ba234a7af6abc42460964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#gae2713614e37ba234a7af6abc42460964">console::write</a> (const char *str)</td></tr>
 <tr class="memdesc:gae2713614e37ba234a7af6abc42460964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a null-terminated string to the console.  <br /></td></tr>
 <tr class="separator:gae2713614e37ba234a7af6abc42460964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0522c4a859d7c82e6aab7c54f4209df2" id="r_ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2">console::printf</a> (const char *fmt,...)</td></tr>
+<tr class="separator:ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9342e94a12a86c2367bddb6f7a9cb69f" id="r_ga9342e94a12a86c2367bddb6f7a9cb69f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga9342e94a12a86c2367bddb6f7a9cb69f">console::move_cursor</a> (uint16_t x, uint16_t y)</td></tr>
 <tr class="memdesc:ga9342e94a12a86c2367bddb6f7a9cb69f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the cursor to a specific position.  <br /></td></tr>
 <tr class="separator:ga9342e94a12a86c2367bddb6f7a9cb69f"><td class="memSeparator" colspan="2">&#160;</td></tr>

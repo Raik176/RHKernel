@@ -1,0 +1,10 @@
+<map id="framebuffer::scroll" name="framebuffer::scroll">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,25,148,50"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="435,29,612,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,22,196,9,291,3,387,9,463,23,462,28,386,15,291,8,196,15,126,27"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="196,25,387,50"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,35,182,35,182,40,148,40"/>
+<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="215,75,367,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="126,48,204,69,202,74,124,53"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="367,75,454,55,455,60,368,80"/>
+</map>
