@@ -13,6 +13,8 @@ x86_64_c_object_files := $(patsubst src/impl/x86_64/%.c, build/x86_64/%.c.o, $(x
 # All object files
 x86_64_object_files := $(x86_64_asm_object_files) $(x86_64_c_object_files) $(x86_64_cpp_object_files)
 
+FORMAT_SOURCES := $(shell find src -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp')
+
 # --- Configuration ---
 # Default to Release build (DEBUG=0). To debug, run: make DEBUG=1
 DEBUG ?= 0
@@ -55,18 +57,24 @@ COMMON_CFLAGS := \
 
 NASMFLAGS := -f elf64 -w-zeroing
 
+LDFLAGS := 
+
+INITRAMFS_SRC := initramfs
+INITRAMFS_BIN := build/initramfs.cpio
+
 ifeq ($(DEBUG),1)
 	CFLAGS  := $(COMMON_CFLAGS) -O0 -g -DDEBUG
-	LDFLAGS :=
 	NASMFLAGS := $(NASMFLAGS) -g -F dwarf
 else
 	CFLAGS  := $(COMMON_CFLAGS) -O2
-	LDFLAGS := -s
+	LDFLAGS := $(LDFLAGS) -s
 endif
 
 CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit
 
-# --- Rules ---
+$(INITRAMFS_BIN): $(shell find $(INITRAMFS_SRC) -type f)
+	@mkdir -p build
+	@cd $(INITRAMFS_SRC) && find . | cpio -o -H newc > ../$(INITRAMFS_BIN)
 
 $(TOOLS_STAMP):
 	mkdir -p $(TOOLS_DIR)
@@ -87,6 +95,16 @@ $(VENV_STAMP):
 clean-venv:
 	rm -rf $(VENV)
 
+.PHONY: format
+format:
+	@echo "Formatting C/C++ files..."
+	@clang-format -i $(FORMAT_SOURCES)
+
+.PHONY: check-format
+check-format:
+	@echo "Checking formatting..."
+	@clang-format --dry-run --Werror $(FORMAT_SOURCES)
+
 $(FONT_BIN): $(FONT_TTF) $(FONT_SCRIPT) | $(VENV_STAMP)
 	@mkdir -p $(dir $@)
 	$(VENV_PYTHON) $(FONT_SCRIPT) $(FONT_TTF) $@
@@ -104,11 +122,12 @@ build/x86_64/%.cpp.o: src/impl/x86_64/%.cpp | $(TOOLS_STAMP)
 	$(CXX) -c $(CXXFLAGS) $< -o $@
 
 .PHONY: build-x86_64
-build-x86_64: $(TOOLS_STAMP) $(x86_64_object_files)
+build-x86_64: $(TOOLS_STAMP) $(x86_64_object_files) $(INITRAMFS_BIN)
 	mkdir -p dist/x86_64
-	$(LD) -n $(LFDLAGS) -o dist/x86_64/kernel.bin -T targets/x86_64/linker.ld $(x86_64_object_files)
+	$(LD) -n $(LDFLAGS) -o dist/x86_64/kernel.bin -T targets/x86_64/linker.ld $(x86_64_object_files)
 	mkdir -p targets/x86_64/iso/boot
 	cp dist/x86_64/kernel.bin targets/x86_64/iso/boot/kernel.bin
+	cp $(INITRAMFS_BIN) targets/x86_64/iso/boot/initramfs.cpio
 	grub-mkrescue /usr/lib/grub/i386-pc -o dist/x86_64/kernel.iso targets/x86_64/iso
 
 .PHONY: run

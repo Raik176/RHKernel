@@ -1,27 +1,45 @@
-#include "util.h"
-#include "vga.h"
 #include "console.h"
-#include "pmm.h"
-#include "vmm.h"
-#include "idt.h"
+#include "file/initramfs.h"
+#include "file/vfs.h"
 #include "gdt.h"
 #include "heap.h"
+#include "idt.h"
 #include "multiboot2.h"
+#include "pmm.h"
+#include "util.h"
+#include "vga.h"
+#include "vmm.h"
+
+static void debug_dump_vfs(vfs::vfs_node* node, int depth) {
+    while (node) {
+        for (int i = 0; i < depth; i++) console::printf("  ");
+
+        const char* prefix = "- ";
+        if (node->type == vfs::VfsType::VFS_DIRECTORY)
+            prefix = "D ";
+        else if (node->type == vfs::VfsType::VFS_CHAR_DEVICE)
+            prefix = "C ";
+
+        console::printf("%s%s (%d bytes)\n", prefix, node->name, node->size);
+
+        if (node->child) { debug_dump_vfs(node->child, depth + 1); }
+
+        node = node->next;
+    }
+}
 
 extern "C" void kmain(uint64_t mb_phys_addr) {
     {
         uint8_t* mb_info = (uint8_t*)(uintptr_t)mb_phys_addr;
         multiboot_tag_framebuffer* fb_tag = nullptr;
 
-        for (uint8_t* tag = mb_info + 8; 
-            tag < mb_info + *(uint32_t*)mb_info; 
-            tag += ((*(uint32_t*)(tag + 4) + 7) & ~7)) {
-
+        for (uint8_t* tag = mb_info + 8; tag < mb_info + *(uint32_t*)mb_info;
+             tag += ((*(uint32_t*)(tag + 4) + 7) & ~7)) {
             uint32_t type = *(uint32_t*)tag;
 
-            if (type == 0) break; // End tag
+            if (type == 0) break;  // End tag
 
-            if (type == 8) { // Framebuffer tag
+            if (type == 8) {  // Framebuffer tag
                 fb_tag = (multiboot_tag_framebuffer*)tag;
                 break;
             }
@@ -29,7 +47,8 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
         if (fb_tag) {
             console::init(console::Backend::FRAMEBUFFER, fb_tag);
-            console::printf("[ OK ] Framebuffer initialized (%dx%d); Type=%d\n", fb_tag->width, fb_tag->height, fb_tag->framebuffer_type);
+            console::printf("[ OK ] Framebuffer initialized (%dx%d); Type=%d\n", fb_tag->width,
+                            fb_tag->height, fb_tag->framebuffer_type);
         } else {
             console::init(console::Backend::VGA, nullptr);
             console::printf("[ OK ] VGA Text initialized.\n");
@@ -44,13 +63,11 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     pmm::init(mb_phys_addr);
 
     uint64_t total_kb = (uint64_t)pmm::get_total_bytes() / 1024;
-    uint64_t free_kb  = (uint64_t)pmm::get_free_bytes() / 1024;
-    uint64_t used_kb  = total_kb - free_kb;
+    uint64_t free_kb = (uint64_t)pmm::get_free_bytes() / 1024;
+    uint64_t used_kb = total_kb - free_kb;
 
     console::printf("[ OK ] PMM initialized.\n");
-    console::printf("       Memory: %d KiB / %d KiB used\n", 
-                    (int)used_kb, 
-                    (int)(total_kb));
+    console::printf("       Memory: %d KiB / %d KiB used\n", (int)used_kb, (int)(total_kb));
     console::printf("       Free:   %d KiB\n", (int)free_kb);
 
     vmm::init();
@@ -59,5 +76,15 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     heap::init();
     console::printf("[ OK ] Heap initialized.\n");
 
-    for(;;);
+    vfs::init();
+    console::printf("[ OK ] VFS initialized.\n");
+
+    initramfs::init(mb_phys_addr);
+    console::printf("[ OK ] Initramfs initialized.\n");
+
+    console::printf("\n--- VFS Debug Tree ---\n");
+    debug_dump_vfs(vfs::get_root(), 0);
+    console::printf("----------------------\n");
+
+    for (;;);
 }

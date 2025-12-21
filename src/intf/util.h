@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 /**
  * @brief Kernel virtual memory offset
@@ -23,36 +23,28 @@
  * @param phys The physical address
  * @return The corresponding virtual address
  */
-static inline void* p2v(uint64_t phys) {
-    return (void*)(phys + PHYS_MAP_BASE);
-}
+static inline void* p2v(uint64_t phys) { return (void*)(phys + PHYS_MAP_BASE); }
 
 /**
  * @brief Convert a virtual address to a physical address
  * @param virt The virtual address
  * @return The corresponding physical address
  */
-static inline uint64_t v2p(void* virt) {
-    return (uint64_t)virt - PHYS_MAP_BASE;
-}
+static inline uint64_t v2p(void* virt) { return (uint64_t)virt - PHYS_MAP_BASE; }
 
 /**
  * @brief Convert a physical address to a kernel virtual address
  * @param phys The physical address
  * @return The corresponding kernel virtual address
  */
-static inline void* kp2v(uint64_t phys) {
-    return (void*)(phys + KERNEL_VIRT_OFFSET);
-}
+static inline void* kp2v(uint64_t phys) { return (void*)(phys + KERNEL_VIRT_OFFSET); }
 
 /**
  * @brief Convert a kernel virtual address to a physical address
  * @param virt The kernel virtual address
  * @return The corresponding physical address
  */
-static inline uint64_t kv2p(void* virt) {
-    return (uint64_t)virt - KERNEL_VIRT_OFFSET;
-}
+static inline uint64_t kv2p(void* virt) { return (uint64_t)virt - KERNEL_VIRT_OFFSET; }
 
 /**
  * @brief Align an address upward to the nearest multiple of `align`
@@ -70,9 +62,7 @@ static inline uint64_t align_up(uint64_t addr, uint64_t align) {
  * @param align The alignment boundary (must be a power of two)
  * @return The aligned address
  */
-static inline uint64_t align_down(uint64_t addr, uint64_t align) {
-    return addr & ~(align - 1);
-}
+static inline uint64_t align_down(uint64_t addr, uint64_t align) { return addr & ~(align - 1); }
 
 /**
  * @brief Write a byte to an I/O port

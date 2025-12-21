@@ -25,13 +25,13 @@ namespace gdt {
      * @param gran Granularity flags (size, long mode, upper limit bits)
      */
     static void set_entry(int idx, uint32_t base, uint32_t limit, uint8_t access, uint8_t gran) {
-        gdt_entries[idx].limit_low    = limit & 0xFFFF;
-        gdt_entries[idx].base_low     = base & 0xFFFF;
-        gdt_entries[idx].base_middle  = (base >> 16) & 0xFF;
-        gdt_entries[idx].access       = access;
-        gdt_entries[idx].granularity  = (limit >> 16) & 0x0F;
+        gdt_entries[idx].limit_low = limit & 0xFFFF;
+        gdt_entries[idx].base_low = base & 0xFFFF;
+        gdt_entries[idx].base_middle = (base >> 16) & 0xFF;
+        gdt_entries[idx].access = access;
+        gdt_entries[idx].granularity = (limit >> 16) & 0x0F;
         gdt_entries[idx].granularity |= gran & 0xF0;
-        gdt_entries[idx].base_high    = (base >> 24) & 0xFF;
+        gdt_entries[idx].base_high = (base >> 24) & 0xFF;
     }
 
     /** @internal Assembly routine to load the GDT pointer into the CPU */
@@ -58,7 +58,7 @@ namespace gdt {
 
         // Setup GDT pointer
         gdt_ptr.limit = sizeof(gdt_entries) - 1;
-        gdt_ptr.base  = reinterpret_cast<uint64_t>(&gdt_entries);
+        gdt_ptr.base = reinterpret_cast<uint64_t>(&gdt_entries);
 
         // Load the GDT
         gdt_load(reinterpret_cast<uint64_t>(&gdt_ptr));
@@ -69,7 +69,5 @@ namespace gdt {
      *
      * @return GDTPtr containing base address and limit of the GDT
      */
-    GDTPtr get_gdt_ptr() {
-        return gdt_ptr;
-    }
-} // namespace gdt
+    GDTPtr get_gdt_ptr() { return gdt_ptr; }
+}  // namespace gdt

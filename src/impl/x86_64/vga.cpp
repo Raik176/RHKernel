@@ -4,115 +4,111 @@
  */
 
 #include "vga.h"
+
 #include "util.h"
 
 namespace vga {
 
-/**
- * @internal
- * VGA text buffer pointer
- */
-static volatile uint16_t* buffer = (volatile uint16_t*)0xFFFFFFFF800B8000;
+    /**
+     * @internal
+     * VGA text buffer pointer
+     */
+    static volatile uint16_t* buffer = (volatile uint16_t*)0xFFFFFFFF800B8000;
 
-/**
- * @name Current cursor position
- * @{
- */
-static uint16_t cursor_x = 0; ///< X Position
-static uint16_t cursor_y = 0; ///< Y Position
-/** @} */
+    /**
+     * @name Current cursor position
+     * @{
+     */
+    static uint16_t cursor_x = 0;  ///< X Position
+    static uint16_t cursor_y = 0;  ///< Y Position
+    /** @} */
 
-/** @internal Current text color (foreground | background << 4) */
-static uint8_t color = (uint8_t)Color::LightGray | ((uint8_t)Color::Black << 4);
+    /** @internal Current text color (foreground | background << 4) */
+    static uint8_t color = (uint8_t)Color::LightGray | ((uint8_t)Color::Black << 4);
 
-/**
- * @internal
- * Create a VGA entry from a character and color
- * @param c Character
- * @return 16-bit VGA entry
- */
-static inline uint16_t make_entry(uint8_t c) {
-    return (uint16_t)c | ((uint16_t)color << 8);
-}
+    /**
+     * @internal
+     * Create a VGA entry from a character and color
+     * @param c Character
+     * @return 16-bit VGA entry
+     */
+    static inline uint16_t make_entry(uint8_t c) { return (uint16_t)c | ((uint16_t)color << 8); }
 
-/**
- * @internal
- * Update hardware cursor to current `cursor_x` and `cursor_y`
- */
-static void update_hardware_cursor() {
-    uint16_t pos = cursor_y * WIDTH + cursor_x;
-    outb(0x3D4, 0x0F);
-    outb(0x3D5, pos & 0xFF);
-    outb(0x3D4, 0x0E);
-    outb(0x3D5, (pos >> 8) & 0xFF);
-}
+    /**
+     * @internal
+     * Update hardware cursor to current `cursor_x` and `cursor_y`
+     */
+    static void update_hardware_cursor() {
+        uint16_t pos = cursor_y * WIDTH + cursor_x;
+        outb(0x3D4, 0x0F);
+        outb(0x3D5, pos & 0xFF);
+        outb(0x3D4, 0x0E);
+        outb(0x3D5, (pos >> 8) & 0xFF);
+    }
 
-void init() {
-    clear();
-    enable_cursor();
-}
+    void init() {
+        clear();
+        enable_cursor();
+    }
 
-void clear() {
-    for (uint16_t y = 0; y < HEIGHT; y++) {
-        for (uint16_t x = 0; x < WIDTH; x++) {
-            buffer[y * WIDTH + x] = make_entry(' ');
+    void clear() {
+        for (uint16_t y = 0; y < HEIGHT; y++) {
+            for (uint16_t x = 0; x < WIDTH; x++) { buffer[y * WIDTH + x] = make_entry(' '); }
+        }
+        cursor_x = 0;
+        cursor_y = 0;
+        update_hardware_cursor();
+    }
+
+    /**
+     * @internal
+     * Handle newline and scrolling
+     */
+    static void newline() {
+        cursor_x = 0;
+        cursor_y++;
+        if (cursor_y >= HEIGHT) {
+            for (uint16_t y = 1; y < HEIGHT; y++)
+                for (uint16_t x = 0; x < WIDTH; x++)
+                    buffer[(y - 1) * WIDTH + x] = buffer[y * WIDTH + x];
+            for (uint16_t x = 0; x < WIDTH; x++) buffer[(HEIGHT - 1) * WIDTH + x] = make_entry(' ');
+            cursor_y = HEIGHT - 1;
         }
     }
-    cursor_x = 0;
-    cursor_y = 0;
-    update_hardware_cursor();
-}
 
-/**
- * @internal
- * Handle newline and scrolling
- */
-static void newline() {
-    cursor_x = 0;
-    cursor_y++;
-    if (cursor_y >= HEIGHT) {
-        for (uint16_t y = 1; y < HEIGHT; y++)
-            for (uint16_t x = 0; x < WIDTH; x++)
-                buffer[(y - 1) * WIDTH + x] = buffer[y * WIDTH + x];
-        for (uint16_t x = 0; x < WIDTH; x++)
-            buffer[(HEIGHT - 1) * WIDTH + x] = make_entry(' ');
-        cursor_y = HEIGHT - 1;
-    }
-}
+    void putchar(char c) {
+        if (!buffer) return;
 
-void putchar(char c) {
-    if (!buffer) return;
+        if (c == '\n') {
+            newline();
+        } else {
+            buffer[cursor_y * WIDTH + cursor_x] = make_entry(c);
+            cursor_x++;
+            if (cursor_x >= WIDTH) newline();
+        }
 
-    if (c == '\n') {
-        newline();
-    } else {
-        buffer[cursor_y * WIDTH + cursor_x] = make_entry(c);
-        cursor_x++;
-        if (cursor_x >= WIDTH) newline();
+        update_hardware_cursor();
     }
 
-    update_hardware_cursor();
-}
+    void move_cursor(uint16_t x, uint16_t y) {
+        if (x >= WIDTH) x = WIDTH - 1;
+        if (y >= HEIGHT) y = HEIGHT - 1;
+        cursor_x = x;
+        cursor_y = y;
+        update_hardware_cursor();
+    }
 
-void move_cursor(uint16_t x, uint16_t y) {
-    if (x >= WIDTH) x = WIDTH - 1;
-    if (y >= HEIGHT) y = HEIGHT - 1;
-    cursor_x = x;
-    cursor_y = y;
-    update_hardware_cursor();
-}
+    void enable_cursor(uint8_t start, uint8_t end) {
+        outb(0x3D4, 0x0A);
+        outb(0x3D5, (inb(0x3D5) & 0xC0) | start);
+        outb(0x3D4, 0x0B);
+        outb(0x3D5, (inb(0x3D5) & 0xE0) | end);
+        update_hardware_cursor();
+    }
 
-void enable_cursor(uint8_t start, uint8_t end) {
-    outb(0x3D4, 0x0A);
-    outb(0x3D5, (inb(0x3D5) & 0xC0) | start);
-    outb(0x3D4, 0x0B);
-    outb(0x3D5, (inb(0x3D5) & 0xE0) | end);
-    update_hardware_cursor();
-}
+    void disable_cursor() {
+        outb(0x3D4, 0x0A);
+        outb(0x3D5, 0x20);
+    }
 
-void disable_cursor() {
-    outb(0x3D4, 0x0A);
-    outb(0x3D5, 0x20);
-}
-
-}
+}  // namespace vga

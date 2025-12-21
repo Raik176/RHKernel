@@ -1,6 +1,6 @@
 PHDRS
 {
-  boot   PT_LOAD FLAGS(5); /* R + X */
+  boot  PT_LOAD FILEHDR PHDRS FLAGS(5); /* R + X */
   k_text PT_LOAD FLAGS(5); /* R + X */
   k_data PT_LOAD FLAGS(6); /* R + W */
 }
@@ -9,15 +9,17 @@ SECTIONS
 {
   . = 1M;
 
-  .boot : { *(.multiboot_header) } :boot
-  .early_text   : { *(.early_text*)   } :boot
-  .early_rodata : { *(.early_rodata*) } :boot
-  .early_data   : { *(.early_data*)   } :boot
-  .early_bss (NOLOAD) : { *(.early_bss*) } :boot
+  .boot : {
+    KEEP(*(.multiboot_header))
+    *(.early_text .early_text.*)
+    *(.early_rodata .early_rodata.*)
+    *(.early_data .early_data.*)
+    *(.early_bss .early_bss.*)
+  } :boot
 
   . = 0xFFFFFFFF80000000;
 
-  .text ALIGN(4096) : AT(ALIGN(ADDR(.early_bss) + SIZEOF(.early_bss))) {
+  .text ALIGN(4096) : AT(ALIGN(ADDR(.boot) + SIZEOF(.boot))) {
       _text_start = .;
       *(.text .text.*)
       . = ALIGN(4096);

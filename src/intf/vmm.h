@@ -10,57 +10,51 @@ namespace vmm {
      * page table entries (PML4E/PDPTE/PDE/PTE).
      */
     enum class PageFlags : uint64_t {
-        None          = 0,
+        None = 0,
 
         /** Page is present in memory */
-        Present       = 1ULL << 0,
+        Present = 1ULL << 0,
 
         /** Page is writable */
-        Write         = 1ULL << 1,
+        Write = 1ULL << 1,
 
         /** Page is accessible from user mode (ring 3) */
-        User          = 1ULL << 2,
+        User = 1ULL << 2,
 
         /** Write-through caching */
-        WriteThrough  = 1ULL << 3,
+        WriteThrough = 1ULL << 3,
 
         /** Disable caching (useful for MMIO) */
-        NoCache       = 1ULL << 4,
+        NoCache = 1ULL << 4,
 
         /** Page has been accessed (set by CPU) */
-        Accessed      = 1ULL << 5,
+        Accessed = 1ULL << 5,
 
         /** Page has been written to (set by CPU) */
-        Dirty         = 1ULL << 6,
+        Dirty = 1ULL << 6,
 
         /** Page is a large page (2 MiB or 1 GiB) */
-        Huge          = 1ULL << 7,
+        Huge = 1ULL << 7,
 
         /** Global page (not flushed from TLB on CR3 reload) */
-        Global        = 1ULL << 8,
+        Global = 1ULL << 8,
 
         /** Disable instruction fetch (NX bit) */
-        NX            = 1ULL << 63
+        NX = 1ULL << 63
     };
 
     /**
      * @brief Combine page flags using bitwise OR.
      */
     constexpr PageFlags operator|(PageFlags a, PageFlags b) {
-        return static_cast<PageFlags>(
-            static_cast<uint64_t>(a) |
-            static_cast<uint64_t>(b)
-        );
+        return static_cast<PageFlags>(static_cast<uint64_t>(a) | static_cast<uint64_t>(b));
     }
 
     /**
      * @brief Mask page flags using bitwise AND.
      */
     constexpr PageFlags operator&(PageFlags a, PageFlags b) {
-        return static_cast<PageFlags>(
-            static_cast<uint64_t>(a) &
-            static_cast<uint64_t>(b)
-        );
+        return static_cast<PageFlags>(static_cast<uint64_t>(a) & static_cast<uint64_t>(b));
     }
 
     /**
@@ -79,4 +73,4 @@ namespace vmm {
      */
     void map_page(uint64_t virt, uint64_t phys, PageFlags flags);
 
-} // namespace vmm
+}  // namespace vmm

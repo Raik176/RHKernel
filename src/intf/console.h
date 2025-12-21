@@ -10,112 +10,113 @@
 
 #pragma once
 #include <stdint.h>
+
 #include "multiboot2.h"
 
 namespace console {
 
-/**
- * @brief Console backends that can be used for output
- */
-enum class Backend {
-    VGA,          ///< VGA text mode output
-    FRAMEBUFFER   ///< Framebuffer output
-};
+    /**
+     * @brief Console backends that can be used for output
+     */
+    enum class Backend {
+        VGA,         ///< VGA text mode output
+        FRAMEBUFFER  ///< Framebuffer output
+    };
 
-/** @defgroup Console_Core Console Core Functions
- *  @brief Initialization and basic console operations
- *  @{
- */
+    /** @defgroup Console_Core Console Core Functions
+     *  @brief Initialization and basic console operations
+     *  @{
+     */
 
-/**
- * @brief Initialize the console with a specific backend
- *
- * Sets up the console for output and prepares the cursor.
- *
- * @param backend The backend to use (VGA or FRAMEBUFFER)
- * @param fb_tag Optional pointer to a multiboot framebuffer tag (required for FRAMEBUFFER)
- */
-void init(Backend backend, multiboot_tag_framebuffer* fb_tag);
+    /**
+     * @brief Initialize the console with a specific backend
+     *
+     * Sets up the console for output and prepares the cursor.
+     *
+     * @param backend The backend to use (VGA or FRAMEBUFFER)
+     * @param fb_tag Optional pointer to a multiboot framebuffer tag (required for FRAMEBUFFER)
+     */
+    void init(Backend backend, multiboot_tag_framebuffer* fb_tag);
 
-/**
- * @brief Clear the console screen
- *
- * Clears all output using the active backend and resets the cursor to (0,0).
- */
-void clear();
+    /**
+     * @brief Clear the console screen
+     *
+     * Clears all output using the active backend and resets the cursor to (0,0).
+     */
+    void clear();
 
-/**
- * @brief Enable the hardware cursor
- *
- * Makes the cursor visible if the backend supports it.
- */
-void enable_cursor();
+    /**
+     * @brief Enable the hardware cursor
+     *
+     * Makes the cursor visible if the backend supports it.
+     */
+    void enable_cursor();
 
-/**
- * @brief Disable the hardware cursor
- *
- * Hides the cursor if the backend supports it.
- */
-void disable_cursor();
+    /**
+     * @brief Disable the hardware cursor
+     *
+     * Hides the cursor if the backend supports it.
+     */
+    void disable_cursor();
 
-/** @} */
+    /** @} */
 
-/** @defgroup Console_Output Character Output
- *  @brief Functions for writing characters and strings to the console
- *  @{
- */
+    /** @defgroup Console_Output Character Output
+     *  @brief Functions for writing characters and strings to the console
+     *  @{
+     */
 
-/**
- * @brief Write a single character to the console
- *
- * @param c Character to write
- */
-void putchar(char c);
+    /**
+     * @brief Write a single character to the console
+     *
+     * @param c Character to write
+     */
+    void putchar(char c);
 
-/**
- * @brief Write an unsigned integer in decimal format
- *
- * @param n Number to write
- */
-void putnum(uint64_t n);
+    /**
+     * @brief Write an unsigned integer in decimal format
+     *
+     * @param n Number to write
+     */
+    void putnum(uint64_t n);
 
-/**
- * @brief Write an unsigned integer in hexadecimal format
- *
- * @param n Number to write in hexadecimal
- */
-void puthex(uint64_t n);
+    /**
+     * @brief Write an unsigned integer in hexadecimal format
+     *
+     * @param n Number to write in hexadecimal
+     */
+    void puthex(uint64_t n);
 
-/**
- * @brief Write a null-terminated string to the console
- *
- * @param str Pointer to the string
- */
-void write(const char* str);
+    /**
+     * @brief Write a null-terminated string to the console
+     *
+     * @param str Pointer to the string
+     */
+    void write(const char* str);
 
-/**
- * @brief Formatted output to the console
- *
- * Supports:
- * - %s: null-terminated string
- * - %d: unsigned decimal
- * - %x: unsigned hexadecimal
- * - %p: pointer (printed as hexadecimal)
- * - %%: literal '%'
- *
- * @param fmt Format string
- * @param ... Additional arguments
- */
-void printf(const char* fmt, ...);
+    /**
+     * @brief Formatted output to the console
+     *
+     * Supports:
+     * - %s: null-terminated string
+     * - %d: unsigned decimal
+     * - %x: unsigned hexadecimal
+     * - %p: pointer (printed as hexadecimal)
+     * - %%: literal '%'
+     *
+     * @param fmt Format string
+     * @param ... Additional arguments
+     */
+    void printf(const char* fmt, ...);
 
-/**
- * @brief Move the cursor to a specific position
- *
- * @param x Column (0-based)
- * @param y Row (0-based)
- */
-void move_cursor(uint16_t x, uint16_t y);
+    /**
+     * @brief Move the cursor to a specific position
+     *
+     * @param x Column (0-based)
+     * @param y Row (0-based)
+     */
+    void move_cursor(uint16_t x, uint16_t y);
 
-/** @} */
+    /** @} */
 
-} // namespace console
+}  // namespace console

@@ -4,34 +4,34 @@
 
 namespace heap {
 
-/**
- * @brief Initialize the kernel heap
- *
- * Sets up the slab allocator structures and prepares memory
- * for dynamic allocation using kmalloc/kfree.
- */
-void init();
+    /**
+     * @brief Initialize the kernel heap
+     *
+     * Sets up the slab allocator structures and prepares memory
+     * for dynamic allocation using kmalloc/kfree.
+     */
+    void init();
 
-/**
- * @brief Allocate memory from the kernel heap
- *
- * Allocates a memory block of at least `size` bytes using the slab allocator.
- *
- * @param size Number of bytes to allocate
- * @return Pointer to the allocated memory, or nullptr if allocation fails
- */
-void* kmalloc(size_t size);
+    /**
+     * @brief Allocate memory from the kernel heap
+     *
+     * Allocates a memory block of at least `size` bytes using the slab allocator.
+     *
+     * @param size Number of bytes to allocate
+     * @return Pointer to the allocated memory, or nullptr if allocation fails
+     */
+    void* kmalloc(size_t size);
 
-/**
- * @brief Free previously allocated memory
- *
- * Returns the memory block pointed to by `ptr` back to the heap.
- *
- * @param ptr Pointer to memory previously allocated with kmalloc
- */
-void kfree(void* ptr);
+    /**
+     * @brief Free previously allocated memory
+     *
+     * Returns the memory block pointed to by `ptr` back to the heap.
+     *
+     * @param ptr Pointer to memory previously allocated with kmalloc
+     */
+    void kfree(void* ptr);
 
-} // namespace heap
+}  // namespace heap
 
 /**
  * @brief C++ new operator using the kernel heap
