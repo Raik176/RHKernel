@@ -108,15 +108,21 @@ Include dependency graph for vga.cpp:</div>
 <div class="center"><img src="vga_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2vga_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2vga_8cpp" id="asrc_2impl_2x86__64_2vga_8cpp">
 <area shape="rect" title="Implementation of VGA text&#45;mode driver." alt="" coords="5,5,185,31"/>
-<area shape="rect" href="vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="26,79,85,104"/>
-<area shape="poly" title=" " alt="" coords="91,32,71,68,66,65,86,30"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="109,79,164,104"/>
-<area shape="poly" title=" " alt="" coords="104,30,125,65,121,68,100,32"/>
-<area shape="rect" title=" " alt="" coords="20,152,91,177"/>
-<area shape="poly" title=" " alt="" coords="58,104,58,138,53,138,53,104"/>
-<area shape="poly" title=" " alt="" coords="125,106,81,145,77,141,122,102"/>
-<area shape="rect" title=" " alt="" coords="115,152,190,177"/>
-<area shape="poly" title=" " alt="" coords="142,104,150,138,145,139,137,105"/>
+<area shape="rect" href="vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="26,225,85,251"/>
+<area shape="poly" title=" " alt="" coords="96,32,63,212,57,211,91,31"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="131,79,185,104"/>
+<area shape="poly" title=" " alt="" coords="108,29,141,66,137,70,104,33"/>
+<area shape="rect" title=" " alt="" coords="129,299,200,324"/>
+<area shape="poly" title=" " alt="" coords="74,248,137,289,134,293,71,253"/>
+<area shape="poly" title=" " alt="" coords="158,105,150,152,149,188,152,224,162,285,156,286,146,225,144,188,145,152,153,104"/>
+<area shape="rect" title=" " alt="" coords="159,152,234,177"/>
+<area shape="poly" title=" " alt="" coords="167,103,186,139,182,141,162,106"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="258,152,351,177"/>
+<area shape="poly" title=" " alt="" coords="183,102,270,144,267,148,180,106"/>
+<area shape="poly" title=" " alt="" coords="295,180,187,291,183,287,291,176"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="262,225,313,251"/>
+<area shape="poly" title=" " alt="" coords="304,178,296,213,291,212,299,177"/>
+<area shape="poly" title=" " alt="" coords="269,253,198,294,195,289,266,248"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -154,7 +160,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a3bd916d981290a9f93b3329ac4258fe1" id="r_a3bd916d981290a9f93b3329ac4258fe1"><td class="memItemLeft" align="right" valign="top">static volatile uint16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1">vga::buffer</a> = (volatile uint16_t*)0xFFFFFFFF800B8000</td></tr>
+<tr class="memitem:a3bd916d981290a9f93b3329ac4258fe1" id="r_a3bd916d981290a9f93b3329ac4258fe1"><td class="memItemLeft" align="right" valign="top">static volatile uint16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1">vga::buffer</a> = (volatile uint16_t*)<a class="el" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03">p2v</a>(0xB8000)</td></tr>
 <tr class="separator:a3bd916d981290a9f93b3329ac4258fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9401ccd7b060e7a51604996bd7aecf97" id="r_a9401ccd7b060e7a51604996bd7aecf97"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#a9401ccd7b060e7a51604996bd7aecf97">vga::color</a> = (uint8_t)<a class="el" href="namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08afb55202637692de4a494e9ade4cff2dd">Color::LightGray</a> | ((uint8_t)<a class="el" href="namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ae90dfb84e30edf611e326eeb04d680de">Color::Black</a> &lt;&lt; 4)</td></tr>
 <tr class="separator:a9401ccd7b060e7a51604996bd7aecf97"><td class="memSeparator" colspan="2">&#160;</td></tr>

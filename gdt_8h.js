@@ -8,8 +8,10 @@ var gdt_8h =
       [ "KERNEL_DATA", "gdt_8h.html#a7888085c9bec7c00e2de8ae42a456b04afc923ae112931dfb091111e9a844644f", null ]
     ] ],
     [ "__attribute__", "gdt_8h.html#aa3517e0f92f976b5199cf22b366b1c58", null ],
+    [ "gdt_load", "gdt_8h.html#ad71ded752899f558e6555fa02504fdf0", null ],
     [ "get_gdt_ptr", "gdt_8h.html#a8e7f329972e893e4af69835d489a1d62", null ],
     [ "init", "gdt_8h.html#a2640a2f60da951c7e5f3ec497924c165", null ],
+    [ "init_ap", "gdt_8h.html#a06db851e495023c85f62806632448c82", null ],
     [ "__attribute__", "gdt_8h.html#af23c3d0e69009b731a92516365ce8ad9", null ],
     [ "access", "gdt_8h.html#a8b0d6200bc639dd37ff68847a0adde5f", null ],
     [ "base", "gdt_8h.html#aeca790c0426654358d031f8180e84aca", null ],

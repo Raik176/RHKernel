@@ -1,5 +1,50 @@
 var namespaces_dup =
 [
+    [ "acpi", "namespaceacpi.html", "namespaceacpi" ],
+    [ "apic", "namespaceapic.html", [
+      [ "Register", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00f", [
+        [ "ID", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa94488a2189705dfd8ebb0318db9ee9c5", null ],
+        [ "VERSION", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fae3ff0a3c75b7ec07ec5d6852b3965a86", null ],
+        [ "TPR", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa4442f1a088136ea87215a1825005696b", null ],
+        [ "EOI", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa0944ed84340e62cdd9e387ada6863a49", null ],
+        [ "LDR", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa27d5bb3784c7b51ea5b2e5080fe2c10a", null ],
+        [ "DFR", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fac9a5d97d6b7882e6b36104ae187e8fe7", null ],
+        [ "SVR", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa0af218b5ff9776c5ebcd79f2fbf77c5c", null ],
+        [ "ESR", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fad43765fe207254e05047a243e53980cd", null ],
+        [ "ICRLO", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa3cce41216e1616a88046260af1062477", null ],
+        [ "ICRHI", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa5cf7414cc68dee37de5581b349ca0769", null ],
+        [ "TIMER", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa4da4fdda66fa4fed911e7b4e0076502e", null ],
+        [ "PCINT", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa8ad1adca865a118fc7bfa7de5c4650e1", null ],
+        [ "LINT0", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fadc9a6ae1747ee9255d8d32732b6cfd8e", null ],
+        [ "LINT1", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00faecdd8e198dd370791e85216676a94a34", null ],
+        [ "ERROR", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa640e485fcf1f5b26c128e98bca4d591d", null ],
+        [ "TICF", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa283b4dd2597b27d2e9d8613a69e6bde9", null ],
+        [ "TCCF", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa75f71c0aed4f847971bcb51248fd939b", null ],
+        [ "TDCR", "namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa0129bbae738e96afc48785896e0acbb3", null ]
+      ] ],
+      [ "calibrate_timer", "namespaceapic.html#af68be828d15cde433f4c5d2b8c52dd86", null ],
+      [ "eoi", "namespaceapic.html#af091bf1a257ef9390e9e4c6891edae31", null ],
+      [ "get_bsp_id", "namespaceapic.html#ac256af81bd56549e86cfb1f6df53144b", null ],
+      [ "get_id", "namespaceapic.html#ae1100e05651f31c95c66e6fa76537d7b", null ],
+      [ "get_tick_scale", "namespaceapic.html#ad50c083ad553d5deed218ad73ba84eec", null ],
+      [ "get_ticks", "namespaceapic.html#a6b9f4eba2e2d13097ea82d006d7e4bb1", null ],
+      [ "init", "namespaceapic.html#a2d3601242fb579c9f5b2cb5711619551", null ],
+      [ "init_ap", "namespaceapic.html#a5b2cfc1641b147ae7f74405f26235e9f", null ],
+      [ "is_bsp", "namespaceapic.html#ad396783a2d58fcaae7eae4a2897be22b", null ],
+      [ "rdmsr", "namespaceapic.html#a69b6a7b2c886a8962246c659fb4f1d4f", null ],
+      [ "read_reg", "namespaceapic.html#a006fb50465909cf63a05eb0463403116", null ],
+      [ "stop", "namespaceapic.html#afef1aeee7cf2404a33839208a638f9fd", null ],
+      [ "tick", "namespaceapic.html#a48cbe74422047316f23c691d7bb71e72", null ],
+      [ "write_reg", "namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380", null ],
+      [ "wrmsr", "namespaceapic.html#aa832120ecee510360dfe9d946fb348a7", null ],
+      [ "apic_base", "namespaceapic.html#a2823f53794b944f42d8c3bb80a6e0832", null ],
+      [ "bsp_id", "namespaceapic.html#ad5ea1dc99b421bca8b8ef4854fa1b207", null ],
+      [ "MSR_GS_BASE", "namespaceapic.html#a0dcc6759b911dbacf4a01aad69a9031a", null ],
+      [ "tick_scale", "namespaceapic.html#ad6b6cb9e897fb7b75c9e2d5108598444", null ],
+      [ "ticks", "namespaceapic.html#aa4d5fefce895c05d4bd34005f9b07175", null ],
+      [ "ticks_per_ms", "namespaceapic.html#a8244a352af7880f8d0c8b9a55543c8ac", null ],
+      [ "x2apic_mode", "namespaceapic.html#af8461c36418ebb3d3816b84643969495", null ]
+    ] ],
     [ "console", "namespaceconsole.html", [
       [ "Backend", "namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498", [
         [ "VGA", "namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498adb4371197d1f58c7d4edb7dcd0565ad1", null ],
@@ -25,7 +70,13 @@ var namespaces_dup =
       [ "hex_to_int", "namespaceinitramfs.html#a4f476d652f3f1197ce0fc383858a49c5", null ],
       [ "init", "namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a", null ]
     ] ],
+    [ "ksym", "namespaceksym.html", [
+      [ "get_name", "namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65", null ],
+      [ "_ksymtab_end", "namespaceksym.html#a1373f728f45d7e93e1bfc28544356534", null ],
+      [ "_ksymtab_start", "namespaceksym.html#aec18f3c871c95c5f67e2a46c343e384a", null ]
+    ] ],
     [ "pmm", "namespacepmm.html", "namespacepmm" ],
+    [ "scheduler", "namespacescheduler.html", "namespacescheduler" ],
     [ "serial", "namespaceserial.html", [
       [ "can_transmit", "namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a", null ],
       [ "inb", "namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e", null ],
@@ -34,6 +85,7 @@ var namespaces_dup =
       [ "putchar", "namespaceserial.html#ad567538c84655cbcba5df0a319e957b4", null ],
       [ "COM1", "namespaceserial.html#a9b4f31a56f16e48f19a6ac95e0a4b2a6", null ]
     ] ],
+    [ "smp", "namespacesmp.html", "namespacesmp" ],
     [ "vfs", "namespacevfs.html", "namespacevfs" ],
     [ "vga", "namespacevga.html", [
       [ "Color", "namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08", [
@@ -84,6 +136,7 @@ var namespaces_dup =
         [ "Global", "namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8", null ],
         [ "NX", "namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa973fd64b3b915bccdee598a385ee39e1", null ]
       ] ],
+      [ "get_kernel_pagemap", "namespacevmm.html#abdf265a78f65cd1d359554c771e03cb0", null ],
       [ "get_next_table", "namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817", null ],
       [ "get_table_ptr", "namespacevmm.html#aa604160270551f1cb1a67a113b5167a2", null ],
       [ "init", "namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],

@@ -115,15 +115,17 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="heap_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2heap_8hdep" alt=""/></div>
 <map name="asrc_2intf_2heap_8hdep" id="asrc_2intf_2heap_8hdep">
-<area shape="rect" title=" " alt="" coords="292,5,407,31"/>
+<area shape="rect" title=" " alt="" coords="389,5,504,31"/>
 <area shape="rect" href="initramfs_8cpp.html" title=" " alt="" coords="5,79,155,119"/>
-<area shape="poly" title=" " alt="" coords="298,37,145,81,144,76,297,32"/>
+<area shape="poly" title=" " alt="" coords="380,36,167,81,155,84,154,79,166,76,379,31"/>
 <area shape="rect" href="vfs_8cpp.html" title=" " alt="" coords="179,79,328,119"/>
-<area shape="poly" title=" " alt="" coords="326,41,278,81,275,76,323,37"/>
+<area shape="poly" title=" " alt="" coords="407,38,301,81,299,76,405,33"/>
 <area shape="rect" href="heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="353,86,541,111"/>
-<area shape="poly" title=" " alt="" coords="376,37,434,84,431,88,373,41"/>
+<area shape="poly" title=" " alt="" coords="449,44,449,86,444,86,444,44"/>
 <area shape="rect" href="main_8cpp.html" title=" " alt="" coords="565,86,755,111"/>
-<area shape="poly" title=" " alt="" coords="408,31,615,83,614,89,407,37"/>
+<area shape="poly" title=" " alt="" coords="491,33,630,83,628,88,489,38"/>
+<area shape="rect" href="smp_8cpp.html" title=" " alt="" coords="779,79,936,119"/>
+<area shape="poly" title=" " alt="" coords="518,29,767,76,779,78,778,84,766,81,517,35"/>
 </map>
 </div>
 </div>
@@ -139,16 +141,16 @@ Functions</h2></td></tr>
 <tr class="memitem:a29e4f4fff523485e2b9be5a143f84e52" id="r_a29e4f4fff523485e2b9be5a143f84e52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#a29e4f4fff523485e2b9be5a143f84e52">heap::init</a> ()</td></tr>
 <tr class="memdesc:a29e4f4fff523485e2b9be5a143f84e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the kernel heap.  <br /></td></tr>
 <tr class="separator:a29e4f4fff523485e2b9be5a143f84e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac0b35dbbed2e4574a8a83b4f1789ac8" id="r_aac0b35dbbed2e4574a8a83b4f1789ac8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8">heap::kmalloc</a> (size_t size)</td></tr>
+<tr class="memitem:aac0b35dbbed2e4574a8a83b4f1789ac8" id="r_aac0b35dbbed2e4574a8a83b4f1789ac8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8">heap::kmalloc</a> (size_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>)</td></tr>
 <tr class="memdesc:aac0b35dbbed2e4574a8a83b4f1789ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate memory from the kernel heap.  <br /></td></tr>
 <tr class="separator:aac0b35dbbed2e4574a8a83b4f1789ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10b9e8469bdca98b345adf04f0586f98" id="r_a10b9e8469bdca98b345adf04f0586f98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98">heap::kfree</a> (void *ptr)</td></tr>
 <tr class="memdesc:a10b9e8469bdca98b345adf04f0586f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free previously allocated memory.  <br /></td></tr>
 <tr class="separator:a10b9e8469bdca98b345adf04f0586f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a160dcabc54bbecfc69484678cafadb81" id="r_a160dcabc54bbecfc69484678cafadb81"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a160dcabc54bbecfc69484678cafadb81">operator new</a> (size_t size)</td></tr>
+<tr class="memitem:a160dcabc54bbecfc69484678cafadb81" id="r_a160dcabc54bbecfc69484678cafadb81"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a160dcabc54bbecfc69484678cafadb81">operator new</a> (size_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>)</td></tr>
 <tr class="memdesc:a160dcabc54bbecfc69484678cafadb81"><td class="mdescLeft">&#160;</td><td class="mdescRight">C++ new operator using the kernel heap.  <br /></td></tr>
 <tr class="separator:a160dcabc54bbecfc69484678cafadb81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2243bb4c2126b7b2b393e06090fbe59" id="r_af2243bb4c2126b7b2b393e06090fbe59"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#af2243bb4c2126b7b2b393e06090fbe59">operator new[]</a> (size_t size)</td></tr>
+<tr class="memitem:af2243bb4c2126b7b2b393e06090fbe59" id="r_af2243bb4c2126b7b2b393e06090fbe59"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#af2243bb4c2126b7b2b393e06090fbe59">operator new[]</a> (size_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>)</td></tr>
 <tr class="memdesc:af2243bb4c2126b7b2b393e06090fbe59"><td class="mdescLeft">&#160;</td><td class="mdescRight">C++ array new operator using the kernel heap.  <br /></td></tr>
 <tr class="separator:af2243bb4c2126b7b2b393e06090fbe59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa145befcf5e7b83424408ca503c8637" id="r_afa145befcf5e7b83424408ca503c8637"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#afa145befcf5e7b83424408ca503c8637">operator delete</a> (void *ptr) noexcept</td></tr>
@@ -157,10 +159,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a22aea74a1155aa798d6032da46da2391" id="r_a22aea74a1155aa798d6032da46da2391"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#a22aea74a1155aa798d6032da46da2391">operator delete[]</a> (void *ptr) noexcept</td></tr>
 <tr class="memdesc:a22aea74a1155aa798d6032da46da2391"><td class="mdescLeft">&#160;</td><td class="mdescRight">C++ array delete operator using the kernel heap.  <br /></td></tr>
 <tr class="separator:a22aea74a1155aa798d6032da46da2391"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af057efbdbcd21ea12954d49cd2d245c6" id="r_af057efbdbcd21ea12954d49cd2d245c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#af057efbdbcd21ea12954d49cd2d245c6">operator delete</a> (void *ptr, size_t size) noexcept</td></tr>
+<tr class="memitem:af057efbdbcd21ea12954d49cd2d245c6" id="r_af057efbdbcd21ea12954d49cd2d245c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#af057efbdbcd21ea12954d49cd2d245c6">operator delete</a> (void *ptr, size_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>) noexcept</td></tr>
 <tr class="memdesc:af057efbdbcd21ea12954d49cd2d245c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">C++ sized delete operator.  <br /></td></tr>
 <tr class="separator:af057efbdbcd21ea12954d49cd2d245c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab26fe706b29fdeb33d5f6ead76c05815" id="r_ab26fe706b29fdeb33d5f6ead76c05815"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#ab26fe706b29fdeb33d5f6ead76c05815">operator delete[]</a> (void *ptr, size_t size) noexcept</td></tr>
+<tr class="memitem:ab26fe706b29fdeb33d5f6ead76c05815" id="r_ab26fe706b29fdeb33d5f6ead76c05815"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8h.html#ab26fe706b29fdeb33d5f6ead76c05815">operator delete[]</a> (void *ptr, size_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>) noexcept</td></tr>
 <tr class="memdesc:ab26fe706b29fdeb33d5f6ead76c05815"><td class="mdescLeft">&#160;</td><td class="mdescRight">C++ sized array delete operator.  <br /></td></tr>
 <tr class="separator:ab26fe706b29fdeb33d5f6ead76c05815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

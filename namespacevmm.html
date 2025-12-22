@@ -128,9 +128,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a8bf83fb866a7c744df6790424b2e2ef6" id="r_a8bf83fb866a7c744df6790424b2e2ef6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6">init</a> ()</td></tr>
 <tr class="memdesc:a8bf83fb866a7c744df6790424b2e2ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the virtual memory manager.  <br /></td></tr>
 <tr class="separator:a8bf83fb866a7c744df6790424b2e2ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91045b98b89f21a0633cff5edcd2bd30" id="r_a91045b98b89f21a0633cff5edcd2bd30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30">map_page</a> (uint64_t virt, uint64_t phys, <a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a> <a class="el" href="idt_8h.html#aa2585d779da0ab21273a8d92de9a0ebe">flags</a>)</td></tr>
+<tr class="memitem:a91045b98b89f21a0633cff5edcd2bd30" id="r_a91045b98b89f21a0633cff5edcd2bd30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30">map_page</a> (uint64_t virt, uint64_t phys, <a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a> <a class="el" href="acpi_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>)</td></tr>
 <tr class="memdesc:a91045b98b89f21a0633cff5edcd2bd30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map a single 4 KiB virtual page to a physical frame.  <br /></td></tr>
 <tr class="separator:a91045b98b89f21a0633cff5edcd2bd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdf265a78f65cd1d359554c771e03cb0" id="r_abdf265a78f65cd1d359554c771e03cb0"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#abdf265a78f65cd1d359554c771e03cb0">get_kernel_pagemap</a> ()</td></tr>
+<tr class="separator:abdf265a78f65cd1d359554c771e03cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a873a1e9ab4cf8b5b19d4eefb58619e17" id="r_a873a1e9ab4cf8b5b19d4eefb58619e17"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a873a1e9ab4cf8b5b19d4eefb58619e17">operator|</a> (<a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a> a, <a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a> b)</td></tr>
 <tr class="memdesc:a873a1e9ab4cf8b5b19d4eefb58619e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combine page flags using bitwise OR.  <br /></td></tr>
 <tr class="separator:a873a1e9ab4cf8b5b19d4eefb58619e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +197,37 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="abdf265a78f65cd1d359554c771e03cb0" name="abdf265a78f65cd1d359554c771e03cb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdf265a78f65cd1d359554c771e03cb0">&#9670;&#160;</a></span>get_kernel_pagemap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t vmm::get_kernel_pagemap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacevmm_abdf265a78f65cd1d359554c771e03cb0_icgraph.png" border="0" usemap="#anamespacevmm_abdf265a78f65cd1d359554c771e03cb0_icgraph" alt=""/></div>
+<map name="anamespacevmm_abdf265a78f65cd1d359554c771e03cb0_icgraph" id="anamespacevmm_abdf265a78f65cd1d359554c771e03cb0_icgraph">
+<area shape="rect" title=" " alt="" coords="444,5,644,31"/>
+<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
+<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,5,225,31"/>
+<area shape="poly" title=" " alt="" coords="260,21,226,21,226,15,260,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a6eb1a1bf20f471294d93040e6476a817" name="a6eb1a1bf20f471294d93040e6476a817"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6eb1a1bf20f471294d93040e6476a817">&#9670;&#160;</a></span>get_next_table()</h2>
 

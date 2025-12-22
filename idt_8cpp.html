@@ -103,28 +103,33 @@ $(document).ready(function(){initNavTree('idt_8cpp.html',''); initResizable(); }
 <div class="textblock"><code>#include &quot;<a class="el" href="idt_8h_source.html">idt.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="apic_8h_source.html">smp/apic.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for idt.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="idt_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2idt_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2idt_8cpp" id="asrc_2impl_2x86__64_2idt_8cpp">
-<area shape="rect" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="48,5,221,31"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="5,79,56,104"/>
-<area shape="poly" title=" " alt="" coords="119,33,61,73,58,68,116,28"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="93,79,177,104"/>
-<area shape="poly" title=" " alt="" coords="137,31,137,65,132,65,132,31"/>
-<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="225,152,295,177"/>
-<area shape="poly" title=" " alt="" coords="148,29,191,77,244,139,240,143,187,80,144,33"/>
-<area shape="rect" title=" " alt="" coords="67,225,138,251"/>
-<area shape="poly" title=" " alt="" coords="39,103,93,212,88,214,34,106"/>
-<area shape="poly" title=" " alt="" coords="122,106,102,126,86,153,84,168,84,183,93,212,88,213,79,184,78,167,82,151,98,123,118,102"/>
-<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="95,152,201,177"/>
-<area shape="poly" title=" " alt="" coords="139,104,146,138,141,139,134,105"/>
-<area shape="poly" title=" " alt="" coords="143,179,120,215,115,212,138,176"/>
-<area shape="rect" title=" " alt="" coords="192,225,267,251"/>
-<area shape="poly" title=" " alt="" coords="163,175,208,214,204,218,159,179"/>
-<area shape="poly" title=" " alt="" coords="236,180,142,222,140,217,234,175"/>
-<area shape="poly" title=" " alt="" coords="257,179,242,214,237,212,252,177"/>
+<area shape="rect" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="73,5,247,31"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="5,152,56,177"/>
+<area shape="poly" title=" " alt="" coords="119,33,80,51,62,64,48,80,35,109,32,138,27,138,30,107,43,77,59,60,77,47,117,28"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="175,79,259,104"/>
+<area shape="poly" title=" " alt="" coords="172,29,201,66,197,70,167,33"/>
+<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="311,152,382,177"/>
+<area shape="poly" title=" " alt="" coords="189,28,230,49,274,77,307,108,333,139,328,143,303,112,270,81,228,53,187,33"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="57,79,151,104"/>
+<area shape="poly" title=" " alt="" coords="153,33,124,69,119,66,149,29"/>
+<area shape="rect" title=" " alt="" coords="109,225,179,251"/>
+<area shape="poly" title=" " alt="" coords="50,175,116,216,113,220,47,180"/>
+<area shape="poly" title=" " alt="" coords="208,106,190,127,173,153,160,183,152,212,147,211,155,182,168,151,186,124,204,102"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="182,152,287,177"/>
+<area shape="poly" title=" " alt="" coords="223,104,231,138,226,140,218,105"/>
+<area shape="poly" title=" " alt="" coords="222,179,171,219,168,214,218,175"/>
+<area shape="rect" title=" " alt="" coords="256,225,331,251"/>
+<area shape="poly" title=" " alt="" coords="246,176,277,213,273,217,242,179"/>
+<area shape="poly" title=" " alt="" coords="315,180,190,223,189,218,313,175"/>
+<area shape="poly" title=" " alt="" coords="340,179,312,216,308,213,336,176"/>
+<area shape="poly" title=" " alt="" coords="94,106,54,144,51,140,90,102"/>
+<area shape="poly" title=" " alt="" coords="109,104,128,177,138,211,133,213,123,178,104,105"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -199,20 +204,31 @@ Functions</h2></td></tr>
 <tr class="separator:af868664393aedd51c04e3ddd48b8f84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4ae10cea59f9bb2f79c13b8036d81f1" id="r_af4ae10cea59f9bb2f79c13b8036d81f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8cpp.html#af4ae10cea59f9bb2f79c13b8036d81f1">isr31</a> ()</td></tr>
 <tr class="separator:af4ae10cea59f9bb2f79c13b8036d81f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbe0f253d11eeb032b3612c8732fb76e" id="r_adbe0f253d11eeb032b3612c8732fb76e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8cpp.html#adbe0f253d11eeb032b3612c8732fb76e">irq0</a> ()</td></tr>
+<tr class="separator:adbe0f253d11eeb032b3612c8732fb76e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0355a527ef36f144e15b89ccce244fe7" id="r_a0355a527ef36f144e15b89ccce244fe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8cpp.html#a0355a527ef36f144e15b89ccce244fe7">isr254</a> ()</td></tr>
+<tr class="separator:a0355a527ef36f144e15b89ccce244fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2794ae20b304bbbb23a617fcb4f60eb5" id="r_a2794ae20b304bbbb23a617fcb4f60eb5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8cpp.html#a2794ae20b304bbbb23a617fcb4f60eb5">handle_halt_ipi</a> (struct <a class="el" href="structregs.html">regs</a> *r)</td></tr>
+<tr class="separator:a2794ae20b304bbbb23a617fcb4f60eb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d3f57aadd895abe30129f373f9b8bbc" id="r_a1d3f57aadd895abe30129f373f9b8bbc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8cpp.html#a1d3f57aadd895abe30129f373f9b8bbc">irq_handler</a> (struct <a class="el" href="structregs.html">regs</a> *r)</td></tr>
+<tr class="separator:a1d3f57aadd895abe30129f373f9b8bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68e4ae279c9e62adcf211e5430c686ff" id="r_a68e4ae279c9e62adcf211e5430c686ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff">isr_handler</a> (struct <a class="el" href="structregs.html">regs</a> *r)</td></tr>
 <tr class="separator:a68e4ae279c9e62adcf211e5430c686ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70c71e8f0fb85318fc510571445c6e36" id="r_a70c71e8f0fb85318fc510571445c6e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a70c71e8f0fb85318fc510571445c6e36">idt::load</a> (void)</td></tr>
-<tr class="memdesc:a70c71e8f0fb85318fc510571445c6e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the IDT into the CPU.  <br /></td></tr>
-<tr class="separator:a70c71e8f0fb85318fc510571445c6e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a241eccc3e87b3e7c19ef23a547c86b88" id="r_a241eccc3e87b3e7c19ef23a547c86b88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88">idt::set_gate</a> (uint8_t num, uint64_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint16_t sel, uint8_t <a class="el" href="idt_8h.html#aa2585d779da0ab21273a8d92de9a0ebe">flags</a>)</td></tr>
+<tr class="memitem:a11b4853d5e7b5eedb57e2c8c531c7df4" id="r_a11b4853d5e7b5eedb57e2c8c531c7df4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a11b4853d5e7b5eedb57e2c8c531c7df4">idt::load</a> (void)</td></tr>
+<tr class="separator:a11b4853d5e7b5eedb57e2c8c531c7df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241eccc3e87b3e7c19ef23a547c86b88" id="r_a241eccc3e87b3e7c19ef23a547c86b88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88">idt::set_gate</a> (uint8_t num, uint64_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint16_t sel, uint8_t <a class="el" href="acpi_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>)</td></tr>
 <tr class="memdesc:a241eccc3e87b3e7c19ef23a547c86b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set an entry in the IDT.  <br /></td></tr>
 <tr class="separator:a241eccc3e87b3e7c19ef23a547c86b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a2f66e62a6c1b073aa94f90a44db50a" id="r_a6a2f66e62a6c1b073aa94f90a44db50a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a">idt::init</a> (void)</td></tr>
 <tr class="memdesc:a6a2f66e62a6c1b073aa94f90a44db50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the IDT.  <br /></td></tr>
 <tr class="separator:a6a2f66e62a6c1b073aa94f90a44db50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8673d711311d6c4b6e7920f7e13e34cd" id="r_a8673d711311d6c4b6e7920f7e13e34cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a8673d711311d6c4b6e7920f7e13e34cd">idt::init_ap</a> (void)</td></tr>
+<tr class="separator:a8673d711311d6c4b6e7920f7e13e34cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a5893ec505c45df10ed22c54e8bb74f4a" id="r_a5893ec505c45df10ed22c54e8bb74f4a"><td class="memItemLeft" align="right" valign="top">static volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="idt_8cpp.html#a5893ec505c45df10ed22c54e8bb74f4a">panic_lock</a> = 0</td></tr>
+<tr class="separator:a5893ec505c45df10ed22c54e8bb74f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf41cef4d7cf207215b25d30326dd48b" id="r_adf41cef4d7cf207215b25d30326dd48b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structidt_1_1idt__entry.html">idt_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#adf41cef4d7cf207215b25d30326dd48b">idt::idt</a> [256]</td></tr>
 <tr class="memdesc:adf41cef4d7cf207215b25d30326dd48b"><td class="mdescLeft">&#160;</td><td class="mdescRight">IDT table.  <br /></td></tr>
 <tr class="separator:adf41cef4d7cf207215b25d30326dd48b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,6 +240,107 @@ Variables</h2></td></tr>
 <div class="textblock"><p>Implementation of the Interrupt Descriptor Table (IDT) </p>
 <p>Sets up the IDT, default exception handlers, and provides infrastructure for handling CPU interrupts and exceptions. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a2794ae20b304bbbb23a617fcb4f60eb5" name="a2794ae20b304bbbb23a617fcb4f60eb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2794ae20b304bbbb23a617fcb4f60eb5">&#9670;&#160;</a></span>handle_halt_ipi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handle_halt_ipi </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structregs.html">regs</a> *&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="idt_8cpp_a2794ae20b304bbbb23a617fcb4f60eb5_icgraph.png" border="0" usemap="#aidt_8cpp_a2794ae20b304bbbb23a617fcb4f60eb5_icgraph" alt=""/></div>
+<map name="aidt_8cpp_a2794ae20b304bbbb23a617fcb4f60eb5_icgraph" id="aidt_8cpp_a2794ae20b304bbbb23a617fcb4f60eb5_icgraph">
+<area shape="rect" title=" " alt="" coords="148,5,269,31"/>
+<area shape="rect" href="idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adbe0f253d11eeb032b3612c8732fb76e" name="adbe0f253d11eeb032b3612c8732fb76e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbe0f253d11eeb032b3612c8732fb76e">&#9670;&#160;</a></span>irq0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void irq0 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="idt_8cpp_adbe0f253d11eeb032b3612c8732fb76e_icgraph.png" border="0" usemap="#aidt_8cpp_adbe0f253d11eeb032b3612c8732fb76e_icgraph" alt=""/></div>
+<map name="aidt_8cpp_adbe0f253d11eeb032b3612c8732fb76e_icgraph" id="aidt_8cpp_adbe0f253d11eeb032b3612c8732fb76e_icgraph">
+<area shape="rect" title=" " alt="" coords="232,5,279,31"/>
+<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="116,5,184,31"/>
+<area shape="poly" title=" " alt="" coords="218,21,184,21,184,15,218,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1d3f57aadd895abe30129f373f9b8bbc" name="a1d3f57aadd895abe30129f373f9b8bbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d3f57aadd895abe30129f373f9b8bbc">&#9670;&#160;</a></span>irq_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void irq_handler </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structregs.html">regs</a> *&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="idt_8cpp_a1d3f57aadd895abe30129f373f9b8bbc_cgraph.png" border="0" usemap="#aidt_8cpp_a1d3f57aadd895abe30129f373f9b8bbc_cgraph" alt=""/></div>
+<map name="aidt_8cpp_a1d3f57aadd895abe30129f373f9b8bbc_cgraph" id="aidt_8cpp_a1d3f57aadd895abe30129f373f9b8bbc_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,100,56"/>
+<area shape="rect" href="namespaceapic.html#af091bf1a257ef9390e9e4c6891edae31" title=" " alt="" coords="150,5,227,31"/>
+<area shape="poly" title=" " alt="" coords="100,32,136,25,137,30,101,37"/>
+<area shape="rect" href="namespaceapic.html#a48cbe74422047316f23c691d7bb71e72" title=" " alt="" coords="148,55,229,80"/>
+<area shape="poly" title=" " alt="" coords="101,49,135,55,134,60,100,54"/>
+<area shape="rect" href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="277,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="227,15,264,15,264,21,227,21"/>
+<area shape="rect" href="namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="444,5,543,31"/>
+<area shape="poly" title=" " alt="" coords="396,15,430,15,430,21,396,21"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="282,55,391,80"/>
+<area shape="poly" title=" " alt="" coords="230,65,268,65,268,70,230,70"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="af88eb8e98d943aa0461c01de3cb53493" name="af88eb8e98d943aa0461c01de3cb53493"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af88eb8e98d943aa0461c01de3cb53493">&#9670;&#160;</a></span>isr0()</h2>
 
@@ -927,6 +1044,43 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a0355a527ef36f144e15b89ccce244fe7" name="a0355a527ef36f144e15b89ccce244fe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0355a527ef36f144e15b89ccce244fe7">&#9670;&#160;</a></span>isr254()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void isr254 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="idt_8cpp_a0355a527ef36f144e15b89ccce244fe7_icgraph.png" border="0" usemap="#aidt_8cpp_a0355a527ef36f144e15b89ccce244fe7_icgraph" alt=""/></div>
+<map name="aidt_8cpp_a0355a527ef36f144e15b89ccce244fe7_icgraph" id="aidt_8cpp_a0355a527ef36f144e15b89ccce244fe7_icgraph">
+<area shape="rect" title=" " alt="" coords="232,5,295,31"/>
+<area shape="rect" href="namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a" title="Initialize the IDT." alt="" coords="116,5,184,31"/>
+<area shape="poly" title=" " alt="" coords="218,21,184,21,184,15,218,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a24c118fd7e75c96d19da1bbaf87731e4" name="a24c118fd7e75c96d19da1bbaf87731e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a24c118fd7e75c96d19da1bbaf87731e4">&#9670;&#160;</a></span>isr26()</h2>
 
@@ -1429,10 +1583,14 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="idt_8cpp_a68e4ae279c9e62adcf211e5430c686ff_cgraph.png" border="0" usemap="#aidt_8cpp_a68e4ae279c9e62adcf211e5430c686ff_cgraph" alt=""/></div>
 <map name="aidt_8cpp_a68e4ae279c9e62adcf211e5430c686ff_cgraph" id="aidt_8cpp_a68e4ae279c9e62adcf211e5430c686ff_cgraph">
 <area shape="rect" title=" " alt="" coords="5,229,100,254"/>
+<area shape="rect" href="idt_8cpp.html#a2794ae20b304bbbb23a617fcb4f60eb5" title=" " alt="" coords="153,154,274,180"/>
+<area shape="poly" title=" " alt="" coords="74,227,147,189,162,182,164,187,149,193,77,231"/>
 <area shape="rect" href="group__Console__Output.html#ga9a41564fc009b7339df8f2b2a4394eb2" title="Write an unsigned integer in decimal format." alt="" coords="148,204,279,229"/>
 <area shape="poly" title=" " alt="" coords="100,232,134,226,135,231,101,237"/>
 <area shape="rect" href="group__Console__Output.html#gae2713614e37ba234a7af6abc42460964" title="Write a null&#45;terminated string to the console." alt="" coords="157,253,270,278"/>
 <area shape="poly" title=" " alt="" coords="101,246,144,253,143,258,100,251"/>
+<area shape="rect" href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="154,302,273,328"/>
+<area shape="poly" title=" " alt="" coords="78,252,149,289,164,295,162,300,147,293,75,257"/>
 <area shape="rect" href="group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174" title="Write a single character to the console." alt="" coords="327,229,456,254"/>
 <area shape="poly" title=" " alt="" coords="279,223,313,228,313,233,279,228"/>
 <area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="504,93,660,118"/>
@@ -1469,8 +1627,33 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="993,412,1043,437"/>
 <area shape="poly" title=" " alt="" coords="875,422,979,422,979,427,875,427"/>
 <area shape="poly" title=" " alt="" coords="270,255,312,250,313,255,271,261"/>
+<area shape="rect" href="namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="342,302,441,328"/>
+<area shape="poly" title=" " alt="" coords="273,312,328,312,328,318,273,318"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a5893ec505c45df10ed22c54e8bb74f4a" name="a5893ec505c45df10ed22c54e8bb74f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5893ec505c45df10ed22c54e8bb74f4a">&#9670;&#160;</a></span>panic_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile int panic_lock = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

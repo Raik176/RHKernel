@@ -11,6 +11,7 @@ var namespacegdt =
     [ "gdt_load", "namespacegdt.html#ad71ded752899f558e6555fa02504fdf0", null ],
     [ "get_gdt_ptr", "namespacegdt.html#a8e7f329972e893e4af69835d489a1d62", null ],
     [ "init", "namespacegdt.html#a2640a2f60da951c7e5f3ec497924c165", null ],
+    [ "init_ap", "namespacegdt.html#a06db851e495023c85f62806632448c82", null ],
     [ "set_entry", "namespacegdt.html#ae1967b1eeb075201ec8bef7cba476af3", null ],
     [ "__attribute__", "namespacegdt.html#af23c3d0e69009b731a92516365ce8ad9", null ],
     [ "gdt_entries", "namespacegdt.html#a516da56d7481e733f0fa9e164136e5be", null ],

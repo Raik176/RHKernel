@@ -1,5 +1,6 @@
 var vmm_8cpp =
 [
+    [ "get_kernel_pagemap", "vmm_8cpp.html#abdf265a78f65cd1d359554c771e03cb0", null ],
     [ "get_next_table", "vmm_8cpp.html#a6eb1a1bf20f471294d93040e6476a817", null ],
     [ "get_table_ptr", "vmm_8cpp.html#aa604160270551f1cb1a67a113b5167a2", null ],
     [ "init", "vmm_8cpp.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],

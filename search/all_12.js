@@ -1,5 +1,19 @@
 var searchData=
 [
-  ['total_5fslots_0',['total_slots',['../structheap_1_1SlabHeader.html#a019af2b26ee984d0b364b76e8af1ba16',1,'heap::SlabHeader']]],
-  ['type_1',['type',['../structframebuffer_1_1FramebufferInfo.html#adb66c0602c21167fbe681e3bf25e5b59',1,'framebuffer::FramebufferInfo::type'],['../structvfs_1_1vfs__node.html#ae06c73a142658a765bcdb8c478bd504a',1,'vfs::vfs_node::type'],['../structmultiboot__tag.html#a542b7d4bd2d49c11c66d07e14f44d025',1,'multiboot_tag::type'],['../structmultiboot__mmap__entry.html#a78ecb3f67ad5c4c33d9a678e1867fb1b',1,'multiboot_mmap_entry::type'],['../structmultiboot__tag__mmap.html#a2f9a834ec53058994360cb1ce980798e',1,'multiboot_tag_mmap::type'],['../structmultiboot__tag__framebuffer.html#a61e28ee20d0080a434b4915d37c75dd7',1,'multiboot_tag_framebuffer::type'],['../structmultiboot__tag__module.html#a4e81563d172d98190a4f9d7ccfbac482',1,'multiboot_tag_module::type']]]
+  ['task_0',['Task',['../structscheduler_1_1Task.html',1,'scheduler']]],
+  ['tccf_1',['TCCF',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa75f71c0aed4f847971bcb51248fd939b',1,'apic']]],
+  ['tdcr_2',['TDCR',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa0129bbae738e96afc48785896e0acbb3',1,'apic']]],
+  ['ticf_3',['TICF',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa283b4dd2597b27d2e9d8613a69e6bde9',1,'apic']]],
+  ['tick_4',['tick',['../namespaceapic.html#a48cbe74422047316f23c691d7bb71e72',1,'apic']]],
+  ['tick_5fscale_5',['tick_scale',['../namespaceapic.html#ad6b6cb9e897fb7b75c9e2d5108598444',1,'apic']]],
+  ['ticks_6',['ticks',['../structsmp_1_1cpu__local.html#ac1bb2364c1a57bbed26388fc7e77a613',1,'smp::cpu_local::ticks'],['../smp_8h.html#aba60f4e3e1311b8cdc6a5276a367e9a2',1,'ticks:&#160;smp.h'],['../namespaceapic.html#aa4d5fefce895c05d4bd34005f9b07175',1,'apic::ticks']]],
+  ['ticks_5fper_5fms_7',['ticks_per_ms',['../namespaceapic.html#a8244a352af7880f8d0c8b9a55543c8ac',1,'apic']]],
+  ['timer_8',['TIMER',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa4da4fdda66fa4fed911e7b4e0076502e',1,'apic']]],
+  ['total_5fslots_9',['total_slots',['../structheap_1_1SlabHeader.html#a019af2b26ee984d0b364b76e8af1ba16',1,'heap::SlabHeader']]],
+  ['tpr_10',['TPR',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa4442f1a088136ea87215a1825005696b',1,'apic']]],
+  ['tram_5fphys_11',['TRAM_PHYS',['../namespacesmp.html#a45cedd0b7e4ba0c3d2b8f670b20238c8',1,'smp']]],
+  ['trampoline_5fdata_12',['trampoline_data',['../structsmp_1_1trampoline__data.html',1,'smp']]],
+  ['trampoline_5fend_13',['trampoline_end',['../smp_8cpp.html#a64cdb85a116f731df74930f4df229435',1,'smp.cpp']]],
+  ['trampoline_5fstart_14',['trampoline_start',['../smp_8cpp.html#ac11c328963f4b8b0216eb93852619dda',1,'smp.cpp']]],
+  ['type_15',['type',['../structmultiboot__tag__acpi.html#afac31598a20b3e7171d2abb13d8c18c0',1,'multiboot_tag_acpi::type'],['../structmultiboot__tag__module.html#a4e81563d172d98190a4f9d7ccfbac482',1,'multiboot_tag_module::type'],['../structmultiboot__tag__framebuffer.html#a61e28ee20d0080a434b4915d37c75dd7',1,'multiboot_tag_framebuffer::type'],['../structmultiboot__tag__mmap.html#a2f9a834ec53058994360cb1ce980798e',1,'multiboot_tag_mmap::type'],['../structmultiboot__mmap__entry.html#a78ecb3f67ad5c4c33d9a678e1867fb1b',1,'multiboot_mmap_entry::type'],['../structmultiboot__tag.html#a542b7d4bd2d49c11c66d07e14f44d025',1,'multiboot_tag::type'],['../structvfs_1_1vfs__node.html#ae06c73a142658a765bcdb8c478bd504a',1,'vfs::vfs_node::type'],['../structacpi_1_1MADTEntryHeader.html#ac17f04d194e1fe5d955de82a1196a9f3',1,'acpi::MADTEntryHeader::type'],['../structframebuffer_1_1FramebufferInfo.html#adb66c0602c21167fbe681e3bf25e5b59',1,'framebuffer::FramebufferInfo::type'],['../structacpi_1_1multiboot__tag__acpi.html#a7dd01f6ccb665efd53423dd4fe764786',1,'acpi::multiboot_tag_acpi::type'],['../acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03',1,'type:&#160;acpi.cpp'],['../acpi_8h.html#a1d127017fb298b889f4ba24752d08b8e',1,'type:&#160;acpi.h']]]
 ];

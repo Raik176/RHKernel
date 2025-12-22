@@ -32,7 +32,8 @@ var NAVTREE =
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ]
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -46,7 +47,7 @@ var NAVTREE =
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
+        [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
@@ -59,10 +60,11 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"multiboot2_8h.html#ad01989e09be1cdbb4db9c99058c49560",
-"structframebuffer_1_1FramebufferInfo.html#aab3a3035e9dabc0e2184cf7ed08c67ac",
-"vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9faa2ad65f28a717b0fd2be860a0d8e5c3e"
+"acpi_8cpp.html",
+"idt_8cpp.html#a241eccc3e87b3e7c19ef23a547c86b88",
+"namespaceksym.html",
+"structacpi_1_1SDTHeader.html#adf4071bb00f70a025b3581913c4fda3d",
+"structvfs_1_1vfs__node.html#a0fe182f5690c37c4c02c8dc8408fef78"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

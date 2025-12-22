@@ -1,0 +1,8 @@
+<map id="src/intf/smp/apic.h" name="src/intf/smp/apic.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,148,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="41,152,112,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="78,31,74,104,77,138,71,139,69,104,72,31"/>
+<area shape="rect" id="Node000003" href="$idt_8h.html" title=" " alt="" coords="83,79,134,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="84,30,100,65,96,67,80,32"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="106,105,90,141,85,139,101,103"/>
+</map>

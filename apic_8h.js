@@ -1,0 +1,38 @@
+var apic_8h =
+[
+    [ "Register", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00f", [
+      [ "ID", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa94488a2189705dfd8ebb0318db9ee9c5", null ],
+      [ "VERSION", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fae3ff0a3c75b7ec07ec5d6852b3965a86", null ],
+      [ "TPR", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa4442f1a088136ea87215a1825005696b", null ],
+      [ "EOI", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa0944ed84340e62cdd9e387ada6863a49", null ],
+      [ "LDR", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa27d5bb3784c7b51ea5b2e5080fe2c10a", null ],
+      [ "DFR", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fac9a5d97d6b7882e6b36104ae187e8fe7", null ],
+      [ "SVR", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa0af218b5ff9776c5ebcd79f2fbf77c5c", null ],
+      [ "ESR", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fad43765fe207254e05047a243e53980cd", null ],
+      [ "ICRLO", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa3cce41216e1616a88046260af1062477", null ],
+      [ "ICRHI", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa5cf7414cc68dee37de5581b349ca0769", null ],
+      [ "TIMER", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa4da4fdda66fa4fed911e7b4e0076502e", null ],
+      [ "PCINT", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa8ad1adca865a118fc7bfa7de5c4650e1", null ],
+      [ "LINT0", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fadc9a6ae1747ee9255d8d32732b6cfd8e", null ],
+      [ "LINT1", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00faecdd8e198dd370791e85216676a94a34", null ],
+      [ "ERROR", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa640e485fcf1f5b26c128e98bca4d591d", null ],
+      [ "TICF", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa283b4dd2597b27d2e9d8613a69e6bde9", null ],
+      [ "TCCF", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa75f71c0aed4f847971bcb51248fd939b", null ],
+      [ "TDCR", "apic_8h.html#a980fd1e9be4d02ea8b2530797c88c00fa0129bbae738e96afc48785896e0acbb3", null ]
+    ] ],
+    [ "eoi", "apic_8h.html#af091bf1a257ef9390e9e4c6891edae31", null ],
+    [ "get_bsp_id", "apic_8h.html#ac256af81bd56549e86cfb1f6df53144b", null ],
+    [ "get_id", "apic_8h.html#ae1100e05651f31c95c66e6fa76537d7b", null ],
+    [ "get_tick_scale", "apic_8h.html#ad50c083ad553d5deed218ad73ba84eec", null ],
+    [ "get_ticks", "apic_8h.html#a6b9f4eba2e2d13097ea82d006d7e4bb1", null ],
+    [ "init", "apic_8h.html#a2d3601242fb579c9f5b2cb5711619551", null ],
+    [ "init_ap", "apic_8h.html#a5b2cfc1641b147ae7f74405f26235e9f", null ],
+    [ "is_bsp", "apic_8h.html#ad396783a2d58fcaae7eae4a2897be22b", null ],
+    [ "rdmsr", "apic_8h.html#a69b6a7b2c886a8962246c659fb4f1d4f", null ],
+    [ "read_reg", "apic_8h.html#a006fb50465909cf63a05eb0463403116", null ],
+    [ "stop", "apic_8h.html#afef1aeee7cf2404a33839208a638f9fd", null ],
+    [ "tick", "apic_8h.html#a48cbe74422047316f23c691d7bb71e72", null ],
+    [ "write_reg", "apic_8h.html#aa84718554ccc3eeb5b86adf80c419380", null ],
+    [ "wrmsr", "apic_8h.html#aa832120ecee510360dfe9d946fb348a7", null ],
+    [ "MSR_GS_BASE", "apic_8h.html#a0dcc6759b911dbacf4a01aad69a9031a", null ]
+];

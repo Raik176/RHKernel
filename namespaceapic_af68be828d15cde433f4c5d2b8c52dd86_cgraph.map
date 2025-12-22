@@ -1,0 +1,18 @@
+<map id="apic::calibrate_timer" name="apic::calibrate_timer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,104,161,129"/>
+<area shape="rect" id="Node000002" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="245,5,288,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,102,208,40,231,29,234,34,211,44,105,106"/>
+<area shape="rect" id="Node000003" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="241,55,292,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,101,227,75,229,80,132,107"/>
+<area shape="rect" id="Node000004" href="$namespaceapic.html#a006fb50465909cf63a05eb0463403116" title=" " alt="" coords="209,104,324,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,114,196,114,196,119,162,119"/>
+<area shape="rect" id="Node000006" href="$namespaceapic.html#afef1aeee7cf2404a33839208a638f9fd" title=" " alt="" coords="224,153,309,179"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="132,127,211,149,210,154,130,132"/>
+<area shape="rect" id="Node000007" href="$namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="372,179,491,204"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="101,127,148,160,178,177,210,189,247,196,285,200,358,198,358,204,285,205,246,202,209,194,176,182,145,165,98,132"/>
+<area shape="rect" id="Node000005" href="$namespaceapic.html#a69b6a7b2c886a8962246c659fb4f1d4f" title=" " alt="" coords="384,104,479,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="324,114,370,114,370,119,324,119"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="310,170,359,178,358,183,309,175"/>
+<area shape="rect" id="Node000008" href="$namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="539,179,637,204"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="491,189,525,189,525,194,491,194"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['framebuffer_0',['framebuffer',['../namespaceframebuffer.html',1,'']]]
+  ['console_0',['console',['../namespaceconsole.html',1,'']]]
 ];

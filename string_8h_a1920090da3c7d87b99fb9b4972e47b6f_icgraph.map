@@ -1,7 +1,12 @@
 <map id="memcmp" name="memcmp">
-<area shape="rect" id="Node000001" title="Compare two memory regions." alt="" coords="275,5,359,31"/>
-<area shape="rect" id="Node000002" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,5,227,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,21,227,21,227,15,261,15"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<area shape="rect" id="Node000001" title="Compare two memory regions." alt="" coords="444,31,528,56"/>
+<area shape="rect" id="Node000002" href="$namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee" title=" " alt="" coords="275,5,396,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="430,37,396,31,397,26,431,31"/>
+<area shape="rect" id="Node000005" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,56,227,81"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="431,50,227,67,227,62,430,45"/>
+<area shape="rect" id="Node000003" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="117,7,226,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="261,21,226,22,226,16,261,16"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,32,68,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="104,35,69,41,68,36,103,30"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="102,59,68,53,69,48,103,54"/>
 </map>

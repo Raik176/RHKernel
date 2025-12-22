@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vfstype_0',['VfsType',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7',1,'vfs']]]
+  ['segment_0',['Segment',['../namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04',1,'gdt']]]
 ];

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['vfs_5fnode_0',['vfs_node',['../structvfs_1_1vfs__node.html',1,'vfs']]]
+  ['sdtheader_0',['SDTHeader',['../structacpi_1_1SDTHeader.html',1,'acpi']]],
+  ['slabcache_1',['SlabCache',['../structheap_1_1SlabCache.html',1,'heap']]],
+  ['slabheader_2',['SlabHeader',['../structheap_1_1SlabHeader.html',1,'heap']]]
 ];

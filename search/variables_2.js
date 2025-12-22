@@ -10,5 +10,6 @@ var searchData=
   ['blue_5ffield_5fposition_7',['blue_field_position',['../structmultiboot__tag__framebuffer.html#ab09591d539f7479fed8900b23fda8314',1,'multiboot_tag_framebuffer']]],
   ['blue_5fmask_5fsize_8',['blue_mask_size',['../structmultiboot__tag__framebuffer.html#ab403a96821f81d9939923be006b4346d',1,'multiboot_tag_framebuffer']]],
   ['bpp_9',['bpp',['../structmultiboot__tag__framebuffer.html#a3544a4a7a54cac3ed9a26804eb4eeb32',1,'multiboot_tag_framebuffer::bpp'],['../structframebuffer_1_1FramebufferInfo.html#a7aad9240adb85672cd6114a71c1e9b50',1,'framebuffer::FramebufferInfo::bpp']]],
-  ['buffer_10',['buffer',['../namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1',1,'vga']]]
+  ['bsp_5fid_10',['bsp_id',['../namespaceapic.html#ad5ea1dc99b421bca8b8ef4854fa1b207',1,'apic']]],
+  ['buffer_11',['buffer',['../namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1',1,'vga']]]
 ];

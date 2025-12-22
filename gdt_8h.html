@@ -115,11 +115,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="gdt_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2gdt_8hdep" alt=""/></div>
 <map name="asrc_2intf_2gdt_8hdep" id="asrc_2intf_2gdt_8hdep">
-<area shape="rect" title=" " alt="" coords="146,5,250,31"/>
-<area shape="rect" href="gdt_8cpp.html" title="Implementation of the Global Descriptor Table (GDT)" alt="" coords="5,79,183,104"/>
-<area shape="poly" title=" " alt="" coords="171,41,113,81,110,76,168,36"/>
-<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="207,79,397,104"/>
-<area shape="poly" title=" " alt="" coords="228,36,286,76,283,81,225,41"/>
+<area shape="rect" title=" " alt="" coords="250,5,354,31"/>
+<area shape="rect" href="gdt_8cpp.html" title="Implementation of the Global Descriptor Table (GDT)" alt="" coords="5,86,183,111"/>
+<area shape="poly" title=" " alt="" coords="260,38,125,88,123,83,258,33"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="207,86,397,111"/>
+<area shape="poly" title=" " alt="" coords="305,44,305,86,299,86,299,44"/>
+<area shape="rect" href="smp_8cpp.html" title=" " alt="" coords="421,79,578,119"/>
+<area shape="poly" title=" " alt="" coords="344,33,453,76,451,81,342,38"/>
 </map>
 </div>
 </div>
@@ -158,6 +160,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a8e7f329972e893e4af69835d489a1d62" id="r_a8e7f329972e893e4af69835d489a1d62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a8e7f329972e893e4af69835d489a1d62">gdt::get_gdt_ptr</a> ()</td></tr>
 <tr class="memdesc:a8e7f329972e893e4af69835d489a1d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the current GDT pointer.  <br /></td></tr>
 <tr class="separator:a8e7f329972e893e4af69835d489a1d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06db851e495023c85f62806632448c82" id="r_a06db851e495023c85f62806632448c82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a06db851e495023c85f62806632448c82">gdt::init_ap</a> ()</td></tr>
+<tr class="separator:a06db851e495023c85f62806632448c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad71ded752899f558e6555fa02504fdf0" id="r_ad71ded752899f558e6555fa02504fdf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ad71ded752899f558e6555fa02504fdf0">gdt::gdt_load</a> (uint64_t gdt_ptr_addr)</td></tr>
+<tr class="separator:ad71ded752899f558e6555fa02504fdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['vfs_2ecpp_0',['vfs.cpp',['../vfs_8cpp.html',1,'']]],
-  ['vfs_2eh_1',['vfs.h',['../vfs_8h.html',1,'']]],
-  ['vga_2ecpp_2',['vga.cpp',['../vga_8cpp.html',1,'']]],
-  ['vga_2eh_3',['vga.h',['../vga_8h.html',1,'']]],
-  ['vmm_2ecpp_4',['vmm.cpp',['../vmm_8cpp.html',1,'']]],
-  ['vmm_2eh_5',['vmm.h',['../vmm_8h.html',1,'']]]
+  ['scheduler_2eh_0',['scheduler.h',['../scheduler_8h.html',1,'']]],
+  ['serial_2ecpp_1',['serial.cpp',['../serial_8cpp.html',1,'']]],
+  ['serial_2eh_2',['serial.h',['../serial_8h.html',1,'']]],
+  ['smp_2ecpp_3',['smp.cpp',['../smp_8cpp.html',1,'']]],
+  ['smp_2eh_4',['smp.h',['../smp_8h.html',1,'']]],
+  ['string_2eh_5',['string.h',['../string_8h.html',1,'']]]
 ];

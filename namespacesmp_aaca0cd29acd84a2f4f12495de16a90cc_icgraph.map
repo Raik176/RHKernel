@@ -1,0 +1,7 @@
+<map id="smp::get_cpu" name="smp::get_cpu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="277,5,387,31"/>
+<area shape="rect" id="Node000002" href="$namespaceapic.html#a48cbe74422047316f23c691d7bb71e72" title=" " alt="" coords="148,5,229,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,21,229,21,229,15,264,15"/>
+<area shape="rect" id="Node000003" href="$idt_8cpp.html#a1d3f57aadd895abe30129f373f9b8bbc" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
+</map>

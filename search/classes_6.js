@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['slabcache_0',['SlabCache',['../structheap_1_1SlabCache.html',1,'heap']]],
-  ['slabheader_1',['SlabHeader',['../structheap_1_1SlabHeader.html',1,'heap']]]
+  ['regs_0',['regs',['../structregs.html',1,'']]],
+  ['rsdp_1',['RSDP',['../structacpi_1_1RSDP.html',1,'acpi']]]
 ];

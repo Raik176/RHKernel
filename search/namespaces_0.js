@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['console_0',['console',['../namespaceconsole.html',1,'']]]
+  ['acpi_0',['acpi',['../namespaceacpi.html',1,'']]],
+  ['apic_1',['apic',['../namespaceapic.html',1,'']]]
 ];

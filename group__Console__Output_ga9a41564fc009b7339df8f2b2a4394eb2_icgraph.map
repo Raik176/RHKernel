@@ -1,13 +1,19 @@
 <map id="console::putnum" name="console::putnum">
-<area shape="rect" id="Node000001" title="Write an unsigned integer in decimal format." alt="" coords="460,31,591,56"/>
-<area shape="rect" id="Node000002" href="$idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff" title=" " alt="" coords="307,5,402,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="446,34,402,28,403,22,446,29"/>
-<area shape="rect" id="Node000003" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="297,55,412,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="447,57,413,62,412,57,446,52"/>
+<area shape="rect" id="Node000001" title="Write an unsigned integer in decimal format." alt="" coords="460,81,591,107"/>
+<area shape="rect" id="Node000002" href="$idt_8cpp.html#a68e4ae279c9e62adcf211e5430c686ff" title=" " alt="" coords="307,56,402,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="446,85,402,78,403,73,446,80"/>
+<area shape="rect" id="Node000003" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="297,105,412,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="447,108,413,113,412,107,446,102"/>
 <area shape="rect" id="Node000004" href="$main_8cpp.html#aa11bc80bd1372731cea7f6c63d999132" title=" " alt="" coords="116,29,249,55"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="283,60,249,54,250,49,284,54"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
-<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="284,70,68,70,68,65,284,65"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="311,102,211,57,214,52,314,97"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,105,68,131"/>
+<area shape="poly" id="edge10_Node000003_Node000005" title=" " alt="" coords="284,121,68,121,68,115,284,115"/>
+<area shape="rect" id="Node000006" href="$namespaceacpi.html#a9bbb5f7f990a3c76cbce5b8aec02ee0d" title=" " alt="" coords="143,131,222,156"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="284,131,222,140,222,135,283,126"/>
+<area shape="rect" id="Node000007" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="128,180,237,205"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="317,139,250,170,219,182,217,178,248,165,315,134"/>
 <area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="207,18,200,11,183,8,168,10,160,15,158,20,163,28,158,30,153,21,156,11,166,5,183,3,203,6,211,15"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="103,59,69,65,68,59,102,53"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="143,63,117,76,61,108,58,103,115,72,141,58"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="130,137,68,126,68,121,131,132"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="131,177,115,170,55,133,57,129,117,165,133,172"/>
 </map>
