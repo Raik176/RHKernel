@@ -78,7 +78,7 @@ pdp_table:
 page_directory:
     resb 4096
 stack_bottom:
-    resb 4096 * 4
+    resb 512
 stack_top:
 
 section .early_rodata

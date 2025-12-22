@@ -3,13 +3,22 @@ global phys_map_pdp_table
 global phys_map_pd_table
 global high_pdp_table
 global high_pd_table
+global higher_stack_top
 extern kmain
 extern pml4_table
 extern page_directory
 extern _kernel_phys_start
+extern enable_cpu_features
+
+[bits 64]
+section .text
+trampoline:
+    call enable_cpu_features
+    mov rdi, rbx                 ; multiboot pointer
+    mov rax, kmain
+    jmp rax
 
 section .early_text
-bits 64
 long_mode_start:
     mov ax, 0
     mov ss, ax
@@ -20,8 +29,6 @@ long_mode_start:
 
     mov rsp, stack_top
 
-    call enable_sse
-    call enable_nx
     call setup_higher_half_mapping
     call setup_direct_physical_mapping
 
@@ -30,30 +37,8 @@ long_mode_start:
 
     mov rsp, higher_stack_top
 
-    mov rdi, rbx                 ; multiboot pointer
-    mov rax, kmain
+    mov rax, trampoline
     jmp rax
-
-enable_nx:
-    mov ecx, 0xC0000080    ; IA32_EFER MSR
-    rdmsr                   ; EDX:EAX = MSR value
-    or eax, 1 << 11         ; Set NXE bit (bit 11)
-    wrmsr
-    ret
-
-enable_sse:
-    ; --- CR0 ---
-    mov rax, cr0
-    and rax, 0xFFFFFFFFFFFFFFFB ; Clear CR0.EM (bit 2)
-    or  rax, 0x2                ; Set CR0.MP (bit 1)
-    mov cr0, rax
-
-    ; --- CR4 ---
-    mov rax, cr4
-    or  rax, (1 << 9) | (1 << 10)  ; Set CR4.OSFXSR (bit 9) and CR4.OSXMMEXCPT (bit 10)
-    mov cr4, rax
-
-    ret
 
 setup_direct_physical_mapping:
     ; Link PML4 entry 272 to our PDP table
@@ -97,12 +82,12 @@ setup_higher_half_mapping:
 section .bss
 align 16
 higher_stack_bottom:
-    resb 4096 * 4
+    resb 1024 * 8
 higher_stack_top:
 section .early_bss
 align 16
 stack_bottom:
-    resb 4096 * 4
+    resb 1024 * 2
 stack_top:
 align 4096
 phys_map_pdp_table:

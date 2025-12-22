@@ -1,6 +1,8 @@
 #include "console.h"
 #include "file/initramfs.h"
 #include "file/vfs.h"
+#include "smp/apic.h"
+#include "smp/smp.h"
 #include "gdt.h"
 #include "heap.h"
 #include "idt.h"
@@ -9,6 +11,7 @@
 #include "util.h"
 #include "vga.h"
 #include "vmm.h"
+#include "acpi.h"
 
 static void debug_dump_vfs(vfs::vfs_node* node, int depth) {
     while (node) {
@@ -85,6 +88,17 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     console::printf("\n--- VFS Debug Tree ---\n");
     debug_dump_vfs(vfs::get_root(), 0);
     console::printf("----------------------\n");
+
+    apic::init();
+    smp::init_bsp();
+    console::printf("[ OK ] ACPI initialized.\n");
+
+    __asm__ volatile("sti");
+
+    acpi::init(mb_phys_addr);
+    console::printf("[ OK ] ACPI initialized.\n");
+    smp::init_aps();
+    console::printf("[ OK ] SMP initialized with %d cores.\n", smp::get_core_count());
 
     for (;;);
 }

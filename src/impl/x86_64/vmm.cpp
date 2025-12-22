@@ -81,7 +81,9 @@ namespace vmm {
                 static_cast<uint64_t>(PageFlags::Present | PageFlags::Write | PageFlags::Huge);
         }
 
-        map_page(0xFFFFFFFF800B8000, 0xB8000, PageFlags::Write);
+        for (uint64_t p = 0; p < 0x100000; p += pmm::PAGE_SIZE) {
+            map_page(p, p, PageFlags::Present | PageFlags::Write);
+        }
 
         uint64_t new_cr3 = current_pml4_phys;
         asm volatile("mov %0, %%cr3" : : "r"(new_cr3) : "memory");
@@ -99,5 +101,9 @@ namespace vmm {
         uint64_t* pt = get_next_table(pd, pd_idx, true);
 
         pt[pt_idx] = (phys & PHYS_ADDR_MASK) | static_cast<uint64_t>(flags | PageFlags::Present);
+    }
+
+    uint64_t get_kernel_pagemap() {
+        return current_pml4_phys;
     }
 }  // namespace vmm

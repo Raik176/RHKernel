@@ -10,8 +10,11 @@
 
 #include "console.h"
 #include "string.h"
+#include "smp/apic.h"
 
 extern "C" {
+static volatile int panic_lock = 0;
+
 extern void isr0();
 extern void isr1();
 extern void isr2();
@@ -45,6 +48,26 @@ extern void isr29();
 extern void isr30();
 extern void isr31();
 
+extern void irq0();
+
+extern void isr254();
+
+void handle_halt_ipi(struct regs *r) {
+    (void)r;
+    __asm__ volatile("cli");
+    for (;;) {
+        __asm__ volatile("hlt");
+    }
+}
+
+void irq_handler(struct regs *r) {
+    if (r->int_no == 32) {
+        apic::tick();
+    }
+
+    apic::eoi();
+}
+
 /**
  * @internal Common exception handler called by ISR stubs
  *
@@ -53,6 +76,13 @@ extern void isr31();
  * @param r Pointer to the CPU register state pushed during the interrupt
  */
 void isr_handler(struct regs *r) {
+    if (r->int_no == idt::HALT_VECTOR) {
+        handle_halt_ipi(r);
+        return;
+    }
+
+    apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::HALT_VECTOR);
+
     static const char exception_messages[32][30] = {"Division By Zero",
                                                     "Debug",
                                                     "Non Maskable Interrupt",
@@ -112,7 +142,7 @@ void isr_handler(struct regs *r) {
 
     console::write("\nHalting system...");
 
-    for (;;) { __asm__ volatile("cli; hlt"); }
+    handle_halt_ipi(r);
 }
 }
 
@@ -125,7 +155,7 @@ namespace idt {
      *
      * Wraps the `lidt` instruction.
      */
-    inline void load(void) { __asm__ volatile("lidt %0" : : "m"(idtp)); }
+    static inline void load(void) { __asm__ volatile("lidt %0" : : "m"(idtp)); }
 
     /**
      * @brief Set an entry in the IDT
@@ -192,6 +222,14 @@ namespace idt {
         set_gate(30, reinterpret_cast<uint64_t>(isr30), 0x08, 0x8E);
         set_gate(31, reinterpret_cast<uint64_t>(isr31), 0x08, 0x8E);
 
+        set_gate(32, reinterpret_cast<uint64_t>(irq0), 0x08, 0x8E);
+
+        set_gate(HALT_VECTOR, reinterpret_cast<uint64_t>(isr254), 0x08, 0x8E);
+
+        init_ap();
+    }
+
+    void init_ap(void) {
         idt::load();
     }
 }  // namespace idt

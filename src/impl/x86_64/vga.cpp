@@ -13,7 +13,7 @@ namespace vga {
      * @internal
      * VGA text buffer pointer
      */
-    static volatile uint16_t* buffer = (volatile uint16_t*)0xFFFFFFFF800B8000;
+    static volatile uint16_t* buffer = (volatile uint16_t*)p2v(0xB8000);
 
     /**
      * @name Current cursor position

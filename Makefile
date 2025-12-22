@@ -16,7 +16,6 @@ x86_64_object_files := $(x86_64_asm_object_files) $(x86_64_c_object_files) $(x86
 FORMAT_SOURCES := $(shell find src -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp')
 
 # --- Configuration ---
-# Default to Release build (DEBUG=0). To debug, run: make DEBUG=1
 DEBUG ?= 0
 
 TOOLS_DIR := tools
@@ -39,6 +38,7 @@ VENV_STAMP     := $(VENV)/.installed
 QEMUFLAGS := -d int,cpu_reset \
 			-D qemu.log \
 			-m 1G \
+			-smp 4 \
 			-cpu qemu64,+pdpe1gb \
 			-cdrom dist/x86_64/kernel.iso \
 			-serial stdio

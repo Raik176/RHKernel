@@ -50,4 +50,8 @@ namespace gdt {
      */
     GDTPtr get_gdt_ptr();
 
+    void init_ap();
+
+    extern "C" void gdt_load(uint64_t gdt_ptr_addr);
+
 }  // namespace gdt

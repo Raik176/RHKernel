@@ -1,8 +1,8 @@
 PHDRS
 {
   boot  PT_LOAD FILEHDR PHDRS FLAGS(5); /* R + X */
-  k_text PT_LOAD FLAGS(5); /* R + X */
-  k_data PT_LOAD FLAGS(6); /* R + W */
+  k_text PT_LOAD FLAGS(5);              /* R + X */
+  k_data PT_LOAD FLAGS(6);              /* R + W */
 }
 
 SECTIONS
@@ -29,7 +29,14 @@ SECTIONS
 
   .rodata ALIGN(4096) : AT(LOADADDR(.text) + SIZEOF(.text)) {
       _rodata_start = .;
+      
       *(.rodata .rodata.*)
+
+      . = ALIGN(8);
+      _ksymtab_start = .;
+      KEEP(*(.ksymtab))
+      _ksymtab_end = .;
+
       . = ALIGN(4096);
       _rodata_end = .;
   } :k_text

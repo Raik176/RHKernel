@@ -73,4 +73,6 @@ namespace vmm {
      */
     void map_page(uint64_t virt, uint64_t phys, PageFlags flags);
 
+    uint64_t get_kernel_pagemap(); // physical location!
+
 }  // namespace vmm

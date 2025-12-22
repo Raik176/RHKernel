@@ -9,6 +9,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include "smp/apic.h"
 
 /**
  * @brief Kernel virtual memory offset
@@ -104,3 +105,5 @@ static inline uint16_t inw(uint16_t port) {
     __asm__ volatile("inw %1, %0" : "=a"(ret) : "Nd"(port));
     return ret;
 }
+
+void busy_sleep(uint64_t ms);

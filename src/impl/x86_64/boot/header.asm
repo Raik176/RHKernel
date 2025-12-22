@@ -16,7 +16,8 @@ header_start:
         dd .end_of_info_request - .info_request_tag
         
         dd 6            ; Request Tag Type 6: Memory Map Tag (MMAP)
-    
+        dd 14           ; ACPI Old (RSDP v1)
+        dd 15           ; ACPI New (RSDP v2)
     .end_of_info_request:
 
     align 8

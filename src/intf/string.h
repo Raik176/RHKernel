@@ -58,7 +58,7 @@ static inline void *memset(void *s, int c, size_t n) {
  * @param ptr Pointer to memory
  * @param size Number of bytes to zero
  */
-inline void memzero(void *ptr, size_t size) {
+static inline void memzero(void *ptr, size_t size) {
     asm volatile(
         "cld\n\t"
         "xor %%al, %%al\n\t"

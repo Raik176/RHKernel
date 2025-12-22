@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+
+
 /**
  * @brief CPU register state structure
  *
@@ -35,6 +37,7 @@ struct regs {
 } __attribute__((packed));
 
 namespace idt {
+    static constexpr uint32_t HALT_VECTOR = 0xFE;
 
     /**
      * @brief Entry in the Interrupt Descriptor Table (IDT)
@@ -80,11 +83,6 @@ namespace idt {
      */
     void init(void);
 
-    /**
-     * @brief Load the IDT into the CPU
-     *
-     * Wraps the `lidt` instruction.
-     */
-    inline void load(void);
+    void init_ap(void);
 
 }  // namespace idt

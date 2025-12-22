@@ -147,3 +147,9 @@ struct multiboot_tag_module {
     uint32_t mod_end;    ///< Physical end address of the module
     char cmdline[0];     ///< Command line string (null-terminated)
 };
+
+struct multiboot_tag_acpi {
+    uint32_t type;
+    uint32_t size;
+    uint8_t rsdp[0];
+};

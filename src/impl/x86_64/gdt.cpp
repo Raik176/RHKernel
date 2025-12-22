@@ -34,9 +34,6 @@ namespace gdt {
         gdt_entries[idx].base_high = (base >> 24) & 0xFF;
     }
 
-    /** @internal Assembly routine to load the GDT pointer into the CPU */
-    extern "C" void gdt_load(uint64_t gdt_ptr_addr);
-
     /**
      * @brief Initialize the GDT
      *
@@ -61,6 +58,10 @@ namespace gdt {
         gdt_ptr.base = reinterpret_cast<uint64_t>(&gdt_entries);
 
         // Load the GDT
+        gdt_load(reinterpret_cast<uint64_t>(&gdt_ptr));
+    }
+
+    void init_ap() {
         gdt_load(reinterpret_cast<uint64_t>(&gdt_ptr));
     }
 
