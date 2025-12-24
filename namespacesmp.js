@@ -5,6 +5,7 @@ var namespacesmp =
     [ "__attribute__", "namespacesmp.html#ae2d92475e6e54f85449da1bee3dcc3d3", null ],
     [ "ap_kernel_entry", "namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6", null ],
     [ "boot_core", "namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5", null ],
+    [ "enable_optional_cpu_features", "namespacesmp.html#a291d3a30389010dcf81c673ff43163b2", null ],
     [ "get_core_count", "namespacesmp.html#a4805b4728b6f36e2a725ea117102c32a", null ],
     [ "get_cpu", "namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc", null ],
     [ "get_cpu_by_index", "namespacesmp.html#a6a94214a41fd38de081666401f6de757", null ],

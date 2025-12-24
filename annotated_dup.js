@@ -42,6 +42,7 @@ var annotated_dup =
       [ "vfs_node", "structvfs_1_1vfs__node.html", "structvfs_1_1vfs__node" ]
     ] ],
     [ "cpio_newc_header", "structcpio__newc__header.html", "structcpio__newc__header" ],
+    [ "cpu_features", "structcpu__features.html", "structcpu__features" ],
     [ "kernel_symbol", "structkernel__symbol.html", "structkernel__symbol" ],
     [ "multiboot_color", "structmultiboot__color.html", "structmultiboot__color" ],
     [ "multiboot_mmap_entry", "structmultiboot__mmap__entry.html", "structmultiboot__mmap__entry" ],

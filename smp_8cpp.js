@@ -3,6 +3,7 @@ var smp_8cpp =
     [ "ap_kernel_entry", "smp_8cpp.html#a1686dfe14d1a773edebc128c38747ae6", null ],
     [ "boot_core", "smp_8cpp.html#ae1efeff695c21b26db47a47e762d86c5", null ],
     [ "enable_cpu_features", "smp_8cpp.html#a5f265224d70a2a7a750a59d0b1eb3fa9", null ],
+    [ "enable_optional_cpu_features", "smp_8cpp.html#a291d3a30389010dcf81c673ff43163b2", null ],
     [ "get_core_count", "smp_8cpp.html#a4805b4728b6f36e2a725ea117102c32a", null ],
     [ "get_cpu_by_index", "smp_8cpp.html#a6a94214a41fd38de081666401f6de757", null ],
     [ "init_aps", "smp_8cpp.html#aee094b28dc7da291474eef181f302168", null ],

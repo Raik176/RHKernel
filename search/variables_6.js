@@ -9,5 +9,6 @@ var searchData=
   ['framebuffer_5ftype_6',['framebuffer_type',['../structmultiboot__tag__framebuffer.html#aa588fa7c8613d25651c6cddb2c7765f3',1,'multiboot_tag_framebuffer']]],
   ['free_5flist_7',['free_list',['../structheap_1_1SlabHeader.html#a19c951d03cfe6b9849de4e5da84e7286',1,'heap::SlabHeader']]],
   ['free_5flists_8',['free_lists',['../namespacepmm.html#a22a12d745bcf272c48223c19b842f1c5',1,'pmm']]],
-  ['full_5fslabs_9',['full_slabs',['../structheap_1_1SlabCache.html#a993cf0d2ab69585314e2cbaf267268ad',1,'heap::SlabCache']]]
+  ['full_5fslabs_9',['full_slabs',['../structheap_1_1SlabCache.html#a993cf0d2ab69585314e2cbaf267268ad',1,'heap::SlabCache']]],
+  ['fxsave_5farea_10',['fxsave_area',['../structscheduler_1_1task.html#afe6d2b0d6685456489d26fd4852106b7',1,'scheduler::task']]]
 ];

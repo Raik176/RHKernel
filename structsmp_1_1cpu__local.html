@@ -103,22 +103,26 @@ Collaboration diagram for smp::cpu_local:</div>
 <div class="dyncontent">
 <div class="center"><img src="structsmp_1_1cpu__local__coll__graph.png" border="0" usemap="#asmp_1_1cpu__local_coll__map" alt="Collaboration graph"/></div>
 <map name="asmp_1_1cpu__local_coll__map" id="asmp_1_1cpu__local_coll__map">
-<area shape="rect" title=" " alt="" coords="431,215,549,240"/>
-<area shape="poly" title=" " alt="" coords="564,216,572,220,576,228,568,237,550,241,549,235,565,232,571,227,569,224,562,221"/>
-<area shape="rect" href="structscheduler_1_1task.html" title=" " alt="" coords="5,95,127,121"/>
-<area shape="poly" title=" " alt="" coords="99,125,164,158,243,188,341,209,431,220,430,225,340,215,241,193,162,163,97,130"/>
-<area shape="poly" title=" " alt="" coords="142,99,153,108,145,116,127,119,126,114,143,111,148,108,139,104"/>
-<area shape="rect" href="structregs.html" title="CPU register state structure." alt="" coords="41,5,91,31"/>
-<area shape="poly" title=" " alt="" coords="69,44,69,95,63,95,63,44"/>
-<area shape="rect" href="structheap_1_1SlabHeader.html" title=" " alt="" coords="208,95,345,121"/>
-<area shape="poly" title=" " alt="" coords="305,126,351,157,405,188,459,212,457,217,402,193,348,162,302,131"/>
-<area shape="poly" title=" " alt="" coords="360,99,372,108,364,116,346,119,345,114,362,111,367,108,357,104"/>
-<area shape="rect" href="structgdt_1_1gdt__pointer.html" title="Pointer structure used to load the GDT." alt="" coords="427,95,553,121"/>
-<area shape="poly" title=" " alt="" coords="493,135,493,214,487,214,487,135"/>
-<area shape="rect" href="structgdt_1_1gdt__entry.html" title="Represents a single Global Descriptor Table (GDT) entry." alt="" coords="577,95,691,121"/>
-<area shape="poly" title=" " alt="" coords="615,133,548,193,512,217,509,212,544,189,611,129"/>
-<area shape="rect" href="structgdt_1_1tss.html" title=" " alt="" coords="715,95,785,121"/>
-<area shape="poly" title=" " alt="" coords="738,134,713,165,678,193,647,207,614,217,550,227,549,222,612,212,645,202,675,188,709,161,734,130"/>
+<area shape="rect" title=" " alt="" coords="432,245,551,271"/>
+<area shape="poly" title=" " alt="" coords="466,230,474,222,491,219,506,221,516,227,518,237,513,246,509,244,513,236,511,230,504,226,491,224,476,227,470,234"/>
+<area shape="rect" href="structscheduler_1_1task.html" title=" " alt="" coords="165,44,287,69"/>
+<area shape="poly" title=" " alt="" coords="301,70,357,91,384,106,410,124,438,154,460,187,488,244,483,246,456,190,434,157,406,128,382,111,355,96,299,75"/>
+<area shape="poly" title=" " alt="" coords="202,29,210,21,226,17,240,20,248,26,251,36,247,45,242,43,245,35,244,29,238,25,226,23,212,25,206,33"/>
+<area shape="rect" href="structregs.html" title="CPU register state structure." alt="" coords="5,44,56,69"/>
+<area shape="poly" title=" " alt="" coords="70,54,165,54,165,59,70,59"/>
+<area shape="rect" href="structlock_1_1spinlock.html" title=" " alt="" coords="171,93,281,119"/>
+<area shape="poly" title=" " alt="" coords="279,121,296,129,349,158,399,190,475,243,472,247,396,194,346,162,293,134,277,126"/>
+<area shape="rect" href="structheap_1_1SlabHeader.html" title=" " alt="" coords="157,196,295,221"/>
+<area shape="poly" title=" " alt="" coords="309,219,409,237,437,243,436,248,407,242,308,224"/>
+<area shape="poly" title=" " alt="" coords="202,181,210,173,226,169,240,172,248,178,251,188,247,197,242,195,245,187,244,181,238,177,226,175,212,177,206,185"/>
+<area shape="rect" href="structgdt_1_1gdt__pointer.html" title="Pointer structure used to load the GDT." alt="" coords="163,245,289,271"/>
+<area shape="poly" title=" " alt="" coords="302,255,432,255,432,261,302,261"/>
+<area shape="rect" href="structgdt_1_1gdt__entry.html" title="Represents a single Global Descriptor Table (GDT) entry." alt="" coords="169,295,283,320"/>
+<area shape="poly" title=" " alt="" coords="296,295,407,275,440,268,441,273,409,281,297,300"/>
+<area shape="rect" href="structgdt_1_1tss.html" title=" " alt="" coords="191,344,261,369"/>
+<area shape="poly" title=" " alt="" coords="274,347,339,333,407,310,443,290,472,269,476,273,446,295,409,315,340,338,275,352"/>
+<area shape="rect" href="structcpu__features.html" title=" " alt="" coords="173,393,279,419"/>
+<area shape="poly" title=" " alt="" coords="292,397,350,383,379,372,407,357,431,337,452,313,481,269,486,272,457,316,435,341,409,362,382,376,352,388,294,402"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -136,6 +140,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aa6bdb6172e8e0b951b731172b7b43d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4bf7d818c04d98ad9c111f5eac9f950" id="r_aa4bf7d818c04d98ad9c111f5eac9f950"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduler_1_1task.html">scheduler::task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#aa4bf7d818c04d98ad9c111f5eac9f950">idle_task</a></td></tr>
 <tr class="separator:aa4bf7d818c04d98ad9c111f5eac9f950"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae18ea7ab21439c0509b9c3550676ed1d" id="r_ae18ea7ab21439c0509b9c3550676ed1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlock_1_1spinlock.html">lock::spinlock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#ae18ea7ab21439c0509b9c3550676ed1d">sched_lock</a></td></tr>
+<tr class="separator:ae18ea7ab21439c0509b9c3550676ed1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a439df9fef91cd85f5ad07d55ccee9e10" id="r_a439df9fef91cd85f5ad07d55ccee9e10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap_1_1SlabHeader.html">heap::SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#a439df9fef91cd85f5ad07d55ccee9e10">heap_cache</a> [<a class="el" href="namespaceheap.html#ad054c212da4e393bd2d171aa68c2157d">heap::CACHE_COUNT</a>]</td></tr>
 <tr class="separator:a439df9fef91cd85f5ad07d55ccee9e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafe3b0f486452599e6e6d74e6b417eca" id="r_aafe3b0f486452599e6e6d74e6b417eca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgdt_1_1gdt__pointer.html">gdt::gdt_pointer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#aafe3b0f486452599e6e6d74e6b417eca">gdt_ptr</a></td></tr>
@@ -148,8 +154,24 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a8860f624e452de45d420c09c49795ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd7cc4d3c99f36f62f50c31657fd540e" id="r_afd7cc4d3c99f36f62f50c31657fd540e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#afd7cc4d3c99f36f62f50c31657fd540e">cpu_index</a></td></tr>
 <tr class="separator:afd7cc4d3c99f36f62f50c31657fd540e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ce0643086221d2387eee2eea941917d" id="r_a7ce0643086221d2387eee2eea941917d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structcpu__features.html">cpu_features</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#a7ce0643086221d2387eee2eea941917d">cpu_features</a></td></tr>
+<tr class="separator:a7ce0643086221d2387eee2eea941917d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7ce0643086221d2387eee2eea941917d" name="a7ce0643086221d2387eee2eea941917d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ce0643086221d2387eee2eea941917d">&#9670;&#160;</a></span>cpu_features</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structcpu__features.html">cpu_features</a> smp::cpu_local::cpu_features</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="afd7cc4d3c99f36f62f50c31657fd540e" name="afd7cc4d3c99f36f62f50c31657fd540e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd7cc4d3c99f36f62f50c31657fd540e">&#9670;&#160;</a></span>cpu_index</h2>
 
@@ -256,6 +278,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint32_t smp::cpu_local::lapic_id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae18ea7ab21439c0509b9c3550676ed1d" name="ae18ea7ab21439c0509b9c3550676ed1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae18ea7ab21439c0509b9c3550676ed1d">&#9670;&#160;</a></span>sched_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structlock_1_1spinlock.html">lock::spinlock</a> smp::cpu_local::sched_lock</td>
         </tr>
       </table>
 </div><div class="memdoc">

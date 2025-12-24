@@ -1,5 +1,6 @@
 var util_8h =
 [
+    [ "cpu_features", "structcpu__features.html", "structcpu__features" ],
     [ "regs", "structregs.html", "structregs" ],
     [ "KERNEL_VIRT_OFFSET", "util_8h.html#a9dea0fc0b345ecb4ffa50518ae7002b5", null ],
     [ "PHYS_MAP_BASE", "util_8h.html#a3c6c8c234e186d408ed887f543732c77", null ],
