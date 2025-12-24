@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('structregs.html',''); initResizable();
 <p>CPU register state structure.  
  <a href="structregs.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="idt_8h_source.html">idt.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -150,10 +150,10 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aae9ba1492f82e154b123c02213cddc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulator register.  <br /></td></tr>
 <tr class="separator:aae9ba1492f82e154b123c02213cddc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9893785373179b5e83f5a2cd8c8eb61" id="r_ae9893785373179b5e83f5a2cd8c8eb61"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structregs.html#ae9893785373179b5e83f5a2cd8c8eb61">int_no</a></td></tr>
-<tr class="memdesc:ae9893785373179b5e83f5a2cd8c8eb61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt number.  <br /></td></tr>
+<tr class="memdesc:ae9893785373179b5e83f5a2cd8c8eb61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt number, only for interrupts.  <br /></td></tr>
 <tr class="separator:ae9893785373179b5e83f5a2cd8c8eb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac10a2fc62b4dbe2c84e098e559121327" id="r_ac10a2fc62b4dbe2c84e098e559121327"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structregs.html#ac10a2fc62b4dbe2c84e098e559121327">err_code</a></td></tr>
-<tr class="memdesc:ac10a2fc62b4dbe2c84e098e559121327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code, if applicable.  <br /></td></tr>
+<tr class="memdesc:ac10a2fc62b4dbe2c84e098e559121327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error code, only for interrupts.  <br /></td></tr>
 <tr class="separator:ac10a2fc62b4dbe2c84e098e559121327"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9868b8985582a7f8aa545fccd541a95" id="r_af9868b8985582a7f8aa545fccd541a95"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structregs.html#af9868b8985582a7f8aa545fccd541a95">rip</a></td></tr>
 <tr class="memdesc:af9868b8985582a7f8aa545fccd541a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instruction pointer.  <br /></td></tr>
@@ -173,7 +173,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>CPU register state structure. </p>
-<p>Represents the state of registers pushed to the stack during an interrupt or exception. </p>
+<p>Represents the state of registers pushed to the stack during an interrupt, exception, or thread switch. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a08fa9ba2b4efd5f73a61115b2c0acdd7" name="a08fa9ba2b4efd5f73a61115b2c0acdd7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a08fa9ba2b4efd5f73a61115b2c0acdd7">&#9670;&#160;</a></span>cs</h2>
@@ -203,7 +203,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Error code, if applicable. </p>
+<p>Error code, only for interrupts. </p>
 
 </div>
 </div>
@@ -219,7 +219,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Interrupt number. </p>
+<p>Interrupt number, only for interrupts. </p>
 
 </div>
 </div>
@@ -528,7 +528,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/intf/<a class="el" href="idt_8h_source.html">idt.h</a></li>
+<li>src/intf/<a class="el" href="util_8h_source.html">util.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

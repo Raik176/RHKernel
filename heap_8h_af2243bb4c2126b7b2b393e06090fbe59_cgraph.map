@@ -1,34 +1,41 @@
 <map id="operator new[]" name="operator new[]">
-<area shape="rect" id="Node000001" title="C++ array new operator using the kernel heap." alt="" coords="5,284,124,309"/>
-<area shape="rect" id="Node000002" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="172,284,287,309"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,294,158,294,158,299,124,299"/>
-<area shape="rect" id="Node000003" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="521,107,616,132"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="233,283,246,254,267,217,296,180,333,149,376,130,422,118,467,113,507,112,508,118,467,119,423,124,378,135,336,154,300,183,272,220,251,257,238,285"/>
-<area shape="rect" id="Node000008" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="905,157,952,183"/>
-<area shape="poly" id="edge18_Node000002_Node000008" title=" " alt="" coords="242,282,280,249,306,232,334,218,411,194,492,176,573,165,652,159,792,158,891,164,891,169,792,163,652,165,573,171,493,182,412,199,336,223,309,236,284,253,245,286"/>
-<area shape="rect" id="Node000009" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="664,309,815,335"/>
-<area shape="poly" id="edge19_Node000002_Node000009" title=" " alt="" coords="287,297,650,315,650,320,287,302"/>
-<area shape="rect" id="Node000011" href="$namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="335,233,473,259"/>
-<area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="273,281,345,260,347,265,275,286"/>
-<area shape="rect" id="Node000012" href="$namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="344,360,464,385"/>
-<area shape="poly" id="edge16_Node000002_Node000012" title=" " alt="" coords="261,307,363,352,360,357,258,312"/>
-<area shape="rect" id="Node000013" href="$namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="335,409,473,435"/>
-<area shape="poly" id="edge17_Node000002_Node000013" title=" " alt="" coords="243,308,281,350,307,375,336,396,347,402,344,406,333,400,304,379,277,354,239,311"/>
-<area shape="rect" id="Node000004" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="863,56,995,81"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="611,104,664,91,760,78,849,70,849,75,760,83,664,97,612,109"/>
-<area shape="rect" id="Node000005" href="$namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="674,5,805,31"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="584,104,619,77,663,48,690,34,693,39,665,52,622,81,587,109"/>
-<area shape="rect" id="Node000007" href="$namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="671,107,808,132"/>
-<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="616,117,657,117,657,122,616,122"/>
-<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="583,130,721,297,716,300,578,134"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="788,28,868,50,866,55,787,33"/>
-<area shape="rect" id="Node000006" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="905,5,952,31"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="805,15,891,15,891,21,805,21"/>
-<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="787,104,866,82,868,88,788,109"/>
-<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="788,130,893,158,891,163,787,135"/>
-<area shape="rect" id="Node000010" href="$util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="890,284,967,309"/>
-<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="815,309,876,301,876,306,815,315"/>
-<area shape="poly" id="edge14_Node000011_Node000003" title=" " alt="" coords="420,231,538,139,542,143,424,235"/>
-<area shape="poly" id="edge15_Node000011_Node000008" title=" " alt="" coords="472,234,814,186,891,174,892,179,815,191,473,240"/>
-<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="473,250,876,289,875,294,473,255"/>
+<area shape="rect" id="Node000001" title="C++ array new operator using the kernel heap." alt="" coords="5,309,124,335"/>
+<area shape="rect" id="Node000002" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="172,309,287,335"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,319,158,319,158,325,124,325"/>
+<area shape="poly" id="edge18_Node000002_Node000002" title=" " alt="" coords="202,311,196,301,199,291,211,285,229,283,252,286,261,295,258,299,249,291,229,288,212,290,203,295,202,300,207,308"/>
+<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="335,56,501,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="231,308,241,268,260,213,290,152,310,124,333,99,353,85,356,89,336,103,314,127,295,155,265,215,246,270,236,310"/>
+<area shape="rect" id="Node000004" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="549,107,644,132"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="232,308,243,275,263,231,293,186,312,166,333,149,383,126,436,114,489,109,536,110,536,115,489,114,437,119,384,131,336,154,315,170,297,189,268,234,248,277,237,310"/>
+<area shape="rect" id="Node000009" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="933,157,980,183"/>
+<area shape="poly" id="edge21_Node000002_Node000009" title=" " alt="" coords="237,308,275,262,302,238,333,218,414,188,498,168,583,156,666,150,745,149,815,152,920,162,919,167,815,158,745,155,667,155,584,161,499,173,415,193,336,223,305,242,278,266,241,311"/>
+<area shape="rect" id="Node000010" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="692,309,843,335"/>
+<area shape="poly" id="edge23_Node000002_Node000010" title=" " alt="" coords="287,319,678,319,678,325,287,325"/>
+<area shape="rect" id="Node000012" href="$namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="349,233,487,259"/>
+<area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="261,307,372,261,374,266,263,312"/>
+<area shape="rect" id="Node000013" href="$namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="363,360,473,385"/>
+<area shape="poly" id="edge17_Node000002_Node000013" title=" " alt="" coords="278,332,357,354,356,359,277,337"/>
+<area shape="rect" id="Node000014" href="$namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="358,409,478,435"/>
+<area shape="poly" id="edge19_Node000002_Node000014" title=" " alt="" coords="246,333,285,364,336,396,351,402,349,407,333,400,282,368,243,337"/>
+<area shape="rect" id="Node000015" href="$namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="349,459,487,484"/>
+<area shape="poly" id="edge20_Node000002_Node000015" title=" " alt="" coords="240,333,277,388,304,419,336,445,346,451,344,456,333,450,300,422,272,391,236,336"/>
+<area shape="rect" id="Node000016" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="335,508,501,533"/>
+<area shape="poly" id="edge22_Node000002_Node000016" title=" " alt="" coords="237,334,249,366,269,410,298,456,336,495,344,500,341,504,333,499,294,459,265,412,244,368,232,336"/>
+<area shape="rect" id="Node000005" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="891,56,1023,81"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="639,104,692,91,788,78,877,70,877,75,788,83,692,97,640,109"/>
+<area shape="rect" id="Node000006" href="$namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="702,5,833,31"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="612,104,647,77,691,48,718,34,721,39,693,52,650,81,615,109"/>
+<area shape="rect" id="Node000008" href="$namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="699,107,836,132"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="644,117,685,117,685,122,644,122"/>
+<area shape="poly" id="edge11_Node000004_Node000010" title=" " alt="" coords="611,130,749,297,744,300,606,134"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="816,28,896,50,894,55,815,33"/>
+<area shape="rect" id="Node000007" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="933,5,980,31"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="833,15,919,15,919,21,833,21"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="815,104,894,82,896,88,816,109"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="816,130,921,158,919,163,815,135"/>
+<area shape="rect" id="Node000011" href="$util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="918,284,995,309"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="843,309,904,301,904,306,843,315"/>
+<area shape="poly" id="edge15_Node000012_Node000004" title=" " alt="" coords="436,231,565,138,568,142,439,235"/>
+<area shape="poly" id="edge16_Node000012_Node000009" title=" " alt="" coords="487,235,842,186,919,174,920,179,843,191,487,240"/>
+<area shape="poly" id="edge14_Node000012_Node000011" title=" " alt="" coords="487,250,904,289,904,294,486,255"/>
 </map>

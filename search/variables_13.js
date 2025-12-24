@@ -1,5 +1,14 @@
 var searchData=
 [
-  ['uid_0',['uid',['../structcpio__newc__header.html#a35cbc7dc819d3eef2d97e4d0d96734e8',1,'cpio_newc_header::uid'],['../initramfs_8h.html#ac3087d42269e924157fba173cdcfa615',1,'uid:&#160;initramfs.h']]],
-  ['used_5fslots_1',['used_slots',['../structheap_1_1SlabHeader.html#a65655a7ada199a076b21d5d9d1fcec0f',1,'heap::SlabHeader']]]
+  ['task_5fqueues_0',['task_queues',['../structsmp_1_1cpu__local.html#aa6bdb6172e8e0b951b731172b7b43d29',1,'smp::cpu_local']]],
+  ['tick_5fscale_1',['tick_scale',['../namespaceapic.html#ad6b6cb9e897fb7b75c9e2d5108598444',1,'apic']]],
+  ['ticks_2',['ticks',['../structsmp_1_1cpu__local.html#ac1bb2364c1a57bbed26388fc7e77a613',1,'smp::cpu_local']]],
+  ['ticks_5fper_5fms_3',['ticks_per_ms',['../namespaceapic.html#a8244a352af7880f8d0c8b9a55543c8ac',1,'apic']]],
+  ['time_5fquantums_4',['TIME_QUANTUMS',['../namespacescheduler.html#a92dfce9e62b90351581efe9e4674cf30',1,'scheduler']]],
+  ['total_5fslots_5',['total_slots',['../structheap_1_1SlabHeader.html#a019af2b26ee984d0b364b76e8af1ba16',1,'heap::SlabHeader']]],
+  ['tram_5fphys_6',['TRAM_PHYS',['../namespacesmp.html#a45cedd0b7e4ba0c3d2b8f670b20238c8',1,'smp']]],
+  ['trampoline_5fend_7',['trampoline_end',['../smp_8cpp.html#a64cdb85a116f731df74930f4df229435',1,'smp.cpp']]],
+  ['trampoline_5fstart_8',['trampoline_start',['../smp_8cpp.html#ac11c328963f4b8b0216eb93852619dda',1,'smp.cpp']]],
+  ['tss_5fentry_9',['tss_entry',['../structsmp_1_1cpu__local.html#acfd0e5540082145c97f549aa461cd4fd',1,'smp::cpu_local']]],
+  ['type_10',['type',['../acpi_8h.html#a1d127017fb298b889f4ba24752d08b8e',1,'type:&#160;acpi.h'],['../acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03',1,'type:&#160;acpi.cpp'],['../structscheduler_1_1task.html#adb3a65b31ef3b6e281781f752e398593',1,'scheduler::task::type'],['../structmultiboot__tag__acpi.html#afac31598a20b3e7171d2abb13d8c18c0',1,'multiboot_tag_acpi::type'],['../structmultiboot__tag__module.html#a4e81563d172d98190a4f9d7ccfbac482',1,'multiboot_tag_module::type'],['../structmultiboot__tag__framebuffer.html#a61e28ee20d0080a434b4915d37c75dd7',1,'multiboot_tag_framebuffer::type'],['../structmultiboot__tag__mmap.html#a2f9a834ec53058994360cb1ce980798e',1,'multiboot_tag_mmap::type'],['../structmultiboot__mmap__entry.html#a78ecb3f67ad5c4c33d9a678e1867fb1b',1,'multiboot_mmap_entry::type'],['../structmultiboot__tag.html#a542b7d4bd2d49c11c66d07e14f44d025',1,'multiboot_tag::type'],['../structvfs_1_1vfs__node.html#ae06c73a142658a765bcdb8c478bd504a',1,'vfs::vfs_node::type'],['../structacpi_1_1MADTEntryHeader.html#ac17f04d194e1fe5d955de82a1196a9f3',1,'acpi::MADTEntryHeader::type'],['../structframebuffer_1_1FramebufferInfo.html#adb66c0602c21167fbe681e3bf25e5b59',1,'framebuffer::FramebufferInfo::type'],['../structacpi_1_1multiboot__tag__acpi.html#a7dd01f6ccb665efd53423dd4fe764786',1,'acpi::multiboot_tag_acpi::type']]]
 ];

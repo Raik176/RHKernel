@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RHKernel: src/impl/x86_64/vmm.cpp File Reference</title>
+<title>RHKernel: src/impl/x86_64/memory/vmm.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,47 +97,47 @@ $(document).ready(function(){initNavTree('vmm_8cpp.html',''); initResizable(); }
   <div class="headertitle"><div class="title">vmm.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="vmm_8h_source.html">vmm.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="vmm_8h_source.html">memory/vmm.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="pmm_8h_source.html">pmm.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="pmm_8h_source.html">memory/pmm.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for vmm.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="vmm_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2vmm_8cpp" alt=""/></div>
-<map name="asrc_2impl_2x86__64_2vmm_8cpp" id="asrc_2impl_2x86__64_2vmm_8cpp">
-<area shape="rect" title=" " alt="" coords="184,5,374,31"/>
-<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="549,225,617,251"/>
-<area shape="poly" title=" " alt="" coords="325,28,376,45,436,70,495,105,523,126,548,150,567,180,579,211,574,213,563,183,544,154,520,130,492,109,433,75,374,50,324,33"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="33,79,117,104"/>
-<area shape="poly" title=" " alt="" coords="247,33,122,77,120,72,245,28"/>
-<area shape="rect" href="pmm_8h.html" title="Physical Memory Manager (PMM) interface." alt="" coords="152,152,220,177"/>
-<area shape="poly" title=" " alt="" coords="274,33,203,142,198,139,269,30"/>
-<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="244,152,314,177"/>
-<area shape="poly" title=" " alt="" coords="282,31,282,138,276,138,276,31"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="350,79,405,104"/>
-<area shape="poly" title=" " alt="" coords="296,29,352,68,349,73,293,33"/>
-<area shape="rect" title=" " alt="" coords="325,299,396,324"/>
-<area shape="poly" title=" " alt="" coords="550,253,410,297,408,292,548,248"/>
-<area shape="poly" title=" " alt="" coords="57,106,37,120,19,138,9,157,9,166,12,176,39,211,73,239,112,261,154,278,239,299,311,306,311,312,238,304,153,283,110,266,70,243,35,215,7,179,3,167,4,156,15,134,33,116,53,102"/>
-<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="22,152,128,177"/>
-<area shape="poly" title=" " alt="" coords="78,104,78,138,72,138,72,104"/>
-<area shape="poly" title=" " alt="" coords="90,175,134,211,192,248,254,275,313,295,311,300,252,280,190,253,131,215,86,180"/>
-<area shape="rect" title=" " alt="" coords="223,225,298,251"/>
-<area shape="poly" title=" " alt="" coords="106,175,219,218,217,223,104,180"/>
-<area shape="poly" title=" " alt="" coords="189,177,194,212,202,232,213,249,235,267,260,282,312,299,310,304,258,286,232,272,209,252,197,234,189,214,183,178"/>
-<area shape="poly" title=" " alt="" coords="200,175,240,214,237,218,196,179"/>
-<area shape="poly" title=" " alt="" coords="288,176,350,285,345,288,283,179"/>
-<area shape="poly" title=" " alt="" coords="279,178,269,213,264,212,273,177"/>
-<area shape="poly" title=" " alt="" coords="379,105,365,285,360,284,374,104"/>
-<area shape="poly" title=" " alt="" coords="374,106,355,140,328,179,288,218,284,214,324,176,351,137,370,103"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="440,152,534,177"/>
-<area shape="poly" title=" " alt="" coords="397,102,459,142,456,147,394,106"/>
-<area shape="poly" title=" " alt="" coords="493,177,498,212,496,233,488,252,472,270,453,285,410,303,408,298,450,280,469,266,483,249,491,232,493,212,488,178"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="423,225,474,251"/>
-<area shape="poly" title=" " alt="" coords="483,179,464,215,459,212,478,176"/>
-<area shape="poly" title=" " alt="" coords="436,253,387,292,384,288,433,249"/>
+<div class="center"><img src="vmm_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2memory_2vmm_8cpp" alt=""/></div>
+<map name="asrc_2impl_2x86__64_2memory_2vmm_8cpp" id="asrc_2impl_2x86__64_2memory_2vmm_8cpp">
+<area shape="rect" title=" " alt="" coords="217,5,401,45"/>
+<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="30,93,156,119"/>
+<area shape="poly" title=" " alt="" coords="258,48,138,91,137,86,256,43"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="227,93,311,119"/>
+<area shape="poly" title=" " alt="" coords="302,47,283,82,279,80,297,44"/>
+<area shape="rect" href="pmm_8h.html" title="Physical Memory Manager (PMM) interface." alt="" coords="346,167,472,192"/>
+<area shape="poly" title=" " alt="" coords="324,44,396,154,392,157,319,47"/>
+<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="496,167,567,192"/>
+<area shape="poly" title=" " alt="" coords="338,43,504,156,501,161,335,48"/>
+<area shape="rect" title=" " alt="" coords="142,387,212,412"/>
+<area shape="poly" title=" " alt="" coords="82,121,57,145,31,180,12,221,8,243,10,265,21,305,29,320,44,337,63,352,85,365,130,383,128,388,83,370,60,357,40,341,25,323,16,307,5,266,3,243,7,220,26,177,53,142,78,117"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="66,167,120,192"/>
+<area shape="poly" title=" " alt="" coords="96,119,96,153,90,153,90,119"/>
+<area shape="poly" title=" " alt="" coords="70,194,49,207,29,224,17,244,16,254,18,264,41,302,72,334,107,359,140,378,137,383,104,363,69,338,37,305,13,266,10,254,12,242,25,221,46,203,67,190"/>
+<area shape="rect" title=" " alt="" coords="297,240,372,265"/>
+<area shape="poly" title=" " alt="" coords="121,186,284,234,283,239,120,191"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="28,240,121,265"/>
+<area shape="poly" title=" " alt="" coords="92,193,83,228,78,226,87,192"/>
+<area shape="poly" title=" " alt="" coords="80,265,91,299,111,337,130,359,151,377,147,381,126,362,107,340,86,301,75,267"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="121,313,172,339"/>
+<area shape="poly" title=" " alt="" coords="88,264,127,302,123,306,84,268"/>
+<area shape="poly" title=" " alt="" coords="154,338,169,373,164,375,149,340"/>
+<area shape="poly" title=" " alt="" coords="143,314,140,280,130,241,109,204,114,201,135,239,146,279,149,313"/>
+<area shape="poly" title=" " alt="" coords="252,121,228,141,207,168,182,374,177,373,202,166,224,137,249,117"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="216,167,322,192"/>
+<area shape="poly" title=" " alt="" coords="272,119,272,153,266,153,266,119"/>
+<area shape="poly" title=" " alt="" coords="270,192,259,257,247,299,230,340,201,379,197,375,225,337,242,297,254,256,265,192"/>
+<area shape="poly" title=" " alt="" coords="282,191,316,228,312,232,278,194"/>
+<area shape="poly" title=" " alt="" coords="411,193,404,228,397,248,386,267,348,306,305,339,261,365,221,384,219,379,258,360,302,335,345,302,381,264,392,246,399,226,405,192"/>
+<area shape="poly" title=" " alt="" coords="399,194,358,232,354,229,395,190"/>
+<area shape="poly" title=" " alt="" coords="522,194,448,261,395,303,337,341,281,368,226,387,225,382,279,363,334,336,392,299,444,257,518,190"/>
+<area shape="poly" title=" " alt="" coords="501,195,380,238,378,233,499,190"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -152,12 +152,20 @@ Functions</h2></td></tr>
 <tr class="separator:aa604160270551f1cb1a67a113b5167a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6eb1a1bf20f471294d93040e6476a817" id="r_a6eb1a1bf20f471294d93040e6476a817"><td class="memItemLeft" align="right" valign="top">static uint64_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817">vmm::get_next_table</a> (uint64_t *v_table, uint64_t index, bool allocate)</td></tr>
 <tr class="separator:a6eb1a1bf20f471294d93040e6476a817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94b5ead9d649c974cf15eab5a2c582e7" id="r_a94b5ead9d649c974cf15eab5a2c582e7"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7">vmm::get_phys_addr_mask</a> ()</td></tr>
+<tr class="separator:a94b5ead9d649c974cf15eab5a2c582e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bf83fb866a7c744df6790424b2e2ef6" id="r_a8bf83fb866a7c744df6790424b2e2ef6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6">vmm::init</a> ()</td></tr>
 <tr class="memdesc:a8bf83fb866a7c744df6790424b2e2ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the virtual memory manager.  <br /></td></tr>
 <tr class="separator:a8bf83fb866a7c744df6790424b2e2ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91045b98b89f21a0633cff5edcd2bd30" id="r_a91045b98b89f21a0633cff5edcd2bd30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a91045b98b89f21a0633cff5edcd2bd30">vmm::map_page</a> (uint64_t virt, uint64_t phys, <a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a> <a class="el" href="acpi_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>)</td></tr>
-<tr class="memdesc:a91045b98b89f21a0633cff5edcd2bd30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map a single 4 KiB virtual page to a physical frame.  <br /></td></tr>
-<tr class="separator:a91045b98b89f21a0633cff5edcd2bd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68b4c8da94ea5d19c1346ab656c984bd" id="r_a68b4c8da94ea5d19c1346ab656c984bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a68b4c8da94ea5d19c1346ab656c984bd">vmm::map_range</a> (uint64_t virt, uint64_t phys, uint64_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>, <a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a> <a class="el" href="acpi_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>)</td></tr>
+<tr class="separator:a68b4c8da94ea5d19c1346ab656c984bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b681e259c6666aae12ccd5cb4afa68" id="r_a21b681e259c6666aae12ccd5cb4afa68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a21b681e259c6666aae12ccd5cb4afa68">vmm::map_page</a> (uint64_t virt, uint64_t phys, <a class="el" href="namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9f">PageFlags</a> <a class="el" href="acpi_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>, <a class="el" href="namespacevmm.html#a42cd2493dba06deb13885a475b6e5829">PageSize</a> <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>)</td></tr>
+<tr class="memdesc:a21b681e259c6666aae12ccd5cb4afa68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map a single 4 KiB virtual page to a physical frame.  <br /></td></tr>
+<tr class="separator:a21b681e259c6666aae12ccd5cb4afa68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d9728f62c42d92f2c76db9d907ee0f" id="r_a55d9728f62c42d92f2c76db9d907ee0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a55d9728f62c42d92f2c76db9d907ee0f">vmm::unmap_page</a> (uint64_t virt)</td></tr>
+<tr class="separator:a55d9728f62c42d92f2c76db9d907ee0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf984d135d39d57e1d30e060634d3d26" id="r_abf984d135d39d57e1d30e060634d3d26"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#abf984d135d39d57e1d30e060634d3d26">vmm::create_user_address_space</a> ()</td></tr>
+<tr class="separator:abf984d135d39d57e1d30e060634d3d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdf265a78f65cd1d359554c771e03cb0" id="r_abdf265a78f65cd1d359554c771e03cb0"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#abdf265a78f65cd1d359554c771e03cb0">vmm::get_kernel_pagemap</a> ()</td></tr>
 <tr class="separator:abdf265a78f65cd1d359554c771e03cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -183,8 +191,12 @@ Variables</h2></td></tr>
 <tr class="separator:a3bd4f375421d31d89fcede268b826344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20fb3185483d7127f3a5b099e16e3e5c" id="r_a20fb3185483d7127f3a5b099e16e3e5c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vmm_8cpp.html#a20fb3185483d7127f3a5b099e16e3e5c">_bss_end</a> []</td></tr>
 <tr class="separator:a20fb3185483d7127f3a5b099e16e3e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c1a22d03ab451bf9481db5c965ce29f" id="r_a8c1a22d03ab451bf9481db5c965ce29f"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a8c1a22d03ab451bf9481db5c965ce29f">vmm::PHYS_ADDR_MASK</a> = 0x000FFFFFFFFFF000</td></tr>
-<tr class="separator:a8c1a22d03ab451bf9481db5c965ce29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48131c2649cad1fe4977d005ce1c7bed" id="r_a48131c2649cad1fe4977d005ce1c7bed"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a48131c2649cad1fe4977d005ce1c7bed">vmm::supports_2mb_pages</a> = false</td></tr>
+<tr class="separator:a48131c2649cad1fe4977d005ce1c7bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae5b4f99ce8bdd0321f58818b1fac63b" id="r_aae5b4f99ce8bdd0321f58818b1fac63b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#aae5b4f99ce8bdd0321f58818b1fac63b">vmm::supports_1gb_pages</a> = false</td></tr>
+<tr class="separator:aae5b4f99ce8bdd0321f58818b1fac63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50352caf62ec7c48f298707a78753a09" id="r_a50352caf62ec7c48f298707a78753a09"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a50352caf62ec7c48f298707a78753a09">vmm::phys_addr_mask</a> = 0</td></tr>
+<tr class="separator:a50352caf62ec7c48f298707a78753a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d1c1ba652aaf58fb64fd1c25d1200f7" id="r_a7d1c1ba652aaf58fb64fd1c25d1200f7"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmm.html#a7d1c1ba652aaf58fb64fd1c25d1200f7">vmm::current_pml4_phys</a> = 0</td></tr>
 <tr class="separator:a7d1c1ba652aaf58fb64fd1c25d1200f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -414,7 +426,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3808e3f8fe545b07b1d2715928fb0eea.html">impl</a></li><li class="navelem"><a class="el" href="dir_41ede699b36eabd40c3913c0ec892df4.html">x86_64</a></li><li class="navelem"><a class="el" href="vmm_8cpp.html">vmm.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3808e3f8fe545b07b1d2715928fb0eea.html">impl</a></li><li class="navelem"><a class="el" href="dir_41ede699b36eabd40c3913c0ec892df4.html">x86_64</a></li><li class="navelem"><a class="el" href="dir_8afcbc13569db79d10f8eec89d528796.html">memory</a></li><li class="navelem"><a class="el" href="vmm_8cpp.html">vmm.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

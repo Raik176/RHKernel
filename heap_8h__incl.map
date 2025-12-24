@@ -1,7 +1,10 @@
-<map id="src/intf/heap.h" name="src/intf/heap.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="33,5,148,31"/>
+<map id="src/intf/memory/heap.h" name="src/intf/memory/heap.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,5,205,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,80,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,33,60,69,56,66,81,30"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="105,79,175,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,29,126,66,122,69,97,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,33,67,71,63,67,104,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="123,152,194,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,30,154,138,149,139,118,32"/>
+<area shape="rect" id="Node000004" href="$lock_8h.html" title=" " alt="" coords="155,79,248,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,29,179,67,175,72,129,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="197,106,175,142,170,139,192,103"/>
 </map>

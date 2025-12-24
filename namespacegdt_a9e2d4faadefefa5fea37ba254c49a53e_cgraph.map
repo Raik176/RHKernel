@@ -1,0 +1,7 @@
+<map id="gdt::init_early" name="gdt::init_early">
+<area shape="rect" id="Node000001" title="Initialize the GDT." alt="" coords="5,31,117,56"/>
+<area shape="rect" id="Node000002" href="$namespacegdt.html#ad71ded752899f558e6555fa02504fdf0" title=" " alt="" coords="168,5,275,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,32,154,26,155,31,118,37"/>
+<area shape="rect" id="Node000003" href="$namespacegdt.html#af53c6eea854102b633e04557f51c2ce3" title=" " alt="" coords="165,55,277,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="118,49,152,54,152,60,117,54"/>
+</map>

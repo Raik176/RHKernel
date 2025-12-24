@@ -1,23 +1,31 @@
 <map id="src/impl/x86_64/idt.cpp" name="src/impl/x86_64/idt.cpp">
-<area shape="rect" id="Node000001" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="73,5,247,31"/>
-<area shape="rect" id="Node000002" href="$idt_8h.html" title=" " alt="" coords="5,152,56,177"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,33,80,51,62,64,48,80,35,109,32,138,27,138,30,107,43,77,59,60,77,47,117,28"/>
-<area shape="rect" id="Node000004" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="175,79,259,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,29,201,66,197,70,167,33"/>
-<area shape="rect" id="Node000007" href="$string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="311,152,382,177"/>
-<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="189,28,230,49,274,77,307,108,333,139,328,143,303,112,270,81,228,53,187,33"/>
-<area shape="rect" id="Node000008" href="$apic_8h.html" title=" " alt="" coords="57,79,151,104"/>
-<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="153,33,124,69,119,66,149,29"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="109,225,179,251"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="50,175,116,216,113,220,47,180"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="208,106,190,127,173,153,160,183,152,212,147,211,155,182,168,151,186,124,204,102"/>
-<area shape="rect" id="Node000005" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="182,152,287,177"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="223,104,231,138,226,140,218,105"/>
-<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="222,179,171,219,168,214,218,175"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="256,225,331,251"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="246,176,277,213,273,217,242,179"/>
-<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="315,180,190,223,189,218,313,175"/>
-<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="340,179,312,216,308,213,336,176"/>
-<area shape="poly" id="edge13_Node000008_Node000002" title=" " alt="" coords="94,106,54,144,51,140,90,102"/>
-<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="109,104,128,177,138,211,133,213,123,178,104,105"/>
+<area shape="rect" id="Node000001" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="181,5,355,31"/>
+<area shape="rect" id="Node000002" href="$idt_8h.html" title=" " alt="" coords="108,79,159,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,33,169,74,166,70,245,28"/>
+<area shape="rect" id="Node000006" href="$apic_8h.html" title=" " alt="" coords="5,225,99,251"/>
+<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="195,33,144,51,119,64,98,81,76,110,63,146,56,181,54,212,49,211,51,181,58,144,71,108,94,77,116,60,141,46,193,28"/>
+<area shape="rect" id="Node000007" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="226,79,310,104"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="271,31,271,65,265,65,265,31"/>
+<area shape="rect" id="Node000009" href="$scheduler_8h.html" title=" " alt="" coords="475,225,603,251"/>
+<area shape="poly" id="edge15_Node000001_Node000009" title=" " alt="" coords="297,28,388,74,441,109,489,150,513,181,530,212,525,214,508,184,485,154,437,113,385,79,295,33"/>
+<area shape="rect" id="Node000010" href="$string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="405,152,475,177"/>
+<area shape="poly" id="edge17_Node000001_Node000010" title=" " alt="" coords="284,29,417,141,414,145,280,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,299,273,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="141,103,228,284,223,287,137,106"/>
+<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions and macros." alt="" coords="94,152,149,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="134,105,128,139,123,138,129,104"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="129,177,145,211,170,249,212,288,208,292,166,252,140,213,124,179"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="325,225,400,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="150,172,312,219,311,224,148,177"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="112,180,75,217,71,214,108,176"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="52,224,62,190,79,151,109,112,113,116,84,153,67,192,57,226"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="83,248,195,291,194,296,81,253"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="269,105,243,285,238,285,264,104"/>
+<area shape="rect" id="Node000008" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="275,152,381,177"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="280,103,312,140,307,143,276,106"/>
+<area shape="poly" id="edge13_Node000008_Node000003" title=" " alt="" coords="323,179,254,288,250,286,318,176"/>
+<area shape="poly" id="edge12_Node000008_Node000005" title=" " alt="" coords="336,176,353,212,349,214,331,179"/>
+<area shape="poly" id="edge16_Node000009_Node000003" title=" " alt="" coords="491,253,287,301,285,296,490,248"/>
+<area shape="poly" id="edge19_Node000010_Node000003" title=" " alt="" coords="442,178,435,214,427,235,414,253,385,275,352,291,318,301,287,308,286,303,317,296,350,286,382,270,410,249,422,232,430,213,437,177"/>
+<area shape="poly" id="edge18_Node000010_Node000005" title=" " alt="" coords="429,179,387,218,384,214,426,175"/>
 </map>

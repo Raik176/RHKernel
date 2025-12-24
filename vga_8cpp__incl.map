@@ -1,18 +1,23 @@
 <map id="src/impl/x86_64/vga.cpp" name="src/impl/x86_64/vga.cpp">
-<area shape="rect" id="Node000001" title="Implementation of VGA text&#45;mode driver." alt="" coords="5,5,185,31"/>
-<area shape="rect" id="Node000002" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="26,225,85,251"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,32,63,212,57,211,91,31"/>
-<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions and macros." alt="" coords="131,79,185,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="108,29,141,66,137,70,104,33"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="129,299,200,324"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,248,137,289,134,293,71,253"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="158,105,150,152,149,188,152,224,162,285,156,286,146,225,144,188,145,152,153,104"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="159,152,234,177"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="167,103,186,139,182,141,162,106"/>
-<area shape="rect" id="Node000006" href="$apic_8h.html" title=" " alt="" coords="258,152,351,177"/>
-<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="183,102,270,144,267,148,180,106"/>
-<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="295,180,187,291,183,287,291,176"/>
-<area shape="rect" id="Node000007" href="$idt_8h.html" title=" " alt="" coords="262,225,313,251"/>
-<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="304,178,296,213,291,212,299,177"/>
-<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="269,253,198,294,195,289,266,248"/>
+<area shape="rect" id="Node000001" title="Implementation of VGA text&#45;mode driver." alt="" coords="54,5,234,31"/>
+<area shape="rect" id="Node000002" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="5,225,64,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,32,100,80,66,151,44,213,39,211,61,149,95,77,131,29"/>
+<area shape="rect" id="Node000004" href="$string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="109,79,179,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="147,31,147,65,141,65,141,31"/>
+<area shape="rect" id="Node000006" href="$util_8h.html" title="Utility functions and macros." alt="" coords="223,79,278,104"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="163,28,223,69,220,73,160,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="215,299,286,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,246,203,292,202,297,63,252"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="140,105,128,138,126,158,129,176,148,211,172,242,224,288,221,292,169,245,143,214,124,178,120,158,123,137,135,104"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="139,152,213,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="152,103,168,139,163,141,147,105"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="253,104,253,284,248,284,248,104"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="241,106,200,144,196,141,237,102"/>
+<area shape="rect" id="Node000007" href="$apic_8h.html" title=" " alt="" coords="288,152,381,177"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="266,102,312,141,309,145,262,106"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="330,179,267,288,262,285,325,176"/>
+<area shape="rect" id="Node000008" href="$idt_8h.html" title=" " alt="" coords="339,225,389,251"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="342,177,356,212,352,214,337,179"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="347,253,282,294,279,289,344,248"/>
+<area shape="poly" id="edge13_Node000008_Node000006" title=" " alt="" coords="372,223,392,190,396,171,391,153,371,132,346,117,318,106,291,100,293,95,320,101,348,112,374,128,396,151,402,171,397,192,377,226"/>
 </map>

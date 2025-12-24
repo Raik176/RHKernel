@@ -20,10 +20,17 @@ var pmm_8cpp =
     [ "_kernel_phys_start", "pmm_8cpp.html#a4df0d6e7c2daa7e451f23dddf8b71edf", null ],
     [ "free_lists", "pmm_8cpp.html#a22a12d745bcf272c48223c19b842f1c5", null ],
     [ "high_pd_table", "pmm_8cpp.html#a660073ecba2a1828620bf9d79ef3125d", null ],
+    [ "high_pd_table_end", "pmm_8cpp.html#a39e9aad9455e5382cd311036efce1057", null ],
     [ "high_pdp_table", "pmm_8cpp.html#a4874576cd092e36ca88ea19baf19b3dd", null ],
+    [ "high_pdp_table_end", "pmm_8cpp.html#aa31a29bbf332dcb981bc404d87a54ffa", null ],
     [ "page_directory", "pmm_8cpp.html#a6d7c8ae1fa9d59363bf6174f91a655a6", null ],
+    [ "page_directory_end", "pmm_8cpp.html#a1ddd2845e4c54960a296ae89a2337294", null ],
     [ "pdp_table", "pmm_8cpp.html#a196f3fd2c36cd5efff30ec4f05e7e7ce", null ],
+    [ "pdp_table_end", "pmm_8cpp.html#a1bf95c8332d6961a9d714e9787c3d56c", null ],
     [ "phys_map_pd_table", "pmm_8cpp.html#a724e08857aeb9e90a0b555a55f2e9cbb", null ],
+    [ "phys_map_pd_table_end", "pmm_8cpp.html#a089dd73a9b37e27b9be344e36bd352c3", null ],
     [ "phys_map_pdp_table", "pmm_8cpp.html#a8a2a1ccb13265cbdc9af723fa264d2b7", null ],
-    [ "pml4_table", "pmm_8cpp.html#a9120970010fccf6e2546c9c7c066afab", null ]
+    [ "phys_map_pdp_table_end", "pmm_8cpp.html#a65c05e93c21ec5acb78b46da4281a827", null ],
+    [ "pml4_table", "pmm_8cpp.html#a9120970010fccf6e2546c9c7c066afab", null ],
+    [ "pml4_table_end", "pmm_8cpp.html#a4c2bbc32a36f4474caf40fb8cfcba5fd", null ]
 ];

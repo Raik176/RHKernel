@@ -92,7 +92,6 @@ $(document).ready(function(){initNavTree('namespacegdt.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">gdt Namespace Reference</div></div>
@@ -101,90 +100,43 @@ $(document).ready(function(){initNavTree('namespacegdt.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTEntry.html">GDTEntry</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single Global Descriptor Table (GDT) entry.  <a href="structgdt_1_1GDTEntry.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1gdt__entry.html">gdt_entry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a single Global Descriptor Table (GDT) entry.  <a href="structgdt_1_1gdt__entry.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer structure used to load the GDT.  <a href="structgdt_1_1GDTPtr.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1gdt__pointer.html">gdt_pointer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer structure used to load the GDT.  <a href="structgdt_1_1gdt__pointer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a7888085c9bec7c00e2de8ae42a456b04" id="r_a7888085c9bec7c00e2de8ae42a456b04"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04">Segment</a> : uint16_t { <a class="el" href="namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04a23d83a5927a230f8c49e5e161ba2f0c9">NULL_SEG</a> = 0
-, <a class="el" href="namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04af98f0b3414e0ed54b9e23189c56df4ae">KERNEL_CODE</a> = 1
-, <a class="el" href="namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04afc923ae112931dfb091111e9a844644f">KERNEL_DATA</a> = 2
- }</td></tr>
-<tr class="memdesc:a7888085c9bec7c00e2de8ae42a456b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predefined segment selectors in the GDT.  <a href="namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04">More...</a><br /></td></tr>
-<tr class="separator:a7888085c9bec7c00e2de8ae42a456b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1tss.html">tss</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae1967b1eeb075201ec8bef7cba476af3" id="r_ae1967b1eeb075201ec8bef7cba476af3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ae1967b1eeb075201ec8bef7cba476af3">set_entry</a> (int idx, uint32_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint32_t <a class="el" href="gdt_8h.html#ab28e82ae69032cb4ad3ec3a0be3d7129">limit</a>, uint8_t <a class="el" href="gdt_8h.html#a8b0d6200bc639dd37ff68847a0adde5f">access</a>, uint8_t gran)</td></tr>
-<tr class="separator:ae1967b1eeb075201ec8bef7cba476af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2640a2f60da951c7e5f3ec497924c165" id="r_a2640a2f60da951c7e5f3ec497924c165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a2640a2f60da951c7e5f3ec497924c165">init</a> ()</td></tr>
-<tr class="memdesc:a2640a2f60da951c7e5f3ec497924c165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the GDT.  <br /></td></tr>
-<tr class="separator:a2640a2f60da951c7e5f3ec497924c165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06db851e495023c85f62806632448c82" id="r_a06db851e495023c85f62806632448c82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a06db851e495023c85f62806632448c82">init_ap</a> ()</td></tr>
-<tr class="separator:a06db851e495023c85f62806632448c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e7f329972e893e4af69835d489a1d62" id="r_a8e7f329972e893e4af69835d489a1d62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a8e7f329972e893e4af69835d489a1d62">get_gdt_ptr</a> ()</td></tr>
-<tr class="memdesc:a8e7f329972e893e4af69835d489a1d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the current GDT pointer.  <br /></td></tr>
-<tr class="separator:a8e7f329972e893e4af69835d489a1d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3517e0f92f976b5199cf22b366b1c58" id="r_aa3517e0f92f976b5199cf22b366b1c58"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structgdt_1_1GDTEntry.html">gdt::GDTEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#aa3517e0f92f976b5199cf22b366b1c58">__attribute__</a> ((packed))</td></tr>
-<tr class="separator:aa3517e0f92f976b5199cf22b366b1c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53c6eea854102b633e04557f51c2ce3" id="r_af53c6eea854102b633e04557f51c2ce3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#af53c6eea854102b633e04557f51c2ce3">set_entry</a> (<a class="el" href="structgdt_1_1gdt__entry.html">gdt_entry</a> *entry, uint32_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint32_t <a class="el" href="gdt_8h.html#ab28e82ae69032cb4ad3ec3a0be3d7129">limit</a>, uint8_t <a class="el" href="gdt_8h.html#a8b0d6200bc639dd37ff68847a0adde5f">access</a>, uint8_t gran)</td></tr>
+<tr class="separator:af53c6eea854102b633e04557f51c2ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2d4faadefefa5fea37ba254c49a53e" id="r_a9e2d4faadefefa5fea37ba254c49a53e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a9e2d4faadefefa5fea37ba254c49a53e">init_early</a> ()</td></tr>
+<tr class="memdesc:a9e2d4faadefefa5fea37ba254c49a53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the GDT.  <br /></td></tr>
+<tr class="separator:a9e2d4faadefefa5fea37ba254c49a53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d3767549069e4ba381ee95a23988c88" id="r_a7d3767549069e4ba381ee95a23988c88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a7d3767549069e4ba381ee95a23988c88">init_core</a> ()</td></tr>
+<tr class="separator:a7d3767549069e4ba381ee95a23988c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d2832bbdf02040df6bb26cbe007957f" id="r_a9d2832bbdf02040df6bb26cbe007957f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structgdt_1_1gdt__entry.html">gdt::gdt_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a9d2832bbdf02040df6bb26cbe007957f">__attribute__</a> ((packed))</td></tr>
+<tr class="separator:a9d2832bbdf02040df6bb26cbe007957f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad71ded752899f558e6555fa02504fdf0" id="r_ad71ded752899f558e6555fa02504fdf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ad71ded752899f558e6555fa02504fdf0">gdt_load</a> (uint64_t gdt_ptr_addr)</td></tr>
 <tr class="separator:ad71ded752899f558e6555fa02504fdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a516da56d7481e733f0fa9e164136e5be" id="r_a516da56d7481e733f0fa9e164136e5be"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structgdt_1_1GDTEntry.html">GDTEntry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a516da56d7481e733f0fa9e164136e5be">gdt_entries</a> [3]</td></tr>
-<tr class="separator:a516da56d7481e733f0fa9e164136e5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58a614d471498f89cb9651b76bb59366" id="r_a58a614d471498f89cb9651b76bb59366"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a58a614d471498f89cb9651b76bb59366">gdt_ptr</a></td></tr>
-<tr class="separator:a58a614d471498f89cb9651b76bb59366"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af23c3d0e69009b731a92516365ce8ad9" id="r_af23c3d0e69009b731a92516365ce8ad9"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04">gdt::Segment</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#af23c3d0e69009b731a92516365ce8ad9">__attribute__</a></td></tr>
-<tr class="separator:af23c3d0e69009b731a92516365ce8ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac57b0afdaca3b3da172b8cc25b337969" id="r_ac57b0afdaca3b3da172b8cc25b337969"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ac57b0afdaca3b3da172b8cc25b337969">MAX_ENTRIES</a> = 7</td></tr>
+<tr class="separator:ac57b0afdaca3b3da172b8cc25b337969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a7888085c9bec7c00e2de8ae42a456b04" name="a7888085c9bec7c00e2de8ae42a456b04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7888085c9bec7c00e2de8ae42a456b04">&#9670;&#160;</a></span>Segment</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="namespacegdt.html#a7888085c9bec7c00e2de8ae42a456b04">gdt::Segment</a> : uint16_t</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Predefined segment selectors in the GDT. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7888085c9bec7c00e2de8ae42a456b04a23d83a5927a230f8c49e5e161ba2f0c9" name="a7888085c9bec7c00e2de8ae42a456b04a23d83a5927a230f8c49e5e161ba2f0c9"></a>NULL_SEG&#160;</td><td class="fielddoc"><p>Null segment. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a7888085c9bec7c00e2de8ae42a456b04af98f0b3414e0ed54b9e23189c56df4ae" name="a7888085c9bec7c00e2de8ae42a456b04af98f0b3414e0ed54b9e23189c56df4ae"></a>KERNEL_CODE&#160;</td><td class="fielddoc"><p>Kernel code segment. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a7888085c9bec7c00e2de8ae42a456b04afc923ae112931dfb091111e9a844644f" name="a7888085c9bec7c00e2de8ae42a456b04afc923ae112931dfb091111e9a844644f"></a>KERNEL_DATA&#160;</td><td class="fielddoc"><p>Kernel data segment. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aa3517e0f92f976b5199cf22b366b1c58" name="aa3517e0f92f976b5199cf22b366b1c58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3517e0f92f976b5199cf22b366b1c58">&#9670;&#160;</a></span>__attribute__()</h2>
+<a id="a9d2832bbdf02040df6bb26cbe007957f" name="a9d2832bbdf02040df6bb26cbe007957f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d2832bbdf02040df6bb26cbe007957f">&#9670;&#160;</a></span>__attribute__()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structgdt_1_1GDTEntry.html">gdt::GDTEntry</a> gdt::__attribute__ </td>
+          <td class="memname">struct <a class="el" href="structgdt_1_1tss.html">gdt::tss</a> gdt::__attribute__ </td>
           <td>(</td>
           <td class="paramtype">(packed)&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -215,56 +167,86 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacegdt_ad71ded752899f558e6555fa02504fdf0_icgraph.png" border="0" usemap="#anamespacegdt_ad71ded752899f558e6555fa02504fdf0_icgraph" alt=""/></div>
 <map name="anamespacegdt_ad71ded752899f558e6555fa02504fdf0_icgraph" id="anamespacegdt_ad71ded752899f558e6555fa02504fdf0_icgraph">
-<area shape="rect" title=" " alt="" coords="797,31,904,56"/>
-<area shape="rect" href="namespacegdt.html#a2640a2f60da951c7e5f3ec497924c165" title="Initialize the GDT." alt="" coords="489,5,561,31"/>
-<area shape="poly" title=" " alt="" coords="784,41,561,23,562,18,784,36"/>
-<area shape="rect" href="namespacegdt.html#a06db851e495023c85f62806632448c82" title=" " alt="" coords="655,56,749,81"/>
-<area shape="poly" title=" " alt="" coords="784,57,750,63,749,58,783,52"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
-<area shape="poly" title=" " alt="" coords="475,23,68,44,68,39,475,18"/>
-<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,56,607,81"/>
-<area shape="poly" title=" " alt="" coords="641,71,607,71,607,66,641,66"/>
-<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,56,396,81"/>
-<area shape="poly" title=" " alt="" coords="430,71,396,71,396,66,430,66"/>
-<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,56,225,81"/>
-<area shape="poly" title=" " alt="" coords="260,71,226,71,226,66,260,66"/>
-<area shape="poly" title=" " alt="" coords="102,58,68,52,69,47,103,53"/>
+<area shape="rect" title=" " alt="" coords="809,81,916,107"/>
+<area shape="rect" href="namespacegdt.html#a7d3767549069e4ba381ee95a23988c88" title=" " alt="" coords="655,56,761,81"/>
+<area shape="poly" title=" " alt="" coords="795,86,761,80,762,75,796,80"/>
+<area shape="rect" href="namespacegdt.html#a9e2d4faadefefa5fea37ba254c49a53e" title="Initialize the GDT." alt="" coords="279,107,391,132"/>
+<area shape="poly" title=" " alt="" coords="796,100,391,119,391,114,795,95"/>
+<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,5,607,31"/>
+<area shape="poly" title=" " alt="" coords="648,55,571,33,573,28,649,50"/>
+<area shape="rect" href="namespacesmp.html#a5a1d89d87ee6a3c23582ff9ad82f5c12" title=" " alt="" coords="116,56,225,81"/>
+<area shape="poly" title=" " alt="" coords="641,71,226,71,226,66,641,66"/>
+<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
+<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,7,225,32"/>
+<area shape="poly" title=" " alt="" coords="260,21,226,22,226,16,260,16"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,56,68,81"/>
+<area shape="poly" title=" " alt="" coords="124,39,69,60,67,55,122,34"/>
+<area shape="poly" title=" " alt="" coords="102,71,68,71,68,66,102,66"/>
+<area shape="poly" title=" " alt="" coords="265,117,192,110,115,97,68,83,69,78,117,91,193,104,265,112"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a8e7f329972e893e4af69835d489a1d62" name="a8e7f329972e893e4af69835d489a1d62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e7f329972e893e4af69835d489a1d62">&#9670;&#160;</a></span>get_gdt_ptr()</h2>
+<a id="a7d3767549069e4ba381ee95a23988c88" name="a7d3767549069e4ba381ee95a23988c88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d3767549069e4ba381ee95a23988c88">&#9670;&#160;</a></span>init_core()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a> gdt::get_gdt_ptr </td>
+          <td class="memname">void gdt::init_core </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Retrieve the current GDT pointer. </p>
-<p>Retrieve the pointer to the current GDT.</p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structgdt_1_1GDTPtr.html" title="Pointer structure used to load the GDT.">GDTPtr</a> containing base address and limit of the GDT</dd>
-<dd>
-<a class="el" href="structgdt_1_1GDTPtr.html" title="Pointer structure used to load the GDT.">GDTPtr</a> structure containing the base address and limit of the GDT </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacegdt_a7d3767549069e4ba381ee95a23988c88_cgraph.png" border="0" usemap="#anamespacegdt_a7d3767549069e4ba381ee95a23988c88_cgraph" alt=""/></div>
+<map name="anamespacegdt_a7d3767549069e4ba381ee95a23988c88_cgraph" id="anamespacegdt_a7d3767549069e4ba381ee95a23988c88_cgraph">
+<area shape="rect" title=" " alt="" coords="5,55,112,80"/>
+<area shape="rect" href="namespacegdt.html#ad71ded752899f558e6555fa02504fdf0" title=" " alt="" coords="163,5,269,31"/>
+<area shape="poly" title=" " alt="" coords="99,52,161,32,162,37,101,57"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="161,55,271,80"/>
+<area shape="poly" title=" " alt="" coords="112,65,148,65,148,70,112,70"/>
+<area shape="rect" href="namespacegdt.html#af53c6eea854102b633e04557f51c2ce3" title=" " alt="" coords="160,104,272,129"/>
+<area shape="poly" title=" " alt="" coords="101,77,162,97,161,102,99,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacegdt_a7d3767549069e4ba381ee95a23988c88_icgraph.png" border="0" usemap="#anamespacegdt_a7d3767549069e4ba381ee95a23988c88_icgraph" alt=""/></div>
+<map name="anamespacegdt_a7d3767549069e4ba381ee95a23988c88_icgraph" id="anamespacegdt_a7d3767549069e4ba381ee95a23988c88_icgraph">
+<area shape="rect" title=" " alt="" coords="655,31,761,56"/>
+<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,5,607,31"/>
+<area shape="poly" title=" " alt="" coords="641,37,606,32,607,27,642,31"/>
+<area shape="rect" href="namespacesmp.html#a5a1d89d87ee6a3c23582ff9ad82f5c12" title=" " alt="" coords="280,56,389,81"/>
+<area shape="poly" title=" " alt="" coords="641,51,390,68,390,62,640,45"/>
+<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
+<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,5,225,31"/>
+<area shape="poly" title=" " alt="" coords="260,21,226,21,226,15,260,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
+<area shape="poly" title=" " alt="" coords="103,33,69,40,68,35,102,28"/>
+<area shape="poly" title=" " alt="" coords="266,66,68,49,68,43,266,60"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="a2640a2f60da951c7e5f3ec497924c165" name="a2640a2f60da951c7e5f3ec497924c165"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2640a2f60da951c7e5f3ec497924c165">&#9670;&#160;</a></span>init()</h2>
+<a id="a9e2d4faadefefa5fea37ba254c49a53e" name="a9e2d4faadefefa5fea37ba254c49a53e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e2d4faadefefa5fea37ba254c49a53e">&#9670;&#160;</a></span>init_early()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gdt::init </td>
+          <td class="memname">void gdt::init_early </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -279,21 +261,21 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacegdt_a2640a2f60da951c7e5f3ec497924c165_cgraph.png" border="0" usemap="#anamespacegdt_a2640a2f60da951c7e5f3ec497924c165_cgraph" alt=""/></div>
-<map name="anamespacegdt_a2640a2f60da951c7e5f3ec497924c165_cgraph" id="anamespacegdt_a2640a2f60da951c7e5f3ec497924c165_cgraph">
-<area shape="rect" title="Initialize the GDT." alt="" coords="5,31,77,56"/>
-<area shape="rect" href="namespacegdt.html#ad71ded752899f558e6555fa02504fdf0" title=" " alt="" coords="128,5,235,31"/>
-<area shape="poly" title=" " alt="" coords="77,34,114,27,115,33,78,39"/>
-<area shape="rect" href="namespacegdt.html#ae1967b1eeb075201ec8bef7cba476af3" title=" " alt="" coords="125,55,237,80"/>
-<area shape="poly" title=" " alt="" coords="78,47,112,53,112,58,77,52"/>
+<div class="center"><img src="namespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_cgraph.png" border="0" usemap="#anamespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_cgraph" alt=""/></div>
+<map name="anamespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_cgraph" id="anamespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_cgraph">
+<area shape="rect" title="Initialize the GDT." alt="" coords="5,31,117,56"/>
+<area shape="rect" href="namespacegdt.html#ad71ded752899f558e6555fa02504fdf0" title=" " alt="" coords="168,5,275,31"/>
+<area shape="poly" title=" " alt="" coords="117,32,154,26,155,31,118,37"/>
+<area shape="rect" href="namespacegdt.html#af53c6eea854102b633e04557f51c2ce3" title=" " alt="" coords="165,55,277,80"/>
+<area shape="poly" title=" " alt="" coords="118,49,152,54,152,60,117,54"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacegdt_a2640a2f60da951c7e5f3ec497924c165_icgraph.png" border="0" usemap="#anamespacegdt_a2640a2f60da951c7e5f3ec497924c165_icgraph" alt=""/></div>
-<map name="anamespacegdt_a2640a2f60da951c7e5f3ec497924c165_icgraph" id="anamespacegdt_a2640a2f60da951c7e5f3ec497924c165_icgraph">
-<area shape="rect" title="Initialize the GDT." alt="" coords="116,5,188,31"/>
+<div class="center"><img src="namespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_icgraph.png" border="0" usemap="#anamespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_icgraph" alt=""/></div>
+<map name="anamespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_icgraph" id="anamespacegdt_a9e2d4faadefefa5fea37ba254c49a53e_icgraph">
+<area shape="rect" title="Initialize the GDT." alt="" coords="116,5,228,31"/>
 <area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
 <area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
 </map>
@@ -301,51 +283,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a06db851e495023c85f62806632448c82" name="a06db851e495023c85f62806632448c82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06db851e495023c85f62806632448c82">&#9670;&#160;</a></span>init_ap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gdt::init_ap </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespacegdt_a06db851e495023c85f62806632448c82_cgraph.png" border="0" usemap="#anamespacegdt_a06db851e495023c85f62806632448c82_cgraph" alt=""/></div>
-<map name="anamespacegdt_a06db851e495023c85f62806632448c82_cgraph" id="anamespacegdt_a06db851e495023c85f62806632448c82_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,100,31"/>
-<area shape="rect" href="namespacegdt.html#ad71ded752899f558e6555fa02504fdf0" title=" " alt="" coords="148,5,255,31"/>
-<area shape="poly" title=" " alt="" coords="100,15,134,15,134,21,100,21"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespacegdt_a06db851e495023c85f62806632448c82_icgraph.png" border="0" usemap="#anamespacegdt_a06db851e495023c85f62806632448c82_icgraph" alt=""/></div>
-<map name="anamespacegdt_a06db851e495023c85f62806632448c82_icgraph" id="anamespacegdt_a06db851e495023c85f62806632448c82_icgraph">
-<area shape="rect" title=" " alt="" coords="655,5,749,31"/>
-<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,5,607,31"/>
-<area shape="poly" title=" " alt="" coords="641,21,607,21,607,15,641,15"/>
-<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
-<area shape="poly" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
-<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,5,225,31"/>
-<area shape="poly" title=" " alt="" coords="260,21,226,21,226,15,260,15"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="ae1967b1eeb075201ec8bef7cba476af3" name="ae1967b1eeb075201ec8bef7cba476af3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1967b1eeb075201ec8bef7cba476af3">&#9670;&#160;</a></span>set_entry()</h2>
+<a id="af53c6eea854102b633e04557f51c2ce3" name="af53c6eea854102b633e04557f51c2ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af53c6eea854102b633e04557f51c2ce3">&#9670;&#160;</a></span>set_entry()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -356,8 +295,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static void gdt::set_entry </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>idx</em>, </td>
+          <td class="paramtype"><a class="el" href="structgdt_1_1gdt__entry.html">gdt_entry</a> *&#160;</td>
+          <td class="paramname"><em>entry</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -398,35 +337,33 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespacegdt_ae1967b1eeb075201ec8bef7cba476af3_icgraph.png" border="0" usemap="#anamespacegdt_ae1967b1eeb075201ec8bef7cba476af3_icgraph" alt=""/></div>
-<map name="anamespacegdt_ae1967b1eeb075201ec8bef7cba476af3_icgraph" id="anamespacegdt_ae1967b1eeb075201ec8bef7cba476af3_icgraph">
-<area shape="rect" title=" " alt="" coords="236,5,348,31"/>
-<area shape="rect" href="namespacegdt.html#a2640a2f60da951c7e5f3ec497924c165" title="Initialize the GDT." alt="" coords="116,5,188,31"/>
-<area shape="poly" title=" " alt="" coords="223,21,188,21,188,15,223,15"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<div class="center"><img src="namespacegdt_af53c6eea854102b633e04557f51c2ce3_icgraph.png" border="0" usemap="#anamespacegdt_af53c6eea854102b633e04557f51c2ce3_icgraph" alt=""/></div>
+<map name="anamespacegdt_af53c6eea854102b633e04557f51c2ce3_icgraph" id="anamespacegdt_af53c6eea854102b633e04557f51c2ce3_icgraph">
+<area shape="rect" title=" " alt="" coords="809,81,921,107"/>
+<area shape="rect" href="namespacegdt.html#a7d3767549069e4ba381ee95a23988c88" title=" " alt="" coords="655,56,761,81"/>
+<area shape="poly" title=" " alt="" coords="795,85,761,80,762,75,796,80"/>
+<area shape="rect" href="namespacegdt.html#a9e2d4faadefefa5fea37ba254c49a53e" title="Initialize the GDT." alt="" coords="279,107,391,132"/>
+<area shape="poly" title=" " alt="" coords="795,100,391,119,391,114,795,95"/>
+<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,5,607,31"/>
+<area shape="poly" title=" " alt="" coords="648,55,571,33,573,28,649,50"/>
+<area shape="rect" href="namespacesmp.html#a5a1d89d87ee6a3c23582ff9ad82f5c12" title=" " alt="" coords="116,56,225,81"/>
+<area shape="poly" title=" " alt="" coords="641,71,226,71,226,66,641,66"/>
+<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
+<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,7,225,32"/>
+<area shape="poly" title=" " alt="" coords="260,21,226,22,226,16,260,16"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,56,68,81"/>
+<area shape="poly" title=" " alt="" coords="124,39,69,60,67,55,122,34"/>
+<area shape="poly" title=" " alt="" coords="102,71,68,71,68,66,102,66"/>
+<area shape="poly" title=" " alt="" coords="265,117,192,110,115,97,68,83,69,78,117,91,193,104,265,112"/>
 </map>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="af23c3d0e69009b731a92516365ce8ad9" name="af23c3d0e69009b731a92516365ce8ad9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af23c3d0e69009b731a92516365ce8ad9">&#9670;&#160;</a></span>__attribute__</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct <a class="el" href="structgdt_1_1GDTPtr.html">gdt::GDTPtr</a> gdt::__attribute__</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a516da56d7481e733f0fa9e164136e5be" name="a516da56d7481e733f0fa9e164136e5be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a516da56d7481e733f0fa9e164136e5be">&#9670;&#160;</a></span>gdt_entries</h2>
+<a id="ac57b0afdaca3b3da172b8cc25b337969" name="ac57b0afdaca3b3da172b8cc25b337969"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac57b0afdaca3b3da172b8cc25b337969">&#9670;&#160;</a></span>MAX_ENTRIES</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -435,34 +372,12 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structgdt_1_1GDTEntry.html">GDTEntry</a> gdt::gdt_entries[3]</td>
+          <td class="memname">constexpr uint16_t gdt::MAX_ENTRIES = 7</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a58a614d471498f89cb9651b76bb59366" name="a58a614d471498f89cb9651b76bb59366"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58a614d471498f89cb9651b76bb59366">&#9670;&#160;</a></span>gdt_ptr</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structgdt_1_1GDTPtr.html">GDTPtr</a> gdt::gdt_ptr</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

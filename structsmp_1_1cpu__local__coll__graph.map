@@ -1,4 +1,18 @@
 <map id="smp::cpu_local" name="smp::cpu_local">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,124,31"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="139,12,151,18,125,25,124,20,145,18,137,17"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="431,215,549,240"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="564,216,572,220,576,228,568,237,550,241,549,235,565,232,571,227,569,224,562,221"/>
+<area shape="rect" id="Node000002" href="$structscheduler_1_1task.html" title=" " alt="" coords="5,95,127,121"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="99,125,164,158,243,188,341,209,431,220,430,225,340,215,241,193,162,163,97,130"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="142,99,153,108,145,116,127,119,126,114,143,111,148,108,139,104"/>
+<area shape="rect" id="Node000003" href="$structregs.html" title="CPU register state structure." alt="" coords="41,5,91,31"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="69,44,69,95,63,95,63,44"/>
+<area shape="rect" id="Node000004" href="$structheap_1_1SlabHeader.html" title=" " alt="" coords="208,95,345,121"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="305,126,351,157,405,188,459,212,457,217,402,193,348,162,302,131"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="360,99,372,108,364,116,346,119,345,114,362,111,367,108,357,104"/>
+<area shape="rect" id="Node000005" href="$structgdt_1_1gdt__pointer.html" title="Pointer structure used to load the GDT." alt="" coords="427,95,553,121"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="493,135,493,214,487,214,487,135"/>
+<area shape="rect" id="Node000006" href="$structgdt_1_1gdt__entry.html" title="Represents a single Global Descriptor Table (GDT) entry." alt="" coords="577,95,691,121"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="615,133,548,193,512,217,509,212,544,189,611,129"/>
+<area shape="rect" id="Node000007" href="$structgdt_1_1tss.html" title=" " alt="" coords="715,95,785,121"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="738,134,713,165,678,193,647,207,614,217,550,227,549,222,612,212,645,202,675,188,709,161,734,130"/>
 </map>

@@ -96,15 +96,19 @@ $(document).ready(function(){initNavTree('structheap_1_1SlabCache.html',''); ini
   <div class="headertitle"><div class="title">heap::SlabCache Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="heap_8h_source.html">heap.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for heap::SlabCache:</div>
 <div class="dyncontent">
 <div class="center"><img src="structheap_1_1SlabCache__coll__graph.png" border="0" usemap="#aheap_1_1SlabCache_coll__map" alt="Collaboration graph"/></div>
 <map name="aheap_1_1SlabCache_coll__map" id="aheap_1_1SlabCache_coll__map">
-<area shape="rect" title=" " alt="" coords="9,112,139,137"/>
-<area shape="rect" href="structheap_1_1SlabHeader.html" title=" " alt="" coords="5,7,143,33"/>
-<area shape="poly" title=" " alt="" coords="77,47,77,112,71,112,71,47"/>
-<area shape="poly" title=" " alt="" coords="157,10,165,13,169,20,161,29,143,32,142,27,159,24,164,20,162,18,155,15"/>
+<area shape="rect" title=" " alt="" coords="47,112,178,137"/>
+<area shape="rect" href="structlock_1_1spinlock.html" title=" " alt="" coords="5,7,116,33"/>
+<area shape="poly" title=" " alt="" coords="75,44,109,111,104,113,71,47"/>
+<area shape="rect" href="structheap_1_1SlabHeader.html" title=" " alt="" coords="140,7,277,33"/>
+<area shape="poly" title=" " alt="" coords="190,45,125,114,122,110,186,41"/>
+<area shape="poly" title=" " alt="" coords="292,10,300,13,304,20,296,29,278,32,277,27,293,24,299,20,297,18,290,15"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -113,6 +117,8 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a26eefc9a4e26fb34e41fe9cffce02c7e" id="r_a26eefc9a4e26fb34e41fe9cffce02c7e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabCache.html#a26eefc9a4e26fb34e41fe9cffce02c7e">slot_size</a></td></tr>
 <tr class="memdesc:a26eefc9a4e26fb34e41fe9cffce02c7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of each allocation slot.  <br /></td></tr>
 <tr class="separator:a26eefc9a4e26fb34e41fe9cffce02c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76af0b5f81ef8f2f10c87a332d0c2238" id="r_a76af0b5f81ef8f2f10c87a332d0c2238"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlock_1_1spinlock.html">lock::spinlock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabCache.html#a76af0b5f81ef8f2f10c87a332d0c2238">lock</a></td></tr>
+<tr class="separator:a76af0b5f81ef8f2f10c87a332d0c2238"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f8c53b8da51239b586406bbb8f52576" id="r_a3f8c53b8da51239b586406bbb8f52576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabCache.html#a3f8c53b8da51239b586406bbb8f52576">partial_slabs</a></td></tr>
 <tr class="memdesc:a3f8c53b8da51239b586406bbb8f52576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slabs with some free slots.  <br /></td></tr>
 <tr class="separator:a3f8c53b8da51239b586406bbb8f52576"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +140,20 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Slabs completely used. </p>
+
+</div>
+</div>
+<a id="a76af0b5f81ef8f2f10c87a332d0c2238" name="a76af0b5f81ef8f2f10c87a332d0c2238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76af0b5f81ef8f2f10c87a332d0c2238">&#9670;&#160;</a></span>lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structlock_1_1spinlock.html">lock::spinlock</a> heap::SlabCache::lock</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -170,7 +190,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/impl/x86_64/<a class="el" href="heap_8cpp.html">heap.cpp</a></li>
+<li>src/intf/memory/<a class="el" href="heap_8h_source.html">heap.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -99,14 +99,31 @@ $(document).ready(function(){initNavTree('smp_8h.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="gdt_8h_source.html">gdt.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="scheduler_8h_source.html">smp/scheduler.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for smp.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="smp_8h__incl.png" border="0" usemap="#asrc_2intf_2smp_2smp_8h" alt=""/></div>
 <map name="asrc_2intf_2smp_2smp_8h" id="asrc_2intf_2smp_2smp_8h">
-<area shape="rect" title=" " alt="" coords="5,5,148,31"/>
-<area shape="rect" title=" " alt="" coords="41,79,112,104"/>
-<area shape="poly" title=" " alt="" coords="79,31,79,65,74,65,74,31"/>
+<area shape="rect" title=" " alt="" coords="41,5,184,31"/>
+<area shape="rect" title=" " alt="" coords="84,225,154,251"/>
+<area shape="poly" title=" " alt="" coords="97,33,65,59,31,94,18,114,10,135,9,156,16,176,27,190,40,202,72,220,69,224,37,206,23,194,11,179,4,156,5,134,13,112,27,91,61,55,94,29"/>
+<area shape="rect" href="gdt_8h.html" title=" " alt="" coords="26,152,81,177"/>
+<area shape="poly" title=" " alt="" coords="110,32,66,140,61,138,105,30"/>
+<area shape="rect" href="heap_8h.html" title=" " alt="" coords="120,79,246,104"/>
+<area shape="poly" title=" " alt="" coords="126,29,164,67,160,71,122,33"/>
+<area shape="rect" href="scheduler_8h.html" title=" " alt="" coords="300,79,428,104"/>
+<area shape="poly" title=" " alt="" coords="153,28,311,72,309,77,152,33"/>
+<area shape="poly" title=" " alt="" coords="66,176,101,213,97,217,62,179"/>
+<area shape="poly" title=" " alt="" coords="176,106,147,153,127,212,122,211,142,151,172,103"/>
+<area shape="rect" title=" " alt="" coords="156,152,231,177"/>
+<area shape="poly" title=" " alt="" coords="187,104,192,138,187,139,182,105"/>
+<area shape="rect" href="lock_8h.html" title=" " alt="" coords="255,152,348,177"/>
+<area shape="poly" title=" " alt="" coords="203,102,272,142,269,147,201,106"/>
+<area shape="poly" title=" " alt="" coords="273,180,163,223,161,218,271,175"/>
+<area shape="poly" title=" " alt="" coords="370,104,375,140,372,160,362,179,349,190,330,200,280,215,169,234,168,229,278,210,328,195,346,186,358,176,367,159,369,140,365,104"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -114,13 +131,19 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="smp_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2smp_2smp_8hdep" alt=""/></div>
 <map name="asrc_2intf_2smp_2smp_8hdep" id="asrc_2intf_2smp_2smp_8hdep">
-<area shape="rect" title=" " alt="" coords="226,5,369,31"/>
-<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="5,86,195,111"/>
-<area shape="poly" title=" " alt="" coords="257,38,130,88,128,83,255,33"/>
-<area shape="rect" href="apic_8cpp.html" title=" " alt="" coords="219,79,376,119"/>
-<area shape="poly" title=" " alt="" coords="300,44,300,79,295,79,295,44"/>
-<area shape="rect" href="smp_8cpp.html" title=" " alt="" coords="400,79,557,119"/>
-<area shape="poly" title=" " alt="" coords="337,34,436,76,434,81,335,39"/>
+<area shape="rect" title=" " alt="" coords="539,5,681,31"/>
+<area shape="rect" href="gdt_8cpp.html" title="Implementation of the Global Descriptor Table (GDT)" alt="" coords="5,86,183,111"/>
+<area shape="poly" title=" " alt="" coords="525,33,196,81,154,89,153,83,195,76,524,28"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="207,86,397,111"/>
+<area shape="poly" title=" " alt="" coords="553,37,347,89,346,83,552,31"/>
+<area shape="rect" href="heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="421,79,605,119"/>
+<area shape="poly" title=" " alt="" coords="587,41,538,81,534,76,583,37"/>
+<area shape="rect" href="apic_8cpp.html" title=" " alt="" coords="629,79,786,119"/>
+<area shape="poly" title=" " alt="" coords="637,37,686,76,682,81,633,41"/>
+<area shape="rect" href="scheduler_8cpp.html" title=" " alt="" coords="810,79,967,119"/>
+<area shape="poly" title=" " alt="" coords="665,32,822,76,821,81,663,37"/>
+<area shape="rect" href="smp_8cpp.html" title=" " alt="" coords="991,79,1149,119"/>
+<area shape="poly" title=" " alt="" coords="696,29,980,76,991,78,990,83,979,81,695,35"/>
 </map>
 </div>
 </div>
@@ -140,14 +163,16 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aab64aec8f84944e819b747aed492c4af" id="r_aab64aec8f84944e819b747aed492c4af"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structsmp_1_1trampoline__data.html">smp::trampoline_data</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#aab64aec8f84944e819b747aed492c4af">smp::__attribute__</a> ((packed))</td></tr>
-<tr class="separator:aab64aec8f84944e819b747aed492c4af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d92475e6e54f85449da1bee3dcc3d3" id="r_ae2d92475e6e54f85449da1bee3dcc3d3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structsmp_1_1trampoline__data.html">smp::trampoline_data</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#ae2d92475e6e54f85449da1bee3dcc3d3">smp::__attribute__</a> ((packed))</td></tr>
+<tr class="separator:ae2d92475e6e54f85449da1bee3dcc3d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee094b28dc7da291474eef181f302168" id="r_aee094b28dc7da291474eef181f302168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#aee094b28dc7da291474eef181f302168">smp::init_aps</a> ()</td></tr>
 <tr class="separator:aee094b28dc7da291474eef181f302168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a1d89d87ee6a3c23582ff9ad82f5c12" id="r_a5a1d89d87ee6a3c23582ff9ad82f5c12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#a5a1d89d87ee6a3c23582ff9ad82f5c12">smp::init_bsp</a> ()</td></tr>
 <tr class="separator:a5a1d89d87ee6a3c23582ff9ad82f5c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4805b4728b6f36e2a725ea117102c32a" id="r_a4805b4728b6f36e2a725ea117102c32a"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#a4805b4728b6f36e2a725ea117102c32a">smp::get_core_count</a> ()</td></tr>
 <tr class="separator:a4805b4728b6f36e2a725ea117102c32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a94214a41fd38de081666401f6de757" id="r_a6a94214a41fd38de081666401f6de757"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsmp_1_1cpu__local.html">cpu_local</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#a6a94214a41fd38de081666401f6de757">smp::get_cpu_by_index</a> (uint64_t index)</td></tr>
+<tr class="separator:a6a94214a41fd38de081666401f6de757"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaca0cd29acd84a2f4f12495de16a90cc" id="r_aaca0cd29acd84a2f4f12495de16a90cc"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structsmp_1_1cpu__local.html">cpu_local</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc">smp::get_cpu</a> ()</td></tr>
 <tr class="separator:aaca0cd29acd84a2f4f12495de16a90cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -155,32 +180,26 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:aa9166a91c5e8b2b51b0a9677f9ba56a0" id="r_aa9166a91c5e8b2b51b0a9677f9ba56a0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#aa9166a91c5e8b2b51b0a9677f9ba56a0">cr3</a></td></tr>
 <tr class="separator:aa9166a91c5e8b2b51b0a9677f9ba56a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf44b1983e0cd8f95016062564207953" id="r_acf44b1983e0cd8f95016062564207953"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#acf44b1983e0cd8f95016062564207953">cpu_index</a></td></tr>
-<tr class="separator:acf44b1983e0cd8f95016062564207953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1df82d80bef9e38526e0421128ec8d0e" id="r_a1df82d80bef9e38526e0421128ec8d0e"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#a1df82d80bef9e38526e0421128ec8d0e">cpu_index</a></td></tr>
+<tr class="separator:a1df82d80bef9e38526e0421128ec8d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9319c7b3aeb6f24d38cb4fd380490ebd" id="r_a9319c7b3aeb6f24d38cb4fd380490ebd"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#a9319c7b3aeb6f24d38cb4fd380490ebd">stack_top</a></td></tr>
 <tr class="separator:a9319c7b3aeb6f24d38cb4fd380490ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35d57ee52cfc94a5917e5eee45debc3e" id="r_a35d57ee52cfc94a5917e5eee45debc3e"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e">entry_point</a></td></tr>
 <tr class="separator:a35d57ee52cfc94a5917e5eee45debc3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cb8d8b14d36ed72551cc08b583f4215" id="r_a2cb8d8b14d36ed72551cc08b583f4215"><td class="memItemLeft" align="right" valign="top">volatile uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#a2cb8d8b14d36ed72551cc08b583f4215">status</a></td></tr>
 <tr class="separator:a2cb8d8b14d36ed72551cc08b583f4215"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a242c987435c6fd1d5804191341ed2df3" id="r_a242c987435c6fd1d5804191341ed2df3"><td class="memItemLeft" align="right" valign="top">cpu_local *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#a242c987435c6fd1d5804191341ed2df3">self</a></td></tr>
-<tr class="separator:a242c987435c6fd1d5804191341ed2df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89277636c944de370e8470e32ce9c5f8" id="r_a89277636c944de370e8470e32ce9c5f8"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#a89277636c944de370e8470e32ce9c5f8">lapic_id</a></td></tr>
-<tr class="separator:a89277636c944de370e8470e32ce9c5f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba60f4e3e1311b8cdc6a5276a367e9a2" id="r_aba60f4e3e1311b8cdc6a5276a367e9a2"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#aba60f4e3e1311b8cdc6a5276a367e9a2">ticks</a></td></tr>
-<tr class="separator:aba60f4e3e1311b8cdc6a5276a367e9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60ddd9c8ca853c8a183b27285eb0173b" id="r_a60ddd9c8ca853c8a183b27285eb0173b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="smp_8h.html#a60ddd9c8ca853c8a183b27285eb0173b">kernel_stack</a></td></tr>
-<tr class="separator:a60ddd9c8ca853c8a183b27285eb0173b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5900c2e80078881b6c6a9a4e8fef8e" id="r_acc5900c2e80078881b6c6a9a4e8fef8e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesmp.html#acc5900c2e80078881b6c6a9a4e8fef8e">smp::__attribute__</a></td></tr>
+<tr class="separator:acc5900c2e80078881b6c6a9a4e8fef8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="acf44b1983e0cd8f95016062564207953" name="acf44b1983e0cd8f95016062564207953"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf44b1983e0cd8f95016062564207953">&#9670;&#160;</a></span>cpu_index</h2>
+<a id="a1df82d80bef9e38526e0421128ec8d0e" name="a1df82d80bef9e38526e0421128ec8d0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1df82d80bef9e38526e0421128ec8d0e">&#9670;&#160;</a></span>cpu_index</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t cpu_index</td>
+          <td class="memname">uint64_t cpu_index</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -215,48 +234,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a60ddd9c8ca853c8a183b27285eb0173b" name="a60ddd9c8ca853c8a183b27285eb0173b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60ddd9c8ca853c8a183b27285eb0173b">&#9670;&#160;</a></span>kernel_stack</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* kernel_stack</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a89277636c944de370e8470e32ce9c5f8" name="a89277636c944de370e8470e32ce9c5f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a89277636c944de370e8470e32ce9c5f8">&#9670;&#160;</a></span>lapic_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t lapic_id</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a242c987435c6fd1d5804191341ed2df3" name="a242c987435c6fd1d5804191341ed2df3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a242c987435c6fd1d5804191341ed2df3">&#9670;&#160;</a></span>self</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cpu_local* self</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9319c7b3aeb6f24d38cb4fd380490ebd" name="a9319c7b3aeb6f24d38cb4fd380490ebd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9319c7b3aeb6f24d38cb4fd380490ebd">&#9670;&#160;</a></span>stack_top</h2>
 
@@ -279,20 +256,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">volatile uint64_t status</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aba60f4e3e1311b8cdc6a5276a367e9a2" name="aba60f4e3e1311b8cdc6a5276a367e9a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba60f4e3e1311b8cdc6a5276a367e9a2">&#9670;&#160;</a></span>ticks</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint64_t ticks</td>
         </tr>
       </table>
 </div><div class="memdoc">

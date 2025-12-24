@@ -1,13 +1,13 @@
 var searchData=
 [
   ['fb_0',['fb',['../namespaceframebuffer.html#a5b6ebe25bec3afc28a667e3e474590e2',1,'framebuffer']]],
-  ['filesize_1',['filesize',['../structcpio__newc__header.html#a73f868cd21c2c224788907bd056a2407',1,'cpio_newc_header::filesize'],['../initramfs_8h.html#a85a858296e7bf1d69645557fbe82e01f',1,'filesize:&#160;initramfs.h']]],
+  ['filesize_1',['filesize',['../initramfs_8h.html#a85a858296e7bf1d69645557fbe82e01f',1,'filesize:&#160;initramfs.h'],['../structcpio__newc__header.html#a73f868cd21c2c224788907bd056a2407',1,'cpio_newc_header::filesize']]],
   ['find_5ftable_2',['find_table',['../namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee',1,'acpi']]],
   ['finddir_3',['finddir',['../namespacevfs.html#a239656d07bb446b6b167328138e14004',1,'vfs::finddir()'],['../structvfs_1_1vfs__node.html#aca2bacbe81ad314f3c37ccd75fc2d3df',1,'vfs::vfs_node::finddir']]],
-  ['flags_4',['flags',['../structidt_1_1idt__entry.html#a8ee7fef2ee4fea3faa318c9edb755eb1',1,'idt::idt_entry::flags'],['../idt_8h.html#aa2585d779da0ab21273a8d92de9a0ebe',1,'flags:&#160;idt.h'],['../acpi_8h.html#a773b39d480759f67926cb18ae2219281',1,'flags:&#160;acpi.h'],['../structacpi_1_1MADTEntryLAPIC.html#a59db23bc3455527ba7c522a30dc96916',1,'acpi::MADTEntryLAPIC::flags'],['../structacpi_1_1MADT.html#ab638761f31d27fc0a14b508372dd25a8',1,'acpi::MADT::flags']]],
+  ['flags_4',['flags',['../structidt_1_1idt__entry.html#a8ee7fef2ee4fea3faa318c9edb755eb1',1,'idt::idt_entry::flags'],['../acpi_8h.html#a773b39d480759f67926cb18ae2219281',1,'flags:&#160;acpi.h'],['../idt_8h.html#aa2585d779da0ab21273a8d92de9a0ebe',1,'flags:&#160;idt.h'],['../structlock_1_1spinlock.html#a0642e2b59113d239e752506913b8b2bb',1,'lock::spinlock::flags'],['../structacpi_1_1MADTEntryLAPIC.html#a59db23bc3455527ba7c522a30dc96916',1,'acpi::MADTEntryLAPIC::flags'],['../structacpi_1_1MADT.html#ab638761f31d27fc0a14b508372dd25a8',1,'acpi::MADT::flags']]],
   ['font_5fbitmap_5fend_5',['font_bitmap_end',['../framebuffer_8cpp.html#a368611c12e7c391d9886e3a0ab9864a5',1,'framebuffer.cpp']]],
   ['font_5fbitmap_5fstart_6',['font_bitmap_start',['../framebuffer_8cpp.html#ac8c97706a1bfbf3e8ae6817572addb08',1,'framebuffer.cpp']]],
-  ['framebuffer_7',['framebuffer',['../namespaceframebuffer.html',1,'framebuffer'],['../namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498aa8b6aa3e7817e792024c8b4ef6cf7349',1,'console::FRAMEBUFFER']]],
+  ['framebuffer_7',['framebuffer',['../namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498aa8b6aa3e7817e792024c8b4ef6cf7349',1,'console::FRAMEBUFFER'],['../namespaceframebuffer.html',1,'framebuffer']]],
   ['framebuffer_2ecpp_8',['framebuffer.cpp',['../framebuffer_8cpp.html',1,'']]],
   ['framebuffer_2eh_9',['framebuffer.h',['../framebuffer_8h.html',1,'']]],
   ['framebuffer_5ftype_10',['framebuffer_type',['../structmultiboot__tag__framebuffer.html#aa588fa7c8613d25651c6cddb2c7765f3',1,'multiboot_tag_framebuffer']]],

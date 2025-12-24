@@ -96,6 +96,8 @@ $(document).ready(function(){initNavTree('structheap_1_1SlabHeader.html',''); in
   <div class="headertitle"><div class="title">heap::SlabHeader Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="heap_8h_source.html">heap.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for heap::SlabHeader:</div>
 <div class="dyncontent">
@@ -111,6 +113,8 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a9175aeb42acfd6b4277cccd7ab5e9fe5" id="r_a9175aeb42acfd6b4277cccd7ab5e9fe5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a9175aeb42acfd6b4277cccd7ab5e9fe5">slot_size</a></td></tr>
 <tr class="memdesc:a9175aeb42acfd6b4277cccd7ab5e9fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of each allocation slot.  <br /></td></tr>
 <tr class="separator:a9175aeb42acfd6b4277cccd7ab5e9fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac98d4b1021124ad11ed4f3f31b17e84e" id="r_ac98d4b1021124ad11ed4f3f31b17e84e"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#ac98d4b1021124ad11ed4f3f31b17e84e">cache_index</a></td></tr>
+<tr class="separator:ac98d4b1021124ad11ed4f3f31b17e84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65655a7ada199a076b21d5d9d1fcec0f" id="r_a65655a7ada199a076b21d5d9d1fcec0f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a65655a7ada199a076b21d5d9d1fcec0f">used_slots</a></td></tr>
 <tr class="memdesc:a65655a7ada199a076b21d5d9d1fcec0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of slots currently in use.  <br /></td></tr>
 <tr class="separator:a65655a7ada199a076b21d5d9d1fcec0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,8 +129,24 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a686e782b191596a55aa7504b447e6d1c" id="r_a686e782b191596a55aa7504b447e6d1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a686e782b191596a55aa7504b447e6d1c">prev</a></td></tr>
 <tr class="memdesc:a686e782b191596a55aa7504b447e6d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Links for partial/full slab lists.  <br /></td></tr>
 <tr class="separator:a686e782b191596a55aa7504b447e6d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72fcc1cc259f29e1cd9374f9820fd667" id="r_a72fcc1cc259f29e1cd9374f9820fd667"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structheap_1_1SlabHeader.html#a72fcc1cc259f29e1cd9374f9820fd667">owner</a></td></tr>
+<tr class="separator:a72fcc1cc259f29e1cd9374f9820fd667"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac98d4b1021124ad11ed4f3f31b17e84e" name="ac98d4b1021124ad11ed4f3f31b17e84e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98d4b1021124ad11ed4f3f31b17e84e">&#9670;&#160;</a></span>cache_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t heap::SlabHeader::cache_index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a19c951d03cfe6b9849de4e5da84e7286" name="a19c951d03cfe6b9849de4e5da84e7286"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a19c951d03cfe6b9849de4e5da84e7286">&#9670;&#160;</a></span>free_list</h2>
 
@@ -151,6 +171,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structheap_1_1SlabHeader.html">SlabHeader</a>* heap::SlabHeader::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72fcc1cc259f29e1cd9374f9820fd667" name="a72fcc1cc259f29e1cd9374f9820fd667"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72fcc1cc259f29e1cd9374f9820fd667">&#9670;&#160;</a></span>owner</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* heap::SlabHeader::owner</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -222,7 +256,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/impl/x86_64/<a class="el" href="heap_8cpp.html">heap.cpp</a></li>
+<li>src/intf/memory/<a class="el" href="heap_8h_source.html">heap.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

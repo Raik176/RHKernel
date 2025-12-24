@@ -91,16 +91,573 @@ $(document).ready(function(){initNavTree('namespacescheduler.html',''); initResi
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">scheduler Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler_1_1Task.html">Task</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler_1_1task.html">task</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a7941237578b7fa1334f4b8260919d677" id="r_a7941237578b7fa1334f4b8260919d677"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677">task_state</a> { <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489">READY</a>
+, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a43491564ebcfd38568918efbd6e840fd">RUNNING</a>
+, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a7850588c11fe6db41b8b2dd6c455f8f3">SLEEPING</a>
+, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677abb4784231ff45108ee20bad16e4a2e8c">DEAD</a>
+ }</td></tr>
+<tr class="separator:a7941237578b7fa1334f4b8260919d677"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3433b43c091f3d97e093d1f8399692d" id="r_ae3433b43c091f3d97e093d1f8399692d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a> { <a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da35c10219c45ccfb5b07444fd7e17214c">KERNEL</a>
+, <a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da2e40ad879e955201df4dedbf8d479a12">USER</a>
+ }</td></tr>
+<tr class="separator:ae3433b43c091f3d97e093d1f8399692d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a1c8eb5d332fae9fb49045a7c5d92958e" id="r_a1c8eb5d332fae9fb49045a7c5d92958e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e">enqueue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *cpu, <a class="el" href="structscheduler_1_1task.html">task</a> *t)</td></tr>
+<tr class="separator:a1c8eb5d332fae9fb49045a7c5d92958e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af80679e4c6adb09b59ba82a269a6f462" id="r_af80679e4c6adb09b59ba82a269a6f462"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#af80679e4c6adb09b59ba82a269a6f462">dequeue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *cpu)</td></tr>
+<tr class="separator:af80679e4c6adb09b59ba82a269a6f462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a665b76d95eb85bbe7bc2357b3d468e70" id="r_a665b76d95eb85bbe7bc2357b3d468e70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70">init_core</a> ()</td></tr>
+<tr class="separator:a665b76d95eb85bbe7bc2357b3d468e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44b15672a257eb4eee8945b18fc2b200" id="r_a44b15672a257eb4eee8945b18fc2b200"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a44b15672a257eb4eee8945b18fc2b200">spawn</a> (<a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a> <a class="el" href="acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03">type</a>, void(*<a class="el" href="smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e">entry_point</a>)())</td></tr>
+<tr class="separator:a44b15672a257eb4eee8945b18fc2b200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5d5090e6ae162b694a4c01823a6b11" id="r_a5b5d5090e6ae162b694a4c01823a6b11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structregs.html">regs</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11">schedule</a> (<a class="el" href="structregs.html">regs</a> *current_state, bool is_timer_tick)</td></tr>
+<tr class="separator:a5b5d5090e6ae162b694a4c01823a6b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66dc9e6aaa092bd2bbc61ed92bc73a27" id="r_a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27">yield</a> ()</td></tr>
+<tr class="separator:a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a3b81b2261dd5d25128bbd76ac80d91f8" id="r_a3b81b2261dd5d25128bbd76ac80d91f8"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3b81b2261dd5d25128bbd76ac80d91f8">next_tid</a> = 1</td></tr>
+<tr class="separator:a3b81b2261dd5d25128bbd76ac80d91f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fd9587ccd96391c01913da759cb8253" id="r_a3fd9587ccd96391c01913da759cb8253"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3fd9587ccd96391c01913da759cb8253">KERNEL_STACK_SIZE</a> = 1024 * 16</td></tr>
+<tr class="separator:a3fd9587ccd96391c01913da759cb8253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98b1040c6549c56fba93e13094cbe4d1" id="r_a98b1040c6549c56fba93e13094cbe4d1"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">MAX_QUEUES</a> = 4</td></tr>
+<tr class="separator:a98b1040c6549c56fba93e13094cbe4d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92dfce9e62b90351581efe9e4674cf30" id="r_a92dfce9e62b90351581efe9e4674cf30"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a92dfce9e62b90351581efe9e4674cf30">TIME_QUANTUMS</a> [<a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">MAX_QUEUES</a>] = {2, 4, 8, 16}</td></tr>
+<tr class="separator:a92dfce9e62b90351581efe9e4674cf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c1015bb4b2531d2b2b3e68ef7b34cda" id="r_a6c1015bb4b2531d2b2b3e68ef7b34cda"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a6c1015bb4b2531d2b2b3e68ef7b34cda">AGING_THRESHOLD</a> = 100</td></tr>
+<tr class="separator:a6c1015bb4b2531d2b2b3e68ef7b34cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a7941237578b7fa1334f4b8260919d677" name="a7941237578b7fa1334f4b8260919d677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7941237578b7fa1334f4b8260919d677">&#9670;&#160;</a></span>task_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677">scheduler::task_state</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489" name="a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489"></a>READY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a43491564ebcfd38568918efbd6e840fd" name="a7941237578b7fa1334f4b8260919d677a43491564ebcfd38568918efbd6e840fd"></a>RUNNING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a7850588c11fe6db41b8b2dd6c455f8f3" name="a7941237578b7fa1334f4b8260919d677a7850588c11fe6db41b8b2dd6c455f8f3"></a>SLEEPING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677abb4784231ff45108ee20bad16e4a2e8c" name="a7941237578b7fa1334f4b8260919d677abb4784231ff45108ee20bad16e4a2e8c"></a>DEAD&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ae3433b43c091f3d97e093d1f8399692d" name="ae3433b43c091f3d97e093d1f8399692d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3433b43c091f3d97e093d1f8399692d">&#9670;&#160;</a></span>task_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">scheduler::task_type</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae3433b43c091f3d97e093d1f8399692da35c10219c45ccfb5b07444fd7e17214c" name="ae3433b43c091f3d97e093d1f8399692da35c10219c45ccfb5b07444fd7e17214c"></a>KERNEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae3433b43c091f3d97e093d1f8399692da2e40ad879e955201df4dedbf8d479a12" name="ae3433b43c091f3d97e093d1f8399692da2e40ad879e955201df4dedbf8d479a12"></a>USER&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af80679e4c6adb09b59ba82a269a6f462" name="af80679e4c6adb09b59ba82a269a6f462"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af80679e4c6adb09b59ba82a269a6f462">&#9670;&#160;</a></span>dequeue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="structscheduler_1_1task.html">task</a> * scheduler::dequeue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *&#160;</td>
+          <td class="paramname"><em>cpu</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_af80679e4c6adb09b59ba82a269a6f462_icgraph.png" border="0" usemap="#anamespacescheduler_af80679e4c6adb09b59ba82a269a6f462_icgraph" alt=""/></div>
+<map name="anamespacescheduler_af80679e4c6adb09b59ba82a269a6f462_icgraph" id="anamespacescheduler_af80679e4c6adb09b59ba82a269a6f462_icgraph">
+<area shape="rect" title=" " alt="" coords="347,5,496,31"/>
+<area shape="rect" href="namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11" title=" " alt="" coords="148,5,299,31"/>
+<area shape="poly" title=" " alt="" coords="333,21,299,21,299,15,333,15"/>
+<area shape="rect" href="idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1c8eb5d332fae9fb49045a7c5d92958e" name="a1c8eb5d332fae9fb49045a7c5d92958e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c8eb5d332fae9fb49045a7c5d92958e">&#9670;&#160;</a></span>enqueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void scheduler::enqueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *&#160;</td>
+          <td class="paramname"><em>cpu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph.png" border="0" usemap="#anamespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph" id="anamespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph">
+<area shape="rect" title=" " alt="" coords="347,31,496,56"/>
+<area shape="rect" href="namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11" title=" " alt="" coords="148,5,299,31"/>
+<area shape="poly" title=" " alt="" coords="332,35,299,30,300,25,333,29"/>
+<area shape="rect" href="namespacescheduler.html#a44b15672a257eb4eee8945b18fc2b200" title=" " alt="" coords="156,55,291,80"/>
+<area shape="poly" title=" " alt="" coords="333,57,291,62,291,57,332,51"/>
+<area shape="rect" href="idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="21,55,84,80"/>
+<area shape="poly" title=" " alt="" coords="142,70,84,70,84,65,142,65"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a665b76d95eb85bbe7bc2357b3d468e70" name="a665b76d95eb85bbe7bc2357b3d468e70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a665b76d95eb85bbe7bc2357b3d468e70">&#9670;&#160;</a></span>init_core()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scheduler::init_core </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_cgraph.png" border="0" usemap="#anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_cgraph" alt=""/></div>
+<map name="anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_cgraph" id="anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_cgraph">
+<area shape="rect" title=" " alt="" coords="5,179,155,204"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="394,5,503,31"/>
+<area shape="poly" title=" " alt="" coords="101,176,211,113,286,75,364,40,384,32,386,37,366,44,288,79,214,118,103,181"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="203,179,317,204"/>
+<area shape="poly" title=" " alt="" coords="155,189,189,189,189,194,155,194"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="222,228,298,253"/>
+<area shape="poly" title=" " alt="" coords="128,201,209,224,208,229,126,207"/>
+<area shape="poly" title=" " alt="" coords="264,177,299,112,328,73,364,40,380,31,383,35,367,44,332,77,304,115,269,180"/>
+<area shape="poly" title=" " alt="" coords="230,180,224,170,227,161,240,154,260,152,285,156,295,164,291,168,282,160,260,157,241,159,231,164,229,170,235,177"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="365,203,532,228"/>
+<area shape="poly" title=" " alt="" coords="318,196,352,200,351,206,317,201"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="580,253,675,279"/>
+<area shape="poly" title=" " alt="" coords="293,202,319,213,342,226,366,237,418,249,471,257,567,263,566,269,471,262,417,254,364,242,340,231,316,218,291,207"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="964,304,1011,329"/>
+<area shape="poly" title=" " alt="" coords="299,202,319,213,334,228,343,243,351,256,367,268,416,285,484,297,565,306,653,312,824,316,950,315,950,320,824,321,653,317,565,311,484,303,415,290,364,272,347,260,338,246,330,231,316,217,296,206"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="723,456,873,481"/>
+<area shape="poly" title=" " alt="" coords="305,202,319,214,335,237,342,261,342,306,341,328,343,349,351,369,367,389,404,417,446,439,490,455,536,466,627,476,708,476,709,481,627,482,535,471,489,460,444,444,401,422,363,393,346,372,337,350,335,328,336,306,336,261,330,239,315,217,302,206"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="380,355,517,380"/>
+<area shape="poly" title=" " alt="" coords="303,202,319,213,332,229,339,245,344,275,349,305,355,319,367,333,385,347,382,351,363,337,351,322,344,306,338,276,333,247,327,232,315,217,300,206"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="389,55,509,80"/>
+<area shape="poly" title=" " alt="" coords="269,177,307,134,334,110,364,89,377,83,379,87,367,94,338,114,311,138,273,180"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="379,104,518,129"/>
+<area shape="poly" title=" " alt="" coords="284,176,364,138,385,131,386,136,366,143,286,181"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="365,153,532,179"/>
+<area shape="poly" title=" " alt="" coords="317,181,352,176,352,182,318,186"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="921,203,1053,228"/>
+<area shape="poly" title=" " alt="" coords="669,251,722,238,818,225,908,217,908,222,819,230,723,243,671,256"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="733,152,863,177"/>
+<area shape="poly" title=" " alt="" coords="642,251,677,223,721,194,749,180,751,185,724,199,681,228,646,255"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="729,253,867,279"/>
+<area shape="poly" title=" " alt="" coords="675,263,715,263,715,269,675,269"/>
+<area shape="poly" title=" " alt="" coords="641,277,779,443,775,447,637,280"/>
+<area shape="poly" title=" " alt="" coords="847,175,927,196,925,202,846,180"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="964,152,1011,177"/>
+<area shape="poly" title=" " alt="" coords="864,162,950,162,950,167,864,167"/>
+<area shape="poly" title=" " alt="" coords="846,251,925,229,927,234,847,256"/>
+<area shape="poly" title=" " alt="" coords="847,276,952,305,950,310,846,281"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="949,431,1026,456"/>
+<area shape="poly" title=" " alt="" coords="873,456,934,448,935,453,874,461"/>
+<area shape="poly" title=" " alt="" coords="471,352,591,283,594,288,474,357"/>
+<area shape="poly" title=" " alt="" coords="517,361,680,351,873,333,950,321,951,326,874,338,680,356,518,367"/>
+<area shape="poly" title=" " alt="" coords="518,374,935,433,934,439,517,380"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph.png" border="0" usemap="#anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph" id="anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph">
+<area shape="rect" title=" " alt="" coords="655,31,804,56"/>
+<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,5,607,31"/>
+<area shape="poly" title=" " alt="" coords="640,35,607,31,607,25,641,30"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
+<area shape="poly" title=" " alt="" coords="641,46,68,46,68,41,641,41"/>
+<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
+<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,5,225,31"/>
+<area shape="poly" title=" " alt="" coords="260,21,226,21,226,15,260,15"/>
+<area shape="poly" title=" " alt="" coords="103,33,69,40,68,35,102,28"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5b5d5090e6ae162b694a4c01823a6b11" name="a5b5d5090e6ae162b694a4c01823a6b11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b5d5090e6ae162b694a4c01823a6b11">&#9670;&#160;</a></span>schedule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structregs.html">regs</a> * scheduler::schedule </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structregs.html">regs</a> *&#160;</td>
+          <td class="paramname"><em>current_state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>is_timer_tick</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_cgraph.png" border="0" usemap="#anamespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_cgraph" alt=""/></div>
+<map name="anamespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_cgraph" id="anamespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_cgraph">
+<area shape="rect" title=" " alt="" coords="5,55,156,80"/>
+<area shape="rect" href="namespacescheduler.html#af80679e4c6adb09b59ba82a269a6f462" title=" " alt="" coords="204,5,353,31"/>
+<area shape="poly" title=" " alt="" coords="132,52,213,31,214,37,133,57"/>
+<area shape="rect" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e" title=" " alt="" coords="204,55,353,80"/>
+<area shape="poly" title=" " alt="" coords="156,65,190,65,190,70,156,70"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="224,104,333,129"/>
+<area shape="poly" title=" " alt="" coords="133,77,214,98,213,103,132,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_icgraph.png" border="0" usemap="#anamespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_icgraph" id="anamespacescheduler_a5b5d5090e6ae162b694a4c01823a6b11_icgraph">
+<area shape="rect" title=" " alt="" coords="148,5,299,31"/>
+<area shape="rect" href="idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a44b15672a257eb4eee8945b18fc2b200" name="a44b15672a257eb4eee8945b18fc2b200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44b15672a257eb4eee8945b18fc2b200">&#9670;&#160;</a></span>spawn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scheduler::spawn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void(*)()&#160;</td>
+          <td class="paramname"><em>entry_point</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a44b15672a257eb4eee8945b18fc2b200_cgraph.png" border="0" usemap="#anamespacescheduler_a44b15672a257eb4eee8945b18fc2b200_cgraph" alt=""/></div>
+<map name="anamespacescheduler_a44b15672a257eb4eee8945b18fc2b200_cgraph" id="anamespacescheduler_a44b15672a257eb4eee8945b18fc2b200_cgraph">
+<area shape="rect" title=" " alt="" coords="5,119,140,144"/>
+<area shape="rect" href="namespacevmm.html#abf984d135d39d57e1d30e060634d3d26" title=" " alt="" coords="188,54,387,94"/>
+<area shape="poly" title=" " alt="" coords="120,116,198,95,200,100,122,121"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="480,5,556,31"/>
+<area shape="poly" title=" " alt="" coords="84,116,126,77,155,56,187,40,261,19,337,9,408,8,466,10,466,15,408,13,337,15,262,24,189,44,158,60,130,81,88,120"/>
+<area shape="rect" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e" title=" " alt="" coords="213,119,362,144"/>
+<area shape="poly" title=" " alt="" coords="140,129,199,129,199,134,140,134"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="463,160,573,185"/>
+<area shape="poly" title=" " alt="" coords="126,141,188,153,328,165,449,169,449,175,327,170,188,158,125,147"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="230,335,345,360"/>
+<area shape="poly" title=" " alt="" coords="89,142,265,323,262,326,85,146"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="649,363,744,388"/>
+<area shape="poly" title=" " alt="" coords="387,84,512,109,566,126,603,145,625,168,643,193,670,249,687,304,695,349,690,350,681,306,665,251,639,196,621,171,600,149,564,131,511,114,386,90"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1033,236,1080,261"/>
+<area shape="poly" title=" " alt="" coords="387,76,491,85,602,101,700,121,775,142,944,199,1021,231,1019,236,942,205,774,147,699,126,601,106,490,90,387,81"/>
+<area shape="poly" title=" " alt="" coords="370,51,466,28,467,33,371,57"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="991,363,1123,388"/>
+<area shape="poly" title=" " alt="" coords="744,373,977,373,977,378,744,378"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="802,413,933,439"/>
+<area shape="poly" title=" " alt="" coords="741,386,811,407,810,412,740,391"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="799,312,936,337"/>
+<area shape="poly" title=" " alt="" coords="740,360,810,339,811,344,741,365"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="792,511,943,536"/>
+<area shape="poly" title=" " alt="" coords="715,386,843,499,839,503,711,390"/>
+<area shape="poly" title=" " alt="" coords="915,411,994,389,996,394,916,416"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1033,413,1080,439"/>
+<area shape="poly" title=" " alt="" coords="933,423,1019,423,1019,429,933,429"/>
+<area shape="poly" title=" " alt="" coords="916,335,996,356,994,362,915,340"/>
+<area shape="poly" title=" " alt="" coords="899,309,1019,261,1021,266,901,314"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1018,536,1095,561"/>
+<area shape="poly" title=" " alt="" coords="943,531,1004,539,1004,544,943,536"/>
+<area shape="poly" title=" " alt="" coords="303,358,357,404,395,427,436,445,481,457,518,462,555,458,600,445,641,423,673,396,676,400,644,428,602,450,556,463,518,467,480,463,434,450,392,432,354,408,300,362"/>
+<area shape="poly" title=" " alt="" coords="300,332,355,288,393,265,434,247,517,227,602,215,688,210,771,211,918,223,1020,239,1019,244,917,228,771,217,688,216,603,220,518,232,436,253,395,270,358,293,304,336"/>
+<area shape="poly" title=" " alt="" coords="301,358,355,413,393,442,436,466,523,496,615,513,703,521,778,524,778,529,702,527,614,518,522,501,434,471,390,447,352,417,298,362"/>
+<area shape="poly" title=" " alt="" coords="297,333,351,272,390,235,433,202,461,188,463,193,436,207,393,239,355,275,301,336"/>
+<area shape="poly" title=" " alt="" coords="252,336,245,326,249,316,263,310,287,308,317,312,329,321,326,325,315,317,287,313,265,315,253,320,250,326,257,333"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="435,561,601,587"/>
+<area shape="poly" title=" " alt="" coords="297,359,317,394,347,443,388,494,436,540,460,554,457,558,433,544,384,498,343,446,312,397,293,361"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="449,261,587,287"/>
+<area shape="poly" title=" " alt="" coords="326,332,434,297,461,288,463,293,435,302,328,337"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="458,311,578,336"/>
+<area shape="poly" title=" " alt="" coords="345,339,444,328,445,334,345,344"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="449,360,587,385"/>
+<area shape="poly" title=" " alt="" coords="345,351,435,361,435,366,345,356"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="435,409,601,435"/>
+<area shape="poly" title=" " alt="" coords="325,358,435,395,459,403,458,408,434,401,323,363"/>
+<area shape="poly" title=" " alt="" coords="572,284,603,297,642,323,674,351,671,355,639,327,600,302,570,289"/>
+<area shape="poly" title=" " alt="" coords="587,268,1019,248,1020,253,587,273"/>
+<area shape="poly" title=" " alt="" coords="582,285,603,297,623,322,631,346,638,371,652,399,684,449,711,488,743,519,793,546,847,562,904,566,958,564,1004,557,1005,563,958,569,904,572,846,567,791,551,740,523,707,491,679,452,647,402,633,373,626,348,618,324,600,301,580,289"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a44b15672a257eb4eee8945b18fc2b200_icgraph.png" border="0" usemap="#anamespacescheduler_a44b15672a257eb4eee8945b18fc2b200_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a44b15672a257eb4eee8945b18fc2b200_icgraph" id="anamespacescheduler_a44b15672a257eb4eee8945b18fc2b200_icgraph">
+<area shape="rect" title=" " alt="" coords="116,5,251,31"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="103,21,68,21,68,15,103,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a66dc9e6aaa092bd2bbc61ed92bc73a27" name="a66dc9e6aaa092bd2bbc61ed92bc73a27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66dc9e6aaa092bd2bbc61ed92bc73a27">&#9670;&#160;</a></span>yield()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scheduler::yield </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph.png" border="0" usemap="#anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph" id="anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph">
+<area shape="rect" title=" " alt="" coords="116,5,241,31"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a6c1015bb4b2531d2b2b3e68ef7b34cda" name="a6c1015bb4b2531d2b2b3e68ef7b34cda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c1015bb4b2531d2b2b3e68ef7b34cda">&#9670;&#160;</a></span>AGING_THRESHOLD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint64_t scheduler::AGING_THRESHOLD = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3fd9587ccd96391c01913da759cb8253" name="a3fd9587ccd96391c01913da759cb8253"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fd9587ccd96391c01913da759cb8253">&#9670;&#160;</a></span>KERNEL_STACK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint64_t scheduler::KERNEL_STACK_SIZE = 1024 * 16</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98b1040c6549c56fba93e13094cbe4d1" name="a98b1040c6549c56fba93e13094cbe4d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98b1040c6549c56fba93e13094cbe4d1">&#9670;&#160;</a></span>MAX_QUEUES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int scheduler::MAX_QUEUES = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b81b2261dd5d25128bbd76ac80d91f8" name="a3b81b2261dd5d25128bbd76ac80d91f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b81b2261dd5d25128bbd76ac80d91f8">&#9670;&#160;</a></span>next_tid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t scheduler::next_tid = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a92dfce9e62b90351581efe9e4674cf30" name="a92dfce9e62b90351581efe9e4674cf30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92dfce9e62b90351581efe9e4674cf30">&#9670;&#160;</a></span>TIME_QUANTUMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint64_t scheduler::TIME_QUANTUMS[<a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">MAX_QUEUES</a>] = {2, 4, 8, 16}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

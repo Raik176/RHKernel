@@ -1,17 +1,19 @@
 <map id="console::clear" name="console::clear">
-<area shape="rect" id="Node000001" title="Clear the console screen." alt="" coords="5,95,117,120"/>
-<area shape="rect" id="Node000002" href="$group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad" title="Clear the screen." alt="" coords="191,63,278,88"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,94,177,83,178,88,118,100"/>
-<area shape="rect" id="Node000006" href="$namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265" title="Clear the framebuffer with a specific color." alt="" coords="165,119,304,144"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="118,112,152,117,151,122,117,118"/>
+<area shape="rect" id="Node000001" title="Clear the console screen." alt="" coords="5,116,117,141"/>
+<area shape="rect" id="Node000002" href="$group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad" title="Clear the screen." alt="" coords="191,84,278,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,116,177,105,178,110,118,121"/>
+<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265" title="Clear the framebuffer with a specific color." alt="" coords="165,140,304,165"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="118,134,152,139,151,144,117,139"/>
 <area shape="rect" id="Node000003" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="370,5,501,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="278,60,376,32,378,37,279,66"/>
-<area shape="rect" id="Node000004" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="352,55,519,95"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="278,73,338,73,338,78,278,78"/>
-<area shape="rect" id="Node000005" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="630,63,681,88"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="519,73,617,73,617,78,519,78"/>
-<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="359,119,511,159"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="304,131,346,133,345,138,304,137"/>
-<area shape="rect" id="Node000008" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="567,127,744,152"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="511,137,553,137,553,142,511,142"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="259,81,351,40,372,32,374,37,353,44,262,86"/>
+<area shape="rect" id="Node000004" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="396,55,475,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="278,88,382,72,383,78,279,93"/>
+<area shape="rect" id="Node000005" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="352,105,519,145"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="279,100,338,108,338,114,278,105"/>
+<area shape="rect" id="Node000006" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="630,112,681,137"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="519,122,617,122,617,127,519,127"/>
+<area shape="rect" id="Node000008" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="359,169,511,209"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="305,162,346,170,345,175,304,168"/>
+<area shape="rect" id="Node000009" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="567,176,744,201"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="511,186,553,186,553,191,511,191"/>
 </map>

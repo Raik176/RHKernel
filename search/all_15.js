@@ -1,10 +1,20 @@
 var searchData=
 [
-  ['weight_0',['weight',['../structscheduler_1_1Task.html#a4e949456de4507197385c9bb32c499a9',1,'scheduler::Task']]],
-  ['white_1',['White',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08a25a81701fbfa4a1efdf660a950c1d006',1,'vga']]],
-  ['width_2',['width',['../structframebuffer_1_1FramebufferInfo.html#ab36a3adb060052b07129a95d1ad22a49',1,'framebuffer::FramebufferInfo::width'],['../structmultiboot__tag__framebuffer.html#ab362c0a2d3a8ffe926b2cc5573c3cf08',1,'multiboot_tag_framebuffer::width'],['../namespacevga.html#a74984e12f3eed2809499faadd1711408',1,'vga::WIDTH']]],
-  ['write_3',['write',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa1129c0e4d43f2d121652a7302712cff6',1,'vmm::Write'],['../group__Console__Output.html#gae2713614e37ba234a7af6abc42460964',1,'console::write()']]],
-  ['write_5freg_4',['write_reg',['../namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380',1,'apic']]],
-  ['writethrough_5',['WriteThrough',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9faacb7820573f20d69befb56e41f440549',1,'vmm']]],
-  ['wrmsr_6',['wrmsr',['../namespaceapic.html#aa832120ecee510360dfe9d946fb348a7',1,'apic']]]
+  ['v2p_0',['v2p',['../util_8h.html#a953aa7d2c54a0688f6968f813988a598',1,'util.h']]],
+  ['version_1',['VERSION',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fae3ff0a3c75b7ec07ec5d6852b3965a86',1,'apic']]],
+  ['vfs_2',['vfs',['../namespacevfs.html',1,'']]],
+  ['vfs_2ecpp_3',['vfs.cpp',['../vfs_8cpp.html',1,'']]],
+  ['vfs_2eh_4',['vfs.h',['../vfs_8h.html',1,'']]],
+  ['vfs_5fchar_5fdevice_5',['VFS_CHAR_DEVICE',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7a413ade700c6f47c1c662cafca038b523',1,'vfs']]],
+  ['vfs_5fdirectory_6',['VFS_DIRECTORY',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7ab9f281976e5f272eb87134ab4fc83d38',1,'vfs']]],
+  ['vfs_5ffile_7',['VFS_FILE',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7a1b1483e5187b6e599c3e3bc3150310fe',1,'vfs']]],
+  ['vfs_5fnode_8',['vfs_node',['../structvfs_1_1vfs__node.html',1,'vfs']]],
+  ['vfstype_9',['VfsType',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7',1,'vfs']]],
+  ['vga_10',['vga',['../namespacevga.html',1,'vga'],['../namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498adb4371197d1f58c7d4edb7dcd0565ad1',1,'console::VGA']]],
+  ['vga_20core_20functions_11',['VGA Core Functions',['../group__VGA__Core.html',1,'']]],
+  ['vga_2ecpp_12',['vga.cpp',['../vga_8cpp.html',1,'']]],
+  ['vga_2eh_13',['vga.h',['../vga_8h.html',1,'']]],
+  ['vmm_14',['vmm',['../namespacevmm.html',1,'']]],
+  ['vmm_2ecpp_15',['vmm.cpp',['../vmm_8cpp.html',1,'']]],
+  ['vmm_2eh_16',['vmm.h',['../vmm_8h.html',1,'']]]
 ];

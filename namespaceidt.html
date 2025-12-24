@@ -130,6 +130,8 @@ Variables</h2></td></tr>
 <tr class="memitem:a4871bbadf82a31090453cde2d2d742b7" id="r_a4871bbadf82a31090453cde2d2d742b7"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structidt_1_1idt__ptr.html">idt_ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#a4871bbadf82a31090453cde2d2d742b7">idtp</a></td></tr>
 <tr class="memdesc:a4871bbadf82a31090453cde2d2d742b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer structure used by lidt.  <br /></td></tr>
 <tr class="separator:a4871bbadf82a31090453cde2d2d742b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc44ad205af9366b1946fe8392bb5f1f" id="r_abc44ad205af9366b1946fe8392bb5f1f"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#abc44ad205af9366b1946fe8392bb5f1f">YIELD_VECTOR</a> = 0x81</td></tr>
+<tr class="separator:abc44ad205af9366b1946fe8392bb5f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac15104e739b28deb77ce6c5b913174b3" id="r_ac15104e739b28deb77ce6c5b913174b3"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceidt.html#ac15104e739b28deb77ce6c5b913174b3">HALT_VECTOR</a> = 0xFE</td></tr>
 <tr class="separator:ac15104e739b28deb77ce6c5b913174b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -176,81 +178,83 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph.png" border="0" usemap="#anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph" alt=""/></div>
 <map name="anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph" id="anamespaceidt_a6a2f66e62a6c1b073aa94f90a44db50a_cgraph">
-<area shape="rect" title="Initialize the IDT." alt="" coords="5,893,73,919"/>
+<area shape="rect" title="Initialize the IDT." alt="" coords="5,919,73,944"/>
 <area shape="rect" href="namespaceidt.html#a8673d711311d6c4b6e7920f7e13e34cd" title=" " alt="" coords="127,5,218,31"/>
-<area shape="poly" title=" " alt="" coords="38,893,45,727,61,456,72,316,85,191,101,95,110,62,119,41,121,38,125,42,124,43,115,63,106,96,90,192,77,317,66,457,51,727,44,893"/>
+<area shape="poly" title=" " alt="" coords="38,919,45,749,60,470,71,325,85,196,100,97,109,62,119,41,121,38,125,42,124,43,114,64,106,98,90,197,76,326,65,470,50,749,44,919"/>
 <area shape="rect" href="idt_8cpp.html#adbe0f253d11eeb032b3612c8732fb76e" title=" " alt="" coords="149,55,196,80"/>
-<area shape="poly" title=" " alt="" coords="39,893,46,736,62,481,86,231,102,141,110,110,119,90,135,76,138,80,123,93,115,111,107,142,92,232,67,481,51,736,44,893"/>
+<area shape="poly" title=" " alt="" coords="38,918,46,756,61,493,86,236,101,142,110,110,119,90,135,76,138,80,123,93,115,112,106,144,91,236,67,493,51,756,44,918"/>
 <area shape="rect" href="idt_8cpp.html#af88eb8e98d943aa0461c01de3cb53493" title=" " alt="" coords="149,104,196,129"/>
-<area shape="poly" title=" " alt="" coords="38,893,37,755,44,530,53,411,68,299,89,205,103,168,119,139,135,126,138,130,123,142,108,170,94,207,73,300,58,411,49,531,42,755,43,893"/>
+<area shape="poly" title=" " alt="" coords="39,918,46,765,63,517,87,276,102,189,110,158,119,139,135,125,138,130,123,142,115,160,107,190,92,277,68,518,52,765,44,918"/>
 <area shape="rect" href="idt_8cpp.html#aeab0ed9ae661801c25f7dc9089c19f72" title=" " alt="" coords="149,153,196,179"/>
-<area shape="poly" title=" " alt="" coords="38,893,38,763,46,554,56,442,70,337,91,250,104,215,119,188,135,175,138,179,123,192,109,218,96,252,75,338,61,442,51,554,43,764,43,893"/>
+<area shape="poly" title=" " alt="" coords="38,919,37,785,45,568,54,451,69,343,90,252,104,216,119,188,135,175,138,179,123,192,108,219,95,254,74,344,60,452,50,568,43,785,43,919"/>
 <area shape="rect" href="idt_8cpp.html#a3c8cb1341cf756883a2e7dc317d5272d" title=" " alt="" coords="145,203,200,228"/>
-<area shape="poly" title=" " alt="" coords="38,893,39,771,49,576,58,472,73,376,93,295,105,263,119,238,131,226,135,230,123,241,110,265,98,296,78,377,64,473,54,576,45,771,43,893"/>
+<area shape="poly" title=" " alt="" coords="38,918,39,792,47,590,57,482,71,381,92,297,105,264,119,238,131,226,135,230,123,241,109,266,97,299,77,382,62,482,53,590,44,793,43,918"/>
 <area shape="rect" href="idt_8cpp.html#a0d8145cf6ee1ef7834f459ba777d323c" title=" " alt="" coords="145,252,200,277"/>
-<area shape="poly" title=" " alt="" coords="38,893,41,779,51,599,61,503,75,414,94,340,106,310,119,287,131,276,135,280,123,290,111,312,99,341,80,415,66,504,56,599,46,779,43,893"/>
+<area shape="poly" title=" " alt="" coords="38,918,40,800,50,612,60,512,74,420,93,342,105,311,119,287,131,276,135,280,123,290,110,313,99,344,79,421,65,513,55,613,45,800,43,918"/>
 <area shape="rect" href="idt_8cpp.html#a00f00421039cb85f9dd9375995c784bd" title=" " alt="" coords="145,301,200,327"/>
-<area shape="poly" title=" " alt="" coords="38,893,42,787,54,621,64,534,78,453,96,384,119,336,131,325,135,329,123,340,101,386,83,454,69,535,59,622,47,787,44,893"/>
-<area shape="rect" href="idt_8cpp.html#af985dcf66872ee696e5f30d819ac16a1" title=" " alt="" coords="145,351,200,376"/>
-<area shape="poly" title=" " alt="" coords="38,893,43,796,56,645,67,565,80,491,98,429,119,386,132,375,135,378,123,389,103,431,85,492,72,566,61,645,49,796,44,893"/>
-<area shape="rect" href="idt_8cpp.html#a8b63eaa37c03743718870964a3429ba8" title=" " alt="" coords="145,400,200,425"/>
-<area shape="poly" title=" " alt="" coords="39,893,45,804,59,667,69,596,83,530,99,474,119,435,132,424,135,428,123,438,104,476,88,531,75,597,64,668,50,804,44,893"/>
-<area shape="rect" href="idt_8cpp.html#a9160f355325318a990c106ad5c3b8954" title=" " alt="" coords="145,449,200,475"/>
-<area shape="poly" title=" " alt="" coords="39,893,46,812,61,691,85,568,101,519,119,484,132,473,135,477,123,488,106,521,90,570,67,691,51,813,44,893"/>
-<area shape="rect" href="idt_8cpp.html#add0980c10028b377643da169e52e5be7" title=" " alt="" coords="145,499,200,524"/>
-<area shape="poly" title=" " alt="" coords="39,893,48,820,64,714,88,607,103,564,119,534,131,523,135,527,123,537,107,566,93,608,69,715,53,821,45,893"/>
-<area shape="rect" href="idt_8cpp.html#ac7d1e81e585bc7c56b46280006402f9e" title=" " alt="" coords="145,548,200,573"/>
-<area shape="poly" title=" " alt="" coords="38,893,39,839,48,757,58,712,73,666,93,623,119,583,131,573,135,577,123,586,97,625,78,668,63,713,53,758,44,839,43,893"/>
-<area shape="rect" href="idt_8cpp.html#ae685c5ca5ed9c9c5e7d297ad8d14de49" title=" " alt="" coords="145,597,200,623"/>
-<area shape="poly" title=" " alt="" coords="38,893,42,845,54,777,78,701,96,665,119,632,131,622,135,626,123,636,101,668,83,703,59,778,47,846,44,893"/>
-<area shape="rect" href="idt_8cpp.html#ad16b5f77287df551e63d3f0c67f8f75d" title=" " alt="" coords="145,647,200,672"/>
-<area shape="poly" title=" " alt="" coords="39,893,45,853,59,798,83,737,99,708,119,681,131,672,135,676,123,685,104,711,88,739,64,799,51,854,45,894"/>
-<area shape="rect" href="idt_8cpp.html#a99e457875cca040c3f7c77b61e960b53" title=" " alt="" coords="149,696,196,721"/>
-<area shape="poly" title=" " alt="" coords="41,892,50,861,65,818,88,772,119,731,135,719,138,724,123,735,93,775,70,820,55,862,46,894"/>
-<area shape="rect" href="idt_8cpp.html#a552d2aedae97d97083d3f9caf6ad59a5" title=" " alt="" coords="145,745,200,771"/>
-<area shape="poly" title=" " alt="" coords="44,892,72,839,93,808,120,780,132,771,135,776,123,784,97,811,76,842,49,894"/>
-<area shape="rect" href="idt_8cpp.html#af106b9a26e06abf17eebb6f7ae54f905" title=" " alt="" coords="145,795,200,820"/>
-<area shape="poly" title=" " alt="" coords="50,891,80,861,120,829,132,822,134,827,123,834,84,865,54,895"/>
-<area shape="rect" href="idt_8cpp.html#aa4b6f47f27ac3b31fc426f5c2a1a669c" title=" " alt="" coords="145,844,200,869"/>
-<area shape="poly" title=" " alt="" coords="73,891,131,869,133,874,75,896"/>
-<area shape="rect" href="idt_8cpp.html#a277e9cc418a637ae584c1ff6525eb2e1" title=" " alt="" coords="145,893,200,919"/>
-<area shape="poly" title=" " alt="" coords="74,903,132,903,132,909,74,909"/>
-<area shape="rect" href="idt_8cpp.html#a2ea113ad8536ca8311ab00d077ece7f1" title=" " alt="" coords="145,943,200,968"/>
-<area shape="poly" title=" " alt="" coords="75,916,133,938,131,943,73,921"/>
-<area shape="rect" href="idt_8cpp.html#a73e919f327e846f72b99de088ae9b822" title=" " alt="" coords="145,992,200,1017"/>
-<area shape="poly" title=" " alt="" coords="55,917,85,946,123,977,134,984,132,989,120,982,81,950,51,921"/>
-<area shape="rect" href="idt_8cpp.html#a0355a527ef36f144e15b89ccce244fe7" title=" " alt="" coords="141,1041,204,1067"/>
-<area shape="poly" title=" " alt="" coords="49,917,76,969,98,999,123,1027,131,1033,128,1037,120,1031,94,1003,72,972,44,920"/>
-<area shape="rect" href="idt_8cpp.html#a24c118fd7e75c96d19da1bbaf87731e4" title=" " alt="" coords="145,1091,200,1116"/>
-<area shape="poly" title=" " alt="" coords="46,918,70,991,93,1036,123,1076,135,1086,132,1090,119,1080,88,1039,65,993,41,920"/>
-<area shape="rect" href="idt_8cpp.html#ad97e98084cbcdc21bf03ba314dc243e0" title=" " alt="" coords="145,1140,200,1165"/>
-<area shape="poly" title=" " alt="" coords="45,919,51,958,65,1012,88,1072,104,1100,123,1125,135,1135,131,1139,119,1129,100,1103,83,1074,60,1014,46,959,39,920"/>
-<area shape="rect" href="idt_8cpp.html#ab2a5fe4d3cf67be0c67db612aa757c5f" title=" " alt="" coords="145,1189,200,1215"/>
-<area shape="poly" title=" " alt="" coords="44,919,48,965,59,1033,83,1107,101,1143,123,1175,135,1185,131,1189,119,1178,96,1146,78,1109,54,1034,42,966,38,919"/>
-<area shape="rect" href="idt_8cpp.html#a8cce4d55d6a199607cd3a9e2a33241b2" title=" " alt="" coords="145,1239,200,1264"/>
-<area shape="poly" title=" " alt="" coords="43,919,44,973,54,1053,64,1098,78,1143,98,1186,123,1224,135,1234,131,1238,119,1228,93,1188,73,1145,59,1099,49,1054,39,974,38,919"/>
-<area shape="rect" href="idt_8cpp.html#a0ef268d2c16a7b318356451a05fd507b" title=" " alt="" coords="149,1288,196,1313"/>
-<area shape="poly" title=" " alt="" coords="45,918,53,990,70,1097,93,1202,108,1245,123,1274,139,1286,135,1290,119,1277,103,1247,88,1204,64,1098,48,991,39,919"/>
-<area shape="rect" href="idt_8cpp.html#af868664393aedd51c04e3ddd48b8f84f" title=" " alt="" coords="145,1337,200,1363"/>
-<area shape="poly" title=" " alt="" coords="44,918,52,999,67,1120,91,1241,106,1290,123,1323,135,1334,132,1338,119,1326,101,1292,86,1242,62,1121,46,1000,39,919"/>
-<area shape="rect" href="idt_8cpp.html#af4ae10cea59f9bb2f79c13b8036d81f1" title=" " alt="" coords="145,1387,200,1412"/>
-<area shape="poly" title=" " alt="" coords="44,919,50,1008,64,1143,88,1280,104,1335,123,1372,135,1383,132,1387,119,1376,100,1336,83,1281,59,1144,45,1008,39,919"/>
-<area shape="rect" href="idt_8cpp.html#a09af768d636144aaeaddd76c92a0a2f5" title=" " alt="" coords="149,1436,196,1461"/>
-<area shape="poly" title=" " alt="" coords="44,919,49,1016,62,1166,72,1245,86,1318,103,1379,123,1422,139,1435,135,1439,119,1425,98,1381,81,1320,67,1246,57,1166,44,1016,38,919"/>
-<area shape="rect" href="idt_8cpp.html#aa91d821a4bcafb44933d92945727b0df" title=" " alt="" coords="149,1485,196,1511"/>
-<area shape="poly" title=" " alt="" coords="44,919,47,1024,59,1189,70,1276,83,1357,101,1424,123,1471,139,1484,135,1488,119,1474,96,1426,78,1358,64,1277,54,1190,42,1024,38,919"/>
-<area shape="rect" href="idt_8cpp.html#a9fadb95f34937b1ded02c4171b4920ba" title=" " alt="" coords="149,1535,196,1560"/>
-<area shape="poly" title=" " alt="" coords="43,919,46,1032,57,1212,67,1307,81,1395,100,1469,111,1498,123,1520,139,1533,135,1537,119,1524,106,1500,95,1471,76,1397,62,1308,52,1212,41,1033,38,919"/>
-<area shape="rect" href="idt_8cpp.html#a7eb6ec30db7077fb1c9c9d926a0fc407" title=" " alt="" coords="149,1584,196,1609"/>
-<area shape="poly" title=" " alt="" coords="43,919,45,1040,54,1235,64,1338,79,1434,98,1514,110,1546,123,1570,138,1583,135,1587,119,1573,105,1548,93,1516,73,1435,59,1339,49,1235,40,1041,38,919"/>
-<area shape="rect" href="idt_8cpp.html#a86bc69345a3bb409665dbadb77a9d393" title=" " alt="" coords="149,1633,196,1659"/>
-<area shape="poly" title=" " alt="" coords="43,919,44,1048,52,1257,62,1368,76,1472,96,1559,109,1593,123,1619,138,1632,135,1636,119,1622,104,1595,91,1560,71,1473,56,1369,47,1257,38,1048,38,919"/>
-<area shape="rect" href="idt_8cpp.html#aacb7c8490cbd623a3a2bf933ffedd131" title=" " alt="" coords="149,1683,196,1708"/>
-<area shape="poly" title=" " alt="" coords="43,919,43,1057,50,1280,59,1400,74,1511,95,1604,108,1640,123,1668,138,1682,135,1686,119,1672,103,1642,90,1605,68,1512,54,1400,44,1280,37,1057,38,919"/>
-<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="135,1732,211,1757"/>
-<area shape="poly" title=" " alt="" coords="44,919,51,1076,68,1330,92,1579,107,1669,115,1699,124,1718,127,1722,123,1725,119,1721,110,1701,102,1670,87,1579,62,1330,46,1076,39,919"/>
-<area shape="rect" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88" title="Set an entry in the IDT." alt="" coords="121,1781,224,1807"/>
-<area shape="poly" title=" " alt="" coords="44,919,51,1084,67,1354,91,1619,106,1715,115,1747,124,1767,127,1771,123,1774,119,1770,110,1749,101,1716,86,1620,61,1355,46,1085,38,919"/>
+<area shape="poly" title=" " alt="" coords="38,918,41,808,52,635,62,543,76,458,95,387,106,358,119,336,131,325,135,329,123,340,111,361,100,388,82,459,68,544,58,635,47,808,43,918"/>
+<area shape="rect" href="idt_8cpp.html#a14de94fcaad2353d68c8c0002e395867" title=" " alt="" coords="141,351,204,376"/>
+<area shape="poly" title=" " alt="" coords="38,918,43,816,55,658,65,574,79,497,97,432,119,386,127,378,131,381,124,389,102,433,84,498,70,575,60,659,48,817,44,918"/>
+<area shape="rect" href="idt_8cpp.html#af985dcf66872ee696e5f30d819ac16a1" title=" " alt="" coords="145,400,200,425"/>
+<area shape="poly" title=" " alt="" coords="39,918,44,825,57,681,68,606,81,535,98,476,119,435,132,424,135,428,123,438,103,478,87,537,73,606,63,682,49,826,44,919"/>
+<area shape="rect" href="idt_8cpp.html#a8b63eaa37c03743718870964a3429ba8" title=" " alt="" coords="145,449,200,475"/>
+<area shape="poly" title=" " alt="" coords="39,918,45,833,60,704,84,574,100,521,119,484,132,473,135,477,123,488,105,523,89,575,65,705,51,834,44,919"/>
+<area shape="rect" href="idt_8cpp.html#a9160f355325318a990c106ad5c3b8954" title=" " alt="" coords="145,499,200,524"/>
+<area shape="poly" title=" " alt="" coords="39,918,47,841,63,727,87,612,102,566,119,534,131,523,135,527,123,537,107,568,92,614,68,728,52,842,44,919"/>
+<area shape="rect" href="idt_8cpp.html#add0980c10028b377643da169e52e5be7" title=" " alt="" coords="145,548,200,573"/>
+<area shape="poly" title=" " alt="" coords="40,918,49,850,65,750,89,651,103,611,119,583,131,572,135,576,123,586,108,613,94,652,71,751,54,851,45,919"/>
+<area shape="rect" href="idt_8cpp.html#ac7d1e81e585bc7c56b46280006402f9e" title=" " alt="" coords="145,597,200,623"/>
+<area shape="poly" title=" " alt="" coords="38,918,40,867,51,792,61,750,75,709,94,669,119,632,131,622,135,626,123,636,99,671,80,711,66,752,56,793,46,868,43,918"/>
+<area shape="rect" href="idt_8cpp.html#ae685c5ca5ed9c9c5e7d297ad8d14de49" title=" " alt="" coords="145,647,200,672"/>
+<area shape="poly" title=" " alt="" coords="39,918,44,874,56,812,80,744,98,711,119,682,132,671,135,675,123,685,102,714,85,746,61,814,49,875,44,919"/>
+<area shape="rect" href="idt_8cpp.html#ad16b5f77287df551e63d3f0c67f8f75d" title=" " alt="" coords="145,696,200,721"/>
+<area shape="poly" title=" " alt="" coords="40,918,47,882,62,833,85,779,101,754,119,731,132,721,135,725,123,735,105,757,90,782,67,835,53,883,45,919"/>
+<area shape="rect" href="idt_8cpp.html#a99e457875cca040c3f7c77b61e960b53" title=" " alt="" coords="149,745,196,771"/>
+<area shape="poly" title=" " alt="" coords="42,917,68,854,91,815,120,780,135,769,138,773,123,784,95,818,73,856,47,919"/>
+<area shape="rect" href="idt_8cpp.html#a552d2aedae97d97083d3f9caf6ad59a5" title=" " alt="" coords="145,795,200,820"/>
+<area shape="poly" title=" " alt="" coords="46,917,76,875,96,851,120,829,132,821,135,826,123,833,100,855,80,878,51,920"/>
+<area shape="rect" href="idt_8cpp.html#af106b9a26e06abf17eebb6f7ae54f905" title=" " alt="" coords="145,844,200,869"/>
+<area shape="poly" title=" " alt="" coords="58,916,120,878,132,872,134,877,123,883,61,921"/>
+<area shape="rect" href="idt_8cpp.html#aa4b6f47f27ac3b31fc426f5c2a1a669c" title=" " alt="" coords="145,893,200,919"/>
+<area shape="poly" title=" " alt="" coords="73,922,131,911,132,916,74,928"/>
+<area shape="rect" href="idt_8cpp.html#a277e9cc418a637ae584c1ff6525eb2e1" title=" " alt="" coords="145,943,200,968"/>
+<area shape="poly" title=" " alt="" coords="74,935,132,945,131,951,73,940"/>
+<area shape="rect" href="idt_8cpp.html#a2ea113ad8536ca8311ab00d077ece7f1" title=" " alt="" coords="145,992,200,1017"/>
+<area shape="poly" title=" " alt="" coords="63,942,123,977,135,983,132,988,120,982,60,947"/>
+<area shape="rect" href="idt_8cpp.html#a73e919f327e846f72b99de088ae9b822" title=" " alt="" coords="145,1041,200,1067"/>
+<area shape="poly" title=" " alt="" coords="51,943,80,983,123,1027,135,1035,132,1039,120,1031,76,986,47,946"/>
+<area shape="rect" href="idt_8cpp.html#a0355a527ef36f144e15b89ccce244fe7" title=" " alt="" coords="141,1091,204,1116"/>
+<area shape="poly" title=" " alt="" coords="47,943,74,1005,95,1043,123,1076,131,1083,128,1087,119,1080,91,1046,69,1008,42,945"/>
+<area shape="rect" href="idt_8cpp.html#a24c118fd7e75c96d19da1bbaf87731e4" title=" " alt="" coords="145,1140,200,1165"/>
+<area shape="poly" title=" " alt="" coords="45,944,53,979,68,1027,91,1079,123,1126,135,1135,132,1139,119,1129,86,1081,63,1029,48,980,40,945"/>
+<area shape="rect" href="idt_8cpp.html#ad97e98084cbcdc21bf03ba314dc243e0" title=" " alt="" coords="145,1189,200,1215"/>
+<area shape="poly" title=" " alt="" coords="44,944,49,987,62,1047,86,1114,103,1146,123,1175,135,1185,132,1189,119,1178,98,1149,81,1117,57,1049,44,987,39,945"/>
+<area shape="rect" href="idt_8cpp.html#ab2a5fe4d3cf67be0c67db612aa757c5f" title=" " alt="" coords="145,1239,200,1264"/>
+<area shape="poly" title=" " alt="" coords="43,944,46,994,57,1068,67,1109,81,1150,99,1189,123,1224,135,1234,131,1238,119,1228,95,1192,76,1152,62,1110,51,1069,41,995,38,944"/>
+<area shape="rect" href="idt_8cpp.html#a8cce4d55d6a199607cd3a9e2a33241b2" title=" " alt="" coords="145,1288,200,1313"/>
+<area shape="poly" title=" " alt="" coords="43,944,43,1002,52,1088,61,1136,76,1185,96,1232,123,1274,135,1284,131,1288,119,1277,92,1234,71,1187,56,1138,46,1089,38,1002,37,944"/>
+<area shape="rect" href="idt_8cpp.html#a0ef268d2c16a7b318356451a05fd507b" title=" " alt="" coords="149,1337,196,1363"/>
+<area shape="poly" title=" " alt="" coords="44,944,53,1020,68,1133,92,1247,107,1292,123,1323,138,1336,135,1340,119,1326,102,1294,87,1248,63,1134,47,1021,39,944"/>
+<area shape="rect" href="idt_8cpp.html#af868664393aedd51c04e3ddd48b8f84f" title=" " alt="" coords="145,1387,200,1412"/>
+<area shape="poly" title=" " alt="" coords="44,944,51,1029,66,1157,90,1285,105,1337,123,1372,135,1383,132,1387,119,1376,100,1339,85,1287,61,1157,46,1029,39,945"/>
+<area shape="rect" href="idt_8cpp.html#af4ae10cea59f9bb2f79c13b8036d81f1" title=" " alt="" coords="145,1436,200,1461"/>
+<area shape="poly" title=" " alt="" coords="44,944,50,1037,63,1180,74,1255,87,1324,104,1382,123,1422,135,1432,131,1436,119,1425,99,1384,82,1325,69,1256,58,1180,44,1038,39,945"/>
+<area shape="rect" href="idt_8cpp.html#a09af768d636144aaeaddd76c92a0a2f5" title=" " alt="" coords="149,1485,196,1511"/>
+<area shape="poly" title=" " alt="" coords="44,944,48,1045,61,1202,71,1285,85,1362,102,1427,123,1471,139,1484,135,1488,119,1474,97,1428,80,1364,66,1286,55,1203,43,1045,38,944"/>
+<area shape="rect" href="idt_8cpp.html#aa91d821a4bcafb44933d92945727b0df" title=" " alt="" coords="149,1535,196,1560"/>
+<area shape="poly" title=" " alt="" coords="44,944,47,1054,58,1226,68,1317,82,1401,101,1472,123,1520,139,1533,135,1537,119,1524,96,1473,77,1402,63,1317,53,1226,42,1054,38,944"/>
+<area shape="rect" href="idt_8cpp.html#a9fadb95f34937b1ded02c4171b4920ba" title=" " alt="" coords="149,1584,196,1609"/>
+<area shape="poly" title=" " alt="" coords="43,944,46,1062,56,1248,66,1347,80,1439,99,1516,111,1547,123,1570,138,1583,135,1587,119,1573,106,1549,94,1518,75,1441,60,1348,50,1249,40,1062,38,944"/>
+<area shape="rect" href="idt_8cpp.html#a7eb6ec30db7077fb1c9c9d926a0fc407" title=" " alt="" coords="149,1633,196,1659"/>
+<area shape="poly" title=" " alt="" coords="43,944,44,1069,53,1271,63,1378,77,1478,97,1561,110,1594,123,1619,138,1632,135,1636,119,1622,105,1596,92,1563,72,1479,58,1379,48,1271,39,1070,38,944"/>
+<area shape="rect" href="idt_8cpp.html#a86bc69345a3bb409665dbadb77a9d393" title=" " alt="" coords="149,1683,196,1708"/>
+<area shape="poly" title=" " alt="" coords="43,944,43,1077,51,1293,60,1409,75,1516,96,1606,109,1641,123,1668,138,1682,135,1686,119,1672,104,1643,91,1608,70,1517,55,1409,46,1293,38,1077,38,944"/>
+<area shape="rect" href="idt_8cpp.html#aacb7c8490cbd623a3a2bf933ffedd131" title=" " alt="" coords="149,1732,196,1757"/>
+<area shape="poly" title=" " alt="" coords="44,944,52,1097,68,1343,93,1583,108,1670,115,1700,123,1718,138,1731,135,1735,119,1721,110,1702,102,1671,87,1584,63,1344,47,1097,39,945"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="135,1781,211,1807"/>
+<area shape="poly" title=" " alt="" coords="44,944,51,1106,67,1368,92,1624,107,1716,115,1748,124,1767,127,1771,123,1774,119,1770,110,1750,101,1718,86,1624,62,1368,46,1106,39,945"/>
+<area shape="rect" href="namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88" title="Set an entry in the IDT." alt="" coords="121,1831,224,1856"/>
+<area shape="poly" title=" " alt="" coords="44,944,51,1113,66,1391,77,1535,90,1664,106,1762,115,1796,124,1817,127,1820,122,1824,119,1819,109,1798,101,1763,85,1664,72,1536,61,1391,45,1113,38,944"/>
 <area shape="rect" href="namespaceidt.html#a11b4853d5e7b5eedb57e2c8c531c7df4" title=" " alt="" coords="272,5,347,31"/>
 <area shape="poly" title=" " alt="" coords="218,15,258,15,258,21,218,21"/>
 </map>
@@ -488,6 +492,28 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Pointer structure used by lidt. </p>
+
+</div>
+</div>
+<a id="abc44ad205af9366b1946fe8392bb5f1f" name="abc44ad205af9366b1946fe8392bb5f1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc44ad205af9366b1946fe8392bb5f1f">&#9670;&#160;</a></span>YIELD_VECTOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t idt::YIELD_VECTOR = 0x81</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

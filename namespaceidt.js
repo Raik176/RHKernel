@@ -9,5 +9,6 @@ var namespaceidt =
     [ "set_gate", "namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88", null ],
     [ "HALT_VECTOR", "namespaceidt.html#ac15104e739b28deb77ce6c5b913174b3", null ],
     [ "idt", "namespaceidt.html#adf41cef4d7cf207215b25d30326dd48b", null ],
-    [ "idtp", "namespaceidt.html#a4871bbadf82a31090453cde2d2d742b7", null ]
+    [ "idtp", "namespaceidt.html#a4871bbadf82a31090453cde2d2d742b7", null ],
+    [ "YIELD_VECTOR", "namespaceidt.html#abc44ad205af9366b1946fe8392bb5f1f", null ]
 ];

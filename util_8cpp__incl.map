@@ -1,15 +1,24 @@
 <map id="src/impl/x86_64/util.cpp" name="src/impl/x86_64/util.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="29,5,206,31"/>
-<area shape="rect" id="Node000002" href="$util_8h.html" title="Utility functions and macros." alt="" coords="90,79,145,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,31,120,65,115,65,115,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,80,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,106,67,144,63,141,104,102"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="133,299,203,324"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="123,104,165,284,160,286,117,105"/>
-<area shape="rect" id="Node000005" href="$apic_8h.html" title=" " alt="" coords="155,152,248,177"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="133,102,179,141,175,145,129,106"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="201,178,176,286,171,285,196,177"/>
-<area shape="rect" id="Node000006" href="$idt_8h.html" title=" " alt="" coords="205,225,256,251"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="209,177,223,212,218,214,204,179"/>
-<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="222,253,189,290,185,286,218,249"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="73,5,250,31"/>
+<area shape="rect" id="Node000002" href="$util_8h.html" title="Utility functions and macros." alt="" coords="134,79,189,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,31,164,65,159,65,159,31"/>
+<area shape="rect" id="Node000005" href="$apic_8h.html" title=" " alt="" coords="5,152,99,177"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="155,33,71,142,67,139,150,30"/>
+<area shape="rect" id="Node000007" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="286,79,370,104"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="189,28,289,71,287,76,187,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="224,225,299,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="172,103,208,150,249,212,244,215,203,154,168,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="151,299,222,324"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="165,104,186,284,181,285,160,105"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="145,106,83,147,80,142,142,102"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="57,177,67,212,77,231,89,249,116,273,146,290,143,295,112,277,85,252,72,234,62,213,52,178"/>
+<area shape="rect" id="Node000006" href="$idt_8h.html" title=" " alt="" coords="99,225,149,251"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="66,176,104,214,101,218,62,180"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="124,224,152,117,157,118,130,226"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="136,249,169,286,165,290,132,253"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="349,102,374,122,394,151,398,165,395,178,385,203,373,221,338,253,287,282,237,300,235,295,285,277,334,249,369,218,380,200,389,177,392,165,390,153,370,126,345,106"/>
+<area shape="rect" id="Node000008" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="275,152,381,177"/>
+<area shape="poly" id="edge12_Node000007_Node000008" title=" " alt="" coords="331,104,331,138,325,138,325,104"/>
+<area shape="poly" id="edge13_Node000008_Node000003" title=" " alt="" coords="319,179,283,217,280,213,315,176"/>
+<area shape="poly" id="edge14_Node000008_Node000004" title=" " alt="" coords="331,178,329,213,323,234,313,252,296,269,277,282,236,301,234,296,274,278,293,265,309,249,318,232,324,212,326,178"/>
 </map>

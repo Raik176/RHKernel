@@ -1,10 +1,14 @@
 var vmm_8cpp =
 [
+    [ "create_user_address_space", "vmm_8cpp.html#abf984d135d39d57e1d30e060634d3d26", null ],
     [ "get_kernel_pagemap", "vmm_8cpp.html#abdf265a78f65cd1d359554c771e03cb0", null ],
     [ "get_next_table", "vmm_8cpp.html#a6eb1a1bf20f471294d93040e6476a817", null ],
+    [ "get_phys_addr_mask", "vmm_8cpp.html#a94b5ead9d649c974cf15eab5a2c582e7", null ],
     [ "get_table_ptr", "vmm_8cpp.html#aa604160270551f1cb1a67a113b5167a2", null ],
     [ "init", "vmm_8cpp.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],
-    [ "map_page", "vmm_8cpp.html#a91045b98b89f21a0633cff5edcd2bd30", null ],
+    [ "map_page", "vmm_8cpp.html#a21b681e259c6666aae12ccd5cb4afa68", null ],
+    [ "map_range", "vmm_8cpp.html#a68b4c8da94ea5d19c1346ab656c984bd", null ],
+    [ "unmap_page", "vmm_8cpp.html#a55d9728f62c42d92f2c76db9d907ee0f", null ],
     [ "_bss_end", "vmm_8cpp.html#a20fb3185483d7127f3a5b099e16e3e5c", null ],
     [ "_bss_start", "vmm_8cpp.html#a3bd4f375421d31d89fcede268b826344", null ],
     [ "_data_end", "vmm_8cpp.html#a17c40d4b6e4d51c6429a0026a42c9a61", null ],
@@ -16,5 +20,7 @@ var vmm_8cpp =
     [ "_text_end", "vmm_8cpp.html#ad8b0c56be8e70ec1bf8e70758145aa82", null ],
     [ "_text_start", "vmm_8cpp.html#a0aab5b3be01394b2ded2767dec5a64ac", null ],
     [ "current_pml4_phys", "vmm_8cpp.html#a7d1c1ba652aaf58fb64fd1c25d1200f7", null ],
-    [ "PHYS_ADDR_MASK", "vmm_8cpp.html#a8c1a22d03ab451bf9481db5c965ce29f", null ]
+    [ "phys_addr_mask", "vmm_8cpp.html#a50352caf62ec7c48f298707a78753a09", null ],
+    [ "supports_1gb_pages", "vmm_8cpp.html#aae5b4f99ce8bdd0321f58818b1fac63b", null ],
+    [ "supports_2mb_pages", "vmm_8cpp.html#a48131c2649cad1fe4977d005ce1c7bed", null ]
 ];

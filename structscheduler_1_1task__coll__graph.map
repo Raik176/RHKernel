@@ -1,0 +1,6 @@
+<map id="scheduler::task" name="scheduler::task">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,127,119"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="142,98,153,106,145,114,127,116,127,111,143,109,148,106,139,102"/>
+<area shape="rect" id="Node000002" href="$structregs.html" title="CPU register state structure." alt="" coords="41,5,91,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,45,69,93,63,93,63,45"/>
+</map>

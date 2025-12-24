@@ -16,7 +16,6 @@ var apic_8cpp =
     [ "apic_base", "apic_8cpp.html#a2823f53794b944f42d8c3bb80a6e0832", null ],
     [ "bsp_id", "apic_8cpp.html#ad5ea1dc99b421bca8b8ef4854fa1b207", null ],
     [ "tick_scale", "apic_8cpp.html#ad6b6cb9e897fb7b75c9e2d5108598444", null ],
-    [ "ticks", "apic_8cpp.html#aa4d5fefce895c05d4bd34005f9b07175", null ],
     [ "ticks_per_ms", "apic_8cpp.html#a8244a352af7880f8d0c8b9a55543c8ac", null ],
     [ "x2apic_mode", "apic_8cpp.html#af8461c36418ebb3d3816b84643969495", null ]
 ];

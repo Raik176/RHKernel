@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pmm_2ecpp_0',['pmm.cpp',['../pmm_8cpp.html',1,'']]],
-  ['pmm_2eh_1',['pmm.h',['../pmm_8h.html',1,'']]]
+  ['main_2ecpp_0',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['multiboot2_2eh_1',['multiboot2.h',['../multiboot2_8h.html',1,'']]]
 ];

@@ -3,7 +3,6 @@ var namespaceheap =
     [ "SlabCache", "structheap_1_1SlabCache.html", "structheap_1_1SlabCache" ],
     [ "SlabHeader", "structheap_1_1SlabHeader.html", "structheap_1_1SlabHeader" ],
     [ "create_slab", "namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92", null ],
-    [ "init", "namespaceheap.html#a29e4f4fff523485e2b9be5a143f84e52", null ],
     [ "kfree", "namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98", null ],
     [ "kmalloc", "namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8", null ],
     [ "list_push", "namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e", null ],

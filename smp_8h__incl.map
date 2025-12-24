@@ -1,5 +1,19 @@
 <map id="src/intf/smp/smp.h" name="src/intf/smp/smp.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,148,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="41,79,112,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,31,79,65,74,65,74,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="41,5,184,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="84,225,154,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,33,65,59,31,94,18,114,10,135,9,156,16,176,27,190,40,202,72,220,69,224,37,206,23,194,11,179,4,156,5,134,13,112,27,91,61,55,94,29"/>
+<area shape="rect" id="Node000003" href="$gdt_8h.html" title=" " alt="" coords="26,152,81,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,32,66,140,61,138,105,30"/>
+<area shape="rect" id="Node000004" href="$heap_8h.html" title=" " alt="" coords="120,79,246,104"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="126,29,164,67,160,71,122,33"/>
+<area shape="rect" id="Node000007" href="$scheduler_8h.html" title=" " alt="" coords="300,79,428,104"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="153,28,311,72,309,77,152,33"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="66,176,101,213,97,217,62,179"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="176,106,147,153,127,212,122,211,142,151,172,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="156,152,231,177"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="187,104,192,138,187,139,182,105"/>
+<area shape="rect" id="Node000006" href="$lock_8h.html" title=" " alt="" coords="255,152,348,177"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="203,102,272,142,269,147,201,106"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="273,180,163,223,161,218,271,175"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="370,104,375,140,372,160,362,179,349,190,330,200,280,215,169,234,168,229,278,210,328,195,346,186,358,176,367,159,369,140,365,104"/>
 </map>

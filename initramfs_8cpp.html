@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('initramfs_8cpp.html',''); initResizabl
 <div class="textblock"><code>#include &quot;<a class="el" href="initramfs_8h_source.html">file/initramfs.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vfs_8h_source.html">file/vfs.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="heap_8h_source.html">heap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -107,41 +107,46 @@ Include dependency graph for initramfs.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="initramfs_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2file_2initramfs_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2file_2initramfs_8cpp" id="asrc_2impl_2x86__64_2file_2initramfs_8cpp">
-<area shape="rect" title=" " alt="" coords="221,5,371,45"/>
-<area shape="rect" href="initramfs_8h.html" title=" " alt="" coords="116,93,233,119"/>
-<area shape="poly" title=" " alt="" coords="268,48,205,88,203,84,265,43"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="102,240,157,265"/>
-<area shape="poly" title=" " alt="" coords="222,35,190,42,158,54,129,71,106,95,98,110,94,127,95,163,105,198,118,227,113,229,100,199,90,164,89,126,93,108,102,92,126,67,156,49,188,37,220,30"/>
-<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="167,167,222,192"/>
-<area shape="poly" title=" " alt="" coords="289,47,248,120,217,158,213,155,243,117,285,44"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="246,167,330,192"/>
-<area shape="poly" title=" " alt="" coords="298,46,292,153,287,153,292,46"/>
-<area shape="rect" href="heap_8h.html" title=" " alt="" coords="363,240,429,265"/>
-<area shape="poly" title=" " alt="" coords="307,44,388,226,383,228,302,47"/>
-<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="454,240,525,265"/>
-<area shape="poly" title=" " alt="" coords="314,44,472,227,468,231,310,47"/>
-<area shape="poly" title=" " alt="" coords="174,120,140,228,135,226,168,118"/>
-<area shape="poly" title=" " alt="" coords="181,118,190,153,185,154,175,120"/>
-<area shape="rect" title=" " alt="" coords="284,313,359,339"/>
-<area shape="poly" title=" " alt="" coords="158,262,278,306,276,311,156,267"/>
-<area shape="rect" title=" " alt="" coords="159,460,230,485"/>
-<area shape="poly" title=" " alt="" coords="135,265,179,411,189,446,184,448,173,413,130,266"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="13,313,107,339"/>
-<area shape="poly" title=" " alt="" coords="120,268,83,305,79,302,116,264"/>
-<area shape="poly" title=" " alt="" coords="70,337,94,371,127,410,171,450,167,453,123,414,90,374,66,340"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="5,387,56,412"/>
-<area shape="poly" title=" " alt="" coords="58,340,43,375,38,373,53,338"/>
-<area shape="poly" title=" " alt="" coords="57,409,157,452,155,457,55,414"/>
-<area shape="poly" title=" " alt="" coords="186,194,151,232,147,228,182,191"/>
-<area shape="poly" title=" " alt="" coords="270,194,245,214,224,241,204,295,195,352,193,405,195,446,189,447,187,405,189,352,199,294,219,239,241,210,267,190"/>
-<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="233,240,338,265"/>
-<area shape="poly" title=" " alt="" coords="290,192,289,227,284,226,285,192"/>
-<area shape="poly" title=" " alt="" coords="294,264,312,300,307,302,289,267"/>
-<area shape="poly" title=" " alt="" coords="283,267,207,448,202,446,278,265"/>
-<area shape="poly" title=" " alt="" coords="386,267,345,306,342,302,382,263"/>
-<area shape="poly" title=" " alt="" coords="397,266,390,301,373,340,341,378,303,410,232,456,229,451,300,405,337,374,368,337,385,299,392,265"/>
-<area shape="poly" title=" " alt="" coords="463,268,362,310,360,305,461,263"/>
-<area shape="poly" title=" " alt="" coords="482,267,423,334,379,376,331,414,287,439,243,458,241,453,285,434,328,410,376,372,419,331,478,264"/>
+<area shape="rect" title=" " alt="" coords="193,5,343,45"/>
+<area shape="rect" href="initramfs_8h.html" title=" " alt="" coords="88,93,205,119"/>
+<area shape="poly" title=" " alt="" coords="240,48,177,88,175,84,237,43"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="61,240,115,265"/>
+<area shape="poly" title=" " alt="" coords="194,35,162,42,130,54,101,71,78,95,70,110,65,127,64,162,70,197,80,226,75,228,65,198,59,163,60,126,65,108,74,92,98,67,128,49,160,37,192,30"/>
+<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="133,167,187,192"/>
+<area shape="poly" title=" " alt="" coords="262,47,244,82,219,120,185,159,181,155,215,117,239,79,257,44"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="251,167,335,192"/>
+<area shape="poly" title=" " alt="" coords="274,45,292,153,287,153,269,46"/>
+<area shape="rect" href="heap_8h.html" title=" " alt="" coords="377,240,503,265"/>
+<area shape="poly" title=" " alt="" coords="284,44,425,227,420,230,280,47"/>
+<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="527,240,598,265"/>
+<area shape="poly" title=" " alt="" coords="294,43,539,230,535,234,291,48"/>
+<area shape="poly" title=" " alt="" coords="144,120,122,168,99,228,94,226,118,166,139,118"/>
+<area shape="poly" title=" " alt="" coords="151,119,158,153,153,154,146,119"/>
+<area shape="rect" title=" " alt="" coords="407,313,481,339"/>
+<area shape="poly" title=" " alt="" coords="116,257,394,312,393,317,115,262"/>
+<area shape="rect" title=" " alt="" coords="207,460,278,485"/>
+<area shape="poly" title=" " alt="" coords="64,268,42,281,22,297,10,317,8,327,10,338,25,363,43,386,66,405,91,421,145,445,195,460,193,465,143,450,89,425,63,409,40,389,20,366,5,340,3,327,5,315,18,294,39,276,61,263"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="20,313,113,339"/>
+<area shape="poly" title=" " alt="" coords="87,266,77,301,71,299,82,265"/>
+<area shape="poly" title=" " alt="" coords="71,338,81,373,90,393,103,410,124,427,147,440,195,458,193,463,145,445,121,431,99,414,86,396,76,375,66,339"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="113,387,164,412"/>
+<area shape="poly" title=" " alt="" coords="80,337,119,375,115,379,77,341"/>
+<area shape="poly" title=" " alt="" coords="136,386,132,353,123,314,103,278,108,275,128,312,138,352,141,386"/>
+<area shape="poly" title=" " alt="" coords="157,410,216,450,213,454,154,414"/>
+<area shape="poly" title=" " alt="" coords="150,194,111,232,108,228,146,190"/>
+<area shape="rect" href="lock_8h.html" title=" " alt="" coords="239,313,332,339"/>
+<area shape="poly" title=" " alt="" coords="172,191,268,301,264,305,168,194"/>
+<area shape="poly" title=" " alt="" coords="284,340,252,447,247,446,279,338"/>
+<area shape="poly" title=" " alt="" coords="279,194,256,214,237,241,227,268,222,296,220,353,228,406,237,447,232,448,222,407,215,353,216,295,222,266,232,239,252,211,275,190"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="247,240,353,265"/>
+<area shape="poly" title=" " alt="" coords="297,192,300,226,295,227,292,193"/>
+<area shape="poly" title=" " alt="" coords="324,263,409,305,407,309,322,268"/>
+<area shape="poly" title=" " alt="" coords="315,264,340,296,348,317,347,339,331,373,310,404,268,452,264,449,306,401,326,371,341,338,343,318,336,299,311,267"/>
+<area shape="poly" title=" " alt="" coords="443,266,445,300,440,300,438,266"/>
+<area shape="poly" title=" " alt="" coords="458,263,475,278,491,297,500,318,500,329,496,340,477,366,453,389,399,424,343,449,292,464,290,459,341,444,397,419,450,384,472,362,491,337,495,328,495,319,486,300,471,282,455,267"/>
+<area shape="poly" title=" " alt="" coords="416,268,324,310,322,305,414,263"/>
+<area shape="poly" title=" " alt="" coords="545,268,477,308,474,304,542,263"/>
+<area shape="poly" title=" " alt="" coords="561,266,547,297,525,337,494,379,455,414,415,436,371,451,292,469,291,463,370,446,412,431,452,410,490,376,521,334,543,294,556,264"/>
 </map>
 </div>
 </div><table class="memberdecls">

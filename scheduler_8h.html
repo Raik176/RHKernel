@@ -92,22 +92,97 @@ $(document).ready(function(){initNavTree('scheduler_8h.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">scheduler.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for scheduler.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="scheduler_8h__incl.png" border="0" usemap="#asrc_2intf_2smp_2scheduler_8h" alt=""/></div>
+<map name="asrc_2intf_2smp_2scheduler_8h" id="asrc_2intf_2smp_2scheduler_8h">
+<area shape="rect" title=" " alt="" coords="5,5,183,31"/>
+<area shape="rect" title=" " alt="" coords="59,79,129,104"/>
+<area shape="poly" title=" " alt="" coords="97,31,97,65,91,65,91,31"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="scheduler_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2smp_2scheduler_8hdep" alt=""/></div>
+<map name="asrc_2intf_2smp_2scheduler_8hdep" id="asrc_2intf_2smp_2scheduler_8hdep">
+<area shape="rect" title=" " alt="" coords="183,5,361,31"/>
+<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="36,79,209,104"/>
+<area shape="poly" title=" " alt="" coords="237,39,148,81,146,76,235,34"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="5,159,195,185"/>
+<area shape="poly" title=" " alt="" coords="264,45,247,76,223,106,177,139,132,162,130,157,175,135,219,102,243,73,259,42"/>
+<area shape="rect" href="scheduler_8cpp.html" title=" " alt="" coords="219,152,376,192"/>
+<area shape="poly" title=" " alt="" coords="279,44,297,151,292,152,274,44"/>
+<area shape="rect" href="smp_8h.html" title=" " alt="" coords="407,79,550,104"/>
+<area shape="poly" title=" " alt="" coords="319,33,446,76,444,81,317,38"/>
+<area shape="poly" title=" " alt="" coords="411,109,156,162,155,157,410,104"/>
+<area shape="poly" title=" " alt="" coords="441,112,342,154,340,149,439,107"/>
+<area shape="rect" href="gdt_8cpp.html" title="Implementation of the Global Descriptor Table (GDT)" alt="" coords="763,159,941,185"/>
+<area shape="poly" title=" " alt="" coords="547,104,798,157,797,162,546,109"/>
+<area shape="rect" href="heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="965,152,1149,192"/>
+<area shape="poly" title=" " alt="" coords="564,99,744,121,954,149,965,151,965,156,953,155,743,126,564,105"/>
+<area shape="rect" href="apic_8cpp.html" title=" " alt="" coords="400,152,557,192"/>
+<area shape="poly" title=" " alt="" coords="481,118,481,152,476,152,476,118"/>
+<area shape="rect" href="smp_8cpp.html" title=" " alt="" coords="581,152,739,192"/>
+<area shape="poly" title=" " alt="" coords="519,107,617,149,615,154,516,112"/>
+</map>
+</div>
+</div>
 <p><a href="scheduler_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler_1_1Task.html">scheduler::Task</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler_1_1task.html">scheduler::task</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacescheduler" id="r_namespacescheduler"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html">scheduler</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a7941237578b7fa1334f4b8260919d677" id="r_a7941237578b7fa1334f4b8260919d677"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677">scheduler::task_state</a> { <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489">scheduler::READY</a>
+, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a43491564ebcfd38568918efbd6e840fd">scheduler::RUNNING</a>
+, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a7850588c11fe6db41b8b2dd6c455f8f3">scheduler::SLEEPING</a>
+, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677abb4784231ff45108ee20bad16e4a2e8c">scheduler::DEAD</a>
+ }</td></tr>
+<tr class="separator:a7941237578b7fa1334f4b8260919d677"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3433b43c091f3d97e093d1f8399692d" id="r_ae3433b43c091f3d97e093d1f8399692d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">scheduler::task_type</a> { <a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da35c10219c45ccfb5b07444fd7e17214c">scheduler::KERNEL</a>
+, <a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da2e40ad879e955201df4dedbf8d479a12">scheduler::USER</a>
+ }</td></tr>
+<tr class="separator:ae3433b43c091f3d97e093d1f8399692d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a665b76d95eb85bbe7bc2357b3d468e70" id="r_a665b76d95eb85bbe7bc2357b3d468e70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70">scheduler::init_core</a> ()</td></tr>
+<tr class="separator:a665b76d95eb85bbe7bc2357b3d468e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44b15672a257eb4eee8945b18fc2b200" id="r_a44b15672a257eb4eee8945b18fc2b200"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a44b15672a257eb4eee8945b18fc2b200">scheduler::spawn</a> (<a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a> <a class="el" href="acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03">type</a>, void(*<a class="el" href="smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e">entry_point</a>)())</td></tr>
+<tr class="separator:a44b15672a257eb4eee8945b18fc2b200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66dc9e6aaa092bd2bbc61ed92bc73a27" id="r_a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27">scheduler::yield</a> ()</td></tr>
+<tr class="separator:a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5d5090e6ae162b694a4c01823a6b11" id="r_a5b5d5090e6ae162b694a4c01823a6b11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structregs.html">regs</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11">scheduler::schedule</a> (<a class="el" href="structregs.html">regs</a> *current_state, bool is_timer_tick)</td></tr>
+<tr class="separator:a5b5d5090e6ae162b694a4c01823a6b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a3fd9587ccd96391c01913da759cb8253" id="r_a3fd9587ccd96391c01913da759cb8253"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3fd9587ccd96391c01913da759cb8253">scheduler::KERNEL_STACK_SIZE</a> = 1024 * 16</td></tr>
+<tr class="separator:a3fd9587ccd96391c01913da759cb8253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98b1040c6549c56fba93e13094cbe4d1" id="r_a98b1040c6549c56fba93e13094cbe4d1"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">scheduler::MAX_QUEUES</a> = 4</td></tr>
+<tr class="separator:a98b1040c6549c56fba93e13094cbe4d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92dfce9e62b90351581efe9e4674cf30" id="r_a92dfce9e62b90351581efe9e4674cf30"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a92dfce9e62b90351581efe9e4674cf30">scheduler::TIME_QUANTUMS</a> [<a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">MAX_QUEUES</a>] = {2, 4, 8, 16}</td></tr>
+<tr class="separator:a92dfce9e62b90351581efe9e4674cf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c1015bb4b2531d2b2b3e68ef7b34cda" id="r_a6c1015bb4b2531d2b2b3e68ef7b34cda"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a6c1015bb4b2531d2b2b3e68ef7b34cda">scheduler::AGING_THRESHOLD</a> = 100</td></tr>
+<tr class="separator:a6c1015bb4b2531d2b2b3e68ef7b34cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

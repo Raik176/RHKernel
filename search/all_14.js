@@ -1,21 +1,12 @@
 var searchData=
 [
-  ['v2p_0',['v2p',['../util_8h.html#a953aa7d2c54a0688f6968f813988a598',1,'util.h']]],
-  ['version_1',['VERSION',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fae3ff0a3c75b7ec07ec5d6852b3965a86',1,'apic']]],
-  ['vfs_2',['vfs',['../namespacevfs.html',1,'']]],
-  ['vfs_2ecpp_3',['vfs.cpp',['../vfs_8cpp.html',1,'']]],
-  ['vfs_2eh_4',['vfs.h',['../vfs_8h.html',1,'']]],
-  ['vfs_5fchar_5fdevice_5',['VFS_CHAR_DEVICE',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7a413ade700c6f47c1c662cafca038b523',1,'vfs']]],
-  ['vfs_5fdirectory_6',['VFS_DIRECTORY',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7ab9f281976e5f272eb87134ab4fc83d38',1,'vfs']]],
-  ['vfs_5ffile_7',['VFS_FILE',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7a1b1483e5187b6e599c3e3bc3150310fe',1,'vfs']]],
-  ['vfs_5fnode_8',['vfs_node',['../structvfs_1_1vfs__node.html',1,'vfs']]],
-  ['vfstype_9',['VfsType',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7',1,'vfs']]],
-  ['vga_10',['vga',['../namespacevga.html',1,'vga'],['../namespaceconsole.html#a75f86d36f8c24dd9a106f8465ec19498adb4371197d1f58c7d4edb7dcd0565ad1',1,'console::VGA']]],
-  ['vga_20core_20functions_11',['VGA Core Functions',['../group__VGA__Core.html',1,'']]],
-  ['vga_2ecpp_12',['vga.cpp',['../vga_8cpp.html',1,'']]],
-  ['vga_2eh_13',['vga.h',['../vga_8h.html',1,'']]],
-  ['vmm_14',['vmm',['../namespacevmm.html',1,'']]],
-  ['vmm_2ecpp_15',['vmm.cpp',['../vmm_8cpp.html',1,'']]],
-  ['vmm_2eh_16',['vmm.h',['../vmm_8h.html',1,'']]],
-  ['vruntime_17',['vruntime',['../structscheduler_1_1Task.html#a8acd7f0e6cac3d08b3ba95534cb358fa',1,'scheduler::Task']]]
+  ['uid_0',['uid',['../structcpio__newc__header.html#a35cbc7dc819d3eef2d97e4d0d96734e8',1,'cpio_newc_header::uid'],['../initramfs_8h.html#ac3087d42269e924157fba173cdcfa615',1,'uid:&#160;initramfs.h']]],
+  ['unmap_5fpage_1',['unmap_page',['../namespacevmm.html#a55d9728f62c42d92f2c76db9d907ee0f',1,'vmm']]],
+  ['update_5fcursor_5fvisual_2',['update_cursor_visual',['../namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896',1,'framebuffer']]],
+  ['update_5fhardware_5fcursor_3',['update_hardware_cursor',['../namespacevga.html#ad3fed93390c077de798afb250e9fcf3d',1,'vga']]],
+  ['used_5fslots_4',['used_slots',['../structheap_1_1SlabHeader.html#a65655a7ada199a076b21d5d9d1fcec0f',1,'heap::SlabHeader']]],
+  ['user_5',['user',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa8f9bfe9d1345237cb3b2b205864da075',1,'vmm::User'],['../namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da2e40ad879e955201df4dedbf8d479a12',1,'scheduler::USER']]],
+  ['user_5fstack_6',['user_stack',['../structscheduler_1_1task.html#a17762d5add28ce1c0a4b21efa3745f86',1,'scheduler::task']]],
+  ['util_2ecpp_7',['util.cpp',['../util_8cpp.html',1,'']]],
+  ['util_2eh_8',['util.h',['../util_8h.html',1,'']]]
 ];

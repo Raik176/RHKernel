@@ -13,8 +13,9 @@ var annotated_dup =
       [ "FramebufferInfo", "structframebuffer_1_1FramebufferInfo.html", "structframebuffer_1_1FramebufferInfo" ]
     ] ],
     [ "gdt", "namespacegdt.html", [
-      [ "GDTEntry", "structgdt_1_1GDTEntry.html", "structgdt_1_1GDTEntry" ],
-      [ "GDTPtr", "structgdt_1_1GDTPtr.html", "structgdt_1_1GDTPtr" ]
+      [ "gdt_entry", "structgdt_1_1gdt__entry.html", "structgdt_1_1gdt__entry" ],
+      [ "gdt_pointer", "structgdt_1_1gdt__pointer.html", "structgdt_1_1gdt__pointer" ],
+      [ "tss", "structgdt_1_1tss.html", "structgdt_1_1tss" ]
     ] ],
     [ "heap", "namespaceheap.html", [
       [ "SlabCache", "structheap_1_1SlabCache.html", "structheap_1_1SlabCache" ],
@@ -24,11 +25,14 @@ var annotated_dup =
       [ "idt_entry", "structidt_1_1idt__entry.html", "structidt_1_1idt__entry" ],
       [ "idt_ptr", "structidt_1_1idt__ptr.html", "structidt_1_1idt__ptr" ]
     ] ],
+    [ "lock", "namespacelock.html", [
+      [ "spinlock", "structlock_1_1spinlock.html", "structlock_1_1spinlock" ]
+    ] ],
     [ "pmm", "namespacepmm.html", [
       [ "FreeBlock", "structpmm_1_1FreeBlock.html", "structpmm_1_1FreeBlock" ]
     ] ],
     [ "scheduler", "namespacescheduler.html", [
-      [ "Task", "structscheduler_1_1Task.html", "structscheduler_1_1Task" ]
+      [ "task", "structscheduler_1_1task.html", "structscheduler_1_1task" ]
     ] ],
     [ "smp", "namespacesmp.html", [
       [ "cpu_local", "structsmp_1_1cpu__local.html", "structsmp_1_1cpu__local" ],

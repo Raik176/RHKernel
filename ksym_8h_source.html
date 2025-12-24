@@ -108,10 +108,10 @@ $(document).ready(function(){initNavTree('ksym_8h_source.html',''); initResizabl
 </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="foldopen" id="foldopen00008" data-start="" data-end="">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="ksym_8h.html#a02f441edac57fee4ab561c3a0f0ecf37">    8</a></span><span class="preprocessor">#define KEXPORT(sym) \</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">    extern &quot;C&quot; void* sym; \</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="ksym_8h.html#a02f441edac57fee4ab561c3a0f0ecf37">    8</a></span><span class="preprocessor">#define KEXPORT(sym)                           \</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">    extern &quot;C&quot; void* sym;                      \</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">    __attribute__((section(&quot;.ksymtab&quot;), used)) \</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">    const kernel_symbol __ksym_##sym = { (uintptr_t)&amp;sym, #sym }</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">    const kernel_symbol __ksym_##sym = {(uintptr_t) &amp; sym, #sym}</span></div>
 </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceksym.html">ksym</a> {</div>
@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('ksym_8h_source.html',''); initResizabl
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespaceksym.html#a1373f728f45d7e93e1bfc28544356534">   15</a></span>    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> <span class="keyword">const</span> <a class="code hl_struct" href="structkernel__symbol.html">kernel_symbol</a> <a class="code hl_variable" href="namespaceksym.html#a1373f728f45d7e93e1bfc28544356534">_ksymtab_end</a>[];</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65">get_name</a>(uintptr_t addr, uintptr_t* offset = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}  <span class="comment">// namespace ksym</span></div>
 <div class="ttc" id="anamespaceksym_html"><div class="ttname"><a href="namespaceksym.html">ksym</a></div><div class="ttdef"><b>Definition</b> ksym.cpp:3</div></div>
 <div class="ttc" id="anamespaceksym_html_a1129d94d9e2bc50c74ae83f618f23e65"><div class="ttname"><a href="namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65">ksym::get_name</a></div><div class="ttdeci">const char * get_name(uintptr_t addr, uintptr_t *offset)</div><div class="ttdef"><b>Definition</b> ksym.cpp:4</div></div>
 <div class="ttc" id="anamespaceksym_html_a1373f728f45d7e93e1bfc28544356534"><div class="ttname"><a href="namespaceksym.html#a1373f728f45d7e93e1bfc28544356534">ksym::_ksymtab_end</a></div><div class="ttdeci">const kernel_symbol _ksymtab_end[]</div><div class="ttdef"><b>Definition</b> ksym.h:15</div></div>

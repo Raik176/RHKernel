@@ -13,9 +13,17 @@ var vmm_8h =
       [ "Global", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8", null ],
       [ "NX", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fa973fd64b3b915bccdee598a385ee39e1", null ]
     ] ],
+    [ "PageSize", "vmm_8h.html#a42cd2493dba06deb13885a475b6e5829", [
+      [ "Size4K", "vmm_8h.html#a42cd2493dba06deb13885a475b6e5829a744e711ee4b2aa22ecb98eb11b84ef62", null ],
+      [ "Size2M", "vmm_8h.html#a42cd2493dba06deb13885a475b6e5829a8149aba1aa0f0ce11749462f817e36ea", null ],
+      [ "Size1G", "vmm_8h.html#a42cd2493dba06deb13885a475b6e5829af15424734dc3ead4b2a77b9bb2952efe", null ]
+    ] ],
+    [ "create_user_address_space", "vmm_8h.html#abf984d135d39d57e1d30e060634d3d26", null ],
     [ "get_kernel_pagemap", "vmm_8h.html#abdf265a78f65cd1d359554c771e03cb0", null ],
+    [ "get_phys_addr_mask", "vmm_8h.html#a94b5ead9d649c974cf15eab5a2c582e7", null ],
     [ "init", "vmm_8h.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],
-    [ "map_page", "vmm_8h.html#a91045b98b89f21a0633cff5edcd2bd30", null ],
+    [ "map_page", "vmm_8h.html#a21b681e259c6666aae12ccd5cb4afa68", null ],
+    [ "map_range", "vmm_8h.html#a68b4c8da94ea5d19c1346ab656c984bd", null ],
     [ "operator&", "vmm_8h.html#a14a63f89f88492d3c68025e66aa1100b", null ],
     [ "operator|", "vmm_8h.html#a873a1e9ab4cf8b5b19d4eefb58619e17", null ]
 ];

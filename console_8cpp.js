@@ -7,8 +7,10 @@ var console_8cpp =
     [ "move_cursor", "console_8cpp.html#ga9342e94a12a86c2367bddb6f7a9cb69f", null ],
     [ "printf", "console_8cpp.html#ga0522c4a859d7c82e6aab7c54f4209df2", null ],
     [ "putchar", "console_8cpp.html#gaba87341fd1ed10fbefe4e1dbf1300174", null ],
-    [ "puthex", "console_8cpp.html#ga278e61a8aa1cda0b57e50aa56cfd49ce", null ],
-    [ "putnum", "console_8cpp.html#ga9a41564fc009b7339df8f2b2a4394eb2", null ],
-    [ "write", "console_8cpp.html#gae2713614e37ba234a7af6abc42460964", null ],
-    [ "active_backend", "console_8cpp.html#ae57e81d0aaac0c99a42db59e05380069", null ]
+    [ "putchar_internal", "console_8cpp.html#a930ef5d4df17680b897abaf7493804ee", null ],
+    [ "puthex", "console_8cpp.html#a278e61a8aa1cda0b57e50aa56cfd49ce", null ],
+    [ "putnum", "console_8cpp.html#a9a41564fc009b7339df8f2b2a4394eb2", null ],
+    [ "write", "console_8cpp.html#ae2713614e37ba234a7af6abc42460964", null ],
+    [ "active_backend", "console_8cpp.html#ae57e81d0aaac0c99a42db59e05380069", null ],
+    [ "console_lock", "console_8cpp.html#a4c479c9a26d67cbbff44891c1587ee68", null ]
 ];

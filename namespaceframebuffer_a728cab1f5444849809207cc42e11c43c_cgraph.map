@@ -1,15 +1,18 @@
 <map id="framebuffer::putchar" name="framebuffer::putchar">
-<area shape="rect" id="Node000001" title="Write a single character to the framebuffer." alt="" coords="5,60,161,86"/>
-<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="639,86,816,111"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,58,207,34,324,12,390,5,458,3,525,7,591,20,622,30,652,45,700,75,697,80,649,49,620,35,590,25,525,13,458,8,390,10,325,17,209,39,124,63"/>
-<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="400,35,591,60"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,66,386,52,387,57,162,71"/>
-<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="209,86,352,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,80,196,85,196,90,161,86"/>
-<area shape="rect" id="Node000005" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="419,136,571,176"/>
-<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="111,83,157,103,210,121,311,140,406,149,405,155,310,145,209,126,155,108,109,88"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="352,96,625,96,625,101,352,101"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="335,83,427,61,428,66,336,88"/>
-<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="330,108,408,130,406,135,328,114"/>
-<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="571,134,661,112,662,117,572,139"/>
+<area shape="rect" id="Node000001" title="Write a single character to the framebuffer." alt="" coords="5,65,161,91"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="648,13,825,39"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,63,154,42,209,25,322,8,436,3,543,5,634,12,634,17,543,11,436,8,322,14,210,30,155,47,110,68"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="209,40,400,65"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,66,196,62,196,68,162,72"/>
+<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="233,89,376,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,84,220,90,219,95,161,89"/>
+<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="448,163,600,203"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="114,88,159,106,210,123,327,151,435,169,434,174,325,156,209,129,157,111,112,93"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="361,87,399,74,422,61,447,49,494,37,542,30,634,23,634,28,543,35,495,43,449,54,425,66,401,79,362,92"/>
+<area shape="rect" id="Node000005" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="485,64,563,89"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="376,91,471,80,471,85,377,96"/>
+<area shape="rect" id="Node000006" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="486,113,562,139"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="377,107,472,118,472,123,376,112"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="342,112,401,134,459,156,457,161,399,139,340,117"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="577,161,599,149,663,97,713,47,717,51,667,101,601,154,580,166"/>
 </map>
