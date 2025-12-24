@@ -12,6 +12,11 @@
 
 #include "smp/apic.h"
 
+struct cpu_features {
+    bool smap;
+    bool smep;
+};
+
 /**
  * @brief CPU register state structure
  *

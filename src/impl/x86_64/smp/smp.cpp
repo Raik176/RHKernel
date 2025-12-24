@@ -32,6 +32,34 @@ namespace smp {
         return cpu_table[index];
     }
 
+    void enable_optional_cpu_features() {
+        uint32_t eax, ebx, ecx, edx;
+    
+        eax = 7; ecx = 0;
+        asm volatile(
+            "cpuid"
+            : "=b"(ebx), "=a"(eax), "=c"(ecx), "=d"(edx)
+            : "a"(eax), "c"(ecx)
+        );
+
+        cpu_features feat = get_cpu()->cpu_features;
+
+        feat.smep = (ebx & (1 << 7)) != 0;
+        feat.smap = (ebx & (1 << 20)) != 0;
+
+        uint64_t cr4;
+        asm volatile("mov %%cr4, %0" : "=r"(cr4));
+        if (feat.smep) {
+            cr4 |= (1ULL << 20);
+        }
+        if (feat.smap) {
+            cr4 |= (1ULL << 21);
+        }
+        asm volatile("mov %0, %%cr4" :: "r"(cr4));
+
+        get_cpu()->cpu_features = feat;
+    }
+
     void setup_cpu_local(trampoline_data* data) {
         cpu_local* local = (cpu_local*)heap::kmalloc(sizeof(cpu_local));
         memset(local, 0, sizeof(cpu_local));
@@ -58,6 +86,8 @@ namespace smp {
         setup_cpu_local(data);
         data->status = 1;
 
+        enable_optional_cpu_features();
+
         gdt::init_core();
 
         apic::init_ap();
@@ -82,6 +112,7 @@ namespace smp {
         apic::wrmsr(0xC0000101, (uintptr_t)local);
 
         gdt::init_core();
+        enable_optional_cpu_features();
     }
 
     void boot_core(uint8_t lapic_id, uintptr_t trampoline_phys, trampoline_data* data_ptr,

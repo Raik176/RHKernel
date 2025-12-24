@@ -5,6 +5,7 @@ struct regs;
 
 namespace scheduler {
     static constexpr uint64_t KERNEL_STACK_SIZE = 1024 * 16;
+    static constexpr uint64_t INITIAL_USER_STACK_SIZE = 1024 * 64;
 
     enum class task_state { READY, RUNNING, SLEEPING, DEAD };
 
@@ -19,6 +20,8 @@ namespace scheduler {
         void* kernel_stack;
         void* user_stack;
         uint64_t cr3;
+
+        alignas(16) uint8_t fxsave_area[512];
 
         int priority;
         uint64_t quantum;

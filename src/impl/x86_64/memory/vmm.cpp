@@ -86,8 +86,7 @@ namespace vmm {
         map_range(PHYS_MAP_BASE, 0, pmm::get_system_bytes(), PageFlags::Write);
         map_range(0, 0, 0x100000, PageFlags::Write);
 
-        uint64_t new_cr3 = current_pml4_phys;
-        asm volatile("mov %0, %%cr3" : : "r"(new_cr3) : "memory");
+        asm volatile("mov %0, %%cr3" : : "r"(current_pml4_phys) : "memory");
     }
 
     void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags) {

@@ -16,8 +16,8 @@ namespace lock {
         }
 
         void release() {
-            __atomic_clear(&locked, __ATOMIC_RELEASE);
             asm volatile("push %0\npopf" ::"r"(flags) : "memory");
+            __atomic_clear(&locked, __ATOMIC_RELEASE);
         }
 
         bool try_acquire() {

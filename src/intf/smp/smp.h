@@ -4,6 +4,7 @@
 #include "gdt.h"
 #include "memory/heap.h"
 #include "smp/scheduler.h"
+#include "util.h"
 
 namespace smp {
     struct trampoline_data {
@@ -23,6 +24,8 @@ namespace smp {
         scheduler::task* current_task;
         scheduler::task* task_queues[scheduler::MAX_QUEUES];
         scheduler::task* idle_task;
+        lock::spinlock sched_lock;
+
         heap::SlabHeader* heap_cache[heap::CACHE_COUNT];
 
         gdt::gdt_pointer gdt_ptr;
@@ -31,6 +34,8 @@ namespace smp {
 
         uint32_t lapic_id;
         uint32_t cpu_index;
+
+        struct cpu_features cpu_features;
     };
 
     void init_aps();
