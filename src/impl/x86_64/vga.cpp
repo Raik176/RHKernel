@@ -5,6 +5,7 @@
 
 #include "vga.h"
 
+#include "string.h"
 #include "util.h"
 
 namespace vga {
@@ -52,9 +53,14 @@ namespace vga {
     }
 
     void clear() {
-        for (uint16_t y = 0; y < HEIGHT; y++) {
-            for (uint16_t x = 0; x < WIDTH; x++) { buffer[y * WIDTH + x] = make_entry(' '); }
+        uint16_t entry = make_entry(' ');
+
+        for (uint16_t x = 0; x < WIDTH; x++) { buffer[x] = entry; }
+
+        for (uint16_t y = 1; y < HEIGHT; y++) {
+            memcpy((void*)&buffer[y * WIDTH], (void*)&buffer[0], WIDTH * 2);
         }
+
         cursor_x = 0;
         cursor_y = 0;
         update_hardware_cursor();
@@ -67,11 +73,15 @@ namespace vga {
     static void newline() {
         cursor_x = 0;
         cursor_y++;
+
         if (cursor_y >= HEIGHT) {
-            for (uint16_t y = 1; y < HEIGHT; y++)
-                for (uint16_t x = 0; x < WIDTH; x++)
-                    buffer[(y - 1) * WIDTH + x] = buffer[y * WIDTH + x];
-            for (uint16_t x = 0; x < WIDTH; x++) buffer[(HEIGHT - 1) * WIDTH + x] = make_entry(' ');
+            size_t bytes_to_move = (HEIGHT - 1) * WIDTH * 2;
+            memcpy((void*)buffer, (void*)(buffer + WIDTH), bytes_to_move);
+
+            uint16_t entry = make_entry(' ');
+            uint16_t* last_line = (uint16_t*)(buffer + (HEIGHT - 1) * WIDTH);
+            for (uint16_t x = 0; x < WIDTH; x++) { last_line[x] = entry; }
+
             cursor_y = HEIGHT - 1;
         }
     }

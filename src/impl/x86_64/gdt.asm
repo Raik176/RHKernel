@@ -1,23 +1,30 @@
 global gdt_load
 gdt_load:
-    mov rax, rdi        ; rdi = pointer to GDTPtr
-    lgdt [rax]          ; load GDT
+    mov ecx, 0xC0000101 ; IA32_GS_BASE
+    rdmsr               ; Reads MSR into EDX:EAX
+    push rdx            ; Push high 32 bits
+    push rax            ; Push low 32 bits
 
-    ; Reload data segment registers
-    mov ax, 0x10        ; kernel data selector
+    lgdt [rdi]
+
+    mov ax, 0x10
     mov ds, ax
     mov es, ax
+    mov ss, ax
+    
+    xor ax, ax
     mov fs, ax
     mov gs, ax
-    mov ss, ax
 
-    ; Far jump via memory descriptor
-    ; 6-byte descriptor: [offset (4 bytes), selector (2 bytes)]
-    jmp [rel gdt_jump_ptr]
+    pop rax             ; Pop low 32 bits
+    pop rdx             ; Pop high 32 bits
+    mov ecx, 0xC0000101
+    wrmsr               ; Write EDX:EAX back to GS_BASE
 
-gdt_jump_ptr:
-    dq reload_cs        ; RIP (64-bit)
-    dw 0x08             ; CS (selector)
+    push 0x08
+    lea rax, [rel .reload_cs]
+    push rax
+    retfq
 
-reload_cs:
-    ret                 ; return to caller
+.reload_cs:
+    ret

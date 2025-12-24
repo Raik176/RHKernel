@@ -6,38 +6,13 @@
  * Supports kmalloc/kfree and C++ new/delete operators.
  */
 
-#include "heap.h"
+#include "memory/heap.h"
 
-#include "pmm.h"
+#include "memory/pmm.h"
+#include "smp/smp.h"
 #include "util.h"
-#include "vmm.h"
 
 namespace heap {
-
-    /** @internal Represents a single slab (page) in the allocator */
-    struct SlabHeader {
-        uint32_t slot_size;       ///< Size of each allocation slot
-        uint32_t used_slots;      ///< Number of slots currently in use
-        uint32_t total_slots;     ///< Total number of slots in the slab
-        void* free_list;          ///< Linked list of free slots
-        SlabHeader *next, *prev;  ///< Links for partial/full slab lists
-    };
-
-    /** @internal Cache for slabs of a specific allocation size */
-    struct SlabCache {
-        size_t slot_size;           ///< Size of each allocation slot
-        SlabHeader* partial_slabs;  ///< Slabs with some free slots
-        SlabHeader* full_slabs;     ///< Slabs completely used
-    };
-
-    /** @internal Predefined slab caches for common kernel allocation sizes */
-    static SlabCache caches[] = {{16, nullptr, nullptr},   {32, nullptr, nullptr},
-                                 {64, nullptr, nullptr},   {128, nullptr, nullptr},
-                                 {256, nullptr, nullptr},  {512, nullptr, nullptr},
-                                 {1024, nullptr, nullptr}, {2048, nullptr, nullptr}};
-
-    static const size_t CACHE_COUNT = sizeof(caches) / sizeof(SlabCache);
-
     /**
      * @internal Remove a slab from a linked list
      *
@@ -63,14 +38,6 @@ namespace heap {
         *head = slab;
         slab->prev = nullptr;
     }
-
-    /**
-     * @brief Initialize the kernel heap
-     *
-     * Currently, this only sets up internal slab structures.
-     * In a more complex system, mutexes and bookkeeping would also be initialized.
-     */
-    void init() {}
 
     /**
      * @internal Create a new slab for a specific slot size
@@ -107,20 +74,14 @@ namespace heap {
         return slab;
     }
 
-    /**
-     * @brief Allocate memory from the kernel heap
-     *
-     * Finds a suitable slab cache for the requested size and returns a free slot.
-     * If no suitable slab exists, a new slab is created.
-     *
-     * @param size Number of bytes requested
-     * @return Pointer to allocated memory, or nullptr if allocation fails
-     */
     void* kmalloc(size_t size) {
+        size_t cache_idx = 0xFFFFFFFF;
         SlabCache* cache = nullptr;
+
         for (size_t i = 0; i < CACHE_COUNT; i++) {
             if (size <= caches[i].slot_size) {
                 cache = &caches[i];
+                cache_idx = i;
                 break;
             }
         }
@@ -130,22 +91,59 @@ namespace heap {
             size_t actual_size = (1ULL << order) * pmm::PAGE_SIZE;
             uint64_t phys = pmm::alloc(actual_size);
             if (!phys) return nullptr;
-
             uint64_t virt = reinterpret_cast<uint64_t>(p2v(phys));
-
             *(size_t*)virt = actual_size;
-
             return reinterpret_cast<void*>(virt + pmm::PAGE_SIZE);
         }
 
+        smp::cpu_local* cpu = smp::get_cpu();
+        if (cpu && cpu->self == cpu) {
+            SlabHeader* local = cpu->heap_cache[cache_idx];
+
+            if (local && local->free_list) {
+                void* ptr = local->free_list;
+                local->free_list = *(void**)ptr;
+                local->used_slots++;
+
+                if (local->used_slots == local->total_slots) {
+                    cache->lock.acquire();
+                    local->owner = nullptr;
+                    list_push(&cache->full_slabs, local);
+                    cache->lock.release();
+                    cpu->heap_cache[cache_idx] = nullptr;
+                }
+                return ptr;
+            }
+        }
+
+        // --- STAGE 1: GLOBAL CACHE (Fallback) ---
+        cache->lock.acquire();
+
         if (!cache->partial_slabs) {
             SlabHeader* new_slab = create_slab(cache->slot_size);
-            if (!new_slab) return nullptr;
+            if (!new_slab) {
+                cache->lock.release();
+                return nullptr;
+            }
+            new_slab->cache_index = cache_idx;  // Store index for kfree
             new_slab->slot_size = cache->slot_size;
             list_push(&cache->partial_slabs, new_slab);
         }
 
         SlabHeader* slab = cache->partial_slabs;
+
+        // If SMP is active, "Steal" the global partial slab for this CPU
+        if (cpu && cpu->self == cpu) {
+            list_remove(&cache->partial_slabs, slab);
+            slab->owner = cpu;
+            cpu->heap_cache[cache_idx] = slab;
+            cache->lock.release();
+
+            // Now that the CPU has a local slab, recurse once to use Fast Path
+            return kmalloc(size);
+        }
+
+        // Standard Global Allocation (BSP Boot Stage)
         void* ptr = slab->free_list;
         slab->free_list = *(void**)ptr;
         slab->used_slots++;
@@ -155,55 +153,42 @@ namespace heap {
             list_push(&cache->full_slabs, slab);
         }
 
+        cache->lock.release();
         return ptr;
     }
 
-    /**
-     * @brief Free previously allocated memory
-     *
-     * Returns memory to the appropriate slab or frees large allocations back to PMM.
-     *
-     * @param ptr Pointer to memory previously allocated with kmalloc
-     */
     void kfree(void* ptr) {
         if (!ptr) return;
-
         uint64_t virt_addr = (uint64_t)ptr;
 
         if ((virt_addr & 0xFFF) == 0) {
             uint64_t metadata_page = virt_addr - pmm::PAGE_SIZE;
-
             size_t total_size = *(size_t*)metadata_page;
             pmm::free(v2p(reinterpret_cast<void*>(metadata_page)), total_size);
             return;
         }
 
         SlabHeader* slab = (SlabHeader*)(virt_addr & ~0xFFF);
+        SlabCache* cache = &caches[slab->cache_index];
 
-        SlabCache* cache = nullptr;
-        for (size_t i = 0; i < CACHE_COUNT; i++) {
-            if (caches[i].slot_size == slab->slot_size) {
-                cache = &caches[i];
-                break;
-            }
-        }
+        cache->lock.acquire();
 
         bool was_full = (slab->used_slots == slab->total_slots);
-
         *(void**)ptr = slab->free_list;
         slab->free_list = ptr;
         slab->used_slots--;
 
         if (slab->used_slots == 0) {
-            list_remove(&cache->partial_slabs, slab);
-            pmm::free(v2p(slab), pmm::PAGE_SIZE);
-            return;
-        }
-
-        if (was_full) {
+            if (slab->owner == nullptr) {
+                list_remove(&cache->partial_slabs, slab);
+                pmm::free(v2p(slab), pmm::PAGE_SIZE);
+            }
+        } else if (was_full) {
             list_remove(&cache->full_slabs, slab);
             list_push(&cache->partial_slabs, slab);
         }
+
+        cache->lock.release();
     }
 
 }  // namespace heap

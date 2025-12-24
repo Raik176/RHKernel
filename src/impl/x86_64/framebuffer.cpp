@@ -9,6 +9,7 @@
 
 #include "framebuffer.h"
 
+#include "string.h"
 #include "util.h"
 
 extern "C" {
@@ -116,24 +117,37 @@ namespace framebuffer {
      */
     void scroll() {
         update_cursor_visual(false);
-        if (fb.type == 2) {  // EGA
-            for (uint32_t y = 0; y < fb.height - 1; y++) {
-                for (uint32_t x = 0; x < fb.width; x++) {
-                    ((uint16_t*)fb.addr)[y * fb.width + x] =
-                        ((uint16_t*)fb.addr)[(y + 1) * fb.width + x];
-                }
-            }
-            for (uint32_t x = 0; x < fb.width; x++) putpixel_ega(x, fb.height - 1, 0x0720);
-        } else {
+
+        if (fb.type == 2) {  // EGA / VGA Text Mode
+            uint32_t total_cells = (fb.height - 1) * fb.width;
+            memcpy(fb.addr, fb.addr + (fb.width * 2), total_cells * 2);
+
+            uint16_t clear_val = 0x0720;
+            uint16_t* last_line = ((uint16_t*)fb.addr) + total_cells;
+            for (uint32_t x = 0; x < fb.width; x++) last_line[x] = clear_val;
+
+        } else {  // RGB / Indexed Graphics Modes
             uint32_t font_h = 16;
-            for (uint32_t y = 0; y < fb.height - font_h; y++) {
-                uint8_t* dest = fb.addr + (y * fb.pitch);
-                uint8_t* src = fb.addr + ((y + font_h) * fb.pitch);
-                for (uint32_t i = 0; i < fb.pitch; i++) dest[i] = src[i];
-            }
-            uint32_t bg = pack_color(0, 0, 0);
-            for (uint32_t y = fb.height - font_h; y < fb.height; y++) {
-                for (uint32_t x = 0; x < fb.width; x++) putpixel_raw(x, y, bg);
+            uint32_t bytes_per_row = fb.pitch;
+
+            uint8_t* dest = fb.addr;
+            uint8_t* src = fb.addr + (font_h * bytes_per_row);
+            size_t bytes_to_copy = (fb.height - font_h) * bytes_per_row;
+
+            memcpy(dest, src, bytes_to_copy);
+
+            uint32_t bg_color = pack_color(0, 0, 0);
+            uint8_t* bottom_start = fb.addr + bytes_to_copy;
+            size_t bottom_size = font_h * bytes_per_row;
+
+            if (bg_color == 0) {
+                memset(bottom_start, 0, bottom_size);
+            } else {
+                for (uint32_t x = 0; x < fb.width; x++)
+                    putpixel_raw(x, fb.height - font_h, bg_color);
+                for (uint32_t y = 1; y < font_h; y++) {
+                    memcpy(fb.addr + (fb.height - font_h + y) * fb.pitch, bottom_start, fb.pitch);
+                }
             }
         }
     }

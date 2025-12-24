@@ -2,15 +2,36 @@
 #include <stddef.h>
 #include <stdint.h>
 
-namespace heap {
+#include "smp/lock.h"
 
-    /**
-     * @brief Initialize the kernel heap
-     *
-     * Sets up the slab allocator structures and prepares memory
-     * for dynamic allocation using kmalloc/kfree.
-     */
-    void init();
+namespace heap {
+    /** @internal Represents a single slab (page) in the allocator */
+    struct SlabHeader {
+        uint32_t slot_size;  ///< Size of each allocation slot
+        uint32_t cache_index;
+        uint32_t used_slots;      ///< Number of slots currently in use
+        uint32_t total_slots;     ///< Total number of slots in the slab
+        void* free_list;          ///< Linked list of free slots
+        SlabHeader *next, *prev;  ///< Links for partial/full slab lists
+
+        void* owner;
+    };
+
+    /** @internal Cache for slabs of a specific allocation size */
+    struct SlabCache {
+        size_t slot_size;  ///< Size of each allocation slot
+        lock::spinlock lock;
+        SlabHeader* partial_slabs;  ///< Slabs with some free slots
+        SlabHeader* full_slabs;     ///< Slabs completely used
+    };
+
+    /** @internal Predefined slab caches for common kernel allocation sizes */
+    static SlabCache caches[] = {{16, {}, nullptr, nullptr},   {32, {}, nullptr, nullptr},
+                                 {64, {}, nullptr, nullptr},   {128, {}, nullptr, nullptr},
+                                 {256, {}, nullptr, nullptr},  {512, {}, nullptr, nullptr},
+                                 {1024, {}, nullptr, nullptr}, {2048, {}, nullptr, nullptr}};
+
+    static const size_t CACHE_COUNT = sizeof(caches) / sizeof(SlabCache);
 
     /**
      * @brief Allocate memory from the kernel heap

@@ -2,13 +2,14 @@
 #include <stdint.h>
 
 namespace gdt {
+    static constexpr uint16_t MAX_ENTRIES = 7;
 
     /**
      * @brief Represents a single Global Descriptor Table (GDT) entry.
      *
      * Each entry defines a memory segment with a base, limit, and access flags.
      */
-    struct GDTEntry {
+    struct gdt_entry {
         uint16_t limit_low;   ///< Lower 16 bits of the segment limit
         uint16_t base_low;    ///< Lower 16 bits of the segment base address
         uint8_t base_middle;  ///< Next 8 bits of the segment base address
@@ -22,35 +23,37 @@ namespace gdt {
      *
      * Passed to the `lgdt` instruction.
      */
-    struct GDTPtr {
+    struct gdt_pointer {
         uint16_t limit;  ///< Size of the GDT minus 1
         uint64_t base;   ///< Address of the first GDT entry
     } __attribute__((packed));
 
-    /**
-     * @brief Predefined segment selectors in the GDT.
-     */
-    enum class Segment : uint16_t {
-        NULL_SEG = 0,     ///< Null segment
-        KERNEL_CODE = 1,  ///< Kernel code segment
-        KERNEL_DATA = 2,  ///< Kernel data segment
-    };
+    struct tss {
+        uint32_t reserved0;
+        uint64_t rsp0;  // Stack pointer for Ring 0
+        uint64_t rsp1;  // Stack pointer for Ring 1
+        uint64_t rsp2;  // Stack pointer for Ring 2
+        uint64_t reserved1;
+        uint64_t ist1;  // Interrupt Stack Table 1
+        uint64_t ist2;  // Interrupt Stack Table 2
+        uint64_t ist3;  // Interrupt Stack Table 3
+        uint64_t ist4;  // Interrupt Stack Table 4
+        uint64_t ist5;  // Interrupt Stack Table 5
+        uint64_t ist6;  // Interrupt Stack Table 6
+        uint64_t ist7;  // Interrupt Stack Table 7
+        uint64_t reserved2;
+        uint16_t reserved3;
+        uint16_t iopb_offset;  // Offset from start of TSS to I/O Permission Bit Map
+    } __attribute__((packed));
 
     /**
      * @brief Initialize the Global Descriptor Table (GDT)
      *
      * Sets up the standard kernel code and data segments and loads the GDT.
      */
-    void init();
+    void init_early();
 
-    /**
-     * @brief Retrieve the pointer to the current GDT
-     *
-     * @return GDTPtr structure containing the base address and limit of the GDT
-     */
-    GDTPtr get_gdt_ptr();
-
-    void init_ap();
+    void init_core();
 
     extern "C" void gdt_load(uint64_t gdt_ptr_addr);
 

@@ -1,6 +1,8 @@
 #pragma once
 #include <stdint.h>
 
+#include "util.h"
+
 namespace vmm {
 
     /**
@@ -43,6 +45,8 @@ namespace vmm {
         NX = 1ULL << 63
     };
 
+    enum class PageSize { Size4K, Size2M, Size1G };
+
     /**
      * @brief Combine page flags using bitwise OR.
      */
@@ -71,8 +75,13 @@ namespace vmm {
      * @param phys  Physical address (must be page-aligned)
      * @param flags PageFlags controlling access and caching behavior
      */
-    void map_page(uint64_t virt, uint64_t phys, PageFlags flags);
+    void map_page(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size);
 
-    uint64_t get_kernel_pagemap(); // physical location!
+    void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags);
 
+    uint64_t get_kernel_pagemap();  // physical location!
+
+    uint64_t create_user_address_space();
+
+    uint64_t get_phys_addr_mask();
 }  // namespace vmm

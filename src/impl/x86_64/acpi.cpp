@@ -1,8 +1,8 @@
 #include "acpi.h"
-#include "vmm.h"
-#include "string.h"
+
 #include "console.h"
 #include "multiboot2.h"
+#include "string.h"
 #include "util.h"
 
 namespace acpi {
@@ -23,9 +23,8 @@ namespace acpi {
         multiboot_tag_acpi* acpi_old = nullptr;
         multiboot_tag_acpi* acpi_new = nullptr;
 
-        for (uint8_t* tag = mb_info + 8; tag < mb_info + total_mb_size; 
+        for (uint8_t* tag = mb_info + 8; tag < mb_info + total_mb_size;
              tag += ((*(uint32_t*)(tag + 4) + 7) & ~7)) {
-            
             uint32_t type = *(uint32_t*)tag;
             if (type == 0) break;
 
@@ -60,9 +59,9 @@ namespace acpi {
 
             char sig[5] = {0};
             memcpy(sig, header->signature, 4);
-                
-            console::printf("  [%d] Signature: %s, Address: %p, Length: %d\n", 
-                            (int)i, sig, header, header->length);
+
+            console::printf("  [%d] Signature: %s, Address: %p, Length: %d\n", (int)i, sig, header,
+                            header->length);
         }
     }
 
@@ -75,7 +74,7 @@ namespace acpi {
 
         for (size_t i = 0; i < entries; i++) {
             uint64_t phys_addr = 0;
-            
+
             if (is_xsdt) {
                 phys_addr = ((uint64_t*)ptr_array)[i];
             } else {
@@ -83,12 +82,10 @@ namespace acpi {
             }
 
             SDTHeader* header = (SDTHeader*)p2v(phys_addr);
-            if (memcmp(header->signature, signature, 4) == 0) {
-                return header;
-            }
+            if (memcmp(header->signature, signature, 4) == 0) { return header; }
         }
 
         return nullptr;
     }
 
-} // namespace acpi
+}  // namespace acpi

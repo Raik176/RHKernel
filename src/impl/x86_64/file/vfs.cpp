@@ -1,6 +1,6 @@
 #include "file/vfs.h"
 
-#include "heap.h"
+#include "memory/heap.h"
 #include "string.h"
 
 static vfs::vfs_node* root_node = nullptr;
@@ -23,11 +23,14 @@ namespace vfs {
     }
 
     vfs_node* finddir(vfs_node* parent, const char* name) {
+        if (!parent) return nullptr;
+
         vfs_node* curr = parent->child;
         while (curr) {
             if (strcmp(curr->name, name) == 0) { return curr; }
             curr = curr->next;
         }
+
         return nullptr;
     }
 

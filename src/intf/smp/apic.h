@@ -1,29 +1,30 @@
 #pragma once
 #include <stdint.h>
+
 #include "idt.h"
 
 namespace apic {
     static constexpr uint32_t MSR_GS_BASE = 0xC0000101;
 
     enum Register {
-        ID          = 0x0020,
-        VERSION     = 0x0030,
-        TPR         = 0x0080,
-        EOI         = 0x00B0,
-        LDR         = 0x00D0,
-        DFR         = 0x00E0,
-        SVR         = 0x00F0,
-        ESR         = 0x0280,
-        ICRLO       = 0x0300,
-        ICRHI       = 0x0310,
-        TIMER       = 0x0320,
-        PCINT       = 0x0340,
-        LINT0       = 0x0350,
-        LINT1       = 0x0360,
-        ERROR       = 0x0370,
-        TICF        = 0x0380, // Timer Initial Count
-        TCCF        = 0x0390, // Timer Current Count
-        TDCR        = 0x03E0  // Timer Divide Configuration
+        ID = 0x0020,
+        VERSION = 0x0030,
+        TPR = 0x0080,
+        EOI = 0x00B0,
+        LDR = 0x00D0,
+        DFR = 0x00E0,
+        SVR = 0x00F0,
+        ESR = 0x0280,
+        ICRLO = 0x0300,
+        ICRHI = 0x0310,
+        TIMER = 0x0320,
+        PCINT = 0x0340,
+        LINT0 = 0x0350,
+        LINT1 = 0x0360,
+        ERROR = 0x0370,
+        TICF = 0x0380,  // Timer Initial Count
+        TCCF = 0x0390,  // Timer Current Count
+        TDCR = 0x03E0   // Timer Divide Configuration
     };
 
     void init();
@@ -49,4 +50,4 @@ namespace apic {
 
     uint32_t read_reg(uint32_t reg);
     void write_reg(uint32_t reg, uint32_t val);
-}
+}  // namespace apic

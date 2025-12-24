@@ -22,7 +22,7 @@ ap_start_16:
     or eax, 1
     mov cr0, eax
 
-    jmp 0x08:(ap_start_32 - trampoline_start + 0x8000)
+    jmp dword 0x08:(ap_start_32 - trampoline_start + 0x8000)
 
 [bits 32]
 ap_start_32:

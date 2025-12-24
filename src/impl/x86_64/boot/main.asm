@@ -1,7 +1,10 @@
 global start
 global pml4_table
+global pml4_table_end
 global pdp_table
+global pdp_table_end
 global page_directory
+global page_directory_end
 extern long_mode_start
 
 section .early_text
@@ -73,10 +76,15 @@ section .early_bss
 align 4096
 pml4_table:
     resb 4096
+pml4_table_end:
+align 4096
 pdp_table:
     resb 4096
+pdp_table_end:
+align 4096
 page_directory:
     resb 4096
+page_directory_end:
 stack_bottom:
     resb 512
 stack_top:

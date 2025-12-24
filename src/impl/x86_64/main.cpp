@@ -1,17 +1,17 @@
+#include "acpi.h"
 #include "console.h"
 #include "file/initramfs.h"
 #include "file/vfs.h"
-#include "smp/apic.h"
-#include "smp/smp.h"
 #include "gdt.h"
-#include "heap.h"
 #include "idt.h"
+#include "memory/pmm.h"
+#include "memory/vmm.h"
 #include "multiboot2.h"
-#include "pmm.h"
+#include "smp/apic.h"
+#include "smp/scheduler.h"
+#include "smp/smp.h"
 #include "util.h"
 #include "vga.h"
-#include "vmm.h"
-#include "acpi.h"
 
 static void debug_dump_vfs(vfs::vfs_node* node, int depth) {
     while (node) {
@@ -58,7 +58,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
         }
     }
 
-    gdt::init();
+    gdt::init_early();
     console::printf("[ OK ] GDT initialized.\n");
     idt::init();
     console::printf("[ OK ] IDT initialized.\n");
@@ -76,29 +76,46 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     vmm::init();
     console::printf("[ OK ] VMM initialized.\n");
 
-    heap::init();
-    console::printf("[ OK ] Heap initialized.\n");
-
     vfs::init();
     console::printf("[ OK ] VFS initialized.\n");
 
     initramfs::init(mb_phys_addr);
     console::printf("[ OK ] Initramfs initialized.\n");
 
-    console::printf("\n--- VFS Debug Tree ---\n");
+    console::printf("--- VFS Debug Tree ---\n");
     debug_dump_vfs(vfs::get_root(), 0);
     console::printf("----------------------\n");
 
-    apic::init();
-    smp::init_bsp();
+    acpi::init(mb_phys_addr);
     console::printf("[ OK ] ACPI initialized.\n");
+
+    apic::init();
+    console::printf("[ OK ] APIC initialized.\n");
+
+    smp::init_bsp();
+
+    scheduler::init_core();
 
     __asm__ volatile("sti");
 
-    acpi::init(mb_phys_addr);
-    console::printf("[ OK ] ACPI initialized.\n");
     smp::init_aps();
-    console::printf("[ OK ] SMP initialized with %d cores.\n", smp::get_core_count());
+    console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
+
+    scheduler::spawn(scheduler::task_type::KERNEL, []() {
+        int count = 0;
+        while (true) {
+            console::printf("[Task 1] Hello from core %d! Count: %d\n", smp::get_cpu()->cpu_index,
+                            count++);
+            scheduler::yield();
+        }
+    });
+
+    scheduler::spawn(scheduler::task_type::KERNEL, []() {
+        while (true) {
+            console::printf("[Task 2] Scheduler is multiplexing successfully!\n");
+            scheduler::yield();
+        }
+    });
 
     for (;;);
 }

@@ -2,7 +2,7 @@
 
 #include "console.h"
 #include "file/vfs.h"
-#include "heap.h"
+#include "memory/heap.h"
 #include "string.h"
 #include "util.h"
 
@@ -73,6 +73,7 @@ namespace initramfs {
                             found->name = (char*)heap::kmalloc(strlen(segment) + 1);
                             strcpy(found->name, segment);
                             found->type = vfs::VfsType::VFS_DIRECTORY;
+
                             found->next = parent->child;
                             parent->child = found;
                         }

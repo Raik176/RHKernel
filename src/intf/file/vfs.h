@@ -1,6 +1,8 @@
 #pragma once
+#include "smp/lock.h"
 #include "util.h"
 
+// TODO: SMP SAFE!
 namespace vfs {
     enum class VfsType { VFS_FILE = 1, VFS_DIRECTORY, VFS_CHAR_DEVICE };
 

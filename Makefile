@@ -162,3 +162,7 @@ clean-all: clean clean-venv clean-tools
 .PHONY: doc
 doc:
 	doxygen Doxyfile
+
+.PHONY: bear
+bear:
+	bear -- make clean build-x86_64

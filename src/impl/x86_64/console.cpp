@@ -12,12 +12,14 @@
 #include <stdarg.h>
 
 #include "framebuffer.h"
+#include "smp/lock.h"
 #include "vga.h"
 #ifdef DEBUG
 #include "serial.h"
 #endif
 
 namespace console {
+    static lock::spinlock console_lock;
 
     /** @internal Currently active console backend */
     static Backend active_backend;
@@ -43,12 +45,7 @@ namespace console {
 #endif
     }
 
-    /**
-     * @internal
-     * Write a single character to the currently active backend.
-     * Also sends the character to the serial port if DEBUG is enabled.
-     */
-    void putchar(char c) {
+    void putchar_internal(char c) {
         switch (active_backend) {
             case Backend::VGA:
                 vga::putchar(c);
@@ -65,13 +62,34 @@ namespace console {
 
     /**
      * @internal
+     * Write a single character to the currently active backend.
+     * Also sends the character to the serial port if DEBUG is enabled.
+     */
+    void putchar(char c) {
+        console_lock.acquire();
+        putchar_internal(c);
+        console_lock.release();
+    }
+
+    /**
+     * @internal
+     * Write a null-terminated string to the console by calling putchar repeatedly.
+     *
+     * @param str Pointer to string
+     */
+    void write(const char* str) {
+        while (*str) putchar_internal(*str++);
+    }
+
+    /**
+     * @internal
      * Print an unsigned integer in decimal format to the console.
      *
      * @param n Number to print
      */
     void putnum(uint64_t n) {
         if (n == 0) {
-            putchar('0');
+            putchar_internal('0');
             return;
         }
 
@@ -82,7 +100,7 @@ namespace console {
             n /= 10;
         }
 
-        while (--i >= 0) { putchar(buf[i]); }
+        while (--i >= 0) { putchar_internal(buf[i]); }
     }
 
     /**
@@ -97,7 +115,7 @@ namespace console {
         write("0x");
 
         if (n == 0) {
-            putchar('0');
+            putchar_internal('0');
             return;
         }
 
@@ -109,17 +127,7 @@ namespace console {
             n >>= 4;
         }
 
-        while (--i >= 0) { putchar(buf[i]); }
-    }
-
-    /**
-     * @internal
-     * Write a null-terminated string to the console by calling putchar repeatedly.
-     *
-     * @param str Pointer to string
-     */
-    void write(const char* str) {
-        while (*str) putchar(*str++);
+        while (--i >= 0) { putchar_internal(buf[i]); }
     }
 
     /**
@@ -137,6 +145,7 @@ namespace console {
      * @param ... Variable arguments
      */
     void printf(const char* fmt, ...) {
+        console_lock.acquire();
         va_list args;
         va_start(args, fmt);
 
@@ -165,19 +174,20 @@ namespace console {
                         break;
                     }
                     case '%':
-                        putchar('%');
+                        putchar_internal('%');
                         break;
                     default:
-                        putchar(*fmt);
+                        putchar_internal(*fmt);
                         break;
                 }
             } else {
-                putchar(*fmt);
+                putchar_internal(*fmt);
             }
             fmt++;
         }
 
         va_end(args);
+        console_lock.release();
     }
 
     /**

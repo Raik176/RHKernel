@@ -7,10 +7,11 @@
  * and querying memory statistics.
  */
 
-#include "pmm.h"
+#include "memory/pmm.h"
 
 #include "console.h"
 #include "multiboot2.h"
+#include "smp/lock.h"
 #include "string.h"
 #include "util.h"
 
@@ -18,15 +19,24 @@ extern "C" {
 extern uint8_t _kernel_phys_start[];
 extern uint8_t _kernel_phys_end[];
 extern uint8_t pml4_table[];
+extern uint8_t pml4_table_end[];
 extern uint8_t pdp_table[];
+extern uint8_t pdp_table_end[];
 extern uint8_t page_directory[];
+extern uint8_t page_directory_end[];
 extern uint8_t phys_map_pdp_table[];
+extern uint8_t phys_map_pdp_table_end[];
 extern uint8_t phys_map_pd_table[];
+extern uint8_t phys_map_pd_table_end[];
 extern uint8_t high_pdp_table[];
+extern uint8_t high_pdp_table_end[];
 extern uint8_t high_pd_table[];
+extern uint8_t high_pd_table_end[];
 }
 
 namespace {
+    static lock::spinlock pmm_lock;
+
     size_t managed_bytes = 0;  ///< Total memory managed by PMM
     size_t free_bytes = 0;     ///< Currently free memory
     size_t system_bytes = 0;   ///< Total system RAM detected
@@ -216,30 +226,21 @@ namespace pmm {
 
         if (initramfs_start == 0 && initramfs_end == 0) return;
 
-        uint64_t reserved[] = {0,
-                               0x100000,
-                               (uint64_t)&_kernel_phys_start,
-                               (uint64_t)&_kernel_phys_end,
+        uint64_t reserved[] = {
+                                0, 0x100000,
+                               (uint64_t)&_kernel_phys_start, (uint64_t)&_kernel_phys_end,
 
-                               (uint64_t)&pml4_table,
-                               (uint64_t)&pml4_table + PAGE_SIZE,
-                               (uint64_t)&pdp_table,
-                               (uint64_t)&pdp_table + PAGE_SIZE,
-                               (uint64_t)&page_directory,
-                               (uint64_t)&page_directory + PAGE_SIZE,
-                               (uint64_t)&phys_map_pdp_table,
-                               (uint64_t)&phys_map_pdp_table + PAGE_SIZE,
-                               (uint64_t)&phys_map_pd_table,
-                               (uint64_t)&phys_map_pd_table + PAGE_SIZE,
-                               (uint64_t)&high_pdp_table,
-                               (uint64_t)&high_pdp_table + PAGE_SIZE,
-                               (uint64_t)&high_pd_table,
-                               (uint64_t)&high_pd_table + PAGE_SIZE,
+                               (uint64_t)&pml4_table, (uint64_t)&pml4_table + (uint64_t)&pml4_table_end - (uint64_t)&pml4_table,
+                               (uint64_t)&pdp_table, (uint64_t)&pdp_table + (uint64_t)&pdp_table_end - (uint64_t)&pdp_table,
+                               (uint64_t)&page_directory, (uint64_t)&page_directory + (uint64_t)&page_directory_end - (uint64_t)&page_directory,
+                               (uint64_t)&phys_map_pdp_table, (uint64_t)&phys_map_pdp_table + (uint64_t)&phys_map_pdp_table_end - (uint64_t)&phys_map_pdp_table,
+                               (uint64_t)&phys_map_pd_table, (uint64_t)&phys_map_pd_table + (uint64_t)&phys_map_pd_table_end - (uint64_t)&phys_map_pd_table,
+                               (uint64_t)&high_pdp_table, (uint64_t)&high_pdp_table + (uint64_t)&high_pdp_table_end - (uint64_t)&high_pdp_table,
+                               (uint64_t)&high_pd_table, (uint64_t)&high_pd_table + (uint64_t)&high_pd_table_end - (uint64_t)&high_pd_table,
 
-                               mb_phys_addr,
-                               mb_phys_addr + mb_size,
-                               initramfs_start,
-                               initramfs_end};
+                               mb_phys_addr, mb_phys_addr + mb_size,
+                               initramfs_start, initramfs_end
+                            };
         size_t res_count = sizeof(reserved) / (sizeof(uint64_t) * 2);
 
         for (auto* e = mmap->entries; (uint8_t*)e < (uint8_t*)mmap + mmap->size;
@@ -262,6 +263,9 @@ namespace pmm {
      */
     void free(uint64_t phys, size_t size) {
         if (!phys || size == 0) return;
+
+        pmm_lock.acquire();
+
         size_t order = size_to_order(size);
         uint64_t addr = phys;
         while (order < MAX_ORDER) {
@@ -271,6 +275,8 @@ namespace pmm {
             order++;
         }
         push_block(addr, order);
+
+        pmm_lock.release();
     }
 
     /**
@@ -283,6 +289,9 @@ namespace pmm {
      */
     uint64_t alloc(size_t size) {
         if (size == 0) return 0;
+
+        pmm_lock.acquire();
+
         size_t order = size_to_order(size);
         for (size_t i = order; i <= MAX_ORDER; i++) {
             uint64_t block = pop_block(i);
@@ -293,8 +302,12 @@ namespace pmm {
                 uint64_t buddy = block + block_size(i);
                 push_block(buddy, i);
             }
+
+            pmm_lock.release();
             return block;
         }
+
+        pmm_lock.release();
         return 0;
     }
 

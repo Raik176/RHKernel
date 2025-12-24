@@ -9,8 +9,9 @@
 #include "idt.h"
 
 #include "console.h"
-#include "string.h"
 #include "smp/apic.h"
+#include "smp/scheduler.h"
+#include "string.h"
 
 extern "C" {
 static volatile int panic_lock = 0;
@@ -50,99 +51,95 @@ extern void isr31();
 
 extern void irq0();
 
+extern void isr129();
 extern void isr254();
 
 void handle_halt_ipi(struct regs *r) {
     (void)r;
     __asm__ volatile("cli");
-    for (;;) {
-        __asm__ volatile("hlt");
-    }
+    for (;;) { __asm__ volatile("hlt"); }
 }
 
-void irq_handler(struct regs *r) {
+uint64_t idt_handler(struct regs *r) {
+    if (r->int_no <= 31) {
+        apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::HALT_VECTOR);
+
+        static const char exception_messages[32][30] = {"Division By Zero",
+                                                        "Debug",
+                                                        "Non Maskable Interrupt",
+                                                        "Breakpoint",
+                                                        "Into Detected Overflow",
+                                                        "Out of Bounds",
+                                                        "Invalid Opcode",
+                                                        "No Coprocessor",
+                                                        "Double Fault",
+                                                        "Coprocessor Segment Overrun",
+                                                        "Bad TSS",
+                                                        "Segment not Present",
+                                                        "Stack Fault",
+                                                        "General Protection Fault",
+                                                        "Page Fault",
+                                                        "Unknown Interrupt",
+                                                        "Coprocessor fault",
+                                                        "Alignment Check",
+                                                        "Machine Check",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved",
+                                                        "Reserved"};
+
+        
+        console::printf("\n--- KERNEL PANIC ---\n");
+
+        if (r->int_no < 32) {
+            console::printf("Exception: ");
+            console::printf(exception_messages[r->int_no]);
+        } else {
+            console::printf("Unknown Exception");
+        }
+
+        console::printf("\nInterrupt: %d", r->int_no);
+
+        console::printf("\nError Code: %d", r->err_code);
+
+        if (r->int_no == 14) {
+            uint64_t faulting_address;
+            __asm__ volatile("mov %%cr2, %0" : "=r"(faulting_address));
+            console::printf("\nFaulting Address (CR2): %p", faulting_address);
+        }
+
+        console::printf("\nInstruction Pointer: %p", r->rip);
+
+        console::printf("\nHalting system...");
+
+        handle_halt_ipi(r);
+    }
+
+    if (r->int_no == idt::YIELD_VECTOR) {
+        struct regs *new_state = scheduler::schedule(r, false);
+        return (uint64_t)new_state;
+    }
+
     if (r->int_no == 32) {
         apic::tick();
+        struct regs *new_state = scheduler::schedule(r, true);
+        apic::eoi();
+        return (uint64_t)new_state;
     }
+
+    if (r->int_no == idt::HALT_VECTOR) { handle_halt_ipi(r); }
 
     apic::eoi();
-}
 
-/**
- * @internal Common exception handler called by ISR stubs
- *
- * Prints a kernel panic message and halts the system.
- *
- * @param r Pointer to the CPU register state pushed during the interrupt
- */
-void isr_handler(struct regs *r) {
-    if (r->int_no == idt::HALT_VECTOR) {
-        handle_halt_ipi(r);
-        return;
-    }
-
-    apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::HALT_VECTOR);
-
-    static const char exception_messages[32][30] = {"Division By Zero",
-                                                    "Debug",
-                                                    "Non Maskable Interrupt",
-                                                    "Breakpoint",
-                                                    "Into Detected Overflow",
-                                                    "Out of Bounds",
-                                                    "Invalid Opcode",
-                                                    "No Coprocessor",
-                                                    "Double Fault",
-                                                    "Coprocessor Segment Overrun",
-                                                    "Bad TSS",
-                                                    "Segment not Present",
-                                                    "Stack Fault",
-                                                    "General Protection Fault",
-                                                    "Page Fault",
-                                                    "Unknown Interrupt",
-                                                    "Coprocessor fault",
-                                                    "Alignment Check",
-                                                    "Machine Check",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved",
-                                                    "Reserved"};
-
-    console::write("\n--- KERNEL PANIC ---\n");
-
-    if (r->int_no < 32) {
-        console::write("Exception: ");
-        console::write(exception_messages[r->int_no]);
-    } else {
-        console::write("Unknown Exception");
-    }
-
-    console::write("\nInterrupt: ");
-    console::putnum(r->int_no);
-
-    console::write("\nError Code: ");
-    console::putnum(r->err_code);
-
-    if (r->int_no == 14) {
-        uint64_t faulting_address;
-        __asm__ volatile("mov %%cr2, %0" : "=r"(faulting_address));
-        console::write("\nFaulting Address (CR2): 0x");
-        console::putnum(faulting_address);
-    }
-
-    console::write("\nInstruction Pointer: 0x");
-    console::putnum(r->rip);
-
-    console::write("\nHalting system...");
-
-    handle_halt_ipi(r);
+    return (uint64_t)r;
 }
 }
 
@@ -224,12 +221,11 @@ namespace idt {
 
         set_gate(32, reinterpret_cast<uint64_t>(irq0), 0x08, 0x8E);
 
+        set_gate(YIELD_VECTOR, reinterpret_cast<uint64_t>(isr129), 0x08, 0x8E);
         set_gate(HALT_VECTOR, reinterpret_cast<uint64_t>(isr254), 0x08, 0x8E);
 
         init_ap();
     }
 
-    void init_ap(void) {
-        idt::load();
-    }
+    void init_ap(void) { idt::load(); }
 }  // namespace idt

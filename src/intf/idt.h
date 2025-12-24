@@ -1,42 +1,10 @@
 #pragma once
 #include <stdint.h>
 
-
-
-/**
- * @brief CPU register state structure
- *
- * Represents the state of registers pushed to the stack during
- * an interrupt or exception.
- */
-struct regs {
-    uint64_t r15;  ///< General-purpose register R15
-    uint64_t r14;  ///< General-purpose register R14
-    uint64_t r13;  ///< General-purpose register R13
-    uint64_t r12;  ///< General-purpose register R12
-    uint64_t r11;  ///< General-purpose register R11
-    uint64_t r10;  ///< General-purpose register R10
-    uint64_t r9;   ///< General-purpose register R9
-    uint64_t r8;   ///< General-purpose register R8
-    uint64_t rbp;  ///< Base pointer register
-    uint64_t rdi;  ///< Destination index register
-    uint64_t rsi;  ///< Source index register
-    uint64_t rdx;  ///< Data register
-    uint64_t rcx;  ///< Counter register
-    uint64_t rbx;  ///< Base register
-    uint64_t rax;  ///< Accumulator register
-
-    uint64_t int_no;    ///< Interrupt number
-    uint64_t err_code;  ///< Error code, if applicable
-
-    uint64_t rip;     ///< Instruction pointer
-    uint64_t cs;      ///< Code segment
-    uint64_t rflags;  ///< CPU flags register
-    uint64_t rsp;     ///< Stack pointer
-    uint64_t ss;      ///< Stack segment
-} __attribute__((packed));
+#include "util.h"
 
 namespace idt {
+    static constexpr uint32_t YIELD_VECTOR = 0x81;
     static constexpr uint32_t HALT_VECTOR = 0xFE;
 
     /**

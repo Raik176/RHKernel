@@ -74,27 +74,6 @@ namespace console {
     void putchar(char c);
 
     /**
-     * @brief Write an unsigned integer in decimal format
-     *
-     * @param n Number to write
-     */
-    void putnum(uint64_t n);
-
-    /**
-     * @brief Write an unsigned integer in hexadecimal format
-     *
-     * @param n Number to write in hexadecimal
-     */
-    void puthex(uint64_t n);
-
-    /**
-     * @brief Write a null-terminated string to the console
-     *
-     * @param str Pointer to the string
-     */
-    void write(const char* str);
-
-    /**
      * @brief Formatted output to the console
      *
      * Supports:
