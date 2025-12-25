@@ -7,7 +7,7 @@ var searchData=
   ['set_5fgate_4',['set_gate',['../namespaceidt.html#a241eccc3e87b3e7c19ef23a547c86b88',1,'idt']]],
   ['setup_5fcpu_5flocal_5',['setup_cpu_local',['../namespacesmp.html#a8793b78358c1cf1d36479e1c7273fc80',1,'smp']]],
   ['size_5fto_5forder_6',['size_to_order',['../namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5',1,'pmm']]],
-  ['spawn_7',['spawn',['../namespacescheduler.html#a44b15672a257eb4eee8945b18fc2b200',1,'scheduler']]],
+  ['spawn_7',['spawn',['../namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d',1,'scheduler']]],
   ['spinlock_8',['spinlock',['../structlock_1_1spinlock.html#a4cac70adf315707a3d1ca0cefb993e7b',1,'lock::spinlock']]],
   ['steal_5fwork_9',['steal_work',['../namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0',1,'scheduler']]],
   ['stop_10',['stop',['../namespaceapic.html#afef1aeee7cf2404a33839208a638f9fd',1,'apic']]],

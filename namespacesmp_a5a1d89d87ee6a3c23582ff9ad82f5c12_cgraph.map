@@ -25,7 +25,7 @@
 <area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="297,84,387,73,388,78,298,89"/>
 <area shape="poly" id="edge26_Node000010_Node000003" title=" " alt="" coords="258,278,289,248,323,211,336,191,344,173,354,156,372,139,388,129,390,134,375,143,358,159,349,175,341,193,327,214,293,252,262,282"/>
 <area shape="poly" id="edge27_Node000010_Node000010" title=" " alt="" coords="213,281,207,272,210,262,223,256,244,253,269,257,280,266,277,270,267,262,244,259,225,261,214,265,212,271,218,278"/>
-<area shape="rect" id="Node000011" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="373,153,540,179"/>
+<area shape="rect" id="Node000011" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="373,153,540,179"/>
 <area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="258,278,307,239,372,196,403,181,405,186,375,200,310,243,261,282"/>
 <area shape="rect" id="Node000012" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="588,280,683,305"/>
 <area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="301,290,574,290,574,295,301,295"/>
@@ -39,7 +39,7 @@
 <area shape="poly" id="edge28_Node000010_Node000021" title=" " alt="" coords="303,303,327,316,344,333,352,351,360,368,375,385,397,399,394,403,372,389,355,371,347,353,339,336,324,320,300,308"/>
 <area shape="rect" id="Node000022" href="$namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="387,456,526,481"/>
 <area shape="poly" id="edge29_Node000010_Node000022" title=" " alt="" coords="303,301,327,316,340,332,348,349,352,381,356,413,363,428,375,443,380,447,376,451,371,447,358,431,351,414,347,382,343,350,336,335,324,320,300,305"/>
-<area shape="rect" id="Node000023" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="373,505,540,531"/>
+<area shape="rect" id="Node000023" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="373,505,540,531"/>
 <area shape="poly" id="edge31_Node000010_Node000023" title=" " alt="" coords="303,300,327,316,344,339,351,362,352,406,352,450,360,471,375,492,379,496,375,500,371,496,355,473,347,451,346,406,346,362,339,341,323,320,300,305"/>
 <area shape="rect" id="Node000013" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="929,279,1061,304"/>
 <area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="683,290,916,289,916,294,683,295"/>

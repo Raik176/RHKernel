@@ -1,8 +1,8 @@
 var searchData=
 [
   ['make_5fentry_0',['make_entry',['../namespacevga.html#abdd0eae02537e3409e2abd61b9002899',1,'vga']]],
-  ['map_5fpage_1',['map_page',['../namespacevmm.html#a21b681e259c6666aae12ccd5cb4afa68',1,'vmm']]],
-  ['map_5frange_2',['map_range',['../namespacevmm.html#a68b4c8da94ea5d19c1346ab656c984bd',1,'vmm']]],
+  ['map_5fpage_1',['map_page',['../namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c',1,'vmm']]],
+  ['map_5frange_2',['map_range',['../namespacevmm.html#a900951e277dcf50c77c3dac468c80f59',1,'vmm']]],
   ['memcmp_3',['memcmp',['../string_8h.html#a1920090da3c7d87b99fb9b4972e47b6f',1,'string.h']]],
   ['memcpy_4',['memcpy',['../string_8h.html#a8a853f677c69b562669a40f0d8e55064',1,'string.h']]],
   ['memset_5',['memset',['../string_8h.html#a68108ee6aab23b0f7cd925f449354da4',1,'string.h']]],

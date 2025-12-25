@@ -1,6 +1,6 @@
 <map id="heap::kfree" name="heap::kfree">
 <area shape="rect" id="Node000001" title="Free previously allocated memory." alt="" coords="5,153,101,179"/>
-<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="149,29,316,55"/>
+<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="149,29,316,55"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,152,96,109,120,84,148,64,159,58,162,62,151,68,124,88,100,112,65,155"/>
 <area shape="rect" id="Node000003" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="187,79,278,104"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="74,151,148,113,173,104,175,109,150,118,77,156"/>
@@ -8,7 +8,7 @@
 <area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="101,157,159,148,159,154,102,162"/>
 <area shape="rect" id="Node000012" href="$namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="163,177,302,203"/>
 <area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="102,170,150,176,150,182,101,175"/>
-<area shape="rect" id="Node000013" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="149,227,316,252"/>
+<area shape="rect" id="Node000013" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="149,227,316,252"/>
 <area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="78,176,150,212,173,220,171,225,148,216,76,181"/>
 <area shape="rect" id="Node000014" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="209,276,256,301"/>
 <area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="66,177,100,219,124,243,151,262,173,273,197,280,195,285,171,278,148,267,120,247,96,223,61,181"/>

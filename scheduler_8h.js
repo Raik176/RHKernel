@@ -13,7 +13,7 @@ var scheduler_8h =
     ] ],
     [ "init_core", "scheduler_8h.html#a665b76d95eb85bbe7bc2357b3d468e70", null ],
     [ "schedule", "scheduler_8h.html#a5b5d5090e6ae162b694a4c01823a6b11", null ],
-    [ "spawn", "scheduler_8h.html#a44b15672a257eb4eee8945b18fc2b200", null ],
+    [ "spawn", "scheduler_8h.html#a395f6820b5cdffc27a298872c26a422d", null ],
     [ "yield", "scheduler_8h.html#a66dc9e6aaa092bd2bbc61ed92bc73a27", null ],
     [ "AGING_THRESHOLD", "scheduler_8h.html#a6c1015bb4b2531d2b2b3e68ef7b34cda", null ],
     [ "INITIAL_USER_STACK_SIZE", "scheduler_8h.html#aca1955f9f8177bc72acae17e9428a87a", null ],

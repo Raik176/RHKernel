@@ -11,7 +11,7 @@ var searchData=
   ['child_8',['child',['../structvfs_1_1vfs__node.html#aec1663ef3f3e9e78d8599084072245ae',1,'vfs::vfs_node']]],
   ['clear_9',['clear',['../group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66',1,'console::clear()'],['../group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad',1,'vga::clear()'],['../namespaceframebuffer.html#adf29831b8817c8c3322536b078fdb265',1,'framebuffer::clear()']]],
   ['cmdline_10',['cmdline',['../structmultiboot__tag__module.html#ae28133d78349211f87ff9fcfb9ab3056',1,'multiboot_tag_module']]],
-  ['color_11',['color',['../namespacevga.html#a9401ccd7b060e7a51604996bd7aecf97',1,'vga::color'],['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08',1,'vga::Color']]],
+  ['color_11',['color',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08',1,'vga::Color'],['../namespacevga.html#a9401ccd7b060e7a51604996bd7aecf97',1,'vga::color']]],
   ['com1_12',['COM1',['../namespaceserial.html#a9b4f31a56f16e48f19a6ac95e0a4b2a6',1,'serial']]],
   ['console_13',['console',['../namespaceconsole.html',1,'']]],
   ['console_20core_20functions_14',['Console Core Functions',['../group__Console__Core.html',1,'']]],

@@ -6,7 +6,7 @@ var scheduler_8cpp =
     [ "fxsave_task", "scheduler_8cpp.html#afe3f2e5da9c1007bad54ba98727bd670", null ],
     [ "init_core", "scheduler_8cpp.html#a665b76d95eb85bbe7bc2357b3d468e70", null ],
     [ "schedule", "scheduler_8cpp.html#a5b5d5090e6ae162b694a4c01823a6b11", null ],
-    [ "spawn", "scheduler_8cpp.html#a44b15672a257eb4eee8945b18fc2b200", null ],
+    [ "spawn", "scheduler_8cpp.html#a395f6820b5cdffc27a298872c26a422d", null ],
     [ "steal_work", "scheduler_8cpp.html#ad2a3525715b7cf529eb7d7338b5fc0f0", null ],
     [ "yield", "scheduler_8cpp.html#a66dc9e6aaa092bd2bbc61ed92bc73a27", null ],
     [ "next_tid", "scheduler_8cpp.html#a3b81b2261dd5d25128bbd76ac80d91f8", null ]

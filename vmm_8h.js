@@ -22,8 +22,9 @@ var vmm_8h =
     [ "get_kernel_pagemap", "vmm_8h.html#abdf265a78f65cd1d359554c771e03cb0", null ],
     [ "get_phys_addr_mask", "vmm_8h.html#a94b5ead9d649c974cf15eab5a2c582e7", null ],
     [ "init", "vmm_8h.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],
-    [ "map_page", "vmm_8h.html#a21b681e259c6666aae12ccd5cb4afa68", null ],
-    [ "map_range", "vmm_8h.html#a68b4c8da94ea5d19c1346ab656c984bd", null ],
+    [ "map_page", "vmm_8h.html#afd3f7748b21b0b09ef643e0b42694a0c", null ],
+    [ "map_range", "vmm_8h.html#a900951e277dcf50c77c3dac468c80f59", null ],
     [ "operator&", "vmm_8h.html#a14a63f89f88492d3c68025e66aa1100b", null ],
-    [ "operator|", "vmm_8h.html#a873a1e9ab4cf8b5b19d4eefb58619e17", null ]
+    [ "operator|", "vmm_8h.html#a873a1e9ab4cf8b5b19d4eefb58619e17", null ],
+    [ "unmap_page", "vmm_8h.html#a2c46f284b55b8e2cf67914ca69500ee8", null ]
 ];

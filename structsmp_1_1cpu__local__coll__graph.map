@@ -1,22 +1,22 @@
 <map id="smp::cpu_local" name="smp::cpu_local">
-<area shape="rect" id="Node000001" title=" " alt="" coords="432,245,551,271"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="466,230,474,222,491,219,506,221,516,227,518,237,513,246,509,244,513,236,511,230,504,226,491,224,476,227,470,234"/>
-<area shape="rect" id="Node000002" href="$structscheduler_1_1task.html" title=" " alt="" coords="165,44,287,69"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="301,70,357,91,384,106,410,124,438,154,460,187,488,244,483,246,456,190,434,157,406,128,382,111,355,96,299,75"/>
-<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="202,29,210,21,226,17,240,20,248,26,251,36,247,45,242,43,245,35,244,29,238,25,226,23,212,25,206,33"/>
-<area shape="rect" id="Node000003" href="$structregs.html" title="CPU register state structure." alt="" coords="5,44,56,69"/>
-<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="70,54,165,54,165,59,70,59"/>
-<area shape="rect" id="Node000004" href="$structlock_1_1spinlock.html" title=" " alt="" coords="171,93,281,119"/>
-<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="279,121,296,129,349,158,399,190,475,243,472,247,396,194,346,162,293,134,277,126"/>
-<area shape="rect" id="Node000005" href="$structheap_1_1SlabHeader.html" title=" " alt="" coords="157,196,295,221"/>
-<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="309,219,409,237,437,243,436,248,407,242,308,224"/>
-<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="202,181,210,173,226,169,240,172,248,178,251,188,247,197,242,195,245,187,244,181,238,177,226,175,212,177,206,185"/>
-<area shape="rect" id="Node000006" href="$structgdt_1_1gdt__pointer.html" title="Pointer structure used to load the GDT." alt="" coords="163,245,289,271"/>
-<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="302,255,432,255,432,261,302,261"/>
-<area shape="rect" id="Node000007" href="$structgdt_1_1gdt__entry.html" title="Represents a single Global Descriptor Table (GDT) entry." alt="" coords="169,295,283,320"/>
-<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="296,295,407,275,440,268,441,273,409,281,297,300"/>
-<area shape="rect" id="Node000008" href="$structgdt_1_1tss.html" title=" " alt="" coords="191,344,261,369"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="274,347,339,333,407,310,443,290,472,269,476,273,446,295,409,315,340,338,275,352"/>
-<area shape="rect" id="Node000009" href="$structcpu__features.html" title=" " alt="" coords="173,393,279,419"/>
-<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="292,397,350,383,379,372,407,357,431,337,452,313,481,269,486,272,457,316,435,341,409,362,382,376,352,388,294,402"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="464,260,583,285"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="495,245,503,237,523,233,540,236,550,242,553,252,548,261,543,259,548,251,546,245,538,241,523,239,506,242,499,249"/>
+<area shape="rect" id="Node000002" href="$structscheduler_1_1task.html" title=" " alt="" coords="165,59,287,84"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="301,77,372,96,409,112,442,133,471,164,494,199,520,259,516,261,489,201,467,167,438,137,406,117,371,101,299,82"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="202,44,210,35,226,32,240,34,248,41,251,50,247,60,242,57,245,50,244,44,238,39,226,37,212,40,206,47"/>
+<area shape="rect" id="Node000003" href="$structregs.html" title="CPU register state structure." alt="" coords="5,59,56,84"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="70,69,165,69,165,74,70,74"/>
+<area shape="rect" id="Node000004" href="$structlock_1_1spinlock.html" title=" " alt="" coords="171,108,281,133"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="277,136,296,144,370,174,441,212,507,257,504,262,439,216,368,179,294,148,275,141"/>
+<area shape="rect" id="Node000005" href="$structheap_1_1SlabHeader.html" title=" " alt="" coords="157,211,295,236"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="309,231,440,251,470,257,469,263,440,257,308,236"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="202,196,210,187,226,184,240,186,248,193,251,202,247,212,242,209,245,202,244,196,238,191,226,189,212,192,206,199"/>
+<area shape="rect" id="Node000006" href="$structgdt_1_1gdt__pointer.html" title="Pointer structure used to load the GDT." alt="" coords="163,260,289,285"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="302,270,464,270,464,275,302,275"/>
+<area shape="rect" id="Node000007" href="$structgdt_1_1gdt__entry.html" title="Represents a single Global Descriptor Table (GDT) entry." alt="" coords="169,309,283,335"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="296,312,440,290,473,283,474,288,440,295,297,317"/>
+<area shape="rect" id="Node000008" href="$structgdt_1_1tss.html" title=" " alt="" coords="191,359,261,384"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="275,366,353,354,397,344,439,329,477,307,506,283,510,288,480,312,441,334,399,349,354,359,275,371"/>
+<area shape="rect" id="Node000009" href="$structcpu__features.html" title=" " alt="" coords="173,408,279,433"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="293,418,366,408,404,397,439,380,465,358,486,332,514,284,519,287,491,335,469,362,441,384,406,402,368,413,294,424"/>
 </map>

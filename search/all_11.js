@@ -27,7 +27,7 @@ var searchData=
   ['red_5fmask_5fsize_24',['red_mask_size',['../structmultiboot__tag__framebuffer.html#ae3db772bf0a7357ab8f38c487987fc56',1,'multiboot_tag_framebuffer']]],
   ['register_25',['Register',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00f',1,'apic']]],
   ['regs_26',['regs',['../structregs.html',1,'']]],
-  ['release_27',['release',['../structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c',1,'lock::spinlock']]],
+  ['release_27',['release',['../structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4',1,'lock::spinlock']]],
   ['remove_5fblock_28',['remove_block',['../namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764',1,'pmm']]],
   ['reserved_29',['reserved',['../acpi_8h.html#a72aca6ea6d8153b28ea8f139b932ec3e',1,'reserved:&#160;acpi.h'],['../structmultiboot__tag__framebuffer.html#ac8c21c26e2e4d7aa47462f8189dbc1ef',1,'multiboot_tag_framebuffer::reserved'],['../structacpi_1_1XSDP.html#af367c9fe3380212fb610e8de7bb2dd30',1,'acpi::XSDP::reserved']]],
   ['reserved0_30',['reserved0',['../gdt_8h.html#aed93283265f941dc1d2bf8d634164493',1,'reserved0:&#160;gdt.h'],['../structgdt_1_1tss.html#a98c24467b3fd1f4c71d7f775ecf8a62a',1,'gdt::tss::reserved0']]],

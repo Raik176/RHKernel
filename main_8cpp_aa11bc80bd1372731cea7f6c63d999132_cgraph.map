@@ -3,7 +3,7 @@
 <area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="43,244,37,234,41,225,53,218,72,216,95,219,105,228,102,232,93,224,72,221,54,223,45,228,43,234,48,241"/>
 <area shape="rect" id="Node000002" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="187,243,301,268"/>
 <area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="139,253,173,253,173,258,139,258"/>
-<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="349,116,516,141"/>
+<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="349,116,516,141"/>
 <area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="255,240,294,201,348,158,376,144,378,149,351,163,297,205,259,244"/>
 <area shape="rect" id="Node000004" href="$namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="743,243,929,268"/>
 <area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="263,240,302,219,349,202,408,192,470,189,531,190,590,196,699,215,783,236,781,241,698,220,590,201,530,196,470,194,409,197,350,207,304,224,266,245"/>
@@ -13,7 +13,7 @@
 <area shape="poly" id="edge33_Node000002_Node000022" title=" " alt="" coords="302,256,559,273,559,279,301,262"/>
 <area shape="rect" id="Node000023" href="$namespaceconsole.html#a9a41564fc009b7339df8f2b2a4394eb2" title=" " alt="" coords="564,317,695,343"/>
 <area shape="poly" id="edge30_Node000002_Node000023" title=" " alt="" coords="299,265,350,277,551,314,550,319,349,282,298,271"/>
-<area shape="rect" id="Node000024" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="349,369,516,395"/>
+<area shape="rect" id="Node000024" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="349,369,516,395"/>
 <area shape="poly" id="edge32_Node000002_Node000024" title=" " alt="" coords="259,267,297,306,351,348,378,362,376,366,348,352,294,310,255,270"/>
 <area shape="rect" id="Node000005" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="977,93,1133,119"/>
 <area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="854,240,1023,124,1026,129,857,245"/>

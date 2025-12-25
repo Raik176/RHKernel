@@ -1,16 +1,13 @@
 <map id="scheduler::dequeue" name="scheduler::dequeue">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,155,81"/>
-<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="203,5,369,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,53,220,31,221,37,133,58"/>
-<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="421,56,588,81"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,66,408,66,408,71,155,71"/>
-<area shape="rect" id="Node000004" href="$namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0" title=" " alt="" coords="204,107,368,132"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,79,221,101,220,106,132,84"/>
-<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="341,104,436,82,437,87,342,109"/>
-<area shape="rect" id="Node000005" href="$namespacesmp.html#a4805b4728b6f36e2a725ea117102c32a" title=" " alt="" coords="426,105,583,131"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="368,116,412,116,412,121,368,121"/>
-<area shape="rect" id="Node000006" href="$namespacesmp.html#a6a94214a41fd38de081666401f6de757" title=" " alt="" coords="417,155,592,180"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="345,129,433,149,432,154,344,135"/>
-<area shape="rect" id="Node000007" href="$structlock_1_1spinlock.html#ab578b09eb314d92ba21deded2be33a57" title=" " alt="" coords="436,205,573,245"/>
-<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="309,130,358,159,418,190,434,197,432,202,416,195,355,164,306,134"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,155,105"/>
+<area shape="rect" id="Node000002" href="$namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0" title=" " alt="" coords="203,80,367,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,90,189,90,189,95,155,95"/>
+<area shape="rect" id="Node000003" href="$namespacesmp.html#a4805b4728b6f36e2a725ea117102c32a" title=" " alt="" coords="423,5,581,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="315,77,414,39,438,32,439,37,416,45,317,82"/>
+<area shape="rect" id="Node000004" href="$namespacesmp.html#a6a94214a41fd38de081666401f6de757" title=" " alt="" coords="415,55,589,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="367,80,401,76,401,82,367,86"/>
+<area shape="rect" id="Node000005" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="419,104,585,129"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="367,99,405,103,405,109,367,104"/>
+<area shape="rect" id="Node000006" href="$structlock_1_1spinlock.html#a82e4755051e3b7455b17fabad967e09d" title=" " alt="" coords="433,154,571,194"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="320,103,436,147,434,152,319,108"/>
 </map>

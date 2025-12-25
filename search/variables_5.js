@@ -1,10 +1,25 @@
 var searchData=
 [
-  ['ega_0',['ega',['../structmultiboot__tag__framebuffer.html#af423d09ec1071da48fa5adbfefc5fa6b',1,'multiboot_tag_framebuffer']]],
-  ['entries_1',['entries',['../structmultiboot__tag__mmap.html#a20c4427afce786340b01ded5ed0532a2',1,'multiboot_tag_mmap']]],
-  ['entry_5fpoint_2',['entry_point',['../structsmp_1_1trampoline__data.html#ad88f98a1cec6bcaaf00f31ca98271de7',1,'smp::trampoline_data::entry_point'],['../smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e',1,'entry_point:&#160;smp.h']]],
-  ['entry_5fsize_3',['entry_size',['../structmultiboot__tag__mmap.html#a42036ab823e3351d0920d57e82f5a2d7',1,'multiboot_tag_mmap']]],
-  ['entry_5fversion_4',['entry_version',['../structmultiboot__tag__mmap.html#a196b2b76f4ab2074df9a332314b9bb0a',1,'multiboot_tag_mmap']]],
-  ['err_5fcode_5',['err_code',['../structregs.html#ac10a2fc62b4dbe2c84e098e559121327',1,'regs::err_code'],['../util_8h.html#a0f9a68a13dccfe1c1d52bac3c988f7c9',1,'err_code:&#160;util.h']]],
-  ['extended_5fchecksum_6',['extended_checksum',['../structacpi_1_1XSDP.html#a6690431ce748f55c27d7c05e2091ab6f',1,'acpi::XSDP::extended_checksum'],['../acpi_8h.html#a1664604ce1e7885a2c4474ab8320bc2c',1,'extended_checksum:&#160;acpi.h']]]
+  ['e_5fehsize_0',['e_ehsize',['../structelf_1_1Elf64__Ehdr.html#a90c4f436e04bd4b65a5d0a3abc35e720',1,'elf::Elf64_Ehdr']]],
+  ['e_5fentry_1',['e_entry',['../structelf_1_1Elf64__Ehdr.html#aa4f936e66e8fa32b1a12826d49ece746',1,'elf::Elf64_Ehdr']]],
+  ['e_5fflags_2',['e_flags',['../structelf_1_1Elf64__Ehdr.html#ab663e8751b0fa44fe3345c05c9487706',1,'elf::Elf64_Ehdr']]],
+  ['e_5fident_3',['e_ident',['../structelf_1_1Elf64__Ehdr.html#ae808d9a0b4f8e305a4cbe306adc2b378',1,'elf::Elf64_Ehdr']]],
+  ['e_5fmachine_4',['e_machine',['../structelf_1_1Elf64__Ehdr.html#a2fd3001de6a5863592d73a05465a949c',1,'elf::Elf64_Ehdr']]],
+  ['e_5fphentsize_5',['e_phentsize',['../structelf_1_1Elf64__Ehdr.html#ae19a12333ccfcd54519edf65519e51b1',1,'elf::Elf64_Ehdr']]],
+  ['e_5fphnum_6',['e_phnum',['../structelf_1_1Elf64__Ehdr.html#afbdb26a08beb6753b6fc2d0d0552d563',1,'elf::Elf64_Ehdr']]],
+  ['e_5fphoff_7',['e_phoff',['../structelf_1_1Elf64__Ehdr.html#a121afc43e9b60d1658a0b355133dc2f4',1,'elf::Elf64_Ehdr']]],
+  ['e_5fshentsize_8',['e_shentsize',['../structelf_1_1Elf64__Ehdr.html#a49fe6cfd825b2a29f310b5df2920db96',1,'elf::Elf64_Ehdr']]],
+  ['e_5fshnum_9',['e_shnum',['../structelf_1_1Elf64__Ehdr.html#a230aedb6b6b32b4f2eaeb8c99bdb8979',1,'elf::Elf64_Ehdr']]],
+  ['e_5fshoff_10',['e_shoff',['../structelf_1_1Elf64__Ehdr.html#a776902a7b33ca546e43dd3b91062a455',1,'elf::Elf64_Ehdr']]],
+  ['e_5fshstrndx_11',['e_shstrndx',['../structelf_1_1Elf64__Ehdr.html#a34c117c03e7f83aa4843549d314a3208',1,'elf::Elf64_Ehdr']]],
+  ['e_5ftype_12',['e_type',['../structelf_1_1Elf64__Ehdr.html#a7635f6297623c67a5128e95d0599836b',1,'elf::Elf64_Ehdr']]],
+  ['e_5fversion_13',['e_version',['../structelf_1_1Elf64__Ehdr.html#a53e9a462c1653a2d1a81c160ff2f6027',1,'elf::Elf64_Ehdr']]],
+  ['ega_14',['ega',['../structmultiboot__tag__framebuffer.html#af423d09ec1071da48fa5adbfefc5fa6b',1,'multiboot_tag_framebuffer']]],
+  ['elf_5fmagic_15',['ELF_MAGIC',['../namespaceelf.html#a9e742c6114ded036b219f4d29de6b828',1,'elf']]],
+  ['entries_16',['entries',['../structmultiboot__tag__mmap.html#a20c4427afce786340b01ded5ed0532a2',1,'multiboot_tag_mmap']]],
+  ['entry_5fpoint_17',['entry_point',['../structsmp_1_1trampoline__data.html#ad88f98a1cec6bcaaf00f31ca98271de7',1,'smp::trampoline_data::entry_point'],['../smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e',1,'entry_point:&#160;smp.h']]],
+  ['entry_5fsize_18',['entry_size',['../structmultiboot__tag__mmap.html#a42036ab823e3351d0920d57e82f5a2d7',1,'multiboot_tag_mmap']]],
+  ['entry_5fversion_19',['entry_version',['../structmultiboot__tag__mmap.html#a196b2b76f4ab2074df9a332314b9bb0a',1,'multiboot_tag_mmap']]],
+  ['err_5fcode_20',['err_code',['../structregs.html#ac10a2fc62b4dbe2c84e098e559121327',1,'regs::err_code'],['../util_8h.html#a0f9a68a13dccfe1c1d52bac3c988f7c9',1,'err_code:&#160;util.h']]],
+  ['extended_5fchecksum_21',['extended_checksum',['../structacpi_1_1XSDP.html#a6690431ce748f55c27d7c05e2091ab6f',1,'acpi::XSDP::extended_checksum'],['../acpi_8h.html#a1664604ce1e7885a2c4474ab8320bc2c',1,'extended_checksum:&#160;acpi.h']]]
 ];

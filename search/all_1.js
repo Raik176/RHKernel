@@ -5,7 +5,7 @@ var searchData=
   ['acpi_2',['acpi',['../namespaceacpi.html',1,'']]],
   ['acpi_2ecpp_3',['acpi.cpp',['../acpi_8cpp.html',1,'']]],
   ['acpi_2eh_4',['acpi.h',['../acpi_8h.html',1,'']]],
-  ['acquire_5',['acquire',['../structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3',1,'lock::spinlock']]],
+  ['acquire_5',['acquire',['../structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7',1,'lock::spinlock']]],
   ['active_5fbackend_6',['active_backend',['../namespaceconsole.html#ae57e81d0aaac0c99a42db59e05380069',1,'console']]],
   ['add_5fspan_7',['add_span',['../namespacepmm.html#a0628838d0cee54d119973e09e6131343',1,'pmm']]],
   ['addr_8',['addr',['../structmultiboot__mmap__entry.html#aa515d3e179e1cfd4277e847c7f0464e2',1,'multiboot_mmap_entry::addr'],['../structmultiboot__tag__framebuffer.html#a51431d51962ab45daeafcf9d16a833a4',1,'multiboot_tag_framebuffer::addr'],['../structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32',1,'kernel_symbol::addr'],['../structframebuffer_1_1FramebufferInfo.html#a13e17242887f10f8867a135092e943df',1,'framebuffer::FramebufferInfo::addr']]],

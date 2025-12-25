@@ -31,7 +31,7 @@ var searchData=
   ['smp_28',['smp',['../namespacesmp.html',1,'']]],
   ['smp_2ecpp_29',['smp.cpp',['../smp_8cpp.html',1,'']]],
   ['smp_2eh_30',['smp.h',['../smp_8h.html',1,'']]],
-  ['spawn_31',['spawn',['../namespacescheduler.html#a44b15672a257eb4eee8945b18fc2b200',1,'scheduler']]],
+  ['spawn_31',['spawn',['../namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d',1,'scheduler']]],
   ['spinlock_32',['spinlock',['../structlock_1_1spinlock.html#a4cac70adf315707a3d1ca0cefb993e7b',1,'lock::spinlock::spinlock()'],['../structlock_1_1spinlock.html',1,'lock::spinlock']]],
   ['ss_33',['ss',['../util_8h.html#a515ae478df5d026d97c16d466d1d2611',1,'ss:&#160;util.h'],['../structregs.html#a967d5b617349e0421c1f51a5d993b411',1,'regs::ss']]],
   ['stack_5ftop_34',['stack_top',['../smp_8h.html#a9319c7b3aeb6f24d38cb4fd380490ebd',1,'stack_top:&#160;smp.h'],['../structsmp_1_1trampoline__data.html#a7bd7ecd5bbd3901d3bb15790b77a9c51',1,'smp::trampoline_data::stack_top']]],

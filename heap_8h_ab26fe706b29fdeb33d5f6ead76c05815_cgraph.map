@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="C++ sized array delete operator." alt="" coords="5,153,137,179"/>
 <area shape="rect" id="Node000002" href="$namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="185,153,281,179"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,163,172,163,172,169,137,169"/>
-<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="329,29,496,55"/>
+<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="329,29,496,55"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="241,152,276,109,300,84,328,64,339,58,342,62,331,68,304,88,280,112,245,155"/>
 <area shape="rect" id="Node000004" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="367,79,458,104"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="254,151,328,113,353,104,355,109,330,118,257,156"/>
@@ -10,7 +10,7 @@
 <area shape="poly" id="edge14_Node000002_Node000012" title=" " alt="" coords="281,157,339,148,339,154,282,162"/>
 <area shape="rect" id="Node000013" href="$namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="343,177,482,203"/>
 <area shape="poly" id="edge15_Node000002_Node000013" title=" " alt="" coords="282,170,330,176,330,182,281,175"/>
-<area shape="rect" id="Node000014" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="329,227,496,252"/>
+<area shape="rect" id="Node000014" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="329,227,496,252"/>
 <area shape="poly" id="edge16_Node000002_Node000014" title=" " alt="" coords="258,176,330,212,353,220,351,225,328,216,256,181"/>
 <area shape="rect" id="Node000015" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="389,276,436,301"/>
 <area shape="poly" id="edge17_Node000002_Node000015" title=" " alt="" coords="246,177,280,219,304,243,331,262,353,273,377,280,375,285,351,278,328,267,300,247,276,223,241,181"/>

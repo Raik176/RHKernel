@@ -1,10 +1,10 @@
 <map id="console::putchar" name="console::putchar">
 <area shape="rect" id="Node000001" title="Write a single character to the console." alt="" coords="5,243,135,268"/>
-<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="193,193,359,219"/>
+<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="193,193,359,219"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,240,208,219,210,224,124,245"/>
 <area shape="rect" id="Node000003" href="$namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="183,243,369,268"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,253,169,253,169,258,135,258"/>
-<area shape="rect" id="Node000020" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="193,292,359,317"/>
+<area shape="rect" id="Node000020" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="193,292,359,317"/>
 <area shape="poly" id="edge24_Node000001_Node000020" title=" " alt="" coords="124,265,210,286,208,291,123,271"/>
 <area shape="rect" id="Node000004" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="417,93,573,119"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="339,240,368,228,400,205,430,179,475,128,479,131,434,182,404,209,371,232,342,245"/>

@@ -27,7 +27,7 @@
 <area shape="rect" id="Node000029" href="$string_8h.html#aa6cc9f852e7dce55e590e952677649bd" title="Compute length of a null&#45;terminated string." alt="" coords="213,943,272,969"/>
 <area shape="poly" id="edge49_Node000001_Node000029" title=" " alt="" coords="66,673,72,721,88,790,101,828,118,865,139,900,166,930,182,941,201,948,199,953,180,946,162,934,135,903,113,867,96,830,83,792,67,722,60,673"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="290,569,323,589,340,612,348,634,355,655,371,677,388,688,407,697,405,702,386,693,368,681,350,658,343,636,336,614,320,593,287,573"/>
-<area shape="rect" id="Node000008" href="$structlock_1_1spinlock.html#a9d61c93379f625a797e8e8e245c87dc3" title=" " alt="" coords="369,546,536,571"/>
+<area shape="rect" id="Node000008" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="369,546,536,571"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="292,518,385,540,384,545,290,523"/>
 <area shape="rect" id="Node000009" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="586,498,677,523"/>
 <area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="292,516,323,533,334,545,341,558,346,583,352,606,359,616,371,626,413,646,451,652,490,644,535,626,562,608,584,584,616,534,621,537,589,587,565,612,537,630,491,650,451,657,412,651,368,630,355,620,348,609,341,584,336,560,330,548,320,537,290,521"/>
@@ -35,7 +35,7 @@
 <area shape="poly" id="edge19_Node000007_Node000016" title=" " alt="" coords="261,494,308,464,368,432,387,425,388,430,370,437,311,468,264,499"/>
 <area shape="rect" id="Node000017" href="$namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="383,447,522,473"/>
 <area shape="poly" id="edge20_Node000007_Node000017" title=" " alt="" coords="290,496,384,473,385,478,292,501"/>
-<area shape="rect" id="Node000018" href="$structlock_1_1spinlock.html#a6b7fb62fb764f0d95d907c1d9cf3166c" title=" " alt="" coords="369,497,536,522"/>
+<area shape="rect" id="Node000018" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="369,497,536,522"/>
 <area shape="poly" id="edge21_Node000007_Node000018" title=" " alt="" coords="291,507,355,507,355,512,291,512"/>
 <area shape="rect" id="Node000019" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="973,373,1020,398"/>
 <area shape="poly" id="edge22_Node000007_Node000019" title=" " alt="" coords="292,518,323,532,338,546,347,559,355,572,371,582,416,599,455,607,492,602,535,582,546,572,553,561,559,537,565,511,571,498,582,485,627,452,677,427,729,408,783,396,883,383,959,381,959,386,883,388,784,401,731,414,679,432,630,457,586,489,575,500,570,513,564,538,558,564,550,576,537,586,494,607,455,612,415,604,368,586,352,575,342,562,334,549,320,537,290,523"/>

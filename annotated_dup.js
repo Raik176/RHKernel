@@ -9,6 +9,10 @@ var annotated_dup =
       [ "SDTHeader", "structacpi_1_1SDTHeader.html", "structacpi_1_1SDTHeader" ],
       [ "XSDP", "structacpi_1_1XSDP.html", "structacpi_1_1XSDP" ]
     ] ],
+    [ "elf", "namespaceelf.html", [
+      [ "Elf64_Ehdr", "structelf_1_1Elf64__Ehdr.html", "structelf_1_1Elf64__Ehdr" ],
+      [ "Elf64_Phdr", "structelf_1_1Elf64__Phdr.html", "structelf_1_1Elf64__Phdr" ]
+    ] ],
     [ "framebuffer", "namespaceframebuffer.html", [
       [ "FramebufferInfo", "structframebuffer_1_1FramebufferInfo.html", "structframebuffer_1_1FramebufferInfo" ]
     ] ],

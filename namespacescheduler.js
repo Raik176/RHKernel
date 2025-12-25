@@ -17,7 +17,7 @@ var namespacescheduler =
     [ "fxsave_task", "namespacescheduler.html#afe3f2e5da9c1007bad54ba98727bd670", null ],
     [ "init_core", "namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70", null ],
     [ "schedule", "namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11", null ],
-    [ "spawn", "namespacescheduler.html#a44b15672a257eb4eee8945b18fc2b200", null ],
+    [ "spawn", "namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d", null ],
     [ "steal_work", "namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0", null ],
     [ "yield", "namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27", null ],
     [ "AGING_THRESHOLD", "namespacescheduler.html#a6c1015bb4b2531d2b2b3e68ef7b34cda", null ],
