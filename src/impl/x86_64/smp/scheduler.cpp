@@ -5,6 +5,7 @@
 #include "smp/apic.h"
 #include "smp/smp.h"
 #include "string.h"
+#include "console.h"
 
 namespace scheduler {
 
@@ -39,69 +40,69 @@ namespace scheduler {
 
             if (!victim || victim == self) continue;
 
-            if (!victim->sched_lock.try_acquire()) {
-                continue;
-            }
+            uint64_t victim_flags;
+            if (!victim->sched_lock.try_acquire(victim_flags)) continue;
 
             for (int p = 0; p < MAX_QUEUES; p++) {
-                if (victim->task_queues[p]) {
-                    task* t = victim->task_queues[p];
-                    
-                    // Basic safety: don't steal tasks that aren't ready 
-                    // or are marked as pinned (if you implement affinity later)
-                    victim->task_queues[p] = t->next;
-                    t->next = nullptr;
+                if (victim->task_queues_tail[p]) {
+                    task* t = victim->task_queues_tail[p];
 
-                    victim->sched_lock.release();
-                    
+                    victim->task_queues_tail[p] = t->prev;
+
+                    if (victim->task_queues_tail[p]) {
+                        victim->task_queues_tail[p]->next = nullptr;
+                    } else {
+                        victim->task_queues_head[p] = nullptr;
+                    }
+
+                    victim->sched_lock.release(victim_flags);
+
+                    t->next = nullptr;
+                    t->prev = nullptr;
                     t->quantum = TIME_QUANTUMS[t->priority];
                     return t;
                 }
             }
-
-            victim->sched_lock.release();
+            victim->sched_lock.release(victim_flags);
         }
-
         return nullptr;
     }
 
     static void enqueue(smp::cpu_local* cpu, task* t) {        
         int p = t->priority;
         t->next = nullptr;
+        t->prev = cpu->task_queues_tail[p];
 
-        cpu->sched_lock.acquire();
-        if (!cpu->task_queues[p]) {
-            cpu->task_queues[p] = t;
+        if (!cpu->task_queues_head[p]) {
+            cpu->task_queues_head[p] = t;
+            cpu->task_queues_tail[p] = t;
         } else {
-            task* last = cpu->task_queues[p];
-            while (last->next) last = last->next;
-            last->next = t;
+            cpu->task_queues_tail[p]->next = t;
+            cpu->task_queues_tail[p] = t;
         }
-
-        cpu->sched_lock.release();
     }
 
     static task* dequeue(smp::cpu_local* cpu) {
-        cpu->sched_lock.acquire();
-
         for (int i = 0; i < MAX_QUEUES; i++) {
-            if (cpu->task_queues[i]) {
-                task* t = cpu->task_queues[i];
-                cpu->task_queues[i] = t->next;
+            if (cpu->task_queues_head[i]) {
+                task* t = cpu->task_queues_head[i];
 
-                cpu->sched_lock.release();
+                cpu->task_queues_head[i] = t->next;
+
+                if (cpu->task_queues_head[i]) {
+                    cpu->task_queues_head[i]->prev = nullptr;
+                } else {
+                    cpu->task_queues_tail[i] = nullptr;
+                }
+
+                t->next = nullptr;
+                t->prev = nullptr;
                 return t;
             }
         }
 
-        cpu->sched_lock.release();
-
         task* stolen = steal_work(cpu);
-        if (stolen) {
-            return stolen;
-        }
-
-        return cpu->idle_task;
+        return stolen ? stolen : cpu->idle_task;
     }
 
     void init_core() {
@@ -121,7 +122,11 @@ namespace scheduler {
         cpu->current_task = idle;
     }
 
-    void spawn(task_type type, void (*entry_point)()) {
+    task* spawn(task_type type, void (*entry_point)(), uint64_t pml4) {
+        if (type == task_type::USER && pml4 == 0) {
+            kpanic("User task requires a valid PML4");
+        }
+
         smp::cpu_local* cpu = smp::get_cpu();
         task* t = (task*)heap::kmalloc(sizeof(task));
         memset(t, 0, sizeof(task));
@@ -145,7 +150,7 @@ namespace scheduler {
             r->cs = 0x23;                       // User Code Selector (GDT index 4 | RPL 3)
             r->ss = 0x1B;                       // User Data Selector (GDT index 3 | RPL 3)
 
-            t->cr3 = (uint64_t)vmm::create_user_address_space();  // TODO
+            t->cr3 = pml4;
         } else {
             r->rip = (uint64_t)entry_point;
             r->rsp = (uint64_t)kstack + KERNEL_STACK_SIZE;
@@ -153,7 +158,7 @@ namespace scheduler {
             r->ss = 0x10;                                   // Kernel Data
             t->user_stack = nullptr;
 
-            t->cr3 = vmm::get_kernel_pagemap();
+            t->cr3 = pml4 == 0 ? vmm::get_kernel_pagemap() : pml4;
         }
 
         r->rflags = 0x202;  // Interrupts enabled
@@ -161,12 +166,28 @@ namespace scheduler {
         t->priority = 0;
         t->quantum = TIME_QUANTUMS[0];
 
+        asm volatile(
+            "fninit\n\t"
+            "fxsave (%0)"
+            : 
+            : "r"(t->fxsave_area) 
+            : "memory"
+        );
+
+        uint64_t flags;
+        cpu->sched_lock.acquire(flags);
         enqueue(cpu, t);
+        cpu->sched_lock.release(flags);
+
+        return t;
     }
 
     regs* schedule(regs* current_state, bool is_timer_tick) {
         smp::cpu_local* cpu = smp::get_cpu();
         if (!cpu) return current_state;
+
+        uint64_t flags;
+        cpu->sched_lock.acquire(flags);
 
         task* current = cpu->current_task;
 
@@ -175,29 +196,28 @@ namespace scheduler {
             fxsave_task(current);
         }
 
-        // 1. Aging Logic
         for (int i = 1; i < MAX_QUEUES; i++) {
-            task** prev = &cpu->task_queues[i];
-            task* item = cpu->task_queues[i];
+            task* item = cpu->task_queues_head[i];
             while (item) {
+                task* next_item = item->next;
                 item->age++;
+            
                 if (item->age > AGING_THRESHOLD) {
-                    *prev = item->next;
-                    task* promote = item;
-                    item = item->next;
-
-                    promote->priority = i - 1;
-                    promote->age = 0;
-                    promote->quantum = TIME_QUANTUMS[promote->priority];
-                    enqueue(cpu, promote);
-                } else {
-                    prev = &item->next;
-                    item = item->next;
+                    if (item->prev) item->prev->next = item->next;
+                    else cpu->task_queues_head[i] = item->next;
+                
+                    if (item->next) item->next->prev = item->prev;
+                    else cpu->task_queues_tail[i] = item->prev;
+                
+                    item->priority = i - 1;
+                    item->age = 0;
+                    item->quantum = TIME_QUANTUMS[item->priority];
+                    enqueue(cpu, item);
                 }
+                item = next_item;
             }
         }
 
-        // 2. MLFQ Feedback Logic
         if (current && current != cpu->idle_task) {
             if (is_timer_tick) {
                 current->quantum--;
@@ -209,12 +229,14 @@ namespace scheduler {
                     enqueue(cpu, current);
                 } else {
                     for (int i = 0; i < current->priority; i++) {
-                        if (cpu->task_queues[i]) {
+                        if (cpu->task_queues_head[i]) {
                             current->state = task_state::READY;
                             enqueue(cpu, current);
                             goto pick_next;
                         }
                     }
+
+                    cpu->sched_lock.release(flags);
                     return current_state;
                 }
             } else {
@@ -234,6 +256,8 @@ namespace scheduler {
         smp::get_cpu()->tss_entry.rsp0 = (uint64_t)next->kernel_stack + KERNEL_STACK_SIZE;
 
         asm volatile("mov %0, %%cr3" : : "r"(next->cr3) : "memory");
+
+        cpu->sched_lock.release(flags);
 
         return next->context;
     }

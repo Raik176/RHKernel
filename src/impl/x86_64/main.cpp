@@ -101,16 +101,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     smp::init_aps();
     console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
-    for (int i=0;i<5;i++) {
-        scheduler::spawn(scheduler::task_type::KERNEL, []() {
-        int count = 0;
-        while (true) {
-            console::printf("Hello from core %d! Count: %d\n", smp::get_cpu()->cpu_index,
-                            count++);
-            scheduler::yield();
-        }
-    });
+    for (;;) {
+        asm volatile("pause");
     }
-
-    for (;;);
 }

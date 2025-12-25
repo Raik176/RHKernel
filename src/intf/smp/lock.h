@@ -5,22 +5,20 @@ namespace lock {
     struct spinlock {
         volatile int locked;
 
-        uint64_t flags;
+        spinlock() : locked(0) {}
 
-        spinlock() : locked(0), flags(0) {}
-
-        void acquire() {
+        void acquire(uint64_t& flags) {
             asm volatile("pushf\ncli\npop %0" : "=r"(flags)::"memory");
 
             while (__atomic_test_and_set(&locked, __ATOMIC_ACQUIRE)) { asm volatile("pause"); }
         }
 
-        void release() {
-            asm volatile("push %0\npopf" ::"r"(flags) : "memory");
+        void release(uint64_t flags) {
             __atomic_clear(&locked, __ATOMIC_RELEASE);
+            asm volatile("push %0\npopf" ::"r"(flags) : "memory");
         }
 
-        bool try_acquire() {
+        bool try_acquire(uint64_t& flags) {
             uint64_t f;
             asm volatile("pushf\ncli\npop %0" : "=r"(f)::"memory");
 

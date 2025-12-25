@@ -94,7 +94,9 @@ namespace smp {
         scheduler::init_core();
         __asm__ volatile("sti");
 
-        for (;;);
+        for (;;) {
+            asm volatile("pause");
+        }
     }
 
     void init_bsp() {
@@ -178,6 +180,7 @@ namespace smp {
         cpu_table[0] = get_cpu();
 
         current = start;
+        core_count = 1;
         while (current < end) {
             auto* header = (acpi::MADTEntryHeader*)current;
 
@@ -188,7 +191,7 @@ namespace smp {
 
                 if (ready && lapic->lapic_id != bsp_id) {
                     console::printf("[SMP] Booting AP (LAPIC %d)... ", lapic->lapic_id);
-                    boot_core(lapic->lapic_id, TRAM_PHYS, data, core_count);
+                    boot_core(lapic->lapic_id, TRAM_PHYS, data, core_count++);
 
                     while (data->status == 0) { busy_sleep(5); }
 

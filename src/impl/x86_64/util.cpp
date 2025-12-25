@@ -17,5 +17,5 @@ void __attribute__((noreturn)) kpanic(const char* message) {
     console::printf("\nHalting system...");
 
     for(;;)
-        asm volatile("hlt");
+        asm volatile("pause");
 }

@@ -264,7 +264,8 @@ namespace pmm {
     void free(uint64_t phys, size_t size) {
         if (!phys || size == 0) return;
 
-        pmm_lock.acquire();
+        uint64_t flags;
+        pmm_lock.acquire(flags);
 
         size_t order = size_to_order(size);
         uint64_t addr = phys;
@@ -276,7 +277,7 @@ namespace pmm {
         }
         push_block(addr, order);
 
-        pmm_lock.release();
+        pmm_lock.release(flags);
     }
 
     /**
@@ -290,7 +291,8 @@ namespace pmm {
     uint64_t alloc(size_t size) {
         if (size == 0) return 0;
 
-        pmm_lock.acquire();
+        uint64_t flags;
+        pmm_lock.acquire(flags);
 
         size_t order = size_to_order(size);
         for (size_t i = order; i <= MAX_ORDER; i++) {
@@ -303,11 +305,11 @@ namespace pmm {
                 push_block(buddy, i);
             }
 
-            pmm_lock.release();
+            pmm_lock.release(flags);
             return block;
         }
 
-        pmm_lock.release();
+        pmm_lock.release(flags);
         return 0;
     }
 

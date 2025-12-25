@@ -28,6 +28,7 @@ namespace scheduler {
         uint64_t age;
 
         task* next;
+        task* prev;
     };
 
     // MLFQ Configuration
@@ -36,7 +37,7 @@ namespace scheduler {
     constexpr uint64_t AGING_THRESHOLD = 100;
 
     void init_core();
-    void spawn(task_type type, void (*entry_point)());
+    task* spawn(task_type type, void (*entry_point)(), uint64_t pagemap = 0);
     void yield();
 
     // The core logic called by idt_handler

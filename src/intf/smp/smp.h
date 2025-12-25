@@ -22,7 +22,8 @@ namespace smp {
         void* kernel_stack;
 
         scheduler::task* current_task;
-        scheduler::task* task_queues[scheduler::MAX_QUEUES];
+        scheduler::task* task_queues_tail[scheduler::MAX_QUEUES];
+        scheduler::task* task_queues_head[scheduler::MAX_QUEUES];
         scheduler::task* idle_task;
         lock::spinlock sched_lock;
 

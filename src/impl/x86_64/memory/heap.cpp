@@ -106,23 +106,25 @@ namespace heap {
                 local->used_slots++;
 
                 if (local->used_slots == local->total_slots) {
-                    cache->lock.acquire();
+                    uint64_t flags;
+
+                    cache->lock.acquire(flags);
                     local->owner = nullptr;
                     list_push(&cache->full_slabs, local);
-                    cache->lock.release();
+                    cache->lock.release(flags);
                     cpu->heap_cache[cache_idx] = nullptr;
                 }
                 return ptr;
             }
         }
 
-        // --- STAGE 1: GLOBAL CACHE (Fallback) ---
-        cache->lock.acquire();
+        uint64_t flags;
+        cache->lock.acquire(flags);
 
         if (!cache->partial_slabs) {
             SlabHeader* new_slab = create_slab(cache->slot_size);
             if (!new_slab) {
-                cache->lock.release();
+                cache->lock.release(flags);
                 return nullptr;
             }
             new_slab->cache_index = cache_idx;  // Store index for kfree
@@ -137,7 +139,7 @@ namespace heap {
             list_remove(&cache->partial_slabs, slab);
             slab->owner = cpu;
             cpu->heap_cache[cache_idx] = slab;
-            cache->lock.release();
+            cache->lock.release(flags);
 
             // Now that the CPU has a local slab, recurse once to use Fast Path
             return kmalloc(size);
@@ -153,7 +155,7 @@ namespace heap {
             list_push(&cache->full_slabs, slab);
         }
 
-        cache->lock.release();
+        cache->lock.release(flags);
         return ptr;
     }
 
@@ -171,7 +173,8 @@ namespace heap {
         SlabHeader* slab = (SlabHeader*)(virt_addr & ~0xFFF);
         SlabCache* cache = &caches[slab->cache_index];
 
-        cache->lock.acquire();
+        uint64_t flags;
+        cache->lock.acquire(flags);
 
         bool was_full = (slab->used_slots == slab->total_slots);
         *(void**)ptr = slab->free_list;
@@ -188,7 +191,7 @@ namespace heap {
             list_push(&cache->partial_slabs, slab);
         }
 
-        cache->lock.release();
+        cache->lock.release(flags);
     }
 
 }  // namespace heap

@@ -66,9 +66,11 @@ namespace console {
      * Also sends the character to the serial port if DEBUG is enabled.
      */
     void putchar(char c) {
-        console_lock.acquire();
+        uint64_t flags;
+
+        console_lock.acquire(flags);
         putchar_internal(c);
-        console_lock.release();
+        console_lock.release(flags);
     }
 
     /**
@@ -145,7 +147,9 @@ namespace console {
      * @param ... Variable arguments
      */
     void printf(const char* fmt, ...) {
-        console_lock.acquire();
+        uint64_t flags;
+
+        console_lock.acquire(flags);
         va_list args;
         va_start(args, fmt);
 
@@ -187,7 +191,7 @@ namespace console {
         }
 
         va_end(args);
-        console_lock.release();
+        console_lock.release(flags);
     }
 
     /**

@@ -89,7 +89,7 @@ namespace vmm {
         asm volatile("mov %0, %%cr3" : : "r"(current_pml4_phys) : "memory");
     }
 
-    void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags) {
+    void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags, uint64_t pml4) {
         const uint64_t GIB = 1024ULL * 1024 * 1024;
         const uint64_t MIB = 2ULL * 1024 * 1024;
         const uint64_t KIB = 4096ULL;
@@ -103,26 +103,26 @@ namespace vmm {
 
             if (supports_1gb_pages && remaining >= GIB && (curr_v % GIB == 0) &&
                 (curr_p % GIB == 0)) {
-                map_page(curr_v, curr_p, flags, PageSize::Size1G);
+                map_page(curr_v, curr_p, flags, PageSize::Size1G, pml4);
                 mapped += GIB;
             } else if (supports_2mb_pages && remaining >= MIB && (curr_v % MIB == 0) &&
                        (curr_p % MIB == 0)) {
-                map_page(curr_v, curr_p, flags, PageSize::Size2M);
+                map_page(curr_v, curr_p, flags, PageSize::Size2M, pml4);
                 mapped += MIB;
             } else {
-                map_page(curr_v, curr_p, flags, PageSize::Size4K);
+                map_page(curr_v, curr_p, flags, PageSize::Size4K, pml4);
                 mapped += KIB;
             }
         }
     }
 
-    void map_page(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size) {
+    void map_page(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size, uint64_t pagemap) {
         uint64_t pml4_idx = (virt >> 39) & 0x1FF;
         uint64_t pdpt_idx = (virt >> 30) & 0x1FF;
         uint64_t pd_idx = (virt >> 21) & 0x1FF;
         uint64_t pt_idx = (virt >> 12) & 0x1FF;
 
-        uint64_t* pml4 = get_table_ptr(current_pml4_phys);
+        uint64_t* pml4 = get_table_ptr(pagemap);
         uint64_t* pdpt = get_next_table(pml4, pml4_idx, true);
 
         if (size == PageSize::Size1G) {
@@ -150,7 +150,7 @@ namespace vmm {
         asm volatile("invlpg (%0)" : : "r"(virt) : "memory");
     }
 
-    void unmap_page(uint64_t virt) {
+    void unmap_page(uint64_t virt, uint64_t pagemap) {
         if (virt % 4096 != 0) { kpanic("VMM: unmap_page called with unaligned virtual address."); }
 
         uint64_t pml4_idx = (virt >> 39) & 0x1FF;
@@ -158,7 +158,7 @@ namespace vmm {
         uint64_t pd_idx = (virt >> 21) & 0x1FF;
         uint64_t pt_idx = (virt >> 12) & 0x1FF;
 
-        uint64_t* pml4 = get_table_ptr(current_pml4_phys);
+        uint64_t* pml4 = get_table_ptr(pagemap);
         uint64_t* pdpt = get_next_table(pml4, pml4_idx, false);
         if (!pdpt) return;
 
