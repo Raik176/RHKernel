@@ -8,6 +8,7 @@ global high_pdp_table_end
 global high_pd_table
 global high_pd_table_end
 global higher_stack_top
+global higher_stack_bottom
 extern kmain
 extern pml4_table
 extern page_directory

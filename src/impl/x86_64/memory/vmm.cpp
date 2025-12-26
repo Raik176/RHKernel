@@ -55,9 +55,7 @@ namespace vmm {
         return get_table_ptr(new_table_phys);
     }
 
-    uint64_t get_phys_addr_mask() {
-        return phys_addr_mask;
-    }
+    uint64_t get_phys_addr_mask() { return phys_addr_mask; }
 
     void init() {
         uint32_t eax, ebx, ecx, edx;

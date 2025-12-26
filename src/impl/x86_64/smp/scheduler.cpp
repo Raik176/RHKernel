@@ -1,34 +1,26 @@
 #include "smp/scheduler.h"
 
+#include "console.h"
 #include "memory/heap.h"
 #include "memory/vmm.h"
+#include "memory/pmm.h"
 #include "smp/apic.h"
 #include "smp/smp.h"
 #include "string.h"
-#include "console.h"
 
 namespace scheduler {
 
     static uint64_t next_tid = 1;
 
     static inline void fxsave_task(task* t) {
-        asm volatile(
-            "fxsave (%0)"
-            :
-            : "r"(t->fxsave_area)
-            : "memory"
-        );
+        asm volatile("fxsave (%0)" : : "r"(t->fxsave_area) : "memory");
     }
     static inline void fxrstor_task(task* t) {
-        asm volatile(
-            "fxrstor (%0)"
-            :
-            : "r"(t->fxsave_area)
-            : "memory"
-        );
+        asm volatile("fxrstor (%0)" : : "r"(t->fxsave_area) : "memory");
     }
 
     static task* steal_work(smp::cpu_local* self) {
+        return nullptr;
         uint64_t core_count = smp::get_core_count();
         if (core_count < 2) return nullptr;
 
@@ -68,7 +60,7 @@ namespace scheduler {
         return nullptr;
     }
 
-    static void enqueue(smp::cpu_local* cpu, task* t) {        
+    static void enqueue(smp::cpu_local* cpu, task* t) {
         int p = t->priority;
         t->next = nullptr;
         t->prev = cpu->task_queues_tail[p];
@@ -116,16 +108,15 @@ namespace scheduler {
         idle->cr3 = vmm::get_kernel_pagemap();
         idle->state = task_state::RUNNING;
         idle->type = task_type::KERNEL;
-        idle->kernel_stack = cpu->kernel_stack;
+        idle->kernel_stack = heap::kmalloc(KERNEL_STACK_SIZE);
 
         cpu->idle_task = idle;
         cpu->current_task = idle;
+        cpu->kernel_stack = idle->kernel_stack;
     }
 
     task* spawn(task_type type, void (*entry_point)(), uint64_t pml4) {
-        if (type == task_type::USER && pml4 == 0) {
-            kpanic("User task requires a valid PML4");
-        }
+        if (type == task_type::USER && pml4 == 0) { kpanic("User task requires a valid PML4"); }
 
         smp::cpu_local* cpu = smp::get_cpu();
         task* t = (task*)heap::kmalloc(sizeof(task));
@@ -142,20 +133,29 @@ namespace scheduler {
         t->context = r;
 
         if (type == task_type::USER) {
-            void* ustack = heap::kmalloc(INITIAL_USER_STACK_SIZE);
-            t->user_stack = ustack;
+            uint64_t stack_pages = INITIAL_USER_STACK_SIZE / pmm::PAGE_SIZE;
+            uint64_t stack_phys = pmm::alloc(stack_pages * pmm::PAGE_SIZE);
+
+            uint64_t stack_virt =
+                0x00007FFFFFFFF000 -
+                INITIAL_USER_STACK_SIZE;
+            vmm::map_range(
+                stack_virt, stack_phys, INITIAL_USER_STACK_SIZE,
+                vmm::PageFlags::Present | vmm::PageFlags::Write | vmm::PageFlags::User, pml4);
+
+            t->user_stack = (void*)stack_virt;
 
             r->rip = (uint64_t)entry_point;
-            r->rsp = (uint64_t)ustack + INITIAL_USER_STACK_SIZE;  // User RSP points to user stack
-            r->cs = 0x23;                       // User Code Selector (GDT index 4 | RPL 3)
-            r->ss = 0x1B;                       // User Data Selector (GDT index 3 | RPL 3)
+            r->rsp = (uint64_t)stack_virt + INITIAL_USER_STACK_SIZE;  // User RSP points to user stack
+            r->cs = 0x23;
+            r->ss = 0x1B;
 
             t->cr3 = pml4;
         } else {
             r->rip = (uint64_t)entry_point;
             r->rsp = (uint64_t)kstack + KERNEL_STACK_SIZE;
-            r->cs = 0x08;                                   // Kernel Code
-            r->ss = 0x10;                                   // Kernel Data
+            r->cs = 0x08;  // Kernel Code
+            r->ss = 0x10;  // Kernel Data
             t->user_stack = nullptr;
 
             t->cr3 = pml4 == 0 ? vmm::get_kernel_pagemap() : pml4;
@@ -169,10 +169,9 @@ namespace scheduler {
         asm volatile(
             "fninit\n\t"
             "fxsave (%0)"
-            : 
-            : "r"(t->fxsave_area) 
-            : "memory"
-        );
+            :
+            : "r"(t->fxsave_area)
+            : "memory");
 
         uint64_t flags;
         cpu->sched_lock.acquire(flags);
@@ -201,14 +200,18 @@ namespace scheduler {
             while (item) {
                 task* next_item = item->next;
                 item->age++;
-            
+
                 if (item->age > AGING_THRESHOLD) {
-                    if (item->prev) item->prev->next = item->next;
-                    else cpu->task_queues_head[i] = item->next;
-                
-                    if (item->next) item->next->prev = item->prev;
-                    else cpu->task_queues_tail[i] = item->prev;
-                
+                    if (item->prev)
+                        item->prev->next = item->next;
+                    else
+                        cpu->task_queues_head[i] = item->next;
+
+                    if (item->next)
+                        item->next->prev = item->prev;
+                    else
+                        cpu->task_queues_tail[i] = item->prev;
+
                     item->priority = i - 1;
                     item->age = 0;
                     item->quantum = TIME_QUANTUMS[item->priority];
@@ -253,7 +256,9 @@ namespace scheduler {
 
         fxrstor_task(next);
 
-        smp::get_cpu()->tss_entry.rsp0 = (uint64_t)next->kernel_stack + KERNEL_STACK_SIZE;
+        uint64_t kstack_top = (uint64_t)next->kernel_stack + KERNEL_STACK_SIZE;
+        smp::get_cpu()->tss_entry.rsp0 = kstack_top;
+        smp::get_cpu()->kernel_stack = (void*)kstack_top;
 
         asm volatile("mov %0, %%cr3" : : "r"(next->cr3) : "memory");
 

@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 namespace gdt {
-    static constexpr uint16_t MAX_ENTRIES = 7;
+    static constexpr uint16_t MAX_ENTRIES = 8;
 
     /**
      * @brief Represents a single Global Descriptor Table (GDT) entry.

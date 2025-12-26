@@ -1,5 +1,6 @@
 #include "acpi.h"
 #include "console.h"
+#include "file/elf.h"
 #include "file/initramfs.h"
 #include "file/vfs.h"
 #include "gdt.h"
@@ -101,7 +102,11 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     smp::init_aps();
     console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
-    for (;;) {
-        asm volatile("pause");
+    auto info = elf::load("/bin/init");
+
+    if (info.pml4 != 0) {
+        scheduler::spawn(scheduler::task_type::USER, (void (*)())info.entry, info.pml4);
     }
+
+    for (;;) { asm volatile("pause"); }
 }

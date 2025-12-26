@@ -62,7 +62,7 @@ namespace gdt {
         gdt_load(reinterpret_cast<uint64_t>(&gdt_ptr));
     }
 
-    void init_core() {
+void init_core() {
         smp::cpu_local* local = smp::get_cpu();
 
         local->tss_entry.iopb_offset = sizeof(tss);
@@ -70,35 +70,43 @@ namespace gdt {
 
         // Index 0: Null
         set_entry(&local->gdt_entries[0], 0, 0, 0, 0);
-        // Index 1: Kernel Code (0x08) - 0x9A: Present, Ring 0, Code, Exec/Read
+        
+        // Index 1: Kernel Code (Selector 0x08)
         set_entry(&local->gdt_entries[1], 0, 0, 0x9A, 0x20);
-        // Index 2: Kernel Data (0x10) - 0x92: Present, Ring 0, Data, Read/Write
+        
+        // Index 2: Kernel Data (Selector 0x10)
         set_entry(&local->gdt_entries[2], 0, 0, 0x92, 0x00);
-        // Index 3: User Data (0x18 | 3) - 0xF2: Present, Ring 3, Data, Read/Write
+
+        // Index 3: User Data 64 (Selector 0x1B / 0x18)
         set_entry(&local->gdt_entries[3], 0, 0, 0xF2, 0x00);
-        // Index 4: User Code (0x20 | 3) - 0xFA: Present, Ring 3, Code, Exec/Read
+
+        // Index 4: User Code 64 (Selector 0x23 / 0x20)
         set_entry(&local->gdt_entries[4], 0, 0, 0xFA, 0x20);
 
-        // Index 5 & 6: TSS Descriptor (System Segment, 16 bytes)
+        // Index 5: User Data 32-bit (Selector 0x18)
+        set_entry(&local->gdt_entries[5], 0, 0, 0xF2, 0x00);
+
+        // Index 6 & 7: TSS (Selector 0x30)
         uintptr_t tss_addr = reinterpret_cast<uintptr_t>(&local->tss_entry);
         uint32_t tss_limit = sizeof(tss) - 1;
 
-        local->gdt_entries[5].limit_low = tss_limit & 0xFFFF;
-        local->gdt_entries[5].base_low = tss_addr & 0xFFFF;
-        local->gdt_entries[5].base_middle = (tss_addr >> 16) & 0xFF;
-        local->gdt_entries[5].access = 0x89;  // Present, Available 64-bit TSS
-        local->gdt_entries[5].granularity = (tss_limit >> 16) & 0x0F;
-        local->gdt_entries[5].base_high = (tss_addr >> 24) & 0xFF;
+        local->gdt_entries[6].limit_low = tss_limit & 0xFFFF;
+        local->gdt_entries[6].base_low = tss_addr & 0xFFFF;
+        local->gdt_entries[6].base_middle = (tss_addr >> 16) & 0xFF;
+        local->gdt_entries[6].access = 0x89; 
+        local->gdt_entries[6].granularity = (tss_limit >> 16) & 0x0F;
+        local->gdt_entries[6].base_high = (tss_addr >> 24) & 0xFF;
 
-        uint32_t* high_part = reinterpret_cast<uint32_t*>(&local->gdt_entries[6]);
+        uint32_t* high_part = reinterpret_cast<uint32_t*>(&local->gdt_entries[7]);
         high_part[0] = (tss_addr >> 32) & 0xFFFFFFFF;
-        high_part[1] = 0;  // Reserved
+        high_part[1] = 0;
 
         local->gdt_ptr.limit = (sizeof(gdt_entry) * MAX_ENTRIES) - 1;
         local->gdt_ptr.base = reinterpret_cast<uint64_t>(local->gdt_entries);
 
         gdt_load(reinterpret_cast<uint64_t>(&local->gdt_ptr));
 
-        asm volatile("ltr %0" : : "a"(0x28) : "memory");
+        // Load Task Register: 0x30 is the index for our TSS
+        asm volatile("ltr %0" : : "a"(static_cast<uint16_t>(0x30)) : "memory");
     }
 }  // namespace gdt

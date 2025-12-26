@@ -34,13 +34,10 @@ namespace smp {
 
     void enable_optional_cpu_features() {
         uint32_t eax, ebx, ecx, edx;
-    
-        eax = 7; ecx = 0;
-        asm volatile(
-            "cpuid"
-            : "=b"(ebx), "=a"(eax), "=c"(ecx), "=d"(edx)
-            : "a"(eax), "c"(ecx)
-        );
+
+        eax = 7;
+        ecx = 0;
+        asm volatile("cpuid" : "=b"(ebx), "=a"(eax), "=c"(ecx), "=d"(edx) : "a"(eax), "c"(ecx));
 
         cpu_features feat = get_cpu()->cpu_features;
 
@@ -49,13 +46,9 @@ namespace smp {
 
         uint64_t cr4;
         asm volatile("mov %%cr4, %0" : "=r"(cr4));
-        if (feat.smep) {
-            cr4 |= (1ULL << 20);
-        }
-        if (feat.smap) {
-            cr4 |= (1ULL << 21);
-        }
-        asm volatile("mov %0, %%cr4" :: "r"(cr4));
+        if (feat.smep) { cr4 |= (1ULL << 20); }
+        if (feat.smap) { cr4 |= (1ULL << 21); }
+        asm volatile("mov %0, %%cr4" ::"r"(cr4));
 
         get_cpu()->cpu_features = feat;
     }
@@ -70,7 +63,8 @@ namespace smp {
         local->ticks = 0;
         local->kernel_stack = (void*)data->stack_top;
 
-        apic::wrmsr(0xC0000101, (uintptr_t)local);
+        apic::wrmsr(0xC0000101, (uintptr_t)local); // GS_BASE
+        apic::wrmsr(0xC0000102, (uintptr_t)local); // KERNEL_GS_BASE
 
         cpu_table[local->cpu_index] = local;
     }
@@ -94,9 +88,7 @@ namespace smp {
         scheduler::init_core();
         __asm__ volatile("sti");
 
-        for (;;) {
-            asm volatile("pause");
-        }
+        for (;;) { asm volatile("pause"); }
     }
 
     void init_bsp() {
@@ -111,7 +103,8 @@ namespace smp {
         local->kernel_stack = (void*)higher_stack_top;
 
         asm volatile("mov %0, %%gs" : : "r"(0));
-        apic::wrmsr(0xC0000101, (uintptr_t)local);
+        apic::wrmsr(0xC0000101, (uintptr_t)local); // GS_BASE
+        apic::wrmsr(0xC0000102, (uintptr_t)local); // KERNEL_GS_BASE
 
         gdt::init_core();
         enable_optional_cpu_features();
@@ -193,9 +186,17 @@ namespace smp {
                     console::printf("[SMP] Booting AP (LAPIC %d)... ", lapic->lapic_id);
                     boot_core(lapic->lapic_id, TRAM_PHYS, data, core_count++);
 
-                    while (data->status == 0) { busy_sleep(5); }
+                    uint32_t wait_count = 0;
+                    while (data->status == 0 && wait_count < 10) {
+                        busy_sleep(5);
+                        wait_count++;
+                    }
 
-                    console::printf("Success.\n", lapic->lapic_id);
+                    if (data->status == 1) {
+                        console::printf("Success.\n");
+                    } else {
+                        console::printf("Failure.\n");
+                    }
                 }
             }
 

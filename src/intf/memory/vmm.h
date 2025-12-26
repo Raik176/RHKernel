@@ -77,9 +77,11 @@ namespace vmm {
      * @param phys  Physical address (must be page-aligned)
      * @param flags PageFlags controlling access and caching behavior
      */
-    void map_page(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size, uint64_t pagemap = get_kernel_pagemap());
+    void map_page(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size,
+                  uint64_t pagemap = get_kernel_pagemap());
 
-    void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags, uint64_t pagemap = get_kernel_pagemap());
+    void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags,
+                   uint64_t pagemap = get_kernel_pagemap());
 
     void unmap_page(uint64_t virt, uint64_t pagemap = get_kernel_pagemap());
 

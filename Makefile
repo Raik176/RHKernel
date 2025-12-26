@@ -18,6 +18,9 @@ FORMAT_SOURCES := $(shell find src -name '*.cpp' -o -name '*.c' -o -name '*.h' -
 # --- Configuration ---
 DEBUG ?= 0
 
+USER_DIR := user
+USER_BIN := $(USER_DIR)/bin/init
+
 TOOLS_DIR := tools
 TOOLS_ZIP := $(TOOLS_DIR)/x86_64-elf-tools-linux.zip
 TOOLS_STAMP := $(TOOLS_DIR)/.installed
@@ -72,8 +75,15 @@ endif
 
 CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit
 
-$(INITRAMFS_BIN): $(shell find $(INITRAMFS_SRC) -type f)
+$(USER_BIN):
+	@echo "Building User Space..."
+	@$(MAKE) -C $(USER_DIR)
+
+$(INITRAMFS_BIN): $(USER_BIN) $(shell find $(INITRAMFS_SRC) -type f)
 	@mkdir -p build
+	@mkdir -p $(INITRAMFS_SRC)/bin
+	@cp $(USER_BIN) $(INITRAMFS_SRC)/bin/init
+	@echo "Building Initramfs..."
 	@cd $(INITRAMFS_SRC) && find . | cpio -o -H newc > ../$(INITRAMFS_BIN)
 
 $(TOOLS_STAMP):
@@ -109,7 +119,7 @@ $(FONT_BIN): $(FONT_TTF) $(FONT_SCRIPT) | $(VENV_STAMP)
 	@mkdir -p $(dir $@)
 	$(VENV_PYTHON) $(FONT_SCRIPT) $(FONT_TTF) $@
 
-build/x86_64/%.asm.o: src/impl/x86_64/%.asm | $(FONT_BIN)
+build/x86_64/%.asm.o: src/impl/x86_64/%.asm $(FONT_BIN)
 	mkdir -p $(dir $@) && \
 	nasm $(NASMFLAGS) $< -o $@
 

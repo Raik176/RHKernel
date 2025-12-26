@@ -18,6 +18,13 @@ extern uint8_t font_bitmap_end;    ///< End of embedded font bitmap
 }
 
 namespace framebuffer {
+    static volatile uint32_t current_fg = 0xFFFFFFFF;  // White
+    static volatile uint32_t current_bg = 0x00000000;  // Black
+    static volatile uint8_t current_ega_attr = 0x0F;   // White on Black
+
+    static uint32_t palette_rgb[] = {0x000000, 0x0000AA, 0x00AA00, 0x00AAAA, 0xAA0000, 0xAA00AA,
+                                     0xAA5500, 0xAAAAAA, 0x555555, 0x5555FF, 0x55FF55, 0x55FFFF,
+                                     0xFF5555, 0xFF55FF, 0xFFFF55, 0xFFFFFF};
 
     /**
      * @internal
@@ -58,7 +65,7 @@ namespace framebuffer {
      */
     uint32_t pack_color(uint8_t r, uint8_t g, uint8_t b) {
         if (fb.type == 2) {  // MULTIBOOT_FRAMEBUFFER_TYPE_EGA
-            return 0x0F;     // White text attribute
+            return current_ega_attr;
         }
         if (fb.type == 0) {  // MULTIBOOT_FRAMEBUFFER_TYPE_INDEXED
             return (r > 128) ? 0x0F : 0x00;
@@ -122,10 +129,9 @@ namespace framebuffer {
             uint32_t total_cells = (fb.height - 1) * fb.width;
             memcpy(fb.addr, fb.addr + (fb.width * 2), total_cells * 2);
 
-            uint16_t clear_val = 0x0720;
+            uint16_t clear_val = (uint16_t)(current_ega_attr << 8) | ' ';
             uint16_t* last_line = ((uint16_t*)fb.addr) + total_cells;
             for (uint32_t x = 0; x < fb.width; x++) last_line[x] = clear_val;
-
         } else {  // RGB / Indexed Graphics Modes
             uint32_t font_h = 16;
             uint32_t bytes_per_row = fb.pitch;
@@ -136,15 +142,14 @@ namespace framebuffer {
 
             memcpy(dest, src, bytes_to_copy);
 
-            uint32_t bg_color = pack_color(0, 0, 0);
             uint8_t* bottom_start = fb.addr + bytes_to_copy;
             size_t bottom_size = font_h * bytes_per_row;
 
-            if (bg_color == 0) {
+            if (current_bg == 0) {
                 memset(bottom_start, 0, bottom_size);
             } else {
                 for (uint32_t x = 0; x < fb.width; x++)
-                    putpixel_raw(x, fb.height - font_h, bg_color);
+                    putpixel_raw(x, fb.height - font_h, current_bg);
                 for (uint32_t y = 1; y < font_h; y++) {
                     memcpy(fb.addr + (fb.height - font_h + y) * fb.pitch, bottom_start, fb.pitch);
                 }
@@ -178,7 +183,7 @@ namespace framebuffer {
                 putpixel_raw = putpixel_ega;
                 break;
         }
-        clear(pack_color(0, 0, 0));
+        clear();
     }
 
     /**
@@ -212,13 +217,11 @@ namespace framebuffer {
                 cursor_y += (fb.type == 2) ? 1 : font_h;
             }
 
-            if (fb.type == 2) {          // EGA Text Mode
-                uint16_t attr = 0x0F00;  // White on Black
-                putpixel_ega(cursor_x, cursor_y, attr | (uint8_t)c);
+            if (fb.type == 2) {  // EGA Text Mode
+                uint16_t data = (uint16_t)(current_ega_attr << 8) | (uint8_t)c;
+                putpixel_ega(cursor_x, cursor_y, data);
                 cursor_x++;
             } else {  // RGB / Indexed Graphics Modes
-                uint32_t fg = pack_color(255, 255, 255);
-                uint32_t bg = pack_color(0, 0, 0);
                 uint8_t index = (uint8_t)c;
 
                 if (index < max_chars) {
@@ -226,7 +229,7 @@ namespace framebuffer {
                     for (uint32_t r = 0; r < font_h; r++) {
                         uint8_t row_byte = char_data[r];
                         for (uint32_t col = 0; col < font_w; col++) {
-                            uint32_t color = (row_byte & (0x80 >> col)) ? fg : bg;
+                            uint32_t color = (row_byte & (0x80 >> col)) ? current_fg : current_bg;
                             putpixel_raw(cursor_x + col, cursor_y + r, color);
                         }
                     }
@@ -235,7 +238,8 @@ namespace framebuffer {
                         for (uint32_t col = 0; col < font_w; col++) {
                             bool is_border =
                                 (r == 0 || r == font_h - 1 || col == 0 || col == font_w - 1);
-                            putpixel_raw(cursor_x + col, cursor_y + r, is_border ? fg : bg);
+                            putpixel_raw(cursor_x + col, cursor_y + r,
+                                         is_border ? current_fg : current_bg);
                         }
                     }
                 }
@@ -258,13 +262,13 @@ namespace framebuffer {
      *
      * @param color ARGB color to fill the screen with
      */
-    void clear(uint32_t color) {
+    void clear() {
         if (fb.type == MULTIBOOT_FRAMEBUFFER_TYPE_EGA) {
-            uint16_t clear_val = (uint16_t)((0x07 << 8) | ' ');
+            uint16_t clear_val = (uint16_t)(current_ega_attr << 8) | ' ';
             for (uint32_t i = 0; i < fb.width * fb.height; i++) ((uint16_t*)fb.addr)[i] = clear_val;
         } else {
             for (uint32_t y = 0; y < fb.height; y++) {
-                for (uint32_t x = 0; x < fb.width; x++) putpixel_raw(x, y, color);
+                for (uint32_t x = 0; x < fb.width; x++) putpixel_raw(x, y, current_bg);
             }
         }
         cursor_x = 0;
@@ -301,4 +305,12 @@ namespace framebuffer {
         cursor_visible = false;
     }
 
+    void set_color(uint8_t fg_idx, uint8_t bg_idx) {
+        uint32_t raw_fg = palette_rgb[fg_idx];
+        uint32_t raw_bg = palette_rgb[bg_idx];
+        current_fg = pack_color((raw_fg >> 16) & 0xFF, (raw_fg >> 8) & 0xFF, raw_fg & 0xFF);
+        current_bg = pack_color((raw_bg >> 16) & 0xFF, (raw_bg >> 8) & 0xFF, raw_bg & 0xFF);
+
+        current_ega_attr = (bg_idx << 4) | (fg_idx & 0x0F);
+    }
 }  // namespace framebuffer

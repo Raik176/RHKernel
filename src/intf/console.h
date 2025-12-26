@@ -14,6 +14,24 @@
 #include "multiboot2.h"
 
 namespace console {
+    enum class Color : uint8_t {
+        Black = 0,
+        Blue,
+        Green,
+        Cyan,
+        Red,
+        Magenta,
+        Brown,
+        LightGray,
+        DarkGray,
+        LightBlue,
+        LightGreen,
+        LightCyan,
+        LightRed,
+        LightMagenta,
+        Yellow,
+        White
+    };
 
     /**
      * @brief Console backends that can be used for output
@@ -97,5 +115,7 @@ namespace console {
     void move_cursor(uint16_t x, uint16_t y);
 
     /** @} */
+
+    void set_color(Color fg, Color bg = Color::Black);
 
 }  // namespace console

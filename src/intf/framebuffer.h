@@ -26,7 +26,7 @@ namespace framebuffer {
      *
      * @param color 32-bit ARGB color value to fill the screen with (default: black 0x000000)
      */
-    void clear(uint32_t color = 0x000000);
+    void clear();
 
     /**
      * @brief Draw a single pixel at a specific location
@@ -58,5 +58,7 @@ namespace framebuffer {
      * Hides the cursor.
      */
     void disable_cursor();
+
+    void set_color(uint8_t fg, uint8_t bg);
 
 }  // namespace framebuffer

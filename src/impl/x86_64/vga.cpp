@@ -5,6 +5,7 @@
 
 #include "vga.h"
 
+#include "console.h"
 #include "string.h"
 #include "util.h"
 
@@ -25,7 +26,7 @@ namespace vga {
     /** @} */
 
     /** @internal Current text color (foreground | background << 4) */
-    static uint8_t color = (uint8_t)Color::LightGray | ((uint8_t)Color::Black << 4);
+    static uint8_t color = (uint8_t)console::Color::White | ((uint8_t)console::Color::Black << 4);
 
     /**
      * @internal
@@ -121,4 +122,5 @@ namespace vga {
         outb(0x3D5, 0x20);
     }
 
+    void set_color(uint8_t fg, uint8_t bg) { color = fg | (bg << 4); }
 }  // namespace vga

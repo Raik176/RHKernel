@@ -19,28 +19,6 @@ namespace vga {
     constexpr uint16_t HEIGHT = 25;  ///< Number of rows
     /** @} */
 
-    /**
-     * @brief VGA color codes
-     */
-    enum class Color : uint8_t {
-        Black = 0,
-        Blue = 1,
-        Green = 2,
-        Cyan = 3,
-        Red = 4,
-        Magenta = 5,
-        Brown = 6,
-        LightGray = 7,
-        DarkGray = 8,
-        LightBlue = 9,
-        LightGreen = 10,
-        LightCyan = 11,
-        LightRed = 12,
-        Pink = 13,
-        Yellow = 14,
-        White = 15
-    };
-
     /** @defgroup VGA_Core VGA Core Functions
      * Functions for initializing and clearing the screen.
      * @{
@@ -95,5 +73,7 @@ namespace vga {
     void disable_cursor();
 
     /** @} */
+
+    void set_color(uint8_t fg, uint8_t bg);
 
 }  // namespace vga

@@ -227,20 +227,32 @@ namespace pmm {
         if (initramfs_start == 0 && initramfs_end == 0) return;
 
         uint64_t reserved[] = {
-                                0, 0x100000,
-                               (uint64_t)&_kernel_phys_start, (uint64_t)&_kernel_phys_end,
+            0,
+            0x100000,
+            (uint64_t)&_kernel_phys_start,
+            (uint64_t)&_kernel_phys_end,
 
-                               (uint64_t)&pml4_table, (uint64_t)&pml4_table + (uint64_t)&pml4_table_end - (uint64_t)&pml4_table,
-                               (uint64_t)&pdp_table, (uint64_t)&pdp_table + (uint64_t)&pdp_table_end - (uint64_t)&pdp_table,
-                               (uint64_t)&page_directory, (uint64_t)&page_directory + (uint64_t)&page_directory_end - (uint64_t)&page_directory,
-                               (uint64_t)&phys_map_pdp_table, (uint64_t)&phys_map_pdp_table + (uint64_t)&phys_map_pdp_table_end - (uint64_t)&phys_map_pdp_table,
-                               (uint64_t)&phys_map_pd_table, (uint64_t)&phys_map_pd_table + (uint64_t)&phys_map_pd_table_end - (uint64_t)&phys_map_pd_table,
-                               (uint64_t)&high_pdp_table, (uint64_t)&high_pdp_table + (uint64_t)&high_pdp_table_end - (uint64_t)&high_pdp_table,
-                               (uint64_t)&high_pd_table, (uint64_t)&high_pd_table + (uint64_t)&high_pd_table_end - (uint64_t)&high_pd_table,
+            (uint64_t)&pml4_table,
+            (uint64_t)&pml4_table + (uint64_t)&pml4_table_end - (uint64_t)&pml4_table,
+            (uint64_t)&pdp_table,
+            (uint64_t)&pdp_table + (uint64_t)&pdp_table_end - (uint64_t)&pdp_table,
+            (uint64_t)&page_directory,
+            (uint64_t)&page_directory + (uint64_t)&page_directory_end - (uint64_t)&page_directory,
+            (uint64_t)&phys_map_pdp_table,
+            (uint64_t)&phys_map_pdp_table + (uint64_t)&phys_map_pdp_table_end -
+                (uint64_t)&phys_map_pdp_table,
+            (uint64_t)&phys_map_pd_table,
+            (uint64_t)&phys_map_pd_table + (uint64_t)&phys_map_pd_table_end -
+                (uint64_t)&phys_map_pd_table,
+            (uint64_t)&high_pdp_table,
+            (uint64_t)&high_pdp_table + (uint64_t)&high_pdp_table_end - (uint64_t)&high_pdp_table,
+            (uint64_t)&high_pd_table,
+            (uint64_t)&high_pd_table + (uint64_t)&high_pd_table_end - (uint64_t)&high_pd_table,
 
-                               mb_phys_addr, mb_phys_addr + mb_size,
-                               initramfs_start, initramfs_end
-                            };
+            mb_phys_addr,
+            mb_phys_addr + mb_size,
+            initramfs_start,
+            initramfs_end};
         size_t res_count = sizeof(reserved) / (sizeof(uint64_t) * 2);
 
         for (auto* e = mmap->entries; (uint8_t*)e < (uint8_t*)mmap + mmap->size;

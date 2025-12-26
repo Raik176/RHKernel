@@ -53,7 +53,7 @@ namespace initramfs {
             uint32_t mode = hex_to_int(header->mode, 8);
             char* full_path = (char*)(current_ptr + sizeof(struct cpio_newc_header));
 
-            if (strcmp(full_path, "TRAILER!!!") == 0 && filesize == 0) break;
+            if (strcmp(full_path, "TRAILER!!!") == 0) break;
 
             if (strcmp(full_path, ".") != 0) {
                 vfs::vfs_node* parent = root;

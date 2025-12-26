@@ -1,47 +1,49 @@
+#pragma once
 #include <stdint.h>
 
+#define ELF_MAGIC 0x464C457F  // "\x7FELF"
+
 namespace elf {
-    static constexpr uint32_t ELF_MAGIC = 0x464C457F;
-
-    static constexpr uint32_t PT_LOAD = 1;
-    static constexpr uint32_t PF_X = 1;
-    static constexpr uint32_t PF_W = 2;
-    static constexpr uint32_t PF_R = 4;
-
-    typedef uint64_t Elf64_Addr;
-    typedef uint64_t Elf64_Off;
-    typedef uint16_t Elf64_Half;
-    typedef uint32_t Elf64_Word;
-    typedef uint64_t Elf64_Xword;
-
-    struct Elf64_Ehdr {
-        uint8_t  e_ident[16];
-        Elf64_Half e_type;
-        Elf64_Half e_machine;
-        Elf64_Word e_version;
-        Elf64_Addr e_entry;
-        Elf64_Off  e_phoff;
-        Elf64_Off  e_shoff;
-        Elf64_Word e_flags;
-        Elf64_Half e_ehsize;
-        Elf64_Half e_phentsize;
-        Elf64_Half e_phnum;
-        Elf64_Half e_shentsize;
-        Elf64_Half e_shnum;
-        Elf64_Half e_shstrndx;
+    struct elf_header {
+        uint32_t magic;
+        uint8_t endianness;
+        uint8_t bit_width;  // 2 = 64-bit
+        uint8_t version;
+        uint8_t abi;
+        uint8_t unused[8];
+        uint16_t type;
+        uint16_t machine;
+        uint32_t version2;
+        uint64_t entry;
+        uint64_t phoff;
+        uint64_t shoff;
+        uint32_t flags;
+        uint16_t header_size;
+        uint16_t ph_entry_size;
+        uint16_t ph_count;
+        uint16_t sh_entry_size;
+        uint16_t sh_count;
+        uint16_t str_table_index;
     };
 
-    struct Elf64_Phdr {
-        Elf64_Word  p_type;
-        Elf64_Word  p_flags;
-        Elf64_Off   p_offset;
-        Elf64_Addr  p_vaddr;
-        Elf64_Addr  p_paddr;
-        Elf64_Xword p_filesz;
-        Elf64_Xword p_memsz;
-        Elf64_Xword p_align;
+    struct elf_program_header {
+        uint32_t type;
+        uint32_t flags;
+        uint64_t offset;
+        uint64_t vaddr;
+        uint64_t paddr;
+        uint64_t filesz;
+        uint64_t memsz;
+        uint64_t align;
     };
-}
+
+    struct elf_info {
+        uint64_t entry;
+        uint64_t pml4;
+    };
+
+    elf_info load(const char* path);
+}  // namespace elf
 
 #define PT_LOAD 1
 #define PF_X 1

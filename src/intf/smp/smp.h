@@ -20,6 +20,7 @@ namespace smp {
 
         uint64_t ticks;
         void* kernel_stack;
+        uint64_t user_rsp;
 
         scheduler::task* current_task;
         scheduler::task* task_queues_tail[scheduler::MAX_QUEUES];

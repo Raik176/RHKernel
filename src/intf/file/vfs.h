@@ -23,5 +23,7 @@ namespace vfs {
     void init();
 
     vfs_node* finddir(vfs_node* parent, const char* name);
+    vfs_node* open(const char* path);
+    uint32_t read(vfs_node* node, uint32_t offset, uint32_t size, void* buffer);
     vfs_node* get_root();
 }  // namespace vfs

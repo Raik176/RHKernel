@@ -145,5 +145,7 @@ static inline uint16_t inw(uint16_t port) {
     return ret;
 }
 
-void __attribute__((noreturn)) kpanic(const char* message);
+void __attribute__((noreturn)) kpanic(const char* message, struct regs* r = nullptr);
+void print_stacktrace(uint64_t max_frames = 10);
 void busy_sleep(uint64_t ms);
+void dump_regs(struct regs* r);

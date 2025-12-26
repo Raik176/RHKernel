@@ -96,31 +96,7 @@ uint64_t idt_handler(struct regs *r) {
                                                         "Reserved",
                                                         "Reserved"};
 
-        
-        console::printf("\n--- KERNEL PANIC ---\n");
-
-        if (r->int_no < 32) {
-            console::printf("Exception: ");
-            console::printf(exception_messages[r->int_no]);
-        } else {
-            console::printf("Unknown Exception");
-        }
-
-        console::printf("\nInterrupt: %d", r->int_no);
-
-        console::printf("\nError Code: %d", r->err_code);
-
-        if (r->int_no == 14) {
-            uint64_t faulting_address;
-            __asm__ volatile("mov %%cr2, %0" : "=r"(faulting_address));
-            console::printf("\nFaulting Address (CR2): %p", faulting_address);
-        }
-
-        console::printf("\nInstruction Pointer: %p", r->rip);
-
-        console::printf("\nHalting system...");
-
-        handle_halt_ipi(r);
+        kpanic(exception_messages[r->int_no], r);
     }
 
     if (r->int_no == idt::YIELD_VECTOR) {
