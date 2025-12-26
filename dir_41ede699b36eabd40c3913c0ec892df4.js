@@ -11,6 +11,7 @@ var dir_41ede699b36eabd40c3913c0ec892df4 =
     [ "ksym.cpp", "ksym_8cpp.html", "ksym_8cpp" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "serial.cpp", "serial_8cpp.html", "serial_8cpp" ],
+    [ "syscall.cpp", "syscall_8cpp.html", "syscall_8cpp" ],
     [ "util.cpp", "util_8cpp.html", "util_8cpp" ],
     [ "vga.cpp", "vga_8cpp.html", "vga_8cpp" ]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['x2apic_5fmode_0',['x2apic_mode',['../namespaceapic.html#af8461c36418ebb3d3816b84643969495',1,'apic']]],
-  ['xsdt_5faddress_1',['xsdt_address',['../structacpi_1_1XSDP.html#a9d16c87d463d1617cbd50f4f34f6f6b8',1,'acpi::XSDP::xsdt_address'],['../acpi_8h.html#adebb20019785a766c6461acccdfac9a3',1,'xsdt_address:&#160;acpi.h']]]
+  ['width_0',['width',['../structframebuffer_1_1FramebufferInfo.html#ab36a3adb060052b07129a95d1ad22a49',1,'framebuffer::FramebufferInfo::width'],['../structmultiboot__tag__framebuffer.html#ab362c0a2d3a8ffe926b2cc5573c3cf08',1,'multiboot_tag_framebuffer::width'],['../namespacevga.html#a74984e12f3eed2809499faadd1711408',1,'vga::WIDTH']]]
 ];

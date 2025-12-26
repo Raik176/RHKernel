@@ -8,6 +8,7 @@ var vga_8cpp =
     [ "move_cursor", "vga_8cpp.html#ga0142f51258318d16542cd53727140143", null ],
     [ "newline", "vga_8cpp.html#a0f5f3cba8da79d1153b434192b4f46b7", null ],
     [ "putchar", "vga_8cpp.html#gaad3f0e4b13fe8b1f80046306237373ec", null ],
+    [ "set_color", "vga_8cpp.html#afd3b9daf8d79c6262dab65bab517d19c", null ],
     [ "update_hardware_cursor", "vga_8cpp.html#ad3fed93390c077de798afb250e9fcf3d", null ],
     [ "buffer", "vga_8cpp.html#a3bd916d981290a9f93b3329ac4258fe1", null ],
     [ "color", "vga_8cpp.html#a9401ccd7b060e7a51604996bd7aecf97", null ],

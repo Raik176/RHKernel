@@ -1,24 +1,27 @@
 <map id="src/impl/x86_64/console.cpp" name="src/impl/x86_64/console.cpp">
-<area shape="rect" id="Node000001" title="Implementation of kernel console abstraction." alt="" coords="160,5,367,31"/>
+<area shape="rect" id="Node000001" title="Implementation of kernel console abstraction." alt="" coords="187,5,393,31"/>
 <area shape="rect" id="Node000002" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="140,79,224,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,33,207,72,204,68,249,29"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="351,79,426,104"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="285,28,358,69,355,74,282,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,33,213,73,210,69,271,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="403,79,478,104"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="315,28,405,70,402,75,313,33"/>
 <area shape="rect" id="Node000007" href="$framebuffer_8h.html" title=" " alt="" coords="5,79,116,104"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="232,33,107,77,105,72,230,28"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="254,33,112,77,110,72,252,28"/>
 <area shape="rect" id="Node000008" href="$lock_8h.html" title=" " alt="" coords="218,152,311,177"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="266,31,267,138,262,138,261,31"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="291,32,272,139,266,138,285,31"/>
 <area shape="rect" id="Node000009" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="335,152,394,177"/>
-<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="274,30,351,139,347,142,269,33"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="148,225,219,251"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="185,104,186,212,180,212,179,104"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="298,30,355,138,350,141,294,32"/>
+<area shape="rect" id="Node000010" href="$serial_8h.html" title="Kernel serial port interface." alt="" coords="419,152,489,177"/>
+<area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="305,29,432,141,429,145,302,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="191,225,261,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="188,103,209,177,220,211,215,213,203,178,183,105"/>
 <area shape="rect" id="Node000004" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="37,152,143,177"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="169,106,117,146,114,141,166,102"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="107,175,159,215,156,219,103,179"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="49,225,123,251"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="92,178,90,212,85,212,87,178"/>
-<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="51,106,38,121,27,139,22,158,27,176,43,189,70,202,136,222,134,228,68,207,40,193,22,179,17,158,22,137,34,118,47,103"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="113,175,193,217,191,221,111,180"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="53,225,127,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="93,178,93,212,87,212,87,178"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="51,106,38,122,26,140,22,159,27,176,50,192,89,206,178,227,177,232,87,211,47,197,23,179,16,159,22,138,33,118,46,103"/>
 <area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="68,103,82,138,78,140,63,105"/>
-<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="253,179,209,218,205,214,250,175"/>
-<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="337,180,227,223,225,218,335,175"/>
+<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="261,179,241,215,236,212,256,176"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="344,180,262,221,260,217,341,175"/>
+<area shape="poly" id="edge15_Node000010_Node000003" title=" " alt="" coords="419,180,275,224,274,219,418,174"/>
 </map>

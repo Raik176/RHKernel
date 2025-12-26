@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['width_0',['width',['../structframebuffer_1_1FramebufferInfo.html#ab36a3adb060052b07129a95d1ad22a49',1,'framebuffer::FramebufferInfo::width'],['../structmultiboot__tag__framebuffer.html#ab362c0a2d3a8ffe926b2cc5573c3cf08',1,'multiboot_tag_framebuffer::width'],['../namespacevga.html#a74984e12f3eed2809499faadd1711408',1,'vga::WIDTH']]]
+  ['vaddr_0',['vaddr',['../structelf_1_1elf__program__header.html#a28ceb348c6ebbad922037a25ae28d361',1,'elf::elf_program_header']]],
+  ['version_1',['version',['../structelf_1_1elf__header.html#a659a70c841294f412ee63b6633639abd',1,'elf::elf_header']]],
+  ['version2_2',['version2',['../structelf_1_1elf__header.html#a21e61965cee72804f25873eec4e19b32',1,'elf::elf_header']]]
 ];

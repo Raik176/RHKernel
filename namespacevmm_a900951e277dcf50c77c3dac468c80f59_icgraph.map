@@ -1,7 +1,13 @@
 <map id="vmm::map_range" name="vmm::map_range">
-<area shape="rect" id="Node000001" title=" " alt="" coords="249,5,387,31"/>
-<area shape="rect" id="Node000002" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="116,5,201,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,21,201,21,201,15,236,15"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="299,55,436,80"/>
+<area shape="rect" id="Node000002" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="141,5,226,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,54,226,32,227,27,307,49"/>
+<area shape="rect" id="Node000004" href="$namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="146,55,221,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="285,70,221,70,221,65,285,65"/>
+<area shape="rect" id="Node000005" href="$namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d" title=" " alt="" coords="116,104,251,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="307,86,233,106,231,101,306,81"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="133,38,69,60,67,54,131,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="132,70,68,70,68,65,132,65"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="131,102,67,80,69,75,133,97"/>
 </map>

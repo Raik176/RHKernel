@@ -134,6 +134,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ac1bb2364c1a57bbed26388fc7e77a613"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae864ee1f758470625c5ee323e02c2c21" id="r_ae864ee1f758470625c5ee323e02c2c21"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#ae864ee1f758470625c5ee323e02c2c21">kernel_stack</a></td></tr>
 <tr class="separator:ae864ee1f758470625c5ee323e02c2c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea767a5f9a657fa48ea477da01fb693d" id="r_aea767a5f9a657fa48ea477da01fb693d"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#aea767a5f9a657fa48ea477da01fb693d">user_rsp</a></td></tr>
+<tr class="separator:aea767a5f9a657fa48ea477da01fb693d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab88223707c7d51680772b5074030ee9d" id="r_ab88223707c7d51680772b5074030ee9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduler_1_1task.html">scheduler::task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#ab88223707c7d51680772b5074030ee9d">current_task</a></td></tr>
 <tr class="separator:ab88223707c7d51680772b5074030ee9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a227c52f7aa62129d515a8109fb030d65" id="r_a227c52f7aa62129d515a8109fb030d65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduler_1_1task.html">scheduler::task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsmp_1_1cpu__local.html#a227c52f7aa62129d515a8109fb030d65">task_queues_tail</a> [<a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">scheduler::MAX_QUEUES</a>]</td></tr>
@@ -364,6 +366,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structgdt_1_1tss.html">gdt::tss</a> smp::cpu_local::tss_entry</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aea767a5f9a657fa48ea477da01fb693d" name="aea767a5f9a657fa48ea477da01fb693d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea767a5f9a657fa48ea477da01fb693d">&#9670;&#160;</a></span>user_rsp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t smp::cpu_local::user_rsp</td>
         </tr>
       </table>
 </div><div class="memdoc">

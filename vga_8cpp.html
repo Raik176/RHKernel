@@ -101,6 +101,7 @@ $(document).ready(function(){initNavTree('vga_8cpp.html',''); initResizable(); }
 <p>Implementation of VGA text-mode driver.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="vga_8h_source.html">vga.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -108,27 +109,34 @@ Include dependency graph for vga.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="vga_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2vga_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2vga_8cpp" id="asrc_2impl_2x86__64_2vga_8cpp">
-<area shape="rect" title="Implementation of VGA text&#45;mode driver." alt="" coords="54,5,234,31"/>
-<area shape="rect" href="vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="5,225,64,251"/>
-<area shape="poly" title=" " alt="" coords="135,32,100,80,66,151,44,213,39,211,61,149,95,77,131,29"/>
-<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="109,79,179,104"/>
-<area shape="poly" title=" " alt="" coords="147,31,147,65,141,65,141,31"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="223,79,278,104"/>
-<area shape="poly" title=" " alt="" coords="163,28,223,69,220,73,160,33"/>
-<area shape="rect" title=" " alt="" coords="215,299,286,324"/>
-<area shape="poly" title=" " alt="" coords="65,246,203,292,202,297,63,252"/>
-<area shape="poly" title=" " alt="" coords="140,105,128,138,126,158,129,176,148,211,172,242,224,288,221,292,169,245,143,214,124,178,120,158,123,137,135,104"/>
-<area shape="rect" title=" " alt="" coords="139,152,213,177"/>
-<area shape="poly" title=" " alt="" coords="152,103,168,139,163,141,147,105"/>
-<area shape="poly" title=" " alt="" coords="253,104,253,284,248,284,248,104"/>
-<area shape="poly" title=" " alt="" coords="241,106,200,144,196,141,237,102"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="288,152,381,177"/>
-<area shape="poly" title=" " alt="" coords="266,102,312,141,309,145,262,106"/>
-<area shape="poly" title=" " alt="" coords="330,179,267,288,262,285,325,176"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="339,225,389,251"/>
-<area shape="poly" title=" " alt="" coords="342,177,356,212,352,214,337,179"/>
-<area shape="poly" title=" " alt="" coords="347,253,282,294,279,289,344,248"/>
-<area shape="poly" title=" " alt="" coords="372,223,392,190,396,171,391,153,371,132,346,117,318,106,291,100,293,95,320,101,348,112,374,128,396,151,402,171,397,192,377,226"/>
+<area shape="rect" title="Implementation of VGA text&#45;mode driver." alt="" coords="186,5,366,31"/>
+<area shape="rect" href="vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="485,225,544,251"/>
+<area shape="poly" title=" " alt="" coords="302,28,385,75,433,109,476,150,496,181,509,211,504,213,491,183,471,154,429,113,382,79,300,33"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="31,79,115,104"/>
+<area shape="poly" title=" " alt="" coords="244,33,120,77,118,72,243,28"/>
+<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="150,152,221,177"/>
+<area shape="poly" title=" " alt="" coords="271,33,202,142,198,139,266,30"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="282,79,337,104"/>
+<area shape="poly" title=" " alt="" coords="284,30,301,65,296,67,279,32"/>
+<area shape="rect" title=" " alt="" coords="274,299,345,324"/>
+<area shape="poly" title=" " alt="" coords="486,252,356,297,355,292,485,247"/>
+<area shape="poly" title=" " alt="" coords="56,106,36,120,19,138,9,157,8,166,12,176,34,206,62,232,94,253,128,269,199,292,261,303,260,308,198,297,126,274,91,257,58,236,30,210,7,179,3,167,4,155,15,134,33,116,52,102"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="21,152,126,177"/>
+<area shape="poly" title=" " alt="" coords="76,104,76,138,71,138,71,104"/>
+<area shape="poly" title=" " alt="" coords="86,176,123,211,172,248,218,273,263,292,261,297,216,278,169,253,119,215,83,180"/>
+<area shape="rect" title=" " alt="" coords="197,225,272,251"/>
+<area shape="poly" title=" " alt="" coords="100,175,197,217,195,222,98,180"/>
+<area shape="poly" title=" " alt="" coords="185,178,179,212,181,232,188,249,202,266,220,280,262,298,260,303,218,284,199,270,183,252,176,233,174,212,179,177"/>
+<area shape="poly" title=" " alt="" coords="196,176,221,213,217,216,191,179"/>
+<area shape="poly" title=" " alt="" coords="312,104,312,284,307,284,307,104"/>
+<area shape="poly" title=" " alt="" coords="306,106,249,214,245,212,301,103"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="347,152,440,177"/>
+<area shape="poly" title=" " alt="" coords="325,102,371,141,367,145,321,106"/>
+<area shape="poly" title=" " alt="" coords="389,179,325,288,321,285,384,176"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="397,225,448,251"/>
+<area shape="poly" title=" " alt="" coords="401,177,415,212,410,214,396,179"/>
+<area shape="poly" title=" " alt="" coords="406,253,341,294,338,289,403,248"/>
+<area shape="poly" title=" " alt="" coords="431,223,451,190,455,171,450,153,430,132,404,117,377,106,350,100,351,95,378,101,407,112,433,128,454,151,460,171,456,192,435,226"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -163,12 +171,14 @@ Functions</h2></td></tr>
 <tr class="memitem:gadca32e66e7fd904784b4411f7e6f03a7" id="r_gadca32e66e7fd904784b4411f7e6f03a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__VGA__Output.html#gadca32e66e7fd904784b4411f7e6f03a7">vga::disable_cursor</a> ()</td></tr>
 <tr class="memdesc:gadca32e66e7fd904784b4411f7e6f03a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the hardware cursor.  <br /></td></tr>
 <tr class="separator:gadca32e66e7fd904784b4411f7e6f03a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3b9daf8d79c6262dab65bab517d19c" id="r_afd3b9daf8d79c6262dab65bab517d19c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#afd3b9daf8d79c6262dab65bab517d19c">vga::set_color</a> (uint8_t fg, uint8_t bg)</td></tr>
+<tr class="separator:afd3b9daf8d79c6262dab65bab517d19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a3bd916d981290a9f93b3329ac4258fe1" id="r_a3bd916d981290a9f93b3329ac4258fe1"><td class="memItemLeft" align="right" valign="top">static volatile uint16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1">vga::buffer</a> = (volatile uint16_t*)<a class="el" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03">p2v</a>(0xB8000)</td></tr>
 <tr class="separator:a3bd916d981290a9f93b3329ac4258fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9401ccd7b060e7a51604996bd7aecf97" id="r_a9401ccd7b060e7a51604996bd7aecf97"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#a9401ccd7b060e7a51604996bd7aecf97">vga::color</a> = (uint8_t)<a class="el" href="namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08afb55202637692de4a494e9ade4cff2dd">Color::LightGray</a> | ((uint8_t)<a class="el" href="namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ae90dfb84e30edf611e326eeb04d680de">Color::Black</a> &lt;&lt; 4)</td></tr>
+<tr class="memitem:a9401ccd7b060e7a51604996bd7aecf97" id="r_a9401ccd7b060e7a51604996bd7aecf97"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#a9401ccd7b060e7a51604996bd7aecf97">vga::color</a> = (uint8_t)<a class="el" href="namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944a25a81701fbfa4a1efdf660a950c1d006">console::Color::White</a> | ((uint8_t)<a class="el" href="namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944ae90dfb84e30edf611e326eeb04d680de">console::Color::Black</a> &lt;&lt; 4)</td></tr>
 <tr class="separator:a9401ccd7b060e7a51604996bd7aecf97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Current cursor position</div></td></tr>
 <tr class="memitem:adaf11803f87d6b5c6d564914d594f137" id="r_adaf11803f87d6b5c6d564914d594f137"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevga.html#adaf11803f87d6b5c6d564914d594f137">vga::cursor_x</a> = 0</td></tr>

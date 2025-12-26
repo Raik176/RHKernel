@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('console_8cpp.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">console.cpp File Reference</div></div>
@@ -105,33 +106,37 @@ $(document).ready(function(){initNavTree('console_8cpp.html',''); initResizable(
 <code>#include &quot;<a class="el" href="framebuffer_8h_source.html">framebuffer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="lock_8h_source.html">smp/lock.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vga_8h_source.html">vga.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="serial_8h_source.html">serial.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for console.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="console_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2console_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2console_8cpp" id="asrc_2impl_2x86__64_2console_8cpp">
-<area shape="rect" title="Implementation of kernel console abstraction." alt="" coords="160,5,367,31"/>
+<area shape="rect" title="Implementation of kernel console abstraction." alt="" coords="187,5,393,31"/>
 <area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="140,79,224,104"/>
-<area shape="poly" title=" " alt="" coords="252,33,207,72,204,68,249,29"/>
-<area shape="rect" title=" " alt="" coords="351,79,426,104"/>
-<area shape="poly" title=" " alt="" coords="285,28,358,69,355,74,282,33"/>
+<area shape="poly" title=" " alt="" coords="274,33,213,73,210,69,271,28"/>
+<area shape="rect" title=" " alt="" coords="403,79,478,104"/>
+<area shape="poly" title=" " alt="" coords="315,28,405,70,402,75,313,33"/>
 <area shape="rect" href="framebuffer_8h.html" title=" " alt="" coords="5,79,116,104"/>
-<area shape="poly" title=" " alt="" coords="232,33,107,77,105,72,230,28"/>
+<area shape="poly" title=" " alt="" coords="254,33,112,77,110,72,252,28"/>
 <area shape="rect" href="lock_8h.html" title=" " alt="" coords="218,152,311,177"/>
-<area shape="poly" title=" " alt="" coords="266,31,267,138,262,138,261,31"/>
+<area shape="poly" title=" " alt="" coords="291,32,272,139,266,138,285,31"/>
 <area shape="rect" href="vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="335,152,394,177"/>
-<area shape="poly" title=" " alt="" coords="274,30,351,139,347,142,269,33"/>
-<area shape="rect" title=" " alt="" coords="148,225,219,251"/>
-<area shape="poly" title=" " alt="" coords="185,104,186,212,180,212,179,104"/>
+<area shape="poly" title=" " alt="" coords="298,30,355,138,350,141,294,32"/>
+<area shape="rect" href="serial_8h.html" title="Kernel serial port interface." alt="" coords="419,152,489,177"/>
+<area shape="poly" title=" " alt="" coords="305,29,432,141,429,145,302,33"/>
+<area shape="rect" title=" " alt="" coords="191,225,261,251"/>
+<area shape="poly" title=" " alt="" coords="188,103,209,177,220,211,215,213,203,178,183,105"/>
 <area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="37,152,143,177"/>
 <area shape="poly" title=" " alt="" coords="169,106,117,146,114,141,166,102"/>
-<area shape="poly" title=" " alt="" coords="107,175,159,215,156,219,103,179"/>
-<area shape="rect" title=" " alt="" coords="49,225,123,251"/>
-<area shape="poly" title=" " alt="" coords="92,178,90,212,85,212,87,178"/>
-<area shape="poly" title=" " alt="" coords="51,106,38,121,27,139,22,158,27,176,43,189,70,202,136,222,134,228,68,207,40,193,22,179,17,158,22,137,34,118,47,103"/>
+<area shape="poly" title=" " alt="" coords="113,175,193,217,191,221,111,180"/>
+<area shape="rect" title=" " alt="" coords="53,225,127,251"/>
+<area shape="poly" title=" " alt="" coords="93,178,93,212,87,212,87,178"/>
+<area shape="poly" title=" " alt="" coords="51,106,38,122,26,140,22,159,27,176,50,192,89,206,178,227,177,232,87,211,47,197,23,179,16,159,22,138,33,118,46,103"/>
 <area shape="poly" title=" " alt="" coords="68,103,82,138,78,140,63,105"/>
-<area shape="poly" title=" " alt="" coords="253,179,209,218,205,214,250,175"/>
-<area shape="poly" title=" " alt="" coords="337,180,227,223,225,218,335,175"/>
+<area shape="poly" title=" " alt="" coords="261,179,241,215,236,212,256,176"/>
+<area shape="poly" title=" " alt="" coords="344,180,262,221,260,217,341,175"/>
+<area shape="poly" title=" " alt="" coords="419,180,275,224,274,219,418,174"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -139,6 +144,11 @@ Include dependency graph for console.cpp:</div>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceconsole" id="r_namespaceconsole"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconsole.html">console</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ad72dbcf6d0153db1b8d8a58001feed83" id="r_ad72dbcf6d0153db1b8d8a58001feed83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="console_8cpp.html#ad72dbcf6d0153db1b8d8a58001feed83">DEBUG</a></td></tr>
+<tr class="separator:ad72dbcf6d0153db1b8d8a58001feed83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -152,10 +162,10 @@ Functions</h2></td></tr>
 <tr class="separator:gaba87341fd1ed10fbefe4e1dbf1300174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2713614e37ba234a7af6abc42460964" id="r_ae2713614e37ba234a7af6abc42460964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964">console::write</a> (const char *str)</td></tr>
 <tr class="separator:ae2713614e37ba234a7af6abc42460964"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a41564fc009b7339df8f2b2a4394eb2" id="r_a9a41564fc009b7339df8f2b2a4394eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconsole.html#a9a41564fc009b7339df8f2b2a4394eb2">console::putnum</a> (uint64_t n)</td></tr>
-<tr class="separator:a9a41564fc009b7339df8f2b2a4394eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a278e61a8aa1cda0b57e50aa56cfd49ce" id="r_a278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconsole.html#a278e61a8aa1cda0b57e50aa56cfd49ce">console::puthex</a> (uint64_t n)</td></tr>
-<tr class="separator:a278e61a8aa1cda0b57e50aa56cfd49ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9a4491ffd253f985ee17ffd2f222594" id="r_ac9a4491ffd253f985ee17ffd2f222594"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594">console::putnum</a> (uint64_t n, int width=0, char pad=' ')</td></tr>
+<tr class="separator:ac9a4491ffd253f985ee17ffd2f222594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25dccb21ed5e88a01cd4115e3d4f0a1d" id="r_a25dccb21ed5e88a01cd4115e3d4f0a1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d">console::puthex</a> (uint64_t n, int width=0, char pad=' ')</td></tr>
+<tr class="separator:a25dccb21ed5e88a01cd4115e3d4f0a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0522c4a859d7c82e6aab7c54f4209df2" id="r_ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2">console::printf</a> (const char *fmt,...)</td></tr>
 <tr class="memdesc:ga0522c4a859d7c82e6aab7c54f4209df2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formatted output to the console.  <br /></td></tr>
 <tr class="separator:ga0522c4a859d7c82e6aab7c54f4209df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,6 +181,8 @@ Functions</h2></td></tr>
 <tr class="memitem:ga36cbc01958448a64c53952fcddc57060" id="r_ga36cbc01958448a64c53952fcddc57060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Console__Core.html#ga36cbc01958448a64c53952fcddc57060">console::disable_cursor</a> ()</td></tr>
 <tr class="memdesc:ga36cbc01958448a64c53952fcddc57060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the hardware cursor.  <br /></td></tr>
 <tr class="separator:ga36cbc01958448a64c53952fcddc57060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e647f131636f240b8207aea6e746a2" id="r_ad6e647f131636f240b8207aea6e746a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceconsole.html#ad6e647f131636f240b8207aea6e746a2">console::set_color</a> (<a class="el" href="namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944">Color</a> fg, <a class="el" href="namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944">Color</a> bg)</td></tr>
+<tr class="separator:ad6e647f131636f240b8207aea6e746a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -182,7 +194,22 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of kernel console abstraction. </p>
 <p>This file implements the console interface declared in <a class="el" href="console_8h.html" title="Abstraction layer for kernel console output.">console.h</a>. It handles output to different backends (VGA, framebuffer) and optionally to the serial port when DEBUG is enabled. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ad72dbcf6d0153db1b8d8a58001feed83" name="ad72dbcf6d0153db1b8d8a58001feed83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad72dbcf6d0153db1b8d8a58001feed83">&#9670;&#160;</a></span>DEBUG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

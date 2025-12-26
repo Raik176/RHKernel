@@ -10,8 +10,9 @@ var annotated_dup =
       [ "XSDP", "structacpi_1_1XSDP.html", "structacpi_1_1XSDP" ]
     ] ],
     [ "elf", "namespaceelf.html", [
-      [ "Elf64_Ehdr", "structelf_1_1Elf64__Ehdr.html", "structelf_1_1Elf64__Ehdr" ],
-      [ "Elf64_Phdr", "structelf_1_1Elf64__Phdr.html", "structelf_1_1Elf64__Phdr" ]
+      [ "elf_header", "structelf_1_1elf__header.html", "structelf_1_1elf__header" ],
+      [ "elf_info", "structelf_1_1elf__info.html", "structelf_1_1elf__info" ],
+      [ "elf_program_header", "structelf_1_1elf__program__header.html", "structelf_1_1elf__program__header" ]
     ] ],
     [ "framebuffer", "namespaceframebuffer.html", [
       [ "FramebufferInfo", "structframebuffer_1_1FramebufferInfo.html", "structframebuffer_1_1FramebufferInfo" ]

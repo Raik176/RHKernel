@@ -29,7 +29,7 @@ var searchData=
   ['gid_26',['gid',['../initramfs_8h.html#ae468eaa9841efa58e7d6808a6c62e0dc',1,'gid:&#160;initramfs.h'],['../structcpio__newc__header.html#a251bb3dd0ac5416c4972dc5d22af78b3',1,'cpio_newc_header::gid']]],
   ['global_27',['Global',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8',1,'vmm']]],
   ['granularity_28',['granularity',['../structgdt_1_1gdt__entry.html#ae7dc6604318af461081640daf93daa07',1,'gdt::gdt_entry::granularity'],['../gdt_8h.html#acfea365f69e71368a2db03333d4afd6f',1,'granularity:&#160;gdt.h']]],
-  ['green_29',['green',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08ad382816a3cbeed082c9e216e7392eed1',1,'vga::Green'],['../structmultiboot__color.html#a15975bef4fd99d2c5139e32ead7bab85',1,'multiboot_color::green']]],
+  ['green_29',['green',['../namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944ad382816a3cbeed082c9e216e7392eed1',1,'console::Green'],['../structmultiboot__color.html#a15975bef4fd99d2c5139e32ead7bab85',1,'multiboot_color::green']]],
   ['green_5ffield_5fposition_30',['green_field_position',['../structmultiboot__tag__framebuffer.html#a18c61b24c3ab90484d4bacbbc24d9941',1,'multiboot_tag_framebuffer']]],
   ['green_5fmask_5fsize_31',['green_mask_size',['../structmultiboot__tag__framebuffer.html#abb69283b2ea0c640eff9d782ffb66a1e',1,'multiboot_tag_framebuffer']]]
 ];

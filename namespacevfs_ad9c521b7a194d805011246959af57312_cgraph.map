@@ -1,0 +1,11 @@
+<map id="vfs::open" name="vfs::open">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,88,80"/>
+<area shape="rect" id="Node000002" href="$namespacevfs.html#a239656d07bb446b6b167328138e14004" title=" " alt="" coords="143,5,233,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,52,137,33,139,38,85,57"/>
+<area shape="rect" id="Node000004" href="$namespacevfs.html#a97cc57fd10da78746b300acb28b54908" title=" " alt="" coords="136,55,240,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="88,65,122,65,122,70,88,70"/>
+<area shape="rect" id="Node000005" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="149,104,227,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="85,78,139,97,137,102,83,83"/>
+<area shape="rect" id="Node000003" href="$string_8h.html#a10a2361d963a01cad4951eade2f63576" title="Compare two null&#45;terminated strings." alt="" coords="288,5,355,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="234,15,274,15,274,21,234,21"/>
+</map>

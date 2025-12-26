@@ -1,40 +1,38 @@
 <map id="console::putchar_internal" name="console::putchar_internal">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,243,192,268"/>
-<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="240,93,396,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,240,286,124,289,129,120,245"/>
-<area shape="rect" id="Node000009" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="261,357,375,383"/>
-<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="125,266,282,348,279,353,123,270"/>
-<area shape="rect" id="Node000013" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="267,243,369,268"/>
-<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="193,253,253,253,253,258,193,258"/>
-<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="883,36,1060,61"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="342,91,388,69,443,49,551,20,637,6,724,4,835,14,915,30,914,35,834,19,724,9,637,11,552,25,445,54,390,74,344,96"/>
-<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="444,143,635,168"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="376,116,469,137,468,142,375,121"/>
-<area shape="rect" id="Node000005" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="468,93,611,119"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="396,103,454,103,454,109,396,109"/>
-<area shape="rect" id="Node000008" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="683,29,835,69"/>
-<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="376,91,444,78,561,63,669,53,669,58,561,68,444,83,377,96"/>
-<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="611,100,717,92,834,78,910,62,911,67,835,83,717,98,611,105"/>
-<area shape="rect" id="Node000006" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="719,193,798,219"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="611,116,636,128,652,140,661,153,670,166,684,178,708,190,705,195,681,183,666,170,657,156,648,144,633,132,609,121"/>
-<area shape="rect" id="Node000007" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="721,144,797,169"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="596,116,708,142,707,147,595,121"/>
-<area shape="poly" id="edge8_Node000005_Node000008" title=" " alt="" coords="588,91,669,69,670,74,589,96"/>
-<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="835,46,869,46,869,51,835,51"/>
-<area shape="rect" id="Node000010" href="$namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="464,357,615,383"/>
-<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="376,367,450,367,450,373,376,373"/>
-<area shape="rect" id="Node000012" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="492,407,587,432"/>
-<area shape="poly" id="edge14_Node000009_Node000012" title=" " alt="" coords="376,380,479,403,478,408,375,385"/>
-<area shape="rect" id="Node000011" href="$namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="715,357,802,383"/>
-<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="615,367,701,367,701,373,615,373"/>
-<area shape="rect" id="Node000014" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="693,243,824,268"/>
-<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="370,253,680,253,680,258,370,258"/>
-<area shape="rect" id="Node000015" href="$namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="487,192,592,217"/>
-<area shape="poly" id="edge17_Node000013_Node000015" title=" " alt="" coords="369,241,473,217,474,222,370,246"/>
-<area shape="rect" id="Node000016" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="456,293,623,333"/>
-<area shape="poly" id="edge20_Node000013_Node000016" title=" " alt="" coords="369,265,449,287,448,292,367,271"/>
-<area shape="poly" id="edge19_Node000015_Node000006" title=" " alt="" coords="592,202,706,203,706,208,592,208"/>
-<area shape="poly" id="edge18_Node000015_Node000014" title=" " alt="" coords="593,214,690,237,689,242,591,219"/>
-<area shape="rect" id="Node000017" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="733,300,784,325"/>
-<area shape="poly" id="edge21_Node000016_Node000017" title=" " alt="" coords="623,310,719,310,719,315,623,315"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,213,192,238"/>
+<area shape="rect" id="Node000002" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="240,89,396,114"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,210,281,119,284,123,124,215"/>
+<area shape="rect" id="Node000009" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="261,327,375,353"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="125,236,282,318,279,323,123,240"/>
+<area shape="rect" id="Node000013" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="267,213,369,238"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="193,223,253,223,253,228,193,228"/>
+<area shape="rect" id="Node000003" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="444,113,635,138"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="397,107,431,111,430,116,396,112"/>
+<area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="468,63,611,89"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="396,90,454,83,455,88,397,95"/>
+<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="683,5,835,45"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="343,86,389,66,443,48,501,37,560,29,669,23,669,28,561,35,502,42,445,53,391,71,345,91"/>
+<area shape="rect" id="Node000005" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="719,141,798,166"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="598,86,636,97,720,132,718,137,634,103,596,91"/>
+<area shape="rect" id="Node000006" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="721,70,797,95"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="611,75,707,78,707,84,611,81"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="595,61,669,43,670,49,596,66"/>
+<area shape="rect" id="Node000008" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="883,13,1060,38"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="835,23,869,23,869,28,835,28"/>
+<area shape="rect" id="Node000010" href="$namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="464,327,615,353"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="376,337,450,337,450,343,376,343"/>
+<area shape="rect" id="Node000012" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="492,377,587,402"/>
+<area shape="poly" id="edge12_Node000009_Node000012" title=" " alt="" coords="376,350,479,373,478,379,375,355"/>
+<area shape="rect" id="Node000011" href="$namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="715,327,802,353"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="615,337,701,337,701,343,615,343"/>
+<area shape="rect" id="Node000014" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="693,202,824,227"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="370,221,680,214,680,219,370,227"/>
+<area shape="rect" id="Node000015" href="$namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="487,162,592,187"/>
+<area shape="poly" id="edge15_Node000013_Node000015" title=" " alt="" coords="369,211,473,187,474,192,370,216"/>
+<area shape="rect" id="Node000016" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="456,263,623,303"/>
+<area shape="poly" id="edge18_Node000013_Node000016" title=" " alt="" coords="369,235,449,257,448,262,367,241"/>
+<area shape="poly" id="edge17_Node000015_Node000005" title=" " alt="" coords="592,167,705,156,706,161,592,172"/>
+<area shape="poly" id="edge16_Node000015_Node000014" title=" " alt="" coords="592,182,680,198,680,203,592,187"/>
+<area shape="rect" id="Node000017" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="733,270,784,295"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="623,280,719,280,719,285,623,285"/>
 </map>

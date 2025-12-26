@@ -91,40 +91,59 @@ $(document).ready(function(){initNavTree('util_8cpp.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">util.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="apic_8h_source.html">smp/apic.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="apic_8h_source.html">smp/apic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="smp_8h_source.html">smp/smp.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for util.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="util_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2util_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2util_8cpp" id="asrc_2impl_2x86__64_2util_8cpp">
-<area shape="rect" title=" " alt="" coords="73,5,250,31"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="134,79,189,104"/>
-<area shape="poly" title=" " alt="" coords="164,31,164,65,159,65,159,31"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="5,152,99,177"/>
-<area shape="poly" title=" " alt="" coords="155,33,71,142,67,139,150,30"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="286,79,370,104"/>
-<area shape="poly" title=" " alt="" coords="189,28,289,71,287,76,187,33"/>
-<area shape="rect" title=" " alt="" coords="224,225,299,251"/>
-<area shape="poly" title=" " alt="" coords="172,103,208,150,249,212,244,215,203,154,168,106"/>
-<area shape="rect" title=" " alt="" coords="151,299,222,324"/>
-<area shape="poly" title=" " alt="" coords="165,104,186,284,181,285,160,105"/>
-<area shape="poly" title=" " alt="" coords="145,106,83,147,80,142,142,102"/>
-<area shape="poly" title=" " alt="" coords="57,177,67,212,77,231,89,249,116,273,146,290,143,295,112,277,85,252,72,234,62,213,52,178"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="99,225,149,251"/>
-<area shape="poly" title=" " alt="" coords="66,176,104,214,101,218,62,180"/>
-<area shape="poly" title=" " alt="" coords="124,224,152,117,157,118,130,226"/>
-<area shape="poly" title=" " alt="" coords="136,249,169,286,165,290,132,253"/>
-<area shape="poly" title=" " alt="" coords="349,102,374,122,394,151,398,165,395,178,385,203,373,221,338,253,287,282,237,300,235,295,285,277,334,249,369,218,380,200,389,177,392,165,390,153,370,126,345,106"/>
-<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="275,152,381,177"/>
-<area shape="poly" title=" " alt="" coords="331,104,331,138,325,138,325,104"/>
-<area shape="poly" title=" " alt="" coords="319,179,283,217,280,213,315,176"/>
-<area shape="poly" title=" " alt="" coords="331,178,329,213,323,234,313,252,296,269,277,282,236,301,234,296,274,278,293,265,309,249,318,232,324,212,326,178"/>
+<area shape="rect" title=" " alt="" coords="225,5,403,31"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="243,152,297,177"/>
+<area shape="poly" title=" " alt="" coords="313,32,280,140,275,138,308,30"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="303,225,397,251"/>
+<area shape="poly" title=" " alt="" coords="318,31,348,211,343,212,313,31"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="32,152,116,177"/>
+<area shape="poly" title=" " alt="" coords="296,33,106,147,104,142,293,29"/>
+<area shape="rect" href="smp_8h.html" title=" " alt="" coords="509,79,604,104"/>
+<area shape="poly" title=" " alt="" coords="354,28,505,72,504,77,352,33"/>
+<area shape="rect" title=" " alt="" coords="178,299,253,324"/>
+<area shape="poly" title=" " alt="" coords="268,179,227,287,222,285,263,177"/>
+<area shape="rect" title=" " alt="" coords="371,372,441,397"/>
+<area shape="poly" title=" " alt="" coords="253,180,218,206,181,243,167,263,159,283,159,303,168,322,180,332,198,341,247,357,357,376,356,381,246,362,196,346,177,337,164,326,154,304,154,282,162,261,177,240,214,202,250,175"/>
+<area shape="poly" title=" " alt="" coords="284,175,328,214,325,218,281,179"/>
+<area shape="poly" title=" " alt="" coords="357,250,399,358,394,360,352,252"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="277,299,327,324"/>
+<area shape="poly" title=" " alt="" coords="344,253,319,289,315,286,340,250"/>
+<area shape="poly" title=" " alt="" coords="297,299,273,192,278,190,302,298"/>
+<area shape="poly" title=" " alt="" coords="320,322,379,362,376,366,317,326"/>
+<area shape="poly" title=" " alt="" coords="55,180,37,193,19,210,9,230,8,239,11,250,26,277,44,294,95,322,163,348,234,364,301,374,357,379,357,384,301,380,233,370,162,353,93,326,41,298,22,280,6,252,3,240,4,228,15,207,33,189,52,175"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="21,225,127,251"/>
+<area shape="poly" title=" " alt="" coords="77,178,77,212,71,212,71,178"/>
+<area shape="poly" title=" " alt="" coords="98,248,181,290,179,295,95,253"/>
+<area shape="poly" title=" " alt="" coords="79,250,94,286,107,306,123,322,165,340,227,355,357,375,357,381,226,361,163,345,120,326,103,309,90,289,74,252"/>
+<area shape="poly" title=" " alt="" coords="511,107,311,156,310,151,510,101"/>
+<area shape="poly" title=" " alt="" coords="562,104,569,145,572,204,569,237,562,269,549,299,530,326,494,354,455,372,453,367,492,349,527,322,545,297,557,267,564,236,566,204,564,146,557,105"/>
+<area shape="rect" href="gdt_8h.html" title=" " alt="" coords="621,225,676,251"/>
+<area shape="poly" title=" " alt="" coords="568,103,604,151,639,211,634,214,600,153,564,106"/>
+<area shape="rect" href="heap_8h.html" title=" " alt="" coords="421,225,546,251"/>
+<area shape="poly" title=" " alt="" coords="553,106,498,214,493,212,548,103"/>
+<area shape="rect" href="scheduler_8h.html" title=" " alt="" coords="671,152,799,177"/>
+<area shape="poly" title=" " alt="" coords="586,102,694,144,692,149,584,107"/>
+<area shape="poly" title=" " alt="" coords="648,252,633,288,620,309,604,326,568,348,530,364,456,381,455,376,528,359,566,344,600,322,616,305,628,286,643,250"/>
+<area shape="poly" title=" " alt="" coords="441,253,267,299,266,294,439,248"/>
+<area shape="poly" title=" " alt="" coords="494,250,512,284,515,305,510,325,485,352,455,370,453,365,482,348,505,323,510,305,506,286,490,252"/>
+<area shape="rect" href="lock_8h.html" title=" " alt="" coords="402,299,495,324"/>
+<area shape="poly" title=" " alt="" coords="480,252,463,287,458,285,475,250"/>
+<area shape="poly" title=" " alt="" coords="444,326,422,362,417,359,439,323"/>
+<area shape="poly" title=" " alt="" coords="734,178,721,209,701,249,671,291,633,326,589,349,542,366,496,376,455,382,455,377,495,371,540,361,587,345,630,322,667,288,696,246,717,206,729,176"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -132,12 +151,45 @@ Include dependency graph for util.cpp:</div>
 Functions</h2></td></tr>
 <tr class="memitem:a82bc1d7175d59077e863578740ff32b6" id="r_a82bc1d7175d59077e863578740ff32b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a82bc1d7175d59077e863578740ff32b6">busy_sleep</a> (uint64_t ms)</td></tr>
 <tr class="separator:a82bc1d7175d59077e863578740ff32b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04b48522a23eae743deaafbcdbeb616e" id="r_a04b48522a23eae743deaafbcdbeb616e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a04b48522a23eae743deaafbcdbeb616e">__attribute__</a> ((noreturn)) kpanic(const char *message)</td></tr>
-<tr class="separator:a04b48522a23eae743deaafbcdbeb616e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d1d497cb81f379c1abae76a51d4a6a0" id="r_a7d1d497cb81f379c1abae76a51d4a6a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a7d1d497cb81f379c1abae76a51d4a6a0">fill_regs</a> (struct <a class="el" href="structregs.html">regs</a> *<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>)</td></tr>
+<tr class="separator:a7d1d497cb81f379c1abae76a51d4a6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c5f045dc696b41acc9162f48f00054d" id="r_a9c5f045dc696b41acc9162f48f00054d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a9c5f045dc696b41acc9162f48f00054d">__attribute__</a> ((noreturn)) kpanic(const char *message</td></tr>
+<tr class="separator:a9c5f045dc696b41acc9162f48f00054d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab82e3fa8c8ecaa27a39ac820effb634c" id="r_ab82e3fa8c8ecaa27a39ac820effb634c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#ab82e3fa8c8ecaa27a39ac820effb634c">if</a> (<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>==nullptr)</td></tr>
+<tr class="separator:ab82e3fa8c8ecaa27a39ac820effb634c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7298832cd70a9334ba259b1e46b50b" id="r_a0d7298832cd70a9334ba259b1e46b50b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a0d7298832cd70a9334ba259b1e46b50b">if</a> (<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a> &amp;&amp;<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>-&gt;<a class="el" href="util_8h.html#a1ad5b66cfac3d431cefbde4bb2ce085c">int_no</a>&lt;=31 &amp;&amp;<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>-&gt;<a class="el" href="util_8h.html#a1ad5b66cfac3d431cefbde4bb2ce085c">int_no</a> !=0)</td></tr>
+<tr class="separator:a0d7298832cd70a9334ba259b1e46b50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1167ae131bb0adccdea4dac6cb4153c" id="r_af1167ae131bb0adccdea4dac6cb4153c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#af1167ae131bb0adccdea4dac6cb4153c">if</a> (<a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>-&gt;current_task)</td></tr>
+<tr class="separator:af1167ae131bb0adccdea4dac6cb4153c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af29d47baf42a4d581bb0194ce894176b" id="r_af29d47baf42a4d581bb0194ce894176b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#af29d47baf42a4d581bb0194ce894176b">dump_regs</a> (<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>)</td></tr>
+<tr class="separator:af29d47baf42a4d581bb0194ce894176b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d687ee410e54a3d440f87b37d000839" id="r_a5d687ee410e54a3d440f87b37d000839"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a5d687ee410e54a3d440f87b37d000839">if</a> (<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>-&gt;<a class="el" href="util_8h.html#a1ad5b66cfac3d431cefbde4bb2ce085c">int_no</a>==14)</td></tr>
+<tr class="separator:a5d687ee410e54a3d440f87b37d000839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c6b7751a9fce718a1a99ddcd609f006" id="r_a0c6b7751a9fce718a1a99ddcd609f006"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a0c6b7751a9fce718a1a99ddcd609f006">print_stacktrace</a> (10)</td></tr>
+<tr class="separator:a0c6b7751a9fce718a1a99ddcd609f006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50bd5496c4b81a7a54d59c4a1a795ae7" id="r_a50bd5496c4b81a7a54d59c4a1a795ae7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a50bd5496c4b81a7a54d59c4a1a795ae7">for</a> (;;) asm volatile(&quot;pause&quot;)</td></tr>
+<tr class="separator:a50bd5496c4b81a7a54d59c4a1a795ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fc4b5d49e9717af7918898bc9a7dbfd" id="r_a9fc4b5d49e9717af7918898bc9a7dbfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a9fc4b5d49e9717af7918898bc9a7dbfd">print_stacktrace</a> (uint64_t max_frames)</td></tr>
+<tr class="separator:a9fc4b5d49e9717af7918898bc9a7dbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6101ed1776761a6319bcb7983af3ba2" id="r_ae6101ed1776761a6319bcb7983af3ba2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#ae6101ed1776761a6319bcb7983af3ba2">dump_regs</a> (struct <a class="el" href="structregs.html">regs</a> *<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>)</td></tr>
+<tr class="separator:ae6101ed1776761a6319bcb7983af3ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac347672322761c12d8876a859d67013b" id="r_ac347672322761c12d8876a859d67013b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#ac347672322761c12d8876a859d67013b">higher_stack_top</a> []</td></tr>
+<tr class="separator:ac347672322761c12d8876a859d67013b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6461d48f28f5f6a0f61964e91e408108" id="r_a6461d48f28f5f6a0f61964e91e408108"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a6461d48f28f5f6a0f61964e91e408108">higher_stack_bottom</a> []</td></tr>
+<tr class="separator:a6461d48f28f5f6a0f61964e91e408108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6522fcc1fd938d70ab5032bf31af9d9" id="r_ab6522fcc1fd938d70ab5032bf31af9d9"><td class="memItemLeft" align="right" valign="top">void struct <a class="el" href="structregs.html">regs</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a></td></tr>
+<tr class="separator:ab6522fcc1fd938d70ab5032bf31af9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0544c3fe466e421738dae463968b70ba" id="r_a0544c3fe466e421738dae463968b70ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a0544c3fe466e421738dae463968b70ba">else</a></td></tr>
+<tr class="separator:a0544c3fe466e421738dae463968b70ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a199761f771909df5a54ea4f3d1152272" id="r_a199761f771909df5a54ea4f3d1152272"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a> = <a class="el" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc">smp::get_cpu</a>()</td></tr>
+<tr class="separator:a199761f771909df5a54ea4f3d1152272"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a04b48522a23eae743deaafbcdbeb616e" name="a04b48522a23eae743deaafbcdbeb616e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04b48522a23eae743deaafbcdbeb616e">&#9670;&#160;</a></span>__attribute__()</h2>
+<a id="a9c5f045dc696b41acc9162f48f00054d" name="a9c5f045dc696b41acc9162f48f00054d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c5f045dc696b41acc9162f48f00054d">&#9670;&#160;</a></span>__attribute__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -154,68 +206,13 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="util_8cpp_a04b48522a23eae743deaafbcdbeb616e_cgraph.png" border="0" usemap="#autil_8cpp_a04b48522a23eae743deaafbcdbeb616e_cgraph" alt=""/></div>
-<map name="autil_8cpp_a04b48522a23eae743deaafbcdbeb616e_cgraph" id="autil_8cpp_a04b48522a23eae743deaafbcdbeb616e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,344,112,369"/>
-<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="162,268,277,293"/>
-<area shape="poly" title=" " alt="" coords="85,341,178,297,181,302,88,346"/>
-<area shape="rect" href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="160,368,279,393"/>
-<area shape="poly" title=" " alt="" coords="113,362,147,367,146,372,112,367"/>
-<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="327,116,493,141"/>
-<area shape="poly" title=" " alt="" coords="227,266,265,215,293,185,325,158,350,144,353,149,328,163,297,189,270,218,231,269"/>
-<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="720,243,907,268"/>
-<area shape="poly" title=" " alt="" coords="231,266,271,232,297,215,326,202,386,188,448,182,511,183,572,189,682,211,766,236,765,241,681,216,571,194,510,188,448,187,387,193,328,207,299,220,274,236,235,270"/>
-<area shape="rect" href="namespaceconsole.html#a278e61a8aa1cda0b57e50aa56cfd49ce" title=" " alt="" coords="347,217,473,243"/>
-<area shape="poly" title=" " alt="" coords="267,265,347,244,349,249,269,270"/>
-<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="550,268,663,293"/>
-<area shape="poly" title=" " alt="" coords="277,278,536,278,536,283,277,283"/>
-<area shape="rect" href="namespaceconsole.html#a9a41564fc009b7339df8f2b2a4394eb2" title=" " alt="" coords="541,317,672,343"/>
-<area shape="poly" title=" " alt="" coords="277,285,528,317,527,323,277,290"/>
-<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="327,369,493,395"/>
-<area shape="poly" title=" " alt="" coords="239,291,279,319,328,348,360,362,357,367,325,352,276,323,236,295"/>
-<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="955,93,1111,119"/>
-<area shape="poly" title=" " alt="" coords="832,240,1000,124,1003,129,835,245"/>
-<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="975,357,1090,383"/>
-<area shape="poly" title=" " alt="" coords="840,266,996,348,994,353,837,270"/>
-<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="981,243,1084,268"/>
-<area shape="poly" title=" " alt="" coords="907,253,968,253,968,258,907,258"/>
-<area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1597,36,1775,61"/>
-<area shape="poly" title=" " alt="" coords="1057,91,1103,69,1158,49,1265,20,1352,6,1439,4,1550,14,1629,30,1628,35,1549,19,1439,9,1352,11,1267,25,1159,54,1105,74,1059,96"/>
-<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1159,143,1349,168"/>
-<area shape="poly" title=" " alt="" coords="1091,116,1183,137,1182,142,1090,121"/>
-<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1183,93,1325,119"/>
-<area shape="poly" title=" " alt="" coords="1111,103,1169,103,1169,109,1111,109"/>
-<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1397,29,1549,69"/>
-<area shape="poly" title=" " alt="" coords="1090,91,1158,78,1276,63,1383,53,1384,58,1276,68,1159,83,1091,96"/>
-<area shape="poly" title=" " alt="" coords="1326,100,1431,92,1549,78,1624,62,1625,67,1550,83,1432,98,1326,105"/>
-<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="1434,193,1513,219"/>
-<area shape="poly" title=" " alt="" coords="1325,116,1351,128,1366,140,1376,153,1385,166,1399,178,1422,190,1420,195,1396,183,1381,170,1371,156,1363,144,1348,132,1323,121"/>
-<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="1435,144,1511,169"/>
-<area shape="poly" title=" " alt="" coords="1311,116,1422,142,1421,147,1309,121"/>
-<area shape="poly" title=" " alt="" coords="1303,91,1384,69,1385,74,1304,96"/>
-<area shape="poly" title=" " alt="" coords="1550,46,1583,46,1583,51,1550,51"/>
-<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1179,357,1329,383"/>
-<area shape="poly" title=" " alt="" coords="1090,367,1165,367,1165,373,1090,373"/>
-<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1207,407,1301,432"/>
-<area shape="poly" title=" " alt="" coords="1091,380,1194,403,1193,408,1090,385"/>
-<area shape="rect" href="namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1430,357,1517,383"/>
-<area shape="poly" title=" " alt="" coords="1330,367,1416,367,1416,373,1330,373"/>
-<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1408,243,1539,268"/>
-<area shape="poly" title=" " alt="" coords="1084,253,1395,253,1395,258,1084,258"/>
-<area shape="rect" href="namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1201,192,1307,217"/>
-<area shape="poly" title=" " alt="" coords="1084,241,1187,217,1189,222,1085,246"/>
-<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1171,293,1337,333"/>
-<area shape="poly" title=" " alt="" coords="1083,265,1164,287,1163,292,1082,271"/>
-<area shape="poly" title=" " alt="" coords="1307,202,1420,203,1420,208,1307,208"/>
-<area shape="poly" title=" " alt="" coords="1307,214,1405,237,1404,242,1306,219"/>
-<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="1448,300,1499,325"/>
-<area shape="poly" title=" " alt="" coords="1338,310,1434,310,1434,315,1338,315"/>
-<area shape="poly" title=" " alt="" coords="473,231,706,246,706,251,473,237"/>
-<area shape="poly" title=" " alt="" coords="461,240,544,262,543,267,460,245"/>
-<area shape="poly" title=" " alt="" coords="663,271,706,266,707,271,664,276"/>
-<area shape="poly" title=" " alt="" coords="642,315,763,270,765,275,644,320"/>
-<area shape="rect" href="namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="361,419,459,444"/>
-<area shape="poly" title=" " alt="" coords="269,391,349,412,347,418,267,396"/>
+<div class="center"><img src="util_8cpp_a9c5f045dc696b41acc9162f48f00054d_cgraph.png" border="0" usemap="#autil_8cpp_a9c5f045dc696b41acc9162f48f00054d_cgraph" alt=""/></div>
+<map name="autil_8cpp_a9c5f045dc696b41acc9162f48f00054d_cgraph" id="autil_8cpp_a9c5f045dc696b41acc9162f48f00054d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,112,31"/>
+<area shape="rect" href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="160,5,279,31"/>
+<area shape="poly" title=" " alt="" coords="112,15,146,15,146,21,112,21"/>
+<area shape="rect" href="namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="327,5,425,31"/>
+<area shape="poly" title=" " alt="" coords="279,15,313,15,313,21,279,21"/>
 </map>
 </div>
 
@@ -266,6 +263,615 @@ Here is the caller graph for this function:</div>
 </map>
 </div>
 
+</div>
+</div>
+<a id="af29d47baf42a4d581bb0194ce894176b" name="af29d47baf42a4d581bb0194ce894176b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af29d47baf42a4d581bb0194ce894176b">&#9670;&#160;</a></span>dump_regs() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dump_regs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae6101ed1776761a6319bcb7983af3ba2" name="ae6101ed1776761a6319bcb7983af3ba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6101ed1776761a6319bcb7983af3ba2">&#9670;&#160;</a></span>dump_regs() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dump_regs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structregs.html">regs</a> *&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="util_8cpp_ae6101ed1776761a6319bcb7983af3ba2_cgraph.png" border="0" usemap="#autil_8cpp_ae6101ed1776761a6319bcb7983af3ba2_cgraph" alt=""/></div>
+<map name="autil_8cpp_ae6101ed1776761a6319bcb7983af3ba2_cgraph" id="autil_8cpp_ae6101ed1776761a6319bcb7983af3ba2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,277,100,303"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="160,227,275,252"/>
+<area shape="poly" title=" " alt="" coords="94,275,161,254,163,259,96,280"/>
+<area shape="rect" href="namespaceconsole.html#ad6e647f131636f240b8207aea6e746a2" title=" " alt="" coords="148,327,287,352"/>
+<area shape="poly" title=" " alt="" coords="96,300,162,320,160,325,95,305"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="335,327,501,352"/>
+<area shape="poly" title=" " alt="" coords="236,250,280,281,336,313,353,320,351,325,334,318,277,286,233,254"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="764,169,951,195"/>
+<area shape="poly" title=" " alt="" coords="275,237,470,231,593,223,716,210,794,195,795,200,716,215,593,228,471,236,275,242"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="355,125,481,151"/>
+<area shape="poly" title=" " alt="" coords="236,224,280,197,333,168,367,153,369,158,336,172,283,202,239,229"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="576,75,689,100"/>
+<area shape="poly" title=" " alt="" coords="224,225,264,168,296,136,333,110,391,89,451,79,510,75,562,77,562,82,510,81,452,84,392,95,336,115,299,140,268,171,228,228"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="567,176,698,201"/>
+<area shape="poly" title=" " alt="" coords="275,227,334,218,553,193,554,199,335,223,276,232"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="335,277,501,303"/>
+<area shape="poly" title=" " alt="" coords="269,250,355,271,353,277,268,255"/>
+<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="999,293,1155,319"/>
+<area shape="poly" title=" " alt="" coords="882,192,1042,284,1040,289,880,197"/>
+<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="1019,55,1134,80"/>
+<area shape="poly" title=" " alt="" coords="881,167,1038,84,1040,89,884,172"/>
+<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="1025,169,1128,195"/>
+<area shape="poly" title=" " alt="" coords="951,179,1012,179,1012,185,951,185"/>
+<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1203,269,1393,295"/>
+<area shape="poly" title=" " alt="" coords="1155,295,1189,291,1189,296,1155,300"/>
+<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1227,319,1369,344"/>
+<area shape="poly" title=" " alt="" coords="1155,312,1213,319,1213,324,1155,318"/>
+<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1441,362,1593,402"/>
+<area shape="poly" title=" " alt="" coords="1104,316,1150,337,1203,354,1261,365,1319,373,1428,379,1427,385,1319,378,1260,370,1202,359,1148,342,1102,321"/>
+<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="1478,241,1557,267"/>
+<area shape="poly" title=" " alt="" coords="1355,316,1392,305,1477,270,1479,275,1394,310,1356,321"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="1479,312,1555,337"/>
+<area shape="poly" title=" " alt="" coords="1370,327,1465,324,1466,329,1370,332"/>
+<area shape="poly" title=" " alt="" coords="1355,342,1429,359,1427,364,1353,347"/>
+<area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1641,399,1819,424"/>
+<area shape="poly" title=" " alt="" coords="1594,390,1628,395,1627,400,1594,395"/>
+<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1223,55,1373,80"/>
+<area shape="poly" title=" " alt="" coords="1134,65,1209,65,1209,70,1134,70"/>
+<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1251,5,1345,31"/>
+<area shape="poly" title=" " alt="" coords="1134,52,1237,29,1238,34,1135,57"/>
+<area shape="rect" href="namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1474,55,1561,80"/>
+<area shape="poly" title=" " alt="" coords="1374,65,1460,65,1460,70,1374,70"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1452,180,1583,205"/>
+<area shape="poly" title=" " alt="" coords="1128,181,1439,188,1438,193,1128,186"/>
+<area shape="rect" href="namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1245,220,1351,245"/>
+<area shape="poly" title=" " alt="" coords="1129,191,1233,215,1231,220,1128,196"/>
+<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1215,105,1381,145"/>
+<area shape="poly" title=" " alt="" coords="1126,167,1207,145,1208,151,1127,172"/>
+<area shape="poly" title=" " alt="" coords="1351,235,1465,246,1464,252,1350,240"/>
+<area shape="poly" title=" " alt="" coords="1350,221,1438,204,1439,210,1351,226"/>
+<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="1492,112,1543,137"/>
+<area shape="poly" title=" " alt="" coords="1382,122,1478,122,1478,127,1382,127"/>
+<area shape="poly" title=" " alt="" coords="481,140,716,161,753,165,752,170,716,166,481,145"/>
+<area shape="poly" title=" " alt="" coords="472,123,564,101,566,106,473,128"/>
+<area shape="poly" title=" " alt="" coords="669,98,717,117,817,161,815,166,715,122,667,103"/>
+<area shape="poly" title=" " alt="" coords="698,184,750,183,750,188,698,189"/>
+<area shape="poly" title=" " alt="" coords="287,337,321,337,321,342,287,342"/>
+<area shape="poly" title=" " alt="" coords="269,324,352,303,353,309,270,329"/>
+<area shape="rect" href="namespacevga.html#afd3b9daf8d79c6262dab65bab517d19c" title=" " alt="" coords="361,376,475,401"/>
+<area shape="poly" title=" " alt="" coords="270,349,353,370,352,375,269,355"/>
+<area shape="rect" href="namespaceframebuffer.html#a7129302a6b721bfd615d22b12ce4d3a9" title=" " alt="" coords="549,427,716,452"/>
+<area shape="poly" title=" " alt="" coords="235,350,278,382,306,399,336,411,386,425,437,434,536,440,536,445,437,439,384,430,334,417,304,403,275,387,232,354"/>
+<area shape="poly" title=" " alt="" coords="716,437,1075,437,1299,437,1473,431,1627,419,1628,424,1473,436,1299,442,1075,442,716,442"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7d1d497cb81f379c1abae76a51d4a6a0" name="a7d1d497cb81f379c1abae76a51d4a6a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d1d497cb81f379c1abae76a51d4a6a0">&#9670;&#160;</a></span>fill_regs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fill_regs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structregs.html">regs</a> *&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="util_8cpp_a7d1d497cb81f379c1abae76a51d4a6a0_icgraph.png" border="0" usemap="#autil_8cpp_a7d1d497cb81f379c1abae76a51d4a6a0_icgraph" alt=""/></div>
+<map name="autil_8cpp_a7d1d497cb81f379c1abae76a51d4a6a0_icgraph" id="autil_8cpp_a7d1d497cb81f379c1abae76a51d4a6a0_icgraph">
+<area shape="rect" title=" " alt="" coords="92,5,165,31"/>
+<area shape="rect" href="util_8cpp.html#ab82e3fa8c8ecaa27a39ac820effb634c" title=" " alt="" coords="5,5,44,31"/>
+<area shape="poly" title=" " alt="" coords="78,21,44,21,44,15,78,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a50bd5496c4b81a7a54d59c4a1a795ae7" name="a50bd5496c4b81a7a54d59c4a1a795ae7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50bd5496c4b81a7a54d59c4a1a795ae7">&#9670;&#160;</a></span>for()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">for </td>
+          <td>(</td>
+          <td class="paramtype">;;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> volatile</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1167ae131bb0adccdea4dac6cb4153c" name="af1167ae131bb0adccdea4dac6cb4153c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1167ae131bb0adccdea4dac6cb4153c">&#9670;&#160;</a></span>if() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">if </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>-&gt;&#160;</td>
+          <td class="paramname"><em>current_task</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="util_8cpp_af1167ae131bb0adccdea4dac6cb4153c_cgraph.png" border="0" usemap="#autil_8cpp_af1167ae131bb0adccdea4dac6cb4153c_cgraph" alt=""/></div>
+<map name="autil_8cpp_af1167ae131bb0adccdea4dac6cb4153c_cgraph" id="autil_8cpp_af1167ae131bb0adccdea4dac6cb4153c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,213,44,238"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="92,213,207,238"/>
+<area shape="poly" title=" " alt="" coords="44,223,78,223,78,228,44,228"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="255,86,421,111"/>
+<area shape="poly" title=" " alt="" coords="160,210,199,171,253,128,281,114,284,119,256,133,203,175,164,214"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="648,213,835,238"/>
+<area shape="poly" title=" " alt="" coords="169,210,207,189,254,172,314,162,375,159,436,160,496,166,604,185,688,206,687,211,603,190,495,171,436,166,375,164,314,167,255,177,209,194,171,215"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="275,187,401,213"/>
+<area shape="poly" title=" " alt="" coords="207,215,261,208,261,213,207,220"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="478,238,591,263"/>
+<area shape="poly" title=" " alt="" coords="207,226,464,243,464,249,207,232"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="469,287,600,313"/>
+<area shape="poly" title=" " alt="" coords="204,235,255,247,456,284,455,289,254,252,203,241"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="255,339,421,365"/>
+<area shape="poly" title=" " alt="" coords="164,237,203,276,256,318,284,332,281,336,253,322,199,280,160,240"/>
+<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="883,89,1039,114"/>
+<area shape="poly" title=" " alt="" coords="764,210,924,119,926,123,766,215"/>
+<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="903,327,1018,353"/>
+<area shape="poly" title=" " alt="" coords="768,236,924,318,922,323,765,240"/>
+<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="909,213,1012,238"/>
+<area shape="poly" title=" " alt="" coords="835,223,896,223,896,228,835,228"/>
+<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1087,113,1277,138"/>
+<area shape="poly" title=" " alt="" coords="1039,107,1073,111,1073,116,1039,112"/>
+<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1111,63,1253,89"/>
+<area shape="poly" title=" " alt="" coords="1039,90,1097,83,1097,88,1039,95"/>
+<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1325,5,1477,45"/>
+<area shape="poly" title=" " alt="" coords="986,86,1032,66,1086,48,1144,37,1203,29,1311,23,1312,28,1203,35,1145,42,1087,53,1034,71,988,91"/>
+<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="1362,141,1441,166"/>
+<area shape="poly" title=" " alt="" coords="1240,86,1278,97,1363,132,1361,137,1276,103,1239,91"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="1363,70,1439,95"/>
+<area shape="poly" title=" " alt="" coords="1254,75,1350,78,1349,84,1254,81"/>
+<area shape="poly" title=" " alt="" coords="1237,61,1311,43,1313,49,1239,66"/>
+<area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1525,13,1703,38"/>
+<area shape="poly" title=" " alt="" coords="1478,23,1511,23,1511,28,1478,28"/>
+<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1107,327,1257,353"/>
+<area shape="poly" title=" " alt="" coords="1018,337,1093,337,1093,343,1018,343"/>
+<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1135,377,1229,402"/>
+<area shape="poly" title=" " alt="" coords="1019,350,1122,373,1121,379,1018,355"/>
+<area shape="rect" href="namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1358,327,1445,353"/>
+<area shape="poly" title=" " alt="" coords="1258,337,1344,337,1344,343,1258,343"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1336,202,1467,227"/>
+<area shape="poly" title=" " alt="" coords="1012,221,1322,214,1323,219,1012,227"/>
+<area shape="rect" href="namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1129,162,1235,187"/>
+<area shape="poly" title=" " alt="" coords="1012,211,1115,187,1117,192,1013,216"/>
+<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1099,263,1265,303"/>
+<area shape="poly" title=" " alt="" coords="1011,235,1092,257,1091,262,1010,241"/>
+<area shape="poly" title=" " alt="" coords="1234,167,1348,156,1349,161,1235,172"/>
+<area shape="poly" title=" " alt="" coords="1235,182,1323,198,1322,203,1234,187"/>
+<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="1376,270,1427,295"/>
+<area shape="poly" title=" " alt="" coords="1266,280,1362,280,1362,285,1266,285"/>
+<area shape="poly" title=" " alt="" coords="401,201,634,216,634,221,401,207"/>
+<area shape="poly" title=" " alt="" coords="389,210,472,232,471,237,388,215"/>
+<area shape="poly" title=" " alt="" coords="591,241,634,236,635,241,592,246"/>
+<area shape="poly" title=" " alt="" coords="570,285,691,240,693,245,572,290"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0d7298832cd70a9334ba259b1e46b50b" name="a0d7298832cd70a9334ba259b1e46b50b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7298832cd70a9334ba259b1e46b50b">&#9670;&#160;</a></span>if() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">if </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a> &amp;&amp;<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>-&gt;<a class="el" href="util_8h.html#a1ad5b66cfac3d431cefbde4bb2ce085c">int_no</a>&lt;=31 &amp;&amp;<a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>-&gt;<a class="el" href="util_8h.html#a1ad5b66cfac3d431cefbde4bb2ce085c">int_no</a> !&#160;</td>
+          <td class="paramname"> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="util_8cpp_a0d7298832cd70a9334ba259b1e46b50b_cgraph.png" border="0" usemap="#autil_8cpp_a0d7298832cd70a9334ba259b1e46b50b_cgraph" alt=""/></div>
+<map name="autil_8cpp_a0d7298832cd70a9334ba259b1e46b50b_cgraph" id="autil_8cpp_a0d7298832cd70a9334ba259b1e46b50b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,213,44,238"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="92,213,207,238"/>
+<area shape="poly" title=" " alt="" coords="44,223,78,223,78,228,44,228"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="255,86,421,111"/>
+<area shape="poly" title=" " alt="" coords="160,210,199,171,253,128,281,114,284,119,256,133,203,175,164,214"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="648,213,835,238"/>
+<area shape="poly" title=" " alt="" coords="169,210,207,189,254,172,314,162,375,159,436,160,496,166,604,185,688,206,687,211,603,190,495,171,436,166,375,164,314,167,255,177,209,194,171,215"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="275,187,401,213"/>
+<area shape="poly" title=" " alt="" coords="207,215,261,208,261,213,207,220"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="478,238,591,263"/>
+<area shape="poly" title=" " alt="" coords="207,226,464,243,464,249,207,232"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="469,287,600,313"/>
+<area shape="poly" title=" " alt="" coords="204,235,255,247,456,284,455,289,254,252,203,241"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="255,339,421,365"/>
+<area shape="poly" title=" " alt="" coords="164,237,203,276,256,318,284,332,281,336,253,322,199,280,160,240"/>
+<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="883,89,1039,114"/>
+<area shape="poly" title=" " alt="" coords="764,210,924,119,926,123,766,215"/>
+<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="903,327,1018,353"/>
+<area shape="poly" title=" " alt="" coords="768,236,924,318,922,323,765,240"/>
+<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="909,213,1012,238"/>
+<area shape="poly" title=" " alt="" coords="835,223,896,223,896,228,835,228"/>
+<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1087,113,1277,138"/>
+<area shape="poly" title=" " alt="" coords="1039,107,1073,111,1073,116,1039,112"/>
+<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1111,63,1253,89"/>
+<area shape="poly" title=" " alt="" coords="1039,90,1097,83,1097,88,1039,95"/>
+<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1325,5,1477,45"/>
+<area shape="poly" title=" " alt="" coords="986,86,1032,66,1086,48,1144,37,1203,29,1311,23,1312,28,1203,35,1145,42,1087,53,1034,71,988,91"/>
+<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="1362,141,1441,166"/>
+<area shape="poly" title=" " alt="" coords="1240,86,1278,97,1363,132,1361,137,1276,103,1239,91"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="1363,70,1439,95"/>
+<area shape="poly" title=" " alt="" coords="1254,75,1350,78,1349,84,1254,81"/>
+<area shape="poly" title=" " alt="" coords="1237,61,1311,43,1313,49,1239,66"/>
+<area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1525,13,1703,38"/>
+<area shape="poly" title=" " alt="" coords="1478,23,1511,23,1511,28,1478,28"/>
+<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1107,327,1257,353"/>
+<area shape="poly" title=" " alt="" coords="1018,337,1093,337,1093,343,1018,343"/>
+<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1135,377,1229,402"/>
+<area shape="poly" title=" " alt="" coords="1019,350,1122,373,1121,379,1018,355"/>
+<area shape="rect" href="namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1358,327,1445,353"/>
+<area shape="poly" title=" " alt="" coords="1258,337,1344,337,1344,343,1258,343"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1336,202,1467,227"/>
+<area shape="poly" title=" " alt="" coords="1012,221,1322,214,1323,219,1012,227"/>
+<area shape="rect" href="namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1129,162,1235,187"/>
+<area shape="poly" title=" " alt="" coords="1012,211,1115,187,1117,192,1013,216"/>
+<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1099,263,1265,303"/>
+<area shape="poly" title=" " alt="" coords="1011,235,1092,257,1091,262,1010,241"/>
+<area shape="poly" title=" " alt="" coords="1234,167,1348,156,1349,161,1235,172"/>
+<area shape="poly" title=" " alt="" coords="1235,182,1323,198,1322,203,1234,187"/>
+<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="1376,270,1427,295"/>
+<area shape="poly" title=" " alt="" coords="1266,280,1362,280,1362,285,1266,285"/>
+<area shape="poly" title=" " alt="" coords="401,201,634,216,634,221,401,207"/>
+<area shape="poly" title=" " alt="" coords="389,210,472,232,471,237,388,215"/>
+<area shape="poly" title=" " alt="" coords="591,241,634,236,635,241,592,246"/>
+<area shape="poly" title=" " alt="" coords="570,285,691,240,693,245,572,290"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5d687ee410e54a3d440f87b37d000839" name="a5d687ee410e54a3d440f87b37d000839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d687ee410e54a3d440f87b37d000839">&#9670;&#160;</a></span>if() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">if </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>-&gt;&#160;</td>
+          <td class="paramname"><em>int_no</em> = <code>=&#160;14</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="util_8cpp_a5d687ee410e54a3d440f87b37d000839_cgraph.png" border="0" usemap="#autil_8cpp_a5d687ee410e54a3d440f87b37d000839_cgraph" alt=""/></div>
+<map name="autil_8cpp_a5d687ee410e54a3d440f87b37d000839_cgraph" id="autil_8cpp_a5d687ee410e54a3d440f87b37d000839_cgraph">
+<area shape="rect" title=" " alt="" coords="5,213,44,238"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="92,213,207,238"/>
+<area shape="poly" title=" " alt="" coords="44,223,78,223,78,228,44,228"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="255,86,421,111"/>
+<area shape="poly" title=" " alt="" coords="160,210,199,171,253,128,281,114,284,119,256,133,203,175,164,214"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="648,213,835,238"/>
+<area shape="poly" title=" " alt="" coords="169,210,207,189,254,172,314,162,375,159,436,160,496,166,604,185,688,206,687,211,603,190,495,171,436,166,375,164,314,167,255,177,209,194,171,215"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="275,187,401,213"/>
+<area shape="poly" title=" " alt="" coords="207,215,261,208,261,213,207,220"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="478,238,591,263"/>
+<area shape="poly" title=" " alt="" coords="207,226,464,243,464,249,207,232"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="469,287,600,313"/>
+<area shape="poly" title=" " alt="" coords="204,235,255,247,456,284,455,289,254,252,203,241"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="255,339,421,365"/>
+<area shape="poly" title=" " alt="" coords="164,237,203,276,256,318,284,332,281,336,253,322,199,280,160,240"/>
+<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="883,89,1039,114"/>
+<area shape="poly" title=" " alt="" coords="764,210,924,119,926,123,766,215"/>
+<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="903,327,1018,353"/>
+<area shape="poly" title=" " alt="" coords="768,236,924,318,922,323,765,240"/>
+<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="909,213,1012,238"/>
+<area shape="poly" title=" " alt="" coords="835,223,896,223,896,228,835,228"/>
+<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1087,113,1277,138"/>
+<area shape="poly" title=" " alt="" coords="1039,107,1073,111,1073,116,1039,112"/>
+<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1111,63,1253,89"/>
+<area shape="poly" title=" " alt="" coords="1039,90,1097,83,1097,88,1039,95"/>
+<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1325,5,1477,45"/>
+<area shape="poly" title=" " alt="" coords="986,86,1032,66,1086,48,1144,37,1203,29,1311,23,1312,28,1203,35,1145,42,1087,53,1034,71,988,91"/>
+<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="1362,141,1441,166"/>
+<area shape="poly" title=" " alt="" coords="1240,86,1278,97,1363,132,1361,137,1276,103,1239,91"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="1363,70,1439,95"/>
+<area shape="poly" title=" " alt="" coords="1254,75,1350,78,1349,84,1254,81"/>
+<area shape="poly" title=" " alt="" coords="1237,61,1311,43,1313,49,1239,66"/>
+<area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1525,13,1703,38"/>
+<area shape="poly" title=" " alt="" coords="1478,23,1511,23,1511,28,1478,28"/>
+<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1107,327,1257,353"/>
+<area shape="poly" title=" " alt="" coords="1018,337,1093,337,1093,343,1018,343"/>
+<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1135,377,1229,402"/>
+<area shape="poly" title=" " alt="" coords="1019,350,1122,373,1121,379,1018,355"/>
+<area shape="rect" href="namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1358,327,1445,353"/>
+<area shape="poly" title=" " alt="" coords="1258,337,1344,337,1344,343,1258,343"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1336,202,1467,227"/>
+<area shape="poly" title=" " alt="" coords="1012,221,1322,214,1323,219,1012,227"/>
+<area shape="rect" href="namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1129,162,1235,187"/>
+<area shape="poly" title=" " alt="" coords="1012,211,1115,187,1117,192,1013,216"/>
+<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1099,263,1265,303"/>
+<area shape="poly" title=" " alt="" coords="1011,235,1092,257,1091,262,1010,241"/>
+<area shape="poly" title=" " alt="" coords="1234,167,1348,156,1349,161,1235,172"/>
+<area shape="poly" title=" " alt="" coords="1235,182,1323,198,1322,203,1234,187"/>
+<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="1376,270,1427,295"/>
+<area shape="poly" title=" " alt="" coords="1266,280,1362,280,1362,285,1266,285"/>
+<area shape="poly" title=" " alt="" coords="401,201,634,216,634,221,401,207"/>
+<area shape="poly" title=" " alt="" coords="389,210,472,232,471,237,388,215"/>
+<area shape="poly" title=" " alt="" coords="591,241,634,236,635,241,592,246"/>
+<area shape="poly" title=" " alt="" coords="570,285,691,240,693,245,572,290"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab82e3fa8c8ecaa27a39ac820effb634c" name="ab82e3fa8c8ecaa27a39ac820effb634c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82e3fa8c8ecaa27a39ac820effb634c">&#9670;&#160;</a></span>if() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">if </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="util_8cpp.html#ab6522fcc1fd938d70ab5032bf31af9d9">r</a>&#160;</td>
+          <td class="paramname"> = <code>=&#160;nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="util_8cpp_ab82e3fa8c8ecaa27a39ac820effb634c_cgraph.png" border="0" usemap="#autil_8cpp_ab82e3fa8c8ecaa27a39ac820effb634c_cgraph" alt=""/></div>
+<map name="autil_8cpp_ab82e3fa8c8ecaa27a39ac820effb634c_cgraph" id="autil_8cpp_ab82e3fa8c8ecaa27a39ac820effb634c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,44,31"/>
+<area shape="rect" href="util_8cpp.html#a7d1d497cb81f379c1abae76a51d4a6a0" title=" " alt="" coords="92,5,165,31"/>
+<area shape="poly" title=" " alt="" coords="44,15,78,15,78,21,44,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c6b7751a9fce718a1a99ddcd609f006" name="a0c6b7751a9fce718a1a99ddcd609f006"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c6b7751a9fce718a1a99ddcd609f006">&#9670;&#160;</a></span>print_stacktrace() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">print_stacktrace </td>
+          <td>(</td>
+          <td class="paramtype">10&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9fc4b5d49e9717af7918898bc9a7dbfd" name="a9fc4b5d49e9717af7918898bc9a7dbfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fc4b5d49e9717af7918898bc9a7dbfd">&#9670;&#160;</a></span>print_stacktrace() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_stacktrace </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>max_frames</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="util_8cpp_a9fc4b5d49e9717af7918898bc9a7dbfd_cgraph.png" border="0" usemap="#autil_8cpp_a9fc4b5d49e9717af7918898bc9a7dbfd_cgraph" alt=""/></div>
+<map name="autil_8cpp_a9fc4b5d49e9717af7918898bc9a7dbfd_cgraph" id="autil_8cpp_a9fc4b5d49e9717af7918898bc9a7dbfd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,213,132,238"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="180,213,295,238"/>
+<area shape="poly" title=" " alt="" coords="132,223,166,223,166,228,132,228"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="343,86,509,111"/>
+<area shape="poly" title=" " alt="" coords="248,210,287,171,341,128,369,114,372,119,344,133,291,175,252,214"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="736,213,923,238"/>
+<area shape="poly" title=" " alt="" coords="257,210,295,189,342,172,402,162,463,159,524,160,584,166,692,185,776,206,775,211,691,190,583,171,524,166,463,164,402,167,343,177,297,194,259,215"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="363,187,489,213"/>
+<area shape="poly" title=" " alt="" coords="295,215,349,208,349,213,295,220"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="566,238,679,263"/>
+<area shape="poly" title=" " alt="" coords="295,226,552,243,552,249,295,232"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="557,287,688,313"/>
+<area shape="poly" title=" " alt="" coords="292,235,343,247,544,284,543,289,342,252,291,241"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="343,339,509,365"/>
+<area shape="poly" title=" " alt="" coords="252,237,291,276,344,318,372,332,369,336,341,322,287,280,248,240"/>
+<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="971,89,1127,114"/>
+<area shape="poly" title=" " alt="" coords="852,210,1012,119,1014,123,854,215"/>
+<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="991,327,1106,353"/>
+<area shape="poly" title=" " alt="" coords="856,236,1012,318,1010,323,853,240"/>
+<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="997,213,1100,238"/>
+<area shape="poly" title=" " alt="" coords="923,223,984,223,984,228,923,228"/>
+<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1175,113,1365,138"/>
+<area shape="poly" title=" " alt="" coords="1127,107,1161,111,1161,116,1127,112"/>
+<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1199,63,1341,89"/>
+<area shape="poly" title=" " alt="" coords="1127,90,1185,83,1185,88,1127,95"/>
+<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1413,5,1565,45"/>
+<area shape="poly" title=" " alt="" coords="1074,86,1120,66,1174,48,1232,37,1291,29,1399,23,1400,28,1291,35,1233,42,1175,53,1122,71,1076,91"/>
+<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="1450,141,1529,166"/>
+<area shape="poly" title=" " alt="" coords="1328,86,1366,97,1451,132,1449,137,1364,103,1327,91"/>
+<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="1451,70,1527,95"/>
+<area shape="poly" title=" " alt="" coords="1342,75,1438,78,1437,84,1342,81"/>
+<area shape="poly" title=" " alt="" coords="1325,61,1399,43,1401,49,1327,66"/>
+<area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1613,13,1791,38"/>
+<area shape="poly" title=" " alt="" coords="1566,23,1599,23,1599,28,1566,28"/>
+<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1195,327,1345,353"/>
+<area shape="poly" title=" " alt="" coords="1106,337,1181,337,1181,343,1106,343"/>
+<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1223,377,1317,402"/>
+<area shape="poly" title=" " alt="" coords="1107,350,1210,373,1209,379,1106,355"/>
+<area shape="rect" href="namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1446,327,1533,353"/>
+<area shape="poly" title=" " alt="" coords="1346,337,1432,337,1432,343,1346,343"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1424,202,1555,227"/>
+<area shape="poly" title=" " alt="" coords="1100,221,1410,214,1411,219,1100,227"/>
+<area shape="rect" href="namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1217,162,1323,187"/>
+<area shape="poly" title=" " alt="" coords="1100,211,1203,187,1205,192,1101,216"/>
+<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1187,263,1353,303"/>
+<area shape="poly" title=" " alt="" coords="1099,235,1180,257,1179,262,1098,241"/>
+<area shape="poly" title=" " alt="" coords="1322,167,1436,156,1437,161,1323,172"/>
+<area shape="poly" title=" " alt="" coords="1323,182,1411,198,1410,203,1322,187"/>
+<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="1464,270,1515,295"/>
+<area shape="poly" title=" " alt="" coords="1354,280,1450,280,1450,285,1354,285"/>
+<area shape="poly" title=" " alt="" coords="489,201,722,216,722,221,489,207"/>
+<area shape="poly" title=" " alt="" coords="477,210,560,232,559,237,476,215"/>
+<area shape="poly" title=" " alt="" coords="679,241,722,236,723,241,680,246"/>
+<area shape="poly" title=" " alt="" coords="658,285,779,240,781,245,660,290"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a199761f771909df5a54ea4f3d1152272" name="a199761f771909df5a54ea4f3d1152272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a199761f771909df5a54ea4f3d1152272">&#9670;&#160;</a></span>cpu</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a>* cpu = <a class="el" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc">smp::get_cpu</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0544c3fe466e421738dae463968b70ba" name="a0544c3fe466e421738dae463968b70ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0544c3fe466e421738dae463968b70ba">&#9670;&#160;</a></span>else</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">else</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">        <a class="code hl_function" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2">console::printf</a>(<span class="stringliteral">&quot;  REASON: %s\n&quot;</span>, message)</div>
+<div class="ttc" id="agroup__Console__Output_html_ga0522c4a859d7c82e6aab7c54f4209df2"><div class="ttname"><a href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2">console::printf</a></div><div class="ttdeci">void printf(const char *fmt,...)</div><div class="ttdoc">Formatted output to the console.</div><div class="ttdef"><b>Definition</b> console.cpp:140</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6461d48f28f5f6a0f61964e91e408108" name="a6461d48f28f5f6a0f61964e91e408108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6461d48f28f5f6a0f61964e91e408108">&#9670;&#160;</a></span>higher_stack_bottom</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t higher_stack_bottom[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac347672322761c12d8876a859d67013b" name="ac347672322761c12d8876a859d67013b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac347672322761c12d8876a859d67013b">&#9670;&#160;</a></span>higher_stack_top</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t higher_stack_top[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6522fcc1fd938d70ab5032bf31af9d9" name="ab6522fcc1fd938d70ab5032bf31af9d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6522fcc1fd938d70ab5032bf31af9d9">&#9670;&#160;</a></span>r</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void struct <a class="el" href="structregs.html">regs</a>* r</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">    <a class="code hl_function" href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380">apic::write_reg</a>(<a class="code hl_enumvalue" href="namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa3cce41216e1616a88046260af1062477">apic::Register::ICRLO</a>, 0x000C0000 | <a class="code hl_variable" href="namespaceidt.html#ac15104e739b28deb77ce6c5b913174b3">idt::HALT_VECTOR</a>)</div>
+<div class="ttc" id="anamespaceapic_html_a980fd1e9be4d02ea8b2530797c88c00fa3cce41216e1616a88046260af1062477"><div class="ttname"><a href="namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa3cce41216e1616a88046260af1062477">apic::ICRLO</a></div><div class="ttdeci">@ ICRLO</div><div class="ttdef"><b>Definition</b> apic.h:18</div></div>
+<div class="ttc" id="anamespaceapic_html_aa84718554ccc3eeb5b86adf80c419380"><div class="ttname"><a href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380">apic::write_reg</a></div><div class="ttdeci">void write_reg(uint32_t reg, uint32_t val)</div><div class="ttdef"><b>Definition</b> apic.cpp:20</div></div>
+<div class="ttc" id="anamespaceidt_html_ac15104e739b28deb77ce6c5b913174b3"><div class="ttname"><a href="namespaceidt.html#ac15104e739b28deb77ce6c5b913174b3">idt::HALT_VECTOR</a></div><div class="ttdeci">static constexpr uint32_t HALT_VECTOR</div><div class="ttdef"><b>Definition</b> idt.h:8</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

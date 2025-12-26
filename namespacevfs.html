@@ -115,6 +115,10 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ad7bd70fe8a2dcf9aa532815575a48834" id="r_ad7bd70fe8a2dcf9aa532815575a48834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834">init</a> ()</td></tr>
 <tr class="separator:ad7bd70fe8a2dcf9aa532815575a48834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c521b7a194d805011246959af57312" id="r_ad9c521b7a194d805011246959af57312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#ad9c521b7a194d805011246959af57312">open</a> (const char *path)</td></tr>
+<tr class="separator:ad9c521b7a194d805011246959af57312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e654f19e32dde1603eee7aa9788b76" id="r_a64e654f19e32dde1603eee7aa9788b76"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a64e654f19e32dde1603eee7aa9788b76">read</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *node, uint32_t offset, uint32_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>, void *buffer)</td></tr>
+<tr class="separator:a64e654f19e32dde1603eee7aa9788b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a239656d07bb446b6b167328138e14004" id="r_a239656d07bb446b6b167328138e14004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a239656d07bb446b6b167328138e14004">finddir</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *parent, const char *name)</td></tr>
 <tr class="separator:a239656d07bb446b6b167328138e14004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97cc57fd10da78746b300acb28b54908" id="r_a97cc57fd10da78746b300acb28b54908"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a97cc57fd10da78746b300acb28b54908">get_root</a> ()</td></tr>
@@ -189,11 +193,16 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacevfs_a239656d07bb446b6b167328138e14004_icgraph.png" border="0" usemap="#anamespacevfs_a239656d07bb446b6b167328138e14004_icgraph" alt=""/></div>
 <map name="anamespacevfs_a239656d07bb446b6b167328138e14004_icgraph" id="anamespacevfs_a239656d07bb446b6b167328138e14004_icgraph">
-<area shape="rect" title=" " alt="" coords="275,5,365,31"/>
+<area shape="rect" title=" " alt="" coords="405,29,496,55"/>
 <area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,5,227,31"/>
-<area shape="poly" title=" " alt="" coords="261,21,227,21,227,15,261,15"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<area shape="poly" title=" " alt="" coords="391,40,227,25,227,20,391,34"/>
+<area shape="rect" href="namespacevfs.html#ad9c521b7a194d805011246959af57312" title=" " alt="" coords="275,55,357,80"/>
+<area shape="poly" title=" " alt="" coords="392,56,358,62,357,57,391,50"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
+<area shape="poly" title=" " alt="" coords="103,34,69,40,68,35,102,28"/>
+<area shape="rect" href="namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="134,55,209,80"/>
+<area shape="poly" title=" " alt="" coords="261,70,209,70,209,65,261,65"/>
+<area shape="poly" title=" " alt="" coords="120,61,68,51,69,46,121,56"/>
 </map>
 </div>
 
@@ -218,12 +227,17 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacevfs_a97cc57fd10da78746b300acb28b54908_icgraph.png" border="0" usemap="#anamespacevfs_a97cc57fd10da78746b300acb28b54908_icgraph" alt=""/></div>
 <map name="anamespacevfs_a97cc57fd10da78746b300acb28b54908_icgraph" id="anamespacevfs_a97cc57fd10da78746b300acb28b54908_icgraph">
-<area shape="rect" title=" " alt="" coords="275,31,379,56"/>
+<area shape="rect" title=" " alt="" coords="405,56,509,81"/>
 <area shape="rect" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,5,227,31"/>
-<area shape="poly" title=" " alt="" coords="261,35,227,30,227,24,262,30"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
-<area shape="poly" title=" " alt="" coords="261,46,68,46,68,41,261,41"/>
-<area shape="poly" title=" " alt="" coords="103,34,69,40,68,35,102,28"/>
+<area shape="poly" title=" " alt="" coords="392,59,357,53,226,30,227,25,358,47,393,54"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,56,68,81"/>
+<area shape="poly" title=" " alt="" coords="392,71,68,71,68,66,392,66"/>
+<area shape="rect" href="namespacevfs.html#ad9c521b7a194d805011246959af57312" title=" " alt="" coords="275,107,357,132"/>
+<area shape="poly" title=" " alt="" coords="409,89,353,109,351,104,407,84"/>
+<area shape="poly" title=" " alt="" coords="125,38,69,60,67,55,123,33"/>
+<area shape="rect" href="namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="134,107,209,132"/>
+<area shape="poly" title=" " alt="" coords="261,122,209,122,209,117,261,117"/>
+<area shape="poly" title=" " alt="" coords="123,104,67,83,69,78,125,99"/>
 </map>
 </div>
 
@@ -301,6 +315,114 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title=" " alt="" coords="116,5,187,31"/>
 <area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
 <area shape="poly" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad9c521b7a194d805011246959af57312" name="ad9c521b7a194d805011246959af57312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c521b7a194d805011246959af57312">&#9670;&#160;</a></span>open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> * vfs::open </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacevfs_ad9c521b7a194d805011246959af57312_cgraph.png" border="0" usemap="#anamespacevfs_ad9c521b7a194d805011246959af57312_cgraph" alt=""/></div>
+<map name="anamespacevfs_ad9c521b7a194d805011246959af57312_cgraph" id="anamespacevfs_ad9c521b7a194d805011246959af57312_cgraph">
+<area shape="rect" title=" " alt="" coords="5,55,88,80"/>
+<area shape="rect" href="namespacevfs.html#a239656d07bb446b6b167328138e14004" title=" " alt="" coords="143,5,233,31"/>
+<area shape="poly" title=" " alt="" coords="83,52,137,33,139,38,85,57"/>
+<area shape="rect" href="namespacevfs.html#a97cc57fd10da78746b300acb28b54908" title=" " alt="" coords="136,55,240,80"/>
+<area shape="poly" title=" " alt="" coords="88,65,122,65,122,70,88,70"/>
+<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="149,104,227,129"/>
+<area shape="poly" title=" " alt="" coords="85,78,139,97,137,102,83,83"/>
+<area shape="rect" href="string_8h.html#a10a2361d963a01cad4951eade2f63576" title="Compare two null&#45;terminated strings." alt="" coords="288,5,355,31"/>
+<area shape="poly" title=" " alt="" coords="234,15,274,15,274,21,234,21"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacevfs_ad9c521b7a194d805011246959af57312_icgraph.png" border="0" usemap="#anamespacevfs_ad9c521b7a194d805011246959af57312_icgraph" alt=""/></div>
+<map name="anamespacevfs_ad9c521b7a194d805011246959af57312_icgraph" id="anamespacevfs_ad9c521b7a194d805011246959af57312_icgraph">
+<area shape="rect" title=" " alt="" coords="239,5,321,31"/>
+<area shape="rect" href="namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="116,5,191,31"/>
+<area shape="poly" title=" " alt="" coords="225,21,191,21,191,15,225,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="103,21,68,21,68,15,103,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a64e654f19e32dde1603eee7aa9788b76" name="a64e654f19e32dde1603eee7aa9788b76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e654f19e32dde1603eee7aa9788b76">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t vfs::read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>buffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacevfs_a64e654f19e32dde1603eee7aa9788b76_cgraph.png" border="0" usemap="#anamespacevfs_a64e654f19e32dde1603eee7aa9788b76_cgraph" alt=""/></div>
+<map name="anamespacevfs_a64e654f19e32dde1603eee7aa9788b76_cgraph" id="anamespacevfs_a64e654f19e32dde1603eee7aa9788b76_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,84,31"/>
+<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="132,5,211,31"/>
+<area shape="poly" title=" " alt="" coords="84,15,118,15,118,21,84,21"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacevfs_a64e654f19e32dde1603eee7aa9788b76_icgraph.png" border="0" usemap="#anamespacevfs_a64e654f19e32dde1603eee7aa9788b76_icgraph" alt=""/></div>
+<map name="anamespacevfs_a64e654f19e32dde1603eee7aa9788b76_icgraph" id="anamespacevfs_a64e654f19e32dde1603eee7aa9788b76_icgraph">
+<area shape="rect" title=" " alt="" coords="239,5,317,31"/>
+<area shape="rect" href="namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="116,5,191,31"/>
+<area shape="poly" title=" " alt="" coords="225,21,191,21,191,15,225,15"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" title=" " alt="" coords="103,21,68,21,68,15,103,15"/>
 </map>
 </div>
 

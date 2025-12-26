@@ -1,25 +1,29 @@
 <map id="src/intf/console.h" name="src/intf/console.h">
-<area shape="rect" id="Node000001" title="Abstraction layer for kernel console output." alt="" coords="1053,5,1186,31"/>
+<area shape="rect" id="Node000001" title="Abstraction layer for kernel console output." alt="" coords="1261,5,1394,31"/>
 <area shape="rect" id="Node000002" href="$acpi_8cpp.html" title=" " alt="" coords="5,86,188,111"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1039,24,675,40,438,57,200,81,153,89,152,83,199,76,438,52,674,35,1039,19"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1247,23,1060,26,800,36,502,53,200,81,152,89,151,83,199,76,502,48,800,30,1060,21,1247,17"/>
 <area shape="rect" id="Node000003" href="$console_8cpp.html" title="Implementation of kernel console abstraction." alt="" coords="212,86,419,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1039,27,769,47,432,81,381,89,380,83,431,76,769,42,1039,22"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1247,25,892,43,663,59,432,81,379,89,379,83,431,76,663,54,892,37,1246,19"/>
 <area shape="rect" id="Node000004" href="$initramfs_8cpp.html" title=" " alt="" coords="443,79,593,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1039,29,841,49,605,81,594,83,593,78,604,76,840,44,1038,24"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1247,25,962,43,784,59,605,81,593,83,593,78,604,76,784,54,962,37,1246,20"/>
 <area shape="rect" id="Node000005" href="$idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="617,86,790,111"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1046,36,802,81,764,89,763,83,802,76,1045,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1247,29,1045,50,802,81,760,89,759,83,802,76,1044,45,1247,24"/>
 <area shape="rect" id="Node000006" href="$main_8cpp.html" title=" " alt="" coords="814,86,1003,111"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1077,38,940,88,938,83,1075,33"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1253,36,970,89,969,83,1252,31"/>
 <area shape="rect" id="Node000007" href="$pmm_8cpp.html" title="Implementation of the Physical Memory Manager (PMM)" alt="" coords="1027,79,1211,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1122,44,1122,79,1117,79,1117,44"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1285,38,1170,81,1168,76,1284,33"/>
 <area shape="rect" id="Node000008" href="$vmm_8cpp.html" title=" " alt="" coords="1235,79,1419,119"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1163,33,1278,76,1276,81,1161,38"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1330,44,1330,79,1325,79,1325,44"/>
 <area shape="rect" id="Node000009" href="$apic_8cpp.html" title=" " alt="" coords="1443,79,1601,119"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1195,31,1432,76,1443,78,1442,84,1431,81,1194,36"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1369,33,1476,76,1474,81,1367,38"/>
 <area shape="rect" id="Node000010" href="$scheduler_8cpp.html" title=" " alt="" coords="1625,79,1782,119"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1200,24,1389,45,1613,76,1625,78,1624,83,1612,81,1388,50,1199,30"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1396,31,1625,78,1624,84,1395,36"/>
 <area shape="rect" id="Node000011" href="$smp_8cpp.html" title=" " alt="" coords="1806,79,1963,119"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1200,21,1464,39,1629,55,1794,76,1806,78,1805,83,1794,81,1629,60,1464,45,1199,26"/>
-<area shape="rect" id="Node000012" href="$util_8cpp.html" title=" " alt="" coords="1988,86,2165,111"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1200,19,1538,36,1756,53,1976,76,2022,83,2021,89,1975,81,1756,58,1538,42,1200,25"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1408,25,1585,46,1794,76,1806,78,1805,83,1794,81,1585,51,1407,30"/>
+<area shape="rect" id="Node000012" href="$syscall_8cpp.html" title=" " alt="" coords="1988,86,2189,111"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1408,22,1661,43,1976,76,2025,83,2024,89,1975,81,1661,48,1408,27"/>
+<area shape="rect" id="Node000013" href="$util_8cpp.html" title=" " alt="" coords="2213,86,2391,111"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1408,19,1754,36,1977,52,2202,76,2248,83,2247,89,2202,81,1977,58,1754,41,1408,24"/>
+<area shape="rect" id="Node000014" href="$vga_8cpp.html" title="Implementation of VGA text&#45;mode driver." alt="" coords="2415,86,2595,111"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="1408,18,1587,22,1834,31,2117,49,2404,76,2451,83,2450,89,2403,81,2117,54,1834,37,1587,27,1408,23"/>
 </map>

@@ -94,8 +94,7 @@ $(document).ready(function(){initNavTree('elf_8h.html',''); initResizable(); });
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">elf.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -110,14 +109,28 @@ Include dependency graph for elf.h:</div>
 <area shape="poly" title=" " alt="" coords="69,31,69,65,64,65,64,31"/>
 </map>
 </div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="elf_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2file_2elf_8hdep" alt=""/></div>
+<map name="asrc_2intf_2file_2elf_8hdep" id="asrc_2intf_2file_2elf_8hdep">
+<area shape="rect" title=" " alt="" coords="115,5,237,31"/>
+<area shape="rect" href="elf_8cpp.html" title=" " alt="" coords="5,79,155,119"/>
+<area shape="poly" title=" " alt="" coords="153,41,105,81,101,76,150,37"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="179,86,368,111"/>
+<area shape="poly" title=" " alt="" coords="203,37,261,84,257,88,199,41"/>
+</map>
+</div>
 </div>
 <p><a href="elf_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structelf_1_1Elf64__Ehdr.html">elf::Elf64_Ehdr</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structelf_1_1elf__header.html">elf::elf_header</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structelf_1_1Elf64__Phdr.html">elf::Elf64_Phdr</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structelf_1_1elf__program__header.html">elf::elf_program_header</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structelf_1_1elf__info.html">elf::elf_info</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -127,6 +140,8 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:abb1c2e5626667aacc7b3efd269a6c0eb" id="r_abb1c2e5626667aacc7b3efd269a6c0eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elf_8h.html#abb1c2e5626667aacc7b3efd269a6c0eb">ELF_MAGIC</a>&#160;&#160;&#160;0x464C457F</td></tr>
+<tr class="separator:abb1c2e5626667aacc7b3efd269a6c0eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84d7768fd6c6ece599d297090900cf92" id="r_a84d7768fd6c6ece599d297090900cf92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elf_8h.html#a84d7768fd6c6ece599d297090900cf92">PT_LOAD</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a84d7768fd6c6ece599d297090900cf92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1780bfb8eae34d26e52459699877c640" id="r_a1780bfb8eae34d26e52459699877c640"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elf_8h.html#a1780bfb8eae34d26e52459699877c640">PF_X</a>&#160;&#160;&#160;1</td></tr>
@@ -136,33 +151,26 @@ Macros</h2></td></tr>
 <tr class="memitem:ae529f935e58c029768c06fbc98b2ba8c" id="r_ae529f935e58c029768c06fbc98b2ba8c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elf_8h.html#ae529f935e58c029768c06fbc98b2ba8c">PF_R</a>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:ae529f935e58c029768c06fbc98b2ba8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a9ad3f3f466b73b75f45046dba9c4b14f" id="r_a9ad3f3f466b73b75f45046dba9c4b14f"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a9ad3f3f466b73b75f45046dba9c4b14f">elf::Elf64_Addr</a></td></tr>
-<tr class="separator:a9ad3f3f466b73b75f45046dba9c4b14f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a97ca151a914af891cb476544a5c765" id="r_a8a97ca151a914af891cb476544a5c765"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a8a97ca151a914af891cb476544a5c765">elf::Elf64_Off</a></td></tr>
-<tr class="separator:a8a97ca151a914af891cb476544a5c765"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6443bd884c2110360e06d9679e05d7cc" id="r_a6443bd884c2110360e06d9679e05d7cc"><td class="memItemLeft" align="right" valign="top">typedef uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a6443bd884c2110360e06d9679e05d7cc">elf::Elf64_Half</a></td></tr>
-<tr class="separator:a6443bd884c2110360e06d9679e05d7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99562841e4e3f910e04a660cedbe1022" id="r_a99562841e4e3f910e04a660cedbe1022"><td class="memItemLeft" align="right" valign="top">typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a99562841e4e3f910e04a660cedbe1022">elf::Elf64_Word</a></td></tr>
-<tr class="separator:a99562841e4e3f910e04a660cedbe1022"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f33871e57eed8b7ad5acb1131e46606" id="r_a8f33871e57eed8b7ad5acb1131e46606"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a8f33871e57eed8b7ad5acb1131e46606">elf::Elf64_Xword</a></td></tr>
-<tr class="separator:a8f33871e57eed8b7ad5acb1131e46606"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a9e742c6114ded036b219f4d29de6b828" id="r_a9e742c6114ded036b219f4d29de6b828"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a9e742c6114ded036b219f4d29de6b828">elf::ELF_MAGIC</a> = 0x464C457F</td></tr>
-<tr class="separator:a9e742c6114ded036b219f4d29de6b828"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88d9a40f21acc8699bc3b5aeaec3496c" id="r_a88d9a40f21acc8699bc3b5aeaec3496c"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a88d9a40f21acc8699bc3b5aeaec3496c">elf::PT_LOAD</a> = 1</td></tr>
-<tr class="separator:a88d9a40f21acc8699bc3b5aeaec3496c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9de22efaf08f5b39b6bb1a99f5a819c4" id="r_a9de22efaf08f5b39b6bb1a99f5a819c4"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a9de22efaf08f5b39b6bb1a99f5a819c4">elf::PF_X</a> = 1</td></tr>
-<tr class="separator:a9de22efaf08f5b39b6bb1a99f5a819c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1175c7e1d58abf35a8c9484b6ab148f" id="r_ab1175c7e1d58abf35a8c9484b6ab148f"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#ab1175c7e1d58abf35a8c9484b6ab148f">elf::PF_W</a> = 2</td></tr>
-<tr class="separator:ab1175c7e1d58abf35a8c9484b6ab148f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01ca07749305732081c83fc7e9bb7e37" id="r_a01ca07749305732081c83fc7e9bb7e37"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a01ca07749305732081c83fc7e9bb7e37">elf::PF_R</a> = 4</td></tr>
-<tr class="separator:a01ca07749305732081c83fc7e9bb7e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a1460087f26f5caea5339de427a56e37e" id="r_a1460087f26f5caea5339de427a56e37e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structelf_1_1elf__info.html">elf_info</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceelf.html#a1460087f26f5caea5339de427a56e37e">elf::load</a> (const char *path)</td></tr>
+<tr class="separator:a1460087f26f5caea5339de427a56e37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="abb1c2e5626667aacc7b3efd269a6c0eb" name="abb1c2e5626667aacc7b3efd269a6c0eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb1c2e5626667aacc7b3efd269a6c0eb">&#9670;&#160;</a></span>ELF_MAGIC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ELF_MAGIC&#160;&#160;&#160;0x464C457F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae529f935e58c029768c06fbc98b2ba8c" name="ae529f935e58c029768c06fbc98b2ba8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae529f935e58c029768c06fbc98b2ba8c">&#9670;&#160;</a></span>PF_R</h2>
 

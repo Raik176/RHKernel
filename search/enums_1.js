@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['color_0',['Color',['../namespacevga.html#aef6795f7dcb3e2685394eb74946a9c08',1,'vga']]]
+  ['color_0',['Color',['../namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944',1,'console']]]
 ];

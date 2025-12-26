@@ -8,5 +8,7 @@ var vfs_8h =
     ] ],
     [ "finddir", "vfs_8h.html#a239656d07bb446b6b167328138e14004", null ],
     [ "get_root", "vfs_8h.html#a97cc57fd10da78746b300acb28b54908", null ],
-    [ "init", "vfs_8h.html#ad7bd70fe8a2dcf9aa532815575a48834", null ]
+    [ "init", "vfs_8h.html#ad7bd70fe8a2dcf9aa532815575a48834", null ],
+    [ "open", "vfs_8h.html#ad9c521b7a194d805011246959af57312", null ],
+    [ "read", "vfs_8h.html#a64e654f19e32dde1603eee7aa9788b76", null ]
 ];
