@@ -13,6 +13,10 @@
 #include "util.h"
 
 namespace heap {
+    static_assert(sizeof(SlabHeader) < pmm::PAGE_SIZE, "SlabHeader must fit inside a single page");
+    static_assert(pmm::PAGE_SIZE == 4096, "Large allocation logic assumes 4 KiB pages");
+
+
     /**
      * @internal Remove a slab from a linked list
      *

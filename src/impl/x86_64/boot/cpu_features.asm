@@ -1,52 +1,16 @@
 global enable_cpu_features
-extern syscall_entry
+extern enable_syscalls
 
 [bits 64]
 section .text
-
-IA32_EFER        equ 0xC0000080
-IA32_STAR        equ 0xC0000081
-IA32_LSTAR       equ 0xC0000082
-IA32_SFMASK      equ 0xC0000084
 
 enable_cpu_features:
     call enable_nx
     call enable_sse
     call enable_wp
     call enable_fpu
-    call enable_syscall
     call enable_ne
-    ret
-
-enable_syscall:
-    ; 1. Enable SCE (System Call Extensions) in EFER
-    mov ecx, IA32_EFER
-    rdmsr
-    or eax, 1
-    wrmsr
-
-    ; 2. Set the Entry Point (LSTAR)
-    mov ecx, IA32_LSTAR
-    mov rax, syscall_entry       ; This is the label we'll define in step 2
-    mov rdx, rax
-    shr rdx, 32                  ; High 32 bits in EDX, Low in EAX
-    wrmsr
-
-    ; 3. Set Segments (STAR)
-    ; Kernel segments: Base 0x08 (Code), 0x10 (Data)
-    ; User segments: Base 0x1B (for sysret compatibility)
-    ; Bits 32-47: Kernel CS/SS (0x08)
-    ; Bits 48-63: User CS/SS (0x13 or 0x1B depending on GDT layout)
-    mov ecx, IA32_STAR
-    xor eax, eax
-    mov edx, 0x001B0008
-    wrmsr
-
-    ; 4. Set SFMASK (What flags to clear on syscall entry)
-    ; We usually want to disable interrupts (IF bit 9)
-    mov ecx, IA32_SFMASK
-    mov eax, 0x200               ; Clear IF bit
-    wrmsr
+    call enable_syscalls
     ret
 
 enable_wp: ; Write Protect

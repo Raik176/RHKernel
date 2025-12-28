@@ -51,7 +51,12 @@ namespace pmm {
         FreeBlock* next;
     };
 
+    static_assert(sizeof(FreeBlock) <= pmm::PAGE_SIZE, "FreeBlock must fit within a single page");
+    static_assert(alignof(FreeBlock) <= pmm::PAGE_SIZE, "FreeBlock alignment exceeds page size");
+    static_assert((1ULL << pmm::MAX_ORDER) * pmm::PAGE_SIZE > 0, "block_size computation overflows");
+
     static FreeBlock* free_lists[MAX_ORDER + 1];  ///< Free block lists per buddy order
+    static_assert(sizeof(free_lists) / sizeof(free_lists[0]) == pmm::MAX_ORDER + 1, "free_lists must have MAX_ORDER + 1 entries");
 
     /**
      * @brief Convert a size in bytes to buddy allocator order

@@ -19,6 +19,8 @@ struct cpio_newc_header {
     char check[8];
 } __attribute__((packed));
 
+static_assert(sizeof(cpio_newc_header) == 110, "cpio_newc_header must be 110 bytes");
+
 namespace initramfs {
     void init(uint64_t mb_phys_addr);
 }

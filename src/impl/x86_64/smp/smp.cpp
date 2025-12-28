@@ -25,6 +25,8 @@ namespace smp {
     static constexpr uintptr_t TRAM_PHYS = 0x8000;
     static cpu_local** cpu_table = nullptr;
 
+    static_assert((TRAM_PHYS & 0xF) == 0, "TRAM_PHYS must be 16-byte aligned");
+
     uint64_t get_core_count() { return core_count; }
 
     cpu_local* get_cpu_by_index(uint64_t index) {

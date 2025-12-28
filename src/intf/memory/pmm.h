@@ -16,8 +16,16 @@ namespace pmm {
     /** @brief Size of a memory page in bytes */
     constexpr size_t PAGE_SIZE = 4096;
 
+    static_assert((pmm::PAGE_SIZE & (pmm::PAGE_SIZE - 1)) == 0, "PAGE_SIZE must be a power of two");
+    static_assert(pmm::PAGE_SIZE >= alignof(void*), "PAGE_SIZE must be pointer-aligned");
+    static_assert(pmm::PAGE_SIZE == 4096, "PMM assumes 4 KiB hardware pages");
+
+
     /** @brief Maximum order for buddy allocator (2^MAX_ORDER pages per block) */
     constexpr size_t MAX_ORDER = 11;  ///< 2^11 pages = 8 MiB blocks
+    static_assert(pmm::MAX_ORDER > 0, "MAX_ORDER must be > 0");
+    static_assert(pmm::MAX_ORDER < 63, "MAX_ORDER too large for 64-bit math");
+
 
     /**
      * @brief Initialize the physical memory manager

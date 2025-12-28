@@ -6,6 +6,7 @@
 #include "memory/vmm.h"
 #include "string.h"
 
+//TODO: correct endianness
 namespace elf {
     elf_info load(const char* path) {
         vfs::vfs_node* file = vfs::open(path);
@@ -25,7 +26,7 @@ namespace elf {
 
             if (ph.type == PT_LOAD) {
                 // Determine VMM flags
-                vmm::PageFlags flags = vmm::PageFlags::Present | vmm::PageFlags::User;
+                vmm::PageFlags flags = vmm::PageFlags::User;
                 if (ph.flags & PF_W) flags = flags | vmm::PageFlags::Write;
                 if (!(ph.flags & PF_X)) flags = flags | vmm::PageFlags::NX;
 

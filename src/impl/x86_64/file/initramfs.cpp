@@ -6,6 +6,7 @@
 #include "string.h"
 #include "util.h"
 
+//TODO: better endianness handling
 namespace initramfs {
 
     /**

@@ -20,7 +20,7 @@ namespace smp {
 
         uint64_t ticks;
         void* kernel_stack;
-        uint64_t user_rsp;
+        void* user_rsp;
 
         scheduler::task* current_task;
         scheduler::task* task_queues_tail[scheduler::MAX_QUEUES];
@@ -39,6 +39,8 @@ namespace smp {
 
         struct cpu_features cpu_features;
     };
+
+    static_assert(offsetof(smp::cpu_local, self) == 0, "cpu_local.self must be at offset 0 for GS access");
 
     void init_aps();
     void init_bsp();

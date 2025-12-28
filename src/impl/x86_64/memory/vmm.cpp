@@ -23,6 +23,12 @@ extern uint8_t _bss_end[];
 
 // TODO: implement TLB shootdown
 namespace vmm {
+    static_assert(pmm::PAGE_SIZE == 4096, "VMM assumes 4 KiB base pages");
+    static_assert((pmm::PAGE_SIZE / sizeof(uint64_t)) == 512, "Page tables must contain exactly 512 entries");
+    static_assert(sizeof(uint64_t) * 8 >= 52, "Physical address calculations assume at least 52-bit addresses");
+    static_assert(512 == (1 << 9), "Page table indexing assumes 9-bit levels");
+
+
     static bool supports_2mb_pages = false;
     static bool supports_1gb_pages = false;
     static uint64_t phys_addr_mask = 0;
@@ -73,13 +79,13 @@ namespace vmm {
         memset(p2v(current_pml4_phys), 0, pmm::PAGE_SIZE);
 
         map_range((uint64_t)_text_start, (uint64_t)_text_start - KERNEL_VIRT_OFFSET,
-                  (uint64_t)_text_end - (uint64_t)_text_start, PageFlags::None);
+                  (uint64_t)_text_end - (uint64_t)_text_start, PageFlags::Global);
         map_range((uint64_t)_rodata_start, (uint64_t)_rodata_start - KERNEL_VIRT_OFFSET,
-                  (uint64_t)_rodata_end - (uint64_t)_rodata_start, PageFlags::NX);
+                  (uint64_t)_rodata_end - (uint64_t)_rodata_start, PageFlags::NX | PageFlags::Global);
         map_range((uint64_t)_data_start, (uint64_t)_data_start - KERNEL_VIRT_OFFSET,
-                  (uint64_t)_data_end - (uint64_t)_data_start, PageFlags::Write | PageFlags::NX);
+                  (uint64_t)_data_end - (uint64_t)_data_start, PageFlags::Write | PageFlags::NX | PageFlags::Global);
         map_range((uint64_t)_bss_start, (uint64_t)_bss_start - KERNEL_VIRT_OFFSET,
-                  (uint64_t)_bss_end - (uint64_t)_bss_start, PageFlags::Write | PageFlags::NX);
+                  (uint64_t)_bss_end - (uint64_t)_bss_start, PageFlags::Write | PageFlags::NX | PageFlags::Global);
 
         map_range(PHYS_MAP_BASE, 0, pmm::get_system_bytes(), PageFlags::Write);
         map_range(0, 0, 0x100000, PageFlags::Write);

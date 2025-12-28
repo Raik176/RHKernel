@@ -33,6 +33,8 @@ namespace heap {
 
     static const size_t CACHE_COUNT = sizeof(caches) / sizeof(SlabCache);
 
+    static_assert(CACHE_COUNT > 0, "At least one slab cache required");
+
     /**
      * @brief Allocate memory from the kernel heap
      *

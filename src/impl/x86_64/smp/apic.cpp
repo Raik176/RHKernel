@@ -5,7 +5,6 @@
 #include "util.h"
 
 namespace apic {
-
     static uintptr_t apic_base = 0;
     static bool x2apic_mode = false;
     static uint32_t ticks_per_ms = 0;

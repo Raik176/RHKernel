@@ -24,7 +24,7 @@ header_start:
 
     .framebuffer_tag:
         dw 5              ; Type = 5 (Framebuffer)
-        dw 0              ; Flags = 0 (optional, but usually 0)
+        dw 0              ; Flags = 0 (Required)
         dd .framebuffer_tag_end - .framebuffer_tag
 
         dd 0              ; Width  = 0 (no preference)

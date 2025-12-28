@@ -1,9 +1,12 @@
 #pragma once
 #include <stdint.h>
+#include "memory/pmm.h"
 
 #define ELF_MAGIC 0x464C457F  // "\x7FELF"
 
 namespace elf {
+    static_assert(pmm::PAGE_SIZE == 4096, "ELF loader assumes 4 KiB pages");
+
     struct elf_header {
         uint32_t magic;
         uint8_t endianness;
@@ -24,7 +27,9 @@ namespace elf {
         uint16_t sh_entry_size;
         uint16_t sh_count;
         uint16_t str_table_index;
-    };
+    } __attribute__((packed));
+
+    static_assert(sizeof(elf::elf_header) == 64, "ELF64 header must be exactly 64 bytes");
 
     struct elf_program_header {
         uint32_t type;
@@ -35,7 +40,9 @@ namespace elf {
         uint64_t filesz;
         uint64_t memsz;
         uint64_t align;
-    };
+    } __attribute__((packed));
+
+    static_assert(sizeof(elf::elf_program_header) == 56, "ELF64 program header must be exactly 56 bytes");
 
     struct elf_info {
         uint64_t entry;

@@ -1,79 +1,78 @@
 [bits 64]
-extern syscall_handler
 global syscall_entry
+extern syscall_handler
+
+; size: 22 qwords (15 GP regs + 2 ints + 5 iret fields) = 22*8 = 176 bytes
+%define REGS_SIZE 176
 
 syscall_entry:
-    ; Swap GS to get access to cpu_local (per-cpu storage)
+    ; swap to kernel GS base and switch to kernel stack:
     swapgs
-    
-    ; Save user stack pointer and load kernel stack pointer
-    mov [gs:24], rsp             ; gs:16 is smp::cpu_local->user_rsp
-    mov rsp, [gs:16]              ; gs:8 is smp::cpu_local->kernel_stack
+    mov [gs:24], rsp        ; save user RSP to cpu_local.user_rsp (gs:24)
+    mov rsp, [gs:16]        ; load kernel_stack from cpu_local.kernel_stack (gs:16)
 
-    ; Construct the 'regs' struct on the stack
-    ; Note: SS, RSP, RFLAGS, CS, RIP are handled differently in syscall vs interrupts
-    push 0x2B                    ; SS (User Data)
-    push qword [gs:24]           ; RSP (User RSP)
-    push r11                     ; RFLAGS
-    push 0x23                    ; CS (User Code)
-    push rcx                     ; RIP (Return address)
-    
-    push 0                       ; error code
-    push 0                       ; int_no
-    
-    push rax                     ; Save rest of the registers to match 'struct regs'
-    push rbx
-    push rcx
-    push rdx
-    push rsi
-    push rdi
-    push rbp
-    push r8
-    push r9
-    push r10
-    push r11
-    push r12
-    push r13
-    push r14
-    push r15
+    sub rsp, REGS_SIZE
 
-    ; The first argument to syscall_handler is the regs* (RDI)
+    mov [rsp + 0*8],  r15
+    mov [rsp + 1*8],  r14
+    mov [rsp + 2*8],  r13
+    mov [rsp + 3*8],  r12
+    mov [rsp + 4*8],  r11
+    mov [rsp + 5*8],  r10
+    mov [rsp + 6*8],  r9
+    mov [rsp + 7*8],  r8
+    mov [rsp + 8*8],  rbp
+    mov [rsp + 9*8],  rdi
+    mov [rsp +10*8],  rsi
+    mov [rsp +11*8],  rdx
+    mov [rsp +12*8],  rcx
+    mov [rsp +13*8],  rbx
+    mov [rsp +14*8],  rax
+
+    ; --- int_no / err_code (for syscalls we set them to zero) ---
+    mov qword [rsp +15*8], 0    ; int_no
+    mov qword [rsp +16*8], 0    ; err_code
+
+    ; --- user iret frame: rip, cs, rflags, rsp, ss ---
+    ; RCX = user RIP (CPU put it there on syscall), R11 = user RFLAGS
+    mov qword [rsp +17*8], rcx          ; rip
+    mov qword [rsp +18*8], 0x23         ; cs (user code selector)
+    mov qword [rsp +19*8], r11          ; rflags
+    mov rax, [gs:24]                     ; rax <- saved user RSP
+    mov qword [rsp +20*8], rax          ; rsp (user)
+    mov qword [rsp +21*8], 0x1B         ; ss (user data selector)
+
+    ; pass pointer to struct regs (rsp points to the struct) in rdi (SysV)
     mov rdi, rsp
-    
-    ; Call the C++ handler
     call syscall_handler
 
-    ; Return value from C++ is in RAX, but we need to restore RAX from stack
-    ; If your handler modifies RAX in the struct, move it to the actual RAX now
-    mov [rsp + 112], rax         ; Offset of RAX in our pushed stack
+    ; After the handler returns: reload GP registers from the struct area
+    ; NOTE: we restore GP registers except we don't need to restore rcx/r11 for syscall/sysret,
+    ; but restoring them (to user values) is harmless here when we then iretq.
+    mov r15, [rsp + 0*8]
+    mov r14, [rsp + 1*8]
+    mov r13, [rsp + 2*8]
+    mov r12, [rsp + 3*8]
+    mov r11, [rsp + 4*8]
+    mov r10, [rsp + 5*8]
+    mov r9,  [rsp + 6*8]
+    mov r8,  [rsp + 7*8]
+    mov rbp, [rsp + 8*8]
+    mov rdi, [rsp + 9*8]
+    mov rsi, [rsp +10*8]
+    mov rdx, [rsp +11*8]
+    mov rcx, [rsp +12*8]
+    mov rbx, [rsp +13*8]
+    mov rax, [rsp +14*8]
 
-    ; Restore registers
-    pop r15
-    pop r14
-    pop r13
-    pop r12
-    pop r11
-    pop r10
-    pop r9
-    pop r8
-    pop rbp
-    pop rdi
-    pop rsi
-    pop rdx
-    pop rcx
-    pop rbx
-    pop rax
+    ; Prepare for iretq: set RSP to the saved user RSP and point stack to the iret frame
+    ; Our iret frame fields start at offset 17*8 from the base (rsp)
+    lea rdx, [rsp + 17*8]   ; rdx -> address of saved RIP (iret frame)
+    ; free the regs area (optional -- not strictly necessary since we set rsp next)
+    ; add rsp, REGS_SIZE   ; <-- don't do this because we need rdx as target
+    ; switch RSP to the iret frame (so iretq pops RIP/CS/RFLAGS/RSP/SS)
+    mov rsp, rdx
 
-    ; Clean up error code and int_no
-    add rsp, 16
-
-    ; Prepare for sysretq
-    pop rcx                      ; Restore RIP into RCX for sysret
-    add rsp, 8                   ; Skip CS
-    pop r11                      ; Restore RFLAGS into R11 for sysret
-    pop qword [gs:24]            ; Store User RSP temporarily
-    add rsp, 8                   ; Skip SS
-
-    mov rsp, [gs:24]             ; Switch back to User stack
-    swapgs                       ; Restore GS to user mode
-    sysretq
+    swapgs                  ; restore user GS base
+    iretq                   ; pop RIP, CS, RFLAGS, RSP, SS and return to user
+; TODO: switch to sysretq
