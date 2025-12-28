@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['kernel_5fvirt_5foffset_0',['KERNEL_VIRT_OFFSET',['../util_8h.html#a9dea0fc0b345ecb4ffa50518ae7002b5',1,'util.h']]],
-  ['kexport_1',['KEXPORT',['../ksym_8h.html#a02f441edac57fee4ab561c3a0f0ecf37',1,'ksym.h']]]
+  ['ia32_5fefer_0',['IA32_EFER',['../syscallc_8cpp.html#a781940174888ffe44a60eac2cef0c9ff',1,'syscallc.cpp']]],
+  ['ia32_5ffmask_1',['IA32_FMASK',['../syscallc_8cpp.html#a3a69543dc8732e4059fe779ed07d9655',1,'syscallc.cpp']]],
+  ['ia32_5flstar_2',['IA32_LSTAR',['../syscallc_8cpp.html#a591479e9e26bb3a18a1dd959ab4e5e82',1,'syscallc.cpp']]],
+  ['ia32_5fstar_3',['IA32_STAR',['../syscallc_8cpp.html#ac177c522e3e9cf4ff3143d9e9b4057e3',1,'syscallc.cpp']]]
 ];

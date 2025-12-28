@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['abi_0',['abi',['../structelf_1_1elf__header.html#a06e7b6c06d9663e3fe6c6c4d3b5c3ffd',1,'elf::elf_header']]],
+  ['abi_0',['abi',['../structelf_1_1elf__header.html#a06e7b6c06d9663e3fe6c6c4d3b5c3ffd',1,'elf::elf_header::abi'],['../elf_8h.html#ad6bf7a1604dcf654f3ab34caaba02fc7',1,'abi:&#160;elf.h']]],
   ['access_1',['access',['../structgdt_1_1gdt__entry.html#afa96a957f055db69c09a1b05537462b0',1,'gdt::gdt_entry::access'],['../gdt_8h.html#a8b0d6200bc639dd37ff68847a0adde5f',1,'access:&#160;gdt.h']]],
   ['accessed_2',['Accessed',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa94fdc41c6eefc2426f3f0ffedfa4b019',1,'vmm']]],
   ['acpi_3',['acpi',['../namespaceacpi.html',1,'']]],
@@ -9,10 +9,10 @@ var searchData=
   ['acquire_6',['acquire',['../structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7',1,'lock::spinlock']]],
   ['active_5fbackend_7',['active_backend',['../namespaceconsole.html#ae57e81d0aaac0c99a42db59e05380069',1,'console']]],
   ['add_5fspan_8',['add_span',['../namespacepmm.html#a0628838d0cee54d119973e09e6131343',1,'pmm']]],
-  ['addr_9',['addr',['../structmultiboot__mmap__entry.html#aa515d3e179e1cfd4277e847c7f0464e2',1,'multiboot_mmap_entry::addr'],['../structmultiboot__tag__framebuffer.html#a51431d51962ab45daeafcf9d16a833a4',1,'multiboot_tag_framebuffer::addr'],['../structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32',1,'kernel_symbol::addr'],['../structframebuffer_1_1FramebufferInfo.html#a13e17242887f10f8867a135092e943df',1,'framebuffer::FramebufferInfo::addr']]],
+  ['addr_9',['addr',['../structmultiboot__tag__framebuffer.html#a51431d51962ab45daeafcf9d16a833a4',1,'multiboot_tag_framebuffer::addr'],['../structmultiboot__mmap__entry.html#aa515d3e179e1cfd4277e847c7f0464e2',1,'multiboot_mmap_entry::addr'],['../structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32',1,'kernel_symbol::addr'],['../structframebuffer_1_1FramebufferInfo.html#a13e17242887f10f8867a135092e943df',1,'framebuffer::FramebufferInfo::addr']]],
   ['age_10',['age',['../structscheduler_1_1task.html#a9c90f1243ca8596d6485eaede2681d68',1,'scheduler::task']]],
   ['aging_5fthreshold_11',['AGING_THRESHOLD',['../namespacescheduler.html#a6c1015bb4b2531d2b2b3e68ef7b34cda',1,'scheduler']]],
-  ['align_12',['align',['../structelf_1_1elf__program__header.html#a0e8dac5e7573e26df67426e248146a3d',1,'elf::elf_program_header']]],
+  ['align_12',['align',['../structelf_1_1elf__program__header.html#a0e8dac5e7573e26df67426e248146a3d',1,'elf::elf_program_header::align'],['../elf_8h.html#ae762be4c1d1b1bf587592e9225d96d5c',1,'align:&#160;elf.h']]],
   ['align_5fdown_13',['align_down',['../util_8h.html#ab86e3ffa8573baff6320d8ceb3806fc0',1,'util.h']]],
   ['align_5fup_14',['align_up',['../util_8h.html#a14103feec4f0f7c368f72540d45be16a',1,'util.h']]],
   ['alloc_15',['alloc',['../namespacepmm.html#ad997679635eceee62746483ab37138b5',1,'pmm']]],

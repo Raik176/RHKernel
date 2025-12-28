@@ -2,8 +2,8 @@ var searchData=
 [
   ['halt_5fvector_0',['HALT_VECTOR',['../namespaceidt.html#ac15104e739b28deb77ce6c5b913174b3',1,'idt']]],
   ['handle_5fhalt_5fipi_1',['handle_halt_ipi',['../idt_8cpp.html#a2794ae20b304bbbb23a617fcb4f60eb5',1,'idt.cpp']]],
-  ['header_2',['header',['../acpi_8h.html#a70d4527291bd61e270772858b836f8a8',1,'header:&#160;acpi.h'],['../structacpi_1_1MADT.html#adfece6363369dd0acb536c9037c30223',1,'acpi::MADT::header'],['../structacpi_1_1MADTEntryLAPIC.html#a12405ee281a3e4b4a236f710b2112192',1,'acpi::MADTEntryLAPIC::header']]],
-  ['header_5fsize_3',['header_size',['../structelf_1_1elf__header.html#a382a6ef6beab8c8af4f70c03970d60f5',1,'elf::elf_header']]],
+  ['header_2',['header',['../structacpi_1_1MADT.html#adfece6363369dd0acb536c9037c30223',1,'acpi::MADT::header'],['../structacpi_1_1MADTEntryLAPIC.html#a12405ee281a3e4b4a236f710b2112192',1,'acpi::MADTEntryLAPIC::header'],['../acpi_8h.html#a70d4527291bd61e270772858b836f8a8',1,'header:&#160;acpi.h']]],
+  ['header_5fsize_3',['header_size',['../elf_8h.html#ab940fc0677a85584a447a067439d938d',1,'header_size:&#160;elf.h'],['../structelf_1_1elf__header.html#a382a6ef6beab8c8af4f70c03970d60f5',1,'elf::elf_header::header_size']]],
   ['heap_4',['heap',['../namespaceheap.html',1,'']]],
   ['heap_2ecpp_5',['heap.cpp',['../heap_8cpp.html',1,'']]],
   ['heap_2eh_6',['heap.h',['../heap_8h.html',1,'']]],

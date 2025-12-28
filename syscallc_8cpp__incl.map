@@ -1,0 +1,23 @@
+<map id="src/impl/x86_64/syscallc.cpp" name="src/impl/x86_64/syscallc.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="120,5,328,31"/>
+<area shape="rect" id="Node000002" href="$util_8h.html" title="Utility functions and macros." alt="" coords="126,79,181,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,33,176,71,173,67,211,29"/>
+<area shape="rect" id="Node000007" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="253,79,337,104"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="238,29,276,67,272,71,234,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="191,225,266,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="162,103,218,212,214,214,157,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="118,299,189,324"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="156,104,156,284,151,284,151,104"/>
+<area shape="rect" id="Node000005" href="$apic_8h.html" title=" " alt="" coords="23,152,116,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="142,106,96,145,92,141,138,102"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="79,176,142,285,138,288,74,179"/>
+<area shape="rect" id="Node000006" href="$idt_8h.html" title=" " alt="" coords="15,225,66,251"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="67,179,53,214,48,212,62,177"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="28,226,7,192,3,171,9,151,30,128,56,112,85,101,112,95,113,100,86,106,59,117,33,132,13,153,8,171,12,190,32,223"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="60,248,125,289,122,294,57,253"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="316,102,341,122,361,151,365,165,361,178,352,203,340,221,304,253,254,282,203,300,202,295,252,277,301,249,336,218,347,200,356,177,359,165,356,153,337,126,312,106"/>
+<area shape="rect" id="Node000008" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="242,152,348,177"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="298,104,298,138,292,138,292,104"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="286,179,250,217,246,213,282,176"/>
+<area shape="poly" id="edge13_Node000008_Node000004" title=" " alt="" coords="298,178,296,213,290,234,280,252,263,269,244,282,203,301,201,296,241,278,260,265,275,249,285,232,290,212,293,178"/>
+</map>

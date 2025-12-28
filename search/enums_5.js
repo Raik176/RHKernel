@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['task_5fstate_0',['task_state',['../namespacescheduler.html#a7941237578b7fa1334f4b8260919d677',1,'scheduler']]],
-  ['task_5ftype_1',['task_type',['../namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d',1,'scheduler']]]
+  ['syscallnumbers_0',['SyscallNumbers',['../syscallc_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fc',1,'syscallc.cpp']]]
 ];

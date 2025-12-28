@@ -2,9 +2,9 @@ var searchData=
 [
   ['ega_0',['ega',['../structmultiboot__tag__framebuffer.html#af423d09ec1071da48fa5adbfefc5fa6b',1,'multiboot_tag_framebuffer']]],
   ['else_1',['else',['../util_8cpp.html#a0544c3fe466e421738dae463968b70ba',1,'util.cpp']]],
-  ['endianness_2',['endianness',['../structelf_1_1elf__header.html#ad8b746789c6a4de324caca1e84a4875c',1,'elf::elf_header']]],
+  ['endianness_2',['endianness',['../structelf_1_1elf__header.html#ad8b746789c6a4de324caca1e84a4875c',1,'elf::elf_header::endianness'],['../elf_8h.html#a157d773735497237c193970923bc8aac',1,'endianness:&#160;elf.h']]],
   ['entries_3',['entries',['../structmultiboot__tag__mmap.html#a20c4427afce786340b01ded5ed0532a2',1,'multiboot_tag_mmap']]],
-  ['entry_4',['entry',['../structelf_1_1elf__header.html#af606ef669b1b12f78a2094107f5e6ca4',1,'elf::elf_header::entry'],['../structelf_1_1elf__info.html#a63036dd9a0055332b5c401204bbb70cb',1,'elf::elf_info::entry']]],
+  ['entry_4',['entry',['../structelf_1_1elf__header.html#af606ef669b1b12f78a2094107f5e6ca4',1,'elf::elf_header::entry'],['../structelf_1_1elf__info.html#a63036dd9a0055332b5c401204bbb70cb',1,'elf::elf_info::entry'],['../elf_8h.html#a6aac0a1a7d70f8270f9bb1222445f370',1,'entry:&#160;elf.h']]],
   ['entry_5fpoint_5',['entry_point',['../structsmp_1_1trampoline__data.html#ad88f98a1cec6bcaaf00f31ca98271de7',1,'smp::trampoline_data::entry_point'],['../smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e',1,'entry_point:&#160;smp.h']]],
   ['entry_5fsize_6',['entry_size',['../structmultiboot__tag__mmap.html#a42036ab823e3351d0920d57e82f5a2d7',1,'multiboot_tag_mmap']]],
   ['entry_5fversion_7',['entry_version',['../structmultiboot__tag__mmap.html#a196b2b76f4ab2074df9a332314b9bb0a',1,'multiboot_tag_mmap']]],

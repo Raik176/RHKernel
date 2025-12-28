@@ -19,5 +19,6 @@ var searchData=
   ['strlen_16',['strlen',['../string_8h.html#aa6cc9f852e7dce55e590e952677649bd',1,'string.h']]],
   ['strncmp_17',['strncmp',['../string_8h.html#a2232295460866ac58a41541e48555489',1,'string.h']]],
   ['strncpy_18',['strncpy',['../string_8h.html#ab75063fc83351626a5f60dbb27202b24',1,'string.h']]],
-  ['syscall_5fhandler_19',['syscall_handler',['../syscall_8cpp.html#a62560748b7bcd7fd9390b39fd56ec03f',1,'syscall.cpp']]]
+  ['syscall_5fentry_19',['syscall_entry',['../syscallc_8cpp.html#af19c0e594765b520ec48f7458f142fab',1,'syscallc.cpp']]],
+  ['syscall_5fhandler_20',['syscall_handler',['../syscallc_8cpp.html#a3456f636be7d6bd7e00fa45790dfd26c',1,'syscallc.cpp']]]
 ];

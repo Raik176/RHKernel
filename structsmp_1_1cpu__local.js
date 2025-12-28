@@ -15,5 +15,5 @@ var structsmp_1_1cpu__local =
     [ "task_queues_tail", "structsmp_1_1cpu__local.html#a227c52f7aa62129d515a8109fb030d65", null ],
     [ "ticks", "structsmp_1_1cpu__local.html#ac1bb2364c1a57bbed26388fc7e77a613", null ],
     [ "tss_entry", "structsmp_1_1cpu__local.html#acfd0e5540082145c97f549aa461cd4fd", null ],
-    [ "user_rsp", "structsmp_1_1cpu__local.html#aea767a5f9a657fa48ea477da01fb693d", null ]
+    [ "user_rsp", "structsmp_1_1cpu__local.html#a22f64a3682f049182dafced30fbba01f", null ]
 ];
