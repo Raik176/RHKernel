@@ -1,32 +1,38 @@
 <map id="src/impl/x86_64/idt.cpp" name="src/impl/x86_64/idt.cpp">
-<area shape="rect" id="Node000001" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="225,5,398,31"/>
-<area shape="rect" id="Node000002" href="$idt_8h.html" title=" " alt="" coords="354,79,405,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="325,29,361,67,357,70,321,33"/>
-<area shape="rect" id="Node000006" href="$apic_8h.html" title=" " alt="" coords="427,225,521,251"/>
-<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="345,28,383,48,419,77,441,110,457,146,473,211,468,212,451,148,436,112,415,80,380,52,343,33"/>
-<area shape="rect" id="Node000007" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="32,79,116,104"/>
-<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="274,33,126,77,125,72,272,28"/>
-<area shape="rect" id="Node000009" href="$scheduler_8h.html" title=" " alt="" coords="146,79,274,104"/>
-<area shape="poly" id="edge15_Node000001_Node000009" title=" " alt="" coords="297,33,239,73,236,68,294,28"/>
-<area shape="rect" id="Node000010" href="$string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="203,152,273,177"/>
-<area shape="poly" id="edge18_Node000001_Node000010" title=" " alt="" coords="312,31,304,65,288,105,261,143,257,140,284,103,299,64,307,30"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="155,299,225,324"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="383,104,382,133,377,173,364,215,354,235,340,253,317,271,292,286,240,304,238,299,289,281,314,267,336,249,349,232,359,213,372,172,377,133,377,104"/>
-<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions and macros." alt="" coords="297,152,352,177"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="372,106,344,143,340,140,368,103"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="329,178,330,213,325,233,316,252,300,269,281,283,239,301,237,297,278,279,297,265,312,249,320,232,324,212,324,178"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="227,225,302,251"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="317,179,285,217,281,213,313,176"/>
-<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="350,175,438,217,436,222,348,180"/>
-<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="464,227,392,117,397,114,469,224"/>
-<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="429,253,239,300,238,295,428,248"/>
-<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="55,106,37,120,19,137,9,157,8,166,11,176,38,215,73,247,112,272,148,291,146,296,109,277,70,252,34,219,6,178,3,167,4,155,15,134,33,116,52,102"/>
-<area shape="rect" id="Node000008" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="21,152,127,177"/>
-<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="77,104,77,138,71,138,71,104"/>
-<area shape="poly" id="edge13_Node000008_Node000003" title=" " alt="" coords="81,177,98,211,123,249,164,288,161,292,119,252,93,213,76,179"/>
-<area shape="poly" id="edge12_Node000008_Node000005" title=" " alt="" coords="106,175,222,218,220,223,104,180"/>
-<area shape="poly" id="edge16_Node000009_Node000003" title=" " alt="" coords="207,105,193,152,188,224,190,285,185,285,182,224,187,152,202,103"/>
-<area shape="poly" id="edge17_Node000009_Node000004" title=" " alt="" coords="230,102,296,142,293,147,227,106"/>
-<area shape="poly" id="edge20_Node000010_Node000003" title=" " alt="" coords="236,179,218,226,199,286,194,284,213,224,231,177"/>
-<area shape="poly" id="edge19_Node000010_Node000005" title=" " alt="" coords="245,177,258,212,253,214,240,179"/>
+<area shape="rect" id="Node000001" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="191,5,364,31"/>
+<area shape="rect" id="Node000002" href="$idt_8h.html" title=" " alt="" coords="111,152,161,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="262,33,233,54,203,81,176,112,153,142,149,139,172,109,199,77,230,50,258,29"/>
+<area shape="rect" id="Node000006" href="$apic_8h.html" title=" " alt="" coords="5,299,99,324"/>
+<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="252,33,217,52,175,78,134,112,101,153,84,187,72,223,58,286,53,284,67,222,79,185,96,151,130,108,172,74,214,47,250,28"/>
+<area shape="rect" id="Node000007" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="393,152,477,177"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="295,29,355,77,417,140,413,143,352,81,292,33"/>
+<area shape="rect" id="Node000009" href="$scheduler_8h.html" title=" " alt="" coords="213,79,341,104"/>
+<area shape="poly" id="edge15_Node000001_Node000009" title=" " alt="" coords="280,31,280,65,275,65,275,31"/>
+<area shape="rect" id="Node000012" href="$string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="573,225,643,251"/>
+<area shape="poly" id="edge22_Node000001_Node000012" title=" " alt="" coords="301,28,387,76,498,151,584,215,581,219,495,156,384,81,298,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="277,372,347,397"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="140,177,145,206,156,245,173,286,199,322,231,347,265,364,263,369,228,351,195,326,168,288,151,246,140,207,135,178"/>
+<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions and macros." alt="" coords="174,225,229,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="149,176,183,213,180,217,145,179"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="202,251,202,285,206,305,214,323,238,347,266,364,264,369,234,351,210,325,201,306,197,286,197,251"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="443,299,517,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="230,244,430,295,429,300,228,249"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="178,253,90,295,88,290,176,248"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="56,297,120,188,125,191,61,300"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="94,321,264,368,263,373,93,327"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="435,178,415,243,398,285,376,325,358,347,340,365,336,361,355,343,371,323,393,283,410,242,429,177"/>
+<area shape="rect" id="Node000008" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="443,225,549,251"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="447,176,479,213,475,217,443,179"/>
+<area shape="poly" id="edge13_Node000008_Node000003" title=" " alt="" coords="509,249,522,265,533,284,538,305,531,326,504,345,460,360,361,380,360,374,458,355,501,340,527,322,533,305,528,286,517,268,505,252"/>
+<area shape="poly" id="edge12_Node000008_Node000005" title=" " alt="" coords="496,252,488,286,483,285,491,250"/>
+<area shape="poly" id="edge16_Node000009_Node000003" title=" " alt="" coords="293,102,314,123,330,151,338,179,343,208,342,266,333,319,323,359,318,358,328,317,336,265,337,208,333,180,326,153,310,126,290,106"/>
+<area shape="poly" id="edge17_Node000009_Node000004" title=" " alt="" coords="266,106,246,127,228,153,215,183,208,212,203,211,210,181,223,151,242,124,262,102"/>
+<area shape="rect" id="Node000010" href="$vfs_8h.html" title=" " alt="" coords="238,152,317,177"/>
+<area shape="poly" id="edge18_Node000009_Node000010" title=" " alt="" coords="280,104,280,138,275,138,275,104"/>
+<area shape="poly" id="edge21_Node000010_Node000004" title=" " alt="" coords="267,179,226,218,222,214,263,175"/>
+<area shape="rect" id="Node000011" href="$lock_8h.html" title=" " alt="" coords="224,299,317,324"/>
+<area shape="poly" id="edge19_Node000010_Node000011" title=" " alt="" coords="279,178,274,285,269,285,274,178"/>
+<area shape="poly" id="edge20_Node000011_Node000003" title=" " alt="" coords="280,323,301,359,296,361,275,326"/>
+<area shape="poly" id="edge24_Node000012_Node000003" title=" " alt="" coords="606,252,586,289,571,309,552,326,505,352,455,369,405,379,362,384,361,379,404,373,453,363,503,347,549,322,567,306,582,286,601,250"/>
+<area shape="poly" id="edge23_Node000012_Node000005" title=" " alt="" coords="589,253,514,294,512,289,586,248"/>
 </map>

@@ -1,5 +1,6 @@
 var namespacevfs =
 [
+    [ "open_file", "structvfs_1_1open__file.html", "structvfs_1_1open__file" ],
     [ "vfs_node", "structvfs_1_1vfs__node.html", "structvfs_1_1vfs__node" ],
     [ "VfsType", "namespacevfs.html#a4254823dbf640d91def413bf2a811fa7", [
       [ "VFS_FILE", "namespacevfs.html#a4254823dbf640d91def413bf2a811fa7a1b1483e5187b6e599c3e3bc3150310fe", null ],

@@ -12,7 +12,7 @@ var searchData=
   ['enable_5fcpu_5ffeatures_9',['enable_cpu_features',['../smp_8cpp.html#a5f265224d70a2a7a750a59d0b1eb3fa9',1,'smp.cpp']]],
   ['enable_5fcursor_10',['enable_cursor',['../group__VGA__Output.html#ga4186bda44ce74c443fa77ebe369fa673',1,'vga::enable_cursor()'],['../group__Console__Core.html#ga958b79f80b128cef01b815246c292b10',1,'console::enable_cursor()'],['../namespaceframebuffer.html#acf300cca80527d724d9f35adf0c0a7f9',1,'framebuffer::enable_cursor()']]],
   ['enable_5foptional_5fcpu_5ffeatures_11',['enable_optional_cpu_features',['../namespacesmp.html#a291d3a30389010dcf81c673ff43163b2',1,'smp']]],
-  ['enable_5fsyscalls_12',['enable_syscalls',['../syscallc_8cpp.html#affd548eabce819c41d9620c728720b44',1,'syscallc.cpp']]],
+  ['enable_5fsyscalls_12',['enable_syscalls',['../syscall_8cpp.html#affd548eabce819c41d9620c728720b44',1,'syscall.cpp']]],
   ['endianness_13',['endianness',['../elf_8h.html#a157d773735497237c193970923bc8aac',1,'endianness:&#160;elf.h'],['../structelf_1_1elf__header.html#ad8b746789c6a4de324caca1e84a4875c',1,'elf::elf_header::endianness']]],
   ['enqueue_14',['enqueue',['../namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e',1,'scheduler']]],
   ['entries_15',['entries',['../structmultiboot__tag__mmap.html#a20c4427afce786340b01ded5ed0532a2',1,'multiboot_tag_mmap']]],

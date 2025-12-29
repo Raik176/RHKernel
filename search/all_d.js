@@ -7,6 +7,7 @@ var searchData=
   ['next_5ftid_4',['next_tid',['../namespacescheduler.html#a3b81b2261dd5d25128bbd76ac80d91f8',1,'scheduler']]],
   ['nlink_5',['nlink',['../structcpio__newc__header.html#a9ed0ea2492eac1c6d7f6d172baf0f73f',1,'cpio_newc_header::nlink'],['../initramfs_8h.html#a06d1924b43175475648d7d81889948c3',1,'nlink:&#160;initramfs.h']]],
   ['nocache_6',['NoCache',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa9c2a36ed94b288fe8f5ce5b6b16d3fdd',1,'vmm']]],
-  ['none_7',['None',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa6adf97f83acf6453d4a6a4b1070f3754',1,'vmm']]],
-  ['nx_8',['NX',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa973fd64b3b915bccdee598a385ee39e1',1,'vmm']]]
+  ['node_7',['node',['../structvfs_1_1open__file.html#a94b331ed8424a483f29873f6f3bfaa98',1,'vfs::open_file']]],
+  ['none_8',['None',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa6adf97f83acf6453d4a6a4b1070f3754',1,'vmm']]],
+  ['nx_9',['NX',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa973fd64b3b915bccdee598a385ee39e1',1,'vmm']]]
 ];

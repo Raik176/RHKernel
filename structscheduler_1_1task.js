@@ -3,6 +3,8 @@ var structscheduler_1_1task =
     [ "age", "structscheduler_1_1task.html#a9c90f1243ca8596d6485eaede2681d68", null ],
     [ "context", "structscheduler_1_1task.html#a36a0c78105c279871ebca4269f592b53", null ],
     [ "cr3", "structscheduler_1_1task.html#a7f38ca5c6696da54111bf4974d720511", null ],
+    [ "fd_capacity", "structscheduler_1_1task.html#a8a489bea5777d8f81dd03e2dbdbe1bf2", null ],
+    [ "fd_table", "structscheduler_1_1task.html#a4a6f96966df5679a4d1918d9e0a37c76", null ],
     [ "fxsave_area", "structscheduler_1_1task.html#afe6d2b0d6685456489d26fd4852106b7", null ],
     [ "id", "structscheduler_1_1task.html#abb88304d72c79c9f4f23fe2954345a04", null ],
     [ "kernel_stack", "structscheduler_1_1task.html#a6826002f1e71c0dcbd4f348e2ea613ec", null ],
@@ -12,5 +14,6 @@ var structscheduler_1_1task =
     [ "quantum", "structscheduler_1_1task.html#a9c044e7badcd198142475611e93f0576", null ],
     [ "state", "structscheduler_1_1task.html#aad837c7d6703a2a55efc138cf818ef13", null ],
     [ "type", "structscheduler_1_1task.html#adb3a65b31ef3b6e281781f752e398593", null ],
-    [ "user_stack", "structscheduler_1_1task.html#a17762d5add28ce1c0a4b21efa3745f86", null ]
+    [ "user_stack", "structscheduler_1_1task.html#a17762d5add28ce1c0a4b21efa3745f86", null ],
+    [ "wakeup_time", "structscheduler_1_1task.html#a151eb1e1706f8d5ef6cf75eb3919b208", null ]
 ];

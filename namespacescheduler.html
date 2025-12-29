@@ -137,6 +137,8 @@ Functions</h2></td></tr>
 <tr class="separator:a5b5d5090e6ae162b694a4c01823a6b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66dc9e6aaa092bd2bbc61ed92bc73a27" id="r_a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27">yield</a> ()</td></tr>
 <tr class="separator:a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5035a7951f80abef56b2a6b752a28d15" id="r_a5035a7951f80abef56b2a6b752a28d15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15">sleep</a> (uint64_t ticks)</td></tr>
+<tr class="separator:a5035a7951f80abef56b2a6b752a28d15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -146,6 +148,8 @@ Variables</h2></td></tr>
 <tr class="separator:a3fd9587ccd96391c01913da759cb8253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca1955f9f8177bc72acae17e9428a87a" id="r_aca1955f9f8177bc72acae17e9428a87a"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#aca1955f9f8177bc72acae17e9428a87a">INITIAL_USER_STACK_SIZE</a> = 1024 * 64</td></tr>
 <tr class="separator:aca1955f9f8177bc72acae17e9428a87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1ce43b9ae563159727faede5dd7e726" id="r_ab1ce43b9ae563159727faede5dd7e726"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#ab1ce43b9ae563159727faede5dd7e726">INITIAL_FD_CAPACITY</a> = 8</td></tr>
+<tr class="separator:ab1ce43b9ae563159727faede5dd7e726"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98b1040c6549c56fba93e13094cbe4d1" id="r_a98b1040c6549c56fba93e13094cbe4d1"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">MAX_QUEUES</a> = 4</td></tr>
 <tr class="separator:a98b1040c6549c56fba93e13094cbe4d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92dfce9e62b90351581efe9e4674cf30" id="r_a92dfce9e62b90351581efe9e4674cf30"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a92dfce9e62b90351581efe9e4674cf30">TIME_QUANTUMS</a> [<a class="el" href="namespacescheduler.html#a98b1040c6549c56fba93e13094cbe4d1">MAX_QUEUES</a>] = {2, 4, 8, 16}</td></tr>
@@ -547,6 +551,50 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a5035a7951f80abef56b2a6b752a28d15" name="a5035a7951f80abef56b2a6b752a28d15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5035a7951f80abef56b2a6b752a28d15">&#9670;&#160;</a></span>sleep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scheduler::sleep </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>ticks</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a5035a7951f80abef56b2a6b752a28d15_cgraph.png" border="0" usemap="#anamespacescheduler_a5035a7951f80abef56b2a6b752a28d15_cgraph" alt=""/></div>
+<map name="anamespacescheduler_a5035a7951f80abef56b2a6b752a28d15_cgraph" id="anamespacescheduler_a5035a7951f80abef56b2a6b752a28d15_cgraph">
+<area shape="rect" title=" " alt="" coords="5,80,133,105"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="181,5,348,31"/>
+<area shape="poly" title=" " alt="" coords="95,77,180,40,202,32,204,37,182,44,97,82"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="210,55,319,80"/>
+<area shape="poly" title=" " alt="" coords="133,82,196,74,196,79,134,87"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="181,104,348,129"/>
+<area shape="poly" title=" " alt="" coords="134,98,168,102,167,107,133,103"/>
+<area shape="rect" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27" title=" " alt="" coords="202,153,327,179"/>
+<area shape="poly" title=" " alt="" coords="99,103,182,138,207,147,205,152,180,143,97,108"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a5035a7951f80abef56b2a6b752a28d15_icgraph.png" border="0" usemap="#anamespacescheduler_a5035a7951f80abef56b2a6b752a28d15_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a5035a7951f80abef56b2a6b752a28d15_icgraph" id="anamespacescheduler_a5035a7951f80abef56b2a6b752a28d15_icgraph">
+<area shape="rect" title=" " alt="" coords="176,5,304,31"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,5,128,31"/>
+<area shape="poly" title=" " alt="" coords="162,21,129,21,129,15,162,15"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a395f6820b5cdffc27a298872c26a422d" name="a395f6820b5cdffc27a298872c26a422d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a395f6820b5cdffc27a298872c26a422d">&#9670;&#160;</a></span>spawn()</h2>
 
@@ -734,6 +782,19 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph.png" border="0" usemap="#anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph" id="anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph">
+<area shape="rect" title=" " alt="" coords="352,31,477,56"/>
+<area shape="rect" href="namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15" title=" " alt="" coords="176,5,304,31"/>
+<area shape="poly" title=" " alt="" coords="338,35,304,30,305,25,339,30"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,31,128,56"/>
+<area shape="poly" title=" " alt="" coords="339,46,128,46,128,41,339,41"/>
+<area shape="poly" title=" " alt="" coords="162,32,129,37,128,32,162,27"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -754,6 +815,28 @@ Here is the caller graph for this function:</div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1ce43b9ae563159727faede5dd7e726" name="ab1ce43b9ae563159727faede5dd7e726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1ce43b9ae563159727faede5dd7e726">&#9670;&#160;</a></span>INITIAL_FD_CAPACITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t scheduler::INITIAL_FD_CAPACITY = 8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

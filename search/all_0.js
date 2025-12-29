@@ -11,6 +11,7 @@ var searchData=
   ['_5fksymtab_5fstart_8',['_ksymtab_start',['../namespaceksym.html#aec18f3c871c95c5f67e2a46c343e384a',1,'ksym']]],
   ['_5frodata_5fend_9',['_rodata_end',['../vmm_8cpp.html#af1274d038fc692a423bb54ad260edf9c',1,'vmm.cpp']]],
   ['_5frodata_5fstart_10',['_rodata_start',['../vmm_8cpp.html#adeb48830f5bbc036455fe96f338b8210',1,'vmm.cpp']]],
-  ['_5ftext_5fend_11',['_text_end',['../vmm_8cpp.html#ad8b0c56be8e70ec1bf8e70758145aa82',1,'vmm.cpp']]],
-  ['_5ftext_5fstart_12',['_text_start',['../vmm_8cpp.html#a0aab5b3be01394b2ded2767dec5a64ac',1,'vmm.cpp']]]
+  ['_5fstart_11',['_start',['../init_8cpp.html#a078e7d7a89207ea1c3575850e0fff462',1,'init.cpp']]],
+  ['_5ftext_5fend_12',['_text_end',['../vmm_8cpp.html#ad8b0c56be8e70ec1bf8e70758145aa82',1,'vmm.cpp']]],
+  ['_5ftext_5fstart_13',['_text_start',['../vmm_8cpp.html#a0aab5b3be01394b2ded2767dec5a64ac',1,'vmm.cpp']]]
 ];

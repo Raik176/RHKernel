@@ -1,90 +1,101 @@
 <map id="align_up" name="align_up">
-<area shape="rect" id="Node000001" title="Align an address upward to the nearest multiple of align" alt="" coords="1761,199,1839,224"/>
-<area shape="rect" id="Node000002" href="$namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="1575,29,1701,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1786,187,1757,132,1737,102,1712,76,1679,57,1682,52,1715,72,1741,99,1762,129,1791,185"/>
-<area shape="rect" id="Node000006" href="$namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="1092,404,1229,429"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="1794,238,1784,268,1768,302,1745,336,1715,363,1655,395,1591,417,1524,432,1457,439,1392,442,1331,441,1229,431,1230,426,1331,435,1392,437,1456,434,1523,426,1589,412,1653,390,1712,358,1741,332,1763,300,1779,266,1789,236"/>
-<area shape="rect" id="Node000011" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="681,91,791,116"/>
-<area shape="poly" id="edge29_Node000001_Node000011" title=" " alt="" coords="1762,195,1698,165,1612,133,1514,106,1463,98,1413,95,1159,95,956,98,792,104,792,98,956,93,1159,90,1413,90,1464,93,1515,101,1614,127,1700,160,1764,190"/>
-<area shape="rect" id="Node000019" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="1563,323,1713,348"/>
-<area shape="poly" id="edge30_Node000001_Node000019" title=" " alt="" coords="1773,235,1658,325,1654,320,1770,230"/>
-<area shape="rect" id="Node000003" href="$namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="1308,29,1515,55"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1561,45,1515,45,1515,39,1561,39"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="1452,20,1441,11,1411,8,1387,10,1374,15,1372,20,1378,27,1374,31,1366,21,1371,11,1386,5,1411,3,1443,7,1455,16"/>
-<area shape="rect" id="Node000004" href="$namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the PMM using the Multiboot memory map." alt="" coords="292,47,377,72"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="1294,45,941,45,735,45,535,50,378,59,378,54,535,45,735,39,941,39,1294,39"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,393,68,419"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="278,60,238,63,195,71,154,87,118,112,103,133,90,165,67,248,51,333,42,394,37,393,46,333,62,247,85,163,99,131,114,108,151,82,194,66,238,58,278,55"/>
-<area shape="rect" id="Node000007" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="882,404,997,429"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1078,419,997,419,997,414,1078,414"/>
-<area shape="poly" id="edge22_Node000007_Node000007" title=" " alt="" coords="975,394,965,386,939,383,918,385,906,389,904,395,910,402,906,406,899,396,903,386,916,380,939,377,968,381,979,390"/>
-<area shape="rect" id="Node000008" href="$namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,267,396,292"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="911,396,863,349,850,329,842,310,833,295,816,282,760,259,700,245,639,239,578,239,466,251,381,269,379,264,465,246,577,234,639,234,701,240,761,254,819,277,837,291,847,308,855,326,867,346,914,393"/>
-<area shape="rect" id="Node000009" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,267,225,292"/>
-<area shape="poly" id="edge15_Node000007_Node000009" title=" " alt="" coords="909,397,885,375,863,349,849,318,843,290,836,265,828,254,816,243,778,220,737,203,694,190,650,183,560,179,471,188,386,206,310,228,201,269,199,264,308,223,384,201,470,183,560,174,651,177,695,185,739,198,780,215,819,239,832,250,841,263,849,289,854,316,868,346,889,371,912,393"/>
-<area shape="rect" id="Node000010" href="$namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="135,393,206,419"/>
-<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="868,418,206,409,206,404,868,413"/>
-<area shape="poly" id="edge13_Node000007_Node000011" title=" " alt="" coords="900,399,880,382,863,362,848,329,842,297,844,239,846,212,844,185,835,157,815,129,804,120,790,113,793,109,807,115,819,126,840,155,850,184,852,212,850,240,847,297,853,327,868,359,884,379,904,394"/>
-<area shape="rect" id="Node000012" href="$namespacesmp.html#a5a1d89d87ee6a3c23582ff9ad82f5c12" title=" " alt="" coords="280,444,389,469"/>
-<area shape="poly" id="edge16_Node000007_Node000012" title=" " alt="" coords="869,424,390,456,389,450,868,419"/>
-<area shape="rect" id="Node000013" href="$namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70" title=" " alt="" coords="661,343,811,368"/>
-<area shape="poly" id="edge18_Node000007_Node000013" title=" " alt="" coords="883,403,778,371,780,365,884,397"/>
-<area shape="rect" id="Node000015" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="682,545,790,571"/>
-<area shape="poly" id="edge23_Node000007_Node000015" title=" " alt="" coords="920,441,876,485,819,528,778,548,776,543,816,524,872,481,916,438"/>
-<area shape="rect" id="Node000016" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="677,140,795,165"/>
-<area shape="poly" id="edge24_Node000007_Node000016" title=" " alt="" coords="901,398,881,382,863,362,850,337,844,314,842,270,839,229,831,208,815,187,788,168,791,163,819,183,835,206,844,228,847,270,849,313,855,335,868,359,884,378,904,394"/>
-<area shape="rect" id="Node000017" href="$namespacesmp.html#a8793b78358c1cf1d36479e1c7273fc80" title=" " alt="" coords="655,292,817,317"/>
-<area shape="poly" id="edge25_Node000007_Node000017" title=" " alt="" coords="909,398,858,361,816,334,782,320,784,315,819,329,861,357,912,393"/>
-<area shape="rect" id="Node000018" href="$namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d" title=" " alt="" coords="458,571,593,596"/>
-<area shape="poly" id="edge27_Node000007_Node000018" title=" " alt="" coords="903,438,818,478,737,508,656,537,560,573,558,568,654,531,736,503,816,473,900,433"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="260,282,226,282,226,277,260,277"/>
-<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="148,304,53,395,49,391,144,300"/>
-<area shape="poly" id="edge12_Node000010_Node000005" title=" " alt="" coords="121,409,68,409,68,403,121,403"/>
-<area shape="poly" id="edge14_Node000011_Node000005" title=" " alt="" coords="667,104,551,108,481,115,406,128,329,148,253,174,182,210,118,256,89,289,67,328,52,365,44,394,39,392,47,363,62,326,84,286,114,252,179,206,251,170,327,142,405,123,480,110,551,103,667,98"/>
-<area shape="poly" id="edge17_Node000012_Node000005" title=" " alt="" coords="266,455,193,447,115,434,68,420,69,415,117,429,194,442,266,450"/>
-<area shape="poly" id="edge21_Node000013_Node000005" title=" " alt="" coords="648,355,540,354,407,357,261,366,117,385,69,397,68,392,115,379,261,361,407,351,540,348,648,349"/>
-<area shape="rect" id="Node000014" href="$namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,292,607,317"/>
-<area shape="poly" id="edge19_Node000013_Node000014" title=" " alt="" coords="669,342,578,320,579,315,670,337"/>
-<area shape="poly" id="edge20_Node000014_Node000008" title=" " alt="" coords="430,295,396,290,396,285,431,289"/>
-<area shape="poly" id="edge26_Node000017_Node000014" title=" " alt="" coords="641,307,607,307,607,302,641,302"/>
-<area shape="poly" id="edge28_Node000018_Node000005" title=" " alt="" coords="457,570,299,524,206,492,115,455,55,421,58,416,117,450,208,487,301,519,459,565"/>
-<area shape="poly" id="edge55_Node000019_Node000007" title=" " alt="" coords="1549,344,1328,363,1062,395,997,407,996,402,1061,390,1327,358,1549,339"/>
-<area shape="rect" id="Node000020" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="1364,572,1459,597"/>
-<area shape="poly" id="edge31_Node000019_Node000020" title=" " alt="" coords="1618,360,1426,573,1422,570,1614,357"/>
-<area shape="rect" id="Node000028" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="1366,253,1457,279"/>
-<area shape="poly" id="edge48_Node000019_Node000028" title=" " alt="" coords="1582,321,1453,281,1455,276,1583,316"/>
-<area shape="poly" id="edge32_Node000020_Node000006" title=" " alt="" coords="1384,564,1329,517,1259,466,1192,432,1195,427,1261,461,1332,512,1388,560"/>
-<area shape="poly" id="edge45_Node000020_Node000007" title=" " alt="" coords="1361,570,975,432,977,427,1363,565"/>
-<area shape="poly" id="edge47_Node000020_Node000018" title=" " alt="" coords="1350,587,593,586,593,581,1350,582"/>
-<area shape="rect" id="Node000021" href="$namespacevmm.html#abf984d135d39d57e1d30e060634d3d26" title=" " alt="" coords="1061,665,1260,705"/>
-<area shape="poly" id="edge33_Node000020_Node000021" title=" " alt="" coords="1366,605,1213,667,1211,662,1364,600"/>
-<area shape="rect" id="Node000022" href="$namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="488,647,563,672"/>
-<area shape="poly" id="edge46_Node000020_Node000022" title=" " alt="" coords="1395,610,1371,637,1340,668,1303,697,1261,719,1220,727,1156,731,985,729,799,717,654,701,563,673,564,668,655,695,800,712,985,724,1156,725,1220,722,1259,714,1300,693,1337,664,1367,634,1390,607"/>
-<area shape="rect" id="Node000023" href="$namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="1080,597,1241,623"/>
-<area shape="poly" id="edge36_Node000020_Node000023" title=" " alt="" coords="1351,593,1242,605,1241,599,1350,588"/>
-<area shape="rect" id="Node000026" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="483,696,568,721"/>
-<area shape="poly" id="edge44_Node000020_Node000026" title=" " alt="" coords="1397,611,1374,642,1343,677,1305,711,1261,736,1214,753,1165,767,1065,782,963,786,865,781,772,769,689,754,567,724,568,719,690,749,773,764,865,776,963,781,1064,777,1164,761,1212,748,1259,732,1302,707,1340,673,1370,638,1393,608"/>
-<area shape="poly" id="edge34_Node000021_Node000022" title=" " alt="" coords="1047,694,863,697,758,694,654,687,562,671,563,666,655,682,759,689,863,692,1047,688"/>
-<area shape="poly" id="edge35_Node000022_Node000005" title=" " alt="" coords="474,651,400,632,307,601,208,558,160,532,114,503,91,483,71,460,43,420,48,417,76,457,95,479,118,499,162,528,210,554,309,596,401,627,475,646"/>
-<area shape="rect" id="Node000024" href="$namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="873,647,1005,672"/>
-<area shape="poly" id="edge37_Node000023_Node000024" title=" " alt="" coords="1090,628,998,649,997,644,1089,623"/>
-<area shape="rect" id="Node000027" href="$namespacevmm.html#a2c46f284b55b8e2cf67914ca69500ee8" title=" " alt="" coords="865,597,1013,623"/>
-<area shape="poly" id="edge43_Node000023_Node000027" title=" " alt="" coords="1066,613,1014,613,1014,607,1066,607"/>
-<area shape="rect" id="Node000025" href="$namespacevmm.html#a900951e277dcf50c77c3dac468c80f59" title=" " alt="" coords="667,647,805,672"/>
-<area shape="poly" id="edge38_Node000024_Node000025" title=" " alt="" coords="859,662,805,662,805,657,859,657"/>
-<area shape="poly" id="edge42_Node000025_Node000018" title=" " alt="" coords="686,644,561,599,563,594,688,639"/>
-<area shape="poly" id="edge41_Node000025_Node000022" title=" " alt="" coords="653,662,563,662,563,657,653,657"/>
-<area shape="poly" id="edge39_Node000025_Node000026" title=" " alt="" coords="669,678,569,701,568,696,667,673"/>
-<area shape="poly" id="edge40_Node000026_Node000005" title=" " alt="" coords="468,706,391,693,297,669,248,651,200,628,155,601,114,568,84,531,62,489,38,420,44,418,67,487,88,528,118,564,158,596,203,624,250,646,299,664,392,688,469,701"/>
-<area shape="rect" id="Node000029" href="$namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="1113,253,1209,279"/>
-<area shape="poly" id="edge49_Node000028_Node000029" title=" " alt="" coords="1352,269,1209,269,1209,263,1352,263"/>
-<area shape="poly" id="edge50_Node000029_Node000011" title=" " alt="" coords="1129,288,1074,316,1005,339,968,345,931,345,896,337,864,319,844,297,835,274,833,250,836,225,838,201,838,176,831,152,815,129,790,114,793,109,819,125,836,150,843,175,844,201,841,226,839,250,840,273,848,294,867,315,898,332,931,340,967,340,1003,334,1072,311,1126,283"/>
-<area shape="rect" id="Node000030" href="$heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="878,131,1001,156"/>
-<area shape="poly" id="edge51_Node000029_Node000030" title=" " alt="" coords="1131,247,1078,208,1012,170,985,159,987,154,1015,165,1081,204,1135,243"/>
-<area shape="rect" id="Node000031" href="$heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="878,180,1001,205"/>
-<area shape="poly" id="edge52_Node000029_Node000031" title=" " alt="" coords="1108,251,1012,219,979,208,980,203,1014,214,1110,246"/>
-<area shape="rect" id="Node000032" href="$heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="873,229,1005,255"/>
-<area shape="poly" id="edge53_Node000029_Node000032" title=" " alt="" coords="1099,262,1005,252,1006,246,1099,257"/>
-<area shape="rect" id="Node000033" href="$heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="873,279,1005,304"/>
-<area shape="poly" id="edge54_Node000029_Node000033" title=" " alt="" coords="1099,276,1006,286,1005,281,1099,270"/>
+<area shape="rect" id="Node000001" title="Align an address upward to the nearest multiple of align" alt="" coords="1761,394,1839,419"/>
+<area shape="rect" id="Node000002" href="$namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="1575,183,1701,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1779,384,1711,292,1647,210,1652,207,1715,289,1783,381"/>
+<area shape="rect" id="Node000006" href="$namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="1092,583,1229,609"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="1792,434,1764,488,1742,516,1715,538,1654,569,1590,591,1523,605,1456,613,1391,617,1330,616,1230,609,1230,603,1330,611,1391,611,1455,608,1522,600,1588,585,1652,564,1712,534,1738,512,1759,485,1787,431"/>
+<area shape="rect" id="Node000014" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="681,293,791,318"/>
+<area shape="poly" id="edge33_Node000001_Node000014" title=" " alt="" coords="1756,391,1691,367,1606,341,1510,320,1461,314,1413,312,1159,312,792,309,792,304,1159,307,1413,307,1462,309,1511,315,1607,336,1692,362,1758,386"/>
+<area shape="rect" id="Node000022" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="1563,499,1713,525"/>
+<area shape="poly" id="edge34_Node000001_Node000022" title=" " alt="" coords="1769,429,1660,502,1657,497,1766,425"/>
+<area shape="rect" id="Node000003" href="$namespacepmm.html#ae9df95fdabb45589a27ca687bd5df67a" title=" " alt="" coords="1308,59,1515,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1600,179,1435,87,1437,83,1603,174"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="1452,50,1441,41,1411,38,1387,40,1374,45,1372,50,1378,57,1374,61,1366,51,1371,41,1386,35,1411,33,1443,37,1455,46"/>
+<area shape="rect" id="Node000004" href="$namespacepmm.html#a1167bc262b850ba527a98a0419fbebd3" title="Initialize the PMM using the Multiboot memory map." alt="" coords="128,118,213,143"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="1342,59,1161,26,1051,13,941,8,524,8,474,12,424,21,375,35,329,52,249,89,193,120,191,116,246,85,327,47,373,30,423,16,473,6,524,3,941,3,1052,8,1162,21,1343,54"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,743,68,769"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="162,157,140,216,119,287,89,426,66,561,42,743,37,743,60,561,83,425,113,286,135,214,157,155"/>
+<area shape="rect" id="Node000007" href="$namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="882,583,997,609"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1078,599,997,599,997,593,1078,593"/>
+<area shape="poly" id="edge25_Node000007_Node000007" title=" " alt="" coords="975,574,965,565,939,562,918,564,906,569,904,574,910,582,906,585,899,575,903,565,916,559,939,557,968,560,979,570"/>
+<area shape="rect" id="Node000008" href="$namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,667,396,693"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="917,620,874,654,847,671,818,683,762,697,703,706,587,711,481,705,396,694,397,689,481,700,587,706,703,700,761,692,816,677,845,666,871,650,914,616"/>
+<area shape="rect" id="Node000009" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,667,225,693"/>
+<area shape="poly" id="edge18_Node000007_Node000009" title=" " alt="" coords="920,574,877,525,848,501,816,484,773,471,738,469,701,474,655,484,584,501,514,523,380,576,269,630,195,670,193,665,267,625,378,572,512,518,583,496,654,479,700,469,737,463,774,465,818,479,851,497,881,521,924,570"/>
+<area shape="rect" id="Node000010" href="$syscall_8cpp.html#a7b40ae7903e75d67a520ba4ceb424ce7" title=" " alt="" coords="688,342,784,367"/>
+<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="927,571,911,532,888,483,856,433,816,389,783,370,786,365,819,385,860,429,892,480,916,529,932,569"/>
+<area shape="rect" id="Node000011" href="$syscall_8cpp.html#a67e8884fc5e0e31713826d8b907d8031" title=" " alt="" coords="484,343,567,369"/>
+<area shape="poly" id="edge32_Node000007_Node000011" title=" " alt="" coords="924,573,882,506,851,470,816,440,770,419,702,398,566,367,568,361,704,393,772,414,819,435,855,466,886,503,928,570"/>
+<area shape="rect" id="Node000013" href="$namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="299,743,370,769"/>
+<area shape="poly" id="edge14_Node000007_Node000013" title=" " alt="" coords="923,622,880,671,851,695,818,714,758,737,694,753,630,763,566,769,452,769,370,763,370,758,453,764,566,763,629,758,693,748,756,732,816,710,848,691,876,667,919,618"/>
+<area shape="poly" id="edge16_Node000007_Node000014" title=" " alt="" coords="931,570,919,520,897,455,863,388,841,358,816,331,790,317,793,312,819,327,845,355,868,386,902,453,924,518,936,569"/>
+<area shape="rect" id="Node000015" href="$namespacesmp.html#a5a1d89d87ee6a3c23582ff9ad82f5c12" title=" " alt="" coords="116,794,225,819"/>
+<area shape="poly" id="edge19_Node000007_Node000015" title=" " alt="" coords="930,622,914,656,890,695,858,733,819,764,742,798,659,821,575,834,492,840,412,839,339,835,225,820,226,815,340,829,412,834,492,835,575,829,658,816,740,793,816,759,854,730,886,692,909,653,926,620"/>
+<area shape="rect" id="Node000016" href="$namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70" title=" " alt="" coords="661,593,811,618"/>
+<area shape="poly" id="edge21_Node000007_Node000016" title=" " alt="" coords="868,602,811,605,811,599,868,597"/>
+<area shape="rect" id="Node000018" href="$heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81" title="C++ new operator using the kernel heap." alt="" coords="682,543,790,569"/>
+<area shape="poly" id="edge26_Node000007_Node000018" title=" " alt="" coords="868,585,790,569,791,564,869,580"/>
+<area shape="rect" id="Node000019" href="$heap_8cpp.html#af2243bb4c2126b7b2b393e06090fbe59" title="C++ array new operator using the kernel heap." alt="" coords="677,494,795,519"/>
+<area shape="poly" id="edge27_Node000007_Node000019" title=" " alt="" coords="904,579,863,555,816,533,785,522,787,517,818,528,866,551,907,574"/>
+<area shape="rect" id="Node000020" href="$namespacesmp.html#a8793b78358c1cf1d36479e1c7273fc80" title=" " alt="" coords="655,642,817,667"/>
+<area shape="poly" id="edge28_Node000007_Node000020" title=" " alt="" coords="882,615,782,645,780,639,881,610"/>
+<area shape="rect" id="Node000021" href="$namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d" title=" " alt="" coords="458,882,593,907"/>
+<area shape="poly" id="edge30_Node000007_Node000021" title=" " alt="" coords="935,623,921,667,898,723,864,779,843,805,819,827,765,859,705,880,646,891,593,897,593,891,645,886,704,875,763,854,816,823,839,801,860,776,893,720,916,665,929,621"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="260,683,226,683,226,677,260,677"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="137,702,61,746,59,741,134,697"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="674,358,567,358,567,353,674,352"/>
+<area shape="rect" id="Node000012" href="$syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="273,343,396,369"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="470,359,396,359,396,353,470,353"/>
+<area shape="poly" id="edge15_Node000013_Node000005" title=" " alt="" coords="285,759,68,759,68,753,285,753"/>
+<area shape="poly" id="edge17_Node000014_Node000005" title=" " alt="" coords="667,304,567,301,452,302,346,311,305,320,275,333,219,377,173,431,134,491,104,554,80,614,62,669,43,744,38,743,57,667,75,612,99,551,130,489,169,428,216,373,272,328,303,315,346,306,452,296,567,295,667,299"/>
+<area shape="poly" id="edge20_Node000015_Node000005" title=" " alt="" coords="122,791,67,770,69,765,124,786"/>
+<area shape="poly" id="edge24_Node000016_Node000005" title=" " alt="" coords="648,594,536,584,469,583,399,585,326,592,254,606,183,627,117,657,92,676,72,700,46,745,41,742,68,697,89,672,115,652,182,622,253,601,326,587,398,580,469,577,536,579,648,589"/>
+<area shape="rect" id="Node000017" href="$namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,642,607,667"/>
+<area shape="poly" id="edge22_Node000016_Node000017" title=" " alt="" coords="669,624,581,645,580,639,667,619"/>
+<area shape="poly" id="edge23_Node000017_Node000008" title=" " alt="" coords="431,670,396,675,396,669,430,665"/>
+<area shape="poly" id="edge29_Node000020_Node000017" title=" " alt="" coords="641,657,607,657,607,652,641,652"/>
+<area shape="poly" id="edge31_Node000021_Node000005" title=" " alt="" coords="444,899,371,896,287,886,199,867,156,852,115,834,93,820,73,803,45,770,49,767,77,799,96,816,117,830,158,847,200,861,288,881,372,891,444,894"/>
+<area shape="poly" id="edge62_Node000022_Node000007" title=" " alt="" coords="1549,521,1327,540,1062,573,996,586,995,581,1061,568,1327,535,1549,515"/>
+<area shape="rect" id="Node000023" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="1364,921,1459,946"/>
+<area shape="poly" id="edge35_Node000022_Node000023" title=" " alt="" coords="1626,538,1422,922,1417,919,1621,536"/>
+<area shape="rect" id="Node000031" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free a previously allocated physical memory block." alt="" coords="1366,385,1457,410"/>
+<area shape="poly" id="edge52_Node000022_Node000031" title=" " alt="" coords="1599,496,1436,412,1439,408,1601,491"/>
+<area shape="poly" id="edge36_Node000023_Node000006" title=" " alt="" coords="1390,911,1258,730,1169,610,1174,607,1262,726,1395,908"/>
+<area shape="poly" id="edge49_Node000023_Node000007" title=" " alt="" coords="1379,915,957,611,960,607,1382,910"/>
+<area shape="poly" id="edge51_Node000023_Node000021" title=" " alt="" coords="1350,933,1260,929,593,900,593,895,1260,924,1350,928"/>
+<area shape="rect" id="Node000024" href="$namespacevmm.html#abf984d135d39d57e1d30e060634d3d26" title=" " alt="" coords="1061,1147,1260,1187"/>
+<area shape="poly" id="edge37_Node000023_Node000024" title=" " alt="" coords="1399,960,1346,1042,1307,1089,1262,1130,1229,1149,1226,1144,1258,1126,1303,1085,1341,1039,1394,957"/>
+<area shape="rect" id="Node000025" href="$namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="488,1046,563,1071"/>
+<area shape="poly" id="edge50_Node000023_Node000025" title=" " alt="" coords="1386,957,1331,998,1297,1019,1261,1037,1164,1069,1062,1089,959,1098,859,1100,766,1095,683,1087,562,1069,563,1064,684,1082,767,1090,860,1095,959,1093,1061,1084,1163,1064,1259,1032,1294,1015,1328,994,1383,953"/>
+<area shape="rect" id="Node000026" href="$namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="1080,997,1241,1022"/>
+<area shape="poly" id="edge40_Node000023_Node000026" title=" " alt="" coords="1356,953,1204,999,1203,994,1355,947"/>
+<area shape="rect" id="Node000029" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="483,946,568,971"/>
+<area shape="poly" id="edge48_Node000023_Node000029" title=" " alt="" coords="1350,938,568,960,568,955,1350,932"/>
+<area shape="poly" id="edge38_Node000024_Node000025" title=" " alt="" coords="1047,1174,960,1173,861,1167,756,1154,654,1131,622,1119,591,1103,543,1074,546,1069,594,1099,624,1114,655,1125,757,1149,861,1162,961,1168,1047,1169"/>
+<area shape="poly" id="edge39_Node000025_Node000005" title=" " alt="" coords="474,1059,397,1049,302,1028,252,1012,203,991,156,965,114,933,96,914,81,892,59,846,45,802,37,770,43,769,50,801,64,844,86,890,101,910,118,929,159,960,205,986,254,1007,303,1023,398,1044,474,1053"/>
+<area shape="rect" id="Node000027" href="$namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="873,997,1005,1022"/>
+<area shape="poly" id="edge41_Node000026_Node000027" title=" " alt="" coords="1066,1012,1005,1012,1005,1007,1066,1007"/>
+<area shape="rect" id="Node000030" href="$namespacevmm.html#a2c46f284b55b8e2cf67914ca69500ee8" title=" " alt="" coords="865,1046,1013,1071"/>
+<area shape="poly" id="edge47_Node000026_Node000030" title=" " alt="" coords="1090,1028,998,1049,997,1043,1089,1022"/>
+<area shape="rect" id="Node000028" href="$namespacevmm.html#a900951e277dcf50c77c3dac468c80f59" title=" " alt="" coords="667,997,805,1022"/>
+<area shape="poly" id="edge42_Node000027_Node000028" title=" " alt="" coords="859,1012,805,1012,805,1007,859,1007"/>
+<area shape="poly" id="edge46_Node000028_Node000021" title=" " alt="" coords="701,992,605,937,552,910,554,905,608,932,703,987"/>
+<area shape="poly" id="edge45_Node000028_Node000025" title=" " alt="" coords="669,1028,564,1053,562,1047,667,1023"/>
+<area shape="poly" id="edge43_Node000028_Node000029" title=" " alt="" coords="668,996,568,971,569,966,670,991"/>
+<area shape="poly" id="edge44_Node000029_Node000005" title=" " alt="" coords="469,963,393,960,301,948,253,937,204,922,158,902,114,877,87,852,66,822,40,770,45,768,70,820,91,848,118,873,160,897,206,917,254,932,302,942,394,954,469,958"/>
+<area shape="rect" id="Node000032" href="$namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="891,217,987,242"/>
+<area shape="poly" id="edge53_Node000031_Node000032" title=" " alt="" coords="1361,383,975,245,977,240,1363,378"/>
+<area shape="poly" id="edge54_Node000032_Node000010" title=" " alt="" coords="918,254,874,293,819,332,785,346,783,341,816,327,871,289,914,250"/>
+<area shape="poly" id="edge55_Node000032_Node000014" title=" " alt="" coords="892,249,772,295,770,290,891,244"/>
+<area shape="rect" id="Node000033" href="$heap_8cpp.html#afa145befcf5e7b83424408ca503c8637" title="C++ delete operator using the kernel heap." alt="" coords="675,191,797,217"/>
+<area shape="poly" id="edge56_Node000032_Node000033" title=" " alt="" coords="877,224,797,214,798,209,878,219"/>
+<area shape="rect" id="Node000034" href="$heap_8cpp.html#af057efbdbcd21ea12954d49cd2d245c6" title="C++ sized delete operator." alt="" coords="675,43,797,69"/>
+<area shape="poly" id="edge57_Node000032_Node000034" title=" " alt="" coords="922,206,880,144,850,111,816,82,794,71,796,66,819,78,854,107,884,141,927,203"/>
+<area shape="rect" id="Node000035" href="$heap_8cpp.html#a22aea74a1155aa798d6032da46da2391" title="C++ array delete operator using the kernel heap." alt="" coords="670,93,802,118"/>
+<area shape="poly" id="edge58_Node000032_Node000035" title=" " alt="" coords="914,208,871,169,816,132,790,121,792,116,819,127,874,165,918,204"/>
+<area shape="rect" id="Node000036" href="$heap_8cpp.html#ab26fe706b29fdeb33d5f6ead76c05815" title="C++ sized array delete operator." alt="" coords="670,142,802,167"/>
+<area shape="poly" id="edge59_Node000032_Node000036" title=" " alt="" coords="896,213,816,181,782,170,784,165,818,176,898,208"/>
+<area shape="rect" id="Node000037" href="$syscall_8cpp.html#a9d94cbe3ac3c59ac54d9e884a024d9c5" title=" " alt="" coords="483,242,568,267"/>
+<area shape="poly" id="edge60_Node000032_Node000037" title=" " alt="" coords="878,236,569,255,568,249,878,230"/>
+<area shape="poly" id="edge61_Node000037_Node000012" title=" " alt="" coords="490,276,361,346,358,341,487,272"/>
 </map>

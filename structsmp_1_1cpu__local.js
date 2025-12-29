@@ -11,6 +11,7 @@ var structsmp_1_1cpu__local =
     [ "lapic_id", "structsmp_1_1cpu__local.html#a8860f624e452de45d420c09c49795ee4", null ],
     [ "sched_lock", "structsmp_1_1cpu__local.html#ae18ea7ab21439c0509b9c3550676ed1d", null ],
     [ "self", "structsmp_1_1cpu__local.html#a7e207b9a94f699f3a42ffbd59ef10fb2", null ],
+    [ "sleep_list_head", "structsmp_1_1cpu__local.html#a02affcec90e4c1e8f7dac1231485a788", null ],
     [ "task_queues_head", "structsmp_1_1cpu__local.html#aba155abdb6722324579d18d6e7da75c6", null ],
     [ "task_queues_tail", "structsmp_1_1cpu__local.html#a227c52f7aa62129d515a8109fb030d65", null ],
     [ "ticks", "structsmp_1_1cpu__local.html#ac1bb2364c1a57bbed26388fc7e77a613", null ],

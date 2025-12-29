@@ -44,6 +44,7 @@ var annotated_dup =
       [ "trampoline_data", "structsmp_1_1trampoline__data.html", "structsmp_1_1trampoline__data" ]
     ] ],
     [ "vfs", "namespacevfs.html", [
+      [ "open_file", "structvfs_1_1open__file.html", "structvfs_1_1open__file" ],
       [ "vfs_node", "structvfs_1_1vfs__node.html", "structvfs_1_1vfs__node" ]
     ] ],
     [ "cpio_newc_header", "structcpio__newc__header.html", "structcpio__newc__header" ],

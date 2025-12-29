@@ -1,6 +1,7 @@
 var vfs_8h =
 [
     [ "vfs::vfs_node", "structvfs_1_1vfs__node.html", "structvfs_1_1vfs__node" ],
+    [ "vfs::open_file", "structvfs_1_1open__file.html", "structvfs_1_1open__file" ],
     [ "VfsType", "vfs_8h.html#a4254823dbf640d91def413bf2a811fa7", [
       [ "VFS_FILE", "vfs_8h.html#a4254823dbf640d91def413bf2a811fa7a1b1483e5187b6e599c3e3bc3150310fe", null ],
       [ "VFS_DIRECTORY", "vfs_8h.html#a4254823dbf640d91def413bf2a811fa7ab9f281976e5f272eb87134ab4fc83d38", null ],

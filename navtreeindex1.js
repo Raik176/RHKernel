@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"functions_vars_r.html":[2,2,2,16],
+"functions_vars_s.html":[2,2,2,17],
+"functions_vars_t.html":[2,2,2,18],
 "functions_vars_u.html":[2,2,2,19],
 "functions_vars_v.html":[2,2,2,20],
 "functions_vars_w.html":[2,2,2,21],
@@ -175,6 +178,8 @@ var NAVTREEINDEX1 =
 "idt_8h.html#aeca790c0426654358d031f8180e84aca":[3,0,0,1,7,6],
 "idt_8h_source.html":[3,0,0,1,7],
 "index.html":[],
+"init_8cpp.html":[3,0,0,2,0,0,0],
+"init_8cpp.html#a078e7d7a89207ea1c3575850e0fff462":[3,0,0,2,0,0,0,0],
 "initramfs_8cpp.html":[3,0,0,0,0,0,1],
 "initramfs_8cpp.html#a2762b5396a1ef9dcf76262fcd976c12a":[3,0,0,0,0,0,1,1],
 "initramfs_8cpp.html#a4f476d652f3f1197ce0fc383858a49c5":[3,0,0,0,0,0,1,0],
@@ -244,10 +249,5 @@ var NAVTREEINDEX1 =
 "multiboot2_8h_source.html":[3,0,0,1,9],
 "namespaceacpi.html":[1,0,0],
 "namespaceacpi.html#a68f871b2c3c51220af51a721636f4424":[1,0,0,11],
-"namespaceacpi.html#a750b0c512c3c0e1b349dee1bc89c979d":[1,0,0,7],
-"namespaceacpi.html#a7e303c89a353fefa74a301b86b2aee13":[1,0,0,10],
-"namespaceacpi.html#a9bbb5f7f990a3c76cbce5b8aec02ee0d":[1,0,0,9],
-"namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee":[1,0,0,8],
-"namespaceapic.html":[1,0,1],
-"namespaceapic.html#a006fb50465909cf63a05eb0463403116":[1,0,1,11]
+"namespaceacpi.html#a750b0c512c3c0e1b349dee1bc89c979d":[1,0,0,7]
 };
