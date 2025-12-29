@@ -15,7 +15,7 @@ void busy_sleep(uint64_t ms) {
     while ((apic::get_ticks() - start) < ticks_to_wait) { asm volatile("pause"); }
 }
 
-void fill_regs(struct regs* r) {
+void fill_regs(struct regs *r) {
     // 1. General Purpose Registers
     asm volatile("mov %%rax, %0" : "=m"(r->rax));
     asm volatile("mov %%rbx, %0" : "=m"(r->rbx));
@@ -45,7 +45,7 @@ void fill_regs(struct regs* r) {
     r->err_code = 0;
 }
 
-void __attribute__((noreturn)) kpanic(const char* message, struct regs* r) {
+void __attribute__((noreturn)) kpanic(const char *message, struct regs *r) {
     apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::HALT_VECTOR);
 
     if (r == nullptr) {
@@ -68,7 +68,7 @@ void __attribute__((noreturn)) kpanic(const char* message, struct regs* r) {
         console::printf("  REASON: %s\n", message);
     }
 
-    smp::cpu_local* cpu = smp::get_cpu();
+    smp::cpu_local *cpu = smp::get_cpu();
     console::printf("  CPU   : #%d (LAPIC %d)\n", cpu->cpu_index, cpu->lapic_id);
     if (cpu->current_task) { console::printf("  TASK  : %d\n", cpu->current_task->id); }
 
@@ -93,11 +93,11 @@ void __attribute__((noreturn)) kpanic(const char* message, struct regs* r) {
 
 void print_stacktrace(uint64_t max_frames) {
     struct stack_frame {
-        struct stack_frame* next;
+        struct stack_frame *next;
         uint64_t return_address;
     };
 
-    struct stack_frame* frame;
+    struct stack_frame *frame;
     asm volatile("mov %%rbp, %0" : "=r"(frame));
 
     for (uint64_t i = 0; i < max_frames && frame; ++i) {
@@ -111,7 +111,7 @@ void print_stacktrace(uint64_t max_frames) {
     }
 }
 
-void dump_regs(struct regs* r) {
+void dump_regs(struct regs *r) {
     console::set_color(console::Color::LightCyan);
     console::printf("RAX: %p  RBX: %p  RCX: %p  RDX: %p\n", r->rax, r->rbx, r->rcx, r->rdx);
     console::printf("RSI: %p  RDI: %p  RBP: %p  RSP: %p\n", r->rsi, r->rdi, r->rbp, r->rsp);

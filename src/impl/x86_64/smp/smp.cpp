@@ -23,13 +23,13 @@ extern void enable_cpu_features();
 namespace smp {
     static uint64_t core_count = 0;
     static constexpr uintptr_t TRAM_PHYS = 0x8000;
-    static cpu_local** cpu_table = nullptr;
+    static cpu_local **cpu_table = nullptr;
 
     static_assert((TRAM_PHYS & 0xF) == 0, "TRAM_PHYS must be 16-byte aligned");
 
     uint64_t get_core_count() { return core_count; }
 
-    cpu_local* get_cpu_by_index(uint64_t index) {
+    cpu_local *get_cpu_by_index(uint64_t index) {
         if (index >= core_count || cpu_table == nullptr) { return nullptr; }
         return cpu_table[index];
     }
@@ -55,18 +55,18 @@ namespace smp {
         get_cpu()->cpu_features = feat;
     }
 
-    void setup_cpu_local(trampoline_data* data) {
-        cpu_local* local = (cpu_local*)heap::kmalloc(sizeof(cpu_local));
+    void setup_cpu_local(trampoline_data *data) {
+        cpu_local *local = (cpu_local *)heap::kmalloc(sizeof(cpu_local));
         memset(local, 0, sizeof(cpu_local));
 
         local->self = local;
         local->cpu_index = data->cpu_index;
         local->lapic_id = apic::get_id();
         local->ticks = 0;
-        local->kernel_stack = (void*)data->stack_top;
+        local->kernel_stack = (void *)data->stack_top;
 
-        apic::wrmsr(0xC0000101, (uintptr_t)local); // GS_BASE
-        apic::wrmsr(0xC0000102, (uintptr_t)local); // KERNEL_GS_BASE
+        apic::wrmsr(0xC0000101, (uintptr_t)local);  // GS_BASE
+        apic::wrmsr(0xC0000102, (uintptr_t)local);  // KERNEL_GS_BASE
 
         cpu_table[local->cpu_index] = local;
     }
@@ -77,8 +77,8 @@ namespace smp {
 
         idt::init_ap();
 
-        auto* data = (trampoline_data*)(TRAM_PHYS +
-                                        ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
+        auto *data = (trampoline_data *)(TRAM_PHYS +
+                                         ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
         setup_cpu_local(data);
         data->status = 1;
 
@@ -94,7 +94,7 @@ namespace smp {
     }
 
     void init_bsp() {
-        cpu_local* local = (cpu_local*)heap::kmalloc(sizeof(cpu_local));
+        cpu_local *local = (cpu_local *)heap::kmalloc(sizeof(cpu_local));
         memset(local, 0, sizeof(cpu_local));
 
         local->self = local;
@@ -102,20 +102,20 @@ namespace smp {
         local->lapic_id = apic::get_id();
         local->ticks = 0;
 
-        local->kernel_stack = (void*)higher_stack_top;
+        local->kernel_stack = (void *)higher_stack_top;
 
         asm volatile("mov %0, %%gs" : : "r"(0));
-        apic::wrmsr(0xC0000101, (uintptr_t)local); // GS_BASE
-        apic::wrmsr(0xC0000102, (uintptr_t)local); // KERNEL_GS_BASE
+        apic::wrmsr(0xC0000101, (uintptr_t)local);  // GS_BASE
+        apic::wrmsr(0xC0000102, (uintptr_t)local);  // KERNEL_GS_BASE
 
         gdt::init_core();
         enable_optional_cpu_features();
     }
 
-    void boot_core(uint8_t lapic_id, uintptr_t trampoline_phys, trampoline_data* data_ptr,
+    void boot_core(uint8_t lapic_id, uintptr_t trampoline_phys, trampoline_data *data_ptr,
                    uint64_t cpu_index) {
         static constexpr size_t STACK_SIZE = 1024 * 8;
-        void* stack_base = heap::kmalloc(STACK_SIZE);
+        void *stack_base = heap::kmalloc(STACK_SIZE);
         uintptr_t stack_top = ((uintptr_t)stack_base + STACK_SIZE) & ~0xF;
 
         data_ptr->cr3 = vmm::get_kernel_pagemap();
@@ -142,11 +142,11 @@ namespace smp {
         core_count = 1;  // include BSP
 
         size_t tram_size = (uintptr_t)trampoline_end - (uintptr_t)trampoline_start;
-        memcpy((void*)TRAM_PHYS, (void*)trampoline_start, tram_size);
+        memcpy((void *)TRAM_PHYS, (void *)trampoline_start, tram_size);
 
-        auto* data = (trampoline_data*)(TRAM_PHYS +
-                                        ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
-        auto* madt = (acpi::MADT*)acpi::find_table("APIC");
+        auto *data = (trampoline_data *)(TRAM_PHYS +
+                                         ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
+        auto *madt = (acpi::MADT *)acpi::find_table("APIC");
         if (!madt) {
             console::printf("[SMP] MADT not found. Single core mode.\n");
             return;
@@ -159,10 +159,10 @@ namespace smp {
         uintptr_t end = (uintptr_t)madt + madt->header.length;
 
         while (current < end) {
-            auto* header = (acpi::MADTEntryHeader*)current;
+            auto *header = (acpi::MADTEntryHeader *)current;
 
             if (header->type == 0) {
-                auto* lapic = (acpi::MADTEntryLAPIC*)current;
+                auto *lapic = (acpi::MADTEntryLAPIC *)current;
                 bool ready = (lapic->flags & 1) || (lapic->flags & 2);
 
                 if (ready && lapic->lapic_id != bsp_id) core_count++;
@@ -171,16 +171,16 @@ namespace smp {
             current += header->length;
         }
 
-        cpu_table = (cpu_local**)heap::kmalloc(sizeof(cpu_local*) * core_count);
+        cpu_table = (cpu_local **)heap::kmalloc(sizeof(cpu_local *) * core_count);
         cpu_table[0] = get_cpu();
 
         current = start;
         core_count = 1;
         while (current < end) {
-            auto* header = (acpi::MADTEntryHeader*)current;
+            auto *header = (acpi::MADTEntryHeader *)current;
 
             if (header->type == 0) {  // Type 0 = Processor Local APIC
-                auto* lapic = (acpi::MADTEntryLAPIC*)current;
+                auto *lapic = (acpi::MADTEntryLAPIC *)current;
                 // Flags bit 0 = Enabled, bit 1 = Online Capable
                 bool ready = (lapic->flags & 1) || (lapic->flags & 2);
 

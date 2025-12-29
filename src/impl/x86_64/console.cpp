@@ -9,7 +9,7 @@
 
 #include "console.h"
 
-#define DEBUG // TODO: REMOVE
+#define DEBUG  // TODO: REMOVE
 #include <stdarg.h>
 
 #include "framebuffer.h"
@@ -29,7 +29,7 @@ namespace console {
      * @internal
      * Stores the active backend and initializes the relevant hardware.
      */
-    void init(Backend backend, struct multiboot_tag_framebuffer* fb_tag) {
+    void init(Backend backend, struct multiboot_tag_framebuffer *fb_tag) {
         active_backend = backend;
 
         switch (backend) {
@@ -80,7 +80,7 @@ namespace console {
      *
      * @param str Pointer to string
      */
-    void write(const char* str) {
+    void write(const char *str) {
         while (*str) putchar_internal(*str++);
     }
 
@@ -108,7 +108,7 @@ namespace console {
         char buf[16];
         int i = 0;
         uint64_t temp = n;
-        const char* hex_digits = "0123456789ABCDEF";
+        const char *hex_digits = "0123456789ABCDEF";
 
         do {
             buf[i++] = hex_digits[temp & 0xF];
@@ -137,7 +137,7 @@ namespace console {
      * @param fmt Format string
      * @param ... Variable arguments
      */
-    void printf(const char* fmt, ...) {
+    void printf(const char *fmt, ...) {
         uint64_t flags;
 
         console_lock.acquire(flags);
@@ -163,7 +163,7 @@ namespace console {
 
                 switch (*fmt) {
                     case 's': {
-                        const char* s = va_arg(args, const char*);
+                        const char *s = va_arg(args, const char *);
                         write(s);
                         break;
                     }
@@ -178,7 +178,7 @@ namespace console {
                         break;
                     }
                     case 'p': {
-                        uint64_t n = (uint64_t)va_arg(args, void*);
+                        uint64_t n = (uint64_t)va_arg(args, void *);
                         puthex(n, 16, '0');
                         break;
                     }

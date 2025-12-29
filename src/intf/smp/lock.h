@@ -7,7 +7,7 @@ namespace lock {
 
         spinlock() : locked(0) {}
 
-        void acquire(uint64_t& flags) {
+        void acquire(uint64_t &flags) {
             asm volatile("pushf\ncli\npop %0" : "=r"(flags)::"memory");
 
             while (__atomic_test_and_set(&locked, __ATOMIC_ACQUIRE)) { asm volatile("pause"); }
@@ -18,7 +18,7 @@ namespace lock {
             asm volatile("push %0\npopf" ::"r"(flags) : "memory");
         }
 
-        bool try_acquire(uint64_t& flags) {
+        bool try_acquire(uint64_t &flags) {
             uint64_t f;
             asm volatile("pushf\ncli\npop %0" : "=r"(f)::"memory");
 

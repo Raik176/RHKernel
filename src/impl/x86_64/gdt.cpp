@@ -21,7 +21,7 @@ namespace gdt {
      * @param access Access flags (present, ring, type)
      * @param gran Granularity flags (size, long mode, upper limit bits)
      */
-    static void set_entry(gdt_entry* entry, uint32_t base, uint32_t limit, uint8_t access,
+    static void set_entry(gdt_entry *entry, uint32_t base, uint32_t limit, uint8_t access,
                           uint8_t gran) {
         entry->limit_low = limit & 0xFFFF;
         entry->base_low = base & 0xFFFF;
@@ -62,18 +62,18 @@ namespace gdt {
         gdt_load(reinterpret_cast<uint64_t>(&gdt_ptr));
     }
 
-void init_core() {
-        smp::cpu_local* local = smp::get_cpu();
+    void init_core() {
+        smp::cpu_local *local = smp::get_cpu();
 
         local->tss_entry.iopb_offset = sizeof(tss);
         local->tss_entry.rsp0 = reinterpret_cast<uint64_t>(local->kernel_stack);
 
         // Index 0: Null
         set_entry(&local->gdt_entries[0], 0, 0, 0, 0);
-        
+
         // Index 1: Kernel Code (Selector 0x08)
         set_entry(&local->gdt_entries[1], 0, 0, 0x9A, 0x20);
-        
+
         // Index 2: Kernel Data (Selector 0x10)
         set_entry(&local->gdt_entries[2], 0, 0, 0x92, 0x00);
 
@@ -93,11 +93,11 @@ void init_core() {
         local->gdt_entries[6].limit_low = tss_limit & 0xFFFF;
         local->gdt_entries[6].base_low = tss_addr & 0xFFFF;
         local->gdt_entries[6].base_middle = (tss_addr >> 16) & 0xFF;
-        local->gdt_entries[6].access = 0x89; 
+        local->gdt_entries[6].access = 0x89;
         local->gdt_entries[6].granularity = (tss_limit >> 16) & 0x0F;
         local->gdt_entries[6].base_high = (tss_addr >> 24) & 0xFF;
 
-        uint32_t* high_part = reinterpret_cast<uint32_t*>(&local->gdt_entries[7]);
+        uint32_t *high_part = reinterpret_cast<uint32_t *>(&local->gdt_entries[7]);
         high_part[0] = (tss_addr >> 32) & 0xFFFFFFFF;
         high_part[1] = 0;
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+
 #include "memory/pmm.h"
 
 #define ELF_MAGIC 0x464C457F  // "\x7FELF"
@@ -42,14 +43,15 @@ namespace elf {
         uint64_t align;
     } __attribute__((packed));
 
-    static_assert(sizeof(elf::elf_program_header) == 56, "ELF64 program header must be exactly 56 bytes");
+    static_assert(sizeof(elf::elf_program_header) == 56,
+                  "ELF64 program header must be exactly 56 bytes");
 
     struct elf_info {
         uint64_t entry;
         uint64_t pml4;
     };
 
-    elf_info load(const char* path);
+    elf_info load(const char *path);
 }  // namespace elf
 
 #define PT_LOAD 1

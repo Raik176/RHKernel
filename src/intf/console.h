@@ -54,7 +54,7 @@ namespace console {
      * @param backend The backend to use (VGA or FRAMEBUFFER)
      * @param fb_tag Optional pointer to a multiboot framebuffer tag (required for FRAMEBUFFER)
      */
-    void init(Backend backend, multiboot_tag_framebuffer* fb_tag);
+    void init(Backend backend, multiboot_tag_framebuffer *fb_tag);
 
     /**
      * @brief Clear the console screen
@@ -104,7 +104,7 @@ namespace console {
      * @param fmt Format string
      * @param ... Additional arguments
      */
-    void printf(const char* fmt, ...);
+    void printf(const char *fmt, ...);
 
     /**
      * @brief Move the cursor to a specific position

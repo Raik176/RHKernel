@@ -16,14 +16,13 @@ namespace heap {
     static_assert(sizeof(SlabHeader) < pmm::PAGE_SIZE, "SlabHeader must fit inside a single page");
     static_assert(pmm::PAGE_SIZE == 4096, "Large allocation logic assumes 4 KiB pages");
 
-
     /**
      * @internal Remove a slab from a linked list
      *
      * @param head Pointer to the head of the list
      * @param slab Slab to remove
      */
-    static void list_remove(SlabHeader** head, SlabHeader* slab) {
+    static void list_remove(SlabHeader **head, SlabHeader *slab) {
         if (slab->prev) slab->prev->next = slab->next;
         if (slab->next) slab->next->prev = slab->prev;
         if (*head == slab) *head = slab->next;
@@ -36,7 +35,7 @@ namespace heap {
      * @param head Pointer to the head of the list
      * @param slab Slab to push
      */
-    static void list_push(SlabHeader** head, SlabHeader* slab) {
+    static void list_push(SlabHeader **head, SlabHeader *slab) {
         slab->next = *head;
         if (*head) (*head)->prev = slab;
         *head = slab;
@@ -51,11 +50,11 @@ namespace heap {
      * @param slot_size Size of each allocation in this slab
      * @return Pointer to the newly created SlabHeader, or nullptr on failure
      */
-    static SlabHeader* create_slab(size_t slot_size) {
+    static SlabHeader *create_slab(size_t slot_size) {
         uint64_t phys = pmm::alloc(pmm::PAGE_SIZE);
         if (!phys) return nullptr;
 
-        SlabHeader* slab = (SlabHeader*)p2v(phys);
+        SlabHeader *slab = (SlabHeader *)p2v(phys);
 
         slab->next = nullptr;
         slab->used_slots = 0;
@@ -64,23 +63,23 @@ namespace heap {
         size_t available_space = pmm::PAGE_SIZE - header_size;
         slab->total_slots = available_space / slot_size;
 
-        uint8_t* first_slot = (uint8_t*)slab + header_size;
-        slab->free_list = (void*)first_slot;
+        uint8_t *first_slot = (uint8_t *)slab + header_size;
+        slab->free_list = (void *)first_slot;
 
         for (size_t i = 0; i < slab->total_slots - 1; i++) {
-            void** current = (void**)(first_slot + (i * slot_size));
-            *current = (void*)(first_slot + ((i + 1) * slot_size));
+            void **current = (void **)(first_slot + (i * slot_size));
+            *current = (void *)(first_slot + ((i + 1) * slot_size));
         }
 
-        void** last = (void**)(first_slot + ((slab->total_slots - 1) * slot_size));
+        void **last = (void **)(first_slot + ((slab->total_slots - 1) * slot_size));
         *last = nullptr;
 
         return slab;
     }
 
-    void* kmalloc(size_t size) {
+    void *kmalloc(size_t size) {
         size_t cache_idx = 0xFFFFFFFF;
-        SlabCache* cache = nullptr;
+        SlabCache *cache = nullptr;
 
         for (size_t i = 0; i < CACHE_COUNT; i++) {
             if (size <= caches[i].slot_size) {
@@ -96,17 +95,17 @@ namespace heap {
             uint64_t phys = pmm::alloc(actual_size);
             if (!phys) return nullptr;
             uint64_t virt = reinterpret_cast<uint64_t>(p2v(phys));
-            *(size_t*)virt = actual_size;
-            return reinterpret_cast<void*>(virt + pmm::PAGE_SIZE);
+            *(size_t *)virt = actual_size;
+            return reinterpret_cast<void *>(virt + pmm::PAGE_SIZE);
         }
 
-        smp::cpu_local* cpu = smp::get_cpu();
+        smp::cpu_local *cpu = smp::get_cpu();
         if (cpu && cpu->self == cpu) {
-            SlabHeader* local = cpu->heap_cache[cache_idx];
+            SlabHeader *local = cpu->heap_cache[cache_idx];
 
             if (local && local->free_list) {
-                void* ptr = local->free_list;
-                local->free_list = *(void**)ptr;
+                void *ptr = local->free_list;
+                local->free_list = *(void **)ptr;
                 local->used_slots++;
 
                 if (local->used_slots == local->total_slots) {
@@ -126,7 +125,7 @@ namespace heap {
         cache->lock.acquire(flags);
 
         if (!cache->partial_slabs) {
-            SlabHeader* new_slab = create_slab(cache->slot_size);
+            SlabHeader *new_slab = create_slab(cache->slot_size);
             if (!new_slab) {
                 cache->lock.release(flags);
                 return nullptr;
@@ -136,7 +135,7 @@ namespace heap {
             list_push(&cache->partial_slabs, new_slab);
         }
 
-        SlabHeader* slab = cache->partial_slabs;
+        SlabHeader *slab = cache->partial_slabs;
 
         // If SMP is active, "Steal" the global partial slab for this CPU
         if (cpu && cpu->self == cpu) {
@@ -150,8 +149,8 @@ namespace heap {
         }
 
         // Standard Global Allocation (BSP Boot Stage)
-        void* ptr = slab->free_list;
-        slab->free_list = *(void**)ptr;
+        void *ptr = slab->free_list;
+        slab->free_list = *(void **)ptr;
         slab->used_slots++;
 
         if (slab->used_slots == slab->total_slots) {
@@ -163,25 +162,25 @@ namespace heap {
         return ptr;
     }
 
-    void kfree(void* ptr) {
+    void kfree(void *ptr) {
         if (!ptr) return;
         uint64_t virt_addr = (uint64_t)ptr;
 
         if ((virt_addr & 0xFFF) == 0) {
             uint64_t metadata_page = virt_addr - pmm::PAGE_SIZE;
-            size_t total_size = *(size_t*)metadata_page;
-            pmm::free(v2p(reinterpret_cast<void*>(metadata_page)), total_size);
+            size_t total_size = *(size_t *)metadata_page;
+            pmm::free(v2p(reinterpret_cast<void *>(metadata_page)), total_size);
             return;
         }
 
-        SlabHeader* slab = (SlabHeader*)(virt_addr & ~0xFFF);
-        SlabCache* cache = &caches[slab->cache_index];
+        SlabHeader *slab = (SlabHeader *)(virt_addr & ~0xFFF);
+        SlabCache *cache = &caches[slab->cache_index];
 
         uint64_t flags;
         cache->lock.acquire(flags);
 
         bool was_full = (slab->used_slots == slab->total_slots);
-        *(void**)ptr = slab->free_list;
+        *(void **)ptr = slab->free_list;
         slab->free_list = ptr;
         slab->used_slots--;
 
@@ -200,15 +199,15 @@ namespace heap {
 
 }  // namespace heap
 
-void* operator new(size_t size) { return heap::kmalloc(size); }
-void* operator new[](size_t size) { return heap::kmalloc(size); }
-void operator delete(void* ptr) noexcept { heap::kfree(ptr); }
-void operator delete[](void* ptr) noexcept { heap::kfree(ptr); }
-void operator delete(void* ptr, size_t size) noexcept {
+void *operator new(size_t size) { return heap::kmalloc(size); }
+void *operator new[](size_t size) { return heap::kmalloc(size); }
+void operator delete(void *ptr) noexcept { heap::kfree(ptr); }
+void operator delete[](void *ptr) noexcept { heap::kfree(ptr); }
+void operator delete(void *ptr, size_t size) noexcept {
     (void)size;
     heap::kfree(ptr);
 }
-void operator delete[](void* ptr, size_t size) noexcept {
+void operator delete[](void *ptr, size_t size) noexcept {
     (void)size;
     heap::kfree(ptr);
 }

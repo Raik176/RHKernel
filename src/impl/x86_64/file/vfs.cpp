@@ -3,15 +3,15 @@
 #include "memory/heap.h"
 #include "string.h"
 
-static vfs::vfs_node* root_node = nullptr;
+static vfs::vfs_node *root_node = nullptr;
 
 namespace vfs {
     void init() {
-        root_node = (vfs_node*)heap::kmalloc(sizeof(vfs_node));
+        root_node = (vfs_node *)heap::kmalloc(sizeof(vfs_node));
 
         memset(root_node, 0, sizeof(vfs_node));
 
-        root_node->name = (char*)heap::kmalloc(2);
+        root_node->name = (char *)heap::kmalloc(2);
         strcpy(root_node->name, "/");
 
         root_node->type = VfsType::VFS_DIRECTORY;
@@ -22,18 +22,18 @@ namespace vfs {
         root_node->next = nullptr;
     }
 
-    vfs_node* open(const char* path) {
+    vfs_node *open(const char *path) {
         if (!path) return nullptr;
         if (path[0] != '/') return nullptr;  // Only absolute paths for now
 
-        vfs_node* curr = get_root();
+        vfs_node *curr = get_root();
 
         // Skip the leading '/'
-        const char* ptr = path + 1;
+        const char *ptr = path + 1;
 
         while (*ptr != '\0') {
             // Find the end of the current segment
-            const char* end = ptr;
+            const char *end = ptr;
             while (*end != '/' && *end != '\0') { end++; }
 
             // Calculate segment length
@@ -42,7 +42,7 @@ namespace vfs {
                 // Extract the segment into a temporary buffer for comparison
                 char segment[128];
                 if (len >= 128) len = 127;  // Simple overflow protection
-                memcpy(segment, (void*)ptr, len);
+                memcpy(segment, (void *)ptr, len);
                 segment[len] = '\0';
 
                 curr = finddir(curr, segment);
@@ -60,21 +60,21 @@ namespace vfs {
         return curr;
     }
 
-    uint32_t read(vfs_node* node, uint32_t offset, uint32_t size, void* buffer) {
+    uint32_t read(vfs_node *node, uint32_t offset, uint32_t size, void *buffer) {
         if (!node || node->type != VfsType::VFS_FILE) return 0;
         if (offset >= node->size) return 0;
 
         uint32_t read_size = size;
         if (offset + size > node->size) read_size = node->size - offset;
 
-        memcpy(buffer, (void*)(node->ptr + offset), read_size);
+        memcpy(buffer, (void *)(node->ptr + offset), read_size);
         return read_size;
     }
 
-    vfs_node* finddir(vfs_node* parent, const char* name) {
+    vfs_node *finddir(vfs_node *parent, const char *name) {
         if (!parent) return nullptr;
 
-        vfs_node* curr = parent->child;
+        vfs_node *curr = parent->child;
         while (curr) {
             if (strcmp(curr->name, name) == 0) { return curr; }
             curr = curr->next;
@@ -83,5 +83,5 @@ namespace vfs {
         return nullptr;
     }
 
-    vfs_node* get_root() { return root_node; }
+    vfs_node *get_root() { return root_node; }
 }  // namespace vfs

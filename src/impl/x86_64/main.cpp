@@ -14,11 +14,11 @@
 #include "util.h"
 #include "vga.h"
 
-static void debug_dump_vfs(vfs::vfs_node* node, int depth) {
+static void debug_dump_vfs(vfs::vfs_node *node, int depth) {
     while (node) {
         for (int i = 0; i < depth; i++) console::printf("  ");
 
-        const char* prefix = "- ";
+        const char *prefix = "- ";
         if (node->type == vfs::VfsType::VFS_DIRECTORY)
             prefix = "D ";
         else if (node->type == vfs::VfsType::VFS_CHAR_DEVICE)
@@ -34,17 +34,17 @@ static void debug_dump_vfs(vfs::vfs_node* node, int depth) {
 
 extern "C" void kmain(uint64_t mb_phys_addr) {
     {
-        uint8_t* mb_info = (uint8_t*)(uintptr_t)mb_phys_addr;
-        multiboot_tag_framebuffer* fb_tag = nullptr;
+        uint8_t *mb_info = (uint8_t *)(uintptr_t)mb_phys_addr;
+        multiboot_tag_framebuffer *fb_tag = nullptr;
 
-        for (uint8_t* tag = mb_info + 8; tag < mb_info + *(uint32_t*)mb_info;
-             tag += ((*(uint32_t*)(tag + 4) + 7) & ~7)) {
-            uint32_t type = *(uint32_t*)tag;
+        for (uint8_t *tag = mb_info + 8; tag < mb_info + *(uint32_t *)mb_info;
+             tag += ((*(uint32_t *)(tag + 4) + 7) & ~7)) {
+            uint32_t type = *(uint32_t *)tag;
 
             if (type == 0) break;  // End tag
 
             if (type == 8) {  // Framebuffer tag
-                fb_tag = (multiboot_tag_framebuffer*)tag;
+                fb_tag = (multiboot_tag_framebuffer *)tag;
                 break;
             }
         }

@@ -11,18 +11,18 @@ namespace heap {
         uint32_t cache_index;
         uint32_t used_slots;      ///< Number of slots currently in use
         uint32_t total_slots;     ///< Total number of slots in the slab
-        void* free_list;          ///< Linked list of free slots
+        void *free_list;          ///< Linked list of free slots
         SlabHeader *next, *prev;  ///< Links for partial/full slab lists
 
-        void* owner;
+        void *owner;
     };
 
     /** @internal Cache for slabs of a specific allocation size */
     struct SlabCache {
         size_t slot_size;  ///< Size of each allocation slot
         lock::spinlock lock;
-        SlabHeader* partial_slabs;  ///< Slabs with some free slots
-        SlabHeader* full_slabs;     ///< Slabs completely used
+        SlabHeader *partial_slabs;  ///< Slabs with some free slots
+        SlabHeader *full_slabs;     ///< Slabs completely used
     };
 
     /** @internal Predefined slab caches for common kernel allocation sizes */
@@ -43,7 +43,7 @@ namespace heap {
      * @param size Number of bytes to allocate
      * @return Pointer to the allocated memory, or nullptr if allocation fails
      */
-    void* kmalloc(size_t size);
+    void *kmalloc(size_t size);
 
     /**
      * @brief Free previously allocated memory
@@ -52,7 +52,7 @@ namespace heap {
      *
      * @param ptr Pointer to memory previously allocated with kmalloc
      */
-    void kfree(void* ptr);
+    void kfree(void *ptr);
 
 }  // namespace heap
 
@@ -64,7 +64,7 @@ namespace heap {
  * @param size Number of bytes to allocate
  * @return Pointer to allocated memory
  */
-void* operator new(size_t size);
+void *operator new(size_t size);
 
 /**
  * @brief C++ array new operator using the kernel heap
@@ -74,7 +74,7 @@ void* operator new(size_t size);
  * @param size Number of bytes to allocate
  * @return Pointer to allocated memory
  */
-void* operator new[](size_t size);
+void *operator new[](size_t size);
 
 /**
  * @brief C++ delete operator using the kernel heap
@@ -83,7 +83,7 @@ void* operator new[](size_t size);
  *
  * @param ptr Pointer to memory to free
  */
-void operator delete(void* ptr) noexcept;
+void operator delete(void *ptr) noexcept;
 
 /**
  * @brief C++ array delete operator using the kernel heap
@@ -92,7 +92,7 @@ void operator delete(void* ptr) noexcept;
  *
  * @param ptr Pointer to memory to free
  */
-void operator delete[](void* ptr) noexcept;
+void operator delete[](void *ptr) noexcept;
 
 /**
  * @brief C++ sized delete operator
@@ -102,7 +102,7 @@ void operator delete[](void* ptr) noexcept;
  * @param ptr Pointer to memory to free
  * @param size Size of the memory block
  */
-void operator delete(void* ptr, size_t size) noexcept;
+void operator delete(void *ptr, size_t size) noexcept;
 
 /**
  * @brief C++ sized array delete operator
@@ -112,4 +112,4 @@ void operator delete(void* ptr, size_t size) noexcept;
  * @param ptr Pointer to memory to free
  * @param size Size of the memory block
  */
-void operator delete[](void* ptr, size_t size) noexcept;
+void operator delete[](void *ptr, size_t size) noexcept;

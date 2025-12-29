@@ -6,10 +6,10 @@
 #include "memory/vmm.h"
 #include "string.h"
 
-//TODO: correct endianness
+// TODO: correct endianness
 namespace elf {
-    elf_info load(const char* path) {
-        vfs::vfs_node* file = vfs::open(path);
+    elf_info load(const char *path) {
+        vfs::vfs_node *file = vfs::open(path);
         if (!file) { return {0, 0}; }
 
         elf_header header;
@@ -45,7 +45,7 @@ namespace elf {
 
                 // Read from VFS into the offset in physical memory
                 // ph.vaddr & 0xFFF handles segments not starting on page boundaries
-                void* dest = (void*)((uintptr_t)p2v(phys_base) + (ph.vaddr & 0xFFF));
+                void *dest = (void *)((uintptr_t)p2v(phys_base) + (ph.vaddr & 0xFFF));
                 vfs::read(file, ph.offset, ph.filesz, dest);
             }
         }

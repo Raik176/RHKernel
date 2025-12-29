@@ -15,7 +15,7 @@ namespace vga {
      * @internal
      * VGA text buffer pointer
      */
-    static volatile uint16_t* buffer = (volatile uint16_t*)p2v(0xB8000);
+    static volatile uint16_t *buffer = (volatile uint16_t *)p2v(0xB8000);
 
     /**
      * @name Current cursor position
@@ -59,7 +59,7 @@ namespace vga {
         for (uint16_t x = 0; x < WIDTH; x++) { buffer[x] = entry; }
 
         for (uint16_t y = 1; y < HEIGHT; y++) {
-            memcpy((void*)&buffer[y * WIDTH], (void*)&buffer[0], WIDTH * 2);
+            memcpy((void *)&buffer[y * WIDTH], (void *)&buffer[0], WIDTH * 2);
         }
 
         cursor_x = 0;
@@ -77,10 +77,10 @@ namespace vga {
 
         if (cursor_y >= HEIGHT) {
             size_t bytes_to_move = (HEIGHT - 1) * WIDTH * 2;
-            memcpy((void*)buffer, (void*)(buffer + WIDTH), bytes_to_move);
+            memcpy((void *)buffer, (void *)(buffer + WIDTH), bytes_to_move);
 
             uint16_t entry = make_entry(' ');
-            uint16_t* last_line = (uint16_t*)(buffer + (HEIGHT - 1) * WIDTH);
+            uint16_t *last_line = (uint16_t *)(buffer + (HEIGHT - 1) * WIDTH);
             for (uint16_t x = 0; x < WIDTH; x++) { last_line[x] = entry; }
 
             cursor_y = HEIGHT - 1;

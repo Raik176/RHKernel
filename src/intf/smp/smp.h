@@ -16,20 +16,20 @@ namespace smp {
     } __attribute__((packed));
 
     struct cpu_local {
-        cpu_local* self;
+        cpu_local *self;
 
         uint64_t ticks;
-        void* kernel_stack;
-        void* user_rsp;
+        void *kernel_stack;
+        void *user_rsp;
 
-        scheduler::task* current_task;
-        scheduler::task* task_queues_tail[scheduler::MAX_QUEUES];
-        scheduler::task* task_queues_head[scheduler::MAX_QUEUES];
-        scheduler::task* sleep_list_head;
-        scheduler::task* idle_task;
+        scheduler::task *current_task;
+        scheduler::task *task_queues_tail[scheduler::MAX_QUEUES];
+        scheduler::task *task_queues_head[scheduler::MAX_QUEUES];
+        scheduler::task *sleep_list_head;
+        scheduler::task *idle_task;
         lock::spinlock sched_lock;
 
-        heap::SlabHeader* heap_cache[heap::CACHE_COUNT];
+        heap::SlabHeader *heap_cache[heap::CACHE_COUNT];
 
         gdt::gdt_pointer gdt_ptr;
         gdt::gdt_entry gdt_entries[gdt::MAX_ENTRIES];
@@ -41,19 +41,22 @@ namespace smp {
         struct cpu_features cpu_features;
     };
 
-    static_assert(offsetof(cpu_local, self) == 0, "GS:0 must be 'self' for pointer indirection to work");
+    static_assert(offsetof(cpu_local, self) == 0,
+                  "GS:0 must be 'self' for pointer indirection to work");
 
-    static_assert(offsetof(cpu_local, kernel_stack) == 16, "Assembly syscall_entry expects kernel_stack at GS:16");
+    static_assert(offsetof(cpu_local, kernel_stack) == 16,
+                  "Assembly syscall_entry expects kernel_stack at GS:16");
 
-    static_assert(offsetof(cpu_local, user_rsp) == 24, "Assembly syscall_entry expects user_rsp at GS:24");
+    static_assert(offsetof(cpu_local, user_rsp) == 24,
+                  "Assembly syscall_entry expects user_rsp at GS:24");
 
     void init_aps();
     void init_bsp();
     uint64_t get_core_count();
-    cpu_local* get_cpu_by_index(uint64_t index);
+    cpu_local *get_cpu_by_index(uint64_t index);
 
-    static inline cpu_local* get_cpu() {
-        cpu_local* p;
+    static inline cpu_local *get_cpu() {
+        cpu_local *p;
         asm volatile("mov %%gs:0, %0" : "=r"(p));
         return p;
     }

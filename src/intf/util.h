@@ -63,28 +63,28 @@ struct regs {
  * @param phys The physical address
  * @return The corresponding virtual address
  */
-static inline void* p2v(uint64_t phys) { return (void*)(phys + PHYS_MAP_BASE); }
+static inline void *p2v(uint64_t phys) { return (void *)(phys + PHYS_MAP_BASE); }
 
 /**
  * @brief Convert a virtual address to a physical address
  * @param virt The virtual address
  * @return The corresponding physical address
  */
-static inline uint64_t v2p(void* virt) { return (uint64_t)virt - PHYS_MAP_BASE; }
+static inline uint64_t v2p(void *virt) { return (uint64_t)virt - PHYS_MAP_BASE; }
 
 /**
  * @brief Convert a physical address to a kernel virtual address
  * @param phys The physical address
  * @return The corresponding kernel virtual address
  */
-static inline void* kp2v(uint64_t phys) { return (void*)(phys + KERNEL_VIRT_OFFSET); }
+static inline void *kp2v(uint64_t phys) { return (void *)(phys + KERNEL_VIRT_OFFSET); }
 
 /**
  * @brief Convert a kernel virtual address to a physical address
  * @param virt The kernel virtual address
  * @return The corresponding physical address
  */
-static inline uint64_t kv2p(void* virt) { return (uint64_t)virt - KERNEL_VIRT_OFFSET; }
+static inline uint64_t kv2p(void *virt) { return (uint64_t)virt - KERNEL_VIRT_OFFSET; }
 
 /**
  * @brief Align an address upward to the nearest multiple of `align`
@@ -145,7 +145,7 @@ static inline uint16_t inw(uint16_t port) {
     return ret;
 }
 
-void __attribute__((noreturn)) kpanic(const char* message, struct regs* r = nullptr);
+void __attribute__((noreturn)) kpanic(const char *message, struct regs *r = nullptr);
 void print_stacktrace(uint64_t max_frames = 10);
 void busy_sleep(uint64_t ms);
-void dump_regs(struct regs* r);
+void dump_regs(struct regs *r);

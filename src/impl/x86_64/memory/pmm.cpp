@@ -48,15 +48,17 @@ namespace pmm {
      * @internal Linked list node representing a free memory block
      */
     struct FreeBlock {
-        FreeBlock* next;
+        FreeBlock *next;
     };
 
     static_assert(sizeof(FreeBlock) <= pmm::PAGE_SIZE, "FreeBlock must fit within a single page");
     static_assert(alignof(FreeBlock) <= pmm::PAGE_SIZE, "FreeBlock alignment exceeds page size");
-    static_assert((1ULL << pmm::MAX_ORDER) * pmm::PAGE_SIZE > 0, "block_size computation overflows");
+    static_assert((1ULL << pmm::MAX_ORDER) * pmm::PAGE_SIZE > 0,
+                  "block_size computation overflows");
 
-    static FreeBlock* free_lists[MAX_ORDER + 1];  ///< Free block lists per buddy order
-    static_assert(sizeof(free_lists) / sizeof(free_lists[0]) == pmm::MAX_ORDER + 1, "free_lists must have MAX_ORDER + 1 entries");
+    static FreeBlock *free_lists[MAX_ORDER + 1];  ///< Free block lists per buddy order
+    static_assert(sizeof(free_lists) / sizeof(free_lists[0]) == pmm::MAX_ORDER + 1,
+                  "free_lists must have MAX_ORDER + 1 entries");
 
     /**
      * @brief Convert a size in bytes to buddy allocator order
@@ -86,7 +88,7 @@ namespace pmm {
      * @internal Push a free block into its free list
      */
     static void push_block(uint64_t addr, size_t order) {
-        FreeBlock* block = (FreeBlock*)p2v(addr);
+        FreeBlock *block = (FreeBlock *)p2v(addr);
         block->next = free_lists[order];
         free_lists[order] = block;
 
@@ -97,7 +99,7 @@ namespace pmm {
      * @internal Pop a free block from the free list
      */
     static uint64_t pop_block(size_t order) {
-        FreeBlock* block = free_lists[order];
+        FreeBlock *block = free_lists[order];
         if (!block) return 0;
         free_lists[order] = block->next;
 
@@ -120,8 +122,8 @@ namespace pmm {
      * @return True if block was found and removed
      */
     static bool remove_block(uint64_t phys_addr, size_t order) {
-        FreeBlock** cur = &free_lists[order];
-        FreeBlock* target_virt = (FreeBlock*)p2v(phys_addr);
+        FreeBlock **cur = &free_lists[order];
+        FreeBlock *target_virt = (FreeBlock *)p2v(phys_addr);
         while (*cur) {
             if (*cur == target_virt) {
                 *cur = (*cur)->next;
@@ -163,7 +165,7 @@ namespace pmm {
     /**
      * @internal Free a memory region while respecting reserved areas
      */
-    void free_with_reservation(uint64_t start, uint64_t end, const uint64_t* reserved,
+    void free_with_reservation(uint64_t start, uint64_t end, const uint64_t *reserved,
                                size_t res_count) {
         if (start >= end) return;
 
@@ -200,14 +202,15 @@ namespace pmm {
 
         for (size_t i = 0; i <= MAX_ORDER; i++) free_lists[i] = nullptr;
 
-        uint8_t* mb_ptr = (uint8_t*)p2v(mb_phys_addr);
-        uint32_t mb_size = *(uint32_t*)mb_ptr;
+        uint8_t *mb_ptr = (uint8_t *)p2v(mb_phys_addr);
+        uint32_t mb_size = *(uint32_t *)mb_ptr;
 
-        multiboot_tag_mmap* mmap = nullptr;
-        for (multiboot_tag* tag = (multiboot_tag*)(mb_ptr + 8); tag->type != MULTIBOOT_TAG_TYPE_END;
-             tag = (multiboot_tag*)((uint8_t*)tag + ((tag->size + 7) & ~7))) {
+        multiboot_tag_mmap *mmap = nullptr;
+        for (multiboot_tag *tag = (multiboot_tag *)(mb_ptr + 8);
+             tag->type != MULTIBOOT_TAG_TYPE_END;
+             tag = (multiboot_tag *)((uint8_t *)tag + ((tag->size + 7) & ~7))) {
             if (tag->type == MULTIBOOT_TAG_TYPE_MMAP) {
-                mmap = (multiboot_tag_mmap*)tag;
+                mmap = (multiboot_tag_mmap *)tag;
                 break;
             }
         }
@@ -216,10 +219,11 @@ namespace pmm {
         uint64_t initramfs_start = 0;
         uint64_t initramfs_end = 0;
 
-        for (multiboot_tag* tag = (multiboot_tag*)(mb_ptr + 8); tag->type != MULTIBOOT_TAG_TYPE_END;
-             tag = (multiboot_tag*)((uint8_t*)tag + ((tag->size + 7) & ~7))) {
+        for (multiboot_tag *tag = (multiboot_tag *)(mb_ptr + 8);
+             tag->type != MULTIBOOT_TAG_TYPE_END;
+             tag = (multiboot_tag *)((uint8_t *)tag + ((tag->size + 7) & ~7))) {
             if (tag->type == MULTIBOOT_TAG_TYPE_MODULE) {
-                multiboot_tag_module* mod = (multiboot_tag_module*)tag;
+                multiboot_tag_module *mod = (multiboot_tag_module *)tag;
 
                 if (strcmp(mod->cmdline, "initramfs") == 0) {
                     initramfs_start = mod->mod_start;
@@ -260,8 +264,8 @@ namespace pmm {
             initramfs_end};
         size_t res_count = sizeof(reserved) / (sizeof(uint64_t) * 2);
 
-        for (auto* e = mmap->entries; (uint8_t*)e < (uint8_t*)mmap + mmap->size;
-             e = (multiboot_mmap_entry*)((uint8_t*)e + mmap->entry_size)) {
+        for (auto *e = mmap->entries; (uint8_t *)e < (uint8_t *)mmap + mmap->size;
+             e = (multiboot_mmap_entry *)((uint8_t *)e + mmap->entry_size)) {
             system_bytes += e->len;
 
             if (e->type != MULTIBOOT_MEMORY_AVAILABLE) continue;

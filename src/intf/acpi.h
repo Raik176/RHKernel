@@ -53,6 +53,6 @@ namespace acpi {
 
     // Public API
     void init(uint64_t mb_phys_addr);
-    SDTHeader* find_table(const char* signature);
+    SDTHeader *find_table(const char *signature);
 
 }  // namespace acpi
