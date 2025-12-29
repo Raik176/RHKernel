@@ -1,12 +1,14 @@
 #pragma once
 #include <stdint.h>
 #include "util.h"
+#include "file/vfs.h"
 
 struct regs;
 
 namespace scheduler {
     static constexpr uint64_t KERNEL_STACK_SIZE = 1024 * 16;
     static constexpr uint64_t INITIAL_USER_STACK_SIZE = 1024 * 64;
+    static constexpr uint32_t INITIAL_FD_CAPACITY = 8;
 
     static_assert(KERNEL_STACK_SIZE % 16 == 0, "Kernel stack size must be 16-byte aligned");
     static_assert(INITIAL_USER_STACK_SIZE % 16 == 0, "User stack size must be 16-byte aligned");
@@ -25,6 +27,10 @@ namespace scheduler {
         void* kernel_stack;
         void* user_stack;
         uint64_t cr3;
+        uint64_t wakeup_time;
+
+        vfs::open_file** fd_table;
+        uint64_t fd_capacity;
 
         alignas(16) uint8_t fxsave_area[512];
 
@@ -50,6 +56,7 @@ namespace scheduler {
     void init_core();
     task* spawn(task_type type, void (*entry_point)(), uint64_t pagemap = 0);
     void yield();
+    void sleep(uint64_t ms);
 
     // The core logic called by idt_handler
     extern "C" regs* schedule(regs* current_state, bool is_timer_tick);

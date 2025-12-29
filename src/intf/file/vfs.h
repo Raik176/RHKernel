@@ -20,6 +20,12 @@ namespace vfs {
         uint32_t (*read)(struct vfs_node* node, uint32_t offset, uint32_t size, uint8_t* buffer);
     };
 
+    struct open_file {
+        vfs_node* node;
+        uint32_t offset;
+        lock::spinlock lock;
+    };
+
     void init();
 
     vfs_node* finddir(vfs_node* parent, const char* name);

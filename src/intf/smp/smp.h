@@ -25,6 +25,7 @@ namespace smp {
         scheduler::task* current_task;
         scheduler::task* task_queues_tail[scheduler::MAX_QUEUES];
         scheduler::task* task_queues_head[scheduler::MAX_QUEUES];
+        scheduler::task* sleep_list_head;
         scheduler::task* idle_task;
         lock::spinlock sched_lock;
 
@@ -40,7 +41,11 @@ namespace smp {
         struct cpu_features cpu_features;
     };
 
-    static_assert(offsetof(smp::cpu_local, self) == 0, "cpu_local.self must be at offset 0 for GS access");
+    static_assert(offsetof(cpu_local, self) == 0, "GS:0 must be 'self' for pointer indirection to work");
+
+    static_assert(offsetof(cpu_local, kernel_stack) == 16, "Assembly syscall_entry expects kernel_stack at GS:16");
+
+    static_assert(offsetof(cpu_local, user_rsp) == 24, "Assembly syscall_entry expects user_rsp at GS:24");
 
     void init_aps();
     void init_bsp();

@@ -19,7 +19,7 @@ namespace scheduler {
         asm volatile("fxrstor (%0)" : : "r"(t->fxsave_area) : "memory");
     }
 
-    static task* steal_work(smp::cpu_local* self) {
+    static task* steal_work(smp::cpu_local* self) { //TODO
         return nullptr;
         uint64_t core_count = smp::get_core_count();
         if (core_count < 2) return nullptr;
@@ -132,6 +132,10 @@ namespace scheduler {
         t->id = next_tid++;
         t->context = r;
 
+        t->fd_capacity = INITIAL_FD_CAPACITY;
+        t->fd_table = (vfs::open_file**)heap::kmalloc(sizeof(vfs::open_file*) * t->fd_capacity);
+        memset(t->fd_table, 0, sizeof(vfs::open_file*) * t->fd_capacity);
+
         if (type == task_type::USER) {
             uint64_t stack_pages = INITIAL_USER_STACK_SIZE / pmm::PAGE_SIZE;
             uint64_t stack_phys = pmm::alloc(stack_pages * pmm::PAGE_SIZE);
@@ -188,6 +192,27 @@ namespace scheduler {
         uint64_t flags;
         cpu->sched_lock.acquire(flags);
 
+        if (is_timer_tick) { // micro optimization
+            task* prev_sleep = nullptr;
+            task* sleep_item = cpu->sleep_list_head;
+            while (sleep_item) {
+                if (cpu->ticks >= sleep_item->wakeup_time) {
+                    task* to_wake = sleep_item;
+            
+                    if (prev_sleep) prev_sleep->next = sleep_item->next;
+                    else cpu->sleep_list_head = sleep_item->next;
+            
+                    sleep_item = sleep_item->next;
+
+                    to_wake->state = task_state::READY;
+                    enqueue(cpu, to_wake);
+                    continue; 
+                }
+                prev_sleep = sleep_item;
+                sleep_item = sleep_item->next;
+            }
+        }
+
         task* current = cpu->current_task;
 
         if (current) {
@@ -221,7 +246,7 @@ namespace scheduler {
             }
         }
 
-        if (current && current != cpu->idle_task) {
+        if (current && current != cpu->idle_task && (current->state == task_state::RUNNING || current->state == task_state::READY)) {
             if (is_timer_tick) {
                 current->quantum--;
 
@@ -268,5 +293,23 @@ namespace scheduler {
     }
 
     void yield() { asm volatile("int $0x81"); }
+
+    void sleep(uint64_t ticks) {
+        smp::cpu_local* cpu = smp::get_cpu();
+        uint64_t flags;
+    
+        cpu->sched_lock.acquire(flags);
+    
+        task* current = cpu->current_task;
+        current->state = task_state::SLEEPING;
+        current->wakeup_time = cpu->ticks + ticks;
+    
+        current->next = cpu->sleep_list_head;
+        cpu->sleep_list_head = current;
+    
+        cpu->sched_lock.release(flags);
+    
+        yield(); 
+    }
 
 }  // namespace scheduler

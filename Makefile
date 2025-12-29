@@ -18,9 +18,6 @@ FORMAT_SOURCES := $(shell find src -name '*.cpp' -o -name '*.c' -o -name '*.h' -
 # --- Configuration ---
 DEBUG ?= 0
 
-USER_DIR := user
-USER_BIN := $(USER_DIR)/bin/init
-
 TOOLS_DIR := tools
 TOOLS_ZIP := $(TOOLS_DIR)/x86_64-elf-tools-linux.zip
 TOOLS_STAMP := $(TOOLS_DIR)/.installed
@@ -75,14 +72,23 @@ endif
 
 CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit
 
-$(USER_BIN):
-	@echo "Building User Space..."
-	@$(MAKE) -C $(USER_DIR)
+USER_APPS_DIRS := $(wildcard src/user/*/)
+USER_APPS := $(filter-out src/user/common.mk, $(USER_APPS_DIRS))
 
-$(INITRAMFS_BIN): $(USER_BIN) $(shell find $(INITRAMFS_SRC) -type f)
+.PHONY: build-user-apps
+build-user-apps:
+	@for dir in $(USER_APPS); do \
+		$(MAKE) -C $$dir TOP_DIR=$(CURDIR); \
+	done
+
+$(INITRAMFS_BIN): $(shell find $(INITRAMFS_SRC) -type f) | build-user-apps
 	@mkdir -p build
 	@mkdir -p $(INITRAMFS_SRC)/bin
-	@cp $(USER_BIN) $(INITRAMFS_SRC)/bin/init
+	@rm -rf $(INITRAMFS_SRC)/bin/*
+	@for dir in $(USER_APPS); do \
+		app_name=$$(basename $$dir); \
+		cp $$dir/bin/$$app_name $(INITRAMFS_SRC)/bin/; \
+	done
 	@echo "Building Initramfs..."
 	@cd $(INITRAMFS_SRC) && find . | cpio -o -H newc > ../$(INITRAMFS_BIN)
 

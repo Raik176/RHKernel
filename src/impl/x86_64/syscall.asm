@@ -45,6 +45,7 @@ syscall_entry:
     ; pass pointer to struct regs (rsp points to the struct) in rdi (SysV)
     mov rdi, rsp
     call syscall_handler
+    mov [rsp + 14*8], rax   ; store return value
 
     ; After the handler returns: reload GP registers from the struct area
     ; NOTE: we restore GP registers except we don't need to restore rcx/r11 for syscall/sysret,

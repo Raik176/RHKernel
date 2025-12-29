@@ -6,9 +6,9 @@ extern "C" void _start() {
 
     asm volatile (
         "syscall"
-        : "=a" (result)           // RAX output
-        : "a" (0),                // syscall number = 0
-          "D" (msg)               // first arg = pointer in RDI
+        : "=a" (result)
+        : "a" (0),
+          "D" (msg)
         : "rcx", "r11", "memory"
     );
 
