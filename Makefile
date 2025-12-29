@@ -81,10 +81,8 @@ build-user-apps:
 		$(MAKE) -C $$dir TOP_DIR=$(CURDIR); \
 	done
 
-$(INITRAMFS_BIN): $(shell find $(INITRAMFS_SRC) -type f) | build-user-apps
-	@mkdir -p build
-	@mkdir -p $(INITRAMFS_SRC)/bin
-	@rm -rf $(INITRAMFS_SRC)/bin/*
+$(INITRAMFS_BIN): build-user-apps $(shell find $(INITRAMFS_SRC) -type f -not -path "$(INITRAMFS_SRC)/bin/*")
+	@mkdir -p build $(INITRAMFS_SRC)/bin
 	@for dir in $(USER_APPS); do \
 		app_name=$$(basename $$dir); \
 		cp $$dir/bin/$$app_name $(INITRAMFS_SRC)/bin/; \
@@ -170,6 +168,9 @@ debug: build-x86_64
 .PHONY: clean
 clean:
 	rm -rf build dist
+	@for dir in $(USER_APPS); do \
+		$(MAKE) -C $$dir clean; \
+	done
 
 .PHONY: clean-all
 clean-all: clean clean-venv clean-tools
