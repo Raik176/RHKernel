@@ -1,5 +1,5 @@
 <map id="apic::eoi" name="apic::eoi">
-<area shape="rect" id="Node000001" title=" " alt="" coords="148,5,225,31"/>
-<area shape="rect" id="Node000002" href="$idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="5,5,100,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="204,13,281,38"/>
+<area shape="rect" id="Node000002" href="$namespaceinterrupt__manager.html#a90bc0b8e1dc5259c7178b8b981f02d47" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,28,156,28,156,23,191,23"/>
 </map>

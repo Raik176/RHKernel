@@ -1,5 +1,12 @@
 <map id="pmm::get_free_bytes" name="pmm::get_free_bytes">
-<area shape="rect" id="Node000001" title="Get free memory in bytes." alt="" coords="116,5,277,31"/>
+<area shape="rect" id="Node000001" title="Get free memory in kilobytes." alt="" coords="636,5,797,31"/>
 <area shape="rect" id="Node000002" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="622,21,68,21,68,15,622,15"/>
+<area shape="rect" id="Node000003" href="$device_8cpp.html#a241b2aee585cee93258675dc6f426ffa" title=" " alt="" coords="393,31,588,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="623,31,589,35,588,30,622,26"/>
+<area shape="rect" id="Node000004" href="$namespaceprocfs.html#a8fbe14ca6ab797a9344e85a63a2d0e06" title="Bootstraps the /proc directory in the VFS." alt="" coords="255,31,345,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="380,46,346,46,346,41,380,41"/>
+<area shape="rect" id="Node000005" href="$device_8cpp.html#a6ed5734cf4f72e0c70ed11b4cfabc778" title=" " alt="" coords="116,31,207,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="241,46,207,46,207,41,241,41"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="102,34,68,27,69,22,103,29"/>
 </map>

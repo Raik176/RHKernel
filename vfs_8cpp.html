@@ -98,41 +98,53 @@ $(document).ready(function(){initNavTree('vfs_8cpp.html',''); initResizable(); }
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="vfs_8h_source.html">file/vfs.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="intf_2memory_2heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ksym_8h_source.html">symbol/ksym.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for vfs.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="vfs_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2file_2vfs_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2file_2vfs_8cpp" id="asrc_2impl_2x86__64_2file_2vfs_8cpp">
-<area shape="rect" title=" " alt="" coords="222,5,371,45"/>
-<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="153,93,232,119"/>
-<area shape="poly" title=" " alt="" coords="273,48,221,87,218,83,270,43"/>
-<area shape="rect" href="heap_8h.html" title=" " alt="" coords="234,167,359,192"/>
-<area shape="poly" title=" " alt="" coords="299,46,299,153,294,153,294,46"/>
-<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="384,167,455,192"/>
-<area shape="poly" title=" " alt="" coords="314,44,404,154,399,158,310,48"/>
-<area shape="rect" href="lock_8h.html" title=" " alt="" coords="146,240,239,265"/>
-<area shape="poly" title=" " alt="" coords="195,119,195,226,190,226,190,119"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="48,167,103,192"/>
-<area shape="poly" title=" " alt="" coords="175,121,108,162,105,157,173,116"/>
-<area shape="rect" title=" " alt="" coords="129,387,200,412"/>
-<area shape="poly" title=" " alt="" coords="193,266,172,373,167,372,188,265"/>
-<area shape="poly" title=" " alt="" coords="56,194,31,214,11,241,8,254,9,268,19,299,40,337,77,364,118,383,115,387,74,369,36,340,14,302,4,269,3,253,6,239,27,210,53,190"/>
-<area shape="rect" title=" " alt="" coords="263,240,338,265"/>
-<area shape="poly" title=" " alt="" coords="104,187,252,233,251,238,102,192"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="29,240,122,265"/>
-<area shape="poly" title=" " alt="" coords="78,192,78,226,73,226,73,192"/>
-<area shape="poly" title=" " alt="" coords="85,264,115,312,153,374,148,376,110,315,80,267"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="50,313,101,339"/>
-<area shape="poly" title=" " alt="" coords="78,266,78,300,73,300,73,266"/>
-<area shape="poly" title=" " alt="" coords="91,337,141,376,138,380,88,341"/>
-<area shape="poly" title=" " alt="" coords="57,315,33,295,14,266,12,247,19,228,45,198,49,202,23,231,17,247,19,264,37,291,60,311"/>
-<area shape="poly" title=" " alt="" coords="282,194,223,234,220,230,279,190"/>
-<area shape="poly" title=" " alt="" coords="315,190,331,205,347,223,356,244,353,266,324,307,286,340,246,365,209,384,207,379,244,360,283,335,320,303,348,264,350,245,342,226,327,208,311,194"/>
-<area shape="poly" title=" " alt="" coords="300,192,302,226,297,227,295,192"/>
-<area shape="poly" title=" " alt="" coords="418,193,385,262,356,304,320,341,295,357,267,371,215,389,213,384,265,366,292,353,316,337,352,301,380,259,413,191"/>
-<area shape="poly" title=" " alt="" coords="402,194,333,235,331,230,399,190"/>
+<area shape="rect" title=" " alt="" coords="445,5,595,45"/>
+<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="298,93,377,119"/>
+<area shape="poly" title=" " alt="" coords="477,48,378,90,376,85,475,43"/>
+<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="380,167,505,192"/>
+<area shape="poly" title=" " alt="" coords="513,47,457,155,452,153,508,45"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="533,167,603,192"/>
+<area shape="poly" title=" " alt="" coords="529,45,563,153,558,154,524,47"/>
+<area shape="rect" href="ksym_8h.html" title=" " alt="" coords="707,240,829,265"/>
+<area shape="poly" title=" " alt="" coords="543,43,747,228,743,232,539,47"/>
+<area shape="rect" href="lock_8h.html" title=" " alt="" coords="291,240,384,265"/>
+<area shape="poly" title=" " alt="" coords="340,119,340,226,335,226,335,119"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="201,167,255,192"/>
+<area shape="poly" title=" " alt="" coords="321,121,259,161,256,157,318,116"/>
+<area shape="rect" title=" " alt="" coords="302,387,373,412"/>
+<area shape="poly" title=" " alt="" coords="340,266,340,373,335,373,335,266"/>
+<area shape="poly" title=" " alt="" coords="236,191,328,373,323,375,231,194"/>
+<area shape="rect" title=" " alt="" coords="459,240,533,265"/>
+<area shape="poly" title=" " alt="" coords="256,185,446,235,444,240,255,191"/>
+<area shape="rect" href="portio_8h.html" title=" " alt="" coords="5,313,77,339"/>
+<area shape="poly" title=" " alt="" coords="201,185,168,190,131,200,93,217,62,242,53,255,48,270,43,300,38,299,43,268,49,252,58,238,91,212,129,195,167,185,200,180"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="72,240,165,265"/>
+<area shape="poly" title=" " alt="" coords="212,194,150,235,147,230,209,190"/>
+<area shape="poly" title=" " alt="" coords="78,333,289,384,288,389,77,339"/>
+<area shape="poly" title=" " alt="" coords="123,265,132,301,142,320,155,337,186,359,220,374,256,385,289,391,288,396,254,390,218,379,183,363,151,341,137,323,127,302,118,266"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="165,313,216,339"/>
+<area shape="poly" title=" " alt="" coords="132,264,171,302,167,306,129,268"/>
+<area shape="poly" title=" " alt="" coords="215,336,302,378,300,383,213,341"/>
+<area shape="poly" title=" " alt="" coords="191,312,219,205,224,206,196,314"/>
+<area shape="poly" title=" " alt="" coords="427,194,367,235,364,230,424,190"/>
+<area shape="poly" title=" " alt="" coords="439,194,351,375,346,373,435,191"/>
+<area shape="poly" title=" " alt="" coords="454,191,481,228,477,231,449,194"/>
+<area shape="poly" title=" " alt="" coords="570,193,565,228,558,248,547,267,511,307,467,339,422,365,382,384,380,379,420,360,464,335,507,303,543,264,553,246,559,226,565,192"/>
+<area shape="poly" title=" " alt="" coords="558,194,519,232,516,228,554,190"/>
+<area shape="rect" title=" " alt="" coords="608,240,683,265"/>
+<area shape="poly" title=" " alt="" coords="582,190,624,229,621,232,579,194"/>
+<area shape="poly" title=" " alt="" coords="768,266,754,304,741,324,724,341,698,354,661,365,569,382,470,393,387,398,386,393,470,387,569,377,660,360,696,349,721,336,737,321,749,301,763,265"/>
+<area shape="rect" href="symbol_8h.html" title=" " alt="" coords="628,313,711,339"/>
+<area shape="poly" title=" " alt="" coords="754,268,698,307,695,303,751,263"/>
+<area shape="poly" title=" " alt="" coords="629,339,387,390,386,385,627,334"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -143,16 +155,22 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aa053fadfc707491d7acd89fbe6a90644" id="r_aa053fadfc707491d7acd89fbe6a90644"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#aa053fadfc707491d7acd89fbe6a90644">vfs::create_node</a> (const char *<a class="el" href="elf_8h.html#a6aa3cdf7ddf6c2a022af8696384ceba0">name</a>, <a class="el" href="namespacevfs.html#a4254823dbf640d91def413bf2a811fa7">VfsType</a> <a class="el" href="acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03">type</a>, <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *parent)</td></tr>
+<tr class="separator:aa053fadfc707491d7acd89fbe6a90644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7bd70fe8a2dcf9aa532815575a48834" id="r_ad7bd70fe8a2dcf9aa532815575a48834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834">vfs::init</a> ()</td></tr>
 <tr class="separator:ad7bd70fe8a2dcf9aa532815575a48834"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9c521b7a194d805011246959af57312" id="r_ad9c521b7a194d805011246959af57312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#ad9c521b7a194d805011246959af57312">vfs::open</a> (const char *path)</td></tr>
-<tr class="separator:ad9c521b7a194d805011246959af57312"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64e654f19e32dde1603eee7aa9788b76" id="r_a64e654f19e32dde1603eee7aa9788b76"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a64e654f19e32dde1603eee7aa9788b76">vfs::read</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *node, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772">size</a>, void *buffer)</td></tr>
-<tr class="separator:a64e654f19e32dde1603eee7aa9788b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a239656d07bb446b6b167328138e14004" id="r_a239656d07bb446b6b167328138e14004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a239656d07bb446b6b167328138e14004">vfs::finddir</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *parent, const char *name)</td></tr>
-<tr class="separator:a239656d07bb446b6b167328138e14004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97cc57fd10da78746b300acb28b54908" id="r_a97cc57fd10da78746b300acb28b54908"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a97cc57fd10da78746b300acb28b54908">vfs::get_root</a> ()</td></tr>
 <tr class="separator:a97cc57fd10da78746b300acb28b54908"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a239656d07bb446b6b167328138e14004" id="r_a239656d07bb446b6b167328138e14004"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a239656d07bb446b6b167328138e14004">vfs::finddir</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *parent, const char *<a class="el" href="elf_8h.html#a6aa3cdf7ddf6c2a022af8696384ceba0">name</a>)</td></tr>
+<tr class="separator:a239656d07bb446b6b167328138e14004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8b6eb6bf2363f5b0e3485583109a2d" id="r_a9a8b6eb6bf2363f5b0e3485583109a2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a9a8b6eb6bf2363f5b0e3485583109a2d">vfs::traverse_relative</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *start, const char *path)</td></tr>
+<tr class="separator:a9a8b6eb6bf2363f5b0e3485583109a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c521b7a194d805011246959af57312" id="r_ad9c521b7a194d805011246959af57312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#ad9c521b7a194d805011246959af57312">vfs::open</a> (const char *path)</td></tr>
+<tr class="separator:ad9c521b7a194d805011246959af57312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e654f19e32dde1603eee7aa9788b76" id="r_a64e654f19e32dde1603eee7aa9788b76"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a64e654f19e32dde1603eee7aa9788b76">vfs::read</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *node, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, void *buffer)</td></tr>
+<tr class="separator:a64e654f19e32dde1603eee7aa9788b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cfe96af922efb4598b5ccc507df3a6b" id="r_a4cfe96af922efb4598b5ccc507df3a6b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevfs.html#a4cfe96af922efb4598b5ccc507df3a6b">vfs::write</a> (<a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *node, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, void *buffer)</td></tr>
+<tr class="separator:a4cfe96af922efb4598b5ccc507df3a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

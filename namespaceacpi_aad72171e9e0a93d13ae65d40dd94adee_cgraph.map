@@ -1,6 +1,6 @@
 <map id="acpi::find_table" name="acpi::find_table">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,31,127,56"/>
-<area shape="rect" id="Node000002" href="$string_8h.html#a1920090da3c7d87b99fb9b4972e47b6f" title="Compare two memory regions." alt="" coords="175,5,259,31"/>
+<area shape="rect" id="Node000002" href="$string_8cpp.html#a9e6df54ee04e18a3772335580e2ed872" title=" " alt="" coords="175,5,259,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,31,161,25,162,30,127,36"/>
 <area shape="rect" id="Node000003" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="193,55,240,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,50,180,59,179,64,126,56"/>

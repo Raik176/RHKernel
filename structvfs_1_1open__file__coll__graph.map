@@ -1,8 +1,8 @@
 <map id="vfs::open_file" name="vfs::open_file">
-<area shape="rect" id="Node000001" title=" " alt="" coords="105,112,215,137"/>
-<area shape="rect" id="Node000002" href="$structvfs_1_1vfs__node.html" title=" " alt="" coords="5,15,115,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,48,149,110,146,114,81,52"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="129,17,138,21,141,28,133,37,115,40,114,35,131,32,136,27,134,25,127,22"/>
-<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html" title=" " alt="" coords="205,15,315,40"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="239,52,174,114,171,110,236,48"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="105,127,215,152"/>
+<area shape="rect" id="Node000002" href="$structvfs_1_1vfs__node.html" title=" " alt="" coords="5,22,115,47"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,56,151,125,147,128,79,60"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="129,23,138,28,141,35,133,45,115,48,114,43,131,40,136,34,134,31,127,28"/>
+<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html" title=" " alt="" coords="206,22,317,47"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="242,60,173,128,170,125,238,56"/>
 </map>

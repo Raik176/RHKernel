@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['elf_5fheader_0',['elf_header',['../structelf_1_1elf__header.html',1,'elf']]],
-  ['elf_5finfo_1',['elf_info',['../structelf_1_1elf__info.html',1,'elf']]],
-  ['elf_5fprogram_5fheader_2',['elf_program_header',['../structelf_1_1elf__program__header.html',1,'elf']]]
+  ['device_5finstance_0',['device_instance',['../structdevice__instance.html',1,'']]],
+  ['device_5fops_1',['device_ops',['../structdevice__ops.html',1,'']]],
+  ['dynamic_5fsymbol_2',['dynamic_symbol',['../structksym_1_1dynamic__symbol.html',1,'ksym']]]
 ];

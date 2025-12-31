@@ -13,7 +13,7 @@ var acpi_8h =
     [ "creator_id", "acpi_8h.html#ab38918ce2820bbdf42112e514c767817", null ],
     [ "creator_revision", "acpi_8h.html#a88d54492f1cf62a366b9dacdfd9fbe9a", null ],
     [ "extended_checksum", "acpi_8h.html#a1664604ce1e7885a2c4474ab8320bc2c", null ],
-    [ "flags", "acpi_8h.html#a773b39d480759f67926cb18ae2219281", null ],
+    [ "flags", "acpi_8h.html#a899a76dc5f03f0d4ea3793c339e07ee9", null ],
     [ "header", "acpi_8h.html#a70d4527291bd61e270772858b836f8a8", null ],
     [ "lapic_addr", "acpi_8h.html#aa070c926e7d45d312902a28b2f7946cc", null ],
     [ "lapic_id", "acpi_8h.html#a8c23fe12c9a152f779c41b56fef3d8c9", null ],

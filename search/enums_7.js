@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vfstype_0',['VfsType',['../namespacevfs.html#a4254823dbf640d91def413bf2a811fa7',1,'vfs']]]
+  ['syscallnumbers_0',['SyscallNumbers',['../syscall_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fc',1,'syscall.cpp']]]
 ];

@@ -51,6 +51,7 @@ var NAVTREE =
         [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
@@ -62,12 +63,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acpi_8cpp.html",
-"functions_vars_r.html",
-"namespaceacpi.html#a7e303c89a353fefa74a301b86b2aee13",
-"namespacevga.html#adaf11803f87d6b5c6d564914d594f137",
-"structcpio__newc__header.html#a73f868cd21c2c224788907bd056a2407",
-"structmultiboot__tag__framebuffer.html#ac8c21c26e2e4d7aa47462f8189dbc1ef",
-"vfs_8h.html#ad7bd70fe8a2dcf9aa532815575a48834"
+"fd_8h_source.html",
+"initramfs_8cpp.html#a2762b5396a1ef9dcf76262fcd976c12a",
+"namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944af9a96fb667261a141d10021a66d6ad0f",
+"namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9faacb7820573f20d69befb56e41f440549",
+"structacpi_1_1RSDP.html#aa24a027f4a64ef6d23d52bd9372efef0",
+"structgdt_1_1tss.html#a98c24467b3fd1f4c71d7f775ecf8a62a",
+"structscheduler_1_1task.html#adb3a65b31ef3b6e281781f752e398593",
+"vmm_8cpp.html#a84ef8c58efe53897dffac73f34944833"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

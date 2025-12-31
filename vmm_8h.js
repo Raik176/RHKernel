@@ -11,6 +11,7 @@ var vmm_8h =
       [ "Dirty", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fa99feffc57dae9a01652065178fae5b19", null ],
       [ "Huge", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9faa2ad65f28a717b0fd2be860a0d8e5c3e", null ],
       [ "Global", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8", null ],
+      [ "CoW", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fa9a2ae83f24f7ef34394aa0c4a20bc480", null ],
       [ "NX", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fa973fd64b3b915bccdee598a385ee39e1", null ]
     ] ],
     [ "PageSize", "vmm_8h.html#a42cd2493dba06deb13885a475b6e5829", [
@@ -18,13 +19,18 @@ var vmm_8h =
       [ "Size2M", "vmm_8h.html#a42cd2493dba06deb13885a475b6e5829a8149aba1aa0f0ce11749462f817e36ea", null ],
       [ "Size1G", "vmm_8h.html#a42cd2493dba06deb13885a475b6e5829af15424734dc3ead4b2a77b9bb2952efe", null ]
     ] ],
+    [ "clone_address_space", "vmm_8h.html#a9864e8c6a3c819647e195d82a8e5dd39", null ],
     [ "create_user_address_space", "vmm_8h.html#abf984d135d39d57e1d30e060634d3d26", null ],
+    [ "destroy_user_address_space", "vmm_8h.html#a84ef8c58efe53897dffac73f34944833", null ],
     [ "get_kernel_pagemap", "vmm_8h.html#abdf265a78f65cd1d359554c771e03cb0", null ],
     [ "get_phys_addr_mask", "vmm_8h.html#a94b5ead9d649c974cf15eab5a2c582e7", null ],
+    [ "handle_fault", "vmm_8h.html#a7d071e1b5cf2e3de07612d85da413cbe", null ],
     [ "init", "vmm_8h.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],
     [ "map_page", "vmm_8h.html#afd3f7748b21b0b09ef643e0b42694a0c", null ],
     [ "map_range", "vmm_8h.html#a900951e277dcf50c77c3dac468c80f59", null ],
     [ "operator&", "vmm_8h.html#a14a63f89f88492d3c68025e66aa1100b", null ],
     [ "operator|", "vmm_8h.html#a873a1e9ab4cf8b5b19d4eefb58619e17", null ],
-    [ "unmap_page", "vmm_8h.html#a2c46f284b55b8e2cf67914ca69500ee8", null ]
+    [ "operator|=", "vmm_8h.html#acf26bd56224665f6d1c45a74c6ee0393", null ],
+    [ "unmap_page", "vmm_8h.html#a2c46f284b55b8e2cf67914ca69500ee8", null ],
+    [ "unmap_range", "vmm_8h.html#a3bd18db05e62aec1ee8ba597e9edae70", null ]
 ];

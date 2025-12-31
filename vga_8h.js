@@ -1,5 +1,6 @@
 var vga_8h =
 [
+    [ "backspace", "vga_8h.html#ga0aeab881ec911a09eeb139b3b6caf693", null ],
     [ "clear", "vga_8h.html#ga4153f07ff74b216e508c7d83b7c2f4ad", null ],
     [ "disable_cursor", "vga_8h.html#gadca32e66e7fd904784b4411f7e6f03a7", null ],
     [ "enable_cursor", "vga_8h.html#ga4186bda44ce74c443fa77ebe369fa673", null ],

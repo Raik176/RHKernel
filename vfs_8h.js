@@ -7,9 +7,12 @@ var vfs_8h =
       [ "VFS_DIRECTORY", "vfs_8h.html#a4254823dbf640d91def413bf2a811fa7ab9f281976e5f272eb87134ab4fc83d38", null ],
       [ "VFS_CHAR_DEVICE", "vfs_8h.html#a4254823dbf640d91def413bf2a811fa7a413ade700c6f47c1c662cafca038b523", null ]
     ] ],
+    [ "create_node", "vfs_8h.html#aa053fadfc707491d7acd89fbe6a90644", null ],
     [ "finddir", "vfs_8h.html#a239656d07bb446b6b167328138e14004", null ],
     [ "get_root", "vfs_8h.html#a97cc57fd10da78746b300acb28b54908", null ],
     [ "init", "vfs_8h.html#ad7bd70fe8a2dcf9aa532815575a48834", null ],
     [ "open", "vfs_8h.html#ad9c521b7a194d805011246959af57312", null ],
-    [ "read", "vfs_8h.html#a64e654f19e32dde1603eee7aa9788b76", null ]
+    [ "read", "vfs_8h.html#a64e654f19e32dde1603eee7aa9788b76", null ],
+    [ "traverse_relative", "vfs_8h.html#a9a8b6eb6bf2363f5b0e3485583109a2d", null ],
+    [ "write", "vfs_8h.html#a4cfe96af922efb4598b5ccc507df3a6b", null ]
 ];

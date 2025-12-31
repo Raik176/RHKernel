@@ -1,10 +1,10 @@
 var idt_8cpp =
 [
+    [ "dispatch_irq", "idt_8cpp.html#afe17b08d081d2317310198cb8ba41269", null ],
     [ "handle_halt_ipi", "idt_8cpp.html#a2794ae20b304bbbb23a617fcb4f60eb5", null ],
     [ "idt_handler", "idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b", null ],
     [ "init", "idt_8cpp.html#a6a2f66e62a6c1b073aa94f90a44db50a", null ],
     [ "init_ap", "idt_8cpp.html#a8673d711311d6c4b6e7920f7e13e34cd", null ],
-    [ "irq0", "idt_8cpp.html#adbe0f253d11eeb032b3612c8732fb76e", null ],
     [ "isr0", "idt_8cpp.html#af88eb8e98d943aa0461c01de3cb53493", null ],
     [ "isr1", "idt_8cpp.html#aeab0ed9ae661801c25f7dc9089c19f72", null ],
     [ "isr10", "idt_8cpp.html#a3c8cb1341cf756883a2e7dc317d5272d", null ],
@@ -33,6 +33,8 @@ var idt_8cpp =
     [ "isr3", "idt_8cpp.html#a0ef268d2c16a7b318356451a05fd507b", null ],
     [ "isr30", "idt_8cpp.html#af868664393aedd51c04e3ddd48b8f84f", null ],
     [ "isr31", "idt_8cpp.html#af4ae10cea59f9bb2f79c13b8036d81f1", null ],
+    [ "isr32", "idt_8cpp.html#a8eb785d6bbda394a250c49dfa8fab00b", null ],
+    [ "isr33", "idt_8cpp.html#a21f7d304ed1a2251165542b493dee9a2", null ],
     [ "isr4", "idt_8cpp.html#a09af768d636144aaeaddd76c92a0a2f5", null ],
     [ "isr5", "idt_8cpp.html#aa91d821a4bcafb44933d92945727b0df", null ],
     [ "isr6", "idt_8cpp.html#a9fadb95f34937b1ded02c4171b4920ba", null ],
@@ -42,6 +44,5 @@ var idt_8cpp =
     [ "load", "idt_8cpp.html#a11b4853d5e7b5eedb57e2c8c531c7df4", null ],
     [ "set_gate", "idt_8cpp.html#a241eccc3e87b3e7c19ef23a547c86b88", null ],
     [ "idt", "idt_8cpp.html#adf41cef4d7cf207215b25d30326dd48b", null ],
-    [ "idtp", "idt_8cpp.html#a4871bbadf82a31090453cde2d2d742b7", null ],
-    [ "panic_lock", "idt_8cpp.html#a5893ec505c45df10ed22c54e8bb74f4a", null ]
+    [ "idtp", "idt_8cpp.html#a4871bbadf82a31090453cde2d2d742b7", null ]
 ];

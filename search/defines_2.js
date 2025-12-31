@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['ia32_5fefer_0',['IA32_EFER',['../syscall_8cpp.html#a781940174888ffe44a60eac2cef0c9ff',1,'syscall.cpp']]],
-  ['ia32_5ffmask_1',['IA32_FMASK',['../syscall_8cpp.html#a3a69543dc8732e4059fe779ed07d9655',1,'syscall.cpp']]],
-  ['ia32_5flstar_2',['IA32_LSTAR',['../syscall_8cpp.html#a591479e9e26bb3a18a1dd959ab4e5e82',1,'syscall.cpp']]],
-  ['ia32_5fstar_3',['IA32_STAR',['../syscall_8cpp.html#ac177c522e3e9cf4ff3143d9e9b4057e3',1,'syscall.cpp']]]
+  ['elf64_5fr_5fsym_0',['ELF64_R_SYM',['../elf_8h.html#ab8a1253bfcc928f9aa9d4177d84f6830',1,'elf.h']]],
+  ['elf64_5fr_5ftype_1',['ELF64_R_TYPE',['../elf_8h.html#a51aeadee885873fec9a218c058fe9e09',1,'elf.h']]],
+  ['elf_5fmagic_2',['ELF_MAGIC',['../elf_8h.html#abb1c2e5626667aacc7b3efd269a6c0eb',1,'elf.h']]],
+  ['extern_5fc_5flinkage_3',['EXTERN_C_LINKAGE',['../symbol_8h.html#a305e12e9ccc868a771b28c86e52b0a53',1,'symbol.h']]]
 ];

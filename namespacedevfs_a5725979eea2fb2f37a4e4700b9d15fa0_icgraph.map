@@ -1,0 +1,7 @@
+<map id="devfs::init" name="devfs::init">
+<area shape="rect" id="Node000001" title="Bootstraps the /dev directory in the VFS." alt="" coords="255,5,341,31"/>
+<area shape="rect" id="Node000002" href="$device_8cpp.html#a6ed5734cf4f72e0c70ed11b4cfabc778" title=" " alt="" coords="116,5,207,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,21,207,21,207,15,241,15"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+</map>

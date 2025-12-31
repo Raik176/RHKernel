@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['multiboot_5fmemory_5ftype_0',['multiboot_memory_type',['../multiboot2_8h.html#acf6aecce05b4f983f063de6ef7d5ea4b',1,'multiboot2.h']]]
+  ['irq_5freturn_0',['irq_return',['../interrupt_8h.html#a0eaf3ffd433d156b600ac205f9635a9a',1,'interrupt.h']]]
 ];

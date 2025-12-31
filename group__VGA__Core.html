@@ -101,6 +101,8 @@ Functions</h2></td></tr>
 <tr class="memitem:gae1a3a699e33b42de55fd22eefea6bad2" id="r_gae1a3a699e33b42de55fd22eefea6bad2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__VGA__Core.html#gae1a3a699e33b42de55fd22eefea6bad2">vga::init</a> ()</td></tr>
 <tr class="memdesc:gae1a3a699e33b42de55fd22eefea6bad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize VGA text mode.  <br /></td></tr>
 <tr class="separator:gae1a3a699e33b42de55fd22eefea6bad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0aeab881ec911a09eeb139b3b6caf693" id="r_ga0aeab881ec911a09eeb139b3b6caf693"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__VGA__Core.html#ga0aeab881ec911a09eeb139b3b6caf693">vga::backspace</a> ()</td></tr>
+<tr class="separator:ga0aeab881ec911a09eeb139b3b6caf693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4153f07ff74b216e508c7d83b7c2f4ad" id="r_ga4153f07ff74b216e508c7d83b7c2f4ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad">vga::clear</a> ()</td></tr>
 <tr class="memdesc:ga4153f07ff74b216e508c7d83b7c2f4ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the screen.  <br /></td></tr>
 <tr class="separator:ga4153f07ff74b216e508c7d83b7c2f4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,6 +110,105 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Functions for initializing and clearing the screen. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga0aeab881ec911a09eeb139b3b6caf693" name="ga0aeab881ec911a09eeb139b3b6caf693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0aeab881ec911a09eeb139b3b6caf693">&#9670;&#160;</a></span>backspace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vga::backspace </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_cgraph.png" border="0" usemap="#agroup__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_cgraph" alt=""/></div>
+<map name="agroup__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_cgraph" id="agroup__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_cgraph">
+<area shape="rect" title=" " alt="" coords="5,35,128,60"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="194,5,325,31"/>
+<area shape="poly" title=" " alt="" coords="128,35,180,27,180,33,129,41"/>
+<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="176,55,343,95"/>
+<area shape="poly" title=" " alt="" coords="129,54,163,59,162,64,128,59"/>
+<area shape="rect" href="portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="391,63,441,88"/>
+<area shape="poly" title=" " alt="" coords="343,73,376,73,376,78,343,78"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_icgraph.png" border="0" usemap="#agroup__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_icgraph" alt=""/></div>
+<map name="agroup__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_icgraph" id="agroup__VGA__Core_ga0aeab881ec911a09eeb139b3b6caf693_icgraph">
+<area shape="rect" title=" " alt="" coords="1531,187,1653,212"/>
+<area shape="rect" href="namespaceconsole.html#ab231d521184351a44f099e4b3d7a603a" title=" " alt="" coords="1333,187,1483,212"/>
+<area shape="poly" title=" " alt="" coords="1517,202,1483,202,1483,197,1517,197"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="1099,187,1285,212"/>
+<area shape="poly" title=" " alt="" coords="1320,202,1285,202,1285,197,1320,197"/>
+<area shape="rect" href="group__Console__Output.html#ga3dd53055efb1a3b3077465037d9e4689" title=" " alt="" coords="541,61,683,87"/>
+<area shape="poly" title=" " alt="" coords="1167,179,1116,137,1084,117,1050,100,1003,85,953,74,854,63,760,63,683,68,683,62,760,57,854,58,954,69,1004,80,1052,96,1086,112,1119,133,1170,175"/>
+<area shape="rect" href="group__Console__Output.html#gaba87341fd1ed10fbefe4e1dbf1300174" title="Write a single character to the console." alt="" coords="921,313,1051,339"/>
+<area shape="poly" title=" " alt="" coords="1164,222,1052,296,1016,315,1014,311,1049,292,1161,218"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="739,163,865,188"/>
+<area shape="poly" title=" " alt="" coords="1085,195,865,182,865,176,1085,190"/>
+<area shape="rect" href="group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242" title=" " alt="" coords="551,187,673,212"/>
+<area shape="poly" title=" " alt="" coords="1138,219,1058,238,956,256,843,263,786,261,730,253,677,235,634,214,637,210,679,231,731,247,787,256,843,258,956,251,1057,233,1137,213"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="737,212,867,237"/>
+<area shape="poly" title=" " alt="" coords="1085,209,868,223,867,218,1085,204"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="929,111,1043,136"/>
+<area shape="poly" title=" " alt="" coords="1143,184,1021,139,1022,134,1145,179"/>
+<area shape="rect" href="device_8cpp.html#aa12e6bd56934676fd60e44a2c75eebbf" title=" " alt="" coords="731,313,873,339"/>
+<area shape="poly" title=" " alt="" coords="908,329,874,329,874,323,908,323"/>
+<area shape="poly" title=" " alt="" coords="764,158,636,89,638,84,766,154"/>
+<area shape="poly" title=" " alt="" coords="726,188,674,194,673,189,725,182"/>
+<area shape="rect" href="logging_8cpp.html#abbb2cb31a2370a9a7236d1018713dffc" title=" " alt="" coords="411,31,461,56"/>
+<area shape="poly" title=" " alt="" coords="584,179,450,58,453,54,588,175"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="379,317,493,343"/>
+<area shape="poly" title=" " alt="" coords="584,223,456,319,453,315,581,218"/>
+<area shape="rect" href="kbd__core_8c.html#a695062fada6bbf4781c9537444be2aa6" title=" " alt="" coords="202,31,305,56"/>
+<area shape="poly" title=" " alt="" coords="397,46,305,46,305,41,397,41"/>
+<area shape="rect" href="ps2__kbd_8c.html#a33c07a1ca918a4d99cc19537f7738970" title=" " alt="" coords="30,5,103,31"/>
+<area shape="poly" title=" " alt="" coords="397,35,330,21,268,16,206,14,104,18,103,13,206,9,268,10,331,15,398,29"/>
+<area shape="poly" title=" " alt="" coords="188,37,103,26,104,20,189,32"/>
+<area shape="rect" href="main_8cpp.html#aa11bc80bd1372731cea7f6c63d999132" title=" " alt="" coords="187,416,320,441"/>
+<area shape="poly" title=" " alt="" coords="401,352,280,418,277,413,398,347"/>
+<area shape="rect" href="util_8cpp.html#ae6101ed1776761a6319bcb7983af3ba2" title=" " alt="" coords="206,465,301,491"/>
+<area shape="poly" title=" " alt="" coords="422,356,386,407,361,433,332,456,302,470,300,466,329,452,357,429,381,403,418,353"/>
+<area shape="rect" href="namespacescheduler.html#a74d2c4d5395bd616755c95fe0162e826" title=" " alt="" coords="194,129,313,155"/>
+<area shape="poly" title=" " alt="" coords="423,306,388,237,362,200,329,168,310,157,312,152,332,164,366,196,393,234,428,303"/>
+<area shape="rect" href="util_8cpp.html#af1167ae131bb0adccdea4dac6cb4153c" title=" " alt="" coords="234,567,273,592"/>
+<area shape="poly" title=" " alt="" coords="431,357,419,399,399,450,371,502,332,549,303,568,274,578,272,573,301,563,329,545,366,500,394,447,414,397,426,356"/>
+<area shape="rect" href="util_8cpp.html#a0d7298832cd70a9334ba259b1e46b50b" title=" " alt="" coords="234,616,273,641"/>
+<area shape="poly" title=" " alt="" coords="435,357,426,409,409,476,379,546,358,578,332,607,303,623,274,630,273,625,301,618,329,603,354,575,374,543,404,474,421,408,430,356"/>
+<area shape="rect" href="util_8cpp.html#a5d687ee410e54a3d440f87b37d000839" title=" " alt="" coords="234,80,273,105"/>
+<area shape="poly" title=" " alt="" coords="427,305,415,264,395,214,367,163,349,139,329,119,301,104,272,97,274,92,303,99,332,115,353,136,372,160,400,211,420,262,432,303"/>
+<area shape="rect" href="namespaceacpi.html#a9bbb5f7f990a3c76cbce5b8aec02ee0d" title=" " alt="" coords="214,179,293,204"/>
+<area shape="poly" title=" " alt="" coords="416,308,379,262,356,239,329,219,292,202,294,197,332,214,359,235,383,259,420,304"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="35,236,98,261"/>
+<area shape="poly" title=" " alt="" coords="431,357,418,392,398,434,370,474,352,492,332,506,290,525,252,533,215,527,175,506,145,480,121,449,103,414,89,378,72,310,66,262,71,261,78,309,94,377,108,412,126,446,149,477,177,501,217,522,252,528,288,520,329,501,349,487,366,471,394,431,413,390,425,355"/>
+<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="199,293,308,319"/>
+<area shape="poly" title=" " alt="" coords="364,323,308,316,309,311,365,318"/>
+<area shape="rect" href="namespacemodule__loader.html#a2a75f8fe09dd3604899bf97d174ed3c0" title=" " alt="" coords="176,229,331,269"/>
+<area shape="poly" title=" " alt="" coords="394,314,330,284,300,271,302,266,332,280,396,309"/>
+<area shape="rect" href="util_8cpp.html#aa2557ff6773a87316035e296caebed4a" title=" " alt="" coords="190,343,317,368"/>
+<area shape="poly" title=" " alt="" coords="365,342,318,349,317,344,364,337"/>
+<area shape="poly" title=" " alt="" coords="285,406,276,398,253,395,234,397,224,401,222,407,228,414,223,417,217,408,220,398,233,392,253,389,278,393,289,402"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,129,128,155"/>
+<area shape="poly" title=" " alt="" coords="180,145,128,145,128,139,180,139"/>
+<area shape="poly" title=" " alt="" coords="202,210,99,242,97,237,200,205"/>
+<area shape="poly" title=" " alt="" coords="162,251,98,251,98,246,162,246"/>
+<area shape="poly" title=" " alt="" coords="722,217,673,210,674,205,723,211"/>
+<area shape="poly" title=" " alt="" coords="916,115,873,109,683,85,683,79,874,103,916,110"/>
+<area shape="poly" title=" " alt="" coords="928,142,849,165,847,160,927,137"/>
+<area shape="poly" title=" " alt="" coords="916,128,827,135,731,153,681,170,639,189,637,184,679,165,730,147,826,130,915,122"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ga4153f07ff74b216e508c7d83b7c2f4ad" name="ga4153f07ff74b216e508c7d83b7c2f4ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga4153f07ff74b216e508c7d83b7c2f4ad">&#9670;&#160;</a></span>clear()</h2>
 
@@ -133,11 +234,11 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Clear the screen." alt="" coords="5,55,92,80"/>
 <area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="158,5,289,31"/>
 <area shape="poly" title=" " alt="" coords="91,53,163,32,165,37,93,58"/>
-<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="184,55,263,80"/>
+<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="184,55,263,80"/>
 <area shape="poly" title=" " alt="" coords="92,65,171,65,171,70,92,70"/>
 <area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="140,105,307,145"/>
 <area shape="poly" title=" " alt="" coords="89,78,150,98,148,103,87,83"/>
-<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="355,112,405,137"/>
+<area shape="rect" href="portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="355,112,405,137"/>
 <area shape="poly" title=" " alt="" coords="307,122,340,122,340,127,307,127"/>
 </map>
 </div>
@@ -189,15 +290,15 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="80,130,114,135,113,141,80,136"/>
 <area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="339,5,470,31"/>
 <area shape="poly" title=" " alt="" coords="225,83,320,40,342,32,343,37,322,44,227,88"/>
-<area shape="rect" href="string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="365,55,444,80"/>
+<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="365,55,444,80"/>
 <area shape="poly" title=" " alt="" coords="244,89,352,73,352,78,245,94"/>
 <area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="321,105,488,145"/>
 <area shape="poly" title=" " alt="" coords="245,101,308,109,307,115,244,106"/>
-<area shape="rect" href="util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="536,141,587,167"/>
+<area shape="rect" href="portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="536,141,587,167"/>
 <area shape="poly" title=" " alt="" coords="489,138,523,144,522,149,488,143"/>
 <area shape="poly" title=" " alt="" coords="273,139,307,135,308,140,274,145"/>
 <area shape="poly" title=" " alt="" coords="274,152,321,154,488,154,522,153,522,158,488,159,321,159,274,158"/>
-<area shape="rect" href="util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="383,220,426,245"/>
+<area shape="rect" href="portio_8h.html#a0223c8898dfec29069879dc51076e28a" title=" " alt="" coords="383,220,426,245"/>
 <area shape="poly" title=" " alt="" coords="233,162,322,198,371,217,369,222,320,203,231,167"/>
 </map>
 </div>

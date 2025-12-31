@@ -67,9 +67,11 @@ var namespaces_dup =
         [ "Yellow", "namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944a51e6cd92b6c45f9affdc158ecca2b8b8", null ],
         [ "White", "namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944a25a81701fbfa4a1efdf660a950c1d006", null ]
       ] ],
+      [ "backspace", "namespaceconsole.html#ab231d521184351a44f099e4b3d7a603a", null ],
       [ "clear", "group__Console__Core.html#ga035f2f624f6a23ed646c9654d4510a66", null ],
       [ "disable_cursor", "group__Console__Core.html#ga36cbc01958448a64c53952fcddc57060", null ],
       [ "enable_cursor", "group__Console__Core.html#ga958b79f80b128cef01b815246c292b10", null ],
+      [ "hexdump", "group__Console__Output.html#ga3dd53055efb1a3b3077465037d9e4689", null ],
       [ "init", "group__Console__Core.html#gacac6ff3ba4cf67cd89b78395e7759dbb", null ],
       [ "move_cursor", "group__Console__Output.html#ga9342e94a12a86c2367bddb6f7a9cb69f", null ],
       [ "printf", "group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2", null ],
@@ -78,11 +80,21 @@ var namespaces_dup =
       [ "puthex", "namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d", null ],
       [ "putnum", "namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594", null ],
       [ "set_color", "namespaceconsole.html#ad6e647f131636f240b8207aea6e746a2", null ],
+      [ "vprintf", "group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242", null ],
       [ "write", "namespaceconsole.html#ae2713614e37ba234a7af6abc42460964", null ],
       [ "active_backend", "namespaceconsole.html#ae57e81d0aaac0c99a42db59e05380069", null ],
       [ "console_lock", "namespaceconsole.html#a4c479c9a26d67cbbff44891c1587ee68", null ]
     ] ],
+    [ "devfs", "namespacedevfs.html", [
+      [ "init", "namespacedevfs.html#a5725979eea2fb2f37a4e4700b9d15fa0", null ]
+    ] ],
     [ "elf", "namespaceelf.html", "namespaceelf" ],
+    [ "fd_manager", "namespacefd__manager.html", [
+      [ "alloc_fd", "namespacefd__manager.html#a0ae654c52438095e53cdffae57bc5928", null ],
+      [ "close_fd", "namespacefd__manager.html#a8056fcc545b9535496e0ce775cd0db21", null ],
+      [ "expand_table", "namespacefd__manager.html#a867d1d441962585e6eea623d3c231365", null ],
+      [ "get_file", "namespacefd__manager.html#a393512ad5e329576c521daae9f1af458", null ]
+    ] ],
     [ "framebuffer", "namespaceframebuffer.html", "namespaceframebuffer" ],
     [ "gdt", "namespacegdt.html", "namespacegdt" ],
     [ "heap", "namespaceheap.html", "namespaceheap" ],
@@ -91,13 +103,15 @@ var namespaces_dup =
       [ "hex_to_int", "namespaceinitramfs.html#a4f476d652f3f1197ce0fc383858a49c5", null ],
       [ "init", "namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a", null ]
     ] ],
-    [ "ksym", "namespaceksym.html", [
-      [ "get_name", "namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65", null ],
-      [ "_ksymtab_end", "namespaceksym.html#a1373f728f45d7e93e1bfc28544356534", null ],
-      [ "_ksymtab_start", "namespaceksym.html#aec18f3c871c95c5f67e2a46c343e384a", null ]
-    ] ],
+    [ "interrupt_manager", "namespaceinterrupt__manager.html", "namespaceinterrupt__manager" ],
+    [ "ioapic", "namespaceioapic.html", "namespaceioapic" ],
+    [ "ksym", "namespaceksym.html", "namespaceksym" ],
     [ "lock", "namespacelock.html", "namespacelock" ],
+    [ "module_loader", "namespacemodule__loader.html", "namespacemodule__loader" ],
     [ "pmm", "namespacepmm.html", "namespacepmm" ],
+    [ "procfs", "namespaceprocfs.html", [
+      [ "init", "namespaceprocfs.html#a8fbe14ca6ab797a9344e85a63a2d0e06", null ]
+    ] ],
     [ "scheduler", "namespacescheduler.html", "namespacescheduler" ],
     [ "serial", "namespaceserial.html", [
       [ "can_transmit", "namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a", null ],
@@ -110,6 +124,7 @@ var namespaces_dup =
     [ "smp", "namespacesmp.html", "namespacesmp" ],
     [ "vfs", "namespacevfs.html", "namespacevfs" ],
     [ "vga", "namespacevga.html", [
+      [ "backspace", "group__VGA__Core.html#ga0aeab881ec911a09eeb139b3b6caf693", null ],
       [ "clear", "group__VGA__Core.html#ga4153f07ff74b216e508c7d83b7c2f4ad", null ],
       [ "disable_cursor", "group__VGA__Output.html#gadca32e66e7fd904784b4411f7e6f03a7", null ],
       [ "enable_cursor", "group__VGA__Output.html#ga4186bda44ce74c443fa77ebe369fa673", null ],
@@ -139,6 +154,7 @@ var namespaces_dup =
         [ "Dirty", "namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa99feffc57dae9a01652065178fae5b19", null ],
         [ "Huge", "namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9faa2ad65f28a717b0fd2be860a0d8e5c3e", null ],
         [ "Global", "namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa4cc6684df7b4a92b1dec6fce3264fac8", null ],
+        [ "CoW", "namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa9a2ae83f24f7ef34394aa0c4a20bc480", null ],
         [ "NX", "namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa973fd64b3b915bccdee598a385ee39e1", null ]
       ] ],
       [ "PageSize", "namespacevmm.html#a42cd2493dba06deb13885a475b6e5829", [
@@ -146,17 +162,24 @@ var namespaces_dup =
         [ "Size2M", "namespacevmm.html#a42cd2493dba06deb13885a475b6e5829a8149aba1aa0f0ce11749462f817e36ea", null ],
         [ "Size1G", "namespacevmm.html#a42cd2493dba06deb13885a475b6e5829af15424734dc3ead4b2a77b9bb2952efe", null ]
       ] ],
+      [ "clone_address_space", "namespacevmm.html#a9864e8c6a3c819647e195d82a8e5dd39", null ],
       [ "create_user_address_space", "namespacevmm.html#abf984d135d39d57e1d30e060634d3d26", null ],
+      [ "destroy_table_level", "namespacevmm.html#a334ac92f6cf00b3b21983c5cab9e7cc4", null ],
+      [ "destroy_user_address_space", "namespacevmm.html#a84ef8c58efe53897dffac73f34944833", null ],
       [ "get_kernel_pagemap", "namespacevmm.html#abdf265a78f65cd1d359554c771e03cb0", null ],
       [ "get_next_table", "namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817", null ],
       [ "get_phys_addr_mask", "namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7", null ],
+      [ "get_pte_ptr", "namespacevmm.html#aac62a7ae8cf408bdd53a52c31950cee3", null ],
       [ "get_table_ptr", "namespacevmm.html#aa604160270551f1cb1a67a113b5167a2", null ],
+      [ "handle_fault", "namespacevmm.html#a7d071e1b5cf2e3de07612d85da413cbe", null ],
       [ "init", "namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],
       [ "map_page", "namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c", null ],
       [ "map_range", "namespacevmm.html#a900951e277dcf50c77c3dac468c80f59", null ],
       [ "operator&", "namespacevmm.html#a14a63f89f88492d3c68025e66aa1100b", null ],
       [ "operator|", "namespacevmm.html#a873a1e9ab4cf8b5b19d4eefb58619e17", null ],
+      [ "operator|=", "namespacevmm.html#acf26bd56224665f6d1c45a74c6ee0393", null ],
       [ "unmap_page", "namespacevmm.html#a2c46f284b55b8e2cf67914ca69500ee8", null ],
+      [ "unmap_range", "namespacevmm.html#a3bd18db05e62aec1ee8ba597e9edae70", null ],
       [ "current_pml4_phys", "namespacevmm.html#a7d1c1ba652aaf58fb64fd1c25d1200f7", null ],
       [ "phys_addr_mask", "namespacevmm.html#a50352caf62ec7c48f298707a78753a09", null ],
       [ "supports_1gb_pages", "namespacevmm.html#aae5b4f99ce8bdd0321f58818b1fac63b", null ],

@@ -1,0 +1,25 @@
+<map id="vfs::create_node" name="vfs::create_node">
+<area shape="rect" id="Node000001" title=" " alt="" coords="596,96,727,121"/>
+<area shape="rect" id="Node000002" href="$device_8cpp.html#a070589a4558b997c6895f49621e66df2" title="Register a character device into /dev. Supports nested paths like &quot;input/mouse0&quot;." alt="" coords="425,146,548,172"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="604,128,532,149,531,144,603,122"/>
+<area shape="rect" id="Node000003" href="$namespacedevfs.html#a5725979eea2fb2f37a4e4700b9d15fa0" title="Bootstraps the /dev directory in the VFS." alt="" coords="283,96,369,121"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="582,111,370,111,370,106,582,106"/>
+<area shape="rect" id="Node000008" href="$namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834" title=" " alt="" coords="291,197,361,222"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="637,132,597,162,549,187,499,201,448,209,362,213,361,208,447,204,498,196,547,182,595,157,634,128"/>
+<area shape="rect" id="Node000009" href="$namespaceprocfs.html#a8fbe14ca6ab797a9344e85a63a2d0e06" title="Bootstraps the /proc directory in the VFS." alt="" coords="441,45,532,70"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="603,94,531,73,532,68,604,89"/>
+<area shape="rect" id="Node000010" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,8,227,33"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="635,88,595,59,547,35,505,23,462,16,374,9,293,10,227,15,227,10,293,5,375,3,463,10,506,18,549,30,598,54,638,84"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="432,145,366,124,368,119,433,139"/>
+<area shape="rect" id="Node000006" href="$kbd__core_8c.html#a695062fada6bbf4781c9537444be2aa6" title=" " alt="" coords="275,146,377,172"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="412,162,378,162,378,156,412,156"/>
+<area shape="rect" id="Node000004" href="$device_8cpp.html#a6ed5734cf4f72e0c70ed11b4cfabc778" title=" " alt="" coords="126,70,217,96"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="269,102,216,93,217,88,269,96"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,70,68,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="112,86,68,86,68,80,112,80"/>
+<area shape="rect" id="Node000007" href="$ps2__kbd_8c.html#a33c07a1ca918a4d99cc19537f7738970" title=" " alt="" coords="135,146,208,172"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="261,162,208,162,208,156,261,156"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="277,217,240,217,198,213,155,204,115,187,89,167,68,142,41,97,46,94,72,139,93,163,117,182,157,198,199,208,240,211,277,211"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="428,65,217,82,217,77,427,60"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="132,41,66,72,64,68,130,36"/>
+</map>

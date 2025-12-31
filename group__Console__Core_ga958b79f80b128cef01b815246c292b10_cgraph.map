@@ -8,9 +8,9 @@
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="375,31,416,28,416,34,375,36"/>
 <area shape="rect" id="Node000004" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="637,13,815,38"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="582,23,623,23,623,28,582,28"/>
-<area shape="rect" id="Node000006" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="485,70,527,95"/>
+<area shape="rect" id="Node000006" href="$portio_8h.html#a0223c8898dfec29069879dc51076e28a" title=" " alt="" coords="485,70,527,95"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="372,96,471,84,472,89,372,102"/>
-<area shape="rect" id="Node000007" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="701,149,751,174"/>
+<area shape="rect" id="Node000007" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="701,149,751,174"/>
 <area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="372,114,687,154,687,159,372,120"/>
 <area shape="rect" id="Node000008" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="423,171,589,211"/>
 <area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="333,118,443,163,441,168,331,123"/>

@@ -1,65 +1,78 @@
 <map id="dump_regs" name="dump_regs">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,277,100,303"/>
-<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="160,227,275,252"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,275,161,254,163,259,96,280"/>
-<area shape="rect" id="Node000025" href="$namespaceconsole.html#ad6e647f131636f240b8207aea6e746a2" title=" " alt="" coords="148,327,287,352"/>
-<area shape="poly" id="edge31_Node000001_Node000025" title=" " alt="" coords="96,300,162,320,160,325,95,305"/>
-<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="335,327,501,352"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="236,250,280,281,336,313,353,320,351,325,334,318,277,286,233,254"/>
-<area shape="rect" id="Node000004" href="$namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="764,169,951,195"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="275,237,470,231,593,223,716,210,794,195,795,200,716,215,593,228,471,236,275,242"/>
-<area shape="rect" id="Node000021" href="$namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="355,125,481,151"/>
-<area shape="poly" id="edge23_Node000002_Node000021" title=" " alt="" coords="236,224,280,197,333,168,367,153,369,158,336,172,283,202,239,229"/>
-<area shape="rect" id="Node000022" href="$namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="576,75,689,100"/>
-<area shape="poly" id="edge30_Node000002_Node000022" title=" " alt="" coords="224,225,264,168,296,136,333,110,391,89,451,79,510,75,562,77,562,82,510,81,452,84,392,95,336,115,299,140,268,171,228,228"/>
-<area shape="rect" id="Node000023" href="$namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="567,176,698,201"/>
-<area shape="poly" id="edge27_Node000002_Node000023" title=" " alt="" coords="275,227,334,218,553,193,554,199,335,223,276,232"/>
-<area shape="rect" id="Node000024" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="335,277,501,303"/>
-<area shape="poly" id="edge29_Node000002_Node000024" title=" " alt="" coords="269,250,355,271,353,277,268,255"/>
-<area shape="rect" id="Node000005" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="999,293,1155,319"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="882,192,1042,284,1040,289,880,197"/>
-<area shape="rect" id="Node000012" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="1019,55,1134,80"/>
-<area shape="poly" id="edge12_Node000004_Node000012" title=" " alt="" coords="881,167,1038,84,1040,89,884,172"/>
-<area shape="rect" id="Node000016" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="1025,169,1128,195"/>
-<area shape="poly" id="edge16_Node000004_Node000016" title=" " alt="" coords="951,179,1012,179,1012,185,951,185"/>
-<area shape="rect" id="Node000006" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1203,269,1393,295"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1155,295,1189,291,1189,296,1155,300"/>
-<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1227,319,1369,344"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1155,312,1213,319,1213,324,1155,318"/>
-<area shape="rect" id="Node000010" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1441,362,1593,402"/>
-<area shape="poly" id="edge11_Node000005_Node000010" title=" " alt="" coords="1104,316,1150,337,1203,354,1261,365,1319,373,1428,379,1427,385,1319,378,1260,370,1202,359,1148,342,1102,321"/>
-<area shape="rect" id="Node000008" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="1478,241,1557,267"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1355,316,1392,305,1477,270,1479,275,1394,310,1356,321"/>
-<area shape="rect" id="Node000009" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="1479,312,1555,337"/>
-<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="1370,327,1465,324,1466,329,1370,332"/>
-<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="1355,342,1429,359,1427,364,1353,347"/>
-<area shape="rect" id="Node000011" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1641,399,1819,424"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1594,390,1628,395,1627,400,1594,395"/>
-<area shape="rect" id="Node000013" href="$namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1223,55,1373,80"/>
-<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="1134,65,1209,65,1209,70,1134,70"/>
-<area shape="rect" id="Node000015" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1251,5,1345,31"/>
-<area shape="poly" id="edge15_Node000012_Node000015" title=" " alt="" coords="1134,52,1237,29,1238,34,1135,57"/>
-<area shape="rect" id="Node000014" href="$namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1474,55,1561,80"/>
-<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="1374,65,1460,65,1460,70,1374,70"/>
-<area shape="rect" id="Node000017" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1452,180,1583,205"/>
-<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="1128,181,1439,188,1438,193,1128,186"/>
-<area shape="rect" id="Node000018" href="$namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1245,220,1351,245"/>
-<area shape="poly" id="edge18_Node000016_Node000018" title=" " alt="" coords="1129,191,1233,215,1231,220,1128,196"/>
-<area shape="rect" id="Node000019" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1215,105,1381,145"/>
-<area shape="poly" id="edge21_Node000016_Node000019" title=" " alt="" coords="1126,167,1207,145,1208,151,1127,172"/>
-<area shape="poly" id="edge20_Node000018_Node000008" title=" " alt="" coords="1351,235,1465,246,1464,252,1350,240"/>
-<area shape="poly" id="edge19_Node000018_Node000017" title=" " alt="" coords="1350,221,1438,204,1439,210,1351,226"/>
-<area shape="rect" id="Node000020" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="1492,112,1543,137"/>
-<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="1382,122,1478,122,1478,127,1382,127"/>
-<area shape="poly" id="edge24_Node000021_Node000004" title=" " alt="" coords="481,140,716,161,753,165,752,170,716,166,481,145"/>
-<area shape="poly" id="edge25_Node000021_Node000022" title=" " alt="" coords="472,123,564,101,566,106,473,128"/>
-<area shape="poly" id="edge26_Node000022_Node000004" title=" " alt="" coords="669,98,717,117,817,161,815,166,715,122,667,103"/>
-<area shape="poly" id="edge28_Node000023_Node000004" title=" " alt="" coords="698,184,750,183,750,188,698,189"/>
-<area shape="poly" id="edge32_Node000025_Node000003" title=" " alt="" coords="287,337,321,337,321,342,287,342"/>
-<area shape="poly" id="edge33_Node000025_Node000024" title=" " alt="" coords="269,324,352,303,353,309,270,329"/>
-<area shape="rect" id="Node000026" href="$namespacevga.html#afd3b9daf8d79c6262dab65bab517d19c" title=" " alt="" coords="361,376,475,401"/>
-<area shape="poly" id="edge34_Node000025_Node000026" title=" " alt="" coords="270,349,353,370,352,375,269,355"/>
-<area shape="rect" id="Node000027" href="$namespaceframebuffer.html#a7129302a6b721bfd615d22b12ce4d3a9" title=" " alt="" coords="549,427,716,452"/>
-<area shape="poly" id="edge35_Node000025_Node000027" title=" " alt="" coords="235,350,278,382,306,399,336,411,386,425,437,434,536,440,536,445,437,439,384,430,334,417,304,403,275,387,232,354"/>
-<area shape="poly" id="edge36_Node000027_Node000011" title=" " alt="" coords="716,437,1075,437,1299,437,1473,431,1627,419,1628,424,1473,436,1299,442,1075,442,716,442"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,168,100,193"/>
+<area shape="rect" id="Node000002" href="$group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="148,193,263,219"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,186,135,192,134,197,100,191"/>
+<area shape="rect" id="Node000029" href="$namespaceconsole.html#ad6e647f131636f240b8207aea6e746a2" title=" " alt="" coords="311,107,449,132"/>
+<area shape="poly" id="edge40_Node000001_Node000029" title=" " alt="" coords="100,169,297,132,298,137,101,175"/>
+<area shape="rect" id="Node000003" href="$group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242" title=" " alt="" coords="319,207,441,232"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="263,208,305,211,304,216,263,213"/>
+<area shape="rect" id="Node000004" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="497,107,664,132"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="396,204,440,173,496,141,513,134,515,139,498,146,443,178,399,209"/>
+<area shape="rect" id="Node000005" href="$namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="927,308,1113,333"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="442,218,638,229,759,243,879,266,932,282,980,300,978,305,930,287,878,271,758,249,637,234,441,223"/>
+<area shape="rect" id="Node000025" href="$namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="518,257,643,283"/>
+<area shape="poly" id="edge32_Node000003_Node000025" title=" " alt="" coords="432,230,517,251,516,257,431,235"/>
+<area shape="rect" id="Node000026" href="$namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="739,308,852,333"/>
+<area shape="poly" id="edge39_Node000003_Node000026" title=" " alt="" coords="397,230,440,263,468,280,498,293,556,308,616,317,725,322,725,327,616,322,555,313,496,298,466,284,437,267,394,234"/>
+<area shape="rect" id="Node000027" href="$namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="730,357,861,383"/>
+<area shape="poly" id="edge36_Node000003_Node000027" title=" " alt="" coords="393,231,435,278,465,304,499,325,553,345,610,358,665,366,716,369,716,374,665,371,609,364,551,350,496,330,462,308,431,282,389,234"/>
+<area shape="rect" id="Node000028" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="497,156,664,181"/>
+<area shape="poly" id="edge38_Node000003_Node000028" title=" " alt="" coords="431,204,516,182,517,187,432,209"/>
+<area shape="rect" id="Node000006" href="$namespaceconsole.html#ab231d521184351a44f099e4b3d7a603a" title=" " alt="" coords="1165,369,1314,395"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1067,331,1181,363,1179,368,1066,336"/>
+<area shape="rect" id="Node000015" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="1396,459,1511,484"/>
+<area shape="poly" id="edge25_Node000005_Node000015" title=" " alt="" coords="1040,331,1093,368,1162,405,1219,425,1277,440,1383,460,1382,465,1276,445,1217,430,1160,410,1090,373,1036,336"/>
+<area shape="rect" id="Node000019" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="1161,159,1317,184"/>
+<area shape="poly" id="edge18_Node000005_Node000019" title=" " alt="" coords="1038,306,1207,190,1210,194,1041,310"/>
+<area shape="rect" id="Node000023" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="1188,308,1291,333"/>
+<area shape="poly" id="edge26_Node000005_Node000023" title=" " alt="" coords="1114,318,1174,318,1174,323,1114,323"/>
+<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#ab4b70b2cdacab070608758ff1172d6eb" title=" " alt="" coords="1365,159,1541,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1282,367,1300,357,1315,344,1328,325,1335,307,1337,270,1341,233,1349,214,1363,195,1370,189,1373,193,1367,199,1353,216,1346,234,1343,270,1340,308,1333,328,1319,348,1303,362,1285,372"/>
+<area shape="rect" id="Node000011" href="$group__VGA__Core.html#ga0aeab881ec911a09eeb139b3b6caf693" title=" " alt="" coords="1392,409,1515,435"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="1309,392,1379,406,1378,411,1308,397"/>
+<area shape="poly" id="edge14_Node000006_Node000015" title=" " alt="" coords="1263,392,1310,418,1366,445,1387,452,1385,457,1364,450,1307,423,1260,397"/>
+<area shape="rect" id="Node000008" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1589,67,1780,92"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1482,156,1588,112,1634,94,1635,99,1590,116,1484,161"/>
+<area shape="rect" id="Node000009" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1609,126,1761,166"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="1541,159,1594,153,1595,158,1542,164"/>
+<area shape="rect" id="Node000010" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1828,71,2005,96"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1758,123,1855,97,1856,102,1760,129"/>
+<area shape="rect" id="Node000012" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1619,308,1750,333"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1477,407,1588,353,1632,336,1634,341,1590,358,1480,412"/>
+<area shape="rect" id="Node000013" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1601,367,1768,407"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="1514,410,1588,399,1588,404,1515,416"/>
+<area shape="rect" id="Node000014" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="1891,375,1942,400"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1768,385,1877,385,1877,390,1768,390"/>
+<area shape="rect" id="Node000016" href="$namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1609,499,1760,524"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="1512,479,1598,494,1597,499,1511,484"/>
+<area shape="rect" id="Node000018" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1637,449,1732,475"/>
+<area shape="poly" id="edge17_Node000015_Node000018" title=" " alt="" coords="1511,466,1624,462,1624,467,1511,472"/>
+<area shape="rect" id="Node000017" href="$namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1873,499,1960,524"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="1760,509,1860,509,1860,514,1760,514"/>
+<area shape="poly" id="edge19_Node000019_Node000008" title=" " alt="" coords="1268,156,1313,138,1365,122,1473,100,1575,86,1576,91,1474,105,1366,127,1315,143,1270,161"/>
+<area shape="poly" id="edge24_Node000019_Node000009" title=" " alt="" coords="1291,156,1365,143,1485,137,1595,139,1595,144,1485,143,1366,149,1292,161"/>
+<area shape="rect" id="Node000020" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1382,208,1525,233"/>
+<area shape="poly" id="edge20_Node000019_Node000020" title=" " alt="" coords="1296,181,1385,202,1383,207,1294,187"/>
+<area shape="poly" id="edge23_Node000020_Node000009" title=" " alt="" coords="1502,205,1541,194,1616,168,1618,173,1542,199,1504,211"/>
+<area shape="rect" id="Node000021" href="$string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="1645,257,1724,283"/>
+<area shape="poly" id="edge21_Node000020_Node000021" title=" " alt="" coords="1514,231,1632,256,1631,261,1513,236"/>
+<area shape="rect" id="Node000022" href="$string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="1647,208,1723,233"/>
+<area shape="poly" id="edge22_Node000020_Node000022" title=" " alt="" coords="1525,218,1633,218,1633,223,1525,223"/>
+<area shape="poly" id="edge27_Node000023_Node000012" title=" " alt="" coords="1291,318,1606,318,1606,323,1291,323"/>
+<area shape="poly" id="edge31_Node000023_Node000013" title=" " alt="" coords="1291,326,1588,370,1587,376,1291,331"/>
+<area shape="rect" id="Node000024" href="$namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1401,257,1506,283"/>
+<area shape="poly" id="edge28_Node000023_Node000024" title=" " alt="" coords="1290,306,1386,283,1388,288,1291,311"/>
+<area shape="poly" id="edge29_Node000024_Node000012" title=" " alt="" coords="1507,279,1613,302,1612,308,1506,284"/>
+<area shape="poly" id="edge30_Node000024_Node000021" title=" " alt="" coords="1507,267,1632,267,1632,273,1507,273"/>
+<area shape="poly" id="edge33_Node000025_Node000005" title=" " alt="" coords="644,271,754,280,879,294,938,303,938,308,878,299,753,286,643,277"/>
+<area shape="poly" id="edge34_Node000025_Node000026" title=" " alt="" coords="636,280,728,302,727,307,635,285"/>
+<area shape="poly" id="edge35_Node000026_Node000005" title=" " alt="" coords="852,318,913,318,913,323,852,323"/>
+<area shape="poly" id="edge37_Node000027_Node000005" title=" " alt="" coords="853,355,948,334,949,339,854,360"/>
+<area shape="poly" id="edge41_Node000029_Node000004" title=" " alt="" coords="449,117,484,117,484,122,449,122"/>
+<area shape="poly" id="edge42_Node000029_Node000028" title=" " alt="" coords="433,129,516,150,514,155,432,135"/>
+<area shape="rect" id="Node000030" href="$namespacevga.html#afd3b9daf8d79c6262dab65bab517d19c" title=" " alt="" coords="524,5,637,31"/>
+<area shape="poly" id="edge43_Node000029_Node000030" title=" " alt="" coords="399,104,443,77,496,48,529,33,531,38,499,52,445,82,402,109"/>
+<area shape="rect" id="Node000031" href="$namespaceframebuffer.html#a7129302a6b721bfd615d22b12ce4d3a9" title=" " alt="" coords="712,31,879,56"/>
+<area shape="poly" id="edge44_Node000029_Node000031" title=" " alt="" coords="437,104,497,91,699,56,700,61,498,97,438,109"/>
+<area shape="poly" id="edge45_Node000031_Node000010" title=" " alt="" coords="879,34,1044,22,1238,17,1455,17,1547,19,1618,25,1780,51,1850,65,1849,70,1780,57,1618,31,1547,24,1455,22,1238,22,1045,28,879,39"/>
 </map>

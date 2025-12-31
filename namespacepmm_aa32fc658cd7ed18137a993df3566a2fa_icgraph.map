@@ -1,5 +1,5 @@
 <map id="pmm::get_system_bytes" name="pmm::get_system_bytes">
-<area shape="rect" id="Node000001" title="Get total system RAM in bytes." alt="" coords="249,5,432,31"/>
+<area shape="rect" id="Node000001" title="Get total system memory in kilobytes." alt="" coords="249,5,432,31"/>
 <area shape="rect" id="Node000002" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="116,5,201,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,21,202,21,202,15,236,15"/>
 <area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>

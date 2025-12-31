@@ -1,8 +1,8 @@
 <map id="apic::calibrate_timer" name="apic::calibrate_timer">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,104,161,129"/>
-<area shape="rect" id="Node000002" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="245,5,288,31"/>
+<area shape="rect" id="Node000002" href="$portio_8h.html#a0223c8898dfec29069879dc51076e28a" title=" " alt="" coords="245,5,288,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,102,208,40,231,29,234,34,211,44,105,106"/>
-<area shape="rect" id="Node000003" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="241,55,292,80"/>
+<area shape="rect" id="Node000003" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="241,55,292,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,101,227,75,229,80,132,107"/>
 <area shape="rect" id="Node000004" href="$namespaceapic.html#a006fb50465909cf63a05eb0463403116" title=" " alt="" coords="209,104,324,129"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,114,196,114,196,119,162,119"/>

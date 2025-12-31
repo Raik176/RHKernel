@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['scheduler_0',['scheduler',['../namespacescheduler.html',1,'']]],
-  ['serial_1',['serial',['../namespaceserial.html',1,'']]],
-  ['smp_2',['smp',['../namespacesmp.html',1,'']]]
+  ['module_5floader_0',['module_loader',['../namespacemodule__loader.html',1,'']]]
 ];

@@ -1,27 +1,24 @@
 <map id="src/impl/x86_64/console.cpp" name="src/impl/x86_64/console.cpp">
-<area shape="rect" id="Node000001" title="Implementation of kernel console abstraction." alt="" coords="187,5,393,31"/>
-<area shape="rect" id="Node000002" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="140,79,224,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,33,213,73,210,69,271,28"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="403,79,478,104"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="315,28,405,70,402,75,313,33"/>
-<area shape="rect" id="Node000007" href="$framebuffer_8h.html" title=" " alt="" coords="5,79,116,104"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="254,33,112,77,110,72,252,28"/>
-<area shape="rect" id="Node000008" href="$lock_8h.html" title=" " alt="" coords="218,152,311,177"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="291,32,272,139,266,138,285,31"/>
-<area shape="rect" id="Node000009" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="335,152,394,177"/>
-<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="298,30,355,138,350,141,294,32"/>
-<area shape="rect" id="Node000010" href="$serial_8h.html" title="Kernel serial port interface." alt="" coords="419,152,489,177"/>
-<area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="305,29,432,141,429,145,302,33"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="191,225,261,251"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="188,103,209,177,220,211,215,213,203,178,183,105"/>
-<area shape="rect" id="Node000004" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="37,152,143,177"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="169,106,117,146,114,141,166,102"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="113,175,193,217,191,221,111,180"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="53,225,127,251"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="93,178,93,212,87,212,87,178"/>
-<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="51,106,38,122,26,140,22,159,27,176,50,192,89,206,178,227,177,232,87,211,47,197,23,179,16,159,22,138,33,118,46,103"/>
-<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="68,103,82,138,78,140,63,105"/>
-<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="261,179,241,215,236,212,256,176"/>
-<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="344,180,262,221,260,217,341,175"/>
-<area shape="poly" id="edge15_Node000010_Node000003" title=" " alt="" coords="419,180,275,224,274,219,418,174"/>
+<area shape="rect" id="Node000001" title="Implementation of kernel console abstraction." alt="" coords="233,5,439,31"/>
+<area shape="rect" id="Node000002" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="101,79,185,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,33,188,76,186,71,304,28"/>
+<area shape="rect" id="Node000007" href="$framebuffer_8h.html" title=" " alt="" coords="234,79,345,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="331,32,307,69,302,66,326,30"/>
+<area shape="rect" id="Node000008" href="$lock_8h.html" title=" " alt="" coords="336,152,429,177"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="342,30,359,78,378,138,373,140,353,79,337,32"/>
+<area shape="rect" id="Node000009" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="428,79,487,104"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="357,28,427,69,425,74,354,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,80,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="128,106,72,146,69,142,125,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="267,225,338,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="141,105,136,139,138,158,145,176,161,189,188,202,255,223,253,228,186,207,158,193,141,179,132,160,130,139,136,104"/>
+<area shape="rect" id="Node000005" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="155,152,261,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="155,103,190,140,186,144,151,106"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="225,175,278,215,275,219,222,179"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="168,225,243,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="210,178,209,212,204,212,205,178"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="293,104,303,211,298,212,288,105"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="278,106,233,145,230,141,275,102"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="372,179,328,218,324,214,368,175"/>
+<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="461,105,459,140,454,160,443,179,424,198,401,212,353,230,351,225,399,207,421,194,439,176,449,158,454,139,456,104"/>
 </map>

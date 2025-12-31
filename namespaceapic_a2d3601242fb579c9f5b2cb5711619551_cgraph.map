@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,227,84,253"/>
 <area shape="rect" id="Node000002" href="$namespaceapic.html#af68be828d15cde433f4c5d2b8c52dd86" title=" " alt="" coords="132,154,288,179"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,225,167,182,169,187,75,229"/>
-<area shape="rect" id="Node000004" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="368,27,419,53"/>
+<area shape="rect" id="Node000004" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="368,27,419,53"/>
 <area shape="poly" id="edge17_Node000001_Node000004" title=" " alt="" coords="52,225,84,183,106,160,130,139,188,105,249,79,354,46,356,51,251,84,190,110,134,143,109,164,88,187,57,228"/>
 <area shape="rect" id="Node000006" href="$namespaceapic.html#a69b6a7b2c886a8962246c659fb4f1d4f" title=" " alt="" coords="511,379,605,405"/>
 <area shape="poly" id="edge19_Node000001_Node000006" title=" " alt="" coords="59,251,91,282,133,314,187,343,230,362,276,375,336,387,420,395,497,394,497,399,420,400,336,392,275,380,229,367,184,348,131,318,88,286,56,255"/>
@@ -14,7 +14,7 @@
 <area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="85,249,156,271,154,276,83,254"/>
 <area shape="rect" id="Node000012" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="187,481,233,506"/>
 <area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="50,252,57,292,71,347,96,406,113,434,134,459,153,473,174,483,172,487,150,478,130,463,109,437,92,409,66,349,52,293,45,253"/>
-<area shape="rect" id="Node000003" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="372,129,415,154"/>
+<area shape="rect" id="Node000003" href="$portio_8h.html#a0223c8898dfec29069879dc51076e28a" title=" " alt="" coords="372,129,415,154"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="288,153,358,143,358,149,289,158"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="227,151,334,70,355,57,358,62,338,74,230,156"/>
 <area shape="rect" id="Node000005" href="$namespaceapic.html#a006fb50465909cf63a05eb0463403116" title=" " alt="" coords="336,227,451,253"/>

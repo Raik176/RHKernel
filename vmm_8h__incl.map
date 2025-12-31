@@ -1,17 +1,20 @@
 <map id="src/intf/memory/vmm.h" name="src/intf/memory/vmm.h">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,181,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="89,299,159,324"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,31,87,123,88,186,97,250,112,286,107,288,92,251,83,187,81,123,89,31"/>
-<area shape="rect" id="Node000003" href="$util_8h.html" title="Utility functions and macros." alt="" coords="129,79,183,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="106,29,139,66,135,70,102,33"/>
-<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="144,106,125,126,109,153,102,188,103,224,117,285,112,286,98,224,97,187,104,151,120,123,140,102"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="169,299,239,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,31,89,71,89,128,99,192,110,222,126,249,148,271,172,289,169,294,144,275,122,252,105,224,94,193,83,129,84,71,89,31"/>
+<area shape="rect" id="Node000003" href="$util_8h.html" title="Utility functions and macros." alt="" coords="166,79,221,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,29,167,68,164,73,108,33"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="167,105,135,124,120,138,109,153,106,164,109,176,123,209,142,239,183,287,179,290,138,242,118,212,104,178,101,164,104,151,116,134,132,120,165,101"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="119,152,193,177"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="159,104,159,138,153,138,153,104"/>
-<area shape="rect" id="Node000005" href="$apic_8h.html" title=" " alt="" coords="217,152,311,177"/>
-<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="175,102,236,142,233,147,172,106"/>
-<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="254,180,147,291,143,287,251,176"/>
-<area shape="rect" id="Node000006" href="$idt_8h.html" title=" " alt="" coords="239,225,289,251"/>
-<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="267,178,267,212,261,212,261,178"/>
-<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="243,253,160,295,158,290,240,248"/>
-<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="280,223,299,208,316,191,325,172,325,163,320,154,295,129,263,112,229,102,197,97,198,92,230,97,265,107,298,125,325,150,330,161,330,173,320,194,303,212,284,227"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="190,106,171,141,166,139,185,103"/>
+<area shape="rect" id="Node000005" href="$portio_8h.html" title=" " alt="" coords="168,225,240,251"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="199,104,208,152,209,211,203,212,203,152,194,105"/>
+<area shape="rect" id="Node000006" href="$apic_8h.html" title=" " alt="" coords="268,152,361,177"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="214,102,285,143,282,147,211,106"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="207,251,207,285,201,285,201,251"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="308,179,254,252,224,290,220,286,250,249,304,176"/>
+<area shape="rect" id="Node000007" href="$idt_8h.html" title=" " alt="" coords="315,225,365,251"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="321,177,334,212,329,213,316,179"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="319,253,239,295,237,290,317,248"/>
+<area shape="poly" id="edge11_Node000007_Node000003" title=" " alt="" coords="349,223,372,190,376,171,371,153,343,127,307,110,269,100,234,96,235,91,270,95,309,105,346,123,376,151,382,171,377,192,354,226"/>
 </map>

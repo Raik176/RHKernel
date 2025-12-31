@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['idt_5fentry_0',['idt_entry',['../structidt_1_1idt__entry.html',1,'idt']]],
-  ['idt_5fptr_1',['idt_ptr',['../structidt_1_1idt__ptr.html',1,'idt']]]
+  ['gdt_5fentry_0',['gdt_entry',['../structgdt_1_1gdt__entry.html',1,'gdt']]],
+  ['gdt_5fpointer_1',['gdt_pointer',['../structgdt_1_1gdt__pointer.html',1,'gdt']]]
 ];

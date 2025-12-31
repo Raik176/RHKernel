@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('initramfs_8cpp.html',''); initResizabl
 <div class="textblock"><code>#include &quot;<a class="el" href="initramfs_8h_source.html">file/initramfs.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vfs_8h_source.html">file/vfs.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="intf_2memory_2heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="util_8h_source.html">util.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -107,46 +107,52 @@ Include dependency graph for initramfs.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="initramfs_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2file_2initramfs_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2file_2initramfs_8cpp" id="asrc_2impl_2x86__64_2file_2initramfs_8cpp">
-<area shape="rect" title=" " alt="" coords="193,5,343,45"/>
-<area shape="rect" href="initramfs_8h.html" title=" " alt="" coords="88,93,205,119"/>
-<area shape="poly" title=" " alt="" coords="240,48,177,88,175,84,237,43"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="61,240,115,265"/>
-<area shape="poly" title=" " alt="" coords="194,35,162,42,130,54,101,71,78,95,70,110,65,127,64,162,70,197,80,226,75,228,65,198,59,163,60,126,65,108,74,92,98,67,128,49,160,37,192,30"/>
-<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="133,167,187,192"/>
-<area shape="poly" title=" " alt="" coords="262,47,244,82,219,120,185,159,181,155,215,117,239,79,257,44"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="251,167,335,192"/>
-<area shape="poly" title=" " alt="" coords="274,45,292,153,287,153,269,46"/>
-<area shape="rect" href="heap_8h.html" title=" " alt="" coords="377,240,503,265"/>
-<area shape="poly" title=" " alt="" coords="284,44,425,227,420,230,280,47"/>
-<area shape="rect" href="string_8h.html" title="Basic memory and string manipulation functions for kernel." alt="" coords="527,240,598,265"/>
-<area shape="poly" title=" " alt="" coords="294,43,539,230,535,234,291,48"/>
-<area shape="poly" title=" " alt="" coords="144,120,122,168,99,228,94,226,118,166,139,118"/>
-<area shape="poly" title=" " alt="" coords="151,119,158,153,153,154,146,119"/>
-<area shape="rect" title=" " alt="" coords="407,313,481,339"/>
-<area shape="poly" title=" " alt="" coords="116,257,394,312,393,317,115,262"/>
-<area shape="rect" title=" " alt="" coords="207,460,278,485"/>
-<area shape="poly" title=" " alt="" coords="64,268,42,281,22,297,10,317,8,327,10,338,25,363,43,386,66,405,91,421,145,445,195,460,193,465,143,450,89,425,63,409,40,389,20,366,5,340,3,327,5,315,18,294,39,276,61,263"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="20,313,113,339"/>
-<area shape="poly" title=" " alt="" coords="87,266,77,301,71,299,82,265"/>
-<area shape="poly" title=" " alt="" coords="71,338,81,373,90,393,103,410,124,427,147,440,195,458,193,463,145,445,121,431,99,414,86,396,76,375,66,339"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="113,387,164,412"/>
-<area shape="poly" title=" " alt="" coords="80,337,119,375,115,379,77,341"/>
-<area shape="poly" title=" " alt="" coords="136,386,132,353,123,314,103,278,108,275,128,312,138,352,141,386"/>
-<area shape="poly" title=" " alt="" coords="157,410,216,450,213,454,154,414"/>
-<area shape="poly" title=" " alt="" coords="150,194,111,232,108,228,146,190"/>
-<area shape="rect" href="lock_8h.html" title=" " alt="" coords="239,313,332,339"/>
-<area shape="poly" title=" " alt="" coords="172,191,268,301,264,305,168,194"/>
-<area shape="poly" title=" " alt="" coords="284,340,252,447,247,446,279,338"/>
-<area shape="poly" title=" " alt="" coords="279,194,256,214,237,241,227,268,222,296,220,353,228,406,237,447,232,448,222,407,215,353,216,295,222,266,232,239,252,211,275,190"/>
-<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="247,240,353,265"/>
-<area shape="poly" title=" " alt="" coords="297,192,300,226,295,227,292,193"/>
-<area shape="poly" title=" " alt="" coords="324,263,409,305,407,309,322,268"/>
-<area shape="poly" title=" " alt="" coords="315,264,340,296,348,317,347,339,331,373,310,404,268,452,264,449,306,401,326,371,341,338,343,318,336,299,311,267"/>
-<area shape="poly" title=" " alt="" coords="443,266,445,300,440,300,438,266"/>
-<area shape="poly" title=" " alt="" coords="458,263,475,278,491,297,500,318,500,329,496,340,477,366,453,389,399,424,343,449,292,464,290,459,341,444,397,419,450,384,472,362,491,337,495,328,495,319,486,300,471,282,455,267"/>
-<area shape="poly" title=" " alt="" coords="416,268,324,310,322,305,414,263"/>
-<area shape="poly" title=" " alt="" coords="545,268,477,308,474,304,542,263"/>
-<area shape="poly" title=" " alt="" coords="561,266,547,297,525,337,494,379,455,414,415,436,371,451,292,469,291,463,370,446,412,431,452,410,490,376,521,334,543,294,556,264"/>
+<area shape="rect" title=" " alt="" coords="311,5,460,45"/>
+<area shape="rect" href="initramfs_8h.html" title=" " alt="" coords="205,93,323,119"/>
+<area shape="poly" title=" " alt="" coords="357,48,295,88,292,84,355,43"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="165,240,219,265"/>
+<area shape="poly" title=" " alt="" coords="311,35,279,42,247,54,219,71,196,95,181,127,177,162,180,197,187,226,182,227,175,198,172,162,176,125,191,92,215,67,245,49,278,37,310,30"/>
+<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="250,167,305,192"/>
+<area shape="poly" title=" " alt="" coords="379,47,361,82,337,120,302,159,298,155,333,117,357,79,374,44"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="369,167,453,192"/>
+<area shape="poly" title=" " alt="" coords="391,45,409,153,404,153,386,46"/>
+<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="585,240,711,265"/>
+<area shape="poly" title=" " alt="" coords="409,43,626,229,622,233,406,47"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="659,167,730,192"/>
+<area shape="poly" title=" " alt="" coords="461,42,525,62,589,91,637,123,675,155,671,159,633,127,587,96,523,67,459,47"/>
+<area shape="poly" title=" " alt="" coords="260,120,206,229,201,226,256,118"/>
+<area shape="poly" title=" " alt="" coords="269,119,275,153,270,154,264,119"/>
+<area shape="rect" title=" " alt="" coords="536,313,611,339"/>
+<area shape="poly" title=" " alt="" coords="220,256,523,311,522,316,219,261"/>
+<area shape="rect" title=" " alt="" coords="295,460,366,485"/>
+<area shape="poly" title=" " alt="" coords="192,266,189,294,188,332,195,373,212,411,226,427,244,439,283,457,281,462,241,444,223,431,207,413,189,374,183,332,184,294,187,265"/>
+<area shape="rect" href="portio_8h.html" title=" " alt="" coords="221,387,293,412"/>
+<area shape="poly" title=" " alt="" coords="200,265,249,373,244,375,195,267"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="5,313,99,339"/>
+<area shape="poly" title=" " alt="" coords="171,268,88,309,86,305,168,263"/>
+<area shape="poly" title=" " alt="" coords="271,410,311,448,307,452,268,414"/>
+<area shape="poly" title=" " alt="" coords="56,339,64,374,73,394,86,410,107,426,131,439,184,457,236,467,282,470,281,475,235,472,182,462,129,444,105,431,82,414,68,397,59,376,50,340"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="96,387,147,412"/>
+<area shape="poly" title=" " alt="" coords="65,337,103,375,99,379,62,341"/>
+<area shape="poly" title=" " alt="" coords="125,385,178,277,183,279,129,388"/>
+<area shape="poly" title=" " alt="" coords="148,407,285,453,283,458,146,412"/>
+<area shape="poly" title=" " alt="" coords="265,194,218,233,215,229,262,190"/>
+<area shape="rect" href="lock_8h.html" title=" " alt="" coords="419,313,512,339"/>
+<area shape="poly" title=" " alt="" coords="287,191,312,226,348,263,385,287,423,306,420,310,382,292,345,267,308,229,282,194"/>
+<area shape="poly" title=" " alt="" coords="460,340,435,374,402,414,358,453,355,450,398,410,431,371,455,337"/>
+<area shape="poly" title=" " alt="" coords="394,194,369,214,349,241,331,295,325,352,325,405,329,446,324,446,320,405,319,352,326,294,344,239,365,210,390,190"/>
+<area shape="rect" title=" " alt="" coords="487,240,561,265"/>
+<area shape="poly" title=" " alt="" coords="430,190,496,230,493,235,427,194"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="358,240,463,265"/>
+<area shape="poly" title=" " alt="" coords="413,192,413,226,408,226,408,192"/>
+<area shape="poly" title=" " alt="" coords="438,263,535,305,533,310,436,268"/>
+<area shape="poly" title=" " alt="" coords="409,267,342,448,337,446,404,265"/>
+<area shape="poly" title=" " alt="" coords="638,267,597,306,594,302,634,263"/>
+<area shape="poly" title=" " alt="" coords="650,266,644,302,636,322,625,340,598,367,568,389,502,425,437,450,380,465,379,460,435,445,500,420,565,385,595,363,621,337,632,320,639,300,645,265"/>
+<area shape="poly" title=" " alt="" coords="620,268,509,311,507,306,618,263"/>
+<area shape="poly" title=" " alt="" coords="707,191,727,226,731,247,725,267,705,288,679,304,652,315,625,322,624,316,650,310,677,299,701,284,720,264,726,247,722,228,702,194"/>
+<area shape="poly" title=" " alt="" coords="712,190,727,205,741,223,749,244,747,266,729,298,712,323,693,343,673,359,625,385,564,414,517,434,468,449,380,468,379,462,466,444,515,429,562,410,623,380,670,354,690,339,708,319,725,295,741,265,744,245,737,226,723,209,708,194"/>
+<area shape="poly" title=" " alt="" coords="668,194,565,237,563,232,666,190"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -158,7 +164,6 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4f476d652f3f1197ce0fc383858a49c5" id="r_a4f476d652f3f1197ce0fc383858a49c5"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinitramfs.html#a4f476d652f3f1197ce0fc383858a49c5">initramfs::hex_to_int</a> (const char *s, int len)</td></tr>
-<tr class="memdesc:a4f476d652f3f1197ce0fc383858a49c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper to convert a hex string from CPIO header to uint32_t.  <br /></td></tr>
 <tr class="separator:a4f476d652f3f1197ce0fc383858a49c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2762b5396a1ef9dcf76262fcd976c12a" id="r_a2762b5396a1ef9dcf76262fcd976c12a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a">initramfs::init</a> (uint64_t mb_phys_addr)</td></tr>
 <tr class="separator:a2762b5396a1ef9dcf76262fcd976c12a"><td class="memSeparator" colspan="2">&#160;</td></tr>

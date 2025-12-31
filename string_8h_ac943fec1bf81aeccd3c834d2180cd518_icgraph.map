@@ -1,0 +1,25 @@
+<map id="vsnprintf" name="vsnprintf">
+<area shape="rect" id="Node000001" title=" " alt="" coords="756,80,836,105"/>
+<area shape="rect" id="Node000002" href="$string_8cpp.html#aed3a44ce00b8d92f93e8a34e7b9dbf54" title=" " alt="" coords="636,80,708,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="742,95,708,95,708,90,742,90"/>
+<area shape="rect" id="Node000003" href="$kbd__core_8c.html#a695062fada6bbf4781c9537444be2aa6" title=" " alt="" coords="439,5,542,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="641,74,587,44,541,30,543,25,589,40,643,70"/>
+<area shape="rect" id="Node000005" href="$kbd__core_8c.html#a1da30886c897523a21b1d854ea9430ec" title=" " alt="" coords="431,55,550,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="622,88,550,78,551,73,623,83"/>
+<area shape="rect" id="Node000007" href="$device_8cpp.html#a241b2aee585cee93258675dc6f426ffa" title=" " alt="" coords="393,104,588,129"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="623,102,587,107,586,101,622,97"/>
+<area shape="rect" id="Node000011" href="$device_8cpp.html#a7657b88c8d28d8be955ece937b1636b3" title=" " alt="" coords="409,153,573,179"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="642,115,589,143,551,156,549,151,587,138,639,111"/>
+<area shape="rect" id="Node000004" href="$ps2__kbd_8c.html#a33c07a1ca918a4d99cc19537f7738970" title=" " alt="" coords="263,5,337,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="425,21,337,21,337,15,425,15"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="427,54,336,30,338,25,429,49"/>
+<area shape="rect" id="Node000006" href="$ps2__kbd_8c.html#a78f1d283457f83bfed76f5182aee3982" title=" " alt="" coords="261,55,339,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="417,70,339,70,339,65,417,65"/>
+<area shape="rect" id="Node000008" href="$namespaceprocfs.html#a8fbe14ca6ab797a9344e85a63a2d0e06" title="Bootstraps the /proc directory in the VFS." alt="" coords="255,128,345,153"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="380,133,346,138,345,132,379,128"/>
+<area shape="rect" id="Node000009" href="$device_8cpp.html#a6ed5734cf4f72e0c70ed11b4cfabc778" title=" " alt="" coords="116,128,207,153"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="241,143,207,143,207,138,241,138"/>
+<area shape="rect" id="Node000010" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,128,68,153"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="102,143,68,143,68,138,102,138"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="394,156,345,149,346,144,395,151"/>
+</map>

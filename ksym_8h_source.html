@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RHKernel: src/intf/ksym.h Source File</title>
+<title>RHKernel: src/intf/symbol/ksym.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,42 +98,45 @@ $(document).ready(function(){initNavTree('ksym_8h_source.html',''); initResizabl
   <div class="headertitle"><div class="title">ksym.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="ksym_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="foldopen" id="foldopen00003" data-start="{" data-end="};">
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="structkernel__symbol.html">    3</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkernel__symbol.html">kernel_symbol</a> {</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32">    4</a></span>    uintptr_t <a class="code hl_variable" href="structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32">addr</a>;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="structkernel__symbol.html#af428b6b24cf278852be6cd8a7d31a825">    5</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="structkernel__symbol.html#af428b6b24cf278852be6cd8a7d31a825">name</a>;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>};</div>
-</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="" data-end="">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="ksym_8h.html#a02f441edac57fee4ab561c3a0f0ecf37">    8</a></span><span class="preprocessor">#define KEXPORT(sym)                           \</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">    extern &quot;C&quot; void *sym;                      \</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">    __attribute__((section(&quot;.ksymtab&quot;), used)) \</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">    const kernel_symbol __ksym_##sym = {(uintptr_t)&amp;sym, #sym}</span></div>
-</div>
+<a href="ksym_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="symbol_8h.html">symbol.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="ksym_8h.html#a5ce4915218ad7389550e963d321b5ec4">_ksymtab_start</a>[];</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">extern</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="ksym_8h.html#ab0c7522a7ba34d12465b034a2ee6684d">_ksymtab_end</a>[];</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceksym.html">ksym</a> {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespaceksym.html#aec18f3c871c95c5f67e2a46c343e384a">   14</a></span>    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> <span class="keyword">const</span> <a class="code hl_struct" href="structkernel__symbol.html">kernel_symbol</a> <a class="code hl_variable" href="namespaceksym.html#aec18f3c871c95c5f67e2a46c343e384a">_ksymtab_start</a>[];</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespaceksym.html#a1373f728f45d7e93e1bfc28544356534">   15</a></span>    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> <span class="keyword">const</span> <a class="code hl_struct" href="structkernel__symbol.html">kernel_symbol</a> <a class="code hl_variable" href="namespaceksym.html#a1373f728f45d7e93e1bfc28544356534">_ksymtab_end</a>[];</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65">get_name</a>(uintptr_t addr, uintptr_t *<a class="code hl_variable" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a> = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}  <span class="comment">// namespace ksym</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceksym.html">ksym</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_function" href="namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65">get_name</a>(uintptr_t <a class="code hl_variable" href="elf_8h.html#a0e89cf6b9f6cd3125470b1bed2b823df">addr</a>, uintptr_t *<a class="code hl_variable" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a> = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    uintptr_t <a class="code hl_function" href="namespaceksym.html#aa93002e69db3b55ab5933e6dc8d5d5c8">resolve_symbol</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="elf_8h.html#a6aa3cdf7ddf6c2a022af8696384ceba0">name</a>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="namespaceksym.html#a740f608a155417eeb53042c4ac480789">export_symbol</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="elf_8h.html#a6aa3cdf7ddf6c2a022af8696384ceba0">name</a>, uintptr_t <a class="code hl_variable" href="elf_8h.html#a0e89cf6b9f6cd3125470b1bed2b823df">addr</a>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}  <span class="comment">// namespace ksym</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aelf_8h_html_a0e89cf6b9f6cd3125470b1bed2b823df"><div class="ttname"><a href="elf_8h.html#a0e89cf6b9f6cd3125470b1bed2b823df">addr</a></div><div class="ttdeci">uint64_t addr</div><div class="ttdef"><b>Definition</b> elf.h:3</div></div>
 <div class="ttc" id="aelf_8h_html_a612bb2807d848cca89ea1437cceea886"><div class="ttname"><a href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a></div><div class="ttdeci">uint64_t offset</div><div class="ttdef"><b>Definition</b> elf.h:2</div></div>
-<div class="ttc" id="anamespaceksym_html"><div class="ttname"><a href="namespaceksym.html">ksym</a></div><div class="ttdef"><b>Definition</b> ksym.cpp:3</div></div>
-<div class="ttc" id="anamespaceksym_html_a1129d94d9e2bc50c74ae83f618f23e65"><div class="ttname"><a href="namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65">ksym::get_name</a></div><div class="ttdeci">const char * get_name(uintptr_t addr, uintptr_t *offset)</div><div class="ttdef"><b>Definition</b> ksym.cpp:4</div></div>
-<div class="ttc" id="anamespaceksym_html_a1373f728f45d7e93e1bfc28544356534"><div class="ttname"><a href="namespaceksym.html#a1373f728f45d7e93e1bfc28544356534">ksym::_ksymtab_end</a></div><div class="ttdeci">const kernel_symbol _ksymtab_end[]</div><div class="ttdef"><b>Definition</b> ksym.h:15</div></div>
-<div class="ttc" id="anamespaceksym_html_aec18f3c871c95c5f67e2a46c343e384a"><div class="ttname"><a href="namespaceksym.html#aec18f3c871c95c5f67e2a46c343e384a">ksym::_ksymtab_start</a></div><div class="ttdeci">const kernel_symbol _ksymtab_start[]</div><div class="ttdef"><b>Definition</b> ksym.h:14</div></div>
-<div class="ttc" id="astructkernel__symbol_html"><div class="ttname"><a href="structkernel__symbol.html">kernel_symbol</a></div><div class="ttdef"><b>Definition</b> ksym.h:3</div></div>
-<div class="ttc" id="astructkernel__symbol_html_ab678f7408852145e173056ec60ad1c32"><div class="ttname"><a href="structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32">kernel_symbol::addr</a></div><div class="ttdeci">uintptr_t addr</div><div class="ttdef"><b>Definition</b> ksym.h:4</div></div>
-<div class="ttc" id="astructkernel__symbol_html_af428b6b24cf278852be6cd8a7d31a825"><div class="ttname"><a href="structkernel__symbol.html#af428b6b24cf278852be6cd8a7d31a825">kernel_symbol::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition</b> ksym.h:5</div></div>
+<div class="ttc" id="aelf_8h_html_a6aa3cdf7ddf6c2a022af8696384ceba0"><div class="ttname"><a href="elf_8h.html#a6aa3cdf7ddf6c2a022af8696384ceba0">name</a></div><div class="ttdeci">uint32_t name</div><div class="ttdef"><b>Definition</b> elf.h:0</div></div>
+<div class="ttc" id="aksym_8h_html_a5ce4915218ad7389550e963d321b5ec4"><div class="ttname"><a href="ksym_8h.html#a5ce4915218ad7389550e963d321b5ec4">_ksymtab_start</a></div><div class="ttdeci">const uint8_t _ksymtab_start[]</div></div>
+<div class="ttc" id="aksym_8h_html_ab0c7522a7ba34d12465b034a2ee6684d"><div class="ttname"><a href="ksym_8h.html#ab0c7522a7ba34d12465b034a2ee6684d">_ksymtab_end</a></div><div class="ttdeci">const uint8_t _ksymtab_end[]</div></div>
+<div class="ttc" id="anamespaceksym_html"><div class="ttname"><a href="namespaceksym.html">ksym</a></div><div class="ttdef"><b>Definition</b> ksym.cpp:7</div></div>
+<div class="ttc" id="anamespaceksym_html_a1129d94d9e2bc50c74ae83f618f23e65"><div class="ttname"><a href="namespaceksym.html#a1129d94d9e2bc50c74ae83f618f23e65">ksym::get_name</a></div><div class="ttdeci">const char * get_name(uintptr_t addr, uintptr_t *offset)</div><div class="ttdef"><b>Definition</b> ksym.cpp:41</div></div>
+<div class="ttc" id="anamespaceksym_html_a740f608a155417eeb53042c4ac480789"><div class="ttname"><a href="namespaceksym.html#a740f608a155417eeb53042c4ac480789">ksym::export_symbol</a></div><div class="ttdeci">bool export_symbol(const char *name, uintptr_t addr)</div><div class="ttdef"><b>Definition</b> ksym.cpp:16</div></div>
+<div class="ttc" id="anamespaceksym_html_aa93002e69db3b55ab5933e6dc8d5d5c8"><div class="ttname"><a href="namespaceksym.html#aa93002e69db3b55ab5933e6dc8d5d5c8">ksym::resolve_symbol</a></div><div class="ttdeci">uintptr_t resolve_symbol(const char *name)</div><div class="ttdef"><b>Definition</b> ksym.cpp:28</div></div>
+<div class="ttc" id="asymbol_8h_html"><div class="ttname"><a href="symbol_8h.html">symbol.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2ec59b6ec33735e2cfbe3492a0dbaf5.html">intf</a></li><li class="navelem"><a class="el" href="ksym_8h.html">ksym.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2ec59b6ec33735e2cfbe3492a0dbaf5.html">intf</a></li><li class="navelem"><a class="el" href="dir_525f5426d2e25ea3a8bdc4199f1867dc.html">symbol</a></li><li class="navelem"><a class="el" href="ksym_8h.html">ksym.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -1,8 +1,18 @@
 var searchData=
 [
-  ['kfree_0',['kfree',['../namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98',1,'heap']]],
-  ['kmain_1',['kmain',['../main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9',1,'main.cpp']]],
-  ['kmalloc_2',['kmalloc',['../namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8',1,'heap']]],
-  ['kp2v_3',['kp2v',['../util_8h.html#aa6651b993e921013fc85de5e875704f9',1,'util.h']]],
-  ['kv2p_4',['kv2p',['../util_8h.html#a0d69539ad30be2b315e9624f71632892',1,'util.h']]]
+  ['kdb_5fexit_0',['kdb_exit',['../kbd__core_8c.html#a6467eb83b1a48083986a0d49d7633cc8',1,'kbd_core.c']]],
+  ['kdb_5fget_5fmodifiers_1',['kdb_get_modifiers',['../kbd__core_8h.html#aa3a21c5552d8fbad1c49d34d03ab2798',1,'kbd_core.h']]],
+  ['kdb_5fhandle_5fscancode_2',['kdb_handle_scancode',['../kbd__core_8h.html#ad943db6b27038b55c40414534fe64dfa',1,'kdb_handle_scancode(struct kdb_device *kdb, uint8_t scancode, int pressed):&#160;kbd_core.c'],['../kbd__core_8c.html#af2e4bb8b05d60be27a92c0e8649de690',1,'kdb_handle_scancode(struct kdb_device *kdb, uint8_t sc, int pressed):&#160;kbd_core.c']]],
+  ['kdb_5finit_3',['kdb_init',['../kbd__core_8c.html#abf745f76ad2be8904be5fd0eba7199ce',1,'kbd_core.c']]],
+  ['kdb_5fread_4',['kdb_read',['../kbd__core_8c.html#a4f3211d9e6b5724d8b3e22609e47bbe1',1,'kbd_core.c']]],
+  ['kdb_5fregister_5',['kdb_register',['../kbd__core_8h.html#a695062fada6bbf4781c9537444be2aa6',1,'kdb_register(const char *name):&#160;kbd_core.c'],['../kbd__core_8c.html#a695062fada6bbf4781c9537444be2aa6',1,'kdb_register(const char *name):&#160;kbd_core.c']]],
+  ['kdb_5funregister_6',['kdb_unregister',['../kbd__core_8h.html#a1da30886c897523a21b1d854ea9430ec',1,'kdb_unregister(struct kdb_device *kdb):&#160;kbd_core.c'],['../kbd__core_8c.html#a1da30886c897523a21b1d854ea9430ec',1,'kdb_unregister(struct kdb_device *kdb):&#160;kbd_core.c']]],
+  ['kexport_7',['kexport',['../interrupt_8cpp.html#a0b6587d41331f55cbc94b133b361717c',1,'KEXPORT(free_irq):&#160;interrupt.cpp'],['../string_8cpp.html#af716fe510d05c0d0eafe1070a83cbd05',1,'KEXPORT(strlen):&#160;string.cpp'],['../interrupt_8cpp.html#a129da85bfe7fc6c297c80d1d36a73800',1,'KEXPORT(request_irq):&#160;interrupt.cpp'],['../module_2heap_8cpp.html#aa5ec08b38f2a56c2edc0d680d04e02ff',1,'KEXPORT(kmalloc):&#160;heap.cpp'],['../device_8cpp.html#a67862fc4a7c7649279fb0a0df8ced9a2',1,'KEXPORT(device_unregister):&#160;device.cpp'],['../device_8cpp.html#ae6eeb531c0b3253095a0df3405aa4ae9',1,'KEXPORT(device_register):&#160;device.cpp'],['../module_2heap_8cpp.html#a021e43579398ac6b46dba9e4001f70e1',1,'KEXPORT(kfree):&#160;heap.cpp']]],
+  ['kfree_8',['kfree',['../namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98',1,'heap::kfree()'],['../module_2heap_8cpp.html#a069f85a5001d71bc44d8be6532a4e432',1,'kfree(void *ptr):&#160;heap.cpp'],['../public_2mod_2heap_8h.html#a069f85a5001d71bc44d8be6532a4e432',1,'kfree(void *ptr):&#160;heap.cpp']]],
+  ['klog_9',['klog',['../logging_8cpp.html#abbb2cb31a2370a9a7236d1018713dffc',1,'klog(log_level lvl, const char *fmt,...):&#160;logging.cpp'],['../logging_8h.html#a30a3f3385df05befd7ebacf48a7831f7',1,'klog(enum log_level lvl, const char *fmt,...):&#160;logging.cpp']]],
+  ['kmain_10',['kmain',['../main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9',1,'main.cpp']]],
+  ['kmalloc_11',['kmalloc',['../namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8',1,'heap::kmalloc()'],['../module_2heap_8cpp.html#a87d8585002a620e687d68b38ab387a0e',1,'kmalloc(size_t size):&#160;heap.cpp'],['../public_2mod_2heap_8h.html#a87d8585002a620e687d68b38ab387a0e',1,'kmalloc(size_t size):&#160;heap.cpp']]],
+  ['kp2v_12',['kp2v',['../util_8h.html#aa6651b993e921013fc85de5e875704f9',1,'util.h']]],
+  ['krealloc_13',['krealloc',['../namespaceheap.html#a76903ca06bca47b71baa38c4c3df5b33',1,'heap::krealloc()'],['../module_2heap_8cpp.html#a0f73b7f54ab799ec7fa6531eea9a2516',1,'krealloc(void *ptr, size_t new_size):&#160;heap.cpp'],['../public_2mod_2heap_8h.html#a0f73b7f54ab799ec7fa6531eea9a2516',1,'krealloc(void *ptr, size_t new_size):&#160;heap.cpp']]],
+  ['kv2p_14',['kv2p',['../util_8h.html#a0d69539ad30be2b315e9624f71632892',1,'util.h']]]
 ];

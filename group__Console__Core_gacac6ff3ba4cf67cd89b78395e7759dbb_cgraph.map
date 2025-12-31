@@ -14,15 +14,15 @@
 <area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="256,163,340,169,339,175,256,169"/>
 <area shape="rect" id="Node000006" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="587,5,718,31"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="469,116,495,109,520,97,535,84,543,69,552,54,568,40,578,34,581,38,571,44,556,58,548,72,539,87,523,102,497,114,470,122"/>
-<area shape="rect" id="Node000007" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="613,55,692,80"/>
+<area shape="rect" id="Node000007" href="$string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="613,55,692,80"/>
 <area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="469,111,599,78,600,83,470,116"/>
 <area shape="rect" id="Node000008" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="569,105,736,145"/>
 <area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="469,122,555,122,555,127,469,127"/>
-<area shape="rect" id="Node000009" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="847,141,898,167"/>
+<area shape="rect" id="Node000009" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="847,141,898,167"/>
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="737,133,834,146,834,152,736,138"/>
 <area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="480,163,555,145,557,150,482,168"/>
 <area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="499,171,834,153,834,159,499,177"/>
-<area shape="rect" id="Node000011" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="631,220,674,245"/>
+<area shape="rect" id="Node000011" href="$portio_8h.html#a0223c8898dfec29069879dc51076e28a" title=" " alt="" coords="631,220,674,245"/>
 <area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="480,188,618,222,617,227,479,193"/>
 <area shape="rect" id="Node000013" href="$namespaceframebuffer.html#ad22c406bf5420d9f20e34bc1f7cefa59" title="Clear the framebuffer with a specific color." alt="" coords="357,248,495,273"/>
 <area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="244,319,330,282,355,274,356,279,332,287,246,324"/>

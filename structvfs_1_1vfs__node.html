@@ -103,8 +103,8 @@ Collaboration diagram for vfs::vfs_node:</div>
 <div class="dyncontent">
 <div class="center"><img src="structvfs_1_1vfs__node__coll__graph.png" border="0" usemap="#avfs_1_1vfs__node_coll__map" alt="Collaboration graph"/></div>
 <map name="avfs_1_1vfs__node_coll__map" id="avfs_1_1vfs__node_coll__map">
-<area shape="rect" title=" " alt="" coords="5,15,115,40"/>
-<area shape="poly" title=" " alt="" coords="129,21,141,28,115,34,114,29,136,27,127,26"/>
+<area shape="rect" title=" " alt="" coords="5,22,115,47"/>
+<area shape="poly" title=" " alt="" coords="129,29,141,35,115,42,114,36,136,34,127,34"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -124,10 +124,14 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a528e119d2d46cea2e562d8a3bc77651c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec1663ef3f3e9e78d8599084072245ae" id="r_aec1663ef3f3e9e78d8599084072245ae"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1vfs__node.html#aec1663ef3f3e9e78d8599084072245ae">child</a></td></tr>
 <tr class="separator:aec1663ef3f3e9e78d8599084072245ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca2bacbe81ad314f3c37ccd75fc2d3df" id="r_aca2bacbe81ad314f3c37ccd75fc2d3df"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1vfs__node.html#aca2bacbe81ad314f3c37ccd75fc2d3df">finddir</a> )(struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *parent, const char *<a class="el" href="structvfs_1_1vfs__node.html#a660d0107104b986f4f5c1bdb2dd9ac62">name</a>)</td></tr>
+<tr class="memitem:aa17d0c7cae7196033663afe9728c4454" id="r_aa17d0c7cae7196033663afe9728c4454"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1vfs__node.html#aa17d0c7cae7196033663afe9728c4454">parent</a></td></tr>
+<tr class="separator:aa17d0c7cae7196033663afe9728c4454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2bacbe81ad314f3c37ccd75fc2d3df" id="r_aca2bacbe81ad314f3c37ccd75fc2d3df"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1vfs__node.html#aca2bacbe81ad314f3c37ccd75fc2d3df">finddir</a> )(struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *<a class="el" href="structvfs_1_1vfs__node.html#aa17d0c7cae7196033663afe9728c4454">parent</a>, const char *<a class="el" href="structvfs_1_1vfs__node.html#a660d0107104b986f4f5c1bdb2dd9ac62">name</a>)</td></tr>
 <tr class="separator:aca2bacbe81ad314f3c37ccd75fc2d3df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80a1f01521e4b034f6ccad79fabbc2a2" id="r_a80a1f01521e4b034f6ccad79fabbc2a2"><td class="memItemLeft" align="right" valign="top">uint32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1vfs__node.html#a80a1f01521e4b034f6ccad79fabbc2a2">read</a> )(struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *node, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="structvfs_1_1vfs__node.html#a0fe182f5690c37c4c02c8dc8408fef78">size</a>, uint8_t *buffer)</td></tr>
 <tr class="separator:a80a1f01521e4b034f6ccad79fabbc2a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa895ae652f40cf20f1a7974c71e260b2" id="r_aa895ae652f40cf20f1a7974c71e260b2"><td class="memItemLeft" align="right" valign="top">uint32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1vfs__node.html#aa895ae652f40cf20f1a7974c71e260b2">write</a> )(struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *node, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="structvfs_1_1vfs__node.html#a0fe182f5690c37c4c02c8dc8408fef78">size</a>, uint8_t *buffer)</td></tr>
+<tr class="separator:aa895ae652f40cf20f1a7974c71e260b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="aec1663ef3f3e9e78d8599084072245ae" name="aec1663ef3f3e9e78d8599084072245ae"></a>
@@ -151,7 +155,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *(* vfs::vfs_node::finddir) (struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *parent, const char *<a class="el" href="structvfs_1_1vfs__node.html#a660d0107104b986f4f5c1bdb2dd9ac62">name</a>)</td>
+          <td class="memname">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *(* vfs::vfs_node::finddir) (struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *<a class="el" href="structvfs_1_1vfs__node.html#aa17d0c7cae7196033663afe9728c4454">parent</a>, const char *<a class="el" href="structvfs_1_1vfs__node.html#a660d0107104b986f4f5c1bdb2dd9ac62">name</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -194,6 +198,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a>* vfs::vfs_node::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa17d0c7cae7196033663afe9728c4454" name="aa17d0c7cae7196033663afe9728c4454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa17d0c7cae7196033663afe9728c4454">&#9670;&#160;</a></span>parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a>* vfs::vfs_node::parent</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -250,6 +268,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespacevfs.html#a4254823dbf640d91def413bf2a811fa7">VfsType</a> vfs::vfs_node::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa895ae652f40cf20f1a7974c71e260b2" name="aa895ae652f40cf20f1a7974c71e260b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa895ae652f40cf20f1a7974c71e260b2">&#9670;&#160;</a></span>write</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t(* vfs::vfs_node::write) (struct <a class="el" href="structvfs_1_1vfs__node.html">vfs_node</a> *node, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="structvfs_1_1vfs__node.html#a0fe182f5690c37c4c02c8dc8408fef78">size</a>, uint8_t *buffer)</td>
         </tr>
       </table>
 </div><div class="memdoc">

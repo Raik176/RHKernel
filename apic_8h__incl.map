@@ -1,14 +1,17 @@
 <map id="src/intf/smp/apic.h" name="src/intf/smp/apic.h">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,148,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="19,225,89,251"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,33,54,54,42,79,36,115,37,151,49,212,44,213,32,151,31,114,37,78,49,51,64,30"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="55,299,125,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,33,54,54,42,79,37,108,36,137,45,194,62,246,80,285,75,288,57,248,40,195,30,137,31,107,37,78,49,51,64,30"/>
 <area shape="rect" id="Node000003" href="$idt_8h.html" title=" " alt="" coords="51,79,102,104"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="79,31,79,65,74,65,74,31"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="77,105,61,212,55,211,72,104"/>
-<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions and macros." alt="" coords="109,152,164,177"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="89,103,120,140,116,143,85,106"/>
-<area shape="poly" id="edge7_Node000004_Node000001" title=" " alt="" coords="132,152,125,119,112,80,91,44,96,41,116,78,130,117,137,151"/>
-<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="125,179,80,218,76,214,122,175"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="114,225,189,251"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="142,177,149,211,144,212,136,178"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="80,104,91,284,86,285,75,105"/>
+<area shape="rect" id="Node000004" href="$util_8h.html" title="Utility functions and macros." alt="" coords="112,152,167,177"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="89,103,122,140,118,143,85,106"/>
+<area shape="poly" id="edge9_Node000004_Node000001" title=" " alt="" coords="134,152,126,119,112,80,91,44,95,41,116,78,131,117,139,151"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="138,179,101,287,96,285,133,177"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="153,225,227,251"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="150,176,176,213,172,216,146,179"/>
+<area shape="rect" id="Node000006" href="$portio_8h.html" title=" " alt="" coords="251,225,323,251"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="164,175,252,217,250,222,162,180"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="257,253,136,296,134,291,255,248"/>
 </map>

@@ -1,0 +1,18 @@
+<map id="src/impl/x86_64/module/heap.cpp" name="src/impl/x86_64/module/heap.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,5,280,45"/>
+<area shape="rect" id="Node000002" href="$public_2mod_2heap_8h.html" title=" " alt="" coords="5,93,104,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,48,88,89,85,84,157,43"/>
+<area shape="rect" id="Node000004" href="$intf_2memory_2heap_8h.html" title=" " alt="" coords="128,93,253,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,46,193,79,188,79,188,46"/>
+<area shape="rect" id="Node000007" href="$symbol_8h.html" title=" " alt="" coords="284,167,367,192"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="216,44,267,92,313,153,309,157,263,95,213,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="17,167,92,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="57,119,57,153,52,153,52,119"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="170,121,90,163,88,158,168,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="178,240,249,265"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="182,120,160,153,155,172,157,191,170,212,188,230,184,233,166,215,152,193,149,172,155,151,177,117"/>
+<area shape="rect" id="Node000006" href="$lock_8h.html" title=" " alt="" coords="167,167,260,192"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="197,118,208,153,203,154,192,120"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="216,192,216,226,211,226,211,192"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="309,194,245,235,242,230,306,190"/>
+</map>

@@ -6,13 +6,13 @@
 <area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="105,95,183,70,292,43,354,33,418,26,482,26,546,32,603,46,653,65,652,70,601,52,545,37,482,31,418,32,355,38,293,48,185,75,107,100"/>
 <area shape="rect" id="Node000012" href="$namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="395,149,545,174"/>
 <area shape="poly" id="edge19_Node000001_Node000012" title=" " alt="" coords="127,121,186,132,287,145,381,153,381,158,286,150,185,137,126,126"/>
-<area shape="rect" id="Node000003" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="423,225,517,250"/>
+<area shape="rect" id="Node000003" href="$namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="423,225,517,250"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="289,121,438,215,435,220,286,126"/>
 <area shape="rect" id="Node000008" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="887,123,933,149"/>
 <area shape="poly" id="edge17_Node000002_Node000008" title=" " alt="" coords="281,96,329,62,360,45,394,32,506,8,553,3,597,4,641,10,687,21,797,58,846,83,886,112,883,117,843,87,795,63,686,26,640,15,597,9,553,9,507,13,395,37,363,50,332,66,284,100"/>
 <area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="347,103,579,90,580,95,347,109"/>
 <area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="319,121,406,143,405,148,317,126"/>
-<area shape="rect" id="Node000013" href="$string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="432,47,508,73"/>
+<area shape="rect" id="Node000013" href="$string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="432,47,508,73"/>
 <area shape="poly" id="edge16_Node000002_Node000013" title=" " alt="" coords="317,95,418,70,420,75,319,101"/>
 <area shape="rect" id="Node000004" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="844,225,976,250"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="518,235,830,235,830,240,518,240"/>
@@ -20,7 +20,7 @@
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="518,245,625,270,624,275,517,251"/>
 <area shape="rect" id="Node000007" href="$namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="626,174,763,199"/>
 <area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="517,224,624,200,625,205,518,229"/>
-<area shape="rect" id="Node000009" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="619,325,770,350"/>
+<area shape="rect" id="Node000009" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="619,325,770,350"/>
 <area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="490,248,536,279,594,310,619,318,617,323,592,315,533,283,487,253"/>
 <area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="749,273,841,251,843,256,750,278"/>
 <area shape="rect" id="Node000006" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="887,275,933,301"/>

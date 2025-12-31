@@ -14,7 +14,7 @@ var structelf_1_1elf__header =
     [ "sh_count", "structelf_1_1elf__header.html#abdeaddb2a68ffdf89257db1bddd144eb", null ],
     [ "sh_entry_size", "structelf_1_1elf__header.html#af7ab49b396c31ef35fa37ebe903c5165", null ],
     [ "shoff", "structelf_1_1elf__header.html#aea3a78a975281c01c7b5f583bb8db20e", null ],
-    [ "str_table_index", "structelf_1_1elf__header.html#a9a7b89616801cf47fe64b7e82547fd1b", null ],
+    [ "shstrndx", "structelf_1_1elf__header.html#a21fc247814ae8aee7800e5f2a7258695", null ],
     [ "type", "structelf_1_1elf__header.html#a36edf564c4da262d0137402bb1ca1c6d", null ],
     [ "unused", "structelf_1_1elf__header.html#a2297777922a1497e337fdd40308511af", null ],
     [ "version", "structelf_1_1elf__header.html#a659a70c841294f412ee63b6633639abd", null ],

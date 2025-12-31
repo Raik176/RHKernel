@@ -7,8 +7,8 @@
 <area shape="rect" id="Node000005" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="156,105,323,145"/>
 <area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="99,78,163,98,162,103,97,83"/>
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="290,52,371,31,372,37,291,57"/>
-<area shape="rect" id="Node000004" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="397,55,475,80"/>
+<area shape="rect" id="Node000004" href="$string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="397,55,475,80"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="292,65,383,65,383,70,292,70"/>
-<area shape="rect" id="Node000006" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="411,112,461,137"/>
+<area shape="rect" id="Node000006" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="411,112,461,137"/>
 <area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="323,122,397,122,397,127,323,127"/>
 </map>

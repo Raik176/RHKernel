@@ -1,7 +1,9 @@
-<map id="src/intf/string.h" name="src/intf/string.h">
-<area shape="rect" id="Node000001" title="Basic memory and string manipulation functions for kernel." alt="" coords="31,5,151,31"/>
+<map id="src/public/string.h" name="src/public/string.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="73,5,210,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,80,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,33,60,69,56,66,81,30"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="105,79,175,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,29,126,66,122,69,97,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,33,71,73,68,68,124,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="104,79,179,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,31,144,65,139,65,139,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="203,79,274,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,29,213,68,210,72,155,33"/>
 </map>

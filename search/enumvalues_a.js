@@ -8,5 +8,8 @@ var searchData=
   ['lightmagenta_5',['LightMagenta',['../namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944af1ec64ef9f82e9fb86b094f8b548f9f1',1,'console']]],
   ['lightred_6',['LightRed',['../namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944af9a96fb667261a141d10021a66d6ad0f',1,'console']]],
   ['lint0_7',['LINT0',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fadc9a6ae1747ee9255d8d32732b6cfd8e',1,'apic']]],
-  ['lint1_8',['LINT1',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00faecdd8e198dd370791e85216676a94a34',1,'apic']]]
+  ['lint1_8',['LINT1',['../namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00faecdd8e198dd370791e85216676a94a34',1,'apic']]],
+  ['log_5ferr_9',['LOG_ERR',['../logging_8h.html#ac91d55174d383848b976a34de843748ea0b4d9ad891dde7ae8deeb1704195858c',1,'logging.h']]],
+  ['log_5finfo_10',['LOG_INFO',['../logging_8h.html#ac91d55174d383848b976a34de843748ea6e98ff471e3ce6c4ef2d75c37ee51837',1,'logging.h']]],
+  ['log_5fwarn_11',['LOG_WARN',['../logging_8h.html#ac91d55174d383848b976a34de843748eac8041ffa22bc823d4726701cdb13fc13',1,'logging.h']]]
 ];

@@ -1,0 +1,13 @@
+<map id="proc_mem_total_read" name="proc_mem_total_read">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,169,80"/>
+<area shape="rect" id="Node000002" href="$namespacepmm.html#a6ea68919c1f83b676d55255f52968cd5" title="Get total usable memory in kilobytes." alt="" coords="217,5,383,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,52,231,31,232,36,143,57"/>
+<area shape="rect" id="Node000003" href="$string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="261,55,339,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,65,247,65,247,70,170,70"/>
+<area shape="rect" id="Node000004" href="$string_8cpp.html#aed3a44ce00b8d92f93e8a34e7b9dbf54" title=" " alt="" coords="264,104,336,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,77,251,103,250,108,142,83"/>
+<area shape="rect" id="Node000005" href="$string_8cpp.html#ac943fec1bf81aeccd3c834d2180cd518" title=" " alt="" coords="431,104,511,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="336,114,417,114,417,119,336,119"/>
+<area shape="rect" id="Node000006" href="$string_8cpp.html#a0c6adabce488144345a1e061a66748a1" title=" " alt="" coords="559,104,605,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="511,114,545,114,545,119,511,119"/>
+</map>

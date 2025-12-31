@@ -1,5 +1,6 @@
 var console_8h =
 [
+    [ "DEBUG", "console_8h.html#ad72dbcf6d0153db1b8d8a58001feed83", null ],
     [ "Backend", "console_8h.html#a75f86d36f8c24dd9a106f8465ec19498", [
       [ "VGA", "console_8h.html#a75f86d36f8c24dd9a106f8465ec19498adb4371197d1f58c7d4edb7dcd0565ad1", null ],
       [ "FRAMEBUFFER", "console_8h.html#a75f86d36f8c24dd9a106f8465ec19498aa8b6aa3e7817e792024c8b4ef6cf7349", null ]
@@ -25,9 +26,11 @@ var console_8h =
     [ "clear", "console_8h.html#ga035f2f624f6a23ed646c9654d4510a66", null ],
     [ "disable_cursor", "console_8h.html#ga36cbc01958448a64c53952fcddc57060", null ],
     [ "enable_cursor", "console_8h.html#ga958b79f80b128cef01b815246c292b10", null ],
+    [ "hexdump", "console_8h.html#ga3dd53055efb1a3b3077465037d9e4689", null ],
     [ "init", "console_8h.html#gacac6ff3ba4cf67cd89b78395e7759dbb", null ],
     [ "move_cursor", "console_8h.html#ga9342e94a12a86c2367bddb6f7a9cb69f", null ],
     [ "printf", "console_8h.html#ga0522c4a859d7c82e6aab7c54f4209df2", null ],
     [ "putchar", "console_8h.html#gaba87341fd1ed10fbefe4e1dbf1300174", null ],
-    [ "set_color", "console_8h.html#ad6e647f131636f240b8207aea6e746a2", null ]
+    [ "set_color", "console_8h.html#ad6e647f131636f240b8207aea6e746a2", null ],
+    [ "vprintf", "console_8h.html#gaff623c949c49c4d39babea0339ebb242", null ]
 ];

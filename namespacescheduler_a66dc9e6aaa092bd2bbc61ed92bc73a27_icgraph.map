@@ -1,8 +1,16 @@
 <map id="scheduler::yield" name="scheduler::yield">
-<area shape="rect" id="Node000001" title=" " alt="" coords="352,31,477,56"/>
-<area shape="rect" id="Node000002" href="$namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15" title=" " alt="" coords="176,5,304,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="338,35,304,30,305,25,339,30"/>
-<area shape="rect" id="Node000003" href="$syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,31,128,56"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="339,46,128,46,128,41,339,41"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="162,32,129,37,128,32,162,27"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="561,81,687,107"/>
+<area shape="rect" id="Node000002" href="$namespacescheduler.html#a74d2c4d5395bd616755c95fe0162e826" title=" " alt="" coords="177,5,296,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="583,78,513,53,456,41,398,32,296,23,297,18,399,27,457,35,514,47,585,73"/>
+<area shape="rect" id="Node000003" href="$syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,81,128,107"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="547,93,377,89,176,90,129,92,128,87,176,85,377,84,548,88"/>
+<area shape="rect" id="Node000004" href="$namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15" title=" " alt="" coords="365,107,493,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="548,107,494,114,493,108,547,101"/>
+<area shape="rect" id="Node000005" href="$structscheduler_1_1wait__queue.html#adaf06d251293f1044d55a5b8be51403f" title=" " alt="" coords="345,157,513,197"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="585,115,514,147,485,159,483,154,512,142,583,110"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="196,39,97,84,95,79,194,34"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="352,117,128,101,128,96,352,111"/>
+<area shape="rect" id="Node000006" href="$namespacescheduler.html#a0f6196dfdd69ef3ec2923f5f32bf6baa" title=" " alt="" coords="176,160,297,185"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="332,177,298,177,298,171,332,172"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="195,157,94,109,96,104,197,152"/>
 </map>

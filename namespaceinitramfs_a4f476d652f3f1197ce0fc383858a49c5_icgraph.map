@@ -1,5 +1,5 @@
 <map id="initramfs::hex_to_int" name="initramfs::hex_to_int">
-<area shape="rect" id="Node000001" title="Helper to convert a hex string from CPIO header to uint32_t." alt="" coords="275,5,432,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="275,5,432,31"/>
 <area shape="rect" id="Node000002" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="116,5,227,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="261,21,227,21,227,15,261,15"/>
 <area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>

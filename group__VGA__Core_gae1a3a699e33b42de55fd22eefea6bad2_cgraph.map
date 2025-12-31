@@ -6,14 +6,14 @@
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="80,130,114,135,113,141,80,136"/>
 <area shape="rect" id="Node000003" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="339,5,470,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="225,83,320,40,342,32,343,37,322,44,227,88"/>
-<area shape="rect" id="Node000004" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="365,55,444,80"/>
+<area shape="rect" id="Node000004" href="$string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="365,55,444,80"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="244,89,352,73,352,78,245,94"/>
 <area shape="rect" id="Node000005" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="321,105,488,145"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="245,101,308,109,307,115,244,106"/>
-<area shape="rect" id="Node000006" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="536,141,587,167"/>
+<area shape="rect" id="Node000006" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="536,141,587,167"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="489,138,523,144,522,149,488,143"/>
 <area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="273,139,307,135,308,140,274,145"/>
 <area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="274,152,321,154,488,154,522,153,522,158,488,159,321,159,274,158"/>
-<area shape="rect" id="Node000008" href="$util_8h.html#a0223c8898dfec29069879dc51076e28a" title="Read a byte from an I/O port." alt="" coords="383,220,426,245"/>
+<area shape="rect" id="Node000008" href="$portio_8h.html#a0223c8898dfec29069879dc51076e28a" title=" " alt="" coords="383,220,426,245"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="233,162,322,198,371,217,369,222,320,203,231,167"/>
 </map>

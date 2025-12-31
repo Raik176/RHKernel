@@ -1,0 +1,11 @@
+<map id="scheduler::wait_queue::wait" name="scheduler::wait_queue::wait">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,73,173,113"/>
+<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="221,5,388,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,70,220,39,243,32,245,37,222,45,140,75"/>
+<area shape="rect" id="Node000003" href="$namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="250,55,359,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,80,236,73,237,78,174,85"/>
+<area shape="rect" id="Node000004" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="221,104,388,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,99,208,103,207,109,173,105"/>
+<area shape="rect" id="Node000005" href="$namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27" title=" " alt="" coords="242,153,367,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="144,110,222,138,249,147,247,152,220,143,142,115"/>
+</map>

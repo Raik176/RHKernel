@@ -103,12 +103,12 @@ Collaboration diagram for vfs::open_file:</div>
 <div class="dyncontent">
 <div class="center"><img src="structvfs_1_1open__file__coll__graph.png" border="0" usemap="#avfs_1_1open__file_coll__map" alt="Collaboration graph"/></div>
 <map name="avfs_1_1open__file_coll__map" id="avfs_1_1open__file_coll__map">
-<area shape="rect" title=" " alt="" coords="105,112,215,137"/>
-<area shape="rect" href="structvfs_1_1vfs__node.html" title=" " alt="" coords="5,15,115,40"/>
-<area shape="poly" title=" " alt="" coords="84,48,149,110,146,114,81,52"/>
-<area shape="poly" title=" " alt="" coords="129,17,138,21,141,28,133,37,115,40,114,35,131,32,136,27,134,25,127,22"/>
-<area shape="rect" href="structlock_1_1spinlock.html" title=" " alt="" coords="205,15,315,40"/>
-<area shape="poly" title=" " alt="" coords="239,52,174,114,171,110,236,48"/>
+<area shape="rect" title=" " alt="" coords="105,127,215,152"/>
+<area shape="rect" href="structvfs_1_1vfs__node.html" title=" " alt="" coords="5,22,115,47"/>
+<area shape="poly" title=" " alt="" coords="83,56,151,125,147,128,79,60"/>
+<area shape="poly" title=" " alt="" coords="129,23,138,28,141,35,133,45,115,48,114,43,131,40,136,34,134,31,127,28"/>
+<area shape="rect" href="structlock_1_1spinlock.html" title=" " alt="" coords="206,22,317,47"/>
+<area shape="poly" title=" " alt="" coords="242,60,173,128,170,125,238,56"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -120,6 +120,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a96256981e9307788bb703090b108a7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95524fd4cefeadbda3dbdd3ef0e2cf69" id="r_a95524fd4cefeadbda3dbdd3ef0e2cf69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlock_1_1spinlock.html">lock::spinlock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1open__file.html#a95524fd4cefeadbda3dbdd3ef0e2cf69">lock</a></td></tr>
 <tr class="separator:a95524fd4cefeadbda3dbdd3ef0e2cf69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb6402701d4e48d81373cb09fe727ac" id="r_abfb6402701d4e48d81373cb09fe727ac"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvfs_1_1open__file.html#abfb6402701d4e48d81373cb09fe727ac">ref_count</a></td></tr>
+<tr class="separator:abfb6402701d4e48d81373cb09fe727ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a95524fd4cefeadbda3dbdd3ef0e2cf69" name="a95524fd4cefeadbda3dbdd3ef0e2cf69"></a>
@@ -158,6 +160,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint32_t vfs::open_file::offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abfb6402701d4e48d81373cb09fe727ac" name="abfb6402701d4e48d81373cb09fe727ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfb6402701d4e48d81373cb09fe727ac">&#9670;&#160;</a></span>ref_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t vfs::open_file::ref_count</td>
         </tr>
       </table>
 </div><div class="memdoc">

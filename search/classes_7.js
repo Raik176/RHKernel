@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['open_5ffile_0',['open_file',['../structvfs_1_1open__file.html',1,'vfs']]]
+  ['loaded_5fmodule_0',['loaded_module',['../structmodule__loader_1_1loaded__module.html',1,'module_loader']]]
 ];

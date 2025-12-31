@@ -1,0 +1,62 @@
+<map id="console::hexdump" name="console::hexdump">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,294,147,319"/>
+<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="195,192,361,218"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,291,140,264,193,235,227,220,229,225,196,239,142,269,98,296"/>
+<area shape="rect" id="Node000003" href="$namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="571,294,757,319"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,291,194,278,293,273,392,274,565,289,565,295,392,280,293,278,195,284,125,296"/>
+<area shape="rect" id="Node000023" href="$namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="215,294,341,319"/>
+<area shape="poly" id="edge30_Node000001_Node000023" title=" " alt="" coords="147,304,202,304,202,309,147,309"/>
+<area shape="rect" id="Node000024" href="$namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="409,344,523,370"/>
+<area shape="poly" id="edge35_Node000001_Node000024" title=" " alt="" coords="130,316,195,329,300,342,396,350,395,356,300,347,194,334,129,322"/>
+<area shape="rect" id="Node000025" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="195,395,361,420"/>
+<area shape="poly" id="edge34_Node000001_Node000025" title=" " alt="" coords="98,317,142,344,196,373,229,388,227,393,193,378,140,349,95,321"/>
+<area shape="rect" id="Node000004" href="$namespaceconsole.html#ab231d521184351a44f099e4b3d7a603a" title=" " alt="" coords="809,318,958,343"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="758,314,795,318,794,323,758,319"/>
+<area shape="rect" id="Node000013" href="$namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="1040,394,1155,419"/>
+<area shape="poly" id="edge23_Node000003_Node000013" title=" " alt="" coords="697,317,748,335,806,353,922,378,1027,395,1026,400,921,383,805,358,746,340,696,322"/>
+<area shape="rect" id="Node000017" href="$namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="805,118,961,143"/>
+<area shape="poly" id="edge16_Node000003_Node000017" title=" " alt="" coords="680,291,854,150,857,154,683,296"/>
+<area shape="rect" id="Node000021" href="$group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="832,268,935,294"/>
+<area shape="poly" id="edge24_Node000003_Node000021" title=" " alt="" coords="758,293,818,286,819,291,758,298"/>
+<area shape="rect" id="Node000005" href="$namespaceframebuffer.html#ab4b70b2cdacab070608758ff1172d6eb" title=" " alt="" coords="1009,42,1185,67"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="942,315,959,303,975,282,984,262,987,221,989,178,995,154,1007,129,1033,98,1063,73,1066,77,1037,101,1012,132,1000,156,994,179,993,222,989,263,980,285,963,307,946,320"/>
+<area shape="rect" id="Node000009" href="$group__VGA__Core.html#ga0aeab881ec911a09eeb139b3b6caf693" title=" " alt="" coords="1036,344,1159,370"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="959,337,1023,345,1022,350,958,342"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="916,341,1010,380,1033,387,1032,392,1008,385,914,346"/>
+<area shape="rect" id="Node000006" href="$namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1233,10,1424,35"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1185,40,1223,34,1224,40,1186,45"/>
+<area shape="rect" id="Node000007" href="$namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1253,78,1405,118"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1165,65,1240,79,1239,84,1164,70"/>
+<area shape="rect" id="Node000008" href="$namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1472,86,1649,111"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1405,96,1458,96,1458,101,1405,101"/>
+<area shape="rect" id="Node000010" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1263,243,1394,268"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1121,342,1232,288,1276,271,1278,276,1234,293,1124,347"/>
+<area shape="rect" id="Node000011" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1245,302,1412,342"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="1158,345,1232,334,1232,339,1159,351"/>
+<area shape="rect" id="Node000012" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="1535,310,1586,335"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1412,320,1521,320,1521,325,1412,325"/>
+<area shape="rect" id="Node000014" href="$namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1253,384,1404,410"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1155,401,1240,398,1240,403,1155,407"/>
+<area shape="rect" id="Node000016" href="$namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1281,434,1376,459"/>
+<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="1156,414,1268,433,1267,439,1155,419"/>
+<area shape="rect" id="Node000015" href="$namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1517,384,1604,410"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="1404,394,1504,394,1504,400,1404,400"/>
+<area shape="poly" id="edge17_Node000017_Node000006" title=" " alt="" coords="893,116,939,70,972,45,1008,27,1064,11,1122,4,1179,3,1231,6,1231,11,1179,8,1123,10,1065,17,1010,32,975,50,942,74,897,120"/>
+<area shape="poly" id="edge22_Node000017_Node000007" title=" " alt="" coords="962,122,1239,102,1239,107,962,127"/>
+<area shape="rect" id="Node000018" href="$namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1026,143,1169,168"/>
+<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="962,137,1013,143,1012,148,961,142"/>
+<area shape="poly" id="edge21_Node000018_Node000007" title=" " alt="" coords="1149,140,1238,118,1240,123,1150,146"/>
+<area shape="rect" id="Node000019" href="$string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="1289,192,1368,218"/>
+<area shape="poly" id="edge19_Node000018_Node000019" title=" " alt="" coords="1158,166,1276,191,1275,197,1157,171"/>
+<area shape="rect" id="Node000020" href="$string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="1291,143,1367,168"/>
+<area shape="poly" id="edge20_Node000018_Node000020" title=" " alt="" coords="1169,153,1277,153,1277,158,1169,158"/>
+<area shape="poly" id="edge25_Node000021_Node000010" title=" " alt="" coords="935,276,1249,258,1250,263,935,281"/>
+<area shape="poly" id="edge29_Node000021_Node000011" title=" " alt="" coords="935,283,1232,311,1231,316,935,288"/>
+<area shape="rect" id="Node000022" href="$namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1045,192,1150,218"/>
+<area shape="poly" id="edge26_Node000021_Node000022" title=" " alt="" coords="919,266,1047,220,1049,225,921,271"/>
+<area shape="poly" id="edge27_Node000022_Node000010" title=" " alt="" coords="1151,214,1257,237,1256,243,1150,219"/>
+<area shape="poly" id="edge28_Node000022_Node000019" title=" " alt="" coords="1151,202,1276,202,1276,208,1151,208"/>
+<area shape="poly" id="edge31_Node000023_Node000003" title=" " alt="" coords="341,304,557,304,557,309,341,309"/>
+<area shape="poly" id="edge32_Node000023_Node000024" title=" " alt="" coords="327,317,406,338,404,343,325,322"/>
+<area shape="poly" id="edge33_Node000024_Node000003" title=" " alt="" coords="516,342,600,320,601,325,517,347"/>
+</map>

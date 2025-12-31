@@ -2,10 +2,10 @@
 <area shape="rect" id="Node000001" title="Clear the screen." alt="" coords="5,55,92,80"/>
 <area shape="rect" id="Node000002" href="$namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="158,5,289,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,53,163,32,165,37,93,58"/>
-<area shape="rect" id="Node000003" href="$string_8h.html#a8a853f677c69b562669a40f0d8e55064" title="Copy memory from source to destination." alt="" coords="184,55,263,80"/>
+<area shape="rect" id="Node000003" href="$string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="184,55,263,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="92,65,171,65,171,70,92,70"/>
 <area shape="rect" id="Node000004" href="$namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="140,105,307,145"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="89,78,150,98,148,103,87,83"/>
-<area shape="rect" id="Node000005" href="$util_8h.html#aa37f5841c54156a4b14fc0d6f626b44f" title="Write a byte to an I/O port." alt="" coords="355,112,405,137"/>
+<area shape="rect" id="Node000005" href="$portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="355,112,405,137"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="307,122,340,122,340,127,307,127"/>
 </map>

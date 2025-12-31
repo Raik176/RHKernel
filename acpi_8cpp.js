@@ -7,6 +7,6 @@ var acpi_8cpp =
     [ "is_xsdt", "acpi_8cpp.html#a7e303c89a353fefa74a301b86b2aee13", null ],
     [ "root_table", "acpi_8cpp.html#a68f871b2c3c51220af51a721636f4424", null ],
     [ "rsdp", "acpi_8cpp.html#aa614c1c360d614c315571daad994f30e", null ],
-    [ "size", "acpi_8cpp.html#ab2c6b258f02add8fdf4cfc7c371dd772", null ],
+    [ "size", "acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560", null ],
     [ "type", "acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03", null ]
 ];

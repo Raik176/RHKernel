@@ -103,13 +103,19 @@ $(document).ready(function(){initNavTree('namespacescheduler.html',''); initResi
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler_1_1task.html">task</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structscheduler_1_1wait__queue.html">wait_queue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a7941237578b7fa1334f4b8260919d677" id="r_a7941237578b7fa1334f4b8260919d677"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677">task_state</a> { <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489">READY</a>
+<tr class="memitem:a7941237578b7fa1334f4b8260919d677" id="r_a7941237578b7fa1334f4b8260919d677"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677">task_state</a> { <br />
+&#160;&#160;<a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489">READY</a>
 , <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a43491564ebcfd38568918efbd6e840fd">RUNNING</a>
 , <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a7850588c11fe6db41b8b2dd6c455f8f3">SLEEPING</a>
-, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677abb4784231ff45108ee20bad16e4a2e8c">DEAD</a>
+, <a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a1869d56535e8b1449a6da54ff5e11f50">WAITING</a>
+, <br />
+&#160;&#160;<a class="el" href="namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a81596a5a9c2174b0a286cbf3ccf3528b">ZOMBIE</a>
+<br />
  }</td></tr>
 <tr class="separator:a7941237578b7fa1334f4b8260919d677"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3433b43c091f3d97e093d1f8399692d" id="r_ae3433b43c091f3d97e093d1f8399692d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a> { <a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da35c10219c45ccfb5b07444fd7e17214c">KERNEL</a>
@@ -123,30 +129,40 @@ Functions</h2></td></tr>
 <tr class="separator:afe3f2e5da9c1007bad54ba98727bd670"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a772b46f4cd9109f2e634ccc9963a5115" id="r_a772b46f4cd9109f2e634ccc9963a5115"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a772b46f4cd9109f2e634ccc9963a5115">fxrstor_task</a> (<a class="el" href="structscheduler_1_1task.html">task</a> *t)</td></tr>
 <tr class="separator:a772b46f4cd9109f2e634ccc9963a5115"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2a3525715b7cf529eb7d7338b5fc0f0" id="r_ad2a3525715b7cf529eb7d7338b5fc0f0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0">steal_work</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *self)</td></tr>
-<tr class="separator:ad2a3525715b7cf529eb7d7338b5fc0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c8eb5d332fae9fb49045a7c5d92958e" id="r_a1c8eb5d332fae9fb49045a7c5d92958e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e">enqueue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *<a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>, <a class="el" href="structscheduler_1_1task.html">task</a> *t)</td></tr>
 <tr class="separator:a1c8eb5d332fae9fb49045a7c5d92958e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af80679e4c6adb09b59ba82a269a6f462" id="r_af80679e4c6adb09b59ba82a269a6f462"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#af80679e4c6adb09b59ba82a269a6f462">dequeue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *<a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>)</td></tr>
 <tr class="separator:af80679e4c6adb09b59ba82a269a6f462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a3525715b7cf529eb7d7338b5fc0f0" id="r_ad2a3525715b7cf529eb7d7338b5fc0f0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0">steal_work</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *self)</td></tr>
+<tr class="separator:ad2a3525715b7cf529eb7d7338b5fc0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a665b76d95eb85bbe7bc2357b3d468e70" id="r_a665b76d95eb85bbe7bc2357b3d468e70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70">init_core</a> ()</td></tr>
 <tr class="separator:a665b76d95eb85bbe7bc2357b3d468e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a395f6820b5cdffc27a298872c26a422d" id="r_a395f6820b5cdffc27a298872c26a422d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d">spawn</a> (<a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a> <a class="el" href="acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03">type</a>, void(*<a class="el" href="smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e">entry_point</a>)(), uint64_t pml4)</td></tr>
 <tr class="separator:a395f6820b5cdffc27a298872c26a422d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15c8d6e590b87fc2f9a56cb6023e295c" id="r_a15c8d6e590b87fc2f9a56cb6023e295c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a15c8d6e590b87fc2f9a56cb6023e295c">clone</a> (uint64_t <a class="el" href="acpi_8h.html#a899a76dc5f03f0d4ea3793c339e07ee9">flags</a>, void *child_stack, <a class="el" href="structregs.html">regs</a> *current_regs)</td></tr>
+<tr class="separator:a15c8d6e590b87fc2f9a56cb6023e295c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2b1936496e590f688dc4cbaa6d18bd6" id="r_af2b1936496e590f688dc4cbaa6d18bd6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#af2b1936496e590f688dc4cbaa6d18bd6">exec</a> (const char *path)</td></tr>
+<tr class="separator:af2b1936496e590f688dc4cbaa6d18bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b5d5090e6ae162b694a4c01823a6b11" id="r_a5b5d5090e6ae162b694a4c01823a6b11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structregs.html">regs</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11">schedule</a> (<a class="el" href="structregs.html">regs</a> *current_state, bool is_timer_tick)</td></tr>
 <tr class="separator:a5b5d5090e6ae162b694a4c01823a6b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66dc9e6aaa092bd2bbc61ed92bc73a27" id="r_a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27">yield</a> ()</td></tr>
 <tr class="separator:a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5035a7951f80abef56b2a6b752a28d15" id="r_a5035a7951f80abef56b2a6b752a28d15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15">sleep</a> (uint64_t ticks)</td></tr>
 <tr class="separator:a5035a7951f80abef56b2a6b752a28d15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74d2c4d5395bd616755c95fe0162e826" id="r_a74d2c4d5395bd616755c95fe0162e826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a74d2c4d5395bd616755c95fe0162e826">exit</a> (int code)</td></tr>
+<tr class="separator:a74d2c4d5395bd616755c95fe0162e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f6196dfdd69ef3ec2923f5f32bf6baa" id="r_a0f6196dfdd69ef3ec2923f5f32bf6baa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a0f6196dfdd69ef3ec2923f5f32bf6baa">wait</a> (int *<a class="el" href="smp_8h.html#a2cb8d8b14d36ed72551cc08b583f4215">status</a>)</td></tr>
+<tr class="separator:a0f6196dfdd69ef3ec2923f5f32bf6baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0d1bac269fd0bc961e25285fd8e7c2" id="r_a1e0d1bac269fd0bc961e25285fd8e7c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a1e0d1bac269fd0bc961e25285fd8e7c2">get_task_by_id</a> (uint64_t id)</td></tr>
+<tr class="separator:a1e0d1bac269fd0bc961e25285fd8e7c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a3b81b2261dd5d25128bbd76ac80d91f8" id="r_a3b81b2261dd5d25128bbd76ac80d91f8"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3b81b2261dd5d25128bbd76ac80d91f8">next_tid</a> = 1</td></tr>
 <tr class="separator:a3b81b2261dd5d25128bbd76ac80d91f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fd9587ccd96391c01913da759cb8253" id="r_a3fd9587ccd96391c01913da759cb8253"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3fd9587ccd96391c01913da759cb8253">KERNEL_STACK_SIZE</a> = 1024 * 16</td></tr>
+<tr class="memitem:a3fd9587ccd96391c01913da759cb8253" id="r_a3fd9587ccd96391c01913da759cb8253"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3fd9587ccd96391c01913da759cb8253">KERNEL_STACK_SIZE</a> = 1024 * 8</td></tr>
 <tr class="separator:a3fd9587ccd96391c01913da759cb8253"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca1955f9f8177bc72acae17e9428a87a" id="r_aca1955f9f8177bc72acae17e9428a87a"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#aca1955f9f8177bc72acae17e9428a87a">INITIAL_USER_STACK_SIZE</a> = 1024 * 64</td></tr>
+<tr class="memitem:aca1955f9f8177bc72acae17e9428a87a" id="r_aca1955f9f8177bc72acae17e9428a87a"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#aca1955f9f8177bc72acae17e9428a87a">INITIAL_USER_STACK_SIZE</a> = 1024 * 16</td></tr>
 <tr class="separator:aca1955f9f8177bc72acae17e9428a87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ce43b9ae563159727faede5dd7e726" id="r_ab1ce43b9ae563159727faede5dd7e726"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#ab1ce43b9ae563159727faede5dd7e726">INITIAL_FD_CAPACITY</a> = 8</td></tr>
 <tr class="separator:ab1ce43b9ae563159727faede5dd7e726"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,7 +197,8 @@ Variables</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489" name="a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489"></a>READY&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a43491564ebcfd38568918efbd6e840fd" name="a7941237578b7fa1334f4b8260919d677a43491564ebcfd38568918efbd6e840fd"></a>RUNNING&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a7850588c11fe6db41b8b2dd6c455f8f3" name="a7941237578b7fa1334f4b8260919d677a7850588c11fe6db41b8b2dd6c455f8f3"></a>SLEEPING&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677abb4784231ff45108ee20bad16e4a2e8c" name="a7941237578b7fa1334f4b8260919d677abb4784231ff45108ee20bad16e4a2e8c"></a>DEAD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a1869d56535e8b1449a6da54ff5e11f50" name="a7941237578b7fa1334f4b8260919d677a1869d56535e8b1449a6da54ff5e11f50"></a>WAITING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7941237578b7fa1334f4b8260919d677a81596a5a9c2174b0a286cbf3ccf3528b" name="a7941237578b7fa1334f4b8260919d677a81596a5a9c2174b0a286cbf3ccf3528b"></a>ZOMBIE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -213,6 +230,118 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a15c8d6e590b87fc2f9a56cb6023e295c" name="a15c8d6e590b87fc2f9a56cb6023e295c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15c8d6e590b87fc2f9a56cb6023e295c">&#9670;&#160;</a></span>clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int scheduler::clone </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>flags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>child_stack</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structregs.html">regs</a> *&#160;</td>
+          <td class="paramname"><em>current_regs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_cgraph.png" border="0" usemap="#anamespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_cgraph" alt=""/></div>
+<map name="anamespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_cgraph" id="anamespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,575,133,600"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="405,323,571,348"/>
+<area shape="poly" title=" " alt="" coords="81,572,124,532,180,485,278,418,386,365,426,350,427,355,388,370,281,422,183,489,127,536,85,576"/>
+<area shape="rect" href="namespacevmm.html#a9864e8c6a3c819647e195d82a8e5dd39" title=" " alt="" coords="181,157,339,197"/>
+<area shape="poly" title=" " alt="" coords="74,573,241,208,246,210,79,576"/>
+<area shape="rect" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e" title=" " alt="" coords="185,676,335,701"/>
+<area shape="poly" title=" " alt="" coords="90,598,132,625,183,654,213,668,211,673,180,659,129,630,87,602"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="433,675,543,700"/>
+<area shape="poly" title=" " alt="" coords="134,582,180,583,233,588,288,599,340,617,355,627,365,638,374,649,388,660,421,673,419,678,385,664,370,653,361,642,352,631,337,622,286,604,232,593,180,588,134,587"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="203,524,317,549"/>
+<area shape="poly" title=" " alt="" coords="117,572,197,550,199,556,119,577"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="405,724,571,749"/>
+<area shape="poly" title=" " alt="" coords="115,597,182,617,227,627,263,632,298,641,340,661,355,674,365,687,374,699,388,710,401,717,399,722,385,715,370,703,360,690,352,677,337,666,297,646,262,637,226,632,181,622,114,603"/>
+<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="221,725,299,751"/>
+<area shape="poly" title=" " alt="" coords="81,599,120,653,149,685,183,712,209,724,206,729,180,716,146,689,116,657,76,602"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="637,475,732,500"/>
+<area shape="poly" title=" " alt="" coords="288,195,333,226,388,256,418,266,444,271,493,274,540,280,564,290,591,308,625,343,650,384,668,426,679,460,674,462,663,428,645,387,620,346,588,312,562,295,538,285,492,279,444,276,416,271,386,260,331,230,285,199"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1021,323,1068,348"/>
+<area shape="poly" title=" " alt="" coords="297,154,339,135,386,121,483,101,561,92,598,93,638,97,733,121,779,138,824,160,906,213,975,267,1023,311,1019,315,971,271,903,217,821,165,777,143,731,126,637,103,598,98,561,98,484,107,387,126,341,140,299,159"/>
+<area shape="rect" href="namespacevmm.html#abf984d135d39d57e1d30e060634d3d26" title=" " alt="" coords="389,157,587,197"/>
+<area shape="poly" title=" " alt="" coords="339,174,375,174,375,179,339,179"/>
+<area shape="rect" href="string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="647,136,723,161"/>
+<area shape="poly" title=" " alt="" coords="327,154,386,142,443,137,488,137,589,142,633,143,633,149,589,147,488,142,443,142,387,147,328,159"/>
+<area shape="rect" href="namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7" title=" " alt="" coords="387,221,589,247"/>
+<area shape="poly" title=" " alt="" coords="340,194,387,206,424,215,423,221,386,211,338,199"/>
+<area shape="rect" href="namespacepmm.html#aa871fb58564b8362ec45c5a29a8e77c8" title=" " alt="" coords="427,5,549,31"/>
+<area shape="poly" title=" " alt="" coords="274,155,320,102,351,73,385,48,417,33,419,38,388,52,354,77,324,106,278,158"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="979,475,1111,500"/>
+<area shape="poly" title=" " alt="" coords="732,485,965,485,965,490,732,490"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="790,525,921,551"/>
+<area shape="poly" title=" " alt="" coords="729,498,799,519,798,524,728,503"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="787,424,924,449"/>
+<area shape="poly" title=" " alt="" coords="728,472,798,451,799,456,729,477"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="780,575,931,600"/>
+<area shape="poly" title=" " alt="" coords="701,498,736,529,781,560,797,567,795,572,779,564,732,533,697,502"/>
+<area shape="poly" title=" " alt="" coords="903,523,982,501,984,506,904,528"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1021,525,1068,551"/>
+<area shape="poly" title=" " alt="" coords="921,535,1007,535,1007,541,921,541"/>
+<area shape="poly" title=" " alt="" coords="904,447,984,468,982,474,903,452"/>
+<area shape="poly" title=" " alt="" coords="888,422,929,402,1012,353,1014,358,932,407,890,426"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1006,600,1083,625"/>
+<area shape="poly" title=" " alt="" coords="931,595,992,603,992,608,931,600"/>
+<area shape="poly" title=" " alt="" coords="575,195,591,207,616,236,636,269,651,304,664,340,679,407,685,460,679,461,673,408,658,341,647,306,631,271,612,239,587,211,572,199"/>
+<area shape="poly" title=" " alt="" coords="560,194,1008,323,1007,328,559,199"/>
+<area shape="poly" title=" " alt="" coords="587,160,633,153,633,159,588,165"/>
+<area shape="poly" title=" " alt="" coords="267,522,323,439,356,394,385,365,412,351,415,355,388,369,360,398,327,442,272,525"/>
+<area shape="poly" title=" " alt="" coords="317,532,442,524,589,507,624,500,625,506,590,513,443,530,318,537"/>
+<area shape="poly" title=" " alt="" coords="290,522,314,508,337,491,351,470,358,449,366,428,385,409,422,396,487,384,668,362,1007,335,1008,340,668,368,488,389,424,401,388,414,371,431,363,450,356,472,341,494,317,513,293,526"/>
+<area shape="poly" title=" " alt="" coords="318,539,766,577,766,582,317,544"/>
+<area shape="poly" title=" " alt="" coords="308,547,340,567,358,591,364,616,371,638,388,660,421,676,419,681,385,664,366,641,359,617,353,594,337,571,306,552"/>
+<area shape="poly" title=" " alt="" coords="229,525,222,516,226,506,239,500,260,497,286,501,297,510,294,514,284,506,260,503,240,505,229,509,227,515,233,522"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="419,473,557,499"/>
+<area shape="poly" title=" " alt="" coords="317,521,416,499,418,504,318,527"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="428,625,548,651"/>
+<area shape="poly" title=" " alt="" coords="299,547,340,566,364,586,388,604,423,619,421,623,385,608,361,590,337,571,297,552"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="419,424,557,449"/>
+<area shape="poly" title=" " alt="" coords="277,522,325,490,386,458,407,451,409,456,388,463,327,495,280,526"/>
+<area shape="poly" title=" " alt="" coords="278,548,308,578,341,618,355,645,362,669,370,690,388,711,395,715,392,720,385,715,365,693,356,670,350,647,336,621,304,582,274,552"/>
+<area shape="poly" title=" " alt="" coords="557,484,624,484,624,490,557,489"/>
+<area shape="poly" title=" " alt="" coords="540,471,589,458,1008,343,1009,348,590,463,541,476"/>
+<area shape="poly" title=" " alt="" coords="512,496,624,554,700,586,781,609,836,617,893,620,992,616,992,621,893,625,836,622,779,614,699,591,622,559,509,501"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_icgraph.png" border="0" usemap="#anamespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_icgraph" id="anamespacescheduler_a15c8d6e590b87fc2f9a56cb6023e295c_icgraph">
+<area shape="rect" title=" " alt="" coords="176,5,304,31"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,5,128,31"/>
+<area shape="poly" title=" " alt="" coords="162,21,129,21,129,15,162,15"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="af80679e4c6adb09b59ba82a269a6f462" name="af80679e4c6adb09b59ba82a269a6f462"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af80679e4c6adb09b59ba82a269a6f462">&#9670;&#160;</a></span>dequeue()</h2>
 
@@ -307,15 +436,303 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph.png" border="0" usemap="#anamespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph" alt=""/></div>
 <map name="anamespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph" id="anamespacescheduler_a1c8eb5d332fae9fb49045a7c5d92958e_icgraph">
-<area shape="rect" title=" " alt="" coords="347,31,496,56"/>
-<area shape="rect" href="namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11" title=" " alt="" coords="148,5,299,31"/>
-<area shape="poly" title=" " alt="" coords="332,35,299,30,300,25,333,29"/>
-<area shape="rect" href="namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d" title=" " alt="" coords="156,55,291,80"/>
-<area shape="poly" title=" " alt="" coords="333,57,291,62,291,57,332,51"/>
-<area shape="rect" href="idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="5,5,100,31"/>
-<area shape="poly" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="21,55,84,80"/>
-<area shape="poly" title=" " alt="" coords="142,70,84,70,84,65,142,65"/>
+<area shape="rect" title=" " alt="" coords="784,60,933,85"/>
+<area shape="rect" href="namespacescheduler.html#a15c8d6e590b87fc2f9a56cb6023e295c" title=" " alt="" coords="176,23,304,48"/>
+<area shape="poly" title=" " alt="" coords="821,56,781,38,735,25,677,15,617,10,498,9,390,17,305,27,304,22,390,12,498,4,618,5,678,10,737,19,783,33,823,51"/>
+<area shape="rect" href="namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11" title=" " alt="" coords="577,35,727,60"/>
+<area shape="poly" title=" " alt="" coords="770,65,727,59,728,54,771,59"/>
+<area shape="rect" href="namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d" title=" " alt="" coords="585,84,719,109"/>
+<area shape="poly" title=" " alt="" coords="771,86,720,92,719,86,770,80"/>
+<area shape="rect" href="structscheduler_1_1wait__queue.html#a9ca2dfe5925869ef20e2a8cf99935b56" title=" " alt="" coords="568,134,736,174"/>
+<area shape="poly" title=" " alt="" coords="815,93,737,125,706,137,704,132,735,120,813,88"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,63,128,88"/>
+<area shape="poly" title=" " alt="" coords="172,54,123,65,122,60,170,49"/>
+<area shape="rect" href="idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="389,35,483,60"/>
+<area shape="poly" title=" " alt="" coords="563,50,484,50,484,45,563,45"/>
+<area shape="rect" href="structscheduler_1_1wait__queue.html#a03fa71c282e5f011ec4783347233d553" title=" " alt="" coords="352,109,520,149"/>
+<area shape="poly" title=" " alt="" coords="554,145,520,141,521,136,555,140"/>
+<area shape="rect" href="namespacescheduler.html#a74d2c4d5395bd616755c95fe0162e826" title=" " alt="" coords="181,87,299,112"/>
+<area shape="poly" title=" " alt="" coords="338,117,299,111,300,106,338,111"/>
+<area shape="poly" title=" " alt="" coords="167,92,128,86,129,81,168,87"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af2b1936496e590f688dc4cbaa6d18bd6" name="af2b1936496e590f688dc4cbaa6d18bd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2b1936496e590f688dc4cbaa6d18bd6">&#9670;&#160;</a></span>exec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int scheduler::exec </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_cgraph.png" border="0" usemap="#anamespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_cgraph" alt=""/></div>
+<map name="anamespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_cgraph" id="anamespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,642,128,667"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="1163,743,1257,769"/>
+<area shape="poly" title=" " alt="" coords="91,665,161,702,267,748,328,770,393,787,460,800,526,804,761,804,868,800,975,790,1148,764,1149,770,975,795,868,805,761,809,526,809,459,805,392,793,327,775,265,753,159,707,88,670"/>
+<area shape="rect" href="namespacevmm.html#a84ef8c58efe53897dffac73f34944833" title=" " alt="" coords="424,179,631,219"/>
+<area shape="poly" title=" " alt="" coords="70,641,105,552,135,494,174,440,209,403,246,369,327,308,405,259,471,223,473,227,408,264,330,313,250,373,212,407,178,443,140,497,109,554,74,643"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="221,845,331,870"/>
+<area shape="poly" title=" " alt="" coords="75,666,88,698,110,740,140,785,178,823,210,840,207,845,174,827,136,788,105,743,83,700,70,669"/>
+<area shape="rect" href="namespacevmm.html#abdf265a78f65cd1d359554c771e03cb0" title=" " alt="" coords="176,894,376,919"/>
+<area shape="poly" title=" " alt="" coords="73,667,82,708,101,767,132,828,153,856,178,881,184,885,181,890,174,885,149,860,128,831,96,769,77,710,67,668"/>
+<area shape="rect" href="namespaceelf.html#a1460087f26f5caea5339de427a56e37e" title=" " alt="" coords="239,642,313,667"/>
+<area shape="poly" title=" " alt="" coords="128,652,225,652,225,657,128,657"/>
+<area shape="rect" href="string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="1172,550,1248,575"/>
+<area shape="poly" title=" " alt="" coords="94,640,233,584,327,554,424,532,529,519,637,513,744,513,847,517,1030,534,1159,551,1158,557,1029,539,847,523,744,518,637,519,529,524,424,537,328,559,235,589,96,644"/>
+<area shape="rect" href="namespacevmm.html#a900951e277dcf50c77c3dac468c80f59" title=" " alt="" coords="459,439,596,465"/>
+<area shape="poly" title=" " alt="" coords="69,641,81,608,102,564,133,518,152,498,175,482,207,465,241,453,312,438,382,434,445,437,445,443,382,440,313,444,242,458,209,470,177,486,156,502,137,522,107,566,86,610,74,643"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1584,693,1716,718"/>
+<area shape="poly" title=" " alt="" coords="1258,752,1383,745,1536,728,1585,719,1586,724,1536,733,1384,750,1258,757"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="1369,843,1500,869"/>
+<area shape="poly" title=" " alt="" coords="1230,767,1276,798,1334,830,1357,838,1355,843,1332,834,1273,803,1227,771"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="1366,693,1503,718"/>
+<area shape="poly" title=" " alt="" coords="1257,743,1364,718,1365,724,1258,748"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="1359,794,1510,819"/>
+<area shape="poly" title=" " alt="" coords="1258,764,1365,788,1364,794,1257,769"/>
+<area shape="poly" title=" " alt="" coords="1499,844,1535,830,1574,789,1627,727,1631,731,1578,793,1537,834,1501,849"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1627,843,1673,869"/>
+<area shape="poly" title=" " alt="" coords="1500,853,1613,853,1613,859,1500,859"/>
+<area shape="poly" title=" " alt="" coords="1504,703,1571,703,1571,708,1504,708"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1627,474,1673,499"/>
+<area shape="poly" title=" " alt="" coords="1498,690,1534,671,1571,634,1600,591,1622,548,1637,512,1642,514,1627,550,1605,593,1575,637,1538,675,1501,695"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1611,794,1689,819"/>
+<area shape="poly" title=" " alt="" coords="1510,804,1598,804,1598,809,1510,809"/>
+<area shape="poly" title=" " alt="" coords="554,176,625,128,729,71,789,44,853,23,919,8,986,3,1211,3,1270,6,1319,16,1361,33,1398,57,1432,86,1465,122,1538,209,1561,240,1581,274,1612,344,1634,409,1646,460,1641,461,1629,411,1607,346,1576,276,1557,243,1534,212,1461,125,1428,90,1395,61,1359,38,1318,22,1269,11,1211,8,986,8,920,13,855,28,791,49,731,76,628,133,557,181"/>
+<area shape="rect" href="namespacevmm.html#a334ac92f6cf00b3b21983c5cab9e7cc4" title=" " alt="" coords="683,179,836,219"/>
+<area shape="poly" title=" " alt="" coords="631,196,669,196,669,201,631,201"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="1165,297,1255,322"/>
+<area shape="poly" title=" " alt="" coords="600,216,733,250,888,281,1030,297,1151,305,1151,310,1029,303,888,287,732,255,598,221"/>
+<area shape="rect" href="namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7" title=" " alt="" coords="1333,397,1536,422"/>
+<area shape="poly" title=" " alt="" coords="569,176,620,156,678,140,793,126,839,126,883,130,973,146,1087,171,1147,178,1195,181,1218,185,1240,193,1263,206,1287,226,1303,246,1310,267,1312,307,1313,346,1320,365,1335,383,1340,387,1336,391,1331,387,1316,368,1308,347,1306,307,1305,268,1298,249,1283,230,1260,210,1238,197,1217,190,1195,186,1146,183,1086,176,972,152,883,135,839,131,793,132,679,145,622,161,571,181"/>
+<area shape="poly" title=" " alt="" coords="836,178,888,171,1079,151,1160,147,1234,150,1306,163,1379,188,1455,227,1538,285,1578,325,1608,373,1630,421,1644,460,1639,462,1625,423,1604,376,1573,329,1534,289,1452,232,1377,192,1305,168,1234,155,1160,152,1080,157,888,176,836,184"/>
+<area shape="poly" title=" " alt="" coords="717,179,714,169,721,160,736,154,759,152,786,155,800,162,798,167,784,160,759,157,738,159,724,164,720,170,722,178"/>
+<area shape="poly" title=" " alt="" coords="837,195,956,204,1023,215,1088,232,1140,257,1183,286,1180,290,1137,262,1086,237,1022,220,956,209,836,200"/>
+<area shape="poly" title=" " alt="" coords="836,187,955,183,1021,186,1087,196,1148,209,1196,222,1240,244,1287,284,1305,310,1311,336,1317,360,1324,372,1335,383,1341,388,1338,392,1332,387,1320,375,1312,362,1306,337,1300,312,1283,287,1237,249,1194,227,1147,214,1086,201,1021,192,955,188,836,193"/>
+<area shape="rect" href="namespacepmm.html#a3bd30029061193baa23661a9567c0e1d" title=" " alt="" coords="919,246,1056,271"/>
+<area shape="poly" title=" " alt="" coords="837,216,926,240,925,245,836,221"/>
+<area shape="poly" title=" " alt="" coords="1221,321,1288,436,1422,679,1417,681,1283,439,1216,323"/>
+<area shape="poly" title=" " alt="" coords="1223,321,1255,370,1288,436,1300,480,1305,520,1303,588,1303,621,1306,654,1316,690,1336,729,1363,761,1396,785,1393,789,1359,765,1331,732,1311,692,1301,655,1297,621,1298,588,1299,520,1295,482,1283,438,1251,372,1219,323"/>
+<area shape="rect" href="namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="1373,347,1497,373"/>
+<area shape="poly" title=" " alt="" coords="1256,317,1365,342,1364,347,1255,322"/>
+<area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="1357,298,1513,323"/>
+<area shape="poly" title=" " alt="" coords="1256,307,1343,307,1343,313,1256,312"/>
+<area shape="poly" title=" " alt="" coords="1498,363,1519,371,1538,384,1583,505,1642,679,1637,680,1578,507,1534,387,1516,375,1496,368"/>
+<area shape="poly" title=" " alt="" coords="1515,319,1538,334,1556,355,1567,376,1576,416,1577,459,1587,511,1642,679,1637,680,1581,513,1572,460,1570,417,1562,377,1552,358,1534,338,1512,323"/>
+<area shape="poly" title=" " alt="" coords="1512,321,1537,334,1571,362,1600,396,1639,460,1634,463,1596,400,1568,366,1535,338,1509,326"/>
+<area shape="poly" title=" " alt="" coords="1045,269,1152,294,1151,299,1044,274"/>
+<area shape="poly" title=" " alt="" coords="314,664,366,678,424,691,632,719,837,737,1018,748,1149,752,1149,758,1017,753,837,743,631,724,424,696,365,683,313,669"/>
+<area shape="poly" title=" " alt="" coords="313,645,424,628,555,617,666,613,856,614,947,615,1045,612,1155,603,1285,585,1379,566,1471,542,1613,497,1614,502,1472,547,1380,571,1286,591,1156,608,1045,618,947,620,856,620,666,618,555,622,424,633,314,650"/>
+<area shape="rect" href="namespacevmm.html#abf984d135d39d57e1d30e060634d3d26" title=" " alt="" coords="888,660,1087,700"/>
+<area shape="poly" title=" " alt="" coords="314,660,424,677,544,684,665,687,874,683,874,688,665,692,544,690,424,683,313,665"/>
+<area shape="poly" title=" " alt="" coords="313,645,424,628,638,604,848,586,1158,563,1159,568,848,591,638,610,424,633,314,651"/>
+<area shape="poly" title=" " alt="" coords="291,640,422,533,498,471,501,475,426,537,295,644"/>
+<area shape="rect" href="namespacevfs.html#ad9c521b7a194d805011246959af57312" title=" " alt="" coords="486,894,569,919"/>
+<area shape="poly" title=" " alt="" coords="292,666,505,882,501,886,288,669"/>
+<area shape="rect" href="namespacevfs.html#a64e654f19e32dde1603eee7aa9788b76" title=" " alt="" coords="488,642,567,667"/>
+<area shape="poly" title=" " alt="" coords="313,652,474,652,474,657,313,657"/>
+<area shape="poly" title=" " alt="" coords="1048,698,1160,736,1158,741,1046,703"/>
+<area shape="poly" title=" " alt="" coords="1087,676,1204,671,1334,662,1453,645,1500,634,1535,620,1567,597,1595,568,1634,510,1638,513,1599,571,1571,601,1537,625,1501,639,1454,651,1335,667,1204,677,1087,681"/>
+<area shape="poly" title=" " alt="" coords="1025,657,1171,579,1174,584,1028,662"/>
+<area shape="rect" href="namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="693,405,825,430"/>
+<area shape="poly" title=" " alt="" coords="596,439,679,427,680,432,597,444"/>
+<area shape="poly" title=" " alt="" coords="825,411,888,408,1118,405,1320,405,1320,411,1119,410,888,413,826,416"/>
+<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="907,449,1068,474"/>
+<area shape="poly" title=" " alt="" coords="826,427,908,443,907,449,825,433"/>
+<area shape="rect" href="namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="1135,449,1285,474"/>
+<area shape="poly" title=" " alt="" coords="826,416,947,422,1087,435,1139,443,1139,449,1086,440,947,427,826,421"/>
+<area shape="poly" title=" " alt="" coords="1001,473,1193,731,1189,734,996,476"/>
+<area shape="poly" title=" " alt="" coords="1048,471,1135,484,1273,491,1410,493,1613,486,1613,491,1410,498,1273,497,1134,489,1048,477"/>
+<area shape="poly" title=" " alt="" coords="1059,446,1134,435,1319,415,1320,421,1135,440,1060,451"/>
+<area shape="poly" title=" " alt="" coords="1040,472,1088,491,1113,509,1136,528,1163,542,1161,547,1133,533,1109,514,1085,496,1038,477"/>
+<area shape="poly" title=" " alt="" coords="1068,459,1121,459,1121,464,1068,464"/>
+<area shape="poly" title=" " alt="" coords="1286,463,1613,482,1613,487,1285,468"/>
+<area shape="poly" title=" " alt="" coords="1265,446,1365,423,1366,428,1266,451"/>
+<area shape="rect" href="string_8cpp.html#a11bd144d7d44914099a3aeddf1c8567d" title=" " alt="" coords="1177,969,1243,994"/>
+<area shape="poly" title=" " alt="" coords="570,915,710,949,798,966,888,979,963,984,1038,985,1163,982,1163,987,1038,990,963,989,888,984,798,971,709,954,569,921"/>
+<area shape="rect" href="namespacevfs.html#a9a8b6eb6bf2363f5b0e3485583109a2d" title=" " alt="" coords="679,894,840,919"/>
+<area shape="poly" title=" " alt="" coords="569,904,665,904,665,909,569,909"/>
+<area shape="rect" href="namespacevfs.html#a239656d07bb446b6b167328138e14004" title=" " alt="" coords="942,943,1033,969"/>
+<area shape="poly" title=" " alt="" coords="819,917,929,941,928,946,818,922"/>
+<area shape="rect" href="string_8cpp.html#a9380f4a95b2c4e3d979b1634d3a8bcc9" title=" " alt="" coords="952,845,1023,870"/>
+<area shape="poly" title=" " alt="" coords="818,891,938,865,939,870,819,897"/>
+<area shape="rect" href="string_8cpp.html#a3a94cced5881b5d080b7e14305a5b38a" title=" " alt="" coords="951,894,1023,919"/>
+<area shape="poly" title=" " alt="" coords="840,904,938,904,938,909,840,909"/>
+<area shape="poly" title=" " alt="" coords="1033,958,1163,973,1163,979,1033,964"/>
+<area shape="rect" href="string_8cpp.html#ad7c16a2447154107d5ecd28434993443" title=" " alt="" coords="1181,894,1239,919"/>
+<area shape="poly" title=" " alt="" coords="1024,904,1167,904,1167,909,1024,909"/>
+<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="720,642,799,667"/>
+<area shape="poly" title=" " alt="" coords="567,652,706,652,706,657,567,657"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_icgraph.png" border="0" usemap="#anamespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_icgraph" alt=""/></div>
+<map name="anamespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_icgraph" id="anamespacescheduler_af2b1936496e590f688dc4cbaa6d18bd6_icgraph">
+<area shape="rect" title=" " alt="" coords="176,5,299,31"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,5,128,31"/>
+<area shape="poly" title=" " alt="" coords="162,21,128,21,128,15,162,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a74d2c4d5395bd616755c95fe0162e826" name="a74d2c4d5395bd616755c95fe0162e826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d2c4d5395bd616755c95fe0162e826">&#9670;&#160;</a></span>exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scheduler::exit </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a74d2c4d5395bd616755c95fe0162e826_cgraph.png" border="0" usemap="#anamespacescheduler_a74d2c4d5395bd616755c95fe0162e826_cgraph" alt=""/></div>
+<map name="anamespacescheduler_a74d2c4d5395bd616755c95fe0162e826_cgraph" id="anamespacescheduler_a74d2c4d5395bd616755c95fe0162e826_cgraph">
+<area shape="rect" title=" " alt="" coords="5,305,124,331"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="604,203,771,228"/>
+<area shape="poly" title=" " alt="" coords="85,303,124,282,171,263,282,239,395,223,500,215,590,212,590,217,501,220,395,228,283,244,173,269,126,287,87,308"/>
+<area shape="rect" href="namespacefd__manager.html#a8056fcc545b9535496e0ce775cd0db21" title=" " alt="" coords="175,153,337,179"/>
+<area shape="poly" title=" " alt="" coords="72,303,111,252,139,222,170,196,196,182,199,186,174,200,142,226,115,256,76,307"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="604,252,771,277"/>
+<area shape="poly" title=" " alt="" coords="111,303,172,290,284,277,396,269,590,262,590,267,397,274,284,282,172,295,112,308"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="633,505,742,531"/>
+<area shape="poly" title=" " alt="" coords="117,328,341,391,507,448,641,498,639,503,505,453,339,397,116,333"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="199,305,313,331"/>
+<area shape="poly" title=" " alt="" coords="124,315,185,315,185,321,124,321"/>
+<area shape="rect" href="structscheduler_1_1wait__queue.html#a03fa71c282e5f011ec4783347233d553" title=" " alt="" coords="172,406,340,446"/>
+<area shape="poly" title=" " alt="" coords="85,329,173,385,198,398,195,402,171,390,82,333"/>
+<area shape="rect" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27" title=" " alt="" coords="193,471,319,496"/>
+<area shape="poly" title=" " alt="" coords="75,330,111,390,139,426,174,456,186,463,183,467,170,460,136,429,107,393,70,332"/>
+<area shape="rect" href="namespacefd__manager.html#a393512ad5e329576c521daae9f1af458" title=" " alt="" coords="394,104,550,129"/>
+<area shape="poly" title=" " alt="" coords="312,151,402,130,403,135,313,156"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="424,153,520,179"/>
+<area shape="poly" title=" " alt="" coords="337,163,410,163,410,169,337,169"/>
+<area shape="poly" title=" " alt="" coords="521,174,618,197,617,202,519,179"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="642,104,733,129"/>
+<area shape="poly" title=" " alt="" coords="519,153,628,127,630,133,521,158"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="627,153,747,179"/>
+<area shape="poly" title=" " alt="" coords="520,163,614,163,614,169,520,169"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="618,5,757,31"/>
+<area shape="poly" title=" " alt="" coords="519,156,538,149,554,139,565,127,571,115,577,91,584,65,591,52,602,40,609,35,612,39,606,44,595,56,588,67,583,92,576,117,569,130,558,143,540,154,521,161"/>
+<area shape="poly" title=" " alt="" coords="494,177,544,206,605,237,626,245,625,250,603,242,541,211,492,181"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="664,55,711,80"/>
+<area shape="poly" title=" " alt="" coords="519,154,555,138,569,127,578,114,587,102,603,89,626,78,650,71,652,76,628,83,605,94,591,105,582,118,573,130,557,143,521,159"/>
+<area shape="rect" href="namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="835,31,959,56"/>
+<area shape="poly" title=" " alt="" coords="732,102,770,89,818,65,836,58,838,63,820,70,772,94,734,107"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="828,80,965,105"/>
+<area shape="poly" title=" " alt="" coords="733,109,814,99,815,105,733,114"/>
+<area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="819,129,975,155"/>
+<area shape="poly" title=" " alt="" coords="733,119,806,128,805,134,733,125"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="821,179,972,204"/>
+<area shape="poly" title=" " alt="" coords="734,125,772,138,820,164,841,172,839,177,818,168,770,143,732,130"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1050,80,1182,105"/>
+<area shape="poly" title=" " alt="" coords="954,53,1046,74,1045,80,953,59"/>
+<area shape="poly" title=" " alt="" coords="965,90,1036,90,1036,95,965,95"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1093,129,1139,155"/>
+<area shape="poly" title=" " alt="" coords="954,103,1080,131,1078,136,953,108"/>
+<area shape="poly" title=" " alt="" coords="953,127,1045,106,1046,111,954,132"/>
+<area shape="poly" title=" " alt="" coords="975,139,1079,139,1079,145,975,145"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1077,179,1155,204"/>
+<area shape="poly" title=" " alt="" coords="973,189,1064,189,1064,194,973,194"/>
+<area shape="rect" href="group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242" title=" " alt="" coords="411,305,533,331"/>
+<area shape="poly" title=" " alt="" coords="313,315,397,315,397,321,313,321"/>
+<area shape="poly" title=" " alt="" coords="490,303,539,271,603,237,621,230,623,235,605,242,542,275,493,307"/>
+<area shape="poly" title=" " alt="" coords="524,303,622,278,623,283,525,308"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="1023,379,1209,404"/>
+<area shape="poly" title=" " alt="" coords="534,318,730,330,853,342,975,358,1051,373,1050,378,974,363,852,347,730,335,533,323"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="625,353,750,379"/>
+<area shape="poly" title=" " alt="" coords="530,328,617,348,616,353,529,333"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="840,404,953,429"/>
+<area shape="poly" title=" " alt="" coords="515,328,557,348,572,359,581,369,591,379,605,388,661,405,719,415,776,419,826,419,826,424,776,424,719,420,660,410,603,392,587,383,577,373,568,363,555,352,513,333"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="831,453,962,479"/>
+<area shape="poly" title=" " alt="" coords="523,328,558,348,574,369,581,389,589,408,606,425,656,450,712,464,767,470,818,470,818,476,767,475,711,469,654,455,602,430,584,411,576,391,570,371,554,352,520,333"/>
+<area shape="rect" href="namespaceconsole.html#ab231d521184351a44f099e4b3d7a603a" title=" " alt="" coords="1261,403,1410,428"/>
+<area shape="poly" title=" " alt="" coords="1210,399,1247,403,1246,408,1210,404"/>
+<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="1492,479,1607,504"/>
+<area shape="poly" title=" " alt="" coords="1151,401,1258,437,1374,462,1479,479,1478,485,1373,467,1257,442,1149,407"/>
+<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="1257,203,1413,228"/>
+<area shape="poly" title=" " alt="" coords="1132,376,1306,235,1309,239,1135,380"/>
+<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="1284,353,1387,379"/>
+<area shape="poly" title=" " alt="" coords="1210,378,1270,371,1271,376,1210,383"/>
+<area shape="rect" href="namespaceframebuffer.html#ab4b70b2cdacab070608758ff1172d6eb" title=" " alt="" coords="1461,127,1637,152"/>
+<area shape="poly" title=" " alt="" coords="1394,400,1411,388,1427,367,1436,347,1439,306,1441,263,1447,239,1459,214,1485,182,1515,158,1518,162,1489,186,1464,217,1452,241,1446,264,1445,307,1441,348,1432,370,1415,392,1398,405"/>
+<area shape="rect" href="group__VGA__Core.html#ga0aeab881ec911a09eeb139b3b6caf693" title=" " alt="" coords="1488,429,1611,455"/>
+<area shape="poly" title=" " alt="" coords="1411,422,1475,430,1474,435,1410,427"/>
+<area shape="poly" title=" " alt="" coords="1368,426,1462,463,1489,472,1487,477,1460,469,1366,431"/>
+<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1685,95,1876,120"/>
+<area shape="poly" title=" " alt="" coords="1637,125,1675,119,1676,125,1638,130"/>
+<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1705,163,1857,203"/>
+<area shape="poly" title=" " alt="" coords="1617,149,1692,164,1691,169,1616,155"/>
+<area shape="rect" href="namespaceframebuffer.html#af38faa1477a7400d432abcbc445ae6cc" title=" " alt="" coords="1924,171,2101,196"/>
+<area shape="poly" title=" " alt="" coords="1857,181,1910,181,1910,186,1857,186"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1715,328,1846,353"/>
+<area shape="poly" title=" " alt="" coords="1573,427,1684,373,1728,356,1730,361,1686,378,1576,432"/>
+<area shape="rect" href="namespacevga.html#ad3fed93390c077de798afb250e9fcf3d" title=" " alt="" coords="1697,387,1864,427"/>
+<area shape="poly" title=" " alt="" coords="1610,430,1684,419,1684,424,1611,436"/>
+<area shape="rect" href="portio_8h.html#ab52bf4ee1747fde943d805c11698c2b5" title=" " alt="" coords="1987,395,2038,420"/>
+<area shape="poly" title=" " alt="" coords="1864,405,1973,405,1973,410,1864,410"/>
+<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1705,469,1856,495"/>
+<area shape="poly" title=" " alt="" coords="1607,486,1692,483,1692,488,1607,492"/>
+<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1733,519,1828,544"/>
+<area shape="poly" title=" " alt="" coords="1608,499,1720,518,1719,524,1607,504"/>
+<area shape="rect" href="namespaceserial.html#a6d82dbe0e09a8572bb894095c6b8070e" title=" " alt="" coords="1969,469,2056,495"/>
+<area shape="poly" title=" " alt="" coords="1856,479,1956,479,1956,485,1856,485"/>
+<area shape="poly" title=" " alt="" coords="1345,201,1391,155,1424,130,1460,112,1516,96,1574,89,1631,88,1683,91,1683,96,1631,93,1575,95,1517,102,1462,116,1427,135,1394,159,1349,204"/>
+<area shape="poly" title=" " alt="" coords="1414,207,1691,187,1691,192,1414,212"/>
+<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1478,228,1621,253"/>
+<area shape="poly" title=" " alt="" coords="1414,222,1465,228,1464,233,1413,227"/>
+<area shape="poly" title=" " alt="" coords="1601,225,1690,203,1692,208,1602,231"/>
+<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="1741,277,1820,303"/>
+<area shape="poly" title=" " alt="" coords="1610,251,1728,276,1727,281,1609,256"/>
+<area shape="rect" href="string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="1743,228,1819,253"/>
+<area shape="poly" title=" " alt="" coords="1621,238,1729,238,1729,243,1621,243"/>
+<area shape="poly" title=" " alt="" coords="1387,360,1701,342,1702,348,1387,366"/>
+<area shape="poly" title=" " alt="" coords="1387,368,1684,396,1683,401,1387,373"/>
+<area shape="rect" href="namespacevga.html#a0f5f3cba8da79d1153b434192b4f46b7" title=" " alt="" coords="1497,277,1602,303"/>
+<area shape="poly" title=" " alt="" coords="1371,351,1499,305,1501,310,1373,356"/>
+<area shape="poly" title=" " alt="" coords="1603,299,1709,322,1708,328,1602,304"/>
+<area shape="poly" title=" " alt="" coords="1603,287,1728,287,1728,293,1603,293"/>
+<area shape="poly" title=" " alt="" coords="750,367,1009,382,1009,388,750,372"/>
+<area shape="poly" title=" " alt="" coords="741,376,831,398,830,403,740,381"/>
+<area shape="poly" title=" " alt="" coords="953,407,1008,401,1009,406,954,413"/>
+<area shape="poly" title=" " alt="" coords="936,451,974,438,1066,406,1067,411,976,443,938,456"/>
+<area shape="rect" href="structscheduler_1_1wait__queue.html#a9ca2dfe5925869ef20e2a8cf99935b56" title=" " alt="" coords="388,498,556,538"/>
+<area shape="poly" title=" " alt="" coords="311,444,341,456,417,490,415,494,339,460,309,448"/>
+<area shape="poly" title=" " alt="" coords="556,515,619,515,619,521,556,521"/>
+<area shape="rect" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e" title=" " alt="" coords="613,555,762,580"/>
+<area shape="poly" title=" " alt="" coords="557,535,619,549,617,554,556,540"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a74d2c4d5395bd616755c95fe0162e826_icgraph.png" border="0" usemap="#anamespacescheduler_a74d2c4d5395bd616755c95fe0162e826_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a74d2c4d5395bd616755c95fe0162e826_icgraph" id="anamespacescheduler_a74d2c4d5395bd616755c95fe0162e826_icgraph">
+<area shape="rect" title=" " alt="" coords="176,5,295,31"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,5,128,31"/>
+<area shape="poly" title=" " alt="" coords="162,21,129,21,129,15,162,15"/>
 </map>
 </div>
 
@@ -397,6 +814,24 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a1e0d1bac269fd0bc961e25285fd8e7c2" name="a1e0d1bac269fd0bc961e25285fd8e7c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e0d1bac269fd0bc961e25285fd8e7c2">&#9670;&#160;</a></span>get_task_by_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structscheduler_1_1task.html">task</a> * scheduler::get_task_by_id </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a665b76d95eb85bbe7bc2357b3d468e70" name="a665b76d95eb85bbe7bc2357b3d468e70"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a665b76d95eb85bbe7bc2357b3d468e70">&#9670;&#160;</a></span>init_core()</h2>
 
@@ -423,17 +858,17 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="155,222,189,226,189,231,155,227"/>
 <area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="245,179,360,204"/>
 <area shape="poly" title=" " alt="" coords="155,206,231,197,232,202,156,211"/>
-<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="265,277,341,303"/>
+<area shape="rect" href="string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="265,277,341,303"/>
 <area shape="poly" title=" " alt="" coords="111,227,204,262,252,276,250,281,202,267,109,232"/>
 <area shape="poly" title=" " alt="" coords="311,177,364,112,404,73,449,40,465,32,467,37,452,44,408,77,368,115,315,180"/>
 <area shape="poly" title=" " alt="" coords="267,180,259,170,263,160,278,154,303,152,333,156,346,165,342,169,331,161,303,157,279,159,266,164,264,170,271,177"/>
 <area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="451,203,617,228"/>
 <area shape="poly" title=" " alt="" coords="361,195,437,203,437,208,360,200"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="665,253,760,279"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="665,253,760,279"/>
 <area shape="poly" title=" " alt="" coords="361,200,404,213,428,226,452,237,503,249,557,257,652,263,652,269,556,262,502,254,450,242,425,230,402,218,360,205"/>
 <area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1049,304,1096,329"/>
 <area shape="poly" title=" " alt="" coords="361,196,404,213,420,227,429,242,437,256,452,268,501,285,570,297,651,306,738,312,910,316,1036,315,1036,320,910,321,738,317,650,311,569,303,500,290,449,272,433,259,424,245,416,231,401,218,359,201"/>
-<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="808,456,959,481"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="808,456,959,481"/>
 <area shape="poly" title=" " alt="" coords="361,192,384,200,404,213,421,236,429,259,429,304,427,326,429,348,436,369,453,389,490,417,531,439,575,455,621,466,713,476,794,476,794,481,712,482,620,471,574,460,529,444,487,422,449,393,431,372,423,349,422,327,423,304,424,259,417,238,401,217,382,204,359,197"/>
 <area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="465,355,603,380"/>
 <area shape="poly" title=" " alt="" coords="361,193,384,200,404,213,418,228,425,243,430,274,435,304,441,319,453,333,470,347,467,351,449,337,436,321,429,306,425,275,420,245,413,231,401,217,381,205,359,198"/>
@@ -467,16 +902,15 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph.png" border="0" usemap="#anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph" alt=""/></div>
 <map name="anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph" id="anamespacescheduler_a665b76d95eb85bbe7bc2357b3d468e70_icgraph">
-<area shape="rect" title=" " alt="" coords="655,31,804,56"/>
-<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,5,607,31"/>
-<area shape="poly" title=" " alt="" coords="640,35,607,31,607,25,641,30"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,31,68,56"/>
-<area shape="poly" title=" " alt="" coords="641,46,68,46,68,41,641,41"/>
-<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
-<area shape="poly" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
-<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,5,225,31"/>
-<area shape="poly" title=" " alt="" coords="260,21,226,21,226,15,260,15"/>
-<area shape="poly" title=" " alt="" coords="103,33,69,40,68,35,102,28"/>
+<area shape="rect" title=" " alt="" coords="544,31,693,56"/>
+<area shape="rect" href="namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="333,5,496,31"/>
+<area shape="poly" title=" " alt="" coords="530,35,496,31,497,25,530,30"/>
+<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="383,55,446,80"/>
+<area shape="poly" title=" " alt="" coords="530,56,446,66,446,61,530,51"/>
+<area shape="rect" href="namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="163,5,285,31"/>
+<area shape="poly" title=" " alt="" coords="320,21,285,21,285,15,320,15"/>
+<area shape="rect" href="namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="5,5,115,31"/>
+<area shape="poly" title=" " alt="" coords="149,21,115,21,115,15,149,15"/>
 </map>
 </div>
 
@@ -631,82 +1065,87 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacescheduler_a395f6820b5cdffc27a298872c26a422d_cgraph.png" border="0" usemap="#anamespacescheduler_a395f6820b5cdffc27a298872c26a422d_cgraph" alt=""/></div>
 <map name="anamespacescheduler_a395f6820b5cdffc27a298872c26a422d_cgraph" id="anamespacescheduler_a395f6820b5cdffc27a298872c26a422d_cgraph">
-<area shape="rect" title=" " alt="" coords="5,408,140,433"/>
-<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="616,5,783,31"/>
-<area shape="poly" title=" " alt="" coords="75,407,89,371,112,320,144,266,186,217,235,179,288,145,345,116,402,92,513,54,609,31,610,36,515,59,404,97,347,121,291,150,238,183,190,221,148,269,116,323,94,373,80,409"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate a physical memory block." alt="" coords="859,255,953,280"/>
-<area shape="poly" title=" " alt="" coords="110,431,229,465,310,483,401,496,497,501,595,497,644,489,691,478,737,462,781,442,803,428,822,411,854,371,878,328,893,292,898,294,883,331,859,374,826,415,806,433,784,447,739,467,693,483,645,494,596,502,497,507,400,501,309,488,227,470,109,436"/>
-<area shape="rect" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e" title=" " alt="" coords="213,307,363,332"/>
-<area shape="poly" title=" " alt="" coords="91,406,134,378,187,349,226,334,228,339,189,354,136,382,94,410"/>
-<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="645,55,754,80"/>
-<area shape="poly" title=" " alt="" coords="81,406,123,353,153,321,186,292,244,253,305,217,430,157,546,112,638,82,640,87,548,117,432,162,307,222,247,257,190,296,157,325,127,356,85,409"/>
-<area shape="rect" href="namespacevmm.html#abdf265a78f65cd1d359554c771e03cb0" title=" " alt="" coords="188,408,388,433"/>
-<area shape="poly" title=" " alt="" coords="140,418,174,418,174,423,140,423"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="445,240,559,265"/>
-<area shape="poly" title=" " alt="" coords="131,405,282,370,387,341,437,309,476,274,480,278,440,313,389,346,283,375,132,411"/>
-<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="616,408,783,433"/>
-<area shape="poly" title=" " alt="" coords="124,431,188,442,299,448,410,447,514,440,602,431,602,436,515,445,411,452,299,454,188,447,123,436"/>
-<area shape="rect" href="namespacevmm.html#a900951e277dcf50c77c3dac468c80f59" title=" " alt="" coords="219,560,357,585"/>
-<area shape="poly" title=" " alt="" coords="85,432,126,483,156,513,189,538,220,553,217,558,187,543,152,517,122,487,81,435"/>
-<area shape="rect" href="string_8h.html#a68108ee6aab23b0f7cd925f449354da4" title="Fill memory with a constant byte." alt="" coords="868,611,944,636"/>
-<area shape="poly" title=" " alt="" coords="80,433,93,467,114,513,147,560,167,580,189,596,232,617,276,634,368,658,464,670,558,672,648,667,729,658,854,634,855,639,730,663,648,673,558,678,463,676,367,664,274,639,229,622,187,600,163,584,142,563,110,516,88,469,75,434"/>
-<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1280,255,1412,280"/>
-<area shape="poly" title=" " alt="" coords="954,265,1266,265,1266,270,954,270"/>
-<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="1065,204,1196,229"/>
-<area shape="poly" title=" " alt="" coords="953,254,1060,230,1061,235,954,259"/>
-<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="1062,305,1199,331"/>
-<area shape="poly" title=" " alt="" coords="954,275,1061,300,1060,305,953,281"/>
-<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to buddy allocator order." alt="" coords="1055,155,1206,180"/>
-<area shape="poly" title=" " alt="" coords="923,252,969,221,1028,189,1049,182,1050,187,1030,194,972,225,926,257"/>
-<area shape="poly" title=" " alt="" coords="1186,227,1279,249,1277,254,1185,232"/>
-<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1323,204,1369,229"/>
-<area shape="poly" title=" " alt="" coords="1196,214,1309,214,1309,219,1196,219"/>
-<area shape="poly" title=" " alt="" coords="1185,303,1277,281,1279,286,1186,308"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1323,407,1369,432"/>
-<area shape="poly" title=" " alt="" coords="1181,328,1233,348,1278,372,1317,397,1314,401,1275,376,1231,352,1179,333"/>
-<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1307,129,1385,155"/>
-<area shape="poly" title=" " alt="" coords="1206,156,1293,145,1294,151,1207,161"/>
-<area shape="poly" title=" " alt="" coords="504,239,516,200,537,146,570,89,590,63,614,40,621,35,624,39,618,44,594,66,574,92,542,149,521,202,509,240"/>
-<area shape="poly" title=" " alt="" coords="560,252,845,262,844,268,559,257"/>
-<area shape="poly" title=" " alt="" coords="517,264,558,303,586,324,617,341,678,360,760,375,962,397,1165,410,1309,416,1309,421,1164,416,962,403,759,380,676,365,615,346,584,329,555,307,513,268"/>
-<area shape="poly" title=" " alt="" coords="520,237,562,212,615,190,729,167,844,157,952,154,1042,158,1041,163,952,160,844,162,730,173,617,195,564,217,523,242"/>
-<area shape="poly" title=" " alt="" coords="506,239,521,208,544,168,575,126,614,89,631,80,633,85,618,93,579,129,548,171,525,211,511,241"/>
-<area shape="poly" title=" " alt="" coords="469,241,463,232,466,222,480,216,502,213,529,217,540,226,537,230,527,222,502,219,481,221,470,225,468,231,474,238"/>
-<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="631,205,768,231"/>
-<area shape="poly" title=" " alt="" coords="559,240,617,230,618,235,560,245"/>
-<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="639,307,759,332"/>
-<area shape="poly" title=" " alt="" coords="541,263,648,300,647,305,540,268"/>
-<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="630,104,769,129"/>
-<area shape="poly" title=" " alt="" coords="512,238,555,194,583,169,615,146,642,132,645,137,617,151,587,173,558,198,516,242"/>
-<area shape="poly" title=" " alt="" coords="513,264,553,322,583,356,618,386,642,400,639,405,614,391,579,360,549,325,509,267"/>
-<area shape="poly" title=" " alt="" coords="754,228,846,250,845,256,753,233"/>
-<area shape="poly" title=" " alt="" coords="721,229,770,259,832,289,967,335,1103,371,1223,396,1310,411,1309,417,1222,401,1102,376,966,340,830,294,768,263,718,233"/>
-<area shape="poly" title=" " alt="" coords="741,203,869,169,948,152,1029,139,1101,134,1173,132,1294,136,1294,141,1173,138,1101,139,1030,145,949,157,870,174,743,208"/>
-<area shape="rect" href="namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="436,560,568,585"/>
-<area shape="poly" title=" " alt="" coords="357,570,422,570,422,575,357,575"/>
-<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="619,509,780,535"/>
-<area shape="poly" title=" " alt="" coords="552,557,635,536,637,541,553,562"/>
-<area shape="rect" href="namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7" title=" " alt="" coords="1029,560,1232,585"/>
-<area shape="poly" title=" " alt="" coords="534,583,613,612,724,641,786,652,852,658,917,656,981,646,1014,636,1045,621,1099,591,1101,595,1048,626,1015,641,982,651,917,661,851,663,786,657,723,646,611,617,532,588"/>
-<area shape="rect" href="namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="831,560,981,585"/>
-<area shape="poly" title=" " alt="" coords="568,570,817,570,817,575,568,575"/>
-<area shape="poly" title=" " alt="" coords="748,507,781,488,823,441,855,387,879,335,894,293,899,294,884,337,860,390,827,444,784,492,751,512"/>
-<area shape="poly" title=" " alt="" coords="780,507,1232,435,1309,423,1310,428,1232,441,781,512"/>
-<area shape="poly" title=" " alt="" coords="780,525,982,546,1044,555,1044,560,981,551,780,531"/>
-<area shape="poly" title=" " alt="" coords="753,532,841,554,840,559,752,537"/>
-<area shape="poly" title=" " alt="" coords="721,533,770,563,832,596,856,605,854,610,830,600,768,568,718,537"/>
-<area shape="poly" title=" " alt="" coords="964,557,1110,523,1180,503,1231,486,1276,463,1315,438,1318,442,1279,468,1233,491,1182,508,1111,528,965,563"/>
-<area shape="poly" title=" " alt="" coords="982,570,1016,570,1016,575,982,575"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespacescheduler_a395f6820b5cdffc27a298872c26a422d_icgraph.png" border="0" usemap="#anamespacescheduler_a395f6820b5cdffc27a298872c26a422d_icgraph" alt=""/></div>
-<map name="anamespacescheduler_a395f6820b5cdffc27a298872c26a422d_icgraph" id="anamespacescheduler_a395f6820b5cdffc27a298872c26a422d_icgraph">
-<area shape="rect" title=" " alt="" coords="116,5,251,31"/>
-<area shape="rect" href="main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" title=" " alt="" coords="103,21,68,21,68,15,103,15"/>
+<area shape="rect" title=" " alt="" coords="5,275,140,300"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="645,51,812,76"/>
+<area shape="poly" title=" " alt="" coords="77,273,92,243,115,205,147,165,187,133,241,106,299,85,359,70,419,60,534,51,632,52,632,57,534,56,419,65,360,75,300,90,243,111,189,137,151,169,119,208,96,246,82,275"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="888,151,983,176"/>
+<area shape="poly" title=" " alt="" coords="75,273,86,235,108,182,141,127,162,102,186,81,219,61,249,48,277,40,304,37,363,37,436,35,543,20,628,5,669,3,712,6,759,16,813,35,848,56,878,83,921,137,917,140,874,86,845,60,811,40,758,21,711,11,669,8,629,11,544,25,436,41,363,43,304,43,278,46,250,53,221,65,190,85,166,106,145,130,113,185,91,237,80,275"/>
+<area shape="rect" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e" title=" " alt="" coords="213,148,363,173"/>
+<area shape="poly" title=" " alt="" coords="84,272,127,232,156,210,187,190,221,175,223,180,189,195,159,214,131,237,88,276"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="674,100,783,125"/>
+<area shape="poly" title=" " alt="" coords="98,272,139,253,187,234,281,208,410,177,660,124,661,129,411,183,282,213,189,239,141,258,100,277"/>
+<area shape="rect" href="namespacevmm.html#abdf265a78f65cd1d359554c771e03cb0" title=" " alt="" coords="188,249,388,275"/>
+<area shape="poly" title=" " alt="" coords="140,277,174,273,175,278,140,282"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="459,287,574,312"/>
+<area shape="poly" title=" " alt="" coords="140,286,446,295,446,300,140,292"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="645,452,812,477"/>
+<area shape="poly" title=" " alt="" coords="122,297,668,446,667,451,120,303"/>
+<area shape="rect" href="namespacevmm.html#a900951e277dcf50c77c3dac468c80f59" title=" " alt="" coords="219,516,357,541"/>
+<area shape="poly" title=" " alt="" coords="85,299,129,357,190,431,264,504,260,508,186,434,125,360,81,302"/>
+<area shape="rect" href="string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="897,655,973,680"/>
+<area shape="poly" title=" " alt="" coords="78,300,86,348,104,417,119,454,137,490,161,523,190,550,231,579,275,603,321,624,369,641,468,666,567,679,663,684,750,683,883,672,884,677,750,689,663,690,567,684,467,671,368,646,319,629,273,608,228,584,186,555,157,526,133,493,114,456,99,419,80,350,73,301"/>
+<area shape="rect" href="namespacevfs.html#ad9c521b7a194d805011246959af57312" title=" " alt="" coords="247,705,329,731"/>
+<area shape="poly" title=" " alt="" coords="76,300,78,367,91,470,105,527,126,584,153,637,190,684,210,699,234,708,232,713,208,704,186,688,149,640,121,586,100,528,86,471,73,367,71,300"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1309,101,1441,127"/>
+<area shape="poly" title=" " alt="" coords="982,150,1058,137,1183,123,1295,115,1296,120,1183,128,1059,142,983,155"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="1095,51,1225,76"/>
+<area shape="poly" title=" " alt="" coords="955,148,1001,121,1058,93,1098,78,1100,83,1060,98,1004,126,958,153"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="1091,152,1229,177"/>
+<area shape="poly" title=" " alt="" coords="983,161,1078,161,1078,167,983,166"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="1085,201,1235,227"/>
+<area shape="poly" title=" " alt="" coords="984,171,1090,196,1089,201,983,176"/>
+<area shape="poly" title=" " alt="" coords="1216,73,1308,95,1307,101,1214,79"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1352,51,1399,76"/>
+<area shape="poly" title=" " alt="" coords="1226,61,1338,61,1338,66,1226,66"/>
+<area shape="poly" title=" " alt="" coords="1214,149,1307,127,1308,132,1216,154"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1352,401,1399,427"/>
+<area shape="poly" title=" " alt="" coords="1230,170,1263,187,1283,216,1312,272,1365,387,1360,390,1307,274,1279,219,1260,191,1228,175"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1337,227,1414,252"/>
+<area shape="poly" title=" " alt="" coords="1236,220,1323,230,1323,236,1235,225"/>
+<area shape="poly" title=" " alt="" coords="519,286,534,247,559,192,595,135,618,108,644,85,651,80,654,84,647,89,622,112,600,138,564,195,539,249,524,287"/>
+<area shape="poly" title=" " alt="" coords="531,284,594,231,644,193,703,174,765,163,823,158,874,157,874,163,824,164,765,168,705,179,647,198,597,235,534,288"/>
+<area shape="poly" title=" " alt="" coords="533,310,580,349,612,369,646,385,708,398,791,408,993,416,1195,416,1339,413,1339,418,1195,421,993,422,791,413,707,404,644,390,609,374,577,354,529,314"/>
+<area shape="poly" title=" " alt="" coords="537,284,585,259,645,237,758,216,874,206,981,203,1071,205,1071,211,981,208,874,211,759,221,646,242,587,264,540,289"/>
+<area shape="poly" title=" " alt="" coords="534,284,564,260,595,228,609,205,617,184,626,164,644,143,665,129,667,133,647,147,630,167,622,186,614,207,599,232,568,264,538,288"/>
+<area shape="poly" title=" " alt="" coords="482,288,475,278,479,268,493,262,517,260,546,264,558,273,554,277,544,269,517,265,494,267,482,272,480,277,486,285"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="660,252,797,277"/>
+<area shape="poly" title=" " alt="" coords="574,287,646,275,647,281,575,293"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="669,301,789,327"/>
+<area shape="poly" title=" " alt="" coords="574,300,655,306,655,311,574,306"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="659,351,798,376"/>
+<area shape="poly" title=" " alt="" coords="561,309,673,344,672,349,559,315"/>
+<area shape="poly" title=" " alt="" coords="529,310,576,367,609,401,647,430,673,444,671,449,644,435,606,405,572,371,525,314"/>
+<area shape="poly" title=" " alt="" coords="755,249,895,180,897,184,757,254"/>
+<area shape="poly" title=" " alt="" coords="786,275,1339,403,1338,408,784,280"/>
+<area shape="poly" title=" " alt="" coords="798,259,1323,239,1323,244,798,265"/>
+<area shape="rect" href="namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="451,528,583,553"/>
+<area shape="poly" title=" " alt="" coords="357,529,437,534,436,539,357,535"/>
+<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="648,553,809,579"/>
+<area shape="poly" title=" " alt="" coords="583,546,635,552,634,557,583,551"/>
+<area shape="rect" href="namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7" title=" " alt="" coords="1059,553,1261,579"/>
+<area shape="poly" title=" " alt="" coords="544,551,590,571,646,587,704,596,763,600,881,600,990,591,1079,578,1080,583,991,596,881,605,763,605,703,601,645,592,588,576,541,556"/>
+<area shape="rect" href="namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="860,452,1011,477"/>
+<area shape="poly" title=" " alt="" coords="582,527,812,486,857,477,858,483,812,491,583,532"/>
+<area shape="poly" title=" " alt="" coords="746,551,778,524,810,487,854,406,888,322,912,245,926,188,931,190,917,247,893,324,859,409,814,490,782,527,749,555"/>
+<area shape="poly" title=" " alt="" coords="803,551,1047,506,1171,480,1261,458,1338,428,1340,433,1262,463,1172,485,1048,511,804,556"/>
+<area shape="poly" title=" " alt="" coords="810,563,1045,563,1045,569,810,569"/>
+<area shape="poly" title=" " alt="" coords="768,551,811,532,834,513,859,494,886,480,888,485,861,499,838,517,813,536,771,556"/>
+<area shape="poly" title=" " alt="" coords="757,576,897,646,895,651,755,581"/>
+<area shape="poly" title=" " alt="" coords="1011,456,1261,430,1338,418,1339,423,1262,435,1011,461"/>
+<area shape="poly" title=" " alt="" coords="966,475,1120,545,1117,550,964,480"/>
+<area shape="rect" href="string_8cpp.html#a11bd144d7d44914099a3aeddf1c8567d" title=" " alt="" coords="902,731,969,756"/>
+<area shape="poly" title=" " alt="" coords="330,717,888,739,888,744,330,722"/>
+<area shape="rect" href="namespacevfs.html#a9a8b6eb6bf2363f5b0e3485583109a2d" title=" " alt="" coords="436,780,597,805"/>
+<area shape="poly" title=" " alt="" coords="329,728,465,773,463,778,327,733"/>
+<area shape="rect" href="namespacevfs.html#a239656d07bb446b6b167328138e14004" title=" " alt="" coords="683,756,774,781"/>
+<area shape="poly" title=" " alt="" coords="597,781,669,773,670,778,598,786"/>
+<area shape="rect" href="string_8cpp.html#a9380f4a95b2c4e3d979b1634d3a8bcc9" title=" " alt="" coords="693,855,764,880"/>
+<area shape="poly" title=" " alt="" coords="549,803,646,841,681,852,679,857,644,846,547,808"/>
+<area shape="rect" href="string_8cpp.html#a3a94cced5881b5d080b7e14305a5b38a" title=" " alt="" coords="693,805,765,831"/>
+<area shape="poly" title=" " alt="" coords="598,800,679,809,679,815,597,805"/>
+<area shape="poly" title=" " alt="" coords="774,760,888,746,889,752,775,766"/>
+<area shape="rect" href="string_8cpp.html#ad7c16a2447154107d5ecd28434993443" title=" " alt="" coords="906,805,965,831"/>
+<area shape="poly" title=" " alt="" coords="765,815,892,815,892,821,765,821"/>
 </map>
 </div>
 
@@ -768,6 +1207,84 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a0f6196dfdd69ef3ec2923f5f32bf6baa" name="a0f6196dfdd69ef3ec2923f5f32bf6baa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f6196dfdd69ef3ec2923f5f32bf6baa">&#9670;&#160;</a></span>wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int scheduler::wait </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_cgraph.png" border="0" usemap="#anamespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_cgraph" alt=""/></div>
+<map name="anamespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_cgraph" id="anamespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_cgraph">
+<area shape="rect" title=" " alt="" coords="5,248,127,273"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="391,203,557,228"/>
+<area shape="poly" title=" " alt="" coords="127,249,174,242,377,221,377,226,175,247,127,254"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="419,359,529,384"/>
+<area shape="poly" title=" " alt="" coords="80,272,119,311,146,332,176,348,234,365,295,374,354,377,405,375,405,381,353,382,294,379,233,370,174,352,143,336,116,315,76,276"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="211,147,307,172"/>
+<area shape="poly" title=" " alt="" coords="83,246,123,218,173,189,206,174,208,179,176,194,126,223,86,250"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="391,252,557,277"/>
+<area shape="poly" title=" " alt="" coords="127,259,377,261,377,266,127,264"/>
+<area shape="rect" href="structscheduler_1_1wait__queue.html#adaf06d251293f1044d55a5b8be51403f" title=" " alt="" coords="175,298,343,338"/>
+<area shape="poly" title=" " alt="" coords="110,271,179,292,177,297,109,276"/>
+<area shape="poly" title=" " alt="" coords="307,169,412,197,410,202,306,174"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="429,153,519,179"/>
+<area shape="poly" title=" " alt="" coords="307,158,415,162,415,167,307,163"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="414,5,534,31"/>
+<area shape="poly" title=" " alt="" coords="269,144,318,94,352,65,389,40,403,33,405,38,392,44,355,69,321,98,273,148"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="405,55,543,80"/>
+<area shape="poly" title=" " alt="" coords="280,144,329,117,390,89,410,82,411,87,392,94,332,122,283,149"/>
+<area shape="poly" title=" " alt="" coords="279,170,329,203,392,237,412,245,410,250,390,242,326,207,276,174"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="451,104,497,129"/>
+<area shape="poly" title=" " alt="" coords="306,147,437,121,438,126,307,153"/>
+<area shape="rect" href="namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="621,80,745,105"/>
+<area shape="poly" title=" " alt="" coords="519,151,556,138,604,114,623,107,625,112,606,119,558,143,521,156"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="615,129,752,155"/>
+<area shape="poly" title=" " alt="" coords="519,158,601,149,601,154,520,164"/>
+<area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="605,179,761,204"/>
+<area shape="poly" title=" " alt="" coords="520,169,592,178,592,183,519,174"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="608,228,759,253"/>
+<area shape="poly" title=" " alt="" coords="521,175,558,188,606,213,627,221,626,226,604,218,556,192,519,180"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="809,129,941,155"/>
+<area shape="poly" title=" " alt="" coords="734,103,812,123,811,128,733,108"/>
+<area shape="poly" title=" " alt="" coords="752,139,796,139,796,145,752,145"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="852,179,899,204"/>
+<area shape="poly" title=" " alt="" coords="734,152,839,180,838,185,733,157"/>
+<area shape="poly" title=" " alt="" coords="733,176,811,156,812,161,734,181"/>
+<area shape="poly" title=" " alt="" coords="762,189,838,189,838,194,762,194"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="837,228,914,253"/>
+<area shape="poly" title=" " alt="" coords="759,238,823,238,823,243,759,243"/>
+<area shape="poly" title=" " alt="" coords="287,296,334,266,390,237,408,230,410,235,392,242,337,271,290,300"/>
+<area shape="poly" title=" " alt="" coords="340,335,410,353,408,358,339,341"/>
+<area shape="poly" title=" " alt="" coords="339,295,408,278,410,283,340,301"/>
+<area shape="rect" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27" title=" " alt="" coords="411,305,537,331"/>
+<area shape="poly" title=" " alt="" coords="343,315,397,315,397,321,343,321"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="namespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_icgraph.png" border="0" usemap="#anamespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_icgraph" alt=""/></div>
+<map name="anamespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_icgraph" id="anamespacescheduler_a0f6196dfdd69ef3ec2923f5f32bf6baa_icgraph">
+<area shape="rect" title=" " alt="" coords="176,5,297,31"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,5,128,31"/>
+<area shape="poly" title=" " alt="" coords="162,21,128,21,128,15,162,15"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a66dc9e6aaa092bd2bbc61ed92bc73a27" name="a66dc9e6aaa092bd2bbc61ed92bc73a27"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a66dc9e6aaa092bd2bbc61ed92bc73a27">&#9670;&#160;</a></span>yield()</h2>
 
@@ -787,12 +1304,20 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph.png" border="0" usemap="#anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph" alt=""/></div>
 <map name="anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph" id="anamespacescheduler_a66dc9e6aaa092bd2bbc61ed92bc73a27_icgraph">
-<area shape="rect" title=" " alt="" coords="352,31,477,56"/>
-<area shape="rect" href="namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15" title=" " alt="" coords="176,5,304,31"/>
-<area shape="poly" title=" " alt="" coords="338,35,304,30,305,25,339,30"/>
-<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,31,128,56"/>
-<area shape="poly" title=" " alt="" coords="339,46,128,46,128,41,339,41"/>
-<area shape="poly" title=" " alt="" coords="162,32,129,37,128,32,162,27"/>
+<area shape="rect" title=" " alt="" coords="561,81,687,107"/>
+<area shape="rect" href="namespacescheduler.html#a74d2c4d5395bd616755c95fe0162e826" title=" " alt="" coords="177,5,296,31"/>
+<area shape="poly" title=" " alt="" coords="583,78,513,53,456,41,398,32,296,23,297,18,399,27,457,35,514,47,585,73"/>
+<area shape="rect" href="syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f" title=" " alt="" coords="5,81,128,107"/>
+<area shape="poly" title=" " alt="" coords="547,93,377,89,176,90,129,92,128,87,176,85,377,84,548,88"/>
+<area shape="rect" href="namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15" title=" " alt="" coords="365,107,493,132"/>
+<area shape="poly" title=" " alt="" coords="548,107,494,114,493,108,547,101"/>
+<area shape="rect" href="structscheduler_1_1wait__queue.html#adaf06d251293f1044d55a5b8be51403f" title=" " alt="" coords="345,157,513,197"/>
+<area shape="poly" title=" " alt="" coords="585,115,514,147,485,159,483,154,512,142,583,110"/>
+<area shape="poly" title=" " alt="" coords="196,39,97,84,95,79,194,34"/>
+<area shape="poly" title=" " alt="" coords="352,117,128,101,128,96,352,111"/>
+<area shape="rect" href="namespacescheduler.html#a0f6196dfdd69ef3ec2923f5f32bf6baa" title=" " alt="" coords="176,160,297,185"/>
+<area shape="poly" title=" " alt="" coords="332,177,298,177,298,171,332,172"/>
+<area shape="poly" title=" " alt="" coords="195,157,94,109,96,104,197,152"/>
 </map>
 </div>
 
@@ -853,7 +1378,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr uint64_t scheduler::INITIAL_USER_STACK_SIZE = 1024 * 64</td>
+          <td class="memname">constexpr uint64_t scheduler::INITIAL_USER_STACK_SIZE = 1024 * 16</td>
         </tr>
       </table>
   </td>
@@ -875,7 +1400,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr uint64_t scheduler::KERNEL_STACK_SIZE = 1024 * 16</td>
+          <td class="memname">constexpr uint64_t scheduler::KERNEL_STACK_SIZE = 1024 * 8</td>
         </tr>
       </table>
   </td>
