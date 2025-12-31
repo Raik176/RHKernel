@@ -6,12 +6,8 @@
 #include "string.h"
 #include "util.h"
 
-// TODO: better endianness handling
 namespace initramfs {
 
-    /**
-     * @brief Helper to convert a hex string from CPIO header to uint32_t.
-     */
     static uint32_t hex_to_int(const char *s, int len) {
         uint32_t res = 0;
         for (int i = 0; i < len; i++) {
@@ -55,60 +51,44 @@ namespace initramfs {
             char *full_path = (char *)(current_ptr + sizeof(struct cpio_newc_header));
 
             if (strcmp(full_path, "TRAILER!!!") == 0) break;
+            if (strcmp(full_path, ".") == 0) goto next_file;
 
-            if (strcmp(full_path, ".") != 0) {
-                vfs::vfs_node *parent = root;
-                char *path_copy = (char *)heap::kmalloc(namesize);
-                strcpy(path_copy, full_path);
+            {
+                vfs::vfs_node *curr_parent = root;
+                char *path_copy = strdup(full_path);
+                char *saveptr;
+                char *token = strtok_r(path_copy, "/", &saveptr);
 
-                char *segment = path_copy;
-                char *next_slash = nullptr;
+                while (token != nullptr) {
+                    char *next_token = strtok_r(nullptr, "/", &saveptr);
 
-                while ((next_slash = strchr(segment, '/'))) {
-                    *next_slash = '\0';
-                    if (*segment != '\0') {
-                        vfs::vfs_node *found = vfs::finddir(parent, segment);
+                    if (next_token != nullptr) {
+                        vfs::vfs_node *found = vfs::finddir(curr_parent, token);
                         if (!found) {
-                            found = (vfs::vfs_node *)heap::kmalloc(sizeof(vfs::vfs_node));
-                            memset(found, 0, sizeof(vfs::vfs_node));
-                            found->name = (char *)heap::kmalloc(strlen(segment) + 1);
-                            strcpy(found->name, segment);
-                            found->type = vfs::VfsType::VFS_DIRECTORY;
-
-                            found->next = parent->child;
-                            parent->child = found;
+                            found =
+                                vfs::create_node(token, vfs::VfsType::VFS_DIRECTORY, curr_parent);
                         }
-                        parent = found;
-                    }
-                    segment = next_slash + 1;
-                }
-
-                if (*segment != '\0') {
-                    vfs::vfs_node *node = vfs::finddir(parent, segment);
-
-                    if (!node) {
-                        node = (vfs::vfs_node *)heap::kmalloc(sizeof(vfs::vfs_node));
-                        memset(node, 0, sizeof(vfs::vfs_node));
-                        node->name = (char *)heap::kmalloc(strlen(segment) + 1);
-                        strcpy(node->name, segment);
-                        node->next = parent->child;
-                        parent->child = node;
-                    }
-
-                    node->size = filesize;
-                    node->inode = hex_to_int(header->ino, 8);
-                    node->ptr =
-                        (uintptr_t)(current_ptr + align_up(sizeof(cpio_newc_header) + namesize, 4));
-
-                    if ((mode & 0170000) == 0040000) {
-                        node->type = vfs::VfsType::VFS_DIRECTORY;
+                        curr_parent = found;
                     } else {
-                        node->type = vfs::VfsType::VFS_FILE;
+                        vfs::vfs_node *node = vfs::finddir(curr_parent, token);
+                        if (!node) {
+                            vfs::VfsType type = ((mode & 0170000) == 0040000)
+                                                    ? vfs::VfsType::VFS_DIRECTORY
+                                                    : vfs::VfsType::VFS_FILE;
+                            node = vfs::create_node(token, type, curr_parent);
+                        }
+
+                        node->size = filesize;
+                        node->inode = hex_to_int(header->ino, 8);
+                        node->ptr = (uintptr_t)(current_ptr +
+                                                align_up(sizeof(cpio_newc_header) + namesize, 4));
                     }
+                    token = next_token;
                 }
                 heap::kfree(path_copy);
             }
 
+        next_file:
             current_ptr += align_up(sizeof(cpio_newc_header) + namesize, 4) + align_up(filesize, 4);
         }
     }

@@ -32,7 +32,7 @@ SECTIONS
       
       *(.rodata .rodata.*)
 
-      . = ALIGN(8);
+      . = ALIGN(16);
       _ksymtab_start = .;
       KEEP(*(.ksymtab))
       _ksymtab_end = .;

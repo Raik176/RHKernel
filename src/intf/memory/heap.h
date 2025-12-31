@@ -54,6 +54,8 @@ namespace heap {
      */
     void kfree(void *ptr);
 
+    void *krealloc(void *ptr, size_t new_size);
+
 }  // namespace heap
 
 /**

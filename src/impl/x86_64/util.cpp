@@ -3,6 +3,7 @@
 #include "console.h"
 #include "smp/apic.h"
 #include "smp/smp.h"
+#include "symbol/ksym.h"
 
 extern "C" {
 extern uint8_t higher_stack_top[];
@@ -82,16 +83,16 @@ void __attribute__((noreturn)) kpanic(const char *message, struct regs *r) {
     }
 
     console::printf("\n--- STACKTRACE ---\n");
-    print_stacktrace(10);
+    print_stacktrace();
 
     console::printf(
         "\n================================================================================\n");
     console::printf("  SYSTEM HALTED.\n");
 
-    for (;;) asm volatile("pause");
+    for (;;) asm volatile("hlt");
 }
 
-void print_stacktrace(uint64_t max_frames) {
+void print_stacktrace() {
     struct stack_frame {
         struct stack_frame *next;
         uint64_t return_address;
@@ -100,13 +101,17 @@ void print_stacktrace(uint64_t max_frames) {
     struct stack_frame *frame;
     asm volatile("mov %%rbp, %0" : "=r"(frame));
 
-    for (uint64_t i = 0; i < max_frames && frame; ++i) {
+    for (uint64_t i = 0; i < 16 && frame; ++i) {
         if ((uintptr_t)frame < (uint64_t)higher_stack_bottom ||
             (uintptr_t)frame > (uint64_t)higher_stack_top || (uint64_t)frame & 0x7) {
             break;
         }
 
-        console::printf("  #%02d [%p]\n", i, frame->return_address);
+        uintptr_t offset = 0;
+        const char *symbol = ksym::get_name(frame->return_address, &offset);
+
+        console::printf("  #%02d [%p @ %s+%p]\n", i, frame->return_address,
+                        symbol == nullptr ? "unknown" : symbol, offset);
         frame = frame->next;
     }
 }

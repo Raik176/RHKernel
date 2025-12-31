@@ -256,6 +256,39 @@ namespace framebuffer {
         update_cursor_visual(true);
     }
 
+    void backspace() {
+        update_cursor_visual(false);
+
+        const uint32_t font_h = 16;
+        const uint32_t font_w = 8;
+        uint32_t step_x = (fb.type == 2) ? 1 : font_w;
+        uint32_t step_y = (fb.type == 2) ? 1 : font_h;
+
+        if (cursor_x >= step_x) {
+            cursor_x -= step_x;
+        } else if (cursor_y >= step_y) {
+            cursor_y -= step_y;
+            cursor_x = (fb.width / step_x) * step_x - step_x;
+        } else {
+            update_cursor_visual(true);
+            return;
+        }
+
+        // Overwrite the character area with the background color
+        if (fb.type == 2) {  // EGA Text Mode
+            uint16_t data = (uint16_t)(current_ega_attr << 8) | ' ';
+            putpixel_ega(cursor_x, cursor_y, data);
+        } else {  // Graphics Modes
+            for (uint32_t r = 0; r < font_h; r++) {
+                for (uint32_t col = 0; col < font_w; col++) {
+                    putpixel_raw(cursor_x + col, cursor_y + r, current_bg);
+                }
+            }
+        }
+
+        update_cursor_visual(true);
+    }
+
     /**
      * @internal
      * Clear the framebuffer with a specified color

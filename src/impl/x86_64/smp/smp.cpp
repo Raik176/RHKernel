@@ -77,8 +77,8 @@ namespace smp {
 
         idt::init_ap();
 
-        auto *data = (trampoline_data *)(TRAM_PHYS +
-                                         ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
+        auto *data = (trampoline_data *)p2v(
+            TRAM_PHYS + ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
         setup_cpu_local(data);
         data->status = 1;
 
@@ -90,7 +90,7 @@ namespace smp {
         scheduler::init_core();
         __asm__ volatile("sti");
 
-        for (;;) { asm volatile("pause"); }
+        for (;;) { asm volatile("hlt"); }
     }
 
     void init_bsp() {
@@ -142,10 +142,10 @@ namespace smp {
         core_count = 1;  // include BSP
 
         size_t tram_size = (uintptr_t)trampoline_end - (uintptr_t)trampoline_start;
-        memcpy((void *)TRAM_PHYS, (void *)trampoline_start, tram_size);
+        memcpy(p2v(TRAM_PHYS), (void *)trampoline_start, tram_size);
 
-        auto *data = (trampoline_data *)(TRAM_PHYS +
-                                         ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
+        auto *data = (trampoline_data *)p2v(
+            TRAM_PHYS + ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
         auto *madt = (acpi::MADT *)acpi::find_table("APIC");
         if (!madt) {
             console::printf("[SMP] MADT not found. Single core mode.\n");
@@ -189,8 +189,8 @@ namespace smp {
                     boot_core(lapic->lapic_id, TRAM_PHYS, data, core_count++);
 
                     uint32_t wait_count = 0;
-                    while (data->status == 0 && wait_count < 10) {
-                        busy_sleep(5);
+                    while (data->status == 0 && wait_count < 100) {
+                        busy_sleep(100);
                         wait_count++;
                     }
 

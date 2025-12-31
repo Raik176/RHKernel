@@ -9,6 +9,8 @@
  */
 
 #pragma once
+#define DEBUG
+#include <stdarg.h>
 #include <stdint.h>
 
 #include "multiboot2.h"
@@ -105,6 +107,9 @@ namespace console {
      * @param ... Additional arguments
      */
     void printf(const char *fmt, ...);
+    void vprintf(const char *fmt, va_list args);
+
+    void hexdump(const void *data, size_t size);
 
     /**
      * @brief Move the cursor to a specific position

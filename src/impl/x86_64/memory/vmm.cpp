@@ -2,6 +2,8 @@
 
 #include "console.h"
 #include "memory/pmm.h"
+#include "smp/scheduler.h"
+#include "smp/smp.h"
 #include "string.h"
 
 extern "C" {
@@ -100,7 +102,7 @@ namespace vmm {
     void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags, uint64_t pml4) {
         const uint64_t GIB = 1024ULL * 1024 * 1024;
         const uint64_t MIB = 2ULL * 1024 * 1024;
-        const uint64_t KIB = 4096ULL;
+        const uint64_t KIB = pmm::PAGE_SIZE;
 
         uint64_t mapped = 0;
 
@@ -159,7 +161,9 @@ namespace vmm {
     }
 
     void unmap_page(uint64_t virt, uint64_t pagemap) {
-        if (virt % 4096 != 0) { kpanic("VMM: unmap_page called with unaligned virtual address."); }
+        if (virt % pmm::PAGE_SIZE != 0) {
+            kpanic("VMM: unmap_page called with unaligned virtual address.");
+        }
 
         uint64_t pml4_idx = (virt >> 39) & 0x1FF;
         uint64_t pdpt_idx = (virt >> 30) & 0x1FF;
@@ -201,6 +205,15 @@ namespace vmm {
         asm volatile("invlpg (%0)" : : "r"(virt) : "memory");
     }
 
+    void unmap_range(uint64_t virt, uint64_t size, uint64_t pagemap) {
+        uint64_t start = virt & ~0xFFFULL;
+        uint64_t end = (virt + size + 4095) & ~0xFFFULL;
+
+        for (uintptr_t curr = start; curr < end; curr += pmm::PAGE_SIZE) {
+            unmap_page(curr, pagemap);
+        }
+    }
+
     uint64_t create_user_address_space() {
         uint64_t pml4_phys = pmm::alloc(pmm::PAGE_SIZE);
         uint64_t *new_pml4 = (uint64_t *)p2v(pml4_phys);
@@ -211,6 +224,157 @@ namespace vmm {
         for (int i = 256; i < 512; i++) { new_pml4[i] = kernel_pml4[i]; }
 
         return pml4_phys;
+    }
+
+    uint64_t clone_address_space(uint64_t old_pml4_phys) {
+        uint64_t new_pml4_phys = create_user_address_space();
+        uint64_t *old_pml4 = (uint64_t *)p2v(old_pml4_phys);
+        uint64_t *new_pml4 = (uint64_t *)p2v(new_pml4_phys);
+
+        // Only clone the user half (0-255)
+        for (int i = 0; i < 256; i++) {
+            if (old_pml4[i] & (uint64_t)PageFlags::Present) {
+                uint64_t *old_pdpt = (uint64_t *)p2v(old_pml4[i] & get_phys_addr_mask());
+                uint64_t new_pdpt_phys = pmm::alloc(pmm::PAGE_SIZE);
+                uint64_t *new_pdpt = (uint64_t *)p2v(new_pdpt_phys);
+                memset(new_pdpt, 0, pmm::PAGE_SIZE);
+                new_pml4[i] = new_pdpt_phys | (old_pml4[i] & 0xFFF);
+
+                for (int j = 0; j < 512; j++) {
+                    if (old_pdpt[j] & (uint64_t)PageFlags::Present) {
+                        uint64_t *old_pd = (uint64_t *)p2v(old_pdpt[j] & get_phys_addr_mask());
+                        uint64_t new_pd_phys = pmm::alloc(pmm::PAGE_SIZE);
+                        uint64_t *new_pd = (uint64_t *)p2v(new_pd_phys);
+                        memset(new_pd, 0, pmm::PAGE_SIZE);
+                        new_pdpt[j] = new_pd_phys | (old_pdpt[j] & 0xFFF);
+
+                        for (int k = 0; k < 512; k++) {
+                            if (old_pd[k] & (uint64_t)PageFlags::Present) {
+                                uint64_t *old_pt =
+                                    (uint64_t *)p2v(old_pd[k] & get_phys_addr_mask());
+                                uint64_t new_pt_phys = pmm::alloc(pmm::PAGE_SIZE);
+                                uint64_t *new_pt = (uint64_t *)p2v(new_pt_phys);
+                                memset(new_pt, 0, pmm::PAGE_SIZE);
+                                new_pd[k] = new_pt_phys | (old_pd[k] & 0xFFF);
+
+                                for (int l = 0; l < 512; l++) {
+                                    if (old_pt[l] & (uint64_t)PageFlags::Present) {
+                                        // CoW: If page is Write, remove Write, leave User/Present
+                                        if (old_pt[l] & (uint64_t)PageFlags::Write) {
+                                            old_pt[l] &= ~(uint64_t)PageFlags::Write;
+                                            // We use bit 9 (Available) as our "Was Writable" flag
+                                            old_pt[l] |= (uint64_t)PageFlags::CoW;
+                                        }
+                                        new_pt[l] = old_pt[l];
+                                        pmm::ref_page(new_pt[l] & get_phys_addr_mask());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        asm volatile("mov %%cr3, %%rax; mov %%rax, %%cr3" ::: "rax", "memory");
+        return new_pml4_phys;
+    }
+
+    static uint64_t *get_pte_ptr(uint64_t virt, uint64_t pml4_phys) {
+        uint64_t pml4_idx = (virt >> 39) & 0x1FF;
+        uint64_t pdpt_idx = (virt >> 30) & 0x1FF;
+        uint64_t pd_idx = (virt >> 21) & 0x1FF;
+        uint64_t pt_idx = (virt >> 12) & 0x1FF;
+
+        uint64_t *pml4 = (uint64_t *)p2v(pml4_phys);
+        uint64_t *pdpt = get_next_table(pml4, pml4_idx, false);
+        if (!pdpt) return nullptr;
+
+        uint64_t *pd = get_next_table(pdpt, pdpt_idx, false);
+        if (!pd) return nullptr;
+
+        uint64_t *pt = get_next_table(pd, pd_idx, false);
+        if (!pt) return nullptr;
+
+        return &pt[pt_idx];
+    }
+
+    bool handle_fault(uint64_t fault_addr, uint64_t error_code) {
+        // Error code bit 1: 0 = Read, 1 = Write
+        bool is_write = error_code & (1 << 1);
+        if (!is_write) return false;
+
+        scheduler::task *current = smp::get_cpu()->current_task;
+        uint64_t *pte = get_pte_ptr(fault_addr, current->cr3);
+
+        if (pte && (*pte & static_cast<uint64_t>(PageFlags::CoW))) {
+            uint64_t old_phys = *pte & get_phys_addr_mask();
+
+            // If we are the only one holding a reference, just promote it to writable
+            if (pmm::get_ref(old_phys) == 1) {
+                *pte &= ~static_cast<uint64_t>(PageFlags::CoW);
+                *pte |= static_cast<uint64_t>(PageFlags::Write);
+            } else {
+                // Someone else is using this page, we must duplicate it
+                uint64_t new_phys = pmm::alloc(pmm::PAGE_SIZE);
+                memcpy(p2v(new_phys), p2v(old_phys), pmm::PAGE_SIZE);
+
+                pmm::unref_page(old_phys);
+
+                // Update PTE: New physical address, remove CoW bit, add Write bit
+                *pte = (new_phys & get_phys_addr_mask()) |
+                       (*pte & 0xFFF & ~static_cast<uint64_t>(PageFlags::CoW)) |
+                       static_cast<uint64_t>(PageFlags::Write);
+            }
+
+            // Flush TLB for this address
+            asm volatile("invlpg (%0)" : : "r"(fault_addr) : "memory");
+            return true;
+        }
+
+        return false;
+    }
+
+    static void destroy_table_level(uint64_t table_phys, int level) {
+        uint64_t *table = (uint64_t *)p2v(table_phys & get_phys_addr_mask());
+
+        for (int i = 0; i < 512; i++) {
+            uint64_t entry = table[i];
+            if (!(entry & static_cast<uint64_t>(PageFlags::Present))) { continue; }
+
+            uint64_t child_phys = entry & get_phys_addr_mask();
+
+            // If it's a huge page (1GB in PDPT or 2MB in PD), it's a leaf
+            if (entry & static_cast<uint64_t>(PageFlags::Huge)) {
+                pmm::unref_page(child_phys);
+                continue;
+            }
+
+            if (level > 0) {
+                // Not a leaf yet (PML4=3, PDPT=2, PD=1), go deeper
+                destroy_table_level(child_phys, level - 1);
+            } else {
+                // We are at the PT level (Level 0), the entry is a 4KB page
+                pmm::unref_page(child_phys);
+            }
+        }
+
+        // After freeing all children, free the table itself
+        pmm::free(table_phys, pmm::PAGE_SIZE);
+    }
+
+    void destroy_user_address_space(uint64_t pml4_phys) {
+        uint64_t *pml4 = (uint64_t *)p2v(pml4_phys & get_phys_addr_mask());
+
+        // ONLY iterate through the lower 256 entries (User Space)
+        for (int i = 0; i < 256; i++) {
+            uint64_t entry = pml4[i];
+            if (entry & static_cast<uint64_t>(PageFlags::Present)) {
+                destroy_table_level(entry & get_phys_addr_mask(), 2);  // Start at PDPT level
+            }
+        }
+
+        // Finally, free the PML4 frame itself
+        pmm::free(pml4_phys, pmm::PAGE_SIZE);
     }
 
     uint64_t get_kernel_pagemap() { return current_pml4_phys; }

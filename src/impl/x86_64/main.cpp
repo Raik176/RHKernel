@@ -1,7 +1,9 @@
 #include "acpi.h"
 #include "console.h"
+#include "file/device.h"
 #include "file/elf.h"
 #include "file/initramfs.h"
+#include "file/module_loader.h"
 #include "file/vfs.h"
 #include "gdt.h"
 #include "idt.h"
@@ -9,8 +11,10 @@
 #include "memory/vmm.h"
 #include "multiboot2.h"
 #include "smp/apic.h"
+#include "smp/ioapic.h"
 #include "smp/scheduler.h"
 #include "smp/smp.h"
+#include "symbol/ksym.h"
 #include "util.h"
 #include "vga.h"
 
@@ -78,20 +82,19 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     console::printf("[ OK ] VMM initialized.\n");
 
     vfs::init();
-    console::printf("[ OK ] VFS initialized.\n");
+    init_virt_fs();
+    console::printf("[ OK ] VFS and DevFS initialized.\n");
 
     initramfs::init(mb_phys_addr);
     console::printf("[ OK ] Initramfs initialized.\n");
-
-    console::printf("--- VFS Debug Tree ---\n");
-    debug_dump_vfs(vfs::get_root(), 0);
-    console::printf("----------------------\n");
 
     acpi::init(mb_phys_addr);
     console::printf("[ OK ] ACPI initialized.\n");
 
     apic::init();
     console::printf("[ OK ] APIC initialized.\n");
+    ioapic::init();
+    console::printf("[ OK] IOAPIC initialized.\n");
 
     smp::init_bsp();
 
@@ -99,14 +102,17 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     __asm__ volatile("sti");
 
-    smp::init_aps();
+    //smp::init_aps();
     console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
-    auto info = elf::load("/bin/init");
+    module_loader::init();
+    module_loader::load_module("/lib/modules/kbd_core.ko");
+    module_loader::load_module("/lib/modules/ps2_kbd.ko");
 
-    if (info.pml4 != 0) {
-        scheduler::spawn(scheduler::task_type::USER, (void (*)())info.entry, info.pml4);
-    }
+    //auto info = elf::load("/bin/init");
+    //if (info.pml4 != 0) {
+    //    scheduler::spawn(scheduler::task_type::USER, (void (*)())info.entry, info.pml4);
+    //}
 
-    for (;;) { asm volatile("pause"); }
+    for (;;) { asm volatile("hlt"); }
 }

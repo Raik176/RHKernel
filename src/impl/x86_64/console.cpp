@@ -9,9 +9,6 @@
 
 #include "console.h"
 
-#define DEBUG  // TODO: REMOVE
-#include <stdarg.h>
-
 #include "framebuffer.h"
 #include "smp/lock.h"
 #include "vga.h"
@@ -46,7 +43,29 @@ namespace console {
 #endif
     }
 
+    void backspace() {
+        switch (active_backend) {
+            case Backend::VGA:
+                vga::backspace();
+                break;
+            case Backend::FRAMEBUFFER:
+                framebuffer::backspace();
+                break;
+        }
+
+#ifdef DEBUG
+        serial::putchar('\b');
+        serial::putchar(' ');
+        serial::putchar('\b');
+#endif
+    }
+
     void putchar_internal(char c) {
+        if (c == '\b') {
+            backspace();
+            return;
+        }
+
         switch (active_backend) {
             case Backend::VGA:
                 vga::putchar(c);
@@ -123,9 +142,50 @@ namespace console {
         while (--i >= 0) putchar_internal(buf[i]);
     }
 
+    void hexdump(const void *data, size_t size) {
+        const uint8_t *ptr = reinterpret_cast<const uint8_t *>(data);
+        const size_t bytes_per_line = 16;
+
+        uint64_t flags;
+        console_lock.acquire(flags);
+
+        for (size_t i = 0; i < size; i += bytes_per_line) {
+            puthex(i, 8, '0');
+            write(": ");
+
+            size_t line_bytes = (i + bytes_per_line <= size) ? bytes_per_line : size - i;
+
+            for (size_t j = 0; j < line_bytes; j++) {
+                puthex(ptr[i + j], 2, '0');
+                write(" ");
+            }
+
+            for (size_t j = line_bytes; j < bytes_per_line; j++) { write("     "); }
+
+            write(" |");
+            for (size_t j = 0; j < line_bytes; j++) {
+                char c = ptr[i + j];
+                putchar_internal((c >= 32 && c <= 126) ? c : '.');
+            }
+
+            for (size_t j = line_bytes; j < bytes_per_line; j++) { putchar_internal(' '); }
+
+            write("|\n");
+        }
+
+        console_lock.release(flags);
+    }
+
+    void printf(const char *fmt, ...) {
+        va_list args;
+        va_start(args, fmt);
+        vprintf(fmt, args);
+        va_end(args);
+    }
+
     /**
      * @internal
-     * Simplified printf implementation.
+     * Simplified vprintf implementation.
      *
      * Supports:
      * - %s: null-terminated string
@@ -137,12 +197,10 @@ namespace console {
      * @param fmt Format string
      * @param ... Variable arguments
      */
-    void printf(const char *fmt, ...) {
+    void vprintf(const char *fmt, va_list args) {
         uint64_t flags;
 
         console_lock.acquire(flags);
-        va_list args;
-        va_start(args, fmt);
 
         while (*fmt) {
             if (*fmt == '%' && *(fmt + 1)) {
@@ -195,7 +253,6 @@ namespace console {
             fmt++;
         }
 
-        va_end(args);
         console_lock.release(flags);
     }
 

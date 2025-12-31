@@ -1,21 +1,16 @@
-# Assembly
 x86_64_asm_source_files := $(shell find src/impl/x86_64 -name '*.asm')
 x86_64_asm_object_files := $(patsubst src/impl/x86_64/%.asm, build/x86_64/%.asm.o, $(x86_64_asm_source_files))
 
-# C++
 x86_64_cpp_source_files := $(shell find src/impl/x86_64 -name '*.cpp')
 x86_64_cpp_object_files := $(patsubst src/impl/x86_64/%.cpp, build/x86_64/%.cpp.o, $(x86_64_cpp_source_files))
 
-# C
 x86_64_c_source_files := $(shell find src/impl/x86_64 -name '*.c')
 x86_64_c_object_files := $(patsubst src/impl/x86_64/%.c, build/x86_64/%.c.o, $(x86_64_c_source_files))
 
-# All object files
 x86_64_object_files := $(x86_64_asm_object_files) $(x86_64_c_object_files) $(x86_64_cpp_object_files)
 
 FORMAT_SOURCES := $(shell find src -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp')
 
-# --- Configuration ---
 DEBUG ?= 0
 
 TOOLS_DIR := tools
@@ -53,7 +48,8 @@ COMMON_CFLAGS := \
 	-mno-red-zone \
 	-m64 \
 	-Wall -Wextra \
-	-I src/intf
+	-I src/intf \
+	-I src/public
 
 NASMFLAGS := -f elf64 -w-zeroing
 
@@ -63,7 +59,7 @@ INITRAMFS_SRC := initramfs
 INITRAMFS_BIN := build/initramfs.cpio
 
 ifeq ($(DEBUG),1)
-	CFLAGS  := $(COMMON_CFLAGS) -O0 -g -DDEBUG
+	CFLAGS  := $(COMMON_CFLAGS) -O2 -g -DDEBUG
 	NASMFLAGS := $(NASMFLAGS) -g -F dwarf
 else
 	CFLAGS  := $(COMMON_CFLAGS) -O2
@@ -78,15 +74,33 @@ USER_APPS := $(filter-out src/user/common.mk, $(USER_APPS_DIRS))
 .PHONY: build-user-apps
 build-user-apps:
 	@for dir in $(USER_APPS); do \
-		$(MAKE) -C $$dir TOP_DIR=$(CURDIR); \
+		$(MAKE) -C $$dir; \
 	done
 
-$(INITRAMFS_BIN): build-user-apps $(shell find $(INITRAMFS_SRC) -type f -not -path "$(INITRAMFS_SRC)/bin/*")
-	@mkdir -p build $(INITRAMFS_SRC)/bin
+MODULE_DIRS := $(wildcard src/module/*/)
+MODULES := $(filter-out src/module/common.mk, $(MODULE_DIRS))
+
+.PHONY: build-modules
+build-modules:
+	@for dir in $(MODULES); do \
+		$(MAKE) -C $$dir; \
+	done
+
+$(INITRAMFS_BIN): build-user-apps build-modules $(shell find $(INITRAMFS_SRC) -type f -not -path "$(INITRAMFS_SRC)/bin/*")
+	@mkdir -p build $(INITRAMFS_SRC)/bin $(INITRAMFS_SRC)/lib/modules
+	
+	@echo "Copying User Apps..."
 	@for dir in $(USER_APPS); do \
 		app_name=$$(basename $$dir); \
 		cp $$dir/bin/$$app_name $(INITRAMFS_SRC)/bin/; \
 	done
+	
+	@echo "Copying Kernel Modules..."
+	@for dir in $(MODULES); do \
+		mod_name=$$(basename $$dir); \
+		cp $$dir/bin/$$mod_name.ko $(INITRAMFS_SRC)/lib/modules/; \
+	done
+	
 	@echo "Building Initramfs..."
 	@cd $(INITRAMFS_SRC) && find . | cpio -o -H newc > ../$(INITRAMFS_BIN)
 
@@ -167,8 +181,13 @@ debug: build-x86_64
 
 .PHONY: clean
 clean:
-	rm -rf build dist
+	rm -rf build dist initramfs/bin initramfs/lib/modules
+
 	@for dir in $(USER_APPS); do \
+		$(MAKE) -C $$dir clean; \
+	done
+
+	@for dir in $(MODULES); do \
 		$(MAKE) -C $$dir clean; \
 	done
 

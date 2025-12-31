@@ -1,4 +1,6 @@
 #include "console.h"
+#include "file/fd.h"
+#include "file/vfs.h"
 #include "memory/heap.h"
 #include "smp/scheduler.h"
 #include "smp/smp.h"
@@ -10,77 +12,104 @@
 #define IA32_LSTAR 0xC0000082
 #define IA32_FMASK 0xC0000084
 
+#define CLONE_VM 0x1
+#define CLONE_FILES 0x2
+
 enum SyscallNumbers {
-    SYSCALL_PRINT = 0,
+    SYSCALL_WRITE = 0,
     SYSCALL_OPEN,
     SYSCALL_READ,
     SYSCALL_CLOSE,
     SYSCALL_YIELD,
-    SYSCALL_SLEEP
+    SYSCALL_SLEEP,
+    SYSCALL_EXIT,
+    SYSCALL_WAIT,
+    SYSCALL_DUP2,
+    SYSCALL_CLONE,
+    SYSCALL_FORK,
+    SYSCALL_EXEC
 };
 
 extern "C" {
 void syscall_entry();
 
-int get_free_fd(scheduler::task *t) {
-    for (uint32_t i = 0; i < t->fd_capacity; i++) {
-        if (t->fd_table[i] == nullptr) return (int)i;
-    }
+static inline void user_access_begin() {
+    if (smp::get_cpu()->cpu_features.smap) asm volatile("stac" ::: "cc");
+}
 
-    uint32_t old_capacity = t->fd_capacity;
-    uint32_t new_capacity = (old_capacity == 0) ? scheduler::INITIAL_FD_CAPACITY : old_capacity * 2;
-
-    vfs::open_file **new_table =
-        (vfs::open_file **)heap::kmalloc(sizeof(vfs::open_file *) * new_capacity);
-    memset(new_table, 0, sizeof(vfs::open_file *) * new_capacity);
-
-    if (old_capacity > 0) {
-        memcpy(new_table, t->fd_table, sizeof(vfs::open_file *) * old_capacity);
-        heap::kfree(t->fd_table);
-    }
-
-    t->fd_table = new_table;
-    t->fd_capacity = new_capacity;
-
-    return (int)old_capacity;
+static inline void user_access_end() {
+    if (smp::get_cpu()->cpu_features.smap) asm volatile("clac" ::: "cc");
 }
 
 int sys_open(const char *path) {
     scheduler::task *current = smp::get_cpu()->current_task;
-    vfs::vfs_node *node = vfs::open(path);
-    if (!node) return -1;
 
-    int fd = get_free_fd(current);
+    user_access_begin();
+    vfs::vfs_node *node = vfs::open(path);
+    user_access_end();
+
+    if (!node) return -1;
 
     vfs::open_file *file = (vfs::open_file *)heap::kmalloc(sizeof(vfs::open_file));
     file->node = node;
     file->offset = 0;
+    file->ref_count = 1;  // Initialize reference count
 
+    int fd = fd_manager::alloc_fd(current);
     current->fd_table[fd] = file;
     return fd;
 }
 
 int sys_read(int fd, void *buf, uint32_t size) {
-    scheduler::task *current = smp::get_cpu()->current_task;
+    vfs::open_file *file = fd_manager::get_file(fd);
+    if (!file) return -1;
 
-    // Bounds check against dynamic capacity
-    if (fd < 0 || (uint32_t)fd >= current->fd_capacity || !current->fd_table[fd]) { return -1; }
-
-    vfs::open_file *file = current->fd_table[fd];
+    user_access_begin();
     uint32_t bytes_read = vfs::read(file->node, file->offset, size, buf);
+    user_access_end();
 
     file->offset += bytes_read;
     return (int)bytes_read;
 }
 
+int sys_write(int fd, const void *buf, uint32_t size) {
+    vfs::open_file *file = fd_manager::get_file(fd);
+    if (!file) return -1;
+
+    user_access_begin();
+    uint32_t written = vfs::write(file->node, file->offset, size, (void *)buf);
+    user_access_end();
+
+    file->offset += written;
+    return (int)written;
+}
+
 int sys_close(int fd) {
-    scheduler::task *current = smp::get_cpu()->current_task;
+    auto *current = smp::get_cpu()->current_task;
+    vfs::open_file *file = fd_manager::get_file(fd, current);
+    if (!file) return -1;
 
-    if (fd < 0 || (uint32_t)fd >= current->fd_capacity || !current->fd_table[fd]) { return -1; }
+    file->ref_count--;
+    if (file->ref_count == 0) { heap::kfree(file); }
 
-    heap::kfree(current->fd_table[fd]);
     current->fd_table[fd] = nullptr;
     return 0;
+}
+
+int sys_dup2(int oldfd, int newfd) {
+    auto *current = smp::get_cpu()->current_task;
+    auto *file = fd_manager::get_file(oldfd, current);
+    if (!file || newfd < 0 || newfd >= 512) return -1;
+
+    if (oldfd == newfd) return newfd;
+
+    fd_manager::expand_table(newfd + 1, current);
+
+    if (current->fd_table[newfd]) { fd_manager::close_fd(newfd, current); }
+
+    file->ref_count++;
+    current->fd_table[newfd] = file;
+    return newfd;
 }
 
 uint64_t syscall_handler(struct regs *r) {
@@ -88,30 +117,44 @@ uint64_t syscall_handler(struct regs *r) {
     uint64_t arg1 = r->rdi;
     uint64_t arg2 = r->rsi;
     uint64_t arg3 = r->rdx;
-    uint64_t arg4 = r->r10;
-    uint64_t arg5 = r->r8;
-    uint64_t arg6 = r->r9;
 
     switch (syscall) {
-        case SYSCALL_PRINT: {
-            const char *user_str = (const char *)arg1;
-            console::printf(user_str);
-            return 0;
-        }
+        case SYSCALL_WRITE:
+            return sys_write((int)arg1, (const void *)arg2, (uint32_t)arg3);
         case SYSCALL_OPEN:
             return sys_open((const char *)arg1);
-        case SYSCALL_READ:  // TODO: map to user space?
+        case SYSCALL_READ:
             return sys_read((int)arg1, (void *)arg2, (uint32_t)arg3);
         case SYSCALL_CLOSE:
             return sys_close((int)arg1);
+        case SYSCALL_DUP2:
+            return sys_dup2((int)arg1, (int)arg2);
         case SYSCALL_YIELD:
             scheduler::yield();
             return 0;
         case SYSCALL_SLEEP:
             scheduler::sleep(arg1);
             return 0;
+        case SYSCALL_EXIT:
+            scheduler::exit((int)arg1);
+            return 0;
+        case SYSCALL_WAIT: {
+            int status;
+            int pid = scheduler::wait(&status);
+            if (arg1 != 0) {
+                user_access_begin();
+                *(int *)arg1 = status;
+                user_access_end();
+            }
+            return (uint64_t)pid;
+        }
+        case SYSCALL_CLONE:
+            return (uint64_t)scheduler::clone(arg1, (void *)arg2, r);
+        case SYSCALL_FORK:
+            return (uint64_t)scheduler::clone(0, nullptr, r);
+        case SYSCALL_EXEC:
+            return (uint64_t)scheduler::exec((const char *)arg1);
         default:
-            console::printf("Unknown syscall: %d\n", syscall);
             return -1;
     }
 }
@@ -125,8 +168,8 @@ void enable_syscalls() {
     uint64_t addr = (uint64_t)syscall_entry;
     asm volatile("wrmsr" : : "a"((uint32_t)addr), "d"((uint32_t)(addr >> 32)), "c"(IA32_LSTAR));
 
-    uint64_t star = ((uint64_t)0x08 << 32) |        // kernel CS
-                    ((uint64_t)(0x23 - 16) << 48);  // user CS - 16
+    uint64_t user_base = 0x13;
+    uint64_t star = ((uint64_t)0x08 << 32) | (user_base << 48);
 
     asm volatile("wrmsr" : : "a"(0), "d"((uint32_t)(star >> 32)), "c"(IA32_STAR));
     asm volatile("wrmsr" : : "a"(0x200), "d"(0), "c"(IA32_FMASK));

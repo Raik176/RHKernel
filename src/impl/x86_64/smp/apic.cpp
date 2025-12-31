@@ -4,6 +4,7 @@
 #include "smp/smp.h"
 #include "util.h"
 
+// TODO: map as Uncachable or similiar
 namespace apic {
     static uintptr_t apic_base = 0;
     static bool x2apic_mode = false;

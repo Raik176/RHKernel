@@ -10,6 +10,7 @@
 
 #include "memory/pmm.h"
 #include "smp/smp.h"
+#include "string.h"
 #include "util.h"
 
 namespace heap {
@@ -195,6 +196,33 @@ namespace heap {
         }
 
         cache->lock.release(flags);
+    }
+
+    void *krealloc(void *ptr, size_t new_size) {
+        if (!ptr) return kmalloc(new_size);
+        if (new_size == 0) {
+            kfree(ptr);
+            return nullptr;
+        }
+
+        size_t old_size;
+        uint64_t virt_addr = (uint64_t)ptr;
+
+        if ((virt_addr & 0xFFF) == 0) {
+            old_size = *(size_t *)(virt_addr - pmm::PAGE_SIZE);
+        } else {
+            SlabHeader *slab = (SlabHeader *)(virt_addr & ~0xFFF);
+            old_size = slab->slot_size;
+        }
+
+        if (new_size <= old_size) return ptr;
+
+        void *new_ptr = kmalloc(new_size);
+        if (new_ptr) {
+            memcpy(new_ptr, ptr, old_size);
+            kfree(ptr);
+        }
+        return new_ptr;
     }
 
 }  // namespace heap

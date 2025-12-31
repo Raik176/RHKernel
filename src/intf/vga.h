@@ -31,6 +31,8 @@ namespace vga {
      */
     void init();
 
+    void backspace();
+
     /**
      * @brief Clear the screen
      *

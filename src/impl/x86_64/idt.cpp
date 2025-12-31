@@ -9,12 +9,13 @@
 #include "idt.h"
 
 #include "console.h"
+#include "memory/vmm.h"
+#include "mod/interrupt.h"
 #include "smp/apic.h"
 #include "smp/scheduler.h"
 #include "string.h"
 
 extern "C" {
-static volatile int panic_lock = 0;
 
 extern void isr0();
 extern void isr1();
@@ -49,19 +50,28 @@ extern void isr29();
 extern void isr30();
 extern void isr31();
 
-extern void irq0();
+extern void isr32();
+extern void isr33();
 
 extern void isr129();
 extern void isr254();
 
+extern "C" void dispatch_irq(struct regs *r);
+
 void handle_halt_ipi(struct regs *r) {
     (void)r;
-    __asm__ volatile("cli");
-    for (;;) { __asm__ volatile("hlt"); }
+    for (;;) __asm__ volatile("cli; hlt");
 }
 
 uint64_t idt_handler(struct regs *r) {
     if (r->int_no <= 31) {
+        if (r->int_no == 14) {
+            uint64_t faulting_address;
+            asm volatile("mov %%cr2, %0" : "=r"(faulting_address));
+
+            if (vmm::handle_fault(faulting_address, r->err_code)) { return (uint64_t)r; }
+        }
+
         apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::HALT_VECTOR);
 
         static const char exception_messages[32][30] = {"Division By Zero",
@@ -99,21 +109,15 @@ uint64_t idt_handler(struct regs *r) {
         kpanic(exception_messages[r->int_no], r);
     }
 
-    if (r->int_no == idt::YIELD_VECTOR) {
-        struct regs *new_state = scheduler::schedule(r, false);
-        return (uint64_t)new_state;
+    if (r->int_no >= 32 && r->int_no <= 255) {
+        if (r->int_no == 32) {
+            apic::tick();
+            r = scheduler::schedule(r, true);
+        }
+
+        dispatch_irq(r);
+        return (uint64_t)r;
     }
-
-    if (r->int_no == 32) {
-        apic::tick();
-        struct regs *new_state = scheduler::schedule(r, true);
-        apic::eoi();
-        return (uint64_t)new_state;
-    }
-
-    if (r->int_no == idt::HALT_VECTOR) { handle_halt_ipi(r); }
-
-    apic::eoi();
 
     return (uint64_t)r;
 }
@@ -195,7 +199,8 @@ namespace idt {
         set_gate(30, reinterpret_cast<uint64_t>(isr30), 0x08, 0x8E);
         set_gate(31, reinterpret_cast<uint64_t>(isr31), 0x08, 0x8E);
 
-        set_gate(32, reinterpret_cast<uint64_t>(irq0), 0x08, 0x8E);
+        set_gate(32, reinterpret_cast<uint64_t>(isr32), 0x08, 0x8E);
+        set_gate(33, reinterpret_cast<uint64_t>(isr33), 0x08, 0x8E);
 
         set_gate(YIELD_VECTOR, reinterpret_cast<uint64_t>(isr129), 0x08, 0x8E);
         set_gate(HALT_VECTOR, reinterpret_cast<uint64_t>(isr254), 0x08, 0x8E);

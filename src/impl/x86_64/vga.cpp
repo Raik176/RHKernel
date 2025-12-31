@@ -53,6 +53,20 @@ namespace vga {
         enable_cursor();
     }
 
+    void backspace() {
+        if (cursor_x > 0) {
+            cursor_x--;
+        } else if (cursor_y > 0) {
+            cursor_y--;
+            cursor_x = WIDTH - 1;
+        } else {
+            return;
+        }
+
+        buffer[cursor_y * WIDTH + cursor_x] = make_entry(' ');
+        update_hardware_cursor();
+    }
+
     void clear() {
         uint16_t entry = make_entry(' ');
 

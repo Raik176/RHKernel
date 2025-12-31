@@ -41,6 +41,8 @@ namespace vmm {
         /** Global page (not flushed from TLB on CR3 reload) */
         Global = 1ULL << 8,
 
+        CoW = 1ULL << 9,
+
         /** Disable instruction fetch (NX bit) */
         NX = 1ULL << 63
     };
@@ -59,6 +61,11 @@ namespace vmm {
      */
     constexpr PageFlags operator&(PageFlags a, PageFlags b) {
         return static_cast<PageFlags>(static_cast<uint64_t>(a) & static_cast<uint64_t>(b));
+    }
+
+    inline PageFlags &operator|=(PageFlags &a, PageFlags b) {
+        a = a | b;
+        return a;
     }
 
     /**
@@ -84,8 +91,14 @@ namespace vmm {
                    uint64_t pagemap = get_kernel_pagemap());
 
     void unmap_page(uint64_t virt, uint64_t pagemap = get_kernel_pagemap());
+    void unmap_range(uint64_t virt, uint64_t size, uint64_t pagemap = get_kernel_pagemap());
 
     uint64_t create_user_address_space();
+    void destroy_user_address_space(uint64_t pml4_phys);
+
+    uint64_t clone_address_space(uint64_t old_pml4_phys);
+
+    bool handle_fault(uint64_t fault_addr, uint64_t error_code);
 
     uint64_t get_phys_addr_mask();
 }  // namespace vmm

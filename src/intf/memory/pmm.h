@@ -90,4 +90,8 @@ namespace pmm {
      */
     size_t get_system_bytes();
 
+    void ref_page(uint64_t phys);
+    void unref_page(uint64_t phys);
+    uint32_t get_ref(uint64_t phys);
+
 }  // namespace pmm

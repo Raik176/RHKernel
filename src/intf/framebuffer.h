@@ -21,6 +21,8 @@ namespace framebuffer {
      */
     void putchar(char c);
 
+    void backspace();
+
     /**
      * @brief Clear the framebuffer with a specific color
      *

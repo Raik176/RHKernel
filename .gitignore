@@ -15,3 +15,7 @@ compile_commands.json
 initramfs/bin/
 src/user/**/bin/
 src/user/**/build/
+
+initramfs/lib/modules/
+src/module/**/bin/
+src/module/**/build/

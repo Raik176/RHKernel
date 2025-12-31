@@ -3,15 +3,15 @@
 
 #include "memory/pmm.h"
 
-#define ELF_MAGIC 0x464C457F  // "\x7FELF"
+#define ELF_MAGIC 0x464C457F
 
 namespace elf {
     static_assert(pmm::PAGE_SIZE == 4096, "ELF loader assumes 4 KiB pages");
 
     struct elf_header {
         uint32_t magic;
+        uint8_t bit_width;
         uint8_t endianness;
-        uint8_t bit_width;  // 2 = 64-bit
         uint8_t version;
         uint8_t abi;
         uint8_t unused[8];
@@ -27,10 +27,8 @@ namespace elf {
         uint16_t ph_count;
         uint16_t sh_entry_size;
         uint16_t sh_count;
-        uint16_t str_table_index;
+        uint16_t shstrndx;
     } __attribute__((packed));
-
-    static_assert(sizeof(elf::elf_header) == 64, "ELF64 header must be exactly 64 bytes");
 
     struct elf_program_header {
         uint32_t type;
@@ -43,8 +41,53 @@ namespace elf {
         uint64_t align;
     } __attribute__((packed));
 
-    static_assert(sizeof(elf::elf_program_header) == 56,
-                  "ELF64 program header must be exactly 56 bytes");
+    struct elf_section_header {
+        uint32_t name;
+        uint32_t type;
+        uint64_t flags;
+        uint64_t addr;
+        uint64_t offset;
+        uint64_t size;
+        uint32_t link;
+        uint32_t info;
+        uint64_t addralign;
+        uint64_t entsize;
+    } __attribute__((packed));
+
+    struct elf_symbol {
+        uint32_t name;
+        uint8_t info;
+        uint8_t other;
+        uint16_t shndx;
+        uint64_t value;
+        uint64_t size;
+    } __attribute__((packed));
+
+    struct elf_rela {
+        uint64_t offset;
+        uint64_t info;
+        int64_t addend;
+    } __attribute__((packed));
+
+#define ELF64_R_SYM(i) ((i) >> 32)
+#define ELF64_R_TYPE(i) ((i) & 0xffffffffL)
+
+#define R_X86_64_NONE 0
+#define R_X86_64_64 1
+#define R_X86_64_PC32 2
+#define R_X86_64_GOT32 3
+#define R_X86_64_PLT32 4
+#define R_X86_64_COPY 5
+#define R_X86_64_GLOB_DAT 6
+#define R_X86_64_JUMP_SLOT 7
+#define R_X86_64_RELATIVE 8
+#define R_X86_64_GOTPCREL 9
+#define R_X86_64_32 10
+#define R_X86_64_32S 11
+#define R_X86_64_16 12
+#define R_X86_64_PC16 13
+#define R_X86_64_8 14
+#define R_X86_64_PC8 15
 
     struct elf_info {
         uint64_t entry;
@@ -55,6 +98,12 @@ namespace elf {
 }  // namespace elf
 
 #define PT_LOAD 1
+#define SHT_RELA 4
 #define PF_X 1
 #define PF_W 2
 #define PF_R 4
+
+#define SHF_WRITE (1 << 0)
+#define SHF_ALLOC (1 << 1)
+#define SHF_EXECINSTR (1 << 2)
+#define SHF_MASKPROC 0xF0000000
