@@ -98,17 +98,24 @@ int sys_close(int fd) {
 
 int sys_dup2(int oldfd, int newfd) {
     auto *current = smp::get_cpu()->current_task;
+    
+    // Get the file object to be duplicated
     auto *file = fd_manager::get_file(oldfd, current);
-    if (!file || newfd < 0 || newfd >= 512) return -1;
-
+    if (!file) return -1;
+    if (newfd < 0 || newfd >= 512) return -1;
     if (oldfd == newfd) return newfd;
 
-    fd_manager::expand_table(newfd + 1, current);
+    if (!fd_manager::expand_table(newfd + 1, current)) return -1;
 
-    if (current->fd_table[newfd]) { fd_manager::close_fd(newfd, current); }
+    // If newfd is already open, close it first
+    if (current->fd_table[newfd] != nullptr) {
+        fd_manager::close_fd(newfd, current);
+    }
 
-    file->ref_count++;
+    // Assign the new reference
     current->fd_table[newfd] = file;
+    file->ref_count++; 
+    
     return newfd;
 }
 
@@ -168,8 +175,10 @@ void enable_syscalls() {
     uint64_t addr = (uint64_t)syscall_entry;
     asm volatile("wrmsr" : : "a"((uint32_t)addr), "d"((uint32_t)(addr >> 32)), "c"(IA32_LSTAR));
 
-    uint64_t user_base = 0x13;
-    uint64_t star = ((uint64_t)0x08 << 32) | (user_base << 48);
+    uint64_t kernel_base = gdt::selectors::KCODE_SEL;
+    uint64_t user_base = (gdt::selectors::UCODE64_SEL & ~3);
+
+    uint64_t star = (kernel_base << 32) | (user_base << 48);
 
     asm volatile("wrmsr" : : "a"(0), "d"((uint32_t)(star >> 32)), "c"(IA32_STAR));
     asm volatile("wrmsr" : : "a"(0x200), "d"(0), "c"(IA32_FMASK));

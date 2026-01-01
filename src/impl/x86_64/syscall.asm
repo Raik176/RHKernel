@@ -36,11 +36,11 @@ syscall_entry:
     ; --- user iret frame: rip, cs, rflags, rsp, ss ---
     ; RCX = user RIP (CPU put it there on syscall), R11 = user RFLAGS
     mov qword [rsp +17*8], rcx          ; rip
-    mov qword [rsp +18*8], 0x23         ; cs (user code selector)
+    mov qword [rsp +18*8], 0x33         ; cs (user code selector)
     mov qword [rsp +19*8], r11          ; rflags
     mov rax, [gs:24]                     ; rax <- saved user RSP
     mov qword [rsp +20*8], rax          ; rsp (user)
-    mov qword [rsp +21*8], 0x1B         ; ss (user data selector)
+    mov qword [rsp +21*8], 0x2B         ; ss (user data selector)
 
     ; pass pointer to struct regs (rsp points to the struct) in rdi (SysV)
     mov rdi, rsp

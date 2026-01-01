@@ -7,19 +7,19 @@
 #include "string.h"
 #include "symbol.h"
 
-#define KDB_BUFFER_SIZE 256
+#define kbd_BUFFER_SIZE 256
 
-struct kdb_device {
-    char name[KDB_MAX_NAME];
+struct kbd_device {
+    char name[kbd_MAX_NAME];
     int index;
     uint32_t modifiers;
 
-    char buffer[KDB_BUFFER_SIZE];
+    char buffer[kbd_BUFFER_SIZE];
     size_t head;
     size_t tail;
 };
 
-static int kdb_count = 0;
+static int kbd_count = 0;
 
 static const char keymap[128][2] = {
     // [Scancode] = { Normal, Shifted }
@@ -41,98 +41,97 @@ static const char keymap[128][2] = {
 
     [0x39] = {' ', ' '},  [0x1C] = {'\n', '\n'}, [0x0E] = {'\b', '\b'}};
 
-static char apply_modifiers(struct kdb_device *kdb, char c) {
+static char apply_modifiers(struct kbd_device *kbd, char c) {
     if (!c) return 0;
-    if ((kdb->modifiers & KDB_SHIFT) || (kdb->modifiers & KDB_CAPS)) {
+    if ((kbd->modifiers & kbd_SHIFT) || (kbd->modifiers & kbd_CAPS)) {
         if (c >= 'a' && c <= 'z') c -= 32;
     }
     return c;
 }
 
 // Updated signature: receives 'priv'
-static uint32_t kdb_read(void *priv, uint32_t off, uint32_t size, uint8_t *buf) {
-    struct kdb_device *kdb = (struct kdb_device *)priv;
-    if (!kdb) return 0;
+static uint32_t kbd_read(void *priv, uint32_t off, uint32_t size, uint8_t *buf) {
+    struct kbd_device *kbd = (struct kbd_device *)priv;
+    if (!kbd) return 0;
 
     size_t read_bytes = 0;
-    while (kdb->tail != kdb->head && read_bytes < size) {
-        buf[read_bytes++] = kdb->buffer[kdb->tail];
-        kdb->tail = (kdb->tail + 1) % KDB_BUFFER_SIZE;
+    while (kbd->tail != kbd->head && read_bytes < size) {
+        buf[read_bytes++] = kbd->buffer[kbd->tail];
+        kbd->tail = (kbd->tail + 1) % kbd_BUFFER_SIZE;
     }
     return (uint32_t)read_bytes;
 }
 
-static struct device_ops kdb_ops = {.read = kdb_read, .write = NULL};
+static struct device_ops kbd_ops = {.read = kbd_read, .write = NULL};
 
-struct kdb_device *kdb_register(const char *name) {
-    struct kdb_device *kdb = (struct kdb_device *)kmalloc(sizeof(*kdb));
-    memset(kdb, 0, sizeof(*kdb));
+struct kbd_device *kbd_register(const char *name) {
+    struct kbd_device *kbd = (struct kbd_device *)kmalloc(sizeof(*kbd));
+    memset(kbd, 0, sizeof(*kbd));
 
-    kdb->index = kdb_count++;
-    strncpy(kdb->name, name, KDB_MAX_NAME - 1);
+    kbd->index = kbd_count++;
+    strncpy(kbd->name, name, kbd_MAX_NAME - 1);
 
     char path[64];
-    snprintf(path, sizeof(path), "input/kdb%d", kdb->index);
+    snprintf(path, sizeof(path), "input/kbd%d", kbd->index);
 
-    // Pass 'kdb' as the third argument (priv)
-    if (device_register(path, &kdb_ops, kdb) != 0) {
-        kfree(kdb);
+    // Pass 'kbd' as the third argument (priv)
+    if (device_register(path, &kbd_ops, kbd) != 0) {
+        kfree(kbd);
         return NULL;
     }
 
-    klog(LOG_INFO, "Keyboard registered: /dev/%s\n", path);
-    return kdb;
+    return kbd;
 }
 
-void kdb_unregister(struct kdb_device *kdb) {
+void kbd_unregister(struct kbd_device *kbd) {
     char path[64];
-    snprintf(path, sizeof(path), "input/kdb%d", kdb->index);
+    snprintf(path, sizeof(path), "input/kbd%d", kbd->index);
     device_unregister(path);
-    kfree(kdb);
+    kfree(kbd);
 }
 
-void kdb_handle_scancode(struct kdb_device *kdb, uint8_t sc, int pressed) {
-    if (!kdb || sc >= 128) return;
+void kbd_handle_scancode(struct kbd_device *kbd, uint8_t sc, int pressed) {
+    if (!kbd || sc >= 128) return;
 
     // 1. Update Modifiers (Shift, Caps)
     if (sc == 0x2A || sc == 0x36) {  // Left or Right Shift
         if (pressed)
-            kdb->modifiers |= KDB_SHIFT;
+            kbd->modifiers |= kbd_SHIFT;
         else
-            kdb->modifiers &= ~KDB_SHIFT;
+            kbd->modifiers &= ~kbd_SHIFT;
         return;
     }
     if (sc == 0x3A && pressed) {  // Caps Lock (on press only)
-        kdb->modifiers ^= KDB_CAPS;
+        kbd->modifiers ^= kbd_CAPS;
         return;
     }
 
     if (!pressed) return;
 
-    int use_shift = (kdb->modifiers & KDB_SHIFT) ? 1 : 0;
+    int use_shift = (kbd->modifiers & kbd_SHIFT) ? 1 : 0;
 
     char c_normal = keymap[sc][0];
     char c_shifted = keymap[sc][1];
 
     char final_char = use_shift ? c_shifted : c_normal;
 
-    if ((kdb->modifiers & KDB_CAPS) && (c_normal >= 'a' && c_normal <= 'z')) {
+    if ((kbd->modifiers & kbd_CAPS) && (c_normal >= 'a' && c_normal <= 'z')) {
         final_char = use_shift ? c_normal : c_shifted;
     }
 
     if (!final_char) return;
 
-    size_t next = (kdb->head + 1) % KDB_BUFFER_SIZE;
-    if (next != kdb->tail) {
-        kdb->buffer[kdb->head] = final_char;
-        kdb->head = next;
+    size_t next = (kbd->head + 1) % kbd_BUFFER_SIZE;
+    if (next != kbd->tail) {
+        kbd->buffer[kbd->head] = final_char;
+        kbd->head = next;
     }
 }
 
-KEXPORT(kdb_register)
-KEXPORT(kdb_unregister)
-KEXPORT(kdb_handle_scancode)
+KEXPORT(kbd_register)
+KEXPORT(kbd_unregister)
+KEXPORT(kbd_handle_scancode)
 
-static int kdb_init() { return 0; }
-static void kdb_exit() {}
-MODULE_INFO("kdb_core", kdb_init, kdb_exit);
+static int kbd_init() { return 0; }
+static void kbd_exit() {}
+MODULE_INFO("kbd_core", kbd_init, kbd_exit);

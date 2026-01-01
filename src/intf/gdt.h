@@ -2,7 +2,17 @@
 #include <stdint.h>
 
 namespace gdt {
-    static constexpr uint16_t MAX_ENTRIES = 8;
+    static constexpr uint16_t MAX_ENTRIES = 9;
+
+    enum selectors : uint16_t {
+        KCODE_SEL = 0x08,        // Index 1, RPL 0
+        KDATA_SEL = 0x10,        // Index 2, RPL 0
+        UDATA32_SEL = 0x18 | 3,  // Index 3, RPL 3
+        UCODE32_SEL = 0x20 | 3,  // Index 4, RPL 3
+        UDATA64_SEL = 0x28 | 3,  // Index 5, RPL 3
+        UCODE64_SEL = 0x30 | 3,  // Index 6, RPL 3
+        TSS_SEL = 0x38           // Index 7 (TSS is 16 bytes, uses 7 & 8)
+    };
 
     /**
      * @brief Represents a single Global Descriptor Table (GDT) entry.

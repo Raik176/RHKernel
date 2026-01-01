@@ -41,17 +41,21 @@ namespace fd_manager {
         return (int)old_cap;
     }
 
-    int close_fd(int fd, scheduler::task *t) {
-        vfs::open_file *file = get_file(fd, t);
-        if (!file) return -1;
+int close_fd(int fd, scheduler::task *t) {
+    vfs::open_file *file = get_file(fd, t);
+    if (!file) return -1;
 
-        file->ref_count--;
-        if (file->ref_count == 0) {
-            // vfs::close
-            heap::kfree(file);
-        }
+    // Remove from table FIRST so other threads don't see it
+    t->fd_table[fd] = nullptr;
 
-        t->fd_table[fd] = nullptr;
-        return 0;
+    file->ref_count--;
+    if (file->ref_count == 0) {
+        // IMPORTANT: Only free the 'open_file' wrapper.
+        // Do NOT call a destructor on file->node unless your VFS 
+        // specifically tracks node-wide open counts.
+        heap::kfree(file);
     }
+
+    return 0;
+}
 }  // namespace fd_manager

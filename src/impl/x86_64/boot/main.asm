@@ -10,6 +10,8 @@ extern long_mode_start
 section .early_text
 bits 32
 
+%include "src/assets/gdt_constants.inc"
+
 start:
     mov esp, stack_top
     
@@ -19,7 +21,7 @@ start:
 
     lgdt [gdt64_ptr]
 
-    jmp 0x08:long_mode_start  
+    jmp KCODE_SEL:long_mode_start  
 
 setup_page_tables:    
     mov eax, pdp_table

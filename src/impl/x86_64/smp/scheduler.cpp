@@ -31,17 +31,18 @@ namespace scheduler {
         smp::cpu_local *cpu = smp::get_cpu();
         task *current = cpu->current_task;
 
+        // 1. Set state to WAITING so the scheduler won't re-enqueue it
         current->state = task_state::WAITING;
 
-        // Add to wait queue linked list (reusing the 'next' pointer for the queue)
+        // 2. Use a dedicated link for wait queues to avoid corrupting run-queues
         current->global_next = head;
         head = current;
 
-        // Release the scheduler lock before yielding
+        // 3. Release lock and trigger a context switch
         cpu->sched_lock.release(lock_flags);
         yield();
 
-        // Re-acquire lock after waking up to maintain caller's expectations
+        // 4. Re-acquire for the caller (the loop in sys_wait)
         cpu->sched_lock.acquire(lock_flags);
     }
 
@@ -58,7 +59,15 @@ namespace scheduler {
     }
 
     void wait_queue::wake_all() {
-        while (head) wake_one();
+        while (head) {
+            task *t = head;
+            head = head->global_next;
+
+            t->state = task_state::READY;
+            t->global_next = nullptr;
+
+            enqueue(smp::get_cpu(), t);
+        }
     }
 
     // --- Work Stealing ---
@@ -211,14 +220,14 @@ namespace scheduler {
             t->user_stack = (void *)stack_virt;
             r->rip = (uint64_t)entry_point;
             r->rsp = (uint64_t)stack_virt + INITIAL_USER_STACK_SIZE;
-            r->cs = 0x23;  // User Code
-            r->ss = 0x1B;  // User Data
+            r->cs = gdt::selectors::UCODE64_SEL;  // User Code
+            r->ss = gdt::selectors::UDATA64_SEL;  // User Data
             t->cr3 = pml4;
         } else {
             r->rip = (uint64_t)entry_point;
             r->rsp = (uint64_t)kstack + KERNEL_STACK_SIZE;
-            r->cs = 0x08;  // Kernel Code
-            r->ss = 0x10;  // Kernel Data
+            r->cs = gdt::selectors::KCODE_SEL;  // Kernel Code
+            r->ss = gdt::selectors::KDATA_SEL;  // Kernel Data
             t->cr3 = pml4 == 0 ? vmm::get_kernel_pagemap() : pml4;
         }
 
@@ -348,9 +357,9 @@ namespace scheduler {
 
         r->rip = info.entry;
         r->rsp = (uint64_t)stack_virt + INITIAL_USER_STACK_SIZE;
-        r->rflags = 0x202;  // IF = 1
-        r->cs = 0x23;       // User Code Selector
-        r->ss = 0x1B;       // User Data Selector
+        r->rflags = 0x202;                    // IF = 1
+        r->cs = gdt::selectors::UCODE64_SEL;  // User Code Selector
+        r->ss = gdt::selectors::UDATA64_SEL;  // User Data Selector
 
         // 5. Reset FPU/SSE state for the new program
         asm volatile("fninit; fxsave (%0)" : : "r"(current->fxsave_area) : "memory");
@@ -489,6 +498,7 @@ namespace scheduler {
         task *current = cpu->current_task;
 
         console::printf("Process %d exiting with code %d\n", current->id, code);
+
         uint64_t flags;
         cpu->sched_lock.acquire(flags);
 
@@ -498,12 +508,14 @@ namespace scheduler {
         // Close all file descriptors
         for (uint64_t i = 0; i < current->fd_capacity; i++) { fd_manager::close_fd(i, current); }
 
-        // Notify parent
+        // Wake parent while holding the SAME lock
         if (current->parent) { current->parent->death_queue.wake_all(); }
 
         cpu->sched_lock.release(flags);
+
+        // Never run again
         yield();
-        while (true) asm("hlt");  // Should never reach here
+        __builtin_unreachable();
     }
 
     int wait(int *status) {
@@ -512,6 +524,7 @@ namespace scheduler {
 
         while (true) {
             cpu->sched_lock.acquire(flags);
+
             task *current = cpu->current_task;
             task *prev_child = nullptr;
             task *child = current->first_child;
@@ -519,7 +532,7 @@ namespace scheduler {
             while (child) {
                 if (child->state == task_state::ZOMBIE) {
                     int id = child->id;
-                    if (status) *status = child->exit_code;
+                    if (status) { *status = child->exit_code; }
 
                     // Unlink child
                     if (prev_child)
@@ -527,7 +540,7 @@ namespace scheduler {
                     else
                         current->first_child = child->next_sibling;
 
-                    // Cleanup memory
+                    // Free resources
                     heap::kfree(child->kernel_stack);
                     heap::kfree(child->fd_table);
                     heap::kfree(child);
@@ -535,12 +548,14 @@ namespace scheduler {
                     cpu->sched_lock.release(flags);
                     return id;
                 }
+
                 prev_child = child;
                 child = child->next_sibling;
             }
 
-            // No zombie children found, wait on queue
-            current->death_queue.wait(flags);  // This releases flags internally
+            // 🔑 No zombie children → sleep safely
+            current->death_queue.wait(flags);
+            // lock is released and re-acquired internally
         }
     }
 

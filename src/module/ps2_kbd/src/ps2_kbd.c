@@ -10,7 +10,7 @@
 #define PS2_STATUS 0x64
 
 struct ps2_keyboard {
-    struct kdb_device *kdb;
+    struct kbd_device *kbd;
     int released;
 };
 
@@ -24,7 +24,7 @@ static enum irq_return ps2_irq(void *priv) {
     int pressed = !(sc & 0x80);
     uint8_t code = sc & 0x7F;
 
-    kdb_handle_scancode(ps2->kdb, code, pressed);
+    kbd_handle_scancode(ps2->kbd, code, pressed);
 
     return IRQ_HANDLED;
 }
@@ -33,26 +33,25 @@ static int ps2_init() {
     kbd = kmalloc(sizeof(*kbd));
     memset(kbd, 0, sizeof(*kbd));
 
-    kbd->kdb = kdb_register("ps2-keyboard");
-    if (!kbd->kdb) {
+    kbd->kbd = kbd_register("ps2-keyboard");
+    if (!kbd->kbd) {
         kfree(kbd);
         return -1;
     }
 
     if (request_irq(1, ps2_irq, IRQ_AFFINITY_ALL, kbd) != 0) {
-        kdb_unregister(kbd->kdb);
+        kbd_unregister(kbd->kbd);
         kfree(kbd);
         return -1;
     }
 
-    klog(LOG_INFO, "PS/2 keyboard driver loaded\n");
     return 0;
 }
 
 static void ps2_exit() {
     free_irq(1, ps2_irq);
-    kdb_unregister(kbd->kdb);
+    kbd_unregister(kbd->kbd);
     kfree(kbd);
 }
 
-MODULE_INFO("ps2_kdb", ps2_init, ps2_exit, "kdb_core");
+MODULE_INFO("ps2_kbd", ps2_init, ps2_exit, "kbd_core");

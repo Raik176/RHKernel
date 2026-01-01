@@ -131,8 +131,8 @@ namespace module_loader {
                         case R_X86_64_32S:  // Type 11
                             *(int32_t *)P = (int32_t)(S + A);
                             break;
-                        case R_X86_64_PC32:    // Type 2 (The one you are hitting)
-                        case R_X86_64_PLT32: { // Type 4
+                        case R_X86_64_PC32:     // Type 2 (The one you are hitting)
+                        case R_X86_64_PLT32: {  // Type 4
                             int64_t rel = (int64_t)(S + A - P);
 
                             // Check if it actually fits in 32 bits (important!)
@@ -172,6 +172,15 @@ namespace module_loader {
             // Capture Metadata pointer
             if (strcmp(name, ".module_info") == 0) {
                 meta = (module_metadata *)section_addresses[i];
+            }
+
+            if (strcmp(name, ".ksymtab") == 0) {
+                kernel_symbol *syms = (kernel_symbol *)section_addresses[i];
+                size_t count = sh.size / sizeof(kernel_symbol);
+
+                for (size_t j = 0; j < count; j++) {
+                    ksym::export_symbol(syms[j].name, syms[j].addr);
+                }
             }
 
             // Apply specific page protections based on SHF_ flags

@@ -2,6 +2,8 @@ global trampoline_start
 global trampoline_end
 global ap_data_start
 
+%include "src/assets/gdt_constants.inc"
+
 section .text
 trampoline_start:
 [bits 16]
@@ -22,11 +24,11 @@ ap_start_16:
     or eax, 1
     mov cr0, eax
 
-    jmp dword 0x08:(ap_start_32 - trampoline_start + 0x8000)
+    jmp dword KCODE_SEL:(ap_start_32 - trampoline_start + 0x8000)
 
 [bits 32]
 ap_start_32:
-    mov ax, 0x10
+    mov ax, KDATA_SEL
     mov ds, ax
     mov ss, ax
 
@@ -48,11 +50,11 @@ ap_start_32:
 
     lgdt [ptr_gdt64 - trampoline_start + 0x8000]
 
-    jmp 0x08:(ap_start_64 - trampoline_start + 0x8000)
+    jmp KCODE_SEL:(ap_start_64 - trampoline_start + 0x8000)
 
 [bits 64]
 ap_start_64:
-    mov ax, 0x10
+    mov ax, KDATA_SEL
     mov ds, ax
     mov es, ax
     mov ss, ax

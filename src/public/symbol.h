@@ -16,4 +16,4 @@ struct kernel_symbol {
 #define KEXPORT(sym)                           \
     EXTERN_C_LINKAGE __typeof__(sym) sym;      \
     __attribute__((section(".ksymtab"), used)) \
-    const struct kernel_symbol __ksym_##sym = {.addr = (uintptr_t)&sym, .name = #sym};
+    const struct kernel_symbol __ksym_##sym = {.addr = (uintptr_t) & sym, .name = #sym};

@@ -1,4 +1,7 @@
 global gdt_load
+
+%include "src/assets/gdt_constants.inc"
+
 gdt_load:
     mov ecx, 0xC0000101 ; IA32_GS_BASE
     rdmsr               ; Reads MSR into EDX:EAX
@@ -7,7 +10,7 @@ gdt_load:
 
     lgdt [rdi]
 
-    mov ax, 0x10
+    mov ax, KDATA_SEL
     mov ds, ax
     mov es, ax
     mov ss, ax
@@ -21,7 +24,7 @@ gdt_load:
     mov ecx, 0xC0000101
     wrmsr               ; Write EDX:EAX back to GS_BASE
 
-    push 0x08
+    push KCODE_SEL
     lea rax, [rel .reload_cs]
     push rax
     retfq

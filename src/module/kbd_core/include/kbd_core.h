@@ -6,26 +6,26 @@
 extern "C" {
 #endif
 
-#define KDB_MAX_NAME 32
+#define kbd_MAX_NAME 32
 
 /* Key flags */
-#define KDB_SHIFT (1 << 0)
-#define KDB_CTRL (1 << 1)
-#define KDB_ALT (1 << 2)
-#define KDB_CAPS (1 << 3)
+#define kbd_SHIFT (1 << 0)
+#define kbd_CTRL (1 << 1)
+#define kbd_ALT (1 << 2)
+#define kbd_CAPS (1 << 3)
 
 /* Opaque handle */
-struct kdb_device;
+struct kbd_device;
 
 /* Called by low-level drivers */
-struct kdb_device *kdb_register(const char *name);
-void kdb_unregister(struct kdb_device *kdb);
+struct kbd_device *kbd_register(const char *name);
+void kbd_unregister(struct kbd_device *kbd);
 
 /* Inject raw key events */
-void kdb_handle_scancode(struct kdb_device *kdb, uint8_t scancode, int pressed);
+void kbd_handle_scancode(struct kbd_device *kbd, uint8_t scancode, int pressed);
 
 /* Optional helper for drivers */
-uint32_t kdb_get_modifiers(struct kdb_device *kdb);
+uint32_t kbd_get_modifiers(struct kbd_device *kbd);
 
 #ifdef __cplusplus
 }
