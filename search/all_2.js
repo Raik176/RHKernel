@@ -19,6 +19,6 @@ var searchData=
   ['brown_16',['Brown',['../namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944aed63fc91500594c3086714f86b3001e4',1,'console']]],
   ['bsp_5fid_17',['bsp_id',['../namespaceapic.html#ad5ea1dc99b421bca8b8ef4854fa1b207',1,'apic']]],
   ['buddy_5fof_18',['buddy_of',['../namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538',1,'pmm']]],
-  ['buffer_19',['buffer',['../structkdb__device.html#a54d3c6fbbce5f9441778d1d6b6f93542',1,'kdb_device::buffer'],['../namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1',1,'vga::buffer']]],
+  ['buffer_19',['buffer',['../structkbd__device.html#ad1c951c3d4bb306eb663f2afc8d70ffe',1,'kbd_device::buffer'],['../namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1',1,'vga::buffer']]],
   ['busy_5fsleep_20',['busy_sleep',['../util_8cpp.html#a82bc1d7175d59077e863578740ff32b6',1,'busy_sleep(uint64_t ms):&#160;util.cpp'],['../util_8h.html#a82bc1d7175d59077e863578740ff32b6',1,'busy_sleep(uint64_t ms):&#160;util.cpp']]]
 ];

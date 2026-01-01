@@ -93,6 +93,7 @@ $(document).ready(function(){initNavTree('gdt_8h.html',''); initResizable(); });
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">gdt.h File Reference</div></div>
@@ -165,6 +166,21 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacegdt" id="r_namespacegdt"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html">gdt</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a73f538a0483ed347b046a89a5cea276d" id="r_a73f538a0483ed347b046a89a5cea276d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276d">gdt::selectors</a> : uint16_t { <br />
+&#160;&#160;<a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276da64efe053793922fa080f3832ff10a923">gdt::KCODE_SEL</a> = 0x08
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276da259db247fd4aae05de9769ed1884e58c">gdt::KDATA_SEL</a> = 0x10
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276dababa8919efa1b8de02e827003f2d8d9c">gdt::UDATA32_SEL</a> = 0x18 | 3
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276daa0c12844845f735bb32d9c525a044e9b">gdt::UCODE32_SEL</a> = 0x20 | 3
+, <br />
+&#160;&#160;<a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276da827363533c48e9f614a946d9b1942704">gdt::UDATA64_SEL</a> = 0x28 | 3
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276daa942e6dd93e6dc99e19aadc827383461">gdt::UCODE64_SEL</a> = 0x30 | 3
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276dacc3abd3ee7cca4adb2302d9d2d4dcf40">gdt::TSS_SEL</a> = 0x38
+<br />
+ }</td></tr>
+<tr class="separator:a73f538a0483ed347b046a89a5cea276d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9d2832bbdf02040df6bb26cbe007957f" id="r_a9d2832bbdf02040df6bb26cbe007957f"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structgdt_1_1gdt__entry.html">gdt::gdt_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a9d2832bbdf02040df6bb26cbe007957f">gdt::__attribute__</a> ((packed))</td></tr>
@@ -179,7 +195,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ac57b0afdaca3b3da172b8cc25b337969" id="r_ac57b0afdaca3b3da172b8cc25b337969"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ac57b0afdaca3b3da172b8cc25b337969">gdt::MAX_ENTRIES</a> = 8</td></tr>
+<tr class="memitem:ac57b0afdaca3b3da172b8cc25b337969" id="r_ac57b0afdaca3b3da172b8cc25b337969"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ac57b0afdaca3b3da172b8cc25b337969">gdt::MAX_ENTRIES</a> = 9</td></tr>
 <tr class="separator:ac57b0afdaca3b3da172b8cc25b337969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7ae5b5a918e00776ff07fb1c58a348d" id="r_aa7ae5b5a918e00776ff07fb1c58a348d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gdt_8h.html#aa7ae5b5a918e00776ff07fb1c58a348d">limit_low</a></td></tr>
 <tr class="memdesc:aa7ae5b5a918e00776ff07fb1c58a348d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lower 16 bits of the segment limit.  <br /></td></tr>

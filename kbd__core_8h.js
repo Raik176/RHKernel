@@ -1,12 +1,12 @@
 var kbd__core_8h =
 [
-    [ "KDB_ALT", "kbd__core_8h.html#a1ac677d96d48892d0d0caa919b9f5d7b", null ],
-    [ "KDB_CAPS", "kbd__core_8h.html#a36e834c0c31bd3811af9d407a69a3122", null ],
-    [ "KDB_CTRL", "kbd__core_8h.html#a74bfc41bdd1ad5f5155c3734aac94c0c", null ],
-    [ "KDB_MAX_NAME", "kbd__core_8h.html#afcdb9048e94aef138cdbe3aef0ff31af", null ],
-    [ "KDB_SHIFT", "kbd__core_8h.html#a44f908ede178589ffd7acfd4932be651", null ],
-    [ "kdb_get_modifiers", "kbd__core_8h.html#aa3a21c5552d8fbad1c49d34d03ab2798", null ],
-    [ "kdb_handle_scancode", "kbd__core_8h.html#ad943db6b27038b55c40414534fe64dfa", null ],
-    [ "kdb_register", "kbd__core_8h.html#a695062fada6bbf4781c9537444be2aa6", null ],
-    [ "kdb_unregister", "kbd__core_8h.html#a1da30886c897523a21b1d854ea9430ec", null ]
+    [ "kbd_ALT", "kbd__core_8h.html#a6ea10a248d3a849e0ab5a860283b538c", null ],
+    [ "kbd_CAPS", "kbd__core_8h.html#a97cca210f564dd6e3be69c5bc0c1b48f", null ],
+    [ "kbd_CTRL", "kbd__core_8h.html#adb13455ddae90512b83bda29e56b6f0f", null ],
+    [ "kbd_MAX_NAME", "kbd__core_8h.html#a5fda4fe7bf6196e7f7dad9bfd4df1018", null ],
+    [ "kbd_SHIFT", "kbd__core_8h.html#a1885cf0f6b0d560874cb983008f7a362", null ],
+    [ "kbd_get_modifiers", "kbd__core_8h.html#a7021f68b5707f9db1e3f172f05feca3d", null ],
+    [ "kbd_handle_scancode", "kbd__core_8h.html#a9182118f148e48416bb0ec1907c01002", null ],
+    [ "kbd_register", "kbd__core_8h.html#a3738b80eae7d7765eb12d7751dc78f45", null ],
+    [ "kbd_unregister", "kbd__core_8h.html#aa7b9435fd0ae3ec91485d53d89de3f14", null ]
 ];

@@ -9,7 +9,7 @@ var searchData=
   ['mod_5fend_6',['mod_end',['../structmultiboot__tag__module.html#aa39ceccf82107b63ecdfee33a975312c',1,'multiboot_tag_module']]],
   ['mod_5fstart_7',['mod_start',['../structmultiboot__tag__module.html#aad6859d537c378edde77d0a8020eedf5',1,'multiboot_tag_module']]],
   ['mode_8',['mode',['../structcpio__newc__header.html#a9fedde5fdb9aa92beb89bf0afe3f7319',1,'cpio_newc_header::mode'],['../initramfs_8h.html#a6b36e8b34706ad58f2e410c191c002af',1,'mode:&#160;initramfs.h']]],
-  ['modifiers_9',['modifiers',['../structkdb__device.html#a8d599203c9d2c0455df8066f507bb371',1,'kdb_device']]],
+  ['modifiers_9',['modifiers',['../structkbd__device.html#a8fb9bb6268f5bc039999ffdae3d27e8c',1,'kbd_device']]],
   ['modules_5flist_10',['modules_list',['../namespacemodule__loader.html#a7dae9ef14c111d92a85b76e6ae01ce34',1,'module_loader']]],
   ['msr_5fgs_5fbase_11',['MSR_GS_BASE',['../namespaceapic.html#a0dcc6759b911dbacf4a01aad69a9031a',1,'apic']]],
   ['mtime_12',['mtime',['../structcpio__newc__header.html#a975a954ad10b5505b5ebcae700d03a52',1,'cpio_newc_header::mtime'],['../initramfs_8h.html#ad21d655ada3c7951bcd0e2a12c123307',1,'mtime:&#160;initramfs.h']]]

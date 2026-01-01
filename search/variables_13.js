@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['tail_0',['tail',['../structkdb__device.html#a95bf51918bf0a8c60f523db29c192bd8',1,'kdb_device']]],
+  ['tail_0',['tail',['../structkbd__device.html#a91c3f52a4d900f9d73733ce1b0cace94',1,'kbd_device']]],
   ['task_5fqueues_5fhead_1',['task_queues_head',['../structsmp_1_1cpu__local.html#aba155abdb6722324579d18d6e7da75c6',1,'smp::cpu_local']]],
   ['task_5fqueues_5ftail_2',['task_queues_tail',['../structsmp_1_1cpu__local.html#a227c52f7aa62129d515a8109fb030d65',1,'smp::cpu_local']]],
   ['tick_5fscale_3',['tick_scale',['../namespaceapic.html#ad6b6cb9e897fb7b75c9e2d5108598444',1,'apic']]],

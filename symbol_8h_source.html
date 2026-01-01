@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('symbol_8h_source.html',''); initResiza
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="symbol_8h.html#a02f441edac57fee4ab561c3a0f0ecf37">   16</a></span><span class="preprocessor">#define KEXPORT(sym)                           \</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">    EXTERN_C_LINKAGE __typeof__(sym) sym;      \</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">    __attribute__((section(&quot;.ksymtab&quot;), used)) \</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">    const struct kernel_symbol __ksym_##sym = {.addr = (uintptr_t)&amp;sym, .name = #sym};</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">    const struct kernel_symbol __ksym_##sym = {.addr = (uintptr_t) &amp; sym, .name = #sym};</span></div>
 </div>
 <div class="ttc" id="astructkernel__symbol_html"><div class="ttname"><a href="structkernel__symbol.html">kernel_symbol</a></div><div class="ttdef"><b>Definition</b> symbol.h:11</div></div>
 <div class="ttc" id="astructkernel__symbol_html_ab678f7408852145e173056ec60ad1c32"><div class="ttname"><a href="structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32">kernel_symbol::addr</a></div><div class="ttdeci">uintptr_t addr</div><div class="ttdef"><b>Definition</b> symbol.h:12</div></div>

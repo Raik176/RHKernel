@@ -12,5 +12,5 @@ var searchData=
   ['blue_5fmask_5fsize_9',['blue_mask_size',['../structmultiboot__tag__framebuffer.html#ab403a96821f81d9939923be006b4346d',1,'multiboot_tag_framebuffer']]],
   ['bpp_10',['bpp',['../structmultiboot__tag__framebuffer.html#a3544a4a7a54cac3ed9a26804eb4eeb32',1,'multiboot_tag_framebuffer::bpp'],['../structframebuffer_1_1FramebufferInfo.html#a7aad9240adb85672cd6114a71c1e9b50',1,'framebuffer::FramebufferInfo::bpp']]],
   ['bsp_5fid_11',['bsp_id',['../namespaceapic.html#ad5ea1dc99b421bca8b8ef4854fa1b207',1,'apic']]],
-  ['buffer_12',['buffer',['../structkdb__device.html#a54d3c6fbbce5f9441778d1d6b6f93542',1,'kdb_device::buffer'],['../namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1',1,'vga::buffer']]]
+  ['buffer_12',['buffer',['../structkbd__device.html#ad1c951c3d4bb306eb663f2afc8d70ffe',1,'kbd_device::buffer'],['../namespacevga.html#a3bd916d981290a9f93b3329ac4258fe1',1,'vga::buffer']]]
 ];

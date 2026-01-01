@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Register a character device into /dev. Supports nested paths like &quot;input/mouse0&quot;." alt="" coords="405,31,528,56"/>
 <area shape="rect" id="Node000002" href="$namespacedevfs.html#a5725979eea2fb2f37a4e4700b9d15fa0" title="Bootstraps the /dev directory in the VFS." alt="" coords="263,5,349,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="392,34,349,27,350,22,392,29"/>
-<area shape="rect" id="Node000005" href="$kbd__core_8c.html#a695062fada6bbf4781c9537444be2aa6" title=" " alt="" coords="255,55,357,80"/>
+<area shape="rect" id="Node000005" href="$kbd__core_8c.html#a3738b80eae7d7765eb12d7751dc78f45" title=" " alt="" coords="255,55,357,80"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="392,57,358,62,357,57,391,52"/>
 <area shape="rect" id="Node000003" href="$device_8cpp.html#a6ed5734cf4f72e0c70ed11b4cfabc778" title=" " alt="" coords="116,5,207,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="249,21,207,21,207,15,249,15"/>

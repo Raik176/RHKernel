@@ -16,7 +16,7 @@ var searchData=
   ['clone_5fvm_13',['CLONE_VM',['../syscall_8cpp.html#ac07965af2ad895ca67fdc8352303fbb5',1,'syscall.cpp']]],
   ['close_5ffd_14',['close_fd',['../namespacefd__manager.html#a8056fcc545b9535496e0ce775cd0db21',1,'fd_manager']]],
   ['cmdline_15',['cmdline',['../structmultiboot__tag__module.html#ae28133d78349211f87ff9fcfb9ab3056',1,'multiboot_tag_module']]],
-  ['color_16',['color',['../namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944',1,'console::Color'],['../namespacevga.html#a9401ccd7b060e7a51604996bd7aecf97',1,'vga::color']]],
+  ['color_16',['color',['../namespacevga.html#a9401ccd7b060e7a51604996bd7aecf97',1,'vga::color'],['../namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944',1,'console::Color']]],
   ['com1_17',['COM1',['../namespaceserial.html#a9b4f31a56f16e48f19a6ac95e0a4b2a6',1,'serial']]],
   ['console_18',['console',['../namespaceconsole.html',1,'']]],
   ['console_20core_20functions_19',['Console Core Functions',['../group__Console__Core.html',1,'']]],

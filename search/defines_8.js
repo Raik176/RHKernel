@@ -5,9 +5,18 @@ var searchData=
   ['shf_5fmaskproc_2',['SHF_MASKPROC',['../elf_8h.html#a4a5fff5464bf6eb2a4d8a86481cff333',1,'elf.h']]],
   ['shf_5fwrite_3',['SHF_WRITE',['../elf_8h.html#a025c79223b0fee4676337d660f76b59b',1,'elf.h']]],
   ['sht_5frela_4',['SHT_RELA',['../elf_8h.html#abf2fc2781a2869352c2ffa0555f34118',1,'elf.h']]],
-  ['stdout_5',['stdout',['../init_2src_2init_8cpp.html#a8875037d0772a4fc34516f1e03d7e238',1,'STDOUT:&#160;init.cpp'],['../test_2src_2init_8cpp.html#a8875037d0772a4fc34516f1e03d7e238',1,'STDOUT:&#160;init.cpp']]],
-  ['sys_5fwrite_6',['sys_write',['../init_2src_2init_8cpp.html#a5d873acf1ed604853238dade4838ad58',1,'SYS_WRITE:&#160;init.cpp'],['../test_2src_2init_8cpp.html#a5d873acf1ed604853238dade4838ad58',1,'SYS_WRITE:&#160;init.cpp']]],
-  ['syscall_5fexec_7',['SYSCALL_EXEC',['../init_2src_2init_8cpp.html#abd7396a03f073d2b6975acaae6096c84',1,'init.cpp']]],
-  ['syscall_5ffork_8',['SYSCALL_FORK',['../init_2src_2init_8cpp.html#ac741a84430a5758bd79d848d8ef96fec',1,'init.cpp']]],
-  ['syscall_5fwait_9',['SYSCALL_WAIT',['../init_2src_2init_8cpp.html#a76c1aacab2aba847cacde4a37ab2b7a0',1,'init.cpp']]]
+  ['stdin_5',['STDIN',['../sh_2src_2init_8cpp.html#ac00bfb46347d26fdc58568fe1ab5fa5b',1,'init.cpp']]],
+  ['stdout_6',['stdout',['../init_2src_2init_8cpp.html#a8875037d0772a4fc34516f1e03d7e238',1,'STDOUT:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a8875037d0772a4fc34516f1e03d7e238',1,'STDOUT:&#160;init.cpp']]],
+  ['syscall_5fclone_7',['syscall_clone',['../init_2src_2init_8cpp.html#a7ec07b2b5309182da7a996c213bd6913',1,'SYSCALL_CLONE:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a7ec07b2b5309182da7a996c213bd6913',1,'SYSCALL_CLONE:&#160;init.cpp']]],
+  ['syscall_5fclose_8',['syscall_close',['../init_2src_2init_8cpp.html#a73bacb3f400bf39921fe9536421eae8b',1,'SYSCALL_CLOSE:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a73bacb3f400bf39921fe9536421eae8b',1,'SYSCALL_CLOSE:&#160;init.cpp']]],
+  ['syscall_5fdup2_9',['syscall_dup2',['../init_2src_2init_8cpp.html#a0ea5963d1354a67530e41624cc2e875c',1,'SYSCALL_DUP2:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a0ea5963d1354a67530e41624cc2e875c',1,'SYSCALL_DUP2:&#160;init.cpp']]],
+  ['syscall_5fexec_10',['syscall_exec',['../init_2src_2init_8cpp.html#abd7396a03f073d2b6975acaae6096c84',1,'SYSCALL_EXEC:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#abd7396a03f073d2b6975acaae6096c84',1,'SYSCALL_EXEC:&#160;init.cpp']]],
+  ['syscall_5fexit_11',['syscall_exit',['../init_2src_2init_8cpp.html#a6afe19f22c590d7cced68927ad3e37b3',1,'SYSCALL_EXIT:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a6afe19f22c590d7cced68927ad3e37b3',1,'SYSCALL_EXIT:&#160;init.cpp']]],
+  ['syscall_5ffork_12',['syscall_fork',['../init_2src_2init_8cpp.html#ac741a84430a5758bd79d848d8ef96fec',1,'SYSCALL_FORK:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#ac741a84430a5758bd79d848d8ef96fec',1,'SYSCALL_FORK:&#160;init.cpp']]],
+  ['syscall_5fopen_13',['syscall_open',['../init_2src_2init_8cpp.html#adcdd18636259ae3b97d922a214ad5dd5',1,'SYSCALL_OPEN:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#adcdd18636259ae3b97d922a214ad5dd5',1,'SYSCALL_OPEN:&#160;init.cpp']]],
+  ['syscall_5fread_14',['syscall_read',['../init_2src_2init_8cpp.html#ae5be81f63639b2e6928bce18ccda6acc',1,'SYSCALL_READ:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#ae5be81f63639b2e6928bce18ccda6acc',1,'SYSCALL_READ:&#160;init.cpp']]],
+  ['syscall_5fsleep_15',['syscall_sleep',['../init_2src_2init_8cpp.html#a6cb30edacde2a952afb4ce0804bc275c',1,'SYSCALL_SLEEP:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a6cb30edacde2a952afb4ce0804bc275c',1,'SYSCALL_SLEEP:&#160;init.cpp']]],
+  ['syscall_5fwait_16',['syscall_wait',['../init_2src_2init_8cpp.html#a76c1aacab2aba847cacde4a37ab2b7a0',1,'SYSCALL_WAIT:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a76c1aacab2aba847cacde4a37ab2b7a0',1,'SYSCALL_WAIT:&#160;init.cpp']]],
+  ['syscall_5fwrite_17',['syscall_write',['../init_2src_2init_8cpp.html#a7bf5d5477f99d0648e55674643559070',1,'SYSCALL_WRITE:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a7bf5d5477f99d0648e55674643559070',1,'SYSCALL_WRITE:&#160;init.cpp']]],
+  ['syscall_5fyield_18',['syscall_yield',['../init_2src_2init_8cpp.html#a8dbfbaba61f05d7faeb62dab22619301',1,'SYSCALL_YIELD:&#160;init.cpp'],['../sh_2src_2init_8cpp.html#a8dbfbaba61f05d7faeb62dab22619301',1,'SYSCALL_YIELD:&#160;init.cpp']]]
 ];

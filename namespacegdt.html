@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('namespacegdt.html',''); initResizable(
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">gdt Namespace Reference</div></div>
@@ -109,6 +110,21 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgdt_1_1tss.html">tss</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a73f538a0483ed347b046a89a5cea276d" id="r_a73f538a0483ed347b046a89a5cea276d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276d">selectors</a> : uint16_t { <br />
+&#160;&#160;<a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276da64efe053793922fa080f3832ff10a923">KCODE_SEL</a> = 0x08
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276da259db247fd4aae05de9769ed1884e58c">KDATA_SEL</a> = 0x10
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276dababa8919efa1b8de02e827003f2d8d9c">UDATA32_SEL</a> = 0x18 | 3
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276daa0c12844845f735bb32d9c525a044e9b">UCODE32_SEL</a> = 0x20 | 3
+, <br />
+&#160;&#160;<a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276da827363533c48e9f614a946d9b1942704">UDATA64_SEL</a> = 0x28 | 3
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276daa942e6dd93e6dc99e19aadc827383461">UCODE64_SEL</a> = 0x30 | 3
+, <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276dacc3abd3ee7cca4adb2302d9d2d4dcf40">TSS_SEL</a> = 0x38
+<br />
+ }</td></tr>
+<tr class="separator:a73f538a0483ed347b046a89a5cea276d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af53c6eea854102b633e04557f51c2ce3" id="r_af53c6eea854102b633e04557f51c2ce3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#af53c6eea854102b633e04557f51c2ce3">set_entry</a> (<a class="el" href="structgdt_1_1gdt__entry.html">gdt_entry</a> *<a class="el" href="elf_8h.html#a6aac0a1a7d70f8270f9bb1222445f370">entry</a>, uint32_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint32_t <a class="el" href="gdt_8h.html#ab28e82ae69032cb4ad3ec3a0be3d7129">limit</a>, uint8_t <a class="el" href="gdt_8h.html#a8b0d6200bc639dd37ff68847a0adde5f">access</a>, uint8_t gran)</td></tr>
@@ -125,9 +141,33 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ac57b0afdaca3b3da172b8cc25b337969" id="r_ac57b0afdaca3b3da172b8cc25b337969"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ac57b0afdaca3b3da172b8cc25b337969">MAX_ENTRIES</a> = 8</td></tr>
+<tr class="memitem:ac57b0afdaca3b3da172b8cc25b337969" id="r_ac57b0afdaca3b3da172b8cc25b337969"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegdt.html#ac57b0afdaca3b3da172b8cc25b337969">MAX_ENTRIES</a> = 9</td></tr>
 <tr class="separator:ac57b0afdaca3b3da172b8cc25b337969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a73f538a0483ed347b046a89a5cea276d" name="a73f538a0483ed347b046a89a5cea276d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f538a0483ed347b046a89a5cea276d">&#9670;&#160;</a></span>selectors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacegdt.html#a73f538a0483ed347b046a89a5cea276d">gdt::selectors</a> : uint16_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a73f538a0483ed347b046a89a5cea276da64efe053793922fa080f3832ff10a923" name="a73f538a0483ed347b046a89a5cea276da64efe053793922fa080f3832ff10a923"></a>KCODE_SEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73f538a0483ed347b046a89a5cea276da259db247fd4aae05de9769ed1884e58c" name="a73f538a0483ed347b046a89a5cea276da259db247fd4aae05de9769ed1884e58c"></a>KDATA_SEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73f538a0483ed347b046a89a5cea276dababa8919efa1b8de02e827003f2d8d9c" name="a73f538a0483ed347b046a89a5cea276dababa8919efa1b8de02e827003f2d8d9c"></a>UDATA32_SEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73f538a0483ed347b046a89a5cea276daa0c12844845f735bb32d9c525a044e9b" name="a73f538a0483ed347b046a89a5cea276daa0c12844845f735bb32d9c525a044e9b"></a>UCODE32_SEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73f538a0483ed347b046a89a5cea276da827363533c48e9f614a946d9b1942704" name="a73f538a0483ed347b046a89a5cea276da827363533c48e9f614a946d9b1942704"></a>UDATA64_SEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73f538a0483ed347b046a89a5cea276daa942e6dd93e6dc99e19aadc827383461" name="a73f538a0483ed347b046a89a5cea276daa942e6dd93e6dc99e19aadc827383461"></a>UCODE64_SEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a73f538a0483ed347b046a89a5cea276dacc3abd3ee7cca4adb2302d9d2d4dcf40" name="a73f538a0483ed347b046a89a5cea276dacc3abd3ee7cca4adb2302d9d2d4dcf40"></a>TSS_SEL&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a9d2832bbdf02040df6bb26cbe007957f" name="a9d2832bbdf02040df6bb26cbe007957f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9d2832bbdf02040df6bb26cbe007957f">&#9670;&#160;</a></span>__attribute__()</h2>
@@ -369,7 +409,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr uint16_t gdt::MAX_ENTRIES = 8</td>
+          <td class="memname">constexpr uint16_t gdt::MAX_ENTRIES = 9</td>
         </tr>
       </table>
   </td>

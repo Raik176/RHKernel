@@ -68,7 +68,7 @@ var annotated_dup =
     [ "cpu_features", "structcpu__features.html", "structcpu__features" ],
     [ "device_instance", "structdevice__instance.html", "structdevice__instance" ],
     [ "device_ops", "structdevice__ops.html", "structdevice__ops" ],
-    [ "kdb_device", "structkdb__device.html", "structkdb__device" ],
+    [ "kbd_device", "structkbd__device.html", "structkbd__device" ],
     [ "kernel_symbol", "structkernel__symbol.html", "structkernel__symbol" ],
     [ "module_metadata", "structmodule__metadata.html", "structmodule__metadata" ],
     [ "multiboot_color", "structmultiboot__color.html", "structmultiboot__color" ],

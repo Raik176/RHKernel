@@ -5,7 +5,7 @@ var searchData=
   ['handle_5fhalt_5fipi_2',['handle_halt_ipi',['../idt_8cpp.html#a2794ae20b304bbbb23a617fcb4f60eb5',1,'idt.cpp']]],
   ['handler_3',['handler',['../structinterrupt__manager_1_1irq__node.html#ae72488c21c75c292c2ffb4b2dee1fb91',1,'interrupt_manager::irq_node']]],
   ['handler_5fchains_4',['handler_chains',['../namespaceinterrupt__manager.html#ae03f51a63860f2f017dad3d77e7b7134',1,'interrupt_manager']]],
-  ['head_5',['head',['../structscheduler_1_1wait__queue.html#a7ada6cbd7cd6be9293aea53009b4e4a9',1,'scheduler::wait_queue::head'],['../structkdb__device.html#ad862f95164c4f24f7174ee0b053f1895',1,'kdb_device::head']]],
+  ['head_5',['head',['../structscheduler_1_1wait__queue.html#a7ada6cbd7cd6be9293aea53009b4e4a9',1,'scheduler::wait_queue::head'],['../structkbd__device.html#a9c81d58d3dd066ea55306c26a0969779',1,'kbd_device::head']]],
   ['header_6',['header',['../acpi_8h.html#a70d4527291bd61e270772858b836f8a8',1,'header:&#160;acpi.h'],['../structacpi_1_1MADT.html#adfece6363369dd0acb536c9037c30223',1,'acpi::MADT::header'],['../structacpi_1_1MADTEntryLAPIC.html#a12405ee281a3e4b4a236f710b2112192',1,'acpi::MADTEntryLAPIC::header']]],
   ['header_5fsize_7',['header_size',['../elf_8h.html#ab940fc0677a85584a447a067439d938d',1,'header_size:&#160;elf.h'],['../structelf_1_1elf__header.html#a382a6ef6beab8c8af4f70c03970d60f5',1,'elf::elf_header::header_size']]],
   ['heap_8',['heap',['../namespaceheap.html',1,'']]],

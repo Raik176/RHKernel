@@ -64,13 +64,13 @@ var NAVTREEINDEX =
 [
 "acpi_8cpp.html",
 "fd_8h_source.html",
-"initramfs_8cpp.html#a2762b5396a1ef9dcf76262fcd976c12a",
-"namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944af9a96fb667261a141d10021a66d6ad0f",
-"namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9faacb7820573f20d69befb56e41f440549",
-"structacpi_1_1RSDP.html#aa24a027f4a64ef6d23d52bd9372efef0",
-"structgdt_1_1tss.html#a98c24467b3fd1f4c71d7f775ecf8a62a",
-"structscheduler_1_1task.html#adb3a65b31ef3b6e281781f752e398593",
-"vmm_8cpp.html#a84ef8c58efe53897dffac73f34944833"
+"init_2src_2init_8cpp.html#a6afe19f22c590d7cced68927ad3e37b3",
+"namespaceconsole.html",
+"namespacevga.html",
+"string_8h.html#a07f4a84c11c106e95c32b6ab509346ef",
+"structframebuffer_1_1FramebufferInfo.html#aeb77844fb488fa4a0b9855069fe4ba22",
+"structregs.html#af7fb5a1a0a8b543ad48b6b2c9a0ea538",
+"vfs_8h.html#a4254823dbf640d91def413bf2a811fa7a1b1483e5187b6e599c3e3bc3150310fe"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

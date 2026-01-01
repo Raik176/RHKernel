@@ -4,7 +4,7 @@ var searchData=
   ['idle_5ftask_1',['idle_task',['../structsmp_1_1cpu__local.html#aa4bf7d818c04d98ad9c111f5eac9f950',1,'smp::cpu_local']]],
   ['idt_2',['idt',['../namespaceidt.html#adf41cef4d7cf207215b25d30326dd48b',1,'idt']]],
   ['idtp_3',['idtp',['../namespaceidt.html#a4871bbadf82a31090453cde2d2d742b7',1,'idt']]],
-  ['index_4',['index',['../structkdb__device.html#a929e8a7dcb355fd599d630153af6d409',1,'kdb_device']]],
+  ['index_4',['index',['../structkbd__device.html#a8be15e964b5129114eba30c459352a1f',1,'kbd_device']]],
   ['indexed_5',['indexed',['../structmultiboot__tag__framebuffer.html#addf4697170f6b6d90fee624c31a34b98',1,'multiboot_tag_framebuffer']]],
   ['info_6',['info',['../structelf_1_1elf__section__header.html#a56e063d8aa5a81d94103ec287df98509',1,'elf::elf_section_header::info'],['../structelf_1_1elf__symbol.html#a1c5443b446846236fb09d6aa04f987c8',1,'elf::elf_symbol::info'],['../structelf_1_1elf__rela.html#ae41e3e3d64cd446831ef8d1b7a7adde1',1,'elf::elf_rela::info'],['../elf_8h.html#ad5e22a6c8c173e5a788a857fe30d02a4',1,'info:&#160;elf.h']]],
   ['init_7',['init',['../structmodule__metadata.html#a8231b3779e8738ebccf4359265037cc5',1,'module_metadata']]],
