@@ -25,51 +25,6 @@ namespace scheduler {
     static task *dequeue(smp::cpu_local *cpu);
     static task *steal_work(smp::cpu_local *self);
 
-    // --- Wait Queue Implementation ---
-
-    void wait_queue::wait(uint64_t &lock_flags) {
-        smp::cpu_local *cpu = smp::get_cpu();
-        task *current = cpu->current_task;
-
-        // 1. Set state to WAITING so the scheduler won't re-enqueue it
-        current->state = task_state::WAITING;
-
-        // 2. Use a dedicated link for wait queues to avoid corrupting run-queues
-        current->global_next = head;
-        head = current;
-
-        // 3. Release lock and trigger a context switch
-        cpu->sched_lock.release(lock_flags);
-        yield();
-
-        // 4. Re-acquire for the caller (the loop in sys_wait)
-        cpu->sched_lock.acquire(lock_flags);
-    }
-
-    void wait_queue::wake_one() {
-        if (!head) return;
-
-        task *t = head;
-        head = head->global_next;
-
-        t->state = task_state::READY;
-        // In a real SMP system, you'd need to find the CPU this task belongs to
-        // or a global balancer. Here we assume it returns to the current CPU.
-        enqueue(smp::get_cpu(), t);
-    }
-
-    void wait_queue::wake_all() {
-        while (head) {
-            task *t = head;
-            head = head->global_next;
-
-            t->state = task_state::READY;
-            t->global_next = nullptr;
-
-            enqueue(smp::get_cpu(), t);
-        }
-    }
-
     // --- Work Stealing ---
 
     static task *steal_work(smp::cpu_local *self) {
@@ -114,6 +69,10 @@ namespace scheduler {
     }
 
     static void enqueue(smp::cpu_local *cpu, task *t) {
+        if (t->state != task_state::READY) {
+            console::printf("[SCHED] Tried to enqueue not-ready task %d", t->id);
+        }
+
         int p = t->priority;
         t->next = nullptr;
         t->prev = cpu->task_queues_tail[p];
@@ -259,8 +218,6 @@ namespace scheduler {
         child->first_child = nullptr;
         child->state = task_state::READY;
 
-        // Reset process-specific queues and links
-        child->death_queue.head = nullptr;
         child->next = nullptr;
         child->prev = nullptr;
         child->global_next = nullptr;
@@ -319,27 +276,36 @@ namespace scheduler {
         return child->id;
     }
 
-    int exec(const char *path) {  // TODO: safer
+    int exec(const char *path, char **argv) {  // TODO: safer
         smp::cpu_local *cpu = smp::get_cpu();
         task *current = cpu->current_task;
 
-        // 1. Load the new ELF file
-        // elf::load creates a new PML4 and maps the program segments
-        elf::elf_info info = elf::load(path);
-        if (info.entry == 0) {
-            return -1;  // Failed to load or find file
+        int argc = 0;
+        char **temp_argv = nullptr;
+
+        if (argv != nullptr) {
+            while (argv[argc] != nullptr) argc++;
+
+            temp_argv = (char **)heap::kmalloc(sizeof(char *) * (argc + 1));
+            for (int i = 0; i < argc; i++) {
+                size_t len = strlen(argv[i]) + 1;
+                temp_argv[i] = (char *)heap::kmalloc(len);
+                memcpy(temp_argv[i], argv[i], len);
+            }
+            temp_argv[argc] = nullptr;
         }
 
-        // 2. Prepare the new address space
-        // We save the old CR3 so we can destroy it after switching
+        elf::elf_info info = elf::load(path);
+        if (info.entry == 0) {
+            // free temp_argv
+            return -1;
+        }
+
         uint64_t old_cr3 = current->cr3;
         current->cr3 = info.pml4;
 
-        // Switch to the new address space immediately
         asm volatile("mov %0, %%cr3" : : "r"(current->cr3) : "memory");
 
-        // 3. Reset the User Stack
-        // We need to map a fresh stack in the NEW address space
         uint64_t stack_pages = INITIAL_USER_STACK_SIZE / pmm::PAGE_SIZE;
         uint64_t stack_phys = pmm::alloc(stack_pages * pmm::PAGE_SIZE);
         uint64_t stack_virt = 0x00007FFFFFFFF000 - INITIAL_USER_STACK_SIZE;
@@ -348,36 +314,50 @@ namespace scheduler {
                        vmm::PageFlags::Present | vmm::PageFlags::Write | vmm::PageFlags::User,
                        current->cr3);
 
+        uint64_t *stack_ptr = (uint64_t *)((uintptr_t)stack_virt + INITIAL_USER_STACK_SIZE);
+        uint64_t user_argv_ptrs[argc + 1];
+
+        for (int i = argc - 1; i >= 0; i--) {
+            size_t len = strlen(temp_argv[i]) + 1;
+            stack_ptr = (uint64_t *)((uintptr_t)stack_ptr - len);
+            memcpy(stack_ptr, temp_argv[i], len);
+            user_argv_ptrs[i] = (uint64_t)stack_ptr;
+            heap::kfree(temp_argv[i]);
+        }
+
+        user_argv_ptrs[argc] = 0;
+        if (temp_argv) heap::kfree(temp_argv);
+
+        stack_ptr = (uint64_t *)((uintptr_t)stack_ptr & ~0xF);
+        for (int i = argc; i >= 0; i--) {
+            stack_ptr--;
+            *stack_ptr = user_argv_ptrs[i];
+        }
+        uint64_t argv_ptr_for_rdi = (uint64_t)stack_ptr;
+
         current->user_stack = (void *)stack_virt;
 
-        // 4. Reset the CPU context
-        // We reuse the existing kernel stack but reset the register state
         regs *r = current->context;
         memset(r, 0, sizeof(regs));
 
         r->rip = info.entry;
-        r->rsp = (uint64_t)stack_virt + INITIAL_USER_STACK_SIZE;
+        r->rsp = (uintptr_t)stack_ptr;
+        r->rdi = (uint64_t)argc;
+        r->rsi = argv_ptr_for_rdi;
         r->rflags = 0x202;                    // IF = 1
         r->cs = gdt::selectors::UCODE64_SEL;  // User Code Selector
         r->ss = gdt::selectors::UDATA64_SEL;  // User Data Selector
 
-        // 5. Reset FPU/SSE state for the new program
         asm volatile("fninit; fxsave (%0)" : : "r"(current->fxsave_area) : "memory");
 
-        // 6. Cleanup the old address space
-        // Since we aren't using CoW in this specific path yet,
-        // we destroy the previous PML4 and its associated private memory.
         if (old_cr3 != vmm::get_kernel_pagemap()) { vmm::destroy_user_address_space(old_cr3); }
 
-        // Note: We do NOT call yield().
-        // When the syscall handler returns, it will use the modified `regs`
-        // in current->context to "return" into the entry point of the new ELF.
         return 0;
     }
 
-    regs *schedule(regs *current_state, bool is_timer_tick) {
+    void schedule(regs *current_state, bool is_timer_tick) {
         smp::cpu_local *cpu = smp::get_cpu();
-        if (!cpu) return current_state;
+        if (!cpu) context_switch(current_state);
 
         uint64_t flags;
         cpu->sched_lock.acquire(flags);
@@ -450,7 +430,7 @@ namespace scheduler {
                         }
                     }
                     cpu->sched_lock.release(flags);
-                    return current_state;
+                    context_switch(current_state);
                 }
             } else {
                 current->state = task_state::READY;
@@ -473,7 +453,7 @@ namespace scheduler {
 
         cpu->sched_lock.release(flags);
 
-        return next->context;
+        context_switch(next->context);
     }
 
     void yield() { asm volatile("int $0x81"); }
@@ -497,65 +477,70 @@ namespace scheduler {
         smp::cpu_local *cpu = smp::get_cpu();
         task *current = cpu->current_task;
 
-        console::printf("Process %d exiting with code %d\n", current->id, code);
-
         uint64_t flags;
         cpu->sched_lock.acquire(flags);
 
         current->exit_code = code;
         current->state = task_state::ZOMBIE;
 
-        // Close all file descriptors
-        for (uint64_t i = 0; i < current->fd_capacity; i++) { fd_manager::close_fd(i, current); }
+        if (current->parent) {
+            if (current->parent->state == task_state::BLOCKED) {
+                current->parent->state = task_state::READY;
+                enqueue(cpu, current->parent);
+            }
+        }
 
-        // Wake parent while holding the SAME lock
-        if (current->parent) { current->parent->death_queue.wake_all(); }
+        for (uint64_t i = 0; i < current->fd_capacity; i++) { fd_manager::close_fd(i, current); }
 
         cpu->sched_lock.release(flags);
 
-        // Never run again
         yield();
-        __builtin_unreachable();
     }
 
     int wait(int *status) {
         smp::cpu_local *cpu = smp::get_cpu();
-        uint64_t flags;
+        task *current = cpu->current_task;
 
         while (true) {
+            uint64_t flags;
             cpu->sched_lock.acquire(flags);
 
-            task *current = cpu->current_task;
-            task *prev_child = nullptr;
+            task *prev_sibling = nullptr;
             task *child = current->first_child;
+
+            if (!child) {
+                cpu->sched_lock.release(flags);
+                return -1;  // No children to wait for
+            }
 
             while (child) {
                 if (child->state == task_state::ZOMBIE) {
-                    int id = child->id;
+                    int child_id = child->id;
+
                     if (status) { *status = child->exit_code; }
 
-                    // Unlink child
-                    if (prev_child)
-                        prev_child->next_sibling = child->next_sibling;
-                    else
+                    if (prev_sibling) {
+                        prev_sibling->next_sibling = child->next_sibling;
+                    } else {
                         current->first_child = child->next_sibling;
+                    }
 
-                    // Free resources
-                    heap::kfree(child->kernel_stack);
-                    heap::kfree(child->fd_table);
+                    if (child->kernel_stack) heap::kfree(child->kernel_stack);
+                    if (child->fd_table) heap::kfree(child->fd_table);
                     heap::kfree(child);
 
                     cpu->sched_lock.release(flags);
-                    return id;
+                    return child_id;
                 }
-
-                prev_child = child;
+                prev_sibling = child;
                 child = child->next_sibling;
             }
 
-            // 🔑 No zombie children → sleep safely
-            current->death_queue.wait(flags);
-            // lock is released and re-acquired internally
+            // No zombies found, but children exist: Block the parent
+            current->state = task_state::BLOCKED;
+            cpu->sched_lock.release(flags);
+
+            yield();
         }
     }
 

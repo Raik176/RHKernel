@@ -83,7 +83,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     vfs::init();
     init_virt_fs();
-    console::printf("[ OK ] VFS and DevFS initialized.\n");
+    console::printf("[ OK ] VFS initialized.\n");
 
     initramfs::init(mb_phys_addr);
     console::printf("[ OK ] Initramfs initialized.\n");
@@ -102,7 +102,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     __asm__ volatile("sti");
 
-    // smp::init_aps();
+    smp::init_aps();  // TODO: fix
     console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
     module_loader::init();

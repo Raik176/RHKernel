@@ -41,16 +41,9 @@ static const char keymap[128][2] = {
 
     [0x39] = {' ', ' '},  [0x1C] = {'\n', '\n'}, [0x0E] = {'\b', '\b'}};
 
-static char apply_modifiers(struct kbd_device *kbd, char c) {
-    if (!c) return 0;
-    if ((kbd->modifiers & kbd_SHIFT) || (kbd->modifiers & kbd_CAPS)) {
-        if (c >= 'a' && c <= 'z') c -= 32;
-    }
-    return c;
-}
-
-// Updated signature: receives 'priv'
 static uint32_t kbd_read(void *priv, uint32_t off, uint32_t size, uint8_t *buf) {
+    (void)off;
+
     struct kbd_device *kbd = (struct kbd_device *)priv;
     if (!kbd) return 0;
 
@@ -74,7 +67,6 @@ struct kbd_device *kbd_register(const char *name) {
     char path[64];
     snprintf(path, sizeof(path), "input/kbd%d", kbd->index);
 
-    // Pass 'kbd' as the third argument (priv)
     if (device_register(path, &kbd_ops, kbd) != 0) {
         kfree(kbd);
         return NULL;
@@ -93,7 +85,6 @@ void kbd_unregister(struct kbd_device *kbd) {
 void kbd_handle_scancode(struct kbd_device *kbd, uint8_t sc, int pressed) {
     if (!kbd || sc >= 128) return;
 
-    // 1. Update Modifiers (Shift, Caps)
     if (sc == 0x2A || sc == 0x36) {  // Left or Right Shift
         if (pressed)
             kbd->modifiers |= kbd_SHIFT;

@@ -37,15 +37,9 @@ static inline uint64_t syscall3(uint64_t num, uint64_t a1, uint64_t a2, uint64_t
 }
 
 extern "C" void _start() {
-    const char *msg = "Init: Forking child to run /bin/test...\n";
-    syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)msg, 40);
-
     uint64_t pid = syscall0(SYSCALL_FORK);
     if (pid == 0) {
-        const char *msg = "Child started\n";
-        syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)msg, 14);
-
-        int fd = syscall1(SYSCALL_OPEN, (uintptr_t) "/dev/input/kbd0");
+        int fd = syscall1(SYSCALL_OPEN, (uintptr_t)"/dev/input/kbd0");
         if (fd < 0) {
             const char *err = "Failed to open kbd0\n";
             syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)err, 20);
@@ -61,5 +55,5 @@ extern "C" void _start() {
         syscall0(SYSCALL_EXIT);
     }
 
-    for (;;) { syscall0(SYSCALL_YIELD); }
+    for (;;) { syscall0(SYSCALL_WAIT); }
 }

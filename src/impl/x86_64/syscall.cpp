@@ -98,7 +98,7 @@ int sys_close(int fd) {
 
 int sys_dup2(int oldfd, int newfd) {
     auto *current = smp::get_cpu()->current_task;
-    
+
     // Get the file object to be duplicated
     auto *file = fd_manager::get_file(oldfd, current);
     if (!file) return -1;
@@ -108,14 +108,12 @@ int sys_dup2(int oldfd, int newfd) {
     if (!fd_manager::expand_table(newfd + 1, current)) return -1;
 
     // If newfd is already open, close it first
-    if (current->fd_table[newfd] != nullptr) {
-        fd_manager::close_fd(newfd, current);
-    }
+    if (current->fd_table[newfd] != nullptr) { fd_manager::close_fd(newfd, current); }
 
     // Assign the new reference
     current->fd_table[newfd] = file;
-    file->ref_count++; 
-    
+    file->ref_count++;
+
     return newfd;
 }
 
@@ -145,22 +143,26 @@ uint64_t syscall_handler(struct regs *r) {
         case SYSCALL_EXIT:
             scheduler::exit((int)arg1);
             return 0;
-        case SYSCALL_WAIT: {
-            int status;
-            int pid = scheduler::wait(&status);
-            if (arg1 != 0) {
-                user_access_begin();
-                *(int *)arg1 = status;
-                user_access_end();
-            }
-            return (uint64_t)pid;
-        }
         case SYSCALL_CLONE:
             return (uint64_t)scheduler::clone(arg1, (void *)arg2, r);
         case SYSCALL_FORK:
             return (uint64_t)scheduler::clone(0, nullptr, r);
-        case SYSCALL_EXEC:
-            return (uint64_t)scheduler::exec((const char *)arg1);
+        case SYSCALL_EXEC: {
+            user_access_begin();
+            uint64_t ret = (uint64_t)scheduler::exec((const char *)arg1, (char **)arg2);
+            user_access_end();
+
+            return ret;
+        }
+        case SYSCALL_WAIT: {
+            int *status_ptr = (int *)arg1;
+
+            user_access_begin();
+            uint64_t ret = (uint64_t)scheduler::wait(status_ptr);
+            user_access_end();
+
+            return ret;
+        }
         default:
             return -1;
     }

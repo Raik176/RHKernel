@@ -71,6 +71,7 @@ int read_line(char *buf, int max_len) {
 
 extern "C" void _start() {
     char cmd_buffer[128];
+    char *argv[16];
     const char *newline = "\n";
     const char *prompt = "minsh> ";
 
@@ -78,17 +79,40 @@ extern "C" void _start() {
         syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)prompt, 7);
 
         int len = read_line(cmd_buffer, sizeof(cmd_buffer));
-
-        if (len > 0) {
-            uint64_t pid = syscall0(SYSCALL_FORK);
-            if (pid == 0) {
-                syscall1(SYSCALL_EXEC, (uintptr_t)cmd_buffer);
-                syscall1(SYSCALL_EXIT, 1);
-            } else {
-                uint64_t status;
-                syscall1(SYSCALL_WAIT, (uintptr_t)&status);
-            }
+        if (len <= 0) {
+            syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)newline, 1);
+            continue;
         }
         syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)newline, 1);
+
+        int argc = 0;
+        char *ptr = cmd_buffer;
+
+        while (*ptr && argc < 15) {
+            while (*ptr == ' ') ptr++;
+            if (*ptr == '\0') break;
+
+            argv[argc++] = ptr;
+
+            while (*ptr && *ptr != ' ') ptr++;
+            if (*ptr == ' ') {
+                *ptr = '\0';
+                ptr++;
+            }
+        }
+        argv[argc] = nullptr;
+
+        if (argc > 0) {
+            uint64_t pid = syscall0(SYSCALL_FORK);
+            if (pid == 0) {
+                syscall3(SYSCALL_EXEC, (uintptr_t)argv[0], (uintptr_t)argv, 0);
+
+                const char *err = "Unknown command\n";
+                syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)err, 16);
+                syscall1(SYSCALL_EXIT, 1);
+            } else {
+                syscall1(SYSCALL_WAIT, 0);
+            }
+        }
     }
 }

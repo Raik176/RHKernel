@@ -205,4 +205,59 @@ namespace smp {
             current += header->length;
         }
     }
+
+    void send_mail(int64_t target_cpu, mail *message) {  // TOOD: check for overflow
+        auto *current_cpu = get_cpu();
+        message->sender_core = current_cpu->cpu_index;
+
+        if (target_cpu < 0) {
+            for (uint64_t i = 0; i < get_core_count(); i++) {
+                if (i == current_cpu->cpu_index && target_cpu == MAIL_RECEIVER_OTHERS) continue;
+
+                cpu_local *target = get_cpu_by_index(i);
+
+                uint64_t flags;
+                target->mail_lock.acquire(flags);
+
+                uint32_t next = (target->mail_tail + 1) % MAILBOX_SIZE;
+                target->mailbox[target->mail_tail] = message;
+                target->mail_tail = next;
+
+                target->mail_lock.release(flags);
+            }
+        } else {
+            cpu_local *target = get_cpu_by_index(target_cpu);
+
+            uint64_t flags;
+            target->mail_lock.acquire(flags);
+
+            uint32_t next = (target->mail_tail + 1) % MAILBOX_SIZE;
+            target->mailbox[target->mail_tail] = message;
+            target->mail_tail = next;
+
+            target->mail_lock.release(flags);
+        }
+    }
+
+    void send_halt_mail(int64_t target_cpu) {
+        mail *message = (mail *)heap::kmalloc(sizeof(mail));
+        message->type = mail_type::HALT;
+        message->handled = nullptr;
+
+        send_mail(target_cpu, message);
+    }
+
+    void flush_mail(int64_t target_cpu) {
+        if (target_cpu == MAIL_RECEIVER_ALL) {
+            apic::write_reg(apic::Register::ICRLO, 0x00080000 | idt::MAILBOX_VECTOR);
+        } else if (target_cpu == MAIL_RECEIVER_OTHERS) {
+            apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::MAILBOX_VECTOR);
+        } else {
+            cpu_local *target = get_cpu_by_index(target_cpu);
+            if (target == nullptr) return;
+
+            apic::write_reg(apic::Register::ICRHI, (uint32_t)target->lapic_id << 24);
+            apic::write_reg(apic::Register::ICRLO, 0x00000000 | idt::MAILBOX_VECTOR);
+        }
+    }
 }  // namespace smp

@@ -5,6 +5,7 @@ global ap_data_start
 %include "src/assets/gdt_constants.inc"
 
 section .text
+default abs
 trampoline_start:
 [bits 16]
 ap_start_16:

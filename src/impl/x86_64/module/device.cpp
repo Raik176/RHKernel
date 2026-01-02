@@ -68,7 +68,7 @@ namespace devfs {
 static uint32_t proc_mem_total_read(vfs::vfs_node *, uint32_t offset, uint32_t size,
                                     uint8_t *buffer) {
     char buf[32];
-    int len = snprintf(buf, sizeof(buf), "%zu\n", pmm::get_total_bytes());
+    int len = snprintf(buf, sizeof(buf), "%d\n", pmm::get_total_bytes());
 
     if (offset >= (uint32_t)len) return 0;
     if (size > (uint32_t)len - offset) size = (uint32_t)len - offset;
@@ -80,7 +80,7 @@ static uint32_t proc_mem_total_read(vfs::vfs_node *, uint32_t offset, uint32_t s
 static uint32_t proc_mem_available_read(vfs::vfs_node *, uint32_t offset, uint32_t size,
                                         uint8_t *buffer) {
     char buf[32];
-    int len = snprintf(buf, sizeof(buf), "%zu\n", pmm::get_free_bytes());
+    int len = snprintf(buf, sizeof(buf), "%d\n", pmm::get_free_bytes());
 
     if (offset >= (uint32_t)len) return 0;
     if (size > (uint32_t)len - offset) size = (uint32_t)len - offset;

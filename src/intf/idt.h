@@ -5,7 +5,7 @@
 
 namespace idt {
     static constexpr uint32_t YIELD_VECTOR = 0x81;
-    static constexpr uint32_t HALT_VECTOR = 0xFE;
+    static constexpr uint32_t MAILBOX_VECTOR = 0xFE;
 
     /**
      * @brief Entry in the Interrupt Descriptor Table (IDT)

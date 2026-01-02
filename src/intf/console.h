@@ -9,7 +9,7 @@
  */
 
 #pragma once
-#define DEBUG
+#define DEBUG  // TODO: remove
 #include <stdarg.h>
 #include <stdint.h>
 

@@ -16,6 +16,7 @@ extern _kernel_phys_start
 extern enable_cpu_features
 
 [bits 64]
+default rel
 section .text
 trampoline:
     call enable_cpu_features

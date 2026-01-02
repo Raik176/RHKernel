@@ -47,7 +47,8 @@ void fill_regs(struct regs *r) {
 }
 
 void __attribute__((noreturn)) kpanic(const char *message, struct regs *r) {
-    apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::HALT_VECTOR);
+    smp::send_halt_mail(-1);
+    smp::flush_mail(-1);
 
     if (r == nullptr) {
         r = {};

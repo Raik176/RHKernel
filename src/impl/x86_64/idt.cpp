@@ -13,6 +13,7 @@
 #include "mod/interrupt.h"
 #include "smp/apic.h"
 #include "smp/scheduler.h"
+#include "smp/smp.h"
 #include "string.h"
 
 extern "C" {
@@ -58,9 +59,32 @@ extern void isr254();
 
 extern "C" void dispatch_irq(struct regs *r);
 
-void handle_halt_ipi(struct regs *r) {
+void handle_mailbox_ipi(struct regs *r) {
     (void)r;
-    for (;;) __asm__ volatile("cli; hlt");
+
+    auto *cpu = smp::get_cpu();
+    uint64_t flags;
+    cpu->mail_lock.acquire(flags);
+
+    while (cpu->mail_head != cpu->mail_tail) {
+        smp::mail *msg = cpu->mailbox[cpu->mail_head];
+        switch (msg->type) {
+            case smp::mail_type::HALT:
+                cpu->mail_lock.release(flags);  // cpu is dead anyways, might aswell release
+                for (;;) __asm__ volatile("cli; hlt");
+                break;
+            default:
+                kpanic("Unhandled mail type!");
+                break;
+        }
+
+        if (msg->handled) { *(msg->handled) = true; }
+
+        cpu->mail_head = (cpu->mail_head + 1) % smp::MAILBOX_SIZE;
+    }
+
+    cpu->mail_lock.release(flags);
+    apic::eoi();
 }
 
 uint64_t idt_handler(struct regs *r) {
@@ -71,8 +95,6 @@ uint64_t idt_handler(struct regs *r) {
 
             if (vmm::handle_fault(faulting_address, r->err_code)) { return (uint64_t)r; }
         }
-
-        apic::write_reg(apic::Register::ICRLO, 0x000C0000 | idt::HALT_VECTOR);
 
         static const char exception_messages[32][30] = {"Division By Zero",
                                                         "Debug",
@@ -110,12 +132,15 @@ uint64_t idt_handler(struct regs *r) {
     }
 
     if (r->int_no >= 32 && r->int_no <= 255) {
-        if (r->int_no == 32) {
-            apic::tick();
-            r = scheduler::schedule(r, true);
-        }
+        if (r->int_no == idt::MAILBOX_VECTOR) { handle_mailbox_ipi(r); }
+        if (r->int_no == idt::YIELD_VECTOR) { scheduler::schedule(r, false); }
 
         dispatch_irq(r);
+        if (r->int_no == 32) {
+            apic::tick();
+            scheduler::schedule(r, true);
+        }
+
         return (uint64_t)r;
     }
 
@@ -203,7 +228,7 @@ namespace idt {
         set_gate(33, reinterpret_cast<uint64_t>(isr33), 0x08, 0x8E);
 
         set_gate(YIELD_VECTOR, reinterpret_cast<uint64_t>(isr129), 0x08, 0x8E);
-        set_gate(HALT_VECTOR, reinterpret_cast<uint64_t>(isr254), 0x08, 0x8E);
+        set_gate(MAILBOX_VECTOR, reinterpret_cast<uint64_t>(isr254), 0x08, 0x8E);
 
         init_ap();
     }
