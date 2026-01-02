@@ -3,7 +3,6 @@ var structscheduler_1_1task =
     [ "age", "structscheduler_1_1task.html#a9c90f1243ca8596d6485eaede2681d68", null ],
     [ "context", "structscheduler_1_1task.html#a36a0c78105c279871ebca4269f592b53", null ],
     [ "cr3", "structscheduler_1_1task.html#a7f38ca5c6696da54111bf4974d720511", null ],
-    [ "death_queue", "structscheduler_1_1task.html#aee2bc0a79c2261eeb7b479107ef5d3da", null ],
     [ "exit_code", "structscheduler_1_1task.html#a0e51b1c891fdc865cf2ef2da9ed3e75c", null ],
     [ "fd_capacity", "structscheduler_1_1task.html#a8a489bea5777d8f81dd03e2dbdbe1bf2", null ],
     [ "fd_table", "structscheduler_1_1task.html#a4a6f96966df5679a4d1918d9e0a37c76", null ],

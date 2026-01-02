@@ -2,7 +2,6 @@ var kbd__core_8c =
 [
     [ "kbd_device", "structkbd__device.html", "structkbd__device" ],
     [ "kbd_BUFFER_SIZE", "kbd__core_8c.html#a4674c24c1c8f5c50273ed14bec52f9fa", null ],
-    [ "apply_modifiers", "kbd__core_8c.html#a1d84a723a736afd1a83740557737e5e0", null ],
     [ "kbd_exit", "kbd__core_8c.html#ad0d56c3a5c0c181cbb4db5fdca519ab6", null ],
     [ "kbd_handle_scancode", "kbd__core_8c.html#aa81f602c72e12dd3940ab19d5a7332cf", null ],
     [ "kbd_init", "kbd__core_8c.html#a66f969945819f45c0fad451001e8cb54", null ],

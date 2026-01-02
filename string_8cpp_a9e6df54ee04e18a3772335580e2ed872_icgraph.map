@@ -3,12 +3,13 @@
 <area shape="rect" id="Node000002" href="$namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee" title=" " alt="" coords="273,55,395,80"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,86,394,80,395,75,430,81"/>
 <area shape="rect" id="Node000006" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="279,104,389,129"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="430,104,390,111,389,105,429,99"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="430,104,390,111,389,105,429,99"/>
 <area shape="rect" id="Node000003" href="$namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6" title=" " alt="" coords="125,5,216,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,53,213,33,215,28,279,48"/>
 <area shape="rect" id="Node000005" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,55,225,80"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="260,70,226,70,226,65,260,65"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,56,68,81"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,38,69,59,67,54,122,33"/>
-<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="265,115,192,108,115,95,67,82,69,77,117,90,193,102,265,110"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="102,70,68,70,68,65,102,65"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="265,115,192,108,115,95,68,81,69,76,117,90,193,103,265,110"/>
 </map>

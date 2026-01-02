@@ -1,6 +1,6 @@
 <map id="vmm::map_range" name="vmm::map_range">
 <area shape="rect" id="Node000001" title=" " alt="" coords="549,80,687,105"/>
-<area shape="rect" id="Node000002" href="$namespacescheduler.html#af2b1936496e590f688dc4cbaa6d18bd6" title=" " alt="" coords="176,17,299,42"/>
+<area shape="rect" id="Node000002" href="$namespacescheduler.html#a23a80ac131fba973fd072ce8682bb34b" title=" " alt="" coords="176,17,299,42"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="591,73,550,44,526,30,501,20,447,10,392,9,339,13,294,20,293,14,338,7,391,3,447,5,502,15,528,25,553,39,594,69"/>
 <area shape="rect" id="Node000004" href="$namespacevmm.html#a8bf83fb866a7c744df6790424b2e2ef6" title="Initialize the virtual memory manager." alt="" coords="381,80,467,105"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="536,95,467,95,467,90,536,90"/>

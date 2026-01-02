@@ -1,7 +1,7 @@
 var searchData=
 [
   ['abi_0',['abi',['../structelf_1_1elf__header.html#a06e7b6c06d9663e3fe6c6c4d3b5c3ffd',1,'elf::elf_header::abi'],['../elf_8h.html#ad6bf7a1604dcf654f3ab34caaba02fc7',1,'abi:&#160;elf.h']]],
-  ['access_1',['access',['../structgdt_1_1gdt__entry.html#afa96a957f055db69c09a1b05537462b0',1,'gdt::gdt_entry::access'],['../gdt_8h.html#a8b0d6200bc639dd37ff68847a0adde5f',1,'access:&#160;gdt.h']]],
+  ['access_1',['access',['../gdt_8h.html#a8b0d6200bc639dd37ff68847a0adde5f',1,'access:&#160;gdt.h'],['../structgdt_1_1gdt__entry.html#afa96a957f055db69c09a1b05537462b0',1,'gdt::gdt_entry::access']]],
   ['accessed_2',['Accessed',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa94fdc41c6eefc2426f3f0ffedfa4b019',1,'vmm']]],
   ['acpi_3',['acpi',['../namespaceacpi.html',1,'']]],
   ['acpi_2ecpp_4',['acpi.cpp',['../acpi_8cpp.html',1,'']]],
@@ -10,7 +10,7 @@ var searchData=
   ['active_5fbackend_7',['active_backend',['../namespaceconsole.html#ae57e81d0aaac0c99a42db59e05380069',1,'console']]],
   ['add_5fspan_8',['add_span',['../namespacepmm.html#a0628838d0cee54d119973e09e6131343',1,'pmm']]],
   ['addend_9',['addend',['../elf_8h.html#a33e92282fdbc03b825363eda0533b7ff',1,'addend:&#160;elf.h'],['../structelf_1_1elf__rela.html#aa22ae574bae1ef4b0ca7d45aeb5b3c83',1,'elf::elf_rela::addend']]],
-  ['addr_10',['addr',['../structksym_1_1dynamic__symbol.html#a735a09f76ad65a8a7457f38aa48327d2',1,'ksym::dynamic_symbol::addr'],['../structelf_1_1elf__section__header.html#a121109ae9379c6d527cda2e86233924b',1,'elf::elf_section_header::addr'],['../structmultiboot__mmap__entry.html#aa515d3e179e1cfd4277e847c7f0464e2',1,'multiboot_mmap_entry::addr'],['../structmultiboot__tag__framebuffer.html#a51431d51962ab45daeafcf9d16a833a4',1,'multiboot_tag_framebuffer::addr'],['../structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32',1,'kernel_symbol::addr'],['../elf_8h.html#a0e89cf6b9f6cd3125470b1bed2b823df',1,'addr:&#160;elf.h'],['../structframebuffer_1_1FramebufferInfo.html#a13e17242887f10f8867a135092e943df',1,'framebuffer::FramebufferInfo::addr'],['../symbol_8h.html#a845b126697becc1d429671f8a49e1c37',1,'addr:&#160;symbol.h']]],
+  ['addr_10',['addr',['../structframebuffer_1_1FramebufferInfo.html#a13e17242887f10f8867a135092e943df',1,'framebuffer::FramebufferInfo::addr'],['../structksym_1_1dynamic__symbol.html#a735a09f76ad65a8a7457f38aa48327d2',1,'ksym::dynamic_symbol::addr'],['../structelf_1_1elf__section__header.html#a121109ae9379c6d527cda2e86233924b',1,'elf::elf_section_header::addr'],['../structmultiboot__mmap__entry.html#aa515d3e179e1cfd4277e847c7f0464e2',1,'multiboot_mmap_entry::addr'],['../structmultiboot__tag__framebuffer.html#a51431d51962ab45daeafcf9d16a833a4',1,'multiboot_tag_framebuffer::addr'],['../structsmp_1_1mail.html#ae86062dc6206fc8d6c70fe505ae1d4e6',1,'smp::mail::addr'],['../structkernel__symbol.html#ab678f7408852145e173056ec60ad1c32',1,'kernel_symbol::addr'],['../elf_8h.html#a0e89cf6b9f6cd3125470b1bed2b823df',1,'addr:&#160;elf.h'],['../symbol_8h.html#a845b126697becc1d429671f8a49e1c37',1,'addr:&#160;symbol.h']]],
   ['addralign_11',['addralign',['../structelf_1_1elf__section__header.html#a3530cddb55e0eca2cc5a3a99e522cc3f',1,'elf::elf_section_header::addralign'],['../elf_8h.html#acfc7f0bb0f897457ad35567b19dc6f0b',1,'addralign:&#160;elf.h']]],
   ['affinity_12',['affinity',['../structinterrupt__manager_1_1irq__node.html#a642ee83221728eb4096be63cc2fd593f',1,'interrupt_manager::irq_node']]],
   ['age_13',['age',['../structscheduler_1_1task.html#a9c90f1243ca8596d6485eaede2681d68',1,'scheduler::task']]],
@@ -26,6 +26,5 @@ var searchData=
   ['apic_23',['apic',['../namespaceapic.html',1,'']]],
   ['apic_2ecpp_24',['apic.cpp',['../apic_8cpp.html',1,'']]],
   ['apic_2eh_25',['apic.h',['../apic_8h.html',1,'']]],
-  ['apic_5fbase_26',['apic_base',['../namespaceapic.html#a2823f53794b944f42d8c3bb80a6e0832',1,'apic']]],
-  ['apply_5fmodifiers_27',['apply_modifiers',['../kbd__core_8c.html#a1d84a723a736afd1a83740557737e5e0',1,'kbd_core.c']]]
+  ['apic_5fbase_26',['apic_base',['../namespaceapic.html#a2823f53794b944f42d8c3bb80a6e0832',1,'apic']]]
 ];

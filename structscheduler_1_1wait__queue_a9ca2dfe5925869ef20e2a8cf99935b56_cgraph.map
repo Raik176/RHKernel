@@ -1,7 +1,0 @@
-<map id="scheduler::wait_queue::wake_one" name="scheduler::wait_queue::wake_one">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,173,63"/>
-<area shape="rect" id="Node000002" href="$namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e" title=" " alt="" coords="221,5,371,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,30,207,26,208,31,174,36"/>
-<area shape="rect" id="Node000003" href="$namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="241,55,351,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,50,228,57,227,62,173,56"/>
-</map>

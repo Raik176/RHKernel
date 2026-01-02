@@ -1,31 +1,30 @@
 <map id="smp::cpu_local" name="smp::cpu_local">
-<area shape="rect" id="Node000001" title=" " alt="" coords="767,432,886,457"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="794,417,804,409,827,405,846,408,858,414,861,424,855,433,850,430,855,423,853,417,844,413,827,411,806,414,797,421"/>
-<area shape="rect" id="Node000002" href="$structscheduler_1_1task.html" title=" " alt="" coords="444,132,565,157"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="529,166,561,195,599,224,632,239,660,246,689,255,720,275,758,314,787,358,823,431,818,433,783,361,753,317,717,279,687,260,659,251,630,244,596,228,558,199,526,170"/>
-<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="479,117,487,109,505,105,520,108,529,114,532,124,527,133,522,131,526,123,525,117,518,113,505,111,489,113,483,121"/>
-<area shape="rect" id="Node000004" href="$structscheduler_1_1wait__queue.html" title=" " alt="" coords="743,108,911,133"/>
-<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="579,127,597,125,671,119,742,117,742,123,672,125,598,130,579,132"/>
-<area shape="rect" id="Node000003" href="$structregs.html" title="CPU register state structure." alt="" coords="231,132,281,157"/>
-<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="295,142,444,142,444,147,295,147"/>
-<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="759,139,719,145,639,149,566,150,566,144,639,144,718,139,758,133"/>
-<area shape="rect" id="Node000005" href="$structvfs_1_1open__file.html" title=" " alt="" coords="201,183,311,208"/>
-<area shape="poly" id="edge7_Node000002_Node000005" title=" " alt="" coords="324,180,411,162,445,155,446,160,413,167,325,185"/>
-<area shape="rect" id="Node000006" href="$structvfs_1_1vfs__node.html" title=" " alt="" coords="6,183,115,208"/>
-<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="129,193,201,193,201,198,129,198"/>
-<area shape="poly" id="edge9_Node000006_Node000006" title=" " alt="" coords="41,168,47,160,61,156,72,158,79,165,81,174,78,183,73,182,76,174,75,168,70,163,61,161,50,164,45,171"/>
-<area shape="rect" id="Node000007" href="$structlock_1_1spinlock.html" title=" " alt="" coords="5,252,116,277"/>
-<area shape="poly" id="edge11_Node000001_Node000007" title=" " alt="" coords="130,261,219,264,331,271,453,287,574,314,644,340,711,372,808,429,805,434,708,376,642,345,573,319,452,292,331,276,219,269,130,267"/>
-<area shape="poly" id="edge10_Node000005_Node000007" title=" " alt="" coords="109,245,218,206,220,211,111,250"/>
-<area shape="rect" id="Node000008" href="$structheap_1_1SlabHeader.html" title=" " alt="" coords="436,383,573,408"/>
-<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="588,404,719,423,768,432,767,437,718,429,587,409"/>
-<area shape="poly" id="edge13_Node000008_Node000008" title=" " alt="" coords="479,368,487,359,505,356,520,358,529,365,532,374,527,384,522,381,526,374,525,368,518,363,505,361,489,364,483,371"/>
-<area shape="rect" id="Node000009" href="$structgdt_1_1gdt__pointer.html" title="Pointer structure used to load the GDT." alt="" coords="442,432,567,457"/>
-<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="581,442,767,442,767,447,581,447"/>
-<area shape="rect" id="Node000010" href="$structgdt_1_1gdt__entry.html" title="Represents a single Global Descriptor Table (GDT) entry." alt="" coords="448,481,561,507"/>
-<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="575,483,718,462,767,453,768,459,719,467,576,488"/>
-<area shape="rect" id="Node000011" href="$structgdt_1_1tss.html" title=" " alt="" coords="469,531,540,556"/>
-<area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="553,536,631,524,718,501,766,479,805,455,808,460,768,483,720,506,632,529,554,541"/>
-<area shape="rect" id="Node000012" href="$structcpu__features.html" title=" " alt="" coords="451,580,558,605"/>
-<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="572,588,644,577,682,566,717,550,749,529,776,503,815,456,819,459,780,507,752,533,720,555,684,571,645,582,572,593"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="739,371,857,396"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="769,356,778,348,798,344,815,346,825,353,828,362,823,372,818,369,822,362,821,356,813,351,798,349,781,352,773,360"/>
+<area shape="rect" id="Node000002" href="$structscheduler_1_1task.html" title=" " alt="" coords="440,132,561,157"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="575,140,611,143,648,150,684,164,716,184,737,205,754,229,778,282,792,333,798,370,793,371,787,334,773,284,750,232,733,208,713,188,682,168,646,156,610,148,575,145"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="475,117,483,109,501,105,516,108,525,114,527,124,523,133,518,131,522,123,520,117,514,113,501,111,486,113,479,121"/>
+<area shape="rect" id="Node000003" href="$structregs.html" title="CPU register state structure." alt="" coords="231,85,281,111"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="295,103,440,131,439,136,294,108"/>
+<area shape="rect" id="Node000004" href="$structvfs_1_1open__file.html" title=" " alt="" coords="201,135,311,160"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="324,144,440,143,440,148,325,149"/>
+<area shape="rect" id="Node000005" href="$structvfs_1_1vfs__node.html" title=" " alt="" coords="6,103,115,128"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="130,124,202,136,201,141,129,129"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="41,88,47,80,61,76,72,78,79,85,81,94,78,103,73,102,76,94,75,88,70,83,61,81,50,84,45,91"/>
+<area shape="rect" id="Node000006" href="$structlock_1_1spinlock.html" title=" " alt="" coords="5,172,116,197"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="130,180,219,181,330,187,451,202,570,227,614,241,647,255,716,300,757,336,788,369,784,372,754,339,713,304,645,260,612,246,569,233,450,207,329,193,219,186,130,186"/>
+<area shape="poly" id="edge8_Node000004_Node000006" title=" " alt="" coords="129,169,201,155,202,160,130,174"/>
+<area shape="rect" id="Node000007" href="$structheap_1_1SlabHeader.html" title=" " alt="" coords="432,296,569,321"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="583,316,648,328,715,345,773,368,771,373,714,350,647,333,582,321"/>
+<area shape="poly" id="edge11_Node000007_Node000007" title=" " alt="" coords="475,281,483,273,501,269,516,272,525,278,527,288,523,297,518,295,522,287,520,281,514,277,501,275,486,277,479,285"/>
+<area shape="rect" id="Node000008" href="$structgdt_1_1gdt__pointer.html" title="Pointer structure used to load the GDT." alt="" coords="438,345,563,371"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="577,362,739,376,738,381,577,367"/>
+<area shape="rect" id="Node000009" href="$structgdt_1_1gdt__entry.html" title="Represents a single Global Descriptor Table (GDT) entry." alt="" coords="444,395,557,420"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="571,406,641,405,714,399,747,393,748,399,715,405,641,410,571,412"/>
+<area shape="rect" id="Node000010" href="$structgdt_1_1tss.html" title=" " alt="" coords="465,444,536,469"/>
+<area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="549,453,628,446,671,439,714,427,748,412,777,394,780,399,751,417,716,433,672,444,628,452,550,459"/>
+<area shape="rect" id="Node000011" href="$structsmp_1_1mail.html" title=" " alt="" coords="457,493,544,519"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="558,505,635,498,675,488,713,472,737,455,758,434,787,395,791,398,762,438,741,459,716,476,677,493,635,503,558,510"/>
+<area shape="rect" id="Node000012" href="$structcpu__features.html" title=" " alt="" coords="447,543,554,568"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="568,558,603,557,641,552,679,541,713,524,744,495,766,459,782,423,791,395,796,397,787,425,771,461,748,498,716,528,681,546,642,557,604,562,568,563"/>
 </map>

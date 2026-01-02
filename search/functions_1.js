@@ -7,6 +7,5 @@ var searchData=
   ['align_5fup_4',['align_up',['../util_8h.html#a14103feec4f0f7c368f72540d45be16a',1,'util.h']]],
   ['alloc_5',['alloc',['../namespacepmm.html#ad997679635eceee62746483ab37138b5',1,'pmm']]],
   ['alloc_5ffd_6',['alloc_fd',['../namespacefd__manager.html#a0ae654c52438095e53cdffae57bc5928',1,'fd_manager']]],
-  ['ap_5fkernel_5fentry_7',['ap_kernel_entry',['../namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6',1,'smp']]],
-  ['apply_5fmodifiers_8',['apply_modifiers',['../kbd__core_8c.html#a1d84a723a736afd1a83740557737e5e0',1,'kbd_core.c']]]
+  ['ap_5fkernel_5fentry_7',['ap_kernel_entry',['../namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6',1,'smp']]]
 ];

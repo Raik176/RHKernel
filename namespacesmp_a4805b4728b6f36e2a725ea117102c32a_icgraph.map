@@ -1,13 +1,22 @@
 <map id="smp::get_core_count" name="smp::get_core_count">
-<area shape="rect" id="Node000001" title=" " alt="" coords="756,31,913,56"/>
-<area shape="rect" id="Node000002" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="595,5,657,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="742,35,657,24,658,19,742,29"/>
-<area shape="rect" id="Node000003" href="$namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0" title=" " alt="" coords="544,55,708,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="742,57,708,61,708,55,742,51"/>
-<area shape="rect" id="Node000004" href="$namespacescheduler.html#af80679e4c6adb09b59ba82a269a6f462" title=" " alt="" coords="347,55,496,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="530,70,496,70,496,65,530,65"/>
-<area shape="rect" id="Node000005" href="$namespacescheduler.html#a5b5d5090e6ae162b694a4c01823a6b11" title=" " alt="" coords="148,55,299,80"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="333,70,299,70,299,65,333,65"/>
-<area shape="rect" id="Node000006" href="$idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="5,55,100,80"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="134,70,100,70,100,65,134,65"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="875,43,1032,69"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,18,68,43"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="882,43,826,33,682,14,537,8,333,8,184,16,68,29,68,24,184,10,333,3,537,3,683,8,827,28,883,38"/>
+<area shape="rect" id="Node000003" href="$namespacesmp.html#a7a97a20af4a8f946826bd24298dd4217" title=" " alt="" coords="682,43,807,69"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="861,59,808,59,808,53,861,53"/>
+<area shape="rect" id="Node000007" href="$namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0" title=" " alt="" coords="663,93,827,118"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="886,74,800,95,799,90,885,69"/>
+<area shape="rect" id="Node000004" href="$namespacesmp.html#a349d84746d119a2580dc12154fcb4112" title=" " alt="" coords="457,43,615,69"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="668,59,615,59,615,53,668,53"/>
+<area shape="rect" id="Node000005" href="$util_8cpp.html#a9c5f045dc696b41acc9162f48f00054d" title=" " alt="" coords="281,43,387,69"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="443,59,388,59,388,53,443,53"/>
+<area shape="rect" id="Node000006" href="$namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6" title=" " alt="" coords="118,43,209,69"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="267,59,209,59,209,53,267,53"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="104,47,68,39,69,34,105,42"/>
+<area shape="rect" id="Node000008" href="$namespacescheduler.html#af80679e4c6adb09b59ba82a269a6f462" title=" " alt="" coords="461,93,611,118"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="649,108,611,108,611,103,649,103"/>
+<area shape="rect" id="Node000009" href="$namespacescheduler.html#af81478840295e85b0db7161834b2824e" title=" " alt="" coords="259,93,409,118"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="447,108,409,108,409,103,447,103"/>
+<area shape="rect" id="Node000010" href="$idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b" title=" " alt="" coords="116,93,211,118"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="245,108,211,108,211,103,245,103"/>
 </map>

@@ -65,12 +65,12 @@ var NAVTREEINDEX =
 "acpi_8cpp.html",
 "fd_8h_source.html",
 "init_2src_2init_8cpp.html#a6afe19f22c590d7cced68927ad3e37b3",
-"namespaceconsole.html",
-"namespacevga.html",
-"string_8h.html#a07f4a84c11c106e95c32b6ab509346ef",
-"structframebuffer_1_1FramebufferInfo.html#aeb77844fb488fa4a0b9855069fe4ba22",
-"structregs.html#af7fb5a1a0a8b543ad48b6b2c9a0ea538",
-"vfs_8h.html#a4254823dbf640d91def413bf2a811fa7a1b1483e5187b6e599c3e3bc3150310fe"
+"namespaceconsole.html#a22be016014c4db9ca4c24e6bbd723944",
+"namespacevfs.html#a4254823dbf640d91def413bf2a811fa7a1b1483e5187b6e599c3e3bc3150310fe",
+"smp_8h.html#ae2fc2392fe7d36f662231d1800164f45abf2d798abfe8267da4f101692b6cfecd",
+"structframebuffer_1_1FramebufferInfo.html#a13e17242887f10f8867a135092e943df",
+"structps2__keyboard.html",
+"util_8h.html#a82bc1d7175d59077e863578740ff32b6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

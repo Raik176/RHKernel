@@ -53,11 +53,11 @@ var annotated_dup =
       [ "FreeBlock", "structpmm_1_1FreeBlock.html", "structpmm_1_1FreeBlock" ]
     ] ],
     [ "scheduler", "namespacescheduler.html", [
-      [ "task", "structscheduler_1_1task.html", "structscheduler_1_1task" ],
-      [ "wait_queue", "structscheduler_1_1wait__queue.html", "structscheduler_1_1wait__queue" ]
+      [ "task", "structscheduler_1_1task.html", "structscheduler_1_1task" ]
     ] ],
     [ "smp", "namespacesmp.html", [
       [ "cpu_local", "structsmp_1_1cpu__local.html", "structsmp_1_1cpu__local" ],
+      [ "mail", "structsmp_1_1mail.html", "structsmp_1_1mail" ],
       [ "trampoline_data", "structsmp_1_1trampoline__data.html", "structsmp_1_1trampoline__data" ]
     ] ],
     [ "vfs", "namespacevfs.html", [

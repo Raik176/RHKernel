@@ -6,27 +6,29 @@
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="431,42,315,161,311,157,427,39"/>
 <area shape="rect" id="Node000004" href="$smp_8cpp.html" title=" " alt="" coords="421,152,578,192"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="460,43,496,151,491,153,455,44"/>
-<area shape="rect" id="Node000005" href="$smp_8h.html" title=" " alt="" coords="725,79,868,104"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="516,30,741,76,740,81,515,35"/>
-<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="712,101,479,122,196,155,152,162,151,157,195,149,478,116,712,96"/>
-<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="712,108,409,155,366,162,365,157,408,149,711,102"/>
-<area shape="poly" id="edge11_Node000005_Node000004" title=" " alt="" coords="741,110,571,154,570,149,740,105"/>
-<area shape="rect" id="Node000006" href="$memory_2heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="1231,152,1415,192"/>
-<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="882,101,1220,149,1231,151,1231,157,1219,155,881,106"/>
-<area shape="rect" id="Node000007" href="$vmm_8cpp.html" title=" " alt="" coords="1439,152,1623,192"/>
-<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="882,96,1127,116,1428,149,1439,151,1439,156,1427,155,1127,121,882,101"/>
-<area shape="rect" id="Node000008" href="$apic_8cpp.html" title=" " alt="" coords="602,152,759,192"/>
-<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="769,114,710,154,707,150,766,110"/>
-<area shape="rect" id="Node000009" href="$scheduler_8cpp.html" title=" " alt="" coords="638,240,795,280"/>
-<area shape="poly" id="edge10_Node000005_Node000009" title=" " alt="" coords="796,118,788,154,774,193,757,220,738,242,734,238,753,216,769,191,783,153,791,117"/>
-<area shape="rect" id="Node000010" href="$syscall_8cpp.html" title=" " alt="" coords="993,247,1195,273"/>
-<area shape="poly" id="edge12_Node000005_Node000010" title=" " alt="" coords="857,105,912,124,967,150,1082,245,1079,249,965,154,910,129,855,110"/>
-<area shape="rect" id="Node000011" href="$util_8cpp.html" title=" " alt="" coords="1029,159,1207,185"/>
-<area shape="poly" id="edge13_Node000005_Node000011" title=" " alt="" coords="857,105,1072,157,1071,162,856,110"/>
-<area shape="rect" id="Node000012" href="$fd_8h.html" title=" " alt="" coords="834,159,954,185"/>
-<area shape="poly" id="edge14_Node000005_Node000012" title=" " alt="" coords="823,111,881,157,878,161,820,115"/>
-<area shape="poly" id="edge16_Node000012_Node000009" title=" " alt="" coords="859,193,757,242,755,237,857,188"/>
-<area shape="poly" id="edge17_Node000012_Node000010" title=" " alt="" coords="935,188,1068,245,1066,250,932,193"/>
-<area shape="rect" id="Node000013" href="$fd_8cpp.html" title=" " alt="" coords="819,240,969,280"/>
-<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="897,198,897,240,891,240,891,198"/>
+<area shape="rect" id="Node000005" href="$smp_8h.html" title=" " alt="" coords="928,79,1071,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="516,25,928,78,927,83,515,30"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="914,99,597,116,397,133,196,155,150,162,149,157,195,149,397,127,597,111,914,93"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="914,102,686,123,409,155,363,162,362,157,408,149,685,117,914,97"/>
+<area shape="poly" id="edge12_Node000005_Node000004" title=" " alt="" coords="915,106,763,127,590,155,579,157,578,151,590,149,763,122,914,101"/>
+<area shape="rect" id="Node000006" href="$idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="1647,159,1821,185"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="1085,95,1333,115,1484,130,1636,149,1679,157,1678,162,1635,155,1483,136,1332,120,1085,101"/>
+<area shape="rect" id="Node000007" href="$memory_2heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="602,152,786,192"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="942,110,768,154,767,149,941,105"/>
+<area shape="rect" id="Node000008" href="$vmm_8cpp.html" title=" " alt="" coords="810,152,994,192"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="976,115,927,154,924,150,973,111"/>
+<area shape="rect" id="Node000009" href="$apic_8cpp.html" title=" " alt="" coords="1018,152,1175,192"/>
+<area shape="poly" id="edge10_Node000005_Node000009" title=" " alt="" coords="1026,111,1075,150,1072,154,1023,115"/>
+<area shape="rect" id="Node000010" href="$scheduler_8cpp.html" title=" " alt="" coords="1054,240,1211,280"/>
+<area shape="poly" id="edge11_Node000005_Node000010" title=" " alt="" coords="1085,95,1114,102,1142,113,1168,129,1190,150,1195,162,1197,175,1190,199,1174,222,1156,242,1153,238,1170,219,1185,197,1192,174,1190,164,1185,154,1165,133,1140,118,1112,107,1084,100"/>
+<area shape="rect" id="Node000011" href="$syscall_8cpp.html" title=" " alt="" coords="1409,247,1611,273"/>
+<area shape="poly" id="edge13_Node000005_Node000011" title=" " alt="" coords="1085,90,1152,95,1228,105,1307,122,1383,150,1435,190,1499,245,1495,249,1432,194,1381,154,1306,128,1227,110,1151,100,1084,96"/>
+<area shape="rect" id="Node000012" href="$util_8cpp.html" title=" " alt="" coords="1445,159,1623,185"/>
+<area shape="poly" id="edge14_Node000005_Node000012" title=" " alt="" coords="1085,101,1426,149,1471,157,1470,162,1426,155,1084,106"/>
+<area shape="rect" id="Node000013" href="$fd_8h.html" title=" " alt="" coords="1250,159,1370,185"/>
+<area shape="poly" id="edge15_Node000005_Node000013" title=" " alt="" coords="1058,105,1265,157,1264,162,1057,110"/>
+<area shape="poly" id="edge17_Node000013_Node000010" title=" " alt="" coords="1275,193,1173,242,1171,237,1273,188"/>
+<area shape="poly" id="edge18_Node000013_Node000011" title=" " alt="" coords="1351,188,1484,245,1482,250,1348,193"/>
+<area shape="rect" id="Node000014" href="$fd_8cpp.html" title=" " alt="" coords="1235,240,1385,280"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="1313,198,1313,240,1307,240,1307,198"/>
 </map>
