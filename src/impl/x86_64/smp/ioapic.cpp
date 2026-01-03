@@ -1,13 +1,14 @@
 #include "acpi.h"
 #include "console.h"
 #include "memory/heap.h"
+#include "memory/vmm.h"
 #include "smp/apic.h"
 #include "string.h"
 
-// TODO: map as Uncachable or similiar
 namespace ioapic {
     struct controller {
         uintptr_t phys_addr;
+        void *virt_addr;
         uint32_t gsi_base;
         uint32_t max_entries;
     };
@@ -23,14 +24,14 @@ namespace ioapic {
     static controller *controllers = nullptr;
     static size_t count = 0;
 
-    static void write(uintptr_t base, uint8_t reg, uint32_t val) {
-        *(volatile uint32_t *)(p2v(base)) = reg;
-        *(volatile uint32_t *)((uintptr_t)p2v(base) + 0x10) = val;
+    static void write(void *base, uint8_t reg, uint32_t val) {
+        *(volatile uint32_t *)(base) = reg;
+        *(volatile uint32_t *)((uintptr_t)base + 0x10) = val;
     }
 
-    static uint32_t read(uintptr_t base, uint8_t reg) {
-        *(volatile uint32_t *)(p2v(base)) = reg;
-        return *(volatile uint32_t *)((uintptr_t)p2v(base) + 0x10);
+    static uint32_t read(void *base, uint8_t reg) {
+        *(volatile uint32_t *)(base) = reg;
+        return *(volatile uint32_t *)((uintptr_t)base + 0x10);
     }
 
     uint32_t resolve_gsi(uint8_t irq) {
@@ -44,13 +45,14 @@ namespace ioapic {
         controllers = (controller *)heap::krealloc(controllers, sizeof(controller) * (count + 1));
         auto &c = controllers[count++];
         c.phys_addr = phys;
+        c.virt_addr = vmm::mmio_map(phys, 0x1000);
         c.gsi_base = gsi_base;
 
-        uint32_t ver = read(phys, 0x01);
+        uint32_t ver = read(c.virt_addr, 0x01);
         c.max_entries = (ver >> 16) & 0xFF;
 
         for (uint32_t i = 0; i <= c.max_entries; i++) {
-            write(phys, 0x10 + i * 2, (1 << 16));  // Mask all
+            write(c.virt_addr, 0x10 + i * 2, (1 << 16));  // Mask all
         }
     }
 
@@ -95,8 +97,9 @@ namespace ioapic {
             if (gsi >= c.gsi_base && gsi <= (c.gsi_base + c.max_entries)) {
                 uint32_t reg = 0x10 + (gsi - c.gsi_base) * 2;
                 uint32_t low = vector | (mask ? (1 << 16) : 0);
-                write(c.phys_addr, reg, low);
-                write(c.phys_addr, reg + 1, lapic_id << 24);
+
+                write(c.virt_addr, reg, low);
+                write(c.virt_addr, reg + 1, lapic_id << 24);
                 return;
             }
         }

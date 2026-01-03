@@ -102,7 +102,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     __asm__ volatile("sti");
 
-    smp::init_aps();  // TODO: fix
+    smp::init_aps();
     console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
     module_loader::init();

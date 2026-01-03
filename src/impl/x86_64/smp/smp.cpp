@@ -80,7 +80,6 @@ namespace smp {
         auto *data = (trampoline_data *)p2v(
             TRAM_PHYS + ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
         setup_cpu_local(data);
-        data->status = 1;
 
         enable_optional_cpu_features();
 
@@ -88,6 +87,9 @@ namespace smp {
 
         apic::init_ap();
         scheduler::init_core();
+
+        data->status = 1;
+
         __asm__ volatile("sti");
 
         for (;;) { asm volatile("hlt"); }

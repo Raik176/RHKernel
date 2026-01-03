@@ -11,10 +11,12 @@
 #include "util.h"
 
 namespace module_loader {
+    static constexpr uint64_t MODULE_BASE = 0xFFFFFFFFA0000000ULL;
+    static constexpr uint64_t MODULE_SIZE = 0x20000000ULL;  // 512MB space for modules
 
-    static loaded_module *modules_list = nullptr;
+    static vmm::VirtualRangeAllocator *module_v_alloc = nullptr;
 
-    void init() { modules_list = nullptr; }
+    void init() { module_v_alloc = new vmm::VirtualRangeAllocator(MODULE_BASE, MODULE_SIZE); }
 
     void load_module(const char *path) {
         vfs::vfs_node *file = vfs::open(path);
@@ -42,19 +44,17 @@ namespace module_loader {
             }
         }
 
-        // 2. Allocate Physical Memory
         size_t page_count = (total_size + pmm::PAGE_SIZE - 1) / pmm::PAGE_SIZE;
         uint64_t phys_base = pmm::alloc(page_count * pmm::PAGE_SIZE);
-        uintptr_t virt_base = (uintptr_t)p2v(phys_base);
+        uintptr_t virt_base = module_v_alloc->allocate(total_size);
+        if (virt_base == 0) {
+            console::printf("[MODULE] Out of virtual address space for %s\n", path);
+            return;
+        }
 
-        // Clear the memory
+        vmm::map_range(virt_base, phys_base, page_count * pmm::PAGE_SIZE, vmm::PageFlags::Write);
         memset((void *)virt_base, 0, page_count * pmm::PAGE_SIZE);
 
-        // 3. Initial Mapping (Read/Write for loading/relocations)
-        vmm::map_range(virt_base, phys_base, page_count * pmm::PAGE_SIZE,
-                       vmm::PageFlags::Present | vmm::PageFlags::Write);
-
-        // 4. Load Sections into memory
         uintptr_t *section_addresses =
             (uintptr_t *)heap::kmalloc(sizeof(uintptr_t) * header.sh_count);
         uintptr_t current_offset = 0;
@@ -145,7 +145,7 @@ namespace module_loader {
                             break;
                         }
                         default:
-                            console::printf("[MODULE] Unsupported relocation type: %ld\n",
+                            console::printf("[MODULE] Unsupported relocation type: %d\n",
                                             ELF64_R_TYPE(rela.info));
                             break;
                     }
@@ -183,16 +183,18 @@ namespace module_loader {
                 }
             }
 
-            // Apply specific page protections based on SHF_ flags
-            vmm::PageFlags flags = vmm::PageFlags::Present;
+            /*
+            vmm::PageFlags flags = vmm::PageFlags::Global;
 
-            if (sh.flags & SHF_WRITE) { flags |= vmm::PageFlags::Write; }
+            if (sh.flags & SHF_WRITE)
+                flags |= vmm::PageFlags::Write;
+            if (!(sh.flags & SHF_EXECINSTR))
+                flags |= vmm::PageFlags::NX;
 
-            if (!(sh.flags & SHF_EXECINSTR)) { flags |= vmm::PageFlags::NX; }
 
-            // Update the mapping with restricted permissions
-            vmm::map_range(section_addresses[i], v2p((void *)section_addresses[i]),
-                           align_up(sh.size, pmm::PAGE_SIZE), flags);
+            vmm::map_range(section_addresses[i], v2p((void *)section_addresses[i]), //TODO: fix
+            address calculation here align_up(sh.size, pmm::PAGE_SIZE), flags);
+            */
         }
 
         // 7. Initialization
@@ -200,16 +202,9 @@ namespace module_loader {
             console::printf("[MODULE] Initializing %s... ", meta->name);
             int res = meta->init();
             if (res == 0) {
-                loaded_module *m = new loaded_module();
-                strncpy(m->name, meta->name, 63);
-                m->base = virt_base;
-                m->size = total_size;
-                m->exit_func = meta->exit;
-                m->next = modules_list;
-                modules_list = m;
-                console::printf("Success!\n");
+                console::printf("Success.\n");
             } else {
-                console::printf("Failed: %d!\n", meta->name, res);
+                console::printf("Failed: %d.\n", meta->name, res);
             }
         } else {
             console::printf("[MODULE] No metadata or init function in %s\n", path);

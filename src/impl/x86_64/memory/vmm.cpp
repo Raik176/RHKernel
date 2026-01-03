@@ -1,6 +1,7 @@
 #include "memory/vmm.h"
 
 #include "console.h"
+#include "memory/heap.h"
 #include "memory/pmm.h"
 #include "smp/scheduler.h"
 #include "smp/smp.h"
@@ -38,6 +39,8 @@ namespace vmm {
 
     static uint64_t current_pml4_phys = 0;
 
+    static VirtualRangeAllocator *mmio_allocator = nullptr;
+
     static inline uint64_t *get_table_ptr(uint64_t phys_addr) {
         return reinterpret_cast<uint64_t *>(p2v(phys_addr & get_phys_addr_mask()));
     }
@@ -66,6 +69,7 @@ namespace vmm {
 
     uint64_t get_phys_addr_mask() { return phys_addr_mask; }
 
+    // assumes heap is ready after end of vmm init, which it really should be.
     void init() {
         uint32_t eax, ebx, ecx, edx;
 
@@ -97,6 +101,8 @@ namespace vmm {
         map_range(0, 0, 0x100000, PageFlags::Write);
 
         asm volatile("mov %0, %%cr3" : : "r"(current_pml4_phys) : "memory");
+
+        mmio_allocator = new VirtualRangeAllocator(MMIO_BASE, MMIO_SIZE);
     }
 
     void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags, uint64_t pml4) {
@@ -378,4 +384,125 @@ namespace vmm {
     }
 
     uint64_t get_kernel_pagemap() { return current_pml4_phys; }
+
+    VirtualRangeAllocator::VirtualRangeAllocator(uint64_t base, uint64_t size)
+        : m_base(base), m_total_size(size) {
+        // Initial segment representing the entire range
+        m_head = static_cast<Segment *>(heap::kmalloc(sizeof(Segment)));
+        m_head->start = base;
+        m_head->size = size;
+        m_head->is_free = true;
+        m_head->next = nullptr;
+        m_head->prev = nullptr;
+    }
+
+    VirtualRangeAllocator::~VirtualRangeAllocator() {
+        uint64_t flags;
+        m_lock.acquire(flags);
+
+        Segment *curr = m_head;
+        while (curr) {
+            Segment *next = curr->next;
+            heap::kfree(curr);
+            curr = next;
+        }
+
+        m_lock.release(flags);
+    }
+
+    uint64_t VirtualRangeAllocator::allocate(uint64_t size) {
+        // Standard page alignment (4 KiB)
+        size = (size + 0xFFF) & ~0xFFFULL;
+
+        uint64_t flags;
+        m_lock.acquire(flags);
+
+        Segment *curr = m_head;
+        while (curr) {
+            if (curr->is_free && curr->size >= size) {
+                // Split the segment if it's larger than requested
+                if (curr->size > size) {
+                    Segment *new_seg = static_cast<Segment *>(heap::kmalloc(sizeof(Segment)));
+
+                    new_seg->start = curr->start + size;
+                    new_seg->size = curr->size - size;
+                    new_seg->is_free = true;
+
+                    new_seg->prev = curr;
+                    new_seg->next = curr->next;
+
+                    if (curr->next) curr->next->prev = new_seg;
+                    curr->next = new_seg;
+                    curr->size = size;
+                }
+
+                curr->is_free = false;
+                uint64_t addr = curr->start;
+
+                m_lock.release(flags);
+                return addr;
+            }
+            curr = curr->next;
+        }
+
+        m_lock.release(flags);
+        return 0;
+    }
+
+    void VirtualRangeAllocator::free(uint64_t virt_addr) {
+        uint64_t flags;
+        m_lock.acquire(flags);
+
+        Segment *curr = m_head;
+        while (curr) {
+            if (curr->start == virt_addr) {
+                curr->is_free = true;
+                coalesce(curr);
+                break;
+            }
+            curr = curr->next;
+        }
+
+        m_lock.release(flags);
+    }
+
+    void VirtualRangeAllocator::coalesce(Segment *seg) {
+        // Merge with next segment if it is free
+        if (seg->next && seg->next->is_free) {
+            Segment *next_seg = seg->next;
+            seg->size += next_seg->size;
+            seg->next = next_seg->next;
+            if (next_seg->next) next_seg->next->prev = seg;
+            heap::kfree(next_seg);
+        }
+
+        // Merge with previous segment if it is free
+        if (seg->prev && seg->prev->is_free) {
+            Segment *prev_seg = seg->prev;
+            prev_seg->size += seg->size;
+            prev_seg->next = seg->next;
+            if (seg->next) seg->next->prev = prev_seg;
+            heap::kfree(seg);
+        }
+    }
+
+    void *mmio_map(uint64_t phys_addr, uint64_t size) {
+        uint64_t virt = mmio_allocator->allocate(size);
+        if (!virt) {
+            console::printf("[ VMM ] Ran out of space to map mmio!");
+            return nullptr;
+        }
+
+        map_range(virt, phys_addr, size,
+                  PageFlags::NoCache | PageFlags::WriteThrough | PageFlags::Write | PageFlags::NX);
+
+        return (void*)virt;
+    }
+
+    void mmio_unmap(void *virt_addr, uint64_t size) {
+        uint64_t virt = reinterpret_cast<uint64_t>(virt_addr);
+
+        unmap_range(virt, size);
+        mmio_allocator->free(virt);
+    }
 }  // namespace vmm

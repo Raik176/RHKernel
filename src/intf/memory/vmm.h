@@ -1,9 +1,12 @@
 #pragma once
 #include <stdint.h>
 
+#include "smp/lock.h"
 #include "util.h"
 
 namespace vmm {
+    static constexpr uint64_t MMIO_BASE = 0xFFFFC00000000000ULL;
+    static constexpr uint64_t MMIO_SIZE = 0x2000000000ULL;
 
     /**
      * @brief Page table entry flags for x86-64 paging.
@@ -101,4 +104,44 @@ namespace vmm {
     bool handle_fault(uint64_t fault_addr, uint64_t error_code);
 
     uint64_t get_phys_addr_mask();
+
+    class VirtualRangeAllocator {
+       public:
+        struct Segment {
+            uint64_t start;
+            uint64_t size;
+            bool is_free;
+            Segment *next;
+            Segment *prev;
+        };
+
+        VirtualRangeAllocator(uint64_t base, uint64_t size);
+        ~VirtualRangeAllocator();
+
+        // Delete copy constructor and assignment to prevent double-free of segments
+        VirtualRangeAllocator(const VirtualRangeAllocator &) = delete;
+        VirtualRangeAllocator &operator=(const VirtualRangeAllocator &) = delete;
+
+        /**
+         * @brief Reserves a contiguous range of virtual addresses.
+         * @return The starting virtual address, or 0 if allocation failed.
+         */
+        uint64_t allocate(uint64_t size);
+
+        /**
+         * @brief Returns a virtual range to the allocator and merges adjacent free blocks.
+         */
+        void free(uint64_t virt_addr);
+
+       private:
+        void coalesce(Segment *seg);
+
+        uint64_t m_base;
+        uint64_t m_total_size;
+        Segment *m_head;
+        lock::spinlock m_lock;
+    };
+
+    void *mmio_map(uint64_t phys_addr, uint64_t size);
+    void mmio_unmap(void *virt_addr, uint64_t size);
 }  // namespace vmm

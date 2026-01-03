@@ -1,6 +1,7 @@
 #include "smp/apic.h"
 
 #include "console.h"
+#include "memory/vmm.h"
 #include "smp/smp.h"
 #include "util.h"
 
@@ -85,15 +86,14 @@ namespace apic {
 
         uint32_t eax, ebx, ecx, edx;
         asm volatile("cpuid" : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx) : "a"(1));
-        bool has_x2apic = (ecx >> 21) & 1;
-
-        if (has_x2apic) x2apic_mode = true;
+        x2apic_mode = (ecx >> 21) & 1;
 
         uint64_t base_msr = rdmsr(0x1B);
-        apic_base = (uintptr_t)p2v(base_msr & 0xFFFFF000);
+        apic_base = (uintptr_t)vmm::mmio_map(base_msr & 0xFFFFF000, 0x1000);
 
-        uint64_t old_msr = rdmsr(0x1B);
-        wrmsr(0x1B, old_msr | (1 << 11));
+        uint64_t new_msr = rdmsr(0x1B) | (1 << 11);
+        if (x2apic_mode) { new_msr |= (1 << 10); }
+        wrmsr(0x1B, new_msr);
         calibrate_timer();
 
         init_ap();
@@ -103,8 +103,7 @@ namespace apic {
     }
 
     bool is_bsp() {
-        uint64_t base_msr = rdmsr(0x1B);  // IA32_APIC_BASE
-        return (base_msr >> 8) & 1;       // Bit 8 is BSP Flag
+        return (rdmsr(0x1B) >> 8) & 1;  // IA32_APIC_BASE; Bit 8 is BSP Flag
     }
 
     uint32_t get_bsp_id() { return bsp_id; }

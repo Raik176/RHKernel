@@ -123,6 +123,6 @@ void dump_regs(struct regs *r) {
     console::printf("RSI: %p  RDI: %p  RBP: %p  RSP: %p\n", r->rsi, r->rdi, r->rbp, r->rsp);
     console::printf("R8 : %p  R9 : %p  R10: %p  R11: %p\n", r->r8, r->r9, r->r10, r->r11);
     console::printf("R12: %p  R13: %p  R14: %p  R15: %p\n", r->r12, r->r13, r->r14, r->r15);
-    console::printf("RIP: %p  CS : %p  FLG: %p\n", r->rip, r->cs, r->rflags);
+    console::printf("RIP: %p  CS : %p  SS : %p  FLG: %p\n", r->rip, r->cs, r->rflags);
     console::set_color(console::Color::White);
 }

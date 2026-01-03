@@ -5,14 +5,6 @@
 #include "mod/module.h"
 
 namespace module_loader {
-    struct loaded_module {
-        char *name;
-        uintptr_t base;
-        size_t size;
-        module_exit_t exit_func;
-        loaded_module *next;
-    };
-
     void init();
 
     void load_module(const char *path);

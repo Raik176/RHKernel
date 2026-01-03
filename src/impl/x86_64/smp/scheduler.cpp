@@ -11,7 +11,6 @@
 #include "string.h"
 
 namespace scheduler {
-
     static uint64_t next_tid = 1;
 
     static inline void fxsave_task(task *t) {
@@ -19,53 +18,6 @@ namespace scheduler {
     }
     static inline void fxrstor_task(task *t) {
         asm volatile("fxrstor (%0)" : : "r"(t->fxsave_area) : "memory");
-    }
-
-    static void enqueue(smp::cpu_local *cpu, task *t);
-    static task *dequeue(smp::cpu_local *cpu);
-    static task *steal_work(smp::cpu_local *self);
-
-    // --- Work Stealing ---
-
-    static task *steal_work(smp::cpu_local *self) {
-        return nullptr;  // TODO
-        uint64_t core_count = smp::get_core_count();
-        if (core_count < 2) return nullptr;
-
-        uint64_t start_index = (self->cpu_index + 1) % core_count;
-
-        for (uint64_t i = 0; i < core_count - 1; i++) {
-            uint64_t victim_idx = (start_index + i) % core_count;
-            smp::cpu_local *victim = smp::get_cpu_by_index(victim_idx);
-
-            if (!victim || victim == self) continue;
-
-            uint64_t victim_flags;
-            if (!victim->sched_lock.try_acquire(victim_flags)) continue;
-
-            for (int p = 0; p < MAX_QUEUES; p++) {
-                if (victim->task_queues_tail[p]) {
-                    task *t = victim->task_queues_tail[p];
-
-                    victim->task_queues_tail[p] = t->prev;
-                    if (victim->task_queues_tail[p]) {
-                        victim->task_queues_tail[p]->next = nullptr;
-                    } else {
-                        victim->task_queues_head[p] = nullptr;
-                    }
-
-                    victim->sched_lock.release(victim_flags);
-
-                    t->next = nullptr;
-                    t->prev = nullptr;
-                    t->priority = p;  // Keep priority
-                    t->quantum = TIME_QUANTUMS[p];
-                    return t;
-                }
-            }
-            victim->sched_lock.release(victim_flags);
-        }
-        return nullptr;
     }
 
     static void enqueue(smp::cpu_local *cpu, task *t) {
@@ -104,8 +56,7 @@ namespace scheduler {
             }
         }
 
-        task *stolen = steal_work(cpu);
-        return stolen ? stolen : cpu->idle_task;
+        return cpu->idle_task;
     }
 
     void init_core() {
@@ -173,8 +124,7 @@ namespace scheduler {
             uint64_t stack_virt = 0x00007FFFFFFFF000 - INITIAL_USER_STACK_SIZE;
 
             vmm::map_range(stack_virt, stack_phys, INITIAL_USER_STACK_SIZE,
-                           vmm::PageFlags::Present | vmm::PageFlags::Write | vmm::PageFlags::User,
-                           pml4);
+                           vmm::PageFlags::Write | vmm::PageFlags::User, pml4);
 
             t->user_stack = (void *)stack_virt;
             r->rip = (uint64_t)entry_point;
@@ -311,8 +261,7 @@ namespace scheduler {
         uint64_t stack_virt = 0x00007FFFFFFFF000 - INITIAL_USER_STACK_SIZE;
 
         vmm::map_range(stack_virt, stack_phys, INITIAL_USER_STACK_SIZE,
-                       vmm::PageFlags::Present | vmm::PageFlags::Write | vmm::PageFlags::User,
-                       current->cr3);
+                       vmm::PageFlags::Write | vmm::PageFlags::User, current->cr3);
 
         uint64_t *stack_ptr = (uint64_t *)((uintptr_t)stack_virt + INITIAL_USER_STACK_SIZE);
         uint64_t user_argv_ptrs[argc + 1];
