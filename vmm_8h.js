@@ -1,5 +1,7 @@
 var vmm_8h =
 [
+    [ "vmm::VirtualRangeAllocator", "classvmm_1_1VirtualRangeAllocator.html", "classvmm_1_1VirtualRangeAllocator" ],
+    [ "vmm::VirtualRangeAllocator::Segment", "structvmm_1_1VirtualRangeAllocator_1_1Segment.html", "structvmm_1_1VirtualRangeAllocator_1_1Segment" ],
     [ "PageFlags", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9f", [
       [ "None", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fa6adf97f83acf6453d4a6a4b1070f3754", null ],
       [ "Present", "vmm_8h.html#a1bddb9e86774ea784d45d60be72a4b9fadd058df87f5c88e3285a28ad7406a3c6", null ],
@@ -28,9 +30,13 @@ var vmm_8h =
     [ "init", "vmm_8h.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],
     [ "map_page", "vmm_8h.html#afd3f7748b21b0b09ef643e0b42694a0c", null ],
     [ "map_range", "vmm_8h.html#a900951e277dcf50c77c3dac468c80f59", null ],
+    [ "mmio_map", "vmm_8h.html#ae75c952b207ad8aea0419bf5414445e3", null ],
+    [ "mmio_unmap", "vmm_8h.html#a3a4101779180ce55eac58e63e283c116", null ],
     [ "operator&", "vmm_8h.html#a14a63f89f88492d3c68025e66aa1100b", null ],
     [ "operator|", "vmm_8h.html#a873a1e9ab4cf8b5b19d4eefb58619e17", null ],
     [ "operator|=", "vmm_8h.html#acf26bd56224665f6d1c45a74c6ee0393", null ],
     [ "unmap_page", "vmm_8h.html#a2c46f284b55b8e2cf67914ca69500ee8", null ],
-    [ "unmap_range", "vmm_8h.html#a3bd18db05e62aec1ee8ba597e9edae70", null ]
+    [ "unmap_range", "vmm_8h.html#a3bd18db05e62aec1ee8ba597e9edae70", null ],
+    [ "MMIO_BASE", "vmm_8h.html#a41b9424d29a6bac0f8a5a72b263534ca", null ],
+    [ "MMIO_SIZE", "vmm_8h.html#a9d7939a3e9efaf8bd636c26f00333c90", null ]
 ];

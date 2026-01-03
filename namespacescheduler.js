@@ -26,7 +26,6 @@ var namespacescheduler =
     [ "schedule", "namespacescheduler.html#af81478840295e85b0db7161834b2824e", null ],
     [ "sleep", "namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15", null ],
     [ "spawn", "namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d", null ],
-    [ "steal_work", "namespacescheduler.html#ad2a3525715b7cf529eb7d7338b5fc0f0", null ],
     [ "wait", "namespacescheduler.html#a0f6196dfdd69ef3ec2923f5f32bf6baa", null ],
     [ "yield", "namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27", null ],
     [ "AGING_THRESHOLD", "namespacescheduler.html#a6c1015bb4b2531d2b2b3e68ef7b34cda", null ],

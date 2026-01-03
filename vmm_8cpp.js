@@ -13,6 +13,8 @@ var vmm_8cpp =
     [ "init", "vmm_8cpp.html#a8bf83fb866a7c744df6790424b2e2ef6", null ],
     [ "map_page", "vmm_8cpp.html#afd3f7748b21b0b09ef643e0b42694a0c", null ],
     [ "map_range", "vmm_8cpp.html#a900951e277dcf50c77c3dac468c80f59", null ],
+    [ "mmio_map", "vmm_8cpp.html#ae75c952b207ad8aea0419bf5414445e3", null ],
+    [ "mmio_unmap", "vmm_8cpp.html#a3a4101779180ce55eac58e63e283c116", null ],
     [ "unmap_page", "vmm_8cpp.html#a2c46f284b55b8e2cf67914ca69500ee8", null ],
     [ "unmap_range", "vmm_8cpp.html#a3bd18db05e62aec1ee8ba597e9edae70", null ],
     [ "_bss_end", "vmm_8cpp.html#a20fb3185483d7127f3a5b099e16e3e5c", null ],
@@ -26,6 +28,7 @@ var vmm_8cpp =
     [ "_text_end", "vmm_8cpp.html#ad8b0c56be8e70ec1bf8e70758145aa82", null ],
     [ "_text_start", "vmm_8cpp.html#a0aab5b3be01394b2ded2767dec5a64ac", null ],
     [ "current_pml4_phys", "vmm_8cpp.html#a7d1c1ba652aaf58fb64fd1c25d1200f7", null ],
+    [ "mmio_allocator", "vmm_8cpp.html#ace9e8cd96068b0c8700c2a2ba257813b", null ],
     [ "phys_addr_mask", "vmm_8cpp.html#a50352caf62ec7c48f298707a78753a09", null ],
     [ "supports_1gb_pages", "vmm_8cpp.html#aae5b4f99ce8bdd0321f58818b1fac63b", null ],
     [ "supports_2mb_pages", "vmm_8cpp.html#a48131c2649cad1fe4977d005ce1c7bed", null ]

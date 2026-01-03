@@ -1,0 +1,8 @@
+<map id="vmm::VirtualRangeAllocator" name="vmm::VirtualRangeAllocator">
+<area shape="rect" id="Node000001" title=" " alt="" coords="185,108,392,133"/>
+<area shape="rect" id="Node000002" href="$structvmm_1_1VirtualRangeAllocator_1_1Segment.html" title=" " alt="" coords="5,5,212,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,49,268,106,265,110,156,54"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="227,17,239,25,231,33,213,36,212,31,228,28,233,26,224,21"/>
+<area shape="rect" id="Node000003" href="$structlock_1_1spinlock.html" title=" " alt="" coords="293,13,404,38"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="336,51,298,109,294,106,332,48"/>
+</map>

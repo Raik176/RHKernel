@@ -46,9 +46,6 @@ var annotated_dup =
     [ "lock", "namespacelock.html", [
       [ "spinlock", "structlock_1_1spinlock.html", "structlock_1_1spinlock" ]
     ] ],
-    [ "module_loader", "namespacemodule__loader.html", [
-      [ "loaded_module", "structmodule__loader_1_1loaded__module.html", "structmodule__loader_1_1loaded__module" ]
-    ] ],
     [ "pmm", "namespacepmm.html", [
       [ "FreeBlock", "structpmm_1_1FreeBlock.html", "structpmm_1_1FreeBlock" ]
     ] ],
@@ -63,6 +60,9 @@ var annotated_dup =
     [ "vfs", "namespacevfs.html", [
       [ "open_file", "structvfs_1_1open__file.html", "structvfs_1_1open__file" ],
       [ "vfs_node", "structvfs_1_1vfs__node.html", "structvfs_1_1vfs__node" ]
+    ] ],
+    [ "vmm", "namespacevmm.html", [
+      [ "VirtualRangeAllocator", "classvmm_1_1VirtualRangeAllocator.html", "classvmm_1_1VirtualRangeAllocator" ]
     ] ],
     [ "cpio_newc_header", "structcpio__newc__header.html", "structcpio__newc__header" ],
     [ "cpu_features", "structcpu__features.html", "structcpu__features" ],

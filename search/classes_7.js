@@ -1,4 +1,15 @@
 var searchData=
 [
-  ['loaded_5fmodule_0',['loaded_module',['../structmodule__loader_1_1loaded__module.html',1,'module_loader']]]
+  ['madt_0',['MADT',['../structacpi_1_1MADT.html',1,'acpi']]],
+  ['madtentryheader_1',['MADTEntryHeader',['../structacpi_1_1MADTEntryHeader.html',1,'acpi']]],
+  ['madtentrylapic_2',['MADTEntryLAPIC',['../structacpi_1_1MADTEntryLAPIC.html',1,'acpi']]],
+  ['mail_3',['mail',['../structsmp_1_1mail.html',1,'smp']]],
+  ['module_5fmetadata_4',['module_metadata',['../structmodule__metadata.html',1,'']]],
+  ['multiboot_5fcolor_5',['multiboot_color',['../structmultiboot__color.html',1,'']]],
+  ['multiboot_5fmmap_5fentry_6',['multiboot_mmap_entry',['../structmultiboot__mmap__entry.html',1,'']]],
+  ['multiboot_5ftag_7',['multiboot_tag',['../structmultiboot__tag.html',1,'']]],
+  ['multiboot_5ftag_5facpi_8',['multiboot_tag_acpi',['../structacpi_1_1multiboot__tag__acpi.html',1,'acpi::multiboot_tag_acpi'],['../structmultiboot__tag__acpi.html',1,'multiboot_tag_acpi']]],
+  ['multiboot_5ftag_5fframebuffer_9',['multiboot_tag_framebuffer',['../structmultiboot__tag__framebuffer.html',1,'']]],
+  ['multiboot_5ftag_5fmmap_10',['multiboot_tag_mmap',['../structmultiboot__tag__mmap.html',1,'']]],
+  ['multiboot_5ftag_5fmodule_11',['multiboot_tag_module',['../structmultiboot__tag__module.html',1,'']]]
 ];

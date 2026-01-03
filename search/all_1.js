@@ -21,10 +21,11 @@ var searchData=
   ['align_5fup_18',['align_up',['../util_8h.html#a14103feec4f0f7c368f72540d45be16a',1,'util.h']]],
   ['alloc_19',['alloc',['../namespacepmm.html#ad997679635eceee62746483ab37138b5',1,'pmm']]],
   ['alloc_5ffd_20',['alloc_fd',['../namespacefd__manager.html#a0ae654c52438095e53cdffae57bc5928',1,'fd_manager']]],
-  ['ap_5fdata_5fstart_21',['ap_data_start',['../smp_8cpp.html#a3906aa488e91bccd1377f1d14dd929d8',1,'smp.cpp']]],
-  ['ap_5fkernel_5fentry_22',['ap_kernel_entry',['../namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6',1,'smp']]],
-  ['apic_23',['apic',['../namespaceapic.html',1,'']]],
-  ['apic_2ecpp_24',['apic.cpp',['../apic_8cpp.html',1,'']]],
-  ['apic_2eh_25',['apic.h',['../apic_8h.html',1,'']]],
-  ['apic_5fbase_26',['apic_base',['../namespaceapic.html#a2823f53794b944f42d8c3bb80a6e0832',1,'apic']]]
+  ['allocate_21',['allocate',['../classvmm_1_1VirtualRangeAllocator.html#a41a48d27ff71933b455ff8b430006213',1,'vmm::VirtualRangeAllocator']]],
+  ['ap_5fdata_5fstart_22',['ap_data_start',['../smp_8cpp.html#a3906aa488e91bccd1377f1d14dd929d8',1,'smp.cpp']]],
+  ['ap_5fkernel_5fentry_23',['ap_kernel_entry',['../namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6',1,'smp']]],
+  ['apic_24',['apic',['../namespaceapic.html',1,'']]],
+  ['apic_2ecpp_25',['apic.cpp',['../apic_8cpp.html',1,'']]],
+  ['apic_2eh_26',['apic.h',['../apic_8h.html',1,'']]],
+  ['apic_5fbase_27',['apic_base',['../namespaceapic.html#a2823f53794b944f42d8c3bb80a6e0832',1,'apic']]]
 ];

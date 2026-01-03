@@ -107,10 +107,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3500fe13ce24c8973d248fe8a408dd7f" id="r_a3500fe13ce24c8973d248fe8a408dd7f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a3500fe13ce24c8973d248fe8a408dd7f">write</a> (uintptr_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint8_t reg, uint32_t val)</td></tr>
-<tr class="separator:a3500fe13ce24c8973d248fe8a408dd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f15bb2b1389e15957f24f686379f19e" id="r_a1f15bb2b1389e15957f24f686379f19e"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a1f15bb2b1389e15957f24f686379f19e">read</a> (uintptr_t <a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint8_t reg)</td></tr>
-<tr class="separator:a1f15bb2b1389e15957f24f686379f19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af952a64774441d11306827b26ce5d30e" id="r_af952a64774441d11306827b26ce5d30e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#af952a64774441d11306827b26ce5d30e">write</a> (void *<a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint8_t reg, uint32_t val)</td></tr>
+<tr class="separator:af952a64774441d11306827b26ce5d30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a412ed2864a0e79dc6b2f92ba0874bedc" id="r_a412ed2864a0e79dc6b2f92ba0874bedc"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a412ed2864a0e79dc6b2f92ba0874bedc">read</a> (void *<a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint8_t reg)</td></tr>
+<tr class="separator:a412ed2864a0e79dc6b2f92ba0874bedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23959eb8121e62cbdbdfd51f1d1f5525" id="r_a23959eb8121e62cbdbdfd51f1d1f5525"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a23959eb8121e62cbdbdfd51f1d1f5525">resolve_gsi</a> (uint8_t irq)</td></tr>
 <tr class="separator:a23959eb8121e62cbdbdfd51f1d1f5525"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af83d1f9b989ba94daee1c7c76b49b19e" id="r_af83d1f9b989ba94daee1c7c76b49b19e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e">init_ioapic</a> (uintptr_t phys, uint32_t gsi_base)</td></tr>
@@ -151,102 +151,145 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceioapic_ac37b7dbf530b5b00d5e5e45ab8d486b6_cgraph.png" border="0" usemap="#anamespaceioapic_ac37b7dbf530b5b00d5e5e45ab8d486b6_cgraph" alt=""/></div>
 <map name="anamespaceioapic_ac37b7dbf530b5b00d5e5e45ab8d486b6_cgraph" id="anamespaceioapic_ac37b7dbf530b5b00d5e5e45ab8d486b6_cgraph">
-<area shape="rect" title=" " alt="" coords="5,649,96,675"/>
-<area shape="rect" href="util_8cpp.html#a9c5f045dc696b41acc9162f48f00054d" title=" " alt="" coords="159,287,265,312"/>
-<area shape="poly" title=" " alt="" coords="55,648,197,323,202,326,60,650"/>
-<area shape="rect" href="namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee" title=" " alt="" coords="151,808,273,833"/>
-<area shape="poly" title=" " alt="" coords="67,673,190,796,186,800,63,677"/>
-<area shape="rect" href="namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e" title=" " alt="" coords="144,700,280,725"/>
-<area shape="poly" title=" " alt="" coords="93,672,159,693,157,698,91,677"/>
-<area shape="rect" href="namespaceheap.html#a76903ca06bca47b71baa38c4c3df5b33" title=" " alt="" coords="349,617,464,643"/>
-<area shape="poly" title=" " alt="" coords="96,655,335,634,336,639,96,661"/>
-<area shape="rect" href="namespacesmp.html#a4b81a6d6eb8774f6f18465530b5190ac" title=" " alt="" coords="344,56,469,81"/>
-<area shape="poly" title=" " alt="" coords="222,285,384,90,388,94,226,288"/>
-<area shape="rect" href="namespacesmp.html#a349d84746d119a2580dc12154fcb4112" title=" " alt="" coords="328,287,485,312"/>
-<area shape="poly" title=" " alt="" coords="266,297,314,297,314,302,266,302"/>
-<area shape="rect" href="namespacesmp.html#a6a94214a41fd38de081666401f6de757" title=" " alt="" coords="707,55,881,80"/>
-<area shape="poly" title=" " alt="" coords="469,66,693,65,693,70,469,71"/>
-<area shape="rect" href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="537,5,655,31"/>
-<area shape="poly" title=" " alt="" coords="454,53,534,32,535,37,456,58"/>
-<area shape="rect" href="namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="745,5,843,31"/>
-<area shape="poly" title=" " alt="" coords="655,15,731,15,731,21,655,21"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="539,355,653,380"/>
-<area shape="poly" title=" " alt="" coords="444,310,548,347,546,352,442,315"/>
-<area shape="rect" href="namespacesmp.html#a7a97a20af4a8f946826bd24298dd4217" title=" " alt="" coords="533,217,659,243"/>
-<area shape="poly" title=" " alt="" coords="441,284,546,245,548,250,443,289"/>
-<area shape="poly" title=" " alt="" coords="565,356,558,346,562,336,575,330,596,328,622,332,633,340,630,344,620,336,596,333,576,335,565,340,563,346,569,353"/>
-<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="711,305,877,331"/>
-<area shape="poly" title=" " alt="" coords="647,352,729,331,730,337,648,357"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="933,331,1028,356"/>
-<area shape="poly" title=" " alt="" coords="609,352,650,320,677,304,706,291,754,279,794,276,833,281,882,291,918,304,950,321,947,326,916,309,881,297,832,286,793,281,755,285,708,297,679,308,653,324,612,356"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1327,656,1373,681"/>
-<area shape="poly" title=" " alt="" coords="614,378,655,409,708,440,756,456,797,461,837,469,859,478,883,492,899,507,908,522,917,536,931,552,969,582,1001,603,1035,618,1081,634,1144,650,1207,659,1313,666,1313,671,1207,665,1143,655,1079,639,1033,623,998,607,966,587,928,556,913,540,904,524,895,510,880,496,856,483,835,474,796,467,755,461,706,444,652,413,611,382"/>
-<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="1083,255,1233,280"/>
-<area shape="poly" title=" " alt="" coords="604,353,644,307,673,283,706,265,755,249,806,239,858,234,910,232,1007,238,1087,249,1086,255,1006,243,910,238,859,239,807,245,756,254,708,270,676,287,648,311,608,356"/>
-<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="725,404,863,429"/>
-<area shape="poly" title=" " alt="" coords="648,377,730,398,729,403,647,383"/>
-<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="739,153,849,179"/>
-<area shape="poly" title=" " alt="" coords="602,353,650,270,679,226,705,196,728,182,731,186,708,200,683,229,654,273,606,356"/>
-<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="734,555,854,580"/>
-<area shape="poly" title=" " alt="" coords="604,379,617,412,639,456,669,502,708,541,723,550,720,554,705,545,665,505,634,459,612,414,599,381"/>
-<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="725,505,863,531"/>
-<area shape="poly" title=" " alt="" coords="608,379,648,429,676,458,708,484,735,498,732,503,705,488,673,462,644,433,604,382"/>
-<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="711,355,877,380"/>
-<area shape="poly" title=" " alt="" coords="654,365,697,365,697,370,654,370"/>
-<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1284,405,1416,431"/>
-<area shape="poly" title=" " alt="" coords="1028,333,1125,327,1182,331,1237,342,1286,365,1326,394,1322,398,1283,370,1235,347,1181,336,1125,333,1028,339"/>
-<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="1093,356,1223,381"/>
-<area shape="poly" title=" " alt="" coords="1029,347,1079,355,1078,360,1028,353"/>
-<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="1089,405,1227,431"/>
-<area shape="poly" title=" " alt="" coords="1005,354,1081,392,1100,399,1098,404,1079,396,1003,359"/>
-<area shape="poly" title=" " alt="" coords="1009,328,1079,297,1112,283,1114,288,1081,302,1011,333"/>
-<area shape="poly" title=" " alt="" coords="1209,379,1287,399,1286,404,1207,384"/>
-<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1327,531,1373,556"/>
-<area shape="poly" title=" " alt="" coords="1213,379,1238,392,1260,414,1286,447,1335,517,1331,520,1282,450,1256,417,1234,396,1211,384"/>
-<area shape="poly" title=" " alt="" coords="1227,415,1270,415,1270,421,1227,421"/>
-<area shape="poly" title=" " alt="" coords="1219,429,1238,441,1260,472,1269,501,1274,532,1286,568,1333,643,1329,646,1282,570,1269,533,1263,502,1256,474,1234,445,1216,433"/>
-<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1311,229,1389,255"/>
-<area shape="poly" title=" " alt="" coords="1233,255,1297,246,1298,252,1234,260"/>
-<area shape="poly" title=" " alt="" coords="846,401,880,390,944,360,946,365,882,395,848,406"/>
-<area shape="poly" title=" " alt="" coords="840,427,883,446,898,458,907,469,931,491,1035,548,1143,596,1241,632,1314,656,1312,661,1239,637,1141,601,1033,553,928,495,904,472,894,462,880,451,838,432"/>
-<area shape="poly" title=" " alt="" coords="859,402,880,391,896,374,904,356,912,337,927,317,965,286,997,266,1033,252,1079,239,1137,230,1196,227,1298,232,1297,238,1196,232,1138,235,1081,245,1034,257,999,271,968,291,931,321,916,340,909,358,900,377,883,395,862,406"/>
-<area shape="poly" title=" " alt="" coords="602,216,640,155,669,119,705,89,715,83,718,88,708,94,673,123,644,158,606,218"/>
-<area shape="poly" title=" " alt="" coords="627,240,753,297,751,302,625,245"/>
-<area shape="poly" title=" " alt="" coords="636,215,740,180,742,186,637,220"/>
-<area shape="poly" title=" " alt="" coords="608,241,648,290,676,318,708,341,720,347,717,352,705,346,673,322,644,294,604,244"/>
-<area shape="rect" href="namespacesmp.html#a4805b4728b6f36e2a725ea117102c32a" title=" " alt="" coords="715,104,873,129"/>
-<area shape="poly" title=" " alt="" coords="608,215,649,177,676,156,705,138,720,132,723,136,708,143,679,161,652,181,611,219"/>
-<area shape="poly" title=" " alt="" coords="273,818,595,818,982,818,1056,815,1113,804,1167,783,1235,752,1284,721,1323,689,1327,693,1287,726,1237,756,1169,788,1114,809,1056,820,982,823,595,823,273,823"/>
-<area shape="rect" href="string_8cpp.html#a9e6df54ee04e18a3772335580e2ed872" title=" " alt="" coords="365,859,449,884"/>
-<area shape="poly" title=" " alt="" coords="262,831,351,854,350,860,261,836"/>
-<area shape="poly" title=" " alt="" coords="242,697,362,646,364,651,244,702"/>
-<area shape="rect" href="namespaceioapic.html#a1f15bb2b1389e15957f24f686379f19e" title=" " alt="" coords="931,757,1030,783"/>
-<area shape="poly" title=" " alt="" coords="281,715,918,763,918,768,280,720"/>
-<area shape="rect" href="namespaceioapic.html#a3500fe13ce24c8973d248fe8a408dd7f" title=" " alt="" coords="929,707,1032,732"/>
-<area shape="poly" title=" " alt="" coords="280,711,915,716,915,721,280,716"/>
-<area shape="poly" title=" " alt="" coords="415,616,575,390,580,393,419,619"/>
-<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="548,555,644,580"/>
-<area shape="poly" title=" " alt="" coords="445,615,543,582,544,587,447,620"/>
-<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="557,617,635,643"/>
-<area shape="poly" title=" " alt="" coords="464,627,543,627,543,633,464,633"/>
-<area shape="poly" title=" " alt="" coords="597,554,608,513,628,456,659,394,680,366,705,341,714,335,717,339,708,345,684,369,664,397,633,458,613,514,602,555"/>
-<area shape="poly" title=" " alt="" coords="620,578,660,598,707,614,794,627,884,630,973,624,1058,614,1209,583,1312,553,1314,558,1210,588,1059,619,973,630,884,635,794,632,706,619,657,603,617,583"/>
-<area shape="poly" title=" " alt="" coords="644,565,720,565,720,570,644,570"/>
-<area shape="poly" title=" " alt="" coords="643,553,729,531,730,537,645,558"/>
-<area shape="poly" title=" " alt="" coords="599,554,612,521,634,477,665,430,705,391,716,384,719,388,708,395,669,434,639,479,617,523,604,556"/>
-<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="935,455,1026,480"/>
-<area shape="poly" title=" " alt="" coords="629,578,680,594,744,607,779,609,814,608,848,602,880,590,909,570,933,544,966,491,971,494,937,548,913,574,883,595,849,607,814,613,779,615,743,612,678,599,627,583"/>
-<area shape="poly" title=" " alt="" coords="1025,452,1097,432,1099,437,1027,457"/>
-<area shape="poly" title=" " alt="" coords="990,453,1078,343,1131,288,1135,291,1082,346,994,456"/>
-<area shape="rect" href="namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="1096,455,1220,480"/>
-<area shape="poly" title=" " alt="" coords="1026,465,1082,465,1082,470,1026,470"/>
-<area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="1080,504,1236,529"/>
-<area shape="poly" title=" " alt="" coords="1027,477,1099,498,1097,503,1025,482"/>
-<area shape="poly" title=" " alt="" coords="1207,452,1286,432,1287,437,1209,457"/>
-<area shape="poly" title=" " alt="" coords="1206,502,1235,490,1281,464,1320,437,1323,441,1284,469,1237,495,1208,506"/>
-<area shape="poly" title=" " alt="" coords="1200,527,1237,546,1266,569,1293,595,1333,643,1329,647,1289,599,1263,573,1235,551,1198,532"/>
-<area shape="poly" title=" " alt="" coords="1030,758,1125,738,1235,709,1313,681,1315,686,1237,714,1127,743,1031,763"/>
-<area shape="poly" title=" " alt="" coords="1032,711,1236,685,1312,672,1313,678,1236,690,1033,716"/>
+<area shape="rect" title=" " alt="" coords="5,545,96,571"/>
+<area shape="rect" href="util_8cpp.html#a9c5f045dc696b41acc9162f48f00054d" title=" " alt="" coords="344,271,451,296"/>
+<area shape="poly" title=" " alt="" coords="66,543,368,303,371,307,70,547"/>
+<area shape="rect" href="namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee" title=" " alt="" coords="151,909,273,935"/>
+<area shape="poly" title=" " alt="" coords="60,570,202,896,197,898,55,572"/>
+<area shape="rect" href="namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e" title=" " alt="" coords="144,596,280,621"/>
+<area shape="poly" title=" " alt="" coords="93,568,159,589,157,594,91,573"/>
+<area shape="rect" href="namespaceheap.html#a76903ca06bca47b71baa38c4c3df5b33" title=" " alt="" coords="561,495,675,520"/>
+<area shape="poly" title=" " alt="" coords="96,551,547,511,547,516,97,557"/>
+<area shape="rect" href="namespacesmp.html#a4b81a6d6eb8774f6f18465530b5190ac" title=" " alt="" coords="555,56,681,81"/>
+<area shape="poly" title=" " alt="" coords="410,269,592,89,595,93,414,272"/>
+<area shape="rect" href="namespacesmp.html#a349d84746d119a2580dc12154fcb4112" title=" " alt="" coords="539,271,697,296"/>
+<area shape="poly" title=" " alt="" coords="451,281,526,281,526,286,451,286"/>
+<area shape="rect" href="namespacesmp.html#a6a94214a41fd38de081666401f6de757" title=" " alt="" coords="949,55,1124,80"/>
+<area shape="poly" title=" " alt="" coords="681,66,936,65,936,70,681,71"/>
+<area shape="rect" href="namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="776,5,895,31"/>
+<area shape="poly" title=" " alt="" coords="673,53,767,31,768,36,674,58"/>
+<area shape="rect" href="namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="987,5,1086,31"/>
+<area shape="poly" title=" " alt="" coords="895,15,974,15,974,21,895,21"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="778,381,893,407"/>
+<area shape="poly" title=" " alt="" coords="645,294,798,373,796,377,643,298"/>
+<area shape="rect" href="namespacesmp.html#a7a97a20af4a8f946826bd24298dd4217" title=" " alt="" coords="773,217,898,243"/>
+<area shape="poly" title=" " alt="" coords="670,268,769,243,770,249,671,273"/>
+<area shape="poly" title=" " alt="" coords="802,383,795,373,799,363,813,357,835,355,863,358,874,368,871,372,861,363,835,360,814,362,803,367,801,372,807,380"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="953,657,1120,683"/>
+<area shape="poly" title=" " alt="" coords="858,405,881,423,903,446,920,471,930,493,938,515,952,542,1020,645,1016,648,947,545,933,517,925,495,916,474,899,449,877,427,854,409"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="1200,305,1295,331"/>
+<area shape="poly" title=" " alt="" coords="862,379,902,362,949,347,1011,335,1075,326,1186,317,1186,322,1076,331,1012,340,950,353,904,367,864,384"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1673,605,1719,631"/>
+<area shape="poly" title=" " alt="" coords="876,379,929,367,994,360,1029,361,1063,367,1095,377,1126,393,1140,407,1148,422,1153,453,1156,485,1162,500,1174,515,1220,551,1263,568,1371,589,1451,603,1531,611,1659,616,1659,621,1530,616,1450,608,1370,594,1261,574,1217,556,1170,519,1158,502,1151,486,1148,453,1143,423,1136,410,1122,398,1093,382,1062,372,1028,367,995,366,930,372,877,384"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="1397,204,1547,229"/>
+<area shape="poly" title=" " alt="" coords="839,380,853,350,876,310,908,271,927,254,948,240,1005,215,1064,198,1126,188,1187,184,1303,187,1397,199,1397,204,1302,192,1187,189,1126,193,1065,203,1006,220,951,244,930,258,911,275,880,313,858,352,844,382"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="968,255,1105,280"/>
+<area shape="poly" title=" " alt="" coords="848,379,890,339,948,297,979,282,981,287,951,302,893,343,851,383"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="982,153,1091,179"/>
+<area shape="poly" title=" " alt="" coords="840,380,889,284,920,231,948,196,970,182,973,186,951,200,924,234,893,286,845,382"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="977,456,1097,481"/>
+<area shape="poly" title=" " alt="" coords="863,404,950,442,973,450,971,455,948,447,861,409"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="967,407,1106,432"/>
+<area shape="poly" title=" " alt="" coords="893,399,954,406,954,412,893,404"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="953,505,1120,531"/>
+<area shape="poly" title=" " alt="" coords="855,405,903,445,926,471,936,481,951,492,963,498,961,503,948,496,932,485,922,474,899,449,851,409"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1630,355,1762,380"/>
+<area shape="poly" title=" " alt="" coords="1293,303,1350,290,1420,281,1498,279,1536,283,1574,291,1627,315,1670,344,1667,348,1625,319,1573,297,1536,289,1497,285,1421,286,1351,296,1294,308"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="1407,305,1537,331"/>
+<area shape="poly" title=" " alt="" coords="1295,315,1393,315,1393,321,1295,321"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="1403,404,1541,429"/>
+<area shape="poly" title=" " alt="" coords="1267,328,1313,359,1372,390,1393,398,1391,403,1370,395,1310,364,1264,333"/>
+<area shape="poly" title=" " alt="" coords="1267,303,1313,275,1370,246,1410,231,1412,236,1372,251,1315,280,1270,307"/>
+<area shape="poly" title=" " alt="" coords="1531,328,1625,349,1624,354,1530,333"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1673,453,1719,479"/>
+<area shape="poly" title=" " alt="" coords="1539,326,1575,341,1591,352,1601,364,1623,391,1674,442,1670,445,1619,394,1597,367,1587,356,1572,346,1537,331"/>
+<area shape="poly" title=" " alt="" coords="1530,401,1624,380,1625,386,1531,407"/>
+<area shape="poly" title=" " alt="" coords="1542,424,1575,440,1601,466,1631,507,1683,592,1678,595,1626,510,1597,470,1572,444,1540,429"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1657,179,1735,204"/>
+<area shape="poly" title=" " alt="" coords="1547,206,1643,195,1644,200,1548,211"/>
+<area shape="poly" title=" " alt="" coords="1091,278,1188,301,1186,306,1090,283"/>
+<area shape="poly" title=" " alt="" coords="1056,278,1090,308,1126,348,1141,375,1148,398,1156,419,1174,440,1212,465,1267,490,1406,539,1550,580,1660,607,1658,612,1549,585,1404,544,1265,495,1209,469,1170,444,1151,422,1143,399,1136,377,1122,352,1086,312,1052,282"/>
+<area shape="poly" title=" " alt="" coords="1079,252,1208,218,1289,201,1370,189,1445,183,1519,181,1644,185,1643,190,1519,187,1445,188,1371,194,1290,206,1210,223,1081,257"/>
+<area shape="poly" title=" " alt="" coords="841,216,881,155,911,119,948,89,958,83,961,88,951,94,915,123,885,158,846,219"/>
+<area shape="poly" title=" " alt="" coords="848,242,875,286,904,345,920,400,927,445,934,489,952,542,984,599,1018,645,1014,648,979,602,947,544,928,490,921,446,915,401,899,347,870,289,843,244"/>
+<area shape="poly" title=" " alt="" coords="876,215,982,180,984,185,877,220"/>
+<area shape="poly" title=" " alt="" coords="847,242,874,287,904,345,916,389,920,425,927,459,936,475,951,492,956,496,952,500,947,496,932,478,922,461,914,426,911,390,899,347,870,289,843,245"/>
+<area shape="rect" href="namespacesmp.html#a4805b4728b6f36e2a725ea117102c32a" title=" " alt="" coords="958,104,1115,129"/>
+<area shape="poly" title=" " alt="" coords="848,215,890,177,918,156,948,138,963,132,965,136,951,143,921,161,893,181,851,219"/>
+<area shape="poly" title=" " alt="" coords="273,919,617,919,1249,919,1347,913,1387,905,1423,892,1457,875,1492,854,1572,793,1608,757,1639,716,1681,642,1686,645,1644,719,1612,761,1575,797,1495,858,1459,880,1425,897,1388,910,1348,918,1249,925,617,925,273,925"/>
+<area shape="rect" href="string_8cpp.html#a9e6df54ee04e18a3772335580e2ed872" title=" " alt="" coords="355,960,439,985"/>
+<area shape="poly" title=" " alt="" coords="260,932,342,955,341,960,259,937"/>
+<area shape="poly" title=" " alt="" coords="263,593,552,521,553,526,265,599"/>
+<area shape="rect" href="namespacevmm.html#ae75c952b207ad8aea0419bf5414445e3" title=" " alt="" coords="328,701,467,727"/>
+<area shape="poly" title=" " alt="" coords="233,619,276,649,329,681,354,693,351,698,327,686,273,653,230,624"/>
+<area shape="rect" href="namespaceioapic.html#a412ed2864a0e79dc6b2f92ba0874bedc" title=" " alt="" coords="348,596,447,621"/>
+<area shape="poly" title=" " alt="" coords="280,606,334,606,334,611,280,611"/>
+<area shape="rect" href="namespaceioapic.html#af952a64774441d11306827b26ce5d30e" title=" " alt="" coords="346,645,449,671"/>
+<area shape="poly" title=" " alt="" coords="261,619,336,639,335,644,260,624"/>
+<area shape="poly" title=" " alt="" coords="642,492,796,411,799,416,645,497"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="787,508,883,533"/>
+<area shape="poly" title=" " alt="" coords="676,508,774,514,773,520,676,513"/>
+<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="796,459,875,484"/>
+<area shape="poly" title=" " alt="" coords="675,495,782,477,783,483,676,501"/>
+<area shape="poly" title=" " alt="" coords="848,532,889,582,918,610,951,636,978,650,976,655,948,640,915,614,885,585,844,535"/>
+<area shape="poly" title=" " alt="" coords="862,531,902,549,950,563,998,570,1036,571,1124,563,1281,545,1434,519,1659,472,1660,477,1435,524,1282,550,1124,569,1036,577,998,576,949,569,900,554,859,536"/>
+<area shape="poly" title=" " alt="" coords="883,506,973,482,975,487,884,511"/>
+<area shape="poly" title=" " alt="" coords="879,506,900,494,914,482,923,469,932,456,948,442,962,435,965,440,951,447,936,459,927,472,918,485,903,499,881,510"/>
+<area shape="poly" title=" " alt="" coords="884,517,940,517,940,522,884,523"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="1202,404,1293,429"/>
+<area shape="poly" title=" " alt="" coords="872,531,923,545,987,556,1056,557,1090,551,1123,541,1163,502,1223,438,1227,441,1166,506,1125,546,1092,557,1057,562,987,561,922,550,871,536"/>
+<area shape="poly" title=" " alt="" coords="1293,414,1389,414,1389,419,1293,419"/>
+<area shape="poly" title=" " alt="" coords="1260,402,1321,341,1369,292,1440,235,1443,240,1372,296,1325,345,1264,406"/>
+<area shape="rect" href="namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="1410,355,1534,380"/>
+<area shape="poly" title=" " alt="" coords="1292,404,1400,380,1401,386,1294,409"/>
+<area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="1394,453,1550,479"/>
+<area shape="poly" title=" " alt="" coords="1294,424,1401,448,1400,453,1292,429"/>
+<area shape="poly" title=" " alt="" coords="1534,365,1617,365,1617,370,1534,370"/>
+<area shape="poly" title=" " alt="" coords="1539,451,1572,440,1623,414,1665,386,1668,390,1625,418,1574,444,1540,456"/>
+<area shape="poly" title=" " alt="" coords="1493,476,1666,595,1663,599,1490,481"/>
+<area shape="rect" href="classvmm_1_1VirtualRangeAllocator.html#a41a48d27ff71933b455ff8b430006213" title="Reserves a contiguous range of virtual addresses." alt="" coords="515,591,721,631"/>
+<area shape="poly" title=" " alt="" coords="426,699,466,681,562,635,564,640,468,686,428,704"/>
+<area shape="rect" href="namespacevmm.html#a900951e277dcf50c77c3dac468c80f59" title=" " alt="" coords="549,719,687,744"/>
+<area shape="poly" title=" " alt="" coords="467,717,536,722,535,728,467,722"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="561,960,675,985"/>
+<area shape="poly" title=" " alt="" coords="412,725,599,948,595,951,407,729"/>
+<area shape="poly" title=" " alt="" coords="650,589,685,563,719,531,735,509,743,489,752,469,767,446,802,413,806,417,771,449,756,471,748,491,739,511,723,534,689,567,654,593"/>
+<area shape="poly" title=" " alt="" coords="722,623,940,654,939,659,721,628"/>
+<area shape="poly" title=" " alt="" coords="708,589,965,531,966,536,709,594"/>
+<area shape="rect" href="namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="769,745,901,771"/>
+<area shape="poly" title=" " alt="" coords="688,737,756,746,755,751,687,742"/>
+<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="956,759,1117,784"/>
+<area shape="poly" title=" " alt="" coords="902,760,942,762,942,768,902,765"/>
+<area shape="rect" href="namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7" title=" " alt="" coords="1371,757,1573,783"/>
+<area shape="poly" title=" " alt="" coords="865,768,943,800,1057,834,1121,847,1189,854,1256,853,1322,843,1355,833,1387,819,1440,788,1443,793,1389,824,1357,838,1323,849,1257,859,1188,859,1121,852,1055,839,942,805,863,773"/>
+<area shape="rect" href="namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="1172,656,1323,681"/>
+<area shape="poly" title=" " alt="" coords="894,743,1123,693,1174,682,1175,687,1125,698,896,748"/>
+<area shape="poly" title=" " alt="" coords="1058,756,1092,730,1108,713,1122,694,1140,652,1148,614,1149,579,1147,545,1144,510,1145,474,1152,435,1170,391,1191,362,1215,338,1219,342,1195,365,1174,394,1158,436,1150,475,1150,510,1152,545,1154,579,1153,615,1145,654,1126,697,1112,717,1095,734,1061,761"/>
+<area shape="poly" title=" " alt="" coords="1117,757,1325,719,1449,693,1573,661,1659,630,1661,635,1574,666,1450,698,1326,725,1118,762"/>
+<area shape="poly" title=" " alt="" coords="1117,768,1357,768,1357,773,1117,774"/>
+<area shape="poly" title=" " alt="" coords="1079,756,1123,737,1146,718,1171,698,1198,684,1200,689,1173,703,1150,722,1125,742,1081,761"/>
+<area shape="rect" href="string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="1209,808,1285,833"/>
+<area shape="poly" title=" " alt="" coords="1092,781,1196,806,1195,811,1091,787"/>
+<area shape="poly" title=" " alt="" coords="1323,660,1573,634,1658,621,1659,627,1574,639,1323,665"/>
+<area shape="poly" title=" " alt="" coords="1278,679,1432,749,1429,754,1276,684"/>
+<area shape="rect" href="group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242" title=" " alt="" coords="774,960,897,985"/>
+<area shape="poly" title=" " alt="" coords="676,970,760,970,760,975,676,975"/>
+<area shape="poly" title=" " alt="" coords="839,958,877,866,909,805,947,746,975,715,1005,689,1008,693,979,719,951,749,913,807,882,868,844,961"/>
+<area shape="poly" title=" " alt="" coords="839,959,947,645,981,587,1015,540,1019,543,985,590,952,647,844,961"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="1379,1036,1565,1061"/>
+<area shape="poly" title=" " alt="" coords="897,977,1365,1033,1365,1039,897,983"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="974,1061,1099,1087"/>
+<area shape="poly" title=" " alt="" coords="856,983,899,1011,951,1040,985,1054,982,1059,948,1044,896,1015,853,988"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="1191,1112,1304,1137"/>
+<area shape="poly" title=" " alt="" coords="846,984,885,1041,915,1072,951,1097,1007,1118,1066,1128,1125,1132,1176,1130,1177,1135,1125,1137,1066,1134,1005,1123,948,1102,911,1076,881,1044,841,987"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="1182,960,1313,985"/>
+<area shape="poly" title=" " alt="" coords="897,970,1168,970,1168,975,897,975"/>
+<area shape="rect" href="namespaceconsole.html#ab231d521184351a44f099e4b3d7a603a" title=" " alt="" coords="1621,1036,1771,1061"/>
+<area shape="poly" title=" " alt="" coords="1566,1046,1608,1046,1608,1051,1566,1051"/>
+<area shape="poly" title=" " alt="" coords="1099,1068,1365,1052,1365,1058,1100,1073"/>
+<area shape="poly" title=" " alt="" coords="1091,1084,1182,1106,1180,1111,1090,1089"/>
+<area shape="poly" title=" " alt="" coords="1285,1109,1420,1063,1422,1068,1287,1114"/>
+<area shape="poly" title=" " alt="" coords="1287,983,1422,1029,1420,1034,1285,988"/>
 </map>
 </div>
 <div class="dynheader">
@@ -292,73 +335,145 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespaceioapic_af83d1f9b989ba94daee1c7c76b49b19e_cgraph.png" border="0" usemap="#anamespaceioapic_af83d1f9b989ba94daee1c7c76b49b19e_cgraph" alt=""/></div>
 <map name="anamespaceioapic_af83d1f9b989ba94daee1c7c76b49b19e_cgraph" id="anamespaceioapic_af83d1f9b989ba94daee1c7c76b49b19e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,586,141,611"/>
-<area shape="rect" href="namespaceheap.html#a76903ca06bca47b71baa38c4c3df5b33" title=" " alt="" coords="189,435,304,461"/>
-<area shape="poly" title=" " alt="" coords="87,584,219,468,222,472,91,588"/>
-<area shape="rect" href="namespaceioapic.html#a1f15bb2b1389e15957f24f686379f19e" title=" " alt="" coords="729,586,828,611"/>
-<area shape="poly" title=" " alt="" coords="141,596,716,596,716,601,141,601"/>
-<area shape="rect" href="namespaceioapic.html#a3500fe13ce24c8973d248fe8a408dd7f" title=" " alt="" coords="195,637,298,662"/>
-<area shape="poly" title=" " alt="" coords="118,609,190,630,188,635,117,614"/>
-<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="361,410,457,435"/>
-<area shape="poly" title=" " alt="" coords="304,436,347,429,348,435,305,442"/>
-<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="352,261,467,286"/>
-<area shape="poly" title=" " alt="" coords="258,433,385,294,389,298,262,437"/>
-<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="370,459,449,485"/>
-<area shape="poly" title=" " alt="" coords="305,454,357,462,356,467,304,459"/>
-<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="515,335,681,361"/>
-<area shape="poly" title=" " alt="" coords="433,407,514,369,534,362,536,367,516,374,435,412"/>
-<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="733,234,824,259"/>
-<area shape="poly" title=" " alt="" coords="443,433,468,444,491,458,516,468,563,481,602,490,639,488,658,481,680,468,703,449,722,426,749,372,765,318,772,273,778,274,770,319,754,374,726,429,707,453,683,473,660,485,640,493,602,495,562,486,514,473,489,463,465,449,441,438"/>
-<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="538,385,658,410"/>
-<area shape="poly" title=" " alt="" coords="457,414,524,405,524,410,458,419"/>
-<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="529,434,667,459"/>
-<area shape="poly" title=" " alt="" coords="458,426,516,433,515,439,457,431"/>
-<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="515,286,681,311"/>
-<area shape="poly" title=" " alt="" coords="418,408,457,365,484,341,513,320,526,314,528,319,516,325,487,345,461,369,422,412"/>
-<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1123,259,1169,285"/>
-<area shape="poly" title=" " alt="" coords="448,433,468,444,483,459,492,473,500,486,516,496,560,511,596,513,634,507,681,496,747,477,813,453,937,396,1041,337,1114,290,1117,295,1044,341,939,400,815,458,749,482,682,501,635,512,597,519,559,516,513,501,497,490,487,476,479,462,465,449,446,438"/>
-<area shape="rect" href="namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="892,135,1016,161"/>
-<area shape="poly" title=" " alt="" coords="791,232,827,201,875,170,889,163,891,168,877,174,831,205,795,236"/>
-<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="885,234,1023,259"/>
-<area shape="poly" title=" " alt="" coords="824,244,872,244,872,249,824,249"/>
-<area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="876,283,1032,309"/>
-<area shape="poly" title=" " alt="" coords="825,257,896,277,894,282,823,262"/>
-<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="879,34,1029,59"/>
-<area shape="poly" title=" " alt="" coords="787,232,824,183,874,121,927,67,931,71,878,124,828,186,791,235"/>
-<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1080,185,1212,210"/>
-<area shape="poly" title=" " alt="" coords="1005,158,1083,178,1082,184,1003,163"/>
-<area shape="poly" title=" " alt="" coords="1003,231,1082,211,1083,216,1005,236"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1123,359,1169,385"/>
-<area shape="poly" title=" " alt="" coords="1008,257,1033,268,1086,307,1127,347,1123,351,1083,311,1031,273,1006,262"/>
-<area shape="poly" title=" " alt="" coords="999,281,1031,268,1076,243,1115,216,1118,221,1079,247,1033,273,1001,286"/>
-<area shape="poly" title=" " alt="" coords="988,306,1111,356,1109,360,986,311"/>
-<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1107,9,1185,34"/>
-<area shape="poly" title=" " alt="" coords="1029,34,1093,25,1094,31,1030,39"/>
-<area shape="poly" title=" " alt="" coords="436,284,516,320,539,328,537,333,514,325,434,288"/>
-<area shape="poly" title=" " alt="" coords="467,259,514,253,569,251,627,256,682,271,699,281,708,293,717,306,731,318,769,338,800,350,876,364,940,371,1004,374,1109,372,1109,377,1004,379,940,377,876,369,799,355,766,343,728,322,713,310,704,297,695,285,680,276,626,261,569,256,515,258,467,264"/>
-<area shape="poly" title=" " alt="" coords="411,260,422,225,442,179,472,131,491,110,513,92,555,70,600,53,646,41,694,33,785,28,865,32,865,37,785,33,694,38,648,46,601,58,557,74,516,97,495,114,476,134,447,181,427,227,416,261"/>
-<area shape="poly" title=" " alt="" coords="423,284,461,326,487,350,516,370,531,377,529,382,513,374,484,354,457,330,419,288"/>
-<area shape="poly" title=" " alt="" coords="418,285,453,349,482,387,516,419,527,426,525,431,513,423,478,390,449,352,414,287"/>
-<area shape="poly" title=" " alt="" coords="467,278,502,283,501,288,467,284"/>
-<area shape="poly" title=" " alt="" coords="382,262,376,252,379,243,391,236,409,234,432,237,441,246,438,250,429,242,409,239,392,241,383,246,382,252,387,259"/>
-<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="731,135,826,161"/>
-<area shape="poly" title=" " alt="" coords="412,259,425,229,445,190,475,151,493,134,513,120,541,109,571,103,632,103,689,113,736,128,735,133,688,118,631,108,572,108,543,114,516,125,496,138,478,154,450,193,429,231,417,261"/>
-<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="529,185,667,210"/>
-<area shape="poly" title=" " alt="" coords="439,258,514,227,550,212,552,217,516,232,441,263"/>
-<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="543,135,653,161"/>
-<area shape="poly" title=" " alt="" coords="418,259,457,215,483,191,513,170,529,162,531,167,516,174,487,195,460,219,422,262"/>
-<area shape="poly" title=" " alt="" coords="817,133,861,121,916,112,975,110,1033,120,1058,130,1083,144,1122,173,1119,177,1080,148,1056,135,1031,125,974,116,916,118,862,126,818,138"/>
-<area shape="poly" title=" " alt="" coords="796,159,831,189,877,219,894,227,892,231,875,224,828,193,792,163"/>
-<area shape="poly" title=" " alt="" coords="794,133,830,105,875,76,903,62,906,67,877,81,833,110,797,137"/>
-<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="889,185,1019,210"/>
-<area shape="poly" title=" " alt="" coords="825,158,895,178,894,183,824,163"/>
-<area shape="poly" title=" " alt="" coords="1019,195,1066,195,1066,200,1019,200"/>
-<area shape="poly" title=" " alt="" coords="1000,207,1033,219,1112,253,1109,258,1031,224,998,212"/>
-<area shape="poly" title=" " alt="" coords="641,208,683,227,707,248,731,268,780,293,832,313,939,343,1036,359,1109,367,1108,372,1035,365,938,348,831,318,778,298,728,273,703,252,680,231,639,212"/>
-<area shape="poly" title=" " alt="" coords="653,182,680,170,695,158,704,147,727,121,795,59,828,37,875,19,933,7,992,3,1047,5,1094,10,1094,15,1047,10,992,8,933,12,877,24,831,42,799,64,731,124,708,150,698,162,683,174,655,187"/>
-<area shape="poly" title=" " alt="" coords="644,182,717,162,718,167,646,187"/>
-<area shape="poly" title=" " alt="" coords="829,602,874,603,927,600,981,588,1031,564,1052,548,1070,528,1101,482,1122,436,1135,397,1140,399,1127,438,1105,485,1074,531,1055,551,1033,569,983,593,928,605,875,609,828,607"/>
-<area shape="poly" title=" " alt="" coords="298,647,597,647,780,647,855,650,914,653,942,650,969,643,998,629,1030,608,1055,587,1075,561,1107,503,1127,445,1138,398,1143,399,1132,446,1112,505,1080,564,1059,590,1034,613,1001,634,971,648,943,655,915,658,854,655,780,652,597,652,298,652"/>
+<area shape="rect" title=" " alt="" coords="5,631,141,657"/>
+<area shape="rect" href="namespaceheap.html#a76903ca06bca47b71baa38c4c3df5b33" title=" " alt="" coords="422,318,537,343"/>
+<area shape="poly" title=" " alt="" coords="89,629,449,350,452,354,93,633"/>
+<area shape="rect" href="namespacevmm.html#ae75c952b207ad8aea0419bf5414445e3" title=" " alt="" coords="189,606,328,631"/>
+<area shape="poly" title=" " alt="" coords="141,632,175,627,176,633,142,637"/>
+<area shape="rect" href="namespaceioapic.html#a412ed2864a0e79dc6b2f92ba0874bedc" title=" " alt="" coords="209,655,308,681"/>
+<area shape="poly" title=" " alt="" coords="142,650,196,657,195,663,141,655"/>
+<area shape="rect" href="namespaceioapic.html#af952a64774441d11306827b26ce5d30e" title=" " alt="" coords="207,705,310,730"/>
+<area shape="poly" title=" " alt="" coords="104,654,190,691,208,697,206,702,188,696,102,659"/>
+<area shape="rect" href="namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="649,242,745,267"/>
+<area shape="poly" title=" " alt="" coords="516,315,646,269,647,274,517,320"/>
+<area shape="rect" href="namespaceheap.html#aac0b35dbbed2e4574a8a83b4f1789ac8" title="Allocate memory from the kernel heap." alt="" coords="639,394,754,419"/>
+<area shape="poly" title=" " alt="" coords="517,341,647,387,646,392,516,346"/>
+<area shape="rect" href="string_8cpp.html#aba088e716bccbc96d42da97e96316df1" title=" " alt="" coords="1959,307,2037,333"/>
+<area shape="poly" title=" " alt="" coords="486,316,535,242,576,191,625,137,682,86,746,43,781,27,817,14,854,6,893,3,1554,3,1592,5,1628,12,1699,38,1765,76,1824,121,1877,170,1922,218,1982,294,1978,298,1918,221,1873,174,1821,125,1762,80,1697,43,1627,17,1591,10,1554,8,893,8,855,11,818,19,783,31,749,48,685,90,629,141,580,194,540,245,490,319"/>
+<area shape="rect" href="structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="811,545,977,570"/>
+<area shape="poly" title=" " alt="" coords="710,266,737,306,765,358,774,384,778,409,780,452,786,491,796,511,813,532,816,535,813,539,809,535,791,514,781,493,775,452,773,409,769,386,760,360,732,308,705,269"/>
+<area shape="rect" href="namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="1055,193,1146,218"/>
+<area shape="poly" title=" " alt="" coords="710,239,752,206,780,190,810,177,873,166,937,167,997,175,1047,186,1046,192,996,180,936,172,873,172,811,183,782,195,755,211,714,244"/>
+<area shape="rect" href="namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="834,193,954,218"/>
+<area shape="poly" title=" " alt="" coords="744,240,829,219,830,224,746,245"/>
+<area shape="rect" href="namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="825,242,963,267"/>
+<area shape="poly" title=" " alt="" coords="745,252,811,252,811,257,745,257"/>
+<area shape="rect" href="structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="811,594,977,619"/>
+<area shape="poly" title=" " alt="" coords="710,266,738,305,765,358,775,392,779,423,778,478,778,504,782,529,793,554,813,581,816,584,813,588,809,584,788,557,777,530,772,504,772,478,774,423,770,393,760,360,733,308,706,269"/>
+<area shape="rect" href="util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="1529,69,1576,94"/>
+<area shape="poly" title=" " alt="" coords="706,240,748,197,777,173,809,154,907,115,1009,89,1113,73,1214,64,1309,62,1394,64,1516,74,1516,79,1394,70,1309,67,1215,70,1114,78,1010,94,908,120,812,158,780,178,752,201,710,244"/>
+<area shape="rect" href="namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="1263,143,1387,169"/>
+<area shape="poly" title=" " alt="" coords="1146,193,1253,169,1254,174,1147,198"/>
+<area shape="rect" href="namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="1257,294,1394,319"/>
+<area shape="poly" title=" " alt="" coords="1131,216,1285,286,1283,291,1129,221"/>
+<area shape="rect" href="namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="1247,193,1403,218"/>
+<area shape="poly" title=" " alt="" coords="1146,203,1234,203,1234,208,1146,208"/>
+<area shape="rect" href="namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="1250,343,1401,369"/>
+<area shape="poly" title=" " alt="" coords="1117,217,1178,278,1200,307,1210,318,1225,330,1239,336,1236,341,1223,334,1206,322,1196,310,1174,282,1113,220"/>
+<area shape="rect" href="namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="1487,193,1619,218"/>
+<area shape="poly" title=" " alt="" coords="1385,166,1481,187,1479,192,1384,171"/>
+<area shape="poly" title=" " alt="" coords="1372,291,1426,272,1475,248,1518,223,1521,228,1478,253,1428,277,1374,296"/>
+<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="1529,470,1576,495"/>
+<area shape="poly" title=" " alt="" coords="1395,314,1428,330,1446,347,1456,365,1464,384,1477,405,1528,459,1524,462,1473,408,1459,387,1451,368,1442,351,1425,334,1393,319"/>
+<area shape="poly" title=" " alt="" coords="1403,203,1473,203,1473,208,1403,208"/>
+<area shape="poly" title=" " alt="" coords="1352,216,1391,242,1429,280,1447,313,1454,343,1461,372,1477,405,1500,434,1526,459,1522,463,1496,438,1472,408,1456,374,1449,344,1442,315,1425,283,1387,246,1349,220"/>
+<area shape="rect" href="util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="1514,369,1591,394"/>
+<area shape="poly" title=" " alt="" coords="1401,362,1501,373,1500,378,1401,367"/>
+<area shape="poly" title=" " alt="" coords="708,418,748,473,778,504,812,531,823,537,820,542,809,536,774,508,744,476,704,421"/>
+<area shape="poly" title=" " alt="" coords="749,417,811,429,1019,455,1223,470,1397,478,1515,480,1515,485,1397,483,1223,476,1018,461,810,435,748,422"/>
+<area shape="poly" title=" " alt="" coords="749,391,810,380,925,368,1041,360,1236,354,1236,359,1041,365,926,373,811,385,750,397"/>
+<area shape="poly" title=" " alt="" coords="700,393,714,359,736,315,768,268,809,227,820,220,823,225,812,231,772,271,741,317,719,362,705,395"/>
+<area shape="poly" title=" " alt="" coords="705,392,746,341,776,311,809,284,836,270,838,275,812,289,780,315,750,344,709,395"/>
+<area shape="poly" title=" " alt="" coords="705,419,719,451,741,495,772,541,812,581,820,586,817,590,809,585,768,545,737,498,714,454,700,421"/>
+<area shape="poly" title=" " alt="" coords="664,395,657,386,661,376,674,370,697,367,724,371,735,380,732,384,722,376,697,373,676,375,665,379,662,385,668,392"/>
+<area shape="rect" href="namespacepmm.html#ad997679635eceee62746483ab37138b5" title="Allocate physical memory." alt="" coords="1053,293,1148,318"/>
+<area shape="poly" title=" " alt="" coords="712,392,754,362,810,335,869,319,931,309,1039,302,1039,307,931,314,871,324,812,340,757,367,715,396"/>
+<area shape="rect" href="namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92" title=" " alt="" coords="825,394,963,419"/>
+<area shape="poly" title=" " alt="" coords="754,404,811,404,811,409,754,409"/>
+<area shape="rect" href="namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="839,495,949,521"/>
+<area shape="poly" title=" " alt="" coords="718,417,760,445,812,474,844,488,842,493,809,478,757,449,715,422"/>
+<area shape="poly" title=" " alt="" coords="1148,292,1481,218,1482,224,1149,298"/>
+<area shape="poly" title=" " alt="" coords="1149,303,1243,304,1243,309,1149,308"/>
+<area shape="poly" title=" " alt="" coords="1149,313,1256,338,1254,343,1148,319"/>
+<area shape="rect" href="namespacepmm.html#a2214058ed5b09da722d5985443e26177" title=" " alt="" coords="1260,94,1391,119"/>
+<area shape="poly" title=" " alt="" coords="1115,291,1144,263,1174,228,1187,200,1194,176,1202,152,1222,129,1245,115,1248,120,1226,133,1207,155,1199,177,1192,202,1178,231,1148,267,1119,294"/>
+<area shape="poly" title=" " alt="" coords="1392,117,1428,128,1480,155,1525,183,1522,187,1478,159,1426,133,1390,122"/>
+<area shape="poly" title=" " alt="" coords="1391,97,1515,83,1516,88,1391,102"/>
+<area shape="poly" title=" " alt="" coords="963,412,1516,476,1515,481,963,417"/>
+<area shape="poly" title=" " alt="" coords="963,401,1500,381,1500,386,963,407"/>
+<area shape="poly" title=" " alt="" coords="920,391,1060,322,1062,327,922,396"/>
+<area shape="rect" href="classvmm_1_1VirtualRangeAllocator.html#a41a48d27ff71933b455ff8b430006213" title="Reserves a contiguous range of virtual addresses." alt="" coords="376,559,583,599"/>
+<area shape="poly" title=" " alt="" coords="328,603,362,597,363,602,329,609"/>
+<area shape="rect" href="namespacevmm.html#a900951e277dcf50c77c3dac468c80f59" title=" " alt="" coords="411,645,548,670"/>
+<area shape="poly" title=" " alt="" coords="329,628,398,640,397,646,328,633"/>
+<area shape="rect" href="group__Console__Output.html#ga0522c4a859d7c82e6aab7c54f4209df2" title="Formatted output to the console." alt="" coords="422,769,537,794"/>
+<area shape="poly" title=" " alt="" coords="303,629,329,642,391,693,457,757,454,761,387,697,327,646,301,634"/>
+<area shape="poly" title=" " alt="" coords="583,571,797,560,797,565,583,576"/>
+<area shape="poly" title=" " alt="" coords="583,583,797,597,797,603,583,588"/>
+<area shape="poly" title=" " alt="" coords="504,557,667,426,670,430,507,561"/>
+<area shape="rect" href="namespacevmm.html#afd3f7748b21b0b09ef643e0b42694a0c" title="Map a single 4 KiB virtual page to a physical frame." alt="" coords="631,669,763,694"/>
+<area shape="poly" title=" " alt="" coords="549,662,617,670,616,675,548,668"/>
+<area shape="rect" href="namespacevmm.html#a6eb1a1bf20f471294d93040e6476a817" title=" " alt="" coords="813,643,975,669"/>
+<area shape="poly" title=" " alt="" coords="762,670,799,665,800,671,763,676"/>
+<area shape="rect" href="namespacevmm.html#a94b5ead9d649c974cf15eab5a2c582e7" title=" " alt="" coords="1224,698,1427,723"/>
+<area shape="poly" title=" " alt="" coords="763,684,811,688,918,697,1025,704,1210,708,1210,713,1025,709,918,703,810,693,763,689"/>
+<area shape="rect" href="namespacevmm.html#aa604160270551f1cb1a67a113b5167a2" title=" " alt="" coords="1025,647,1176,673"/>
+<area shape="poly" title=" " alt="" coords="763,682,864,683,977,679,1025,672,1026,678,978,684,864,689,763,687"/>
+<area shape="poly" title=" " alt="" coords="950,641,976,630,990,620,999,609,1009,598,1024,588,1082,565,1132,552,1178,546,1222,544,1313,542,1365,536,1426,524,1516,494,1517,499,1427,529,1366,542,1313,547,1222,549,1178,551,1133,557,1083,570,1027,593,1012,602,1003,613,993,623,979,634,952,646"/>
+<area shape="poly" title=" " alt="" coords="959,641,975,630,999,585,1032,500,1089,330,1094,332,1037,502,1004,587,979,634,962,645"/>
+<area shape="poly" title=" " alt="" coords="945,666,1026,683,1120,694,1210,702,1210,707,1119,700,1025,688,944,671"/>
+<area shape="poly" title=" " alt="" coords="975,655,1012,656,1011,661,975,660"/>
+<area shape="rect" href="string_8cpp.html#a313175102214d45434bf045db18dddf0" title=" " alt="" coords="1960,670,2036,695"/>
+<area shape="poly" title=" " alt="" coords="965,641,1025,633,1101,631,1176,633,1402,642,1623,654,1947,676,1946,681,1623,660,1401,648,1176,639,1101,636,1026,639,965,646"/>
+<area shape="poly" title=" " alt="" coords="1176,647,1296,621,1362,601,1425,575,1481,540,1526,503,1530,507,1485,544,1428,580,1364,606,1297,627,1177,652"/>
+<area shape="poly" title=" " alt="" coords="1159,670,1256,692,1255,698,1157,675"/>
+<area shape="rect" href="group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242" title=" " alt="" coords="635,799,758,825"/>
+<area shape="poly" title=" " alt="" coords="537,787,622,799,621,804,537,792"/>
+<area shape="poly" title=" " alt="" coords="705,797,731,757,760,706,773,670,778,639,786,610,809,581,816,575,820,579,813,585,791,613,783,641,778,671,765,708,736,760,709,800"/>
+<area shape="poly" title=" " alt="" coords="704,798,809,630,820,623,823,627,813,634,708,801"/>
+<area shape="rect" href="namespaceconsole.html#a930ef5d4df17680b897abaf7493804ee" title=" " alt="" coords="1232,899,1419,925"/>
+<area shape="poly" title=" " alt="" coords="709,823,749,871,778,897,812,918,871,939,933,951,996,957,1059,956,1175,944,1266,925,1267,931,1176,949,1059,962,996,962,932,956,869,944,810,922,775,902,745,875,705,827"/>
+<area shape="rect" href="namespaceconsole.html#a25dccb21ed5e88a01cd4115e3d4f0a1d" title=" " alt="" coords="831,850,957,875"/>
+<area shape="poly" title=" " alt="" coords="748,822,831,844,830,849,746,827"/>
+<area shape="rect" href="namespaceconsole.html#ae2713614e37ba234a7af6abc42460964" title=" " alt="" coords="1044,901,1157,926"/>
+<area shape="poly" title=" " alt="" coords="714,823,756,856,783,872,812,885,867,901,925,910,1031,914,1030,920,925,915,866,906,810,891,780,877,752,860,710,827"/>
+<area shape="rect" href="namespaceconsole.html#ac9a4491ffd253f985ee17ffd2f222594" title=" " alt="" coords="1035,799,1166,825"/>
+<area shape="poly" title=" " alt="" coords="758,809,1022,809,1022,815,758,815"/>
+<area shape="rect" href="namespaceconsole.html#ab231d521184351a44f099e4b3d7a603a" title=" " alt="" coords="1478,949,1627,974"/>
+<area shape="poly" title=" " alt="" coords="1385,922,1481,943,1479,948,1384,927"/>
+<area shape="rect" href="namespaceserial.html#ad567538c84655cbcba5df0a319e957b4" title="Write a single character to the serial port." alt="" coords="1709,999,1824,1025"/>
+<area shape="poly" title=" " alt="" coords="1347,922,1403,955,1439,971,1475,984,1532,997,1591,1005,1696,1011,1695,1016,1590,1010,1531,1002,1474,989,1437,976,1401,959,1344,927"/>
+<area shape="rect" href="namespaceframebuffer.html#a728cab1f5444849809207cc42e11c43c" title="Write a single character to the framebuffer." alt="" coords="1475,798,1631,823"/>
+<area shape="poly" title=" " alt="" coords="1354,897,1510,827,1512,831,1356,902"/>
+<area shape="rect" href="group__VGA__Output.html#gaad3f0e4b13fe8b1f80046306237373ec" title="Write a single character to the screen." alt="" coords="1715,901,1818,926"/>
+<area shape="poly" title=" " alt="" coords="1419,910,1702,910,1702,916,1419,915"/>
+<area shape="rect" href="namespaceframebuffer.html#ab4b70b2cdacab070608758ff1172d6eb" title=" " alt="" coords="1679,799,1855,825"/>
+<area shape="poly" title=" " alt="" coords="1570,946,1734,831,1737,835,1574,951"/>
+<area shape="rect" href="group__VGA__Core.html#ga0aeab881ec911a09eeb139b3b6caf693" title=" " alt="" coords="1705,950,1828,975"/>
+<area shape="poly" title=" " alt="" coords="1628,959,1691,960,1691,965,1628,964"/>
+<area shape="poly" title=" " alt="" coords="1608,972,1700,994,1699,999,1607,977"/>
+<area shape="rect" href="namespaceframebuffer.html#a2681a63a59fec94a51db029852bae634" title=" " alt="" coords="1903,827,2093,853"/>
+<area shape="poly" title=" " alt="" coords="1855,820,1890,824,1889,829,1855,825"/>
+<area shape="rect" href="namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896" title=" " alt="" coords="1922,741,2074,781"/>
+<area shape="poly" title=" " alt="" coords="1825,797,1908,778,1909,783,1826,802"/>
+<area shape="rect" href="namespacevga.html#abdd0eae02537e3409e2abd61b9002899" title=" " alt="" coords="1933,913,2063,938"/>
+<area shape="poly" title=" " alt="" coords="1828,950,1919,935,1920,941,1829,955"/>
+<area shape="rect" href="namespaceserial.html#a9a09e91f97db90fad1f2a1515c9c7f0a" title=" " alt="" coords="1923,1035,2073,1061"/>
+<area shape="poly" title=" " alt="" coords="1825,1018,1910,1032,1909,1037,1824,1024"/>
+<area shape="rect" href="namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db" title=" " alt="" coords="1951,986,2045,1011"/>
+<area shape="poly" title=" " alt="" coords="1824,1006,1937,999,1937,1005,1825,1011"/>
+<area shape="poly" title=" " alt="" coords="1603,821,1679,835,1787,842,1889,842,1889,847,1787,847,1678,840,1602,826"/>
+<area shape="poly" title=" " alt="" coords="1617,795,1678,785,1798,772,1908,764,1908,769,1799,778,1679,791,1618,801"/>
+<area shape="rect" href="namespaceframebuffer.html#af87642a7e5ab87d050605d434dd2af16" title=" " alt="" coords="1695,698,1838,723"/>
+<area shape="poly" title=" " alt="" coords="1574,796,1678,740,1714,725,1716,730,1680,745,1576,800"/>
+<area shape="poly" title=" " alt="" coords="1773,696,1980,344,1984,346,1778,699"/>
+<area shape="poly" title=" " alt="" coords="1838,699,1946,686,1947,691,1839,705"/>
+<area shape="poly" title=" " alt="" coords="1826,721,1909,739,1908,744,1825,726"/>
+<area shape="poly" title=" " alt="" coords="1818,913,1919,919,1919,924,1818,919"/>
+<area shape="poly" title=" " alt="" coords="957,865,1176,887,1233,895,1233,900,1176,892,957,870"/>
+<area shape="poly" title=" " alt="" coords="947,873,1036,895,1034,900,946,878"/>
+<area shape="poly" title=" " alt="" coords="1157,910,1218,910,1218,915,1157,916"/>
+<area shape="poly" title=" " alt="" coords="1133,822,1177,842,1286,891,1283,896,1175,846,1131,827"/>
 </map>
 </div>
 <div class="dynheader">
@@ -376,8 +491,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a1f15bb2b1389e15957f24f686379f19e" name="a1f15bb2b1389e15957f24f686379f19e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f15bb2b1389e15957f24f686379f19e">&#9670;&#160;</a></span>read()</h2>
+<a id="a412ed2864a0e79dc6b2f92ba0874bedc" name="a412ed2864a0e79dc6b2f92ba0874bedc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a412ed2864a0e79dc6b2f92ba0874bedc">&#9670;&#160;</a></span>read()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -388,7 +503,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static uint32_t ioapic::read </td>
           <td>(</td>
-          <td class="paramtype">uintptr_t&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>base</em>, </td>
         </tr>
         <tr>
@@ -410,20 +525,10 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespaceioapic_a1f15bb2b1389e15957f24f686379f19e_cgraph.png" border="0" usemap="#anamespaceioapic_a1f15bb2b1389e15957f24f686379f19e_cgraph" alt=""/></div>
-<map name="anamespaceioapic_a1f15bb2b1389e15957f24f686379f19e_cgraph" id="anamespaceioapic_a1f15bb2b1389e15957f24f686379f19e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,104,31"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="152,5,199,31"/>
-<area shape="poly" title=" " alt="" coords="104,15,138,15,138,21,104,21"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceioapic_a1f15bb2b1389e15957f24f686379f19e_icgraph.png" border="0" usemap="#anamespaceioapic_a1f15bb2b1389e15957f24f686379f19e_icgraph" alt=""/></div>
-<map name="anamespaceioapic_a1f15bb2b1389e15957f24f686379f19e_icgraph" id="anamespaceioapic_a1f15bb2b1389e15957f24f686379f19e_icgraph">
+<div class="center"><img src="namespaceioapic_a412ed2864a0e79dc6b2f92ba0874bedc_icgraph.png" border="0" usemap="#anamespaceioapic_a412ed2864a0e79dc6b2f92ba0874bedc_icgraph" alt=""/></div>
+<map name="anamespaceioapic_a412ed2864a0e79dc6b2f92ba0874bedc_icgraph" id="anamespaceioapic_a412ed2864a0e79dc6b2f92ba0874bedc_icgraph">
 <area shape="rect" title=" " alt="" coords="439,5,537,31"/>
 <area shape="rect" href="namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e" title=" " alt="" coords="255,5,391,31"/>
 <area shape="poly" title=" " alt="" coords="425,21,391,21,391,15,425,15"/>
@@ -513,10 +618,8 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="namespaceioapic_ac06336108468cf20db5287f12112ace7_cgraph.png" border="0" usemap="#anamespaceioapic_ac06336108468cf20db5287f12112ace7_cgraph" alt=""/></div>
 <map name="anamespaceioapic_ac06336108468cf20db5287f12112ace7_cgraph" id="anamespaceioapic_ac06336108468cf20db5287f12112ace7_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,172,31"/>
-<area shape="rect" href="namespaceioapic.html#a3500fe13ce24c8973d248fe8a408dd7f" title=" " alt="" coords="220,5,323,31"/>
+<area shape="rect" href="namespaceioapic.html#af952a64774441d11306827b26ce5d30e" title=" " alt="" coords="220,5,323,31"/>
 <area shape="poly" title=" " alt="" coords="172,15,206,15,206,21,172,21"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="371,5,417,31"/>
-<area shape="poly" title=" " alt="" coords="323,15,357,15,357,21,323,21"/>
 </map>
 </div>
 <div class="dynheader">
@@ -538,8 +641,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a3500fe13ce24c8973d248fe8a408dd7f" name="a3500fe13ce24c8973d248fe8a408dd7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3500fe13ce24c8973d248fe8a408dd7f">&#9670;&#160;</a></span>write()</h2>
+<a id="af952a64774441d11306827b26ce5d30e" name="af952a64774441d11306827b26ce5d30e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af952a64774441d11306827b26ce5d30e">&#9670;&#160;</a></span>write()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -550,7 +653,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static void ioapic::write </td>
           <td>(</td>
-          <td class="paramtype">uintptr_t&#160;</td>
+          <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>base</em>, </td>
         </tr>
         <tr>
@@ -578,20 +681,10 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="namespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_cgraph.png" border="0" usemap="#anamespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_cgraph" alt=""/></div>
-<map name="anamespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_cgraph" id="anamespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,108,31"/>
-<area shape="rect" href="util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="156,5,203,31"/>
-<area shape="poly" title=" " alt="" coords="108,15,142,15,142,21,108,21"/>
-</map>
-</div>
-<div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="namespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_icgraph.png" border="0" usemap="#anamespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_icgraph" alt=""/></div>
-<map name="anamespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_icgraph" id="anamespaceioapic_a3500fe13ce24c8973d248fe8a408dd7f_icgraph">
+<div class="center"><img src="namespaceioapic_af952a64774441d11306827b26ce5d30e_icgraph.png" border="0" usemap="#anamespaceioapic_af952a64774441d11306827b26ce5d30e_icgraph" alt=""/></div>
+<map name="anamespaceioapic_af952a64774441d11306827b26ce5d30e_icgraph" id="anamespaceioapic_af952a64774441d11306827b26ce5d30e_icgraph">
 <area shape="rect" title=" " alt="" coords="488,31,591,56"/>
 <area shape="rect" href="namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e" title=" " alt="" coords="289,5,425,31"/>
 <area shape="poly" title=" " alt="" coords="474,37,424,30,425,25,475,32"/>

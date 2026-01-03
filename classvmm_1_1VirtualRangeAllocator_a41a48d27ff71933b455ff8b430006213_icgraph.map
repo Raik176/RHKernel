@@ -1,0 +1,17 @@
+<map id="vmm::VirtualRangeAllocator::allocate" name="vmm::VirtualRangeAllocator::allocate">
+<area shape="rect" id="Node000001" title="Reserves a contiguous range of virtual addresses." alt="" coords="689,37,896,77"/>
+<area shape="rect" id="Node000002" href="$namespacemodule__loader.html#a2a75f8fe09dd3604899bf97d174ed3c0" title=" " alt="" coords="116,5,271,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="675,54,271,32,271,27,676,48"/>
+<area shape="rect" id="Node000004" href="$namespacevmm.html#ae75c952b207ad8aea0419bf5414445e3" title=" " alt="" coords="503,70,641,95"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="676,73,642,77,642,72,675,68"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,70,68,95"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="126,53,69,74,67,69,124,48"/>
+<area shape="rect" id="Node000005" href="$namespaceapic.html#a2d3601242fb579c9f5b2cb5711619551" title=" " alt="" coords="347,70,426,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="489,85,426,85,426,80,489,80"/>
+<area shape="rect" id="Node000006" href="$namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e" title=" " alt="" coords="319,119,455,145"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="511,101,436,122,435,117,510,96"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="333,85,68,85,68,80,333,80"/>
+<area shape="rect" id="Node000007" href="$namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6" title=" " alt="" coords="148,121,239,146"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="305,135,239,136,239,130,305,130"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="139,119,67,95,69,90,141,114"/>
+</map>

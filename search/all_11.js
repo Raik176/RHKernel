@@ -36,7 +36,7 @@ var searchData=
   ['rdi_33',['rdi',['../util_8h.html#a5764734a394146dcf093f9295c2fd5b4',1,'rdi:&#160;util.h'],['../structregs.html#a4c7ccfb8cdd9dfe84824cf6c3047d367',1,'regs::rdi']]],
   ['rdmsr_34',['rdmsr',['../namespaceapic.html#a69b6a7b2c886a8962246c659fb4f1d4f',1,'apic']]],
   ['rdx_35',['rdx',['../util_8h.html#a7e87c5e2faab8a404c01084ddeed4588',1,'rdx:&#160;util.h'],['../structregs.html#a060e31d513f60a7b33e02d34861adaba',1,'regs::rdx']]],
-  ['read_36',['read',['../namespacevfs.html#a64e654f19e32dde1603eee7aa9788b76',1,'vfs::read()'],['../namespaceioapic.html#a1f15bb2b1389e15957f24f686379f19e',1,'ioapic::read()'],['../structdevice__ops.html#aec55868c840604578cb14651f7233291',1,'device_ops::read'],['../structvfs_1_1vfs__node.html#a80a1f01521e4b034f6ccad79fabbc2a2',1,'vfs::vfs_node::read']]],
+  ['read_36',['read',['../namespacevfs.html#a64e654f19e32dde1603eee7aa9788b76',1,'vfs::read()'],['../namespaceioapic.html#a412ed2864a0e79dc6b2f92ba0874bedc',1,'ioapic::read()'],['../structdevice__ops.html#aec55868c840604578cb14651f7233291',1,'device_ops::read'],['../structvfs_1_1vfs__node.html#a80a1f01521e4b034f6ccad79fabbc2a2',1,'vfs::vfs_node::read']]],
   ['read_5fline_37',['read_line',['../sh_2src_2init_8cpp.html#aee7f338b84aa87119e8a3d78db9d4e9d',1,'init.cpp']]],
   ['read_5freg_38',['read_reg',['../namespaceapic.html#a006fb50465909cf63a05eb0463403116',1,'apic']]],
   ['ready_39',['READY',['../namespacescheduler.html#a7941237578b7fa1334f4b8260919d677a2baa69eafc7204f3bd8648eba580c489',1,'scheduler']]],

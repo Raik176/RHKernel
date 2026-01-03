@@ -1,5 +1,7 @@
 <map id="vmm::unmap_page" name="vmm::unmap_page">
-<area shape="rect" id="Node000001" title=" " alt="" coords="207,5,355,31"/>
-<area shape="rect" id="Node000002" href="$namespacevmm.html#a3bd18db05e62aec1ee8ba597e9edae70" title=" " alt="" coords="5,5,159,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,21,159,21,159,15,193,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="409,5,557,31"/>
+<area shape="rect" id="Node000002" href="$namespacevmm.html#a3bd18db05e62aec1ee8ba597e9edae70" title=" " alt="" coords="208,5,361,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="395,21,362,21,362,15,395,15"/>
+<area shape="rect" id="Node000003" href="$namespacevmm.html#a3a4101779180ce55eac58e63e283c116" title=" " alt="" coords="5,5,160,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="195,21,160,21,160,15,195,15"/>
 </map>

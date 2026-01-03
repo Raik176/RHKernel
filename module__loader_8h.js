@@ -1,6 +1,5 @@
 var module__loader_8h =
 [
-    [ "module_loader::loaded_module", "structmodule__loader_1_1loaded__module.html", "structmodule__loader_1_1loaded__module" ],
     [ "init", "module__loader_8h.html#a0ba7de39d8b3b3998685b7085da08691", null ],
     [ "is_module_loaded", "module__loader_8h.html#a6ca2f47549e2c8fae40796e3aa57d196", null ],
     [ "list_modules", "module__loader_8h.html#a62be2c26c463b032d629a47dba850919", null ],

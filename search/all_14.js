@@ -12,7 +12,7 @@ var searchData=
   ['update_5fcursor_5fvisual_9',['update_cursor_visual',['../namespaceframebuffer.html#ac1267d185e3ea53cb1152c9297ea1896',1,'framebuffer']]],
   ['update_5fhardware_5fcursor_10',['update_hardware_cursor',['../namespacevga.html#ad3fed93390c077de798afb250e9fcf3d',1,'vga']]],
   ['used_5fslots_11',['used_slots',['../structheap_1_1SlabHeader.html#a65655a7ada199a076b21d5d9d1fcec0f',1,'heap::SlabHeader']]],
-  ['user_12',['user',['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa8f9bfe9d1345237cb3b2b205864da075',1,'vmm::User'],['../namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da2e40ad879e955201df4dedbf8d479a12',1,'scheduler::USER']]],
+  ['user_12',['user',['../namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692da2e40ad879e955201df4dedbf8d479a12',1,'scheduler::USER'],['../namespacevmm.html#a1bddb9e86774ea784d45d60be72a4b9fa8f9bfe9d1345237cb3b2b205864da075',1,'vmm::User']]],
   ['user_5faccess_5fbegin_13',['user_access_begin',['../syscall_8cpp.html#a86955b8b491f4a3d9cf852d64e66a360',1,'syscall.cpp']]],
   ['user_5faccess_5fend_14',['user_access_end',['../syscall_8cpp.html#ab32f62a4b29751fe53351a5d177659a4',1,'syscall.cpp']]],
   ['user_5frsp_15',['user_rsp',['../structsmp_1_1cpu__local.html#a22f64a3682f049182dafced30fbba01f',1,'smp::cpu_local']]],

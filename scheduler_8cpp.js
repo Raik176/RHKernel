@@ -11,7 +11,6 @@ var scheduler_8cpp =
     [ "schedule", "scheduler_8cpp.html#af81478840295e85b0db7161834b2824e", null ],
     [ "sleep", "scheduler_8cpp.html#a5035a7951f80abef56b2a6b752a28d15", null ],
     [ "spawn", "scheduler_8cpp.html#a395f6820b5cdffc27a298872c26a422d", null ],
-    [ "steal_work", "scheduler_8cpp.html#ad2a3525715b7cf529eb7d7338b5fc0f0", null ],
     [ "wait", "scheduler_8cpp.html#a0f6196dfdd69ef3ec2923f5f32bf6baa", null ],
     [ "yield", "scheduler_8cpp.html#a66dc9e6aaa092bd2bbc61ed92bc73a27", null ],
     [ "next_tid", "scheduler_8cpp.html#a3b81b2261dd5d25128bbd76ac80d91f8", null ]

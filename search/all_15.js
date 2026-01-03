@@ -17,9 +17,11 @@ var searchData=
   ['vga_20core_20functions_14',['VGA Core Functions',['../group__VGA__Core.html',1,'']]],
   ['vga_2ecpp_15',['vga.cpp',['../vga_8cpp.html',1,'']]],
   ['vga_2eh_16',['vga.h',['../vga_8h.html',1,'']]],
-  ['vmm_17',['vmm',['../namespacevmm.html',1,'']]],
-  ['vmm_2ecpp_18',['vmm.cpp',['../vmm_8cpp.html',1,'']]],
-  ['vmm_2eh_19',['vmm.h',['../vmm_8h.html',1,'']]],
-  ['vprintf_20',['vprintf',['../group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242',1,'console']]],
-  ['vsnprintf_21',['vsnprintf',['../string_8cpp.html#ac943fec1bf81aeccd3c834d2180cd518',1,'vsnprintf(char *buf, size_t size, const char *fmt, va_list args):&#160;string.cpp'],['../string_8h.html#ac943fec1bf81aeccd3c834d2180cd518',1,'vsnprintf(char *buf, size_t size, const char *fmt, va_list args):&#160;string.cpp']]]
+  ['virt_5faddr_17',['virt_addr',['../structioapic_1_1controller.html#acb942db4c051123526f4ce50995e517b',1,'ioapic::controller']]],
+  ['virtualrangeallocator_18',['virtualrangeallocator',['../classvmm_1_1VirtualRangeAllocator.html#a5b369eec72cf29fda575f5551be305ac',1,'vmm::VirtualRangeAllocator::VirtualRangeAllocator(uint64_t base, uint64_t size)'],['../classvmm_1_1VirtualRangeAllocator.html#a8aa7cb4e34c983c944ac650df4c3583c',1,'vmm::VirtualRangeAllocator::VirtualRangeAllocator(const VirtualRangeAllocator &amp;)=delete'],['../classvmm_1_1VirtualRangeAllocator.html',1,'vmm::VirtualRangeAllocator']]],
+  ['vmm_19',['vmm',['../namespacevmm.html',1,'']]],
+  ['vmm_2ecpp_20',['vmm.cpp',['../vmm_8cpp.html',1,'']]],
+  ['vmm_2eh_21',['vmm.h',['../vmm_8h.html',1,'']]],
+  ['vprintf_22',['vprintf',['../group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242',1,'console']]],
+  ['vsnprintf_23',['vsnprintf',['../string_8cpp.html#ac943fec1bf81aeccd3c834d2180cd518',1,'vsnprintf(char *buf, size_t size, const char *fmt, va_list args):&#160;string.cpp'],['../string_8h.html#ac943fec1bf81aeccd3c834d2180cd518',1,'vsnprintf(char *buf, size_t size, const char *fmt, va_list args):&#160;string.cpp']]]
 ];

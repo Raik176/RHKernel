@@ -1,7 +1,5 @@
 <map id="ioapic::set_redirection" name="ioapic::set_redirection">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,172,31"/>
-<area shape="rect" id="Node000002" href="$namespaceioapic.html#a3500fe13ce24c8973d248fe8a408dd7f" title=" " alt="" coords="220,5,323,31"/>
+<area shape="rect" id="Node000002" href="$namespaceioapic.html#af952a64774441d11306827b26ce5d30e" title=" " alt="" coords="220,5,323,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,15,206,15,206,21,172,21"/>
-<area shape="rect" id="Node000003" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="371,5,417,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="323,15,357,15,357,21,323,21"/>
 </map>

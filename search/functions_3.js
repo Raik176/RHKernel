@@ -6,9 +6,10 @@ var searchData=
   ['clone_3',['clone',['../namespacescheduler.html#a15c8d6e590b87fc2f9a56cb6023e295c',1,'scheduler']]],
   ['clone_5faddress_5fspace_4',['clone_address_space',['../namespacevmm.html#a9864e8c6a3c819647e195d82a8e5dd39',1,'vmm']]],
   ['close_5ffd_5',['close_fd',['../namespacefd__manager.html#a8056fcc545b9535496e0ce775cd0db21',1,'fd_manager']]],
-  ['console_5fdev_5fwrite_6',['console_dev_write',['../device_8cpp.html#aa12e6bd56934676fd60e44a2c75eebbf',1,'device.cpp']]],
-  ['context_5fswitch_7',['context_switch',['../namespacescheduler.html#a95a8d9950abac57dcaa9d00267d51a93',1,'scheduler']]],
-  ['create_5fnode_8',['create_node',['../namespacevfs.html#aa053fadfc707491d7acd89fbe6a90644',1,'vfs']]],
-  ['create_5fslab_9',['create_slab',['../namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92',1,'heap']]],
-  ['create_5fuser_5faddress_5fspace_10',['create_user_address_space',['../namespacevmm.html#abf984d135d39d57e1d30e060634d3d26',1,'vmm']]]
+  ['coalesce_6',['coalesce',['../classvmm_1_1VirtualRangeAllocator.html#a0b52374a482be2161db802f559000686',1,'vmm::VirtualRangeAllocator']]],
+  ['console_5fdev_5fwrite_7',['console_dev_write',['../device_8cpp.html#aa12e6bd56934676fd60e44a2c75eebbf',1,'device.cpp']]],
+  ['context_5fswitch_8',['context_switch',['../namespacescheduler.html#a95a8d9950abac57dcaa9d00267d51a93',1,'scheduler']]],
+  ['create_5fnode_9',['create_node',['../namespacevfs.html#aa053fadfc707491d7acd89fbe6a90644',1,'vfs']]],
+  ['create_5fslab_10',['create_slab',['../namespaceheap.html#a529e144f6a600e93ce7f5c4c1ac66e92',1,'heap']]],
+  ['create_5fuser_5faddress_5fspace_11',['create_user_address_space',['../namespacevmm.html#abf984d135d39d57e1d30e060634d3d26',1,'vmm']]]
 ];

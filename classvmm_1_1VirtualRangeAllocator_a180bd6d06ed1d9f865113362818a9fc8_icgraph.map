@@ -1,0 +1,5 @@
+<map id="vmm::VirtualRangeAllocator::free" name="vmm::VirtualRangeAllocator::free">
+<area shape="rect" id="Node000001" title="Returns a virtual range to the allocator and merges adjacent free blocks." alt="" coords="208,5,415,45"/>
+<area shape="rect" id="Node000002" href="$namespacevmm.html#a3a4101779180ce55eac58e63e283c116" title=" " alt="" coords="5,13,160,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,28,160,28,160,23,194,23"/>
+</map>
