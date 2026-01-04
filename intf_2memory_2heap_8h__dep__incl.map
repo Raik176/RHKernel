@@ -14,7 +14,7 @@
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="2346,30,2678,76,2722,83,2721,89,2677,81,2345,35"/>
 <area shape="rect" id="Node000008" href="$memory_2heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="229,167,413,207"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="2143,24,1449,41,1057,58,894,69,771,81,663,100,557,123,384,169,382,164,556,118,662,94,770,76,894,63,1057,52,1449,35,2143,18"/>
-<area shape="rect" id="Node000009" href="$vmm_8cpp.html" title=" " alt="" coords="437,167,621,207"/>
+<area shape="rect" id="Node000009" href="$memory_2vmm_8cpp.html" title=" " alt="" coords="437,167,621,207"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="2143,24,1544,43,1213,60,1075,70,971,81,865,100,761,123,591,169,590,164,760,118,864,95,970,76,1075,65,1212,54,1544,38,2143,19"/>
 <area shape="rect" id="Node000010" href="$device_8cpp.html" title=" " alt="" coords="2905,79,3084,119"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="2345,23,2595,43,2894,76,2906,78,2905,83,2893,81,2595,48,2345,28"/>

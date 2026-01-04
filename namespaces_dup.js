@@ -83,7 +83,7 @@ var namespaces_dup =
       [ "vprintf", "group__Console__Output.html#gaff623c949c49c4d39babea0339ebb242", null ],
       [ "write", "namespaceconsole.html#ae2713614e37ba234a7af6abc42460964", null ],
       [ "active_backend", "namespaceconsole.html#ae57e81d0aaac0c99a42db59e05380069", null ],
-      [ "console_lock", "namespaceconsole.html#a4c479c9a26d67cbbff44891c1587ee68", null ]
+      [ "console_lock", "namespaceconsole.html#ac3e48b86e0b411ef2f8c5dede539dd5b", null ]
     ] ],
     [ "devfs", "namespacedevfs.html", [
       [ "init", "namespacedevfs.html#a5725979eea2fb2f37a4e4700b9d15fa0", null ]
@@ -106,7 +106,6 @@ var namespaces_dup =
     [ "interrupt_manager", "namespaceinterrupt__manager.html", "namespaceinterrupt__manager" ],
     [ "ioapic", "namespaceioapic.html", "namespaceioapic" ],
     [ "ksym", "namespaceksym.html", "namespaceksym" ],
-    [ "lock", "namespacelock.html", "namespacelock" ],
     [ "module_loader", "namespacemodule__loader.html", [
       [ "init", "namespacemodule__loader.html#a0ba7de39d8b3b3998685b7085da08691", null ],
       [ "is_module_loaded", "namespacemodule__loader.html#a6ca2f47549e2c8fae40796e3aa57d196", null ],

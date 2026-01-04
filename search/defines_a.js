@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['uhci_5ffrbase_0',['UHCI_FRBASE',['../uhci_8c.html#ab45d1cb0dc4766c0723ac96785e65d89',1,'uhci.c']]],
+  ['uhci_5ffrnum_1',['UHCI_FRNUM',['../uhci_8c.html#a8f82c389d39668bf95735b52fa927c93',1,'uhci.c']]],
+  ['uhci_5fportsc1_2',['UHCI_PORTSC1',['../uhci_8c.html#a199e4c919325fe0b1b1424647a0fab0e',1,'uhci.c']]],
+  ['uhci_5fportsc2_3',['UHCI_PORTSC2',['../uhci_8c.html#a700da2ef76a5cc51919220c9c37553e9',1,'uhci.c']]],
+  ['uhci_5fsofmod_4',['UHCI_SOFMOD',['../uhci_8c.html#a38f45b791d1b6ba6180a68e13b878f9c',1,'uhci.c']]],
+  ['uhci_5fusbcmd_5',['UHCI_USBCMD',['../uhci_8c.html#afad48c869e4c338e2d4e4090a4033489',1,'uhci.c']]],
+  ['uhci_5fusbintr_6',['UHCI_USBINTR',['../uhci_8c.html#a6e7957d767f2695d830e8960ee8e1fb5',1,'uhci.c']]],
+  ['uhci_5fusbsts_7',['UHCI_USBSTS',['../uhci_8c.html#ac317ddac78fa3629edd74810b9874402',1,'uhci.c']]],
+  ['usb_5fdesc_5fconfig_8',['USB_DESC_CONFIG',['../usb__core_8h.html#a775e0a079155377ab548153829037272',1,'usb_core.h']]],
+  ['usb_5fdesc_5fdevice_9',['USB_DESC_DEVICE',['../usb__core_8h.html#aefeff68c3a236749d1105d94ed9bad68',1,'usb_core.h']]],
+  ['usb_5fdesc_5fendpoint_10',['USB_DESC_ENDPOINT',['../usb__core_8h.html#a1428ae675c4b17d84b91eda705fe0498',1,'usb_core.h']]],
+  ['usb_5fdesc_5finterface_11',['USB_DESC_INTERFACE',['../usb__core_8h.html#ab98b6a1b7ec1dc4adcbd188c3a38f69f',1,'usb_core.h']]],
+  ['usb_5fdesc_5fstring_12',['USB_DESC_STRING',['../usb__core_8h.html#a6a5678b964f3a9b4ba2f52e9a51bebf5',1,'usb_core.h']]],
+  ['usb_5freq_5fclear_5ffeature_13',['USB_REQ_CLEAR_FEATURE',['../usb__core_8h.html#a43687a0101d3a62f05ffcd6e80cfa7ef',1,'usb_core.h']]],
+  ['usb_5freq_5fget_5fdescriptor_14',['USB_REQ_GET_DESCRIPTOR',['../usb__core_8h.html#ae10a1fd5f65d075c17536fd3f7d8472e',1,'usb_core.h']]],
+  ['usb_5freq_5fget_5fstatus_15',['USB_REQ_GET_STATUS',['../usb__core_8h.html#a9a493ab751c46c46ab88d558e683a323',1,'usb_core.h']]],
+  ['usb_5freq_5fset_5faddress_16',['USB_REQ_SET_ADDRESS',['../usb__core_8h.html#aaca043a771a5d020e91011f458a3d31c',1,'usb_core.h']]],
+  ['usb_5freq_5fset_5fconfig_17',['USB_REQ_SET_CONFIG',['../usb__core_8h.html#a5cc7c50eb68d8f32943f1b05e5b691c3',1,'usb_core.h']]],
+  ['usb_5freq_5fset_5ffeature_18',['USB_REQ_SET_FEATURE',['../usb__core_8h.html#a3661e3551d3dbd0e10debfe058791045',1,'usb_core.h']]]
+];

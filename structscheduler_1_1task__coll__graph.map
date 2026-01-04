@@ -1,13 +1,13 @@
 <map id="scheduler::task" name="scheduler::task">
-<area shape="rect" id="Node000001" title=" " alt="" coords="70,253,191,279"/>
-<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="174,248,204,251,214,256,218,266,212,277,198,283,160,281,160,276,197,278,209,273,213,266,210,260,202,256,174,254"/>
-<area shape="rect" id="Node000002" href="$structregs.html" title="CPU register state structure." alt="" coords="64,127,115,152"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,165,103,190,127,252,123,254,97,191,91,166"/>
-<area shape="rect" id="Node000003" href="$structvfs_1_1open__file.html" title=" " alt="" coords="139,127,248,152"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="184,165,139,254,134,252,179,163"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="58,253,179,279"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="162,248,192,251,202,256,206,266,200,277,186,283,148,281,148,276,185,278,197,273,201,266,198,260,190,256,162,254"/>
+<area shape="rect" id="Node000002" href="$structregs.html" title="CPU register state structure." alt="" coords="52,127,103,152"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,165,91,190,115,252,111,254,85,191,79,166"/>
+<area shape="rect" id="Node000003" href="$structvfs_1_1open__file.html" title=" " alt="" coords="127,127,236,152"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="172,165,127,254,122,252,167,163"/>
 <area shape="rect" id="Node000004" href="$structvfs_1_1vfs__node.html" title=" " alt="" coords="5,22,115,47"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="88,54,180,124,177,129,84,58"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="86,54,169,124,166,128,83,59"/>
 <area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="129,23,138,28,141,35,133,45,115,48,114,43,131,40,136,34,134,31,127,28"/>
-<area shape="rect" id="Node000005" href="$structlock_1_1spinlock.html" title=" " alt="" coords="206,22,317,47"/>
-<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="248,60,203,128,199,125,244,57"/>
+<area shape="rect" id="Node000005" href="$structspinlock.html" title=" " alt="" coords="206,22,282,47"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="232,61,191,128,186,125,227,58"/>
 </map>

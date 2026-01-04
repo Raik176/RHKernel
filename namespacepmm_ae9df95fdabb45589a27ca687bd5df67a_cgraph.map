@@ -1,6 +1,6 @@
 <map id="pmm::free_with_reservation" name="pmm::free_with_reservation">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,80,212,105"/>
-<area shape="poly" id="edge8_Node000001_Node000001" title=" " alt="" coords="74,82,66,72,70,62,85,56,109,53,138,57,150,66,147,70,136,62,109,59,86,61,74,66,71,71,78,78"/>
+<area shape="poly" id="edge9_Node000001_Node000001" title=" " alt="" coords="74,82,66,72,70,62,85,56,109,53,138,57,150,66,147,70,136,62,109,59,86,61,74,66,71,71,78,78"/>
 <area shape="rect" id="Node000002" href="$namespacepmm.html#a0628838d0cee54d119973e09e6131343" title=" " alt="" coords="260,80,387,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,90,246,90,246,95,212,95"/>
 <area shape="rect" id="Node000003" href="$util_8h.html#ab86e3ffa8573baff6320d8ceb3806fc0" title="Align an address downward to the nearest multiple of align" alt="" coords="455,5,551,31"/>
@@ -14,4 +14,6 @@
 <area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="550,153,624,133,626,138,552,159"/>
 <area shape="rect" id="Node000007" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="663,156,709,181"/>
 <area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="572,166,649,166,649,171,572,171"/>
+<area shape="rect" id="Node000008" href="$uhci_8c.html#a22fb3c31719f623dd4c17f4c9f543b02" title=" " alt="" coords="800,156,853,181"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="710,166,787,166,787,171,710,171"/>
 </map>

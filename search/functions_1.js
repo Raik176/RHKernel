@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['acquire_0',['acquire',['../structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7',1,'lock::spinlock']]],
+  ['acpi_5ffind_5ftable_0',['acpi_find_table',['../module_2acpi_8cpp.html#a692d630aabc8c2e8963c70809a76ed7f',1,'acpi_find_table(const char *signature):&#160;acpi.cpp'],['../public_2mod_2acpi_8h.html#aefdc83564bf5fc138abf32f2b318629f',1,'acpi_find_table(const char *signature):&#160;acpi.cpp']]],
   ['add_5fspan_1',['add_span',['../namespacepmm.html#a0628838d0cee54d119973e09e6131343',1,'pmm']]],
   ['align_5fdown_2',['align_down',['../util_8h.html#ab86e3ffa8573baff6320d8ceb3806fc0',1,'util.h']]],
   ['align_5fto_3',['align_to',['../util_8h.html#a8705f403a7977e3ae15cc9d650a8dfc7',1,'util.h']]],
@@ -8,5 +8,6 @@ var searchData=
   ['alloc_5',['alloc',['../namespacepmm.html#ad997679635eceee62746483ab37138b5',1,'pmm']]],
   ['alloc_5ffd_6',['alloc_fd',['../namespacefd__manager.html#a0ae654c52438095e53cdffae57bc5928',1,'fd_manager']]],
   ['allocate_7',['allocate',['../classvmm_1_1VirtualRangeAllocator.html#a41a48d27ff71933b455ff8b430006213',1,'vmm::VirtualRangeAllocator']]],
-  ['ap_5fkernel_5fentry_8',['ap_kernel_entry',['../namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6',1,'smp']]]
+  ['ap_5fkernel_5fentry_8',['ap_kernel_entry',['../namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6',1,'smp']]],
+  ['attempt_5fmatch_9',['attempt_match',['../device_8cpp.html#a8a1d7b880668fced07cabd5ee3fce9bf',1,'device.cpp']]]
 ];

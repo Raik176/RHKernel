@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('scheduler_8cpp.html',''); initResizabl
 <code>#include &quot;<a class="el" href="fd_8h_source.html">file/fd.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="intf_2memory_2heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pmm_8h_source.html">memory/pmm.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="vmm_8h_source.html">memory/vmm.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="intf_2memory_2vmm_8h_source.html">memory/vmm.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="apic_8h_source.html">smp/apic.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="smp_8h_source.html">smp/smp.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
@@ -112,79 +112,81 @@ Include dependency graph for scheduler.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="scheduler_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2smp_2scheduler_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2smp_2scheduler_8cpp" id="asrc_2impl_2x86__64_2smp_2scheduler_8cpp">
-<area shape="rect" title=" " alt="" coords="484,5,641,45"/>
-<area shape="rect" href="scheduler_8h.html" title=" " alt="" coords="245,240,373,265"/>
-<area shape="poly" title=" " alt="" coords="485,46,435,65,411,79,390,95,373,118,354,154,321,228,316,226,349,152,368,115,386,91,408,75,432,61,483,41"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="195,460,288,485"/>
-<area shape="poly" title=" " alt="" coords="484,34,345,48,265,60,188,75,117,94,60,118,38,131,22,146,11,161,8,178,8,327,13,355,25,379,44,400,68,417,125,443,181,459,180,464,123,448,65,422,41,404,21,382,7,357,3,328,3,178,7,159,18,142,35,127,57,113,115,89,186,70,265,55,344,43,484,29"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="831,313,915,339"/>
-<area shape="poly" title=" " alt="" coords="584,44,853,302,849,305,581,48"/>
-<area shape="rect" href="elf_8h.html" title=" " alt="" coords="1077,313,1152,339"/>
-<area shape="poly" title=" " alt="" coords="642,28,734,35,836,47,929,66,965,77,992,91,1018,113,1040,139,1075,196,1098,253,1112,299,1107,300,1093,255,1070,199,1036,142,1014,117,989,96,963,82,928,71,836,53,734,40,641,33"/>
-<area shape="rect" href="pmm_8h.html" title="Physical Memory Manager (PMM) interface." alt="" coords="1051,387,1178,412"/>
-<area shape="poly" title=" " alt="" coords="642,37,744,58,852,88,900,107,939,128,965,151,972,164,975,178,975,254,977,275,985,294,1010,329,1044,357,1078,378,1075,382,1041,361,1007,333,980,297,972,276,969,254,969,178,967,166,961,155,936,132,898,112,851,93,743,63,641,42"/>
-<area shape="rect" href="fd_8h.html" title=" " alt="" coords="401,93,471,119"/>
-<area shape="poly" title=" " alt="" coords="533,48,467,88,465,84,531,43"/>
-<area shape="rect" href="smp_8h.html" title=" " alt="" coords="227,167,322,192"/>
-<area shape="poly" title=" " alt="" coords="485,41,413,61,376,76,343,95,312,124,290,156,286,153,308,121,340,91,374,71,411,56,483,36"/>
-<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="551,313,676,339"/>
-<area shape="poly" title=" " alt="" coords="569,45,612,299,606,300,563,46"/>
-<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="399,313,526,339"/>
-<area shape="poly" title=" " alt="" coords="559,47,473,301,468,299,554,45"/>
-<area shape="rect" href="string_8h.html" title=" " alt="" coords="701,313,771,339"/>
-<area shape="poly" title=" " alt="" coords="576,44,725,300,720,303,571,47"/>
-<area shape="rect" title=" " alt="" coords="445,607,515,632"/>
-<area shape="poly" title=" " alt="" coords="282,268,245,287,204,316,187,333,173,353,163,374,160,398,160,474,162,495,168,513,189,544,221,568,261,586,305,599,350,608,431,615,430,620,349,613,304,604,259,591,219,573,185,548,163,515,157,496,155,474,155,398,158,373,168,350,183,330,201,312,242,283,280,263"/>
-<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="297,313,375,339"/>
-<area shape="poly" title=" " alt="" coords="316,265,329,300,324,302,311,267"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="309,387,363,412"/>
-<area shape="poly" title=" " alt="" coords="303,267,287,300,284,319,287,338,298,358,313,376,309,379,294,361,281,340,278,319,282,298,299,265"/>
-<area shape="rect" href="lock_8h.html" title=" " alt="" coords="400,387,493,412"/>
-<area shape="poly" title=" " alt="" coords="355,336,418,377,415,381,352,341"/>
-<area shape="poly" title=" " alt="" coords="339,339,339,373,333,373,333,339"/>
-<area shape="poly" title=" " alt="" coords="451,412,479,593,474,593,446,413"/>
-<area shape="poly" title=" " alt="" coords="346,411,467,593,462,596,342,414"/>
-<area shape="rect" title=" " alt="" coords="621,460,696,485"/>
-<area shape="poly" title=" " alt="" coords="364,404,608,458,607,463,363,409"/>
-<area shape="rect" href="portio_8h.html" title=" " alt="" coords="320,533,392,559"/>
-<area shape="poly" title=" " alt="" coords="340,412,355,519,350,520,335,413"/>
-<area shape="poly" title=" " alt="" coords="322,414,269,454,266,449,319,410"/>
-<area shape="poly" title=" " alt="" coords="377,556,449,597,447,602,375,561"/>
-<area shape="poly" title=" " alt="" coords="238,487,228,521,228,540,235,557,248,567,266,577,317,592,431,611,431,616,316,597,264,582,245,572,231,560,223,541,223,521,233,485"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="245,533,296,559"/>
-<area shape="poly" title=" " alt="" coords="249,485,263,520,258,522,244,487"/>
-<area shape="poly" title=" " alt="" coords="297,553,434,600,432,605,295,559"/>
-<area shape="poly" title=" " alt="" coords="274,532,298,484,324,424,329,426,302,486,279,534"/>
-<area shape="poly" title=" " alt="" coords="917,336,947,348,975,365,992,386,994,399,990,413,972,444,950,471,925,496,897,517,835,553,768,579,701,598,636,610,529,620,529,615,635,604,699,592,767,574,833,548,894,513,921,492,946,468,968,441,986,411,989,399,987,388,972,369,945,353,915,341"/>
-<area shape="rect" title=" " alt="" coords="771,387,845,412"/>
-<area shape="poly" title=" " alt="" coords="865,341,830,378,826,375,861,337"/>
-<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="870,387,975,412"/>
-<area shape="poly" title=" " alt="" coords="884,337,909,374,905,377,879,341"/>
-<area shape="poly" title=" " alt="" coords="916,414,854,484,807,526,753,561,696,585,635,602,578,612,529,618,529,612,577,607,634,596,694,580,751,556,803,522,850,480,912,411"/>
-<area shape="poly" title=" " alt="" coords="881,415,710,460,709,455,880,409"/>
-<area shape="poly" title=" " alt="" coords="1141,337,1169,356,1183,370,1193,386,1197,399,1193,413,1171,465,1146,503,1112,533,1064,561,1019,577,958,590,808,608,652,617,529,620,529,615,652,612,807,603,957,585,1018,572,1062,556,1109,528,1142,499,1166,462,1188,411,1191,399,1188,388,1179,373,1166,360,1138,341"/>
-<area shape="poly" title=" " alt="" coords="1117,339,1117,373,1112,373,1112,339"/>
-<area shape="poly" title=" " alt="" coords="1115,413,1107,444,1092,484,1068,526,1052,545,1033,561,993,580,936,594,869,605,795,612,647,620,529,621,529,616,647,614,795,607,868,599,935,589,991,575,1031,556,1048,541,1064,523,1087,482,1102,442,1110,412"/>
-<area shape="poly" title=" " alt="" coords="1052,413,710,466,709,461,1051,408"/>
-<area shape="poly" title=" " alt="" coords="432,120,411,154,381,194,338,233,334,229,377,190,406,151,427,118"/>
-<area shape="poly" title=" " alt="" coords="436,120,421,184,406,226,388,267,360,305,355,301,383,264,401,224,415,183,431,118"/>
-<area shape="poly" title=" " alt="" coords="411,121,315,163,312,159,409,116"/>
-<area shape="poly" title=" " alt="" coords="283,191,300,226,295,229,278,194"/>
-<area shape="poly" title=" " alt="" coords="242,195,201,213,157,241,138,259,123,278,113,300,109,325,109,474,114,503,127,523,148,540,176,556,207,573,240,586,309,604,375,613,431,616,431,621,375,618,308,609,239,591,205,578,173,561,145,544,123,527,109,505,104,474,104,324,108,299,118,276,134,255,154,237,198,209,240,190"/>
-<area shape="poly" title=" " alt="" coords="265,194,249,215,236,241,234,253,236,265,249,298,269,328,313,376,309,379,265,332,245,300,231,266,228,253,231,239,245,212,261,191"/>
-<area shape="rect" href="gdt_8h.html" title=" " alt="" coords="14,533,69,559"/>
-<area shape="poly" title=" " alt="" coords="228,187,194,193,157,203,121,219,90,242,73,261,64,279,60,299,59,325,59,401,55,465,48,520,43,519,50,465,53,401,53,325,54,298,59,277,68,258,86,238,119,215,155,198,193,188,227,182"/>
-<area shape="poly" title=" " alt="" coords="303,190,575,306,573,310,301,195"/>
-<area shape="poly" title=" " alt="" coords="69,552,89,556,278,588,431,609,430,615,277,593,87,561,68,557"/>
-<area shape="poly" title=" " alt="" coords="612,340,581,433,556,497,525,560,500,597,496,594,520,557,551,494,576,431,607,338"/>
-<area shape="poly" title=" " alt="" coords="588,341,487,384,485,379,586,336"/>
-<area shape="poly" title=" " alt="" coords="620,338,653,446,648,448,614,340"/>
-<area shape="poly" title=" " alt="" coords="476,337,494,358,508,386,515,414,517,444,514,502,504,554,492,594,487,593,499,553,509,501,512,444,509,415,503,388,489,361,472,340"/>
-<area shape="poly" title=" " alt="" coords="463,340,455,374,450,373,457,338"/>
-<area shape="poly" title=" " alt="" coords="444,341,370,382,367,377,441,336"/>
-<area shape="poly" title=" " alt="" coords="740,339,741,367,738,406,729,448,710,487,671,530,623,563,574,589,529,606,527,601,571,584,620,559,667,526,706,484,724,446,733,405,735,367,734,339"/>
-<area shape="poly" title=" " alt="" coords="732,340,674,449,669,447,727,338"/>
-<area shape="poly" title=" " alt="" coords="750,337,788,375,785,379,746,341"/>
+<area shape="rect" title=" " alt="" coords="582,5,739,45"/>
+<area shape="rect" href="scheduler_8h.html" title=" " alt="" coords="343,240,471,265"/>
+<area shape="poly" title=" " alt="" coords="641,47,433,232,429,228,638,43"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="205,460,298,485"/>
+<area shape="poly" title=" " alt="" coords="582,33,473,47,410,62,346,82,284,109,227,144,178,188,157,213,139,241,129,270,130,299,138,328,152,357,190,409,229,449,225,452,186,413,147,360,133,330,124,300,124,269,134,239,152,210,174,184,224,139,282,104,344,77,409,56,472,42,581,27"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="947,313,1031,339"/>
+<area shape="poly" title=" " alt="" coords="683,44,968,302,964,306,680,48"/>
+<area shape="rect" href="elf_8h.html" title=" " alt="" coords="1189,313,1263,339"/>
+<area shape="poly" title=" " alt="" coords="739,26,842,31,957,43,1061,62,1102,75,1132,91,1155,113,1174,139,1202,197,1218,254,1226,299,1221,300,1213,255,1197,199,1170,142,1151,117,1128,95,1100,80,1060,67,956,48,841,37,739,31"/>
+<area shape="rect" href="pmm_8h.html" title="Physical Memory Manager (PMM) interface." alt="" coords="1163,387,1289,412"/>
+<area shape="poly" title=" " alt="" coords="740,34,853,53,975,83,1029,102,1073,124,1103,149,1111,163,1114,178,1114,254,1116,273,1122,292,1143,326,1170,354,1198,376,1194,381,1167,358,1139,329,1117,294,1111,275,1109,254,1109,178,1106,165,1099,152,1070,128,1027,107,973,88,852,58,739,39"/>
+<area shape="rect" href="fd_8h.html" title=" " alt="" coords="400,93,471,119"/>
+<area shape="poly" title=" " alt="" coords="608,48,482,91,480,86,606,43"/>
+<area shape="rect" href="smp_8h.html" title=" " alt="" coords="303,167,397,192"/>
+<area shape="poly" title=" " alt="" coords="582,30,534,36,483,48,433,67,389,95,377,108,369,123,357,154,352,152,364,121,373,105,386,91,431,62,482,43,533,31,581,25"/>
+<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="649,313,774,339"/>
+<area shape="poly" title=" " alt="" coords="667,45,710,299,704,300,661,46"/>
+<area shape="rect" href="intf_2memory_2vmm_8h.html" title=" " alt="" coords="497,313,624,339"/>
+<area shape="poly" title=" " alt="" coords="657,47,571,301,566,299,652,45"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="805,313,876,339"/>
+<area shape="poly" title=" " alt="" coords="674,44,829,300,824,303,670,47"/>
+<area shape="rect" title=" " alt="" coords="497,607,568,632"/>
+<area shape="poly" title=" " alt="" coords="344,267,286,282,230,308,206,326,187,346,174,370,170,398,170,474,172,492,178,506,186,517,198,526,264,556,321,579,380,596,484,612,483,617,379,601,319,584,262,561,195,530,182,521,173,509,167,494,165,474,165,398,169,368,183,343,202,322,227,304,285,277,342,262"/>
+<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="395,313,473,339"/>
+<area shape="poly" title=" " alt="" coords="414,265,427,300,422,302,409,267"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="359,387,413,412"/>
+<area shape="poly" title=" " alt="" coords="403,267,393,288,385,314,382,344,384,373,379,373,377,344,379,313,388,286,398,264"/>
+<area shape="rect" href="lock_8h.html" title=" " alt="" coords="511,387,605,412"/>
+<area shape="poly" title=" " alt="" coords="455,336,527,377,525,382,453,341"/>
+<area shape="poly" title=" " alt="" coords="428,341,404,377,399,374,424,338"/>
+<area shape="poly" title=" " alt="" coords="547,414,529,435,515,461,509,496,511,532,526,593,521,595,505,533,504,496,510,459,525,432,543,411"/>
+<area shape="rect" title=" " alt="" coords="525,460,607,485"/>
+<area shape="poly" title=" " alt="" coords="562,412,566,446,561,447,557,413"/>
+<area shape="poly" title=" " alt="" coords="387,413,385,441,387,479,395,520,414,557,428,573,446,586,485,604,483,608,443,590,425,577,409,560,390,522,382,479,380,441,382,412"/>
+<area shape="rect" title=" " alt="" coords="733,460,807,485"/>
+<area shape="poly" title=" " alt="" coords="414,403,719,459,718,465,413,408"/>
+<area shape="rect" href="portio_8h.html" title=" " alt="" coords="423,533,495,559"/>
+<area shape="poly" title=" " alt="" coords="394,411,450,520,445,522,390,414"/>
+<area shape="poly" title=" " alt="" coords="366,414,287,456,284,451,363,410"/>
+<area shape="poly" title=" " alt="" coords="473,557,513,595,509,599,470,561"/>
+<area shape="poly" title=" " alt="" coords="255,485,265,521,274,540,288,557,310,573,334,586,386,603,438,613,484,616,484,621,437,618,385,609,332,590,307,577,284,561,270,543,260,523,250,486"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="298,533,349,559"/>
+<area shape="poly" title=" " alt="" coords="265,484,304,522,300,526,261,488"/>
+<area shape="poly" title=" " alt="" coords="350,553,487,600,485,605,348,559"/>
+<area shape="poly" title=" " alt="" coords="326,532,373,424,378,426,331,534"/>
+<area shape="poly" title=" " alt="" coords="1030,336,1060,348,1087,365,1104,386,1106,399,1102,413,1083,446,1064,472,1043,492,1021,508,969,534,902,561,816,589,728,607,647,616,582,620,582,615,647,611,728,601,815,584,900,556,966,529,1018,504,1040,488,1060,469,1079,443,1097,411,1100,399,1099,389,1083,369,1057,353,1028,341"/>
+<area shape="rect" title=" " alt="" coords="882,387,957,412"/>
+<area shape="poly" title=" " alt="" coords="979,341,942,379,938,375,975,337"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="981,387,1087,412"/>
+<area shape="poly" title=" " alt="" coords="998,338,1022,374,1017,377,994,340"/>
+<area shape="poly" title=" " alt="" coords="1028,414,1003,444,966,485,919,526,865,561,791,589,714,607,641,617,582,620,582,615,641,611,713,602,789,584,862,556,915,522,962,481,999,441,1023,410"/>
+<area shape="poly" title=" " alt="" coords="992,415,822,460,820,455,991,409"/>
+<area shape="poly" title=" " alt="" coords="1252,337,1281,356,1294,370,1304,386,1308,399,1305,413,1283,465,1258,503,1225,533,1176,561,1126,579,1058,593,977,603,889,611,715,619,582,621,582,615,715,614,889,606,976,598,1057,588,1125,574,1174,556,1222,528,1254,499,1278,462,1299,411,1303,399,1300,388,1290,373,1277,360,1249,341"/>
+<area shape="poly" title=" " alt="" coords="1229,339,1229,373,1223,373,1223,339"/>
+<area shape="poly" title=" " alt="" coords="1226,413,1219,444,1203,485,1180,527,1164,545,1145,561,1112,572,1056,582,897,599,582,619,582,613,897,594,1055,577,1111,567,1142,556,1160,541,1175,523,1199,482,1213,442,1221,412"/>
+<area shape="poly" title=" " alt="" coords="1163,413,821,466,820,461,1162,408"/>
+<area shape="poly" title=" " alt="" coords="436,120,415,227,410,226,430,119"/>
+<area shape="poly" title=" " alt="" coords="446,118,463,144,480,181,491,223,491,245,486,266,474,288,460,306,455,302,470,285,481,264,485,244,485,224,475,183,458,147,442,120"/>
+<area shape="poly" title=" " alt="" coords="423,121,376,160,373,156,420,117"/>
+<area shape="poly" title=" " alt="" coords="362,191,391,227,387,231,357,194"/>
+<area shape="poly" title=" " alt="" coords="303,191,245,206,185,232,159,249,138,270,124,295,119,325,119,474,121,492,126,505,144,525,171,540,204,556,277,585,353,603,424,612,484,615,483,621,424,617,352,608,275,590,202,561,168,545,140,529,121,508,116,493,114,474,114,324,119,294,134,267,156,245,183,227,244,201,302,186"/>
+<area shape="poly" title=" " alt="" coords="347,193,336,226,333,245,334,265,353,324,375,373,371,376,348,326,329,266,328,245,331,224,342,191"/>
+<area shape="rect" href="gdt_8h.html" title=" " alt="" coords="5,533,60,559"/>
+<area shape="poly" title=" " alt="" coords="303,188,187,208,134,223,114,232,100,242,75,273,57,309,44,348,36,388,30,463,33,520,27,520,25,463,31,387,39,347,52,307,71,271,96,238,111,227,132,218,186,203,302,183"/>
+<area shape="poly" title=" " alt="" coords="380,190,671,306,669,311,378,195"/>
+<area shape="poly" title=" " alt="" coords="61,550,98,556,484,609,483,615,98,561,60,555"/>
+<area shape="poly" title=" " alt="" coords="711,340,700,379,680,436,651,500,612,560,590,583,566,601,563,597,586,579,608,557,646,497,675,434,695,377,706,338"/>
+<area shape="poly" title=" " alt="" coords="688,341,596,383,594,378,686,336"/>
+<area shape="poly" title=" " alt="" coords="719,338,763,446,758,448,714,340"/>
+<area shape="poly" title=" " alt="" coords="579,337,601,358,619,385,629,413,632,435,629,458,622,486,609,519,591,549,555,598,550,595,587,547,604,516,617,484,624,457,626,435,623,414,614,388,597,361,575,341"/>
+<area shape="poly" title=" " alt="" coords="563,339,562,373,556,373,558,339"/>
+<area shape="poly" title=" " alt="" coords="534,341,427,384,425,379,532,336"/>
+<area shape="poly" title=" " alt="" coords="845,339,848,367,848,406,840,448,822,487,797,514,769,538,704,574,639,599,582,613,581,608,637,594,702,570,766,534,793,511,817,484,835,447,842,406,843,368,840,339"/>
+<area shape="poly" title=" " alt="" coords="837,340,784,449,779,446,832,338"/>
+<area shape="poly" title=" " alt="" coords="855,337,898,376,895,379,852,341"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -195,36 +197,36 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afe3f2e5da9c1007bad54ba98727bd670" id="r_afe3f2e5da9c1007bad54ba98727bd670"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#afe3f2e5da9c1007bad54ba98727bd670">scheduler::fxsave_task</a> (<a class="el" href="structscheduler_1_1task.html">task</a> *t)</td></tr>
+<tr class="memitem:afe3f2e5da9c1007bad54ba98727bd670" id="r_afe3f2e5da9c1007bad54ba98727bd670"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#afe3f2e5da9c1007bad54ba98727bd670">scheduler::fxsave_task</a> (<a class="el" href="structscheduler_1_1task.html">task</a> *<a class="el" href="structbus.html">t</a>)</td></tr>
 <tr class="separator:afe3f2e5da9c1007bad54ba98727bd670"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a772b46f4cd9109f2e634ccc9963a5115" id="r_a772b46f4cd9109f2e634ccc9963a5115"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a772b46f4cd9109f2e634ccc9963a5115">scheduler::fxrstor_task</a> (<a class="el" href="structscheduler_1_1task.html">task</a> *t)</td></tr>
+<tr class="memitem:a772b46f4cd9109f2e634ccc9963a5115" id="r_a772b46f4cd9109f2e634ccc9963a5115"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a772b46f4cd9109f2e634ccc9963a5115">scheduler::fxrstor_task</a> (<a class="el" href="structscheduler_1_1task.html">task</a> *<a class="el" href="structbus.html">t</a>)</td></tr>
 <tr class="separator:a772b46f4cd9109f2e634ccc9963a5115"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c8eb5d332fae9fb49045a7c5d92958e" id="r_a1c8eb5d332fae9fb49045a7c5d92958e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e">scheduler::enqueue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *<a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>, <a class="el" href="structscheduler_1_1task.html">task</a> *t)</td></tr>
+<tr class="memitem:a1c8eb5d332fae9fb49045a7c5d92958e" id="r_a1c8eb5d332fae9fb49045a7c5d92958e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a1c8eb5d332fae9fb49045a7c5d92958e">scheduler::enqueue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *<a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>, <a class="el" href="structscheduler_1_1task.html">task</a> *<a class="el" href="structbus.html">t</a>)</td></tr>
 <tr class="separator:a1c8eb5d332fae9fb49045a7c5d92958e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af80679e4c6adb09b59ba82a269a6f462" id="r_af80679e4c6adb09b59ba82a269a6f462"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#af80679e4c6adb09b59ba82a269a6f462">scheduler::dequeue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *<a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>)</td></tr>
+<tr class="memitem:af80679e4c6adb09b59ba82a269a6f462" id="r_af80679e4c6adb09b59ba82a269a6f462"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#af80679e4c6adb09b59ba82a269a6f462">scheduler::dequeue</a> (<a class="el" href="structsmp_1_1cpu__local.html">smp::cpu_local</a> *<a class="el" href="util_8cpp.html#a199761f771909df5a54ea4f3d1152272">cpu</a>)</td></tr>
 <tr class="separator:af80679e4c6adb09b59ba82a269a6f462"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a665b76d95eb85bbe7bc2357b3d468e70" id="r_a665b76d95eb85bbe7bc2357b3d468e70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70">scheduler::init_core</a> ()</td></tr>
+<tr class="memitem:a665b76d95eb85bbe7bc2357b3d468e70" id="r_a665b76d95eb85bbe7bc2357b3d468e70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a665b76d95eb85bbe7bc2357b3d468e70">scheduler::init_core</a> ()</td></tr>
 <tr class="separator:a665b76d95eb85bbe7bc2357b3d468e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a395f6820b5cdffc27a298872c26a422d" id="r_a395f6820b5cdffc27a298872c26a422d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d">scheduler::spawn</a> (<a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a> <a class="el" href="acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03">type</a>, void(*<a class="el" href="smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e">entry_point</a>)(), uint64_t pml4)</td></tr>
+<tr class="memitem:a395f6820b5cdffc27a298872c26a422d" id="r_a395f6820b5cdffc27a298872c26a422d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structscheduler_1_1task.html">task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a395f6820b5cdffc27a298872c26a422d">scheduler::spawn</a> (<a class="el" href="namespacescheduler.html#ae3433b43c091f3d97e093d1f8399692d">task_type</a> <a class="el" href="acpi_8cpp.html#ad44b615021ed3ccb734fcaf583ef4a03">type</a>, <a class="el" href="structbus.html">void</a>(*<a class="el" href="smp_8h.html#a35d57ee52cfc94a5917e5eee45debc3e">entry_point</a>)(), <a class="el" href="structbus.html">uint64_t</a> pml4)</td></tr>
 <tr class="separator:a395f6820b5cdffc27a298872c26a422d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15c8d6e590b87fc2f9a56cb6023e295c" id="r_a15c8d6e590b87fc2f9a56cb6023e295c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a15c8d6e590b87fc2f9a56cb6023e295c">scheduler::clone</a> (uint64_t <a class="el" href="acpi_8h.html#a899a76dc5f03f0d4ea3793c339e07ee9">flags</a>, void *child_stack, <a class="el" href="structregs.html">regs</a> *current_regs)</td></tr>
+<tr class="memitem:a15c8d6e590b87fc2f9a56cb6023e295c" id="r_a15c8d6e590b87fc2f9a56cb6023e295c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a15c8d6e590b87fc2f9a56cb6023e295c">scheduler::clone</a> (<a class="el" href="structbus.html">uint64_t</a> <a class="el" href="elf_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>, <a class="el" href="structbus.html">void</a> *<a class="el" href="structbus.html">child_stack</a>, <a class="el" href="structregs.html">regs</a> *<a class="el" href="structbus.html">current_regs</a>)</td></tr>
 <tr class="separator:a15c8d6e590b87fc2f9a56cb6023e295c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23a80ac131fba973fd072ce8682bb34b" id="r_a23a80ac131fba973fd072ce8682bb34b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a23a80ac131fba973fd072ce8682bb34b">scheduler::exec</a> (const char *path, char **argv)</td></tr>
+<tr class="memitem:a23a80ac131fba973fd072ce8682bb34b" id="r_a23a80ac131fba973fd072ce8682bb34b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a23a80ac131fba973fd072ce8682bb34b">scheduler::exec</a> (<a class="el" href="structbus.html">const</a> <a class="el" href="structbus.html">char</a> *<a class="el" href="structbus.html">path</a>, <a class="el" href="structbus.html">char</a> **<a class="el" href="structbus.html">argv</a>)</td></tr>
 <tr class="separator:a23a80ac131fba973fd072ce8682bb34b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af81478840295e85b0db7161834b2824e" id="r_af81478840295e85b0db7161834b2824e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#af81478840295e85b0db7161834b2824e">scheduler::schedule</a> (<a class="el" href="structregs.html">regs</a> *current_state, bool is_timer_tick)</td></tr>
+<tr class="memitem:af81478840295e85b0db7161834b2824e" id="r_af81478840295e85b0db7161834b2824e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#af81478840295e85b0db7161834b2824e">scheduler::schedule</a> (<a class="el" href="structregs.html">regs</a> *<a class="el" href="structbus.html">current_state</a>, <a class="el" href="structbus.html">bool</a> <a class="el" href="structbus.html">is_timer_tick</a>)</td></tr>
 <tr class="separator:af81478840295e85b0db7161834b2824e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66dc9e6aaa092bd2bbc61ed92bc73a27" id="r_a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27">scheduler::yield</a> ()</td></tr>
+<tr class="memitem:a66dc9e6aaa092bd2bbc61ed92bc73a27" id="r_a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a66dc9e6aaa092bd2bbc61ed92bc73a27">scheduler::yield</a> ()</td></tr>
 <tr class="separator:a66dc9e6aaa092bd2bbc61ed92bc73a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5035a7951f80abef56b2a6b752a28d15" id="r_a5035a7951f80abef56b2a6b752a28d15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15">scheduler::sleep</a> (uint64_t ticks)</td></tr>
+<tr class="memitem:a5035a7951f80abef56b2a6b752a28d15" id="r_a5035a7951f80abef56b2a6b752a28d15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a5035a7951f80abef56b2a6b752a28d15">scheduler::sleep</a> (<a class="el" href="structbus.html">uint64_t</a> ticks)</td></tr>
 <tr class="separator:a5035a7951f80abef56b2a6b752a28d15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74d2c4d5395bd616755c95fe0162e826" id="r_a74d2c4d5395bd616755c95fe0162e826"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a74d2c4d5395bd616755c95fe0162e826">scheduler::exit</a> (int code)</td></tr>
+<tr class="memitem:a74d2c4d5395bd616755c95fe0162e826" id="r_a74d2c4d5395bd616755c95fe0162e826"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a74d2c4d5395bd616755c95fe0162e826">scheduler::exit</a> (<a class="el" href="structbus.html">int</a> <a class="el" href="structbus.html">code</a>)</td></tr>
 <tr class="separator:a74d2c4d5395bd616755c95fe0162e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f6196dfdd69ef3ec2923f5f32bf6baa" id="r_a0f6196dfdd69ef3ec2923f5f32bf6baa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a0f6196dfdd69ef3ec2923f5f32bf6baa">scheduler::wait</a> (int *<a class="el" href="smp_8h.html#a2cb8d8b14d36ed72551cc08b583f4215">status</a>)</td></tr>
+<tr class="memitem:a0f6196dfdd69ef3ec2923f5f32bf6baa" id="r_a0f6196dfdd69ef3ec2923f5f32bf6baa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a0f6196dfdd69ef3ec2923f5f32bf6baa">scheduler::wait</a> (<a class="el" href="structbus.html">int</a> *<a class="el" href="smp_8h.html#a2cb8d8b14d36ed72551cc08b583f4215">status</a>)</td></tr>
 <tr class="separator:a0f6196dfdd69ef3ec2923f5f32bf6baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a3b81b2261dd5d25128bbd76ac80d91f8" id="r_a3b81b2261dd5d25128bbd76ac80d91f8"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3b81b2261dd5d25128bbd76ac80d91f8">scheduler::next_tid</a> = 1</td></tr>
+<tr class="memitem:a3b81b2261dd5d25128bbd76ac80d91f8" id="r_a3b81b2261dd5d25128bbd76ac80d91f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacescheduler.html#a3b81b2261dd5d25128bbd76ac80d91f8">scheduler::next_tid</a> = 1</td></tr>
 <tr class="separator:a3b81b2261dd5d25128bbd76ac80d91f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

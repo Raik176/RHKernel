@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['device_5finstance_0',['device_instance',['../structdevice__instance.html',1,'']]],
-  ['device_5fops_1',['device_ops',['../structdevice__ops.html',1,'']]],
-  ['dynamic_5fsymbol_2',['dynamic_symbol',['../structksym_1_1dynamic__symbol.html',1,'ksym']]]
+  ['controller_0',['controller',['../structioapic_1_1controller.html',1,'ioapic']]],
+  ['cpio_5fnewc_5fheader_1',['cpio_newc_header',['../structcpio__newc__header.html',1,'']]],
+  ['cpu_5ffeatures_2',['cpu_features',['../structcpu__features.html',1,'']]],
+  ['cpu_5flocal_3',['cpu_local',['../structsmp_1_1cpu__local.html',1,'smp']]]
 ];

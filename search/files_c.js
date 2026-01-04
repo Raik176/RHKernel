@@ -9,5 +9,6 @@ var searchData=
   ['string_2ecpp_6',['string.cpp',['../string_8cpp.html',1,'']]],
   ['string_2eh_7',['string.h',['../string_8h.html',1,'']]],
   ['symbol_2eh_8',['symbol.h',['../symbol_8h.html',1,'']]],
-  ['syscall_2ecpp_9',['syscall.cpp',['../syscall_8cpp.html',1,'']]]
+  ['syscall_2ecpp_9',['syscall.cpp',['../syscall_8cpp.html',1,'']]],
+  ['syscalls_2ec_10',['syscalls.c',['../syscalls_8c.html',1,'']]]
 ];

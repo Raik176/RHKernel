@@ -1,7 +1,17 @@
 <map id="src/public/mod/device.h" name="src/public/mod/device.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="103,5,279,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="384,5,560,31"/>
 <area shape="rect" id="Node000002" href="$device_8cpp.html" title=" " alt="" coords="5,79,184,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,41,120,81,116,76,164,37"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="404,36,185,81,184,76,403,31"/>
 <area shape="rect" id="Node000003" href="$kbd__core_8c.html" title=" " alt="" coords="208,79,365,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,37,265,76,262,81,214,41"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="434,38,332,81,330,76,432,33"/>
+<area shape="rect" id="Node000004" href="$pci__bridge_8c.html" title=" " alt="" coords="389,79,555,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="475,44,475,79,469,79,469,44"/>
+<area shape="rect" id="Node000005" href="$pci__bus_8c.html" title=" " alt="" coords="579,79,725,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="512,34,610,76,608,81,510,39"/>
+<area shape="rect" id="Node000006" href="$usb__core_8h.html" title=" " alt="" coords="750,79,906,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="537,31,750,78,749,83,536,36"/>
+<area shape="rect" id="Node000007" href="$uhci_8c.html" title=" " alt="" coords="666,167,814,207"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="800,130,761,168,758,165,797,127"/>
+<area shape="rect" id="Node000008" href="$usb__core_8c.html" title=" " alt="" coords="838,167,994,207"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="859,127,898,165,895,168,856,130"/>
 </map>

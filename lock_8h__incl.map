@@ -1,5 +1,7 @@
-<map id="src/intf/smp/lock.h" name="src/intf/smp/lock.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,148,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="41,79,112,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,31,79,65,74,65,74,31"/>
+<map id="src/public/smp/lock.h" name="src/public/smp/lock.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="18,5,177,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,88,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,33,65,69,61,66,87,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="113,79,183,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,29,134,66,130,69,104,33"/>
 </map>

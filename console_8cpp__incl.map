@@ -1,24 +1,26 @@
 <map id="src/impl/x86_64/console.cpp" name="src/impl/x86_64/console.cpp">
-<area shape="rect" id="Node000001" title="Implementation of kernel console abstraction." alt="" coords="233,5,439,31"/>
-<area shape="rect" id="Node000002" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="101,79,185,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="306,33,188,76,186,71,304,28"/>
-<area shape="rect" id="Node000007" href="$framebuffer_8h.html" title=" " alt="" coords="234,79,345,104"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="331,32,307,69,302,66,326,30"/>
-<area shape="rect" id="Node000008" href="$lock_8h.html" title=" " alt="" coords="336,152,429,177"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="342,30,359,78,378,138,373,140,353,79,337,32"/>
-<area shape="rect" id="Node000009" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="428,79,487,104"/>
-<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="357,28,427,69,425,74,354,33"/>
+<area shape="rect" id="Node000001" title="Implementation of kernel console abstraction." alt="" coords="215,5,422,31"/>
+<area shape="rect" id="Node000002" href="$console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="93,79,177,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="290,33,179,76,177,71,288,28"/>
+<area shape="rect" id="Node000007" href="$framebuffer_8h.html" title=" " alt="" coords="217,79,327,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="313,32,289,69,285,66,309,30"/>
+<area shape="rect" id="Node000008" href="$lock_8h.html" title=" " alt="" coords="413,79,507,104"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="343,28,426,70,424,75,340,33"/>
+<area shape="rect" id="Node000010" href="$vga_8h.html" title="VGA text&#45;mode driver for the kernel." alt="" coords="336,152,395,177"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="325,30,341,78,360,138,355,140,336,79,320,32"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,152,80,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="128,106,72,146,69,142,125,102"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="122,106,70,146,67,141,118,102"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="267,225,338,251"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="141,105,136,139,138,158,145,176,161,189,188,202,255,223,253,228,186,207,158,193,141,179,132,160,130,139,136,104"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="135,105,133,139,136,159,145,176,162,189,189,201,255,222,253,227,187,206,159,193,141,179,131,160,127,140,130,104"/>
 <area shape="rect" id="Node000005" href="$multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="155,152,261,177"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="155,103,190,140,186,144,151,106"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="149,102,188,140,184,144,145,106"/>
 <area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="225,175,278,215,275,219,222,179"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="168,225,243,251"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="210,178,209,212,204,212,205,178"/>
-<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="293,104,303,211,298,212,288,105"/>
-<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="278,106,233,145,230,141,275,102"/>
-<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="372,179,328,218,324,214,368,175"/>
-<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="461,105,459,140,454,160,443,179,424,198,401,212,353,230,351,225,399,207,421,194,439,176,449,158,454,139,456,104"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="277,104,300,212,295,213,272,105"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="263,106,229,144,225,140,259,103"/>
+<area shape="poly" id="edge12_Node000008_Node000004" title=" " alt="" coords="478,102,496,117,512,136,521,157,521,168,515,179,489,197,447,212,352,232,351,227,446,207,487,193,511,176,515,167,516,158,508,139,492,121,475,106"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="419,152,501,177"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="463,104,463,138,457,138,457,104"/>
+<area shape="poly" id="edge14_Node000010_Node000004" title=" " alt="" coords="357,179,324,217,320,213,353,176"/>
 </map>

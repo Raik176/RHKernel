@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RHKernel: src/intf/smp/lock.h File Reference</title>
+<title>RHKernel: src/public/smp/lock.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -92,122 +92,130 @@ $(document).ready(function(){initNavTree('lock_8h.html',''); initResizable(); })
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">lock.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for lock.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="lock_8h__incl.png" border="0" usemap="#asrc_2intf_2smp_2lock_8h" alt=""/></div>
-<map name="asrc_2intf_2smp_2lock_8h" id="asrc_2intf_2smp_2lock_8h">
-<area shape="rect" title=" " alt="" coords="5,5,148,31"/>
-<area shape="rect" title=" " alt="" coords="41,79,112,104"/>
-<area shape="poly" title=" " alt="" coords="79,31,79,65,74,65,74,31"/>
+<div class="center"><img src="lock_8h__incl.png" border="0" usemap="#asrc_2public_2smp_2lock_8h" alt=""/></div>
+<map name="asrc_2public_2smp_2lock_8h" id="asrc_2public_2smp_2lock_8h">
+<area shape="rect" title=" " alt="" coords="18,5,177,31"/>
+<area shape="rect" title=" " alt="" coords="5,79,88,104"/>
+<area shape="poly" title=" " alt="" coords="91,33,65,69,61,66,87,29"/>
+<area shape="rect" title=" " alt="" coords="113,79,183,104"/>
+<area shape="poly" title=" " alt="" coords="108,29,134,66,130,69,104,33"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="lock_8h__dep__incl.png" border="0" usemap="#asrc_2intf_2smp_2lock_8hdep" alt=""/></div>
-<map name="asrc_2intf_2smp_2lock_8hdep" id="asrc_2intf_2smp_2lock_8hdep">
-<area shape="rect" title=" " alt="" coords="1097,5,1240,31"/>
-<area shape="rect" href="console_8cpp.html" title="Implementation of kernel console abstraction." alt="" coords="477,86,684,111"/>
-<area shape="poly" title=" " alt="" coords="1084,32,697,81,649,89,648,83,696,76,1083,26"/>
-<area shape="rect" href="pmm_8cpp.html" title=" " alt="" coords="708,79,892,119"/>
-<area shape="poly" title=" " alt="" coords="1102,36,889,81,888,76,1101,31"/>
+<div class="center"><img src="lock_8h__dep__incl.png" border="0" usemap="#asrc_2public_2smp_2lock_8hdep" alt=""/></div>
+<map name="asrc_2public_2smp_2lock_8hdep" id="asrc_2public_2smp_2lock_8hdep">
+<area shape="rect" title=" " alt="" coords="1167,5,1325,31"/>
+<area shape="rect" href="console_8cpp.html" title="Implementation of kernel console abstraction." alt="" coords="463,86,669,111"/>
+<area shape="poly" title=" " alt="" coords="1153,30,938,51,682,81,633,89,632,83,682,76,937,46,1153,25"/>
+<area shape="rect" href="pmm_8cpp.html" title=" " alt="" coords="694,79,878,119"/>
+<area shape="poly" title=" " alt="" coords="1163,36,890,81,879,83,878,78,890,76,1162,30"/>
 <area shape="rect" href="interrupt_8cpp.html" title=" " alt="" coords="1267,240,1446,280"/>
-<area shape="poly" title=" " alt="" coords="1188,40,1344,238,1339,241,1184,44"/>
-<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="917,86,1044,111"/>
-<area shape="poly" title=" " alt="" coords="1130,38,1009,88,1007,84,1127,33"/>
-<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="1522,167,1697,192"/>
-<area shape="poly" title=" " alt="" coords="1214,33,1579,164,1577,169,1212,38"/>
-<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="2890,167,3066,192"/>
-<area shape="poly" title=" " alt="" coords="1254,24,2890,168,2889,173,1253,29"/>
-<area shape="rect" href="elf_8cpp.html" title=" " alt="" coords="2411,240,2560,280"/>
-<area shape="poly" title=" " alt="" coords="1058,103,1284,119,1612,148,1995,187,2385,237,2411,242,2410,247,2384,243,1994,193,1611,153,1283,125,1057,108"/>
-<area shape="rect" href="initramfs_8cpp.html" title=" " alt="" coords="195,240,344,280"/>
-<area shape="poly" title=" " alt="" coords="926,117,905,121,825,131,756,133,638,127,581,125,522,130,457,143,383,169,354,184,328,203,288,242,284,238,325,199,351,180,381,164,456,138,522,125,581,120,638,121,756,127,825,126,904,116,925,112"/>
-<area shape="rect" href="module__loader_8cpp.html" title=" " alt="" coords="2584,240,2734,280"/>
-<area shape="poly" title=" " alt="" coords="1057,100,1310,112,1685,137,2125,177,2351,205,2573,237,2584,239,2584,245,2572,243,2351,210,2124,183,1685,142,1310,117,1057,105"/>
-<area shape="rect" href="vfs_8cpp.html" title=" " alt="" coords="1094,240,1243,280"/>
-<area shape="poly" title=" " alt="" coords="1006,118,1148,238,1144,242,1002,122"/>
-<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="146,335,335,361"/>
-<area shape="poly" title=" " alt="" coords="927,117,905,121,756,125,509,127,380,130,266,137,180,150,151,158,134,169,122,189,122,211,130,235,145,258,187,302,225,333,222,337,183,306,141,262,125,237,117,212,117,188,131,165,149,154,178,145,266,132,380,125,509,121,756,120,904,116,926,112"/>
-<area shape="rect" href="device_8cpp.html" title=" " alt="" coords="891,240,1070,280"/>
-<area shape="poly" title=" " alt="" coords="983,125,983,240,978,240,978,125"/>
-<area shape="rect" href="syscall_8cpp.html" title=" " alt="" coords="318,423,520,449"/>
-<area shape="poly" title=" " alt="" coords="927,117,905,121,848,125,753,125,500,126,369,130,252,137,163,149,134,158,116,169,108,174,96,177,69,176,40,174,18,176,11,181,8,189,10,202,17,220,51,277,118,366,131,377,149,386,198,403,258,415,319,423,318,428,257,420,197,408,147,391,128,381,114,370,47,280,12,222,4,203,3,188,7,178,16,171,40,168,69,170,96,171,106,169,114,164,132,153,162,144,251,131,368,124,500,121,753,120,848,119,904,116,926,112"/>
-<area shape="rect" href="fd_8h.html" title=" " alt="" coords="359,335,479,361"/>
-<area shape="poly" title=" " alt="" coords="925,117,905,121,848,129,799,129,713,124,673,124,632,129,588,143,539,169,516,186,495,208,462,255,439,302,425,336,420,334,434,299,457,253,491,204,512,182,536,164,586,138,631,124,672,119,713,119,799,124,848,123,904,116,924,112"/>
-<area shape="rect" href="initramfs_8h.html" title=" " alt="" coords="145,167,312,192"/>
-<area shape="poly" title=" " alt="" coords="926,117,905,121,744,143,619,152,493,157,331,169,312,171,312,166,331,164,492,152,618,146,744,137,904,116,925,112"/>
-<area shape="rect" href="scheduler_8h.html" title=" " alt="" coords="550,167,728,192"/>
-<area shape="poly" title=" " alt="" coords="922,117,905,121,692,169,691,164,904,116,921,112"/>
-<area shape="poly" title=" " alt="" coords="422,375,422,423,416,423,416,375"/>
-<area shape="rect" href="fd_8cpp.html" title=" " alt="" coords="658,416,807,456"/>
-<area shape="poly" title=" " alt="" coords="475,362,664,413,663,418,474,367"/>
-<area shape="rect" href="scheduler_8cpp.html" title=" " alt="" coords="943,416,1100,456"/>
-<area shape="poly" title=" " alt="" coords="477,361,498,365,741,402,943,425,942,430,740,407,497,371,476,366"/>
-<area shape="poly" title=" " alt="" coords="243,203,262,239,257,241,239,206"/>
-<area shape="poly" title=" " alt="" coords="209,204,195,221,186,241,181,260,186,279,205,310,228,333,224,337,200,313,181,281,176,260,181,239,191,218,204,201"/>
-<area shape="poly" title=" " alt="" coords="596,200,552,219,506,242,480,263,452,282,370,316,294,338,292,333,368,311,450,278,476,258,503,238,549,214,594,195"/>
-<area shape="poly" title=" " alt="" coords="587,199,452,242,405,263,357,283,322,290,290,292,233,289,207,289,183,294,159,307,136,330,124,352,127,370,142,386,168,399,239,417,318,427,318,432,238,422,166,404,139,390,122,373,119,351,132,326,156,302,181,289,206,284,233,283,290,287,321,285,356,277,403,258,450,238,585,193"/>
-<area shape="poly" title=" " alt="" coords="614,203,436,337,433,333,611,198"/>
-<area shape="poly" title=" " alt="" coords="624,205,603,240,585,283,579,305,579,327,583,348,594,366,610,375,641,384,732,401,943,425,943,431,732,406,639,390,608,380,591,370,578,350,573,328,574,305,579,281,598,237,620,202"/>
-<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="1267,335,1440,361"/>
-<area shape="poly" title=" " alt="" coords="684,195,778,238,807,259,819,269,836,278,897,297,949,309,997,314,1041,315,1136,315,1191,318,1255,325,1298,333,1297,338,1255,331,1191,323,1136,321,1041,321,996,319,948,314,895,302,834,282,816,274,803,264,775,242,682,199"/>
-<area shape="rect" href="vmm_8cpp.html" title=" " alt="" coords="1464,328,1648,368"/>
-<area shape="poly" title=" " alt="" coords="703,193,764,212,826,238,842,248,853,259,864,269,880,278,963,304,1034,318,1099,323,1160,322,1290,316,1365,317,1453,325,1464,327,1464,332,1452,331,1365,323,1290,322,1161,328,1099,328,1034,323,961,309,878,282,861,273,849,263,839,253,823,242,762,217,701,198"/>
-<area shape="rect" href="smp_8h.html" title=" " alt="" coords="622,247,765,273"/>
-<area shape="poly" title=" " alt="" coords="657,202,688,246,683,249,653,205"/>
-<area shape="poly" title=" " alt="" coords="620,278,301,338,300,333,619,273"/>
-<area shape="poly" title=" " alt="" coords="666,282,439,426,436,421,663,278"/>
-<area shape="poly" title=" " alt="" coords="644,279,457,338,455,333,643,274"/>
-<area shape="poly" title=" " alt="" coords="763,273,911,305,997,326,1012,347,1020,371,1025,416,1020,416,1015,372,1007,349,994,330,909,310,762,278"/>
-<area shape="poly" title=" " alt="" coords="759,273,785,277,917,294,1020,302,1123,310,1255,325,1299,333,1298,338,1255,331,1123,315,1019,307,916,299,784,283,758,278"/>
-<area shape="poly" title=" " alt="" coords="779,271,835,277,1009,292,1144,299,1280,307,1453,325,1464,327,1464,332,1452,331,1279,312,1144,304,1008,297,835,283,778,276"/>
-<area shape="rect" href="gdt_8cpp.html" title="Implementation of the Global Descriptor Table (GDT)" alt="" coords="605,335,782,361"/>
-<area shape="poly" title=" " alt="" coords="696,287,696,335,691,335,691,287"/>
-<area shape="rect" href="memory_2heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="1059,328,1243,368"/>
-<area shape="poly" title=" " alt="" coords="762,273,785,277,1060,328,1059,333,784,283,761,278"/>
-<area shape="rect" href="apic_8cpp.html" title=" " alt="" coords="1951,328,2108,368"/>
-<area shape="poly" title=" " alt="" coords="779,268,879,277,1409,310,1951,340,1951,345,1409,316,879,283,779,273"/>
-<area shape="rect" href="smp_8cpp.html" title=" " alt="" coords="2360,328,2518,368"/>
-<area shape="poly" title=" " alt="" coords="779,268,879,277,1228,297,1500,306,1771,312,2121,325,2360,339,2360,344,2120,331,1771,317,1499,311,1228,303,879,283,779,274"/>
-<area shape="rect" href="util_8cpp.html" title=" " alt="" coords="806,335,984,361"/>
-<area shape="poly" title=" " alt="" coords="735,276,869,333,867,338,732,281"/>
-<area shape="poly" title=" " alt="" coords="1561,199,1418,242,1417,237,1559,194"/>
-<area shape="poly" title=" " alt="" coords="1711,182,2017,199,2205,215,2393,237,2411,240,2411,246,2392,243,2204,221,2017,205,1711,187"/>
-<area shape="poly" title=" " alt="" coords="1509,189,345,257,344,252,1509,184"/>
-<area shape="poly" title=" " alt="" coords="1711,179,1876,184,2091,193,2331,211,2573,237,2584,239,2584,244,2572,243,2331,216,2090,199,1876,189,1711,185"/>
-<area shape="poly" title=" " alt="" coords="1523,197,1256,243,1244,245,1243,240,1255,237,1522,191"/>
-<area shape="poly" title=" " alt="" coords="1509,193,1311,213,1082,243,1070,244,1069,239,1081,237,1311,208,1509,187"/>
-<area shape="poly" title=" " alt="" coords="1615,205,1622,241,1633,279,1649,302,1657,312,1663,327,1669,349,1669,360,1662,370,1644,378,1608,384,1494,395,1160,409,646,419,520,428,520,423,646,413,1160,403,1493,390,1608,379,1642,373,1659,366,1664,358,1664,350,1658,329,1652,315,1645,305,1629,281,1617,242,1610,206"/>
-<area shape="poly" title=" " alt="" coords="1622,204,1640,240,1663,278,1675,292,1686,301,1698,311,1707,327,1714,349,1713,359,1706,370,1688,381,1658,390,1571,404,1457,412,1328,416,1080,417,931,419,808,430,807,424,931,413,1080,412,1328,410,1456,406,1570,398,1657,385,1686,376,1703,366,1708,358,1709,350,1702,329,1693,314,1683,305,1671,296,1658,282,1635,242,1617,206"/>
-<area shape="poly" title=" " alt="" coords="1711,185,2072,212,2229,227,2299,238,2307,249,2308,260,2300,281,2282,306,2264,324,2245,337,2224,346,2178,358,2121,371,2031,388,1911,402,1620,422,1325,432,1101,437,1100,431,1325,427,1620,417,1910,397,2030,383,2120,365,2177,353,2223,341,2242,332,2261,320,2278,303,2295,279,2303,259,2302,251,2296,242,2228,232,2071,217,1711,190"/>
-<area shape="poly" title=" " alt="" coords="1591,204,1578,221,1568,241,1559,287,1558,328,1552,328,1553,286,1563,239,1574,219,1587,201"/>
-<area shape="poly" title=" " alt="" coords="1509,191,879,243,766,254,765,248,879,237,1508,186"/>
-<area shape="poly" title=" " alt="" coords="1587,203,1531,243,1496,264,1459,283,1375,304,1244,331,1243,326,1374,298,1457,277,1493,260,1528,239,1584,198"/>
-<area shape="poly" title=" " alt="" coords="1711,177,1868,179,2051,187,2141,195,2223,206,2291,220,2343,238,2371,256,2396,280,2430,326,2426,329,2392,283,2368,260,2341,242,2290,225,2222,211,2140,200,2051,193,1868,184,1711,182"/>
-<area shape="rect" href="ksym_8cpp.html" title=" " alt="" coords="1672,247,1864,273"/>
-<area shape="poly" title=" " alt="" coords="1646,196,1746,245,1744,250,1644,200"/>
-<area shape="rect" href="module_2heap_8cpp.html" title=" " alt="" coords="1888,240,2067,280"/>
-<area shape="poly" title=" " alt="" coords="1677,192,1890,237,1889,243,1676,197"/>
+<area shape="poly" title=" " alt="" coords="1255,43,1280,118,1315,185,1347,238,1342,241,1310,188,1276,120,1250,45"/>
+<area shape="rect" href="vfs_8h.html" title=" " alt="" coords="903,86,1029,111"/>
+<area shape="poly" title=" " alt="" coords="1193,37,1007,89,1006,83,1191,32"/>
+<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="1679,167,1853,192"/>
+<area shape="poly" title=" " alt="" coords="1261,42,1289,81,1308,101,1330,116,1357,128,1393,137,1485,153,1586,164,1679,171,1678,176,1585,169,1484,158,1392,143,1355,133,1327,121,1305,105,1285,85,1257,45"/>
+<area shape="rect" href="intf_2memory_2vmm_8h.html" title=" " alt="" coords="2915,167,3091,192"/>
+<area shape="poly" title=" " alt="" coords="1274,37,1326,77,1349,99,1359,108,1373,116,1446,126,1598,136,2048,153,2915,174,2915,179,2047,158,1598,141,1446,131,1372,121,1356,113,1345,103,1323,81,1271,41"/>
+<area shape="rect" href="pci__bus_8c.html" title=" " alt="" coords="1385,79,1531,119"/>
+<area shape="poly" title=" " alt="" coords="1291,33,1408,76,1406,81,1289,38"/>
+<area shape="rect" href="elf_8cpp.html" title=" " alt="" coords="2411,240,2561,280"/>
+<area shape="poly" title=" " alt="" coords="1043,101,1399,124,1631,142,1866,164,2126,196,2385,237,2411,242,2410,247,2384,243,2126,201,1866,169,1631,147,1399,129,1043,107"/>
+<area shape="rect" href="initramfs_8cpp.html" title=" " alt="" coords="718,240,867,280"/>
+<area shape="poly" title=" " alt="" coords="951,124,924,158,889,194,825,242,822,238,886,190,920,155,947,121"/>
+<area shape="rect" href="module__loader_8cpp.html" title=" " alt="" coords="2585,240,2734,280"/>
+<area shape="poly" title=" " alt="" coords="1043,102,1524,131,1988,164,2281,194,2573,237,2585,239,2584,245,2572,243,2281,199,1987,169,1523,136,1043,107"/>
+<area shape="rect" href="vfs_8cpp.html" title=" " alt="" coords="891,240,1041,280"/>
+<area shape="poly" title=" " alt="" coords="969,125,969,240,963,240,963,125"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="241,335,430,361"/>
+<area shape="poly" title=" " alt="" coords="912,117,890,121,839,126,775,126,624,124,548,126,479,133,421,146,398,156,380,169,364,187,352,208,338,256,335,301,337,335,331,335,330,301,333,255,347,206,359,184,376,165,395,152,419,141,478,128,548,121,624,119,775,121,839,120,890,116,911,112"/>
+<area shape="rect" href="device_8cpp.html" title=" " alt="" coords="1065,240,1243,280"/>
+<area shape="poly" title=" " alt="" coords="991,118,1133,238,1130,242,988,122"/>
+<area shape="rect" href="syscall_8cpp.html" title=" " alt="" coords="5,423,207,449"/>
+<area shape="poly" title=" " alt="" coords="913,117,890,121,823,128,739,131,543,133,443,136,350,142,268,152,204,169,140,197,93,227,74,246,57,268,26,329,21,348,26,367,37,384,52,399,84,421,81,425,48,403,33,387,21,369,15,348,21,327,53,265,70,242,90,223,138,192,202,164,267,147,349,136,443,130,543,128,739,126,823,123,890,116,912,112"/>
+<area shape="rect" href="fd_8h.html" title=" " alt="" coords="46,335,166,361"/>
+<area shape="poly" title=" " alt="" coords="912,117,890,121,809,133,739,138,621,141,503,146,434,154,353,169,288,179,236,187,213,193,190,203,166,219,141,242,126,264,116,290,109,335,104,335,111,289,121,262,137,238,163,215,187,199,211,188,235,182,287,174,352,164,433,149,502,141,620,136,739,133,808,127,890,116,911,112"/>
+<area shape="rect" href="initramfs_8h.html" title=" " alt="" coords="709,167,876,192"/>
+<area shape="poly" title=" " alt="" coords="929,119,819,169,817,164,927,115"/>
+<area shape="rect" href="scheduler_8h.html" title=" " alt="" coords="391,167,568,192"/>
+<area shape="poly" title=" " alt="" coords="910,117,890,121,720,150,569,170,568,165,719,145,890,116,909,112"/>
+<area shape="poly" title=" " alt="" coords="109,375,109,423,103,423,103,375"/>
+<area shape="rect" href="fd_8cpp.html" title=" " alt="" coords="451,416,601,456"/>
+<area shape="poly" title=" " alt="" coords="166,361,185,365,452,418,451,424,184,371,165,366"/>
+<area shape="rect" href="scheduler_8cpp.html" title=" " alt="" coords="843,416,1001,456"/>
+<area shape="poly" title=" " alt="" coords="163,361,185,365,318,382,500,399,843,426,843,432,499,404,317,387,184,371,162,366"/>
+<area shape="poly" title=" " alt="" coords="795,206,795,240,790,240,790,206"/>
+<area shape="poly" title=" " alt="" coords="696,193,549,212,484,226,438,242,397,282,347,337,343,333,394,278,435,238,482,221,548,207,695,187"/>
+<area shape="poly" title=" " alt="" coords="446,201,420,219,395,242,376,266,361,292,342,336,337,334,356,290,372,263,391,238,416,215,443,197"/>
+<area shape="poly" title=" " alt="" coords="377,187,321,194,261,204,199,220,140,242,104,259,77,275,56,296,36,329,31,348,36,367,46,384,60,399,88,421,85,425,56,402,42,387,32,369,26,348,32,327,51,293,74,271,102,254,138,238,197,215,259,199,320,188,376,182"/>
+<area shape="poly" title=" " alt="" coords="378,186,330,192,281,203,232,219,186,242,161,264,140,290,113,336,109,334,135,287,157,260,183,238,229,214,279,197,329,187,377,180"/>
+<area shape="poly" title=" " alt="" coords="426,199,346,227,305,245,267,266,238,289,219,314,216,326,216,339,221,353,230,366,254,374,309,383,477,401,843,427,843,433,477,406,308,388,253,379,227,370,216,355,211,340,210,326,215,312,234,286,264,262,302,241,344,222,424,194"/>
+<area shape="rect" href="idt_8cpp.html" title="Implementation of the Interrupt Descriptor Table (IDT)" alt="" coords="1167,335,1341,361"/>
+<area shape="poly" title=" " alt="" coords="519,195,605,238,633,260,646,269,663,278,734,300,796,312,852,317,905,318,1015,315,1080,317,1156,325,1199,333,1198,338,1155,331,1080,323,1015,321,905,323,851,323,795,317,733,305,661,282,643,274,630,264,602,242,517,200"/>
+<area shape="rect" href="memory_2vmm_8cpp.html" title=" " alt="" coords="1365,328,1549,368"/>
+<area shape="poly" title=" " alt="" coords="538,193,594,212,653,238,669,249,680,259,691,269,707,278,767,293,844,303,1027,313,1210,317,1353,325,1365,327,1364,332,1352,331,1210,323,1026,319,844,309,766,298,705,282,688,274,676,263,665,253,650,242,592,217,536,198"/>
+<area shape="rect" href="smp_8h.html" title=" " alt="" coords="449,247,592,273"/>
+<area shape="poly" title=" " alt="" coords="494,203,517,246,512,248,489,205"/>
+<area shape="poly" title=" " alt="" coords="484,281,362,337,359,333,482,276"/>
+<area shape="poly" title=" " alt="" coords="512,286,485,330,466,352,443,370,386,399,325,418,264,430,207,436,206,431,263,425,324,413,384,394,441,366,462,348,481,327,507,284"/>
+<area shape="poly" title=" " alt="" coords="453,278,162,338,161,333,452,273"/>
+<area shape="poly" title=" " alt="" coords="588,273,612,277,676,284,760,289,841,301,873,312,897,326,912,347,921,371,926,416,920,416,916,372,908,349,894,330,871,316,839,306,759,295,675,289,611,283,587,278"/>
+<area shape="poly" title=" " alt="" coords="584,273,612,277,764,295,883,302,1003,309,1156,325,1200,333,1199,338,1155,331,1002,314,883,307,764,300,611,283,584,278"/>
+<area shape="poly" title=" " alt="" coords="606,271,662,277,856,293,1008,299,1159,306,1353,325,1365,327,1364,332,1352,331,1159,312,1008,304,856,298,662,283,605,276"/>
+<area shape="rect" href="gdt_8cpp.html" title="Implementation of the Global Descriptor Table (GDT)" alt="" coords="505,335,683,361"/>
+<area shape="poly" title=" " alt="" coords="541,281,586,333,582,337,537,285"/>
+<area shape="rect" href="memory_2heap_8cpp.html" title="Implementation of kernel slab allocator." alt="" coords="959,328,1143,368"/>
+<area shape="poly" title=" " alt="" coords="587,273,612,277,776,302,941,325,959,328,959,334,940,331,775,308,611,283,586,278"/>
+<area shape="rect" href="apic_8cpp.html" title=" " alt="" coords="1623,328,1781,368"/>
+<area shape="poly" title=" " alt="" coords="606,268,706,277,946,292,1134,299,1321,307,1561,325,1624,333,1623,338,1560,331,1321,312,1133,304,946,298,706,283,606,273"/>
+<area shape="rect" href="smp_8cpp.html" title=" " alt="" coords="2361,328,2518,368"/>
+<area shape="poly" title=" " alt="" coords="606,268,706,277,1062,296,1546,315,2360,342,2360,347,1546,320,1062,301,706,283,606,274"/>
+<area shape="rect" href="util_8cpp.html" title=" " alt="" coords="707,335,884,361"/>
+<area shape="poly" title=" " alt="" coords="572,274,759,333,758,338,570,279"/>
+<area shape="poly" title=" " alt="" coords="1694,197,1447,244,1446,239,1693,192"/>
+<area shape="poly" title=" " alt="" coords="1867,184,2108,204,2251,219,2393,237,2412,240,2411,246,2392,243,2250,224,2107,209,1867,190"/>
+<area shape="poly" title=" " alt="" coords="1665,185,1316,201,1098,218,880,243,868,244,867,239,879,237,1098,212,1316,195,1664,180"/>
+<area shape="poly" title=" " alt="" coords="1867,181,2183,198,2378,214,2573,237,2585,239,2584,244,2572,243,2377,219,2183,203,1867,186"/>
+<area shape="poly" title=" " alt="" coords="1665,188,1388,206,1221,221,1053,243,1041,245,1041,239,1052,237,1220,216,1388,200,1665,182"/>
+<area shape="poly" title=" " alt="" coords="1665,193,1475,214,1256,243,1244,244,1243,239,1255,237,1474,208,1665,188"/>
+<area shape="poly" title=" " alt="" coords="1671,197,1594,216,1564,228,1545,242,1538,257,1539,273,1556,304,1572,336,1572,353,1562,370,1542,378,1503,386,1376,397,1007,410,439,419,207,431,207,426,439,413,1007,405,1376,391,1502,380,1541,373,1559,366,1567,352,1567,338,1551,307,1534,274,1533,256,1541,238,1561,223,1592,211,1669,192"/>
+<area shape="poly" title=" " alt="" coords="1667,197,1616,210,1574,228,1560,238,1553,250,1553,263,1561,278,1587,300,1615,308,1645,307,1676,301,1707,296,1738,295,1767,303,1795,326,1804,348,1802,359,1794,370,1777,377,1743,384,1635,394,1318,408,831,419,601,432,601,427,831,413,1318,403,1634,389,1743,378,1776,372,1791,366,1797,357,1799,349,1791,330,1765,308,1737,300,1707,301,1676,307,1645,312,1614,313,1585,305,1557,282,1548,264,1548,249,1556,235,1571,223,1614,205,1665,192"/>
+<area shape="poly" title=" " alt="" coords="1867,190,1965,191,2083,192,2141,196,2193,204,2235,217,2265,238,2272,249,2275,260,2265,282,2240,300,2198,317,2141,332,2071,346,1902,371,1705,392,1303,420,1001,435,1001,429,1303,415,1705,386,1901,366,2070,341,2140,327,2196,312,2238,295,2261,278,2269,260,2267,251,2261,242,2233,222,2191,209,2140,201,2083,198,1965,197,1867,195"/>
+<area shape="poly" title=" " alt="" coords="1868,184,2095,203,2191,219,2224,228,2242,238,2250,249,2252,260,2250,271,2243,282,2228,291,2203,299,2132,311,2039,319,1934,323,1612,331,1549,337,1549,332,1611,325,1934,318,2039,313,2132,306,2202,294,2225,287,2239,278,2245,269,2247,260,2245,251,2239,242,2222,233,2190,224,2094,209,1867,189"/>
+<area shape="poly" title=" " alt="" coords="1665,187,1247,208,706,243,593,253,592,248,706,237,1247,202,1665,182"/>
+<area shape="poly" title=" " alt="" coords="1867,177,1961,181,2059,190,2144,208,2176,221,2199,238,2208,260,2206,271,2198,282,2180,290,2143,296,2025,307,1683,320,1156,331,1144,332,1143,327,1155,325,1683,315,2025,302,2142,291,2178,285,2195,278,2201,269,2203,260,2195,242,2174,226,2143,213,2058,195,1960,186,1867,183"/>
+<area shape="poly" title=" " alt="" coords="1867,180,1990,185,2128,195,2254,212,2305,223,2343,238,2372,257,2396,280,2430,326,2426,329,2392,284,2368,261,2341,242,2303,229,2253,217,2127,200,1990,190,1867,185"/>
+<area shape="rect" href="ksym_8cpp.html" title=" " alt="" coords="1993,247,2185,273"/>
+<area shape="poly" title=" " alt="" coords="1827,193,2042,245,2041,250,1825,198"/>
+<area shape="rect" href="module_2heap_8cpp.html" title=" " alt="" coords="1571,240,1750,280"/>
+<area shape="poly" title=" " alt="" coords="1741,202,1688,242,1684,238,1738,198"/>
 <area shape="rect" href="ioapic_8cpp.html" title=" " alt="" coords="2758,240,2915,280"/>
-<area shape="poly" title=" " alt="" coords="1711,178,1903,181,2161,190,2452,208,2746,237,2758,239,2757,244,2745,243,2452,213,2160,195,1903,187,1711,184"/>
-<area shape="rect" href="string_8cpp.html" title=" " alt="" coords="2092,247,2285,273"/>
-<area shape="poly" title=" " alt="" coords="1711,190,2079,237,2125,245,2124,250,2079,243,1711,195"/>
-<area shape="poly" title=" " alt="" coords="2877,196,2733,217,2573,243,2561,245,2560,240,2572,237,2732,211,2876,191"/>
-<area shape="poly" title=" " alt="" coords="2919,198,2734,243,2733,238,2918,193"/>
-<area shape="poly" title=" " alt="" coords="2975,207,2960,247,2946,267,2928,282,2880,296,2787,306,2493,320,2095,328,1645,330,793,328,494,328,347,331,296,338,296,333,347,325,494,322,793,323,1645,325,2095,322,2493,315,2787,301,2879,290,2926,278,2942,263,2955,244,2970,205"/>
-<area shape="poly" title=" " alt="" coords="3049,193,3095,207,3134,226,3148,238,3156,251,3157,266,3148,282,3130,296,3105,310,3035,334,2938,356,2821,374,2685,389,2536,402,2210,420,1873,431,1556,437,1100,438,1100,433,1556,431,1873,426,2210,415,2536,396,2685,384,2820,368,2937,350,3033,329,3103,305,3127,292,3144,278,3152,265,3151,253,3144,241,3131,231,3093,212,3047,198"/>
-<area shape="poly" title=" " alt="" coords="2987,205,2989,244,2984,265,2973,282,2946,293,2892,301,2720,314,2486,321,2220,325,1717,328,1453,331,1406,338,1405,333,1452,325,1717,322,2220,320,2486,316,2720,308,2892,296,2944,288,2969,278,2980,263,2984,244,2982,206"/>
-<area shape="poly" title=" " alt="" coords="3002,201,3017,219,3029,240,3033,262,3024,282,3004,290,2966,297,2844,308,2487,322,1939,331,1649,345,1648,339,1939,325,2487,317,2843,303,2965,292,3003,285,3020,278,3027,261,3024,242,3012,222,2998,204"/>
-<area shape="poly" title=" " alt="" coords="3026,196,3053,213,3075,239,3083,261,3081,271,3074,282,2680,310,2109,345,2108,339,2680,305,3071,278,3076,270,3078,261,3070,241,3050,217,3023,200"/>
-<area shape="poly" title=" " alt="" coords="3063,194,3098,211,3125,239,3134,260,3132,271,3125,282,3113,290,3093,298,3036,311,2870,330,2679,342,2518,347,2518,342,2679,336,2869,324,3035,305,3092,293,3110,286,3121,278,3127,269,3129,261,3121,241,3094,216,3061,199"/>
-<area shape="poly" title=" " alt="" coords="2946,201,2872,242,2869,238,2943,197"/>
+<area shape="poly" title=" " alt="" coords="1867,179,2035,184,2254,194,2499,211,2746,237,2758,239,2757,244,2746,243,2499,216,2254,199,2035,189,1867,185"/>
+<area shape="rect" href="string_8cpp.html" title=" " alt="" coords="1775,247,1968,273"/>
+<area shape="poly" title=" " alt="" coords="1794,198,1857,245,1854,249,1791,202"/>
+<area shape="poly" title=" " alt="" coords="2902,195,2747,215,2573,243,2562,245,2561,240,2572,237,2746,210,2901,190"/>
+<area shape="poly" title=" " alt="" coords="2941,198,2735,244,2734,239,2940,192"/>
+<area shape="poly" title=" " alt="" coords="2991,205,2960,250,2943,270,2929,282,2882,293,2794,302,2515,315,2140,322,1715,326,913,328,493,331,418,338,418,333,493,325,913,322,1715,321,2139,317,2515,309,2793,297,2881,288,2926,278,2940,266,2956,247,2987,202"/>
+<area shape="poly" title=" " alt="" coords="3086,194,3121,211,3148,239,3157,260,3155,271,3148,282,3114,317,3080,345,3047,366,3013,381,2979,390,2944,396,2873,396,2717,376,2628,368,2530,371,2306,389,2077,403,1634,423,1256,433,1001,437,1001,432,1256,428,1633,418,2077,398,2306,384,2530,365,2628,363,2717,370,2873,390,2944,390,2978,385,3011,376,3044,361,3077,341,3110,313,3144,278,3150,269,3151,261,3144,241,3117,216,3084,199"/>
+<area shape="poly" title=" " alt="" coords="3006,206,2997,246,2988,266,2973,282,2943,292,2885,300,2701,312,2451,319,2169,323,1633,327,1353,331,1306,338,1306,333,1352,325,1633,321,2169,318,2451,314,2701,306,2885,295,2942,287,2970,278,2983,263,2992,244,3000,205"/>
+<area shape="poly" title=" " alt="" coords="3020,203,3029,222,3034,243,3034,264,3024,282,2999,292,2949,301,2790,313,2572,321,2326,326,1857,329,1611,331,1549,337,1549,332,1611,325,1857,323,2326,320,2572,316,2789,308,2949,295,2997,287,3020,278,3029,262,3029,243,3024,223,3015,205"/>
+<area shape="poly" title=" " alt="" coords="3034,198,3056,216,3075,237,3083,260,3081,271,3074,282,3023,292,2902,301,2526,320,1781,347,1781,342,2526,315,2902,296,3022,287,3071,278,3076,269,3078,260,3070,240,3052,220,3031,202"/>
+<area shape="poly" title=" " alt="" coords="3068,195,3100,212,3126,239,3134,260,3132,271,3125,282,3113,290,3094,298,3036,311,2870,330,2679,342,2518,347,2518,342,2679,336,2870,324,3036,305,3092,293,3111,286,3121,278,3127,269,3129,261,3121,241,3097,216,3065,199"/>
+<area shape="poly" title=" " alt="" coords="2968,200,2878,242,2876,237,2966,195"/>
+<area shape="rect" href="module_2vmm_8cpp.html" title=" " alt="" coords="3243,240,3422,280"/>
+<area shape="poly" title=" " alt="" coords="3065,192,3254,237,3253,243,3064,198"/>
 </map>
 </div>
 </div>
@@ -215,20 +223,297 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlock_1_1spinlock.html">lock::spinlock</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structspinlock.html">spinlock</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacelock" id="r_namespacelock"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelock.html">lock</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a23e7982381ce4b480b250790ce149f3d" id="r_a23e7982381ce4b480b250790ce149f3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">typedef</a> <a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lock_8h.html#a23e7982381ce4b480b250790ce149f3d">spinlock_t</a></td></tr>
+<tr class="separator:a23e7982381ce4b480b250790ce149f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a17aa45f1593d89de40d53a9c8b7ec5c9" id="r_a17aa45f1593d89de40d53a9c8b7ec5c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lock_8h.html#a17aa45f1593d89de40d53a9c8b7ec5c9">spinlock_init</a> (<a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *lock)</td></tr>
+<tr class="separator:a17aa45f1593d89de40d53a9c8b7ec5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1369ecdd865a5705b458f2621cce79b" id="r_ab1369ecdd865a5705b458f2621cce79b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lock_8h.html#ab1369ecdd865a5705b458f2621cce79b">spinlock_acquire</a> (<a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *lock, <a class="el" href="structbus.html">uint64_t</a> *<a class="el" href="elf_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>)</td></tr>
+<tr class="separator:ab1369ecdd865a5705b458f2621cce79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f5a87421604379430dc4d1705cecb3e" id="r_a9f5a87421604379430dc4d1705cecb3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lock_8h.html#a9f5a87421604379430dc4d1705cecb3e">spinlock_release</a> (<a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *lock, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="elf_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>)</td></tr>
+<tr class="separator:a9f5a87421604379430dc4d1705cecb3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6eedc2ca892d2f095b843bdd5d16d5aa" id="r_a6eedc2ca892d2f095b843bdd5d16d5aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lock_8h.html#a6eedc2ca892d2f095b843bdd5d16d5aa">spinlock_try_acquire</a> (<a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *lock, <a class="el" href="structbus.html">uint64_t</a> *<a class="el" href="elf_8h.html#a773b39d480759f67926cb18ae2219281">flags</a>)</td></tr>
+<tr class="separator:a6eedc2ca892d2f095b843bdd5d16d5aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a23e7982381ce4b480b250790ce149f3d" name="a23e7982381ce4b480b250790ce149f3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23e7982381ce4b480b250790ce149f3d">&#9670;&#160;</a></span>spinlock_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbus.html">typedef</a> <a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> <a class="el" href="lock_8h.html#a23e7982381ce4b480b250790ce149f3d">spinlock_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ab1369ecdd865a5705b458f2621cce79b" name="ab1369ecdd865a5705b458f2621cce79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1369ecdd865a5705b458f2621cce79b">&#9670;&#160;</a></span>spinlock_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a> spinlock_acquire </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *&#160;</td>
+          <td class="paramname"><em>lock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbus.html">uint64_t</a> *&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lock_8h_ab1369ecdd865a5705b458f2621cce79b_icgraph.png" border="0" usemap="#alock_8h_ab1369ecdd865a5705b458f2621cce79b_icgraph" alt=""/></div>
+<map name="alock_8h_ab1369ecdd865a5705b458f2621cce79b_icgraph" id="alock_8h_ab1369ecdd865a5705b458f2621cce79b_icgraph">
+<area shape="rect" title=" " alt="" coords="1163,241,1293,266"/>
+<area shape="rect" href="pci__bus_8c.html#a5e68e7a3985ac144c2e18aa1d3ca7445" title=" " alt="" coords="1019,215,1113,241"/>
+<area shape="poly" title=" " alt="" coords="1149,244,1112,238,1113,233,1149,238"/>
+<area shape="rect" href="pci__bus_8c.html#ae0fbc192964111a02ffb91e4932f524f" title=" " alt="" coords="1017,265,1115,290"/>
+<area shape="poly" title=" " alt="" coords="1149,268,1115,273,1114,268,1148,262"/>
+<area shape="rect" href="pci__bus_8c.html#a71f2bfd318a809737171a9125d1aa328" title=" " alt="" coords="759,42,969,67"/>
+<area shape="poly" title=" " alt="" coords="1053,204,1022,141,998,108,968,81,947,70,950,65,971,77,1002,105,1026,138,1058,201"/>
+<area shape="rect" href="pci__bus_8c.html#a8fece9c9430943694d122e57c275f27a" title=" " alt="" coords="805,166,923,191"/>
+<area shape="poly" title=" " alt="" coords="1005,216,969,207,917,194,918,189,970,201,1006,211"/>
+<area shape="rect" href="pci__bus_8c.html#a1be8130398bedee9eaccb1724fe48e0d" title=" " alt="" coords="817,215,911,241"/>
+<area shape="poly" title=" " alt="" coords="1005,231,911,231,911,225,1005,225"/>
+<area shape="rect" href="pci__bus_8c.html#afe04d835b7db85c3bf52b74ebb3253d0" title=" " alt="" coords="821,91,907,117"/>
+<area shape="poly" title=" " alt="" coords="1038,208,968,156,896,119,898,114,971,151,1042,204"/>
+<area shape="rect" href="pci__bus_8c.html#a400a6ac8cb7e0c9423b3f65a411503ee" title=" " alt="" coords="815,265,913,290"/>
+<area shape="poly" title=" " alt="" coords="1007,246,970,256,914,269,912,264,969,251,1006,241"/>
+<area shape="rect" href="pci__bus_8c.html#a51f37649c0009ba118af2b6b74edf0aa" title=" " alt="" coords="819,314,909,339"/>
+<area shape="poly" title=" " alt="" coords="1027,250,1019,255,1005,268,996,281,986,293,971,305,940,318,909,325,908,320,939,313,968,300,983,289,992,278,1001,265,1016,251,1024,246"/>
+<area shape="rect" href="pci__bus_8c.html#a29224ec664b5d9c291284bb448569703" title=" " alt="" coords="540,66,687,91"/>
+<area shape="poly" title=" " alt="" coords="823,163,757,130,734,117,710,105,674,94,676,89,712,100,736,112,760,126,825,158"/>
+<area shape="rect" href="pci__bus_8c.html#af7c9f00a18a2cae449e2387e15a80b95" title=" " alt="" coords="360,117,468,142"/>
+<area shape="poly" title=" " alt="" coords="548,97,517,105,464,119,462,114,515,100,547,92"/>
+<area shape="rect" href="pci__bridge_8c.html#ad7fccdb631dd84822d64dd0df4c846ee" title=" " alt="" coords="179,166,312,191"/>
+<area shape="poly" title=" " alt="" coords="358,149,291,168,289,163,356,143"/>
+<area shape="rect" href="pci__bus_8c.html#a7bef58cef9f660430255890e5ef50d20" title=" " alt="" coords="186,117,305,142"/>
+<area shape="poly" title=" " alt="" coords="346,132,305,132,305,127,346,127"/>
+<area shape="rect" href="pci__bus_8c.html#a2c02c862f88674318bfb90afa61c1d5e" title=" " alt="" coords="5,117,131,142"/>
+<area shape="poly" title=" " alt="" coords="172,132,131,132,131,127,172,127"/>
+<area shape="poly" title=" " alt="" coords="803,226,779,219,757,206,745,194,738,180,732,154,726,128,720,116,709,105,685,91,688,87,712,101,724,113,731,127,737,153,743,179,749,190,760,202,781,214,804,221"/>
+<area shape="poly" title=" " alt="" coords="804,218,515,155,468,144,469,139,517,149,805,213"/>
+<area shape="poly" title=" " alt="" coords="803,226,312,187,312,181,804,221"/>
+<area shape="rect" href="pci__bus_8c.html#a74d6215b3d9b55f51bbbdc6b8831f8db" title=" " alt="" coords="535,317,691,357"/>
+<area shape="poly" title=" " alt="" coords="805,239,760,256,745,268,737,280,728,294,712,308,690,320,687,315,709,303,723,291,732,277,741,264,757,251,803,234"/>
+<area shape="rect" href="pci__bus_8c.html#a2e6ce79ae0a8e5d8a395371a44e91ac7" title=" " alt="" coords="516,267,711,293"/>
+<area shape="poly" title=" " alt="" coords="805,243,676,270,675,265,803,238"/>
+<area shape="rect" href="pci__bus_8c.html#a91a738b096f01d45105b642c6dd28b4a" title=" " alt="" coords="542,115,685,141"/>
+<area shape="poly" title=" " alt="" coords="803,222,757,206,742,195,732,184,723,173,709,162,665,143,667,138,712,158,727,169,736,181,746,192,760,202,805,217"/>
+<area shape="poly" title=" " alt="" coords="807,101,687,89,687,83,808,96"/>
+<area shape="poly" title=" " alt="" coords="807,96,758,81,734,67,710,56,656,43,613,38,570,41,517,56,490,68,466,85,429,119,425,115,462,81,487,64,515,51,569,36,613,33,657,38,712,51,736,63,760,76,809,91"/>
+<area shape="poly" title=" " alt="" coords="807,99,782,92,757,81,742,67,733,53,725,40,709,29,658,12,615,9,571,16,517,29,470,42,434,57,362,106,348,119,338,131,329,143,313,156,289,168,286,164,311,151,325,139,334,127,344,115,358,102,432,53,468,37,515,24,570,11,615,4,659,7,712,24,728,36,738,50,746,64,760,76,783,87,808,94"/>
+<area shape="poly" title=" " alt="" coords="808,112,685,124,685,119,807,107"/>
+<area shape="poly" title=" " alt="" coords="803,287,781,294,760,305,745,321,738,338,730,356,712,372,660,392,615,397,570,389,515,372,472,355,431,334,356,283,296,231,257,193,260,189,299,228,359,278,434,329,475,350,517,367,571,383,615,391,659,387,709,367,725,353,733,336,741,318,757,301,779,289,801,282"/>
+<area shape="poly" title=" " alt="" coords="802,295,692,321,691,316,801,290"/>
+<area shape="poly" title=" " alt="" coords="801,281,711,282,711,276,801,275"/>
+<area shape="poly" title=" " alt="" coords="1022,260,1016,255,1001,242,992,229,983,217,968,206,923,189,925,184,971,202,986,214,996,226,1005,238,1019,251,1025,256"/>
+<area shape="poly" title=" " alt="" coords="1003,280,913,280,913,275,1003,275"/>
+<area shape="poly" title=" " alt="" coords="1006,296,970,305,910,320,908,314,969,300,1004,291"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a17aa45f1593d89de40d53a9c8b7ec5c9" name="a17aa45f1593d89de40d53a9c8b7ec5c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17aa45f1593d89de40d53a9c8b7ec5c9">&#9670;&#160;</a></span>spinlock_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a> spinlock_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lock_8h_a17aa45f1593d89de40d53a9c8b7ec5c9_icgraph.png" border="0" usemap="#alock_8h_a17aa45f1593d89de40d53a9c8b7ec5c9_icgraph" alt=""/></div>
+<map name="alock_8h_a17aa45f1593d89de40d53a9c8b7ec5c9_icgraph" id="alock_8h_a17aa45f1593d89de40d53a9c8b7ec5c9_icgraph">
+<area shape="rect" title=" " alt="" coords="179,5,283,31"/>
+<area shape="rect" href="pci__bus_8c.html#a2c02c862f88674318bfb90afa61c1d5e" title=" " alt="" coords="5,5,131,31"/>
+<area shape="poly" title=" " alt="" coords="165,21,131,21,131,15,165,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9f5a87421604379430dc4d1705cecb3e" name="a9f5a87421604379430dc4d1705cecb3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f5a87421604379430dc4d1705cecb3e">&#9670;&#160;</a></span>spinlock_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a> spinlock_release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *&#160;</td>
+          <td class="paramname"><em>lock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbus.html">uint64_t</a>&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="lock_8h_a9f5a87421604379430dc4d1705cecb3e_icgraph.png" border="0" usemap="#alock_8h_a9f5a87421604379430dc4d1705cecb3e_icgraph" alt=""/></div>
+<map name="alock_8h_a9f5a87421604379430dc4d1705cecb3e_icgraph" id="alock_8h_a9f5a87421604379430dc4d1705cecb3e_icgraph">
+<area shape="rect" title=" " alt="" coords="1163,241,1293,266"/>
+<area shape="rect" href="pci__bus_8c.html#a5e68e7a3985ac144c2e18aa1d3ca7445" title=" " alt="" coords="1019,215,1113,241"/>
+<area shape="poly" title=" " alt="" coords="1149,244,1112,238,1113,233,1149,238"/>
+<area shape="rect" href="pci__bus_8c.html#ae0fbc192964111a02ffb91e4932f524f" title=" " alt="" coords="1017,265,1115,290"/>
+<area shape="poly" title=" " alt="" coords="1149,268,1115,273,1114,268,1148,262"/>
+<area shape="rect" href="pci__bus_8c.html#a71f2bfd318a809737171a9125d1aa328" title=" " alt="" coords="759,42,969,67"/>
+<area shape="poly" title=" " alt="" coords="1053,204,1022,141,998,108,968,81,947,70,950,65,971,77,1002,105,1026,138,1058,201"/>
+<area shape="rect" href="pci__bus_8c.html#a8fece9c9430943694d122e57c275f27a" title=" " alt="" coords="805,166,923,191"/>
+<area shape="poly" title=" " alt="" coords="1005,216,969,207,917,194,918,189,970,201,1006,211"/>
+<area shape="rect" href="pci__bus_8c.html#a1be8130398bedee9eaccb1724fe48e0d" title=" " alt="" coords="817,215,911,241"/>
+<area shape="poly" title=" " alt="" coords="1005,231,911,231,911,225,1005,225"/>
+<area shape="rect" href="pci__bus_8c.html#afe04d835b7db85c3bf52b74ebb3253d0" title=" " alt="" coords="821,91,907,117"/>
+<area shape="poly" title=" " alt="" coords="1038,208,968,156,896,119,898,114,971,151,1042,204"/>
+<area shape="rect" href="pci__bus_8c.html#a400a6ac8cb7e0c9423b3f65a411503ee" title=" " alt="" coords="815,265,913,290"/>
+<area shape="poly" title=" " alt="" coords="1007,246,970,256,914,269,912,264,969,251,1006,241"/>
+<area shape="rect" href="pci__bus_8c.html#a51f37649c0009ba118af2b6b74edf0aa" title=" " alt="" coords="819,314,909,339"/>
+<area shape="poly" title=" " alt="" coords="1027,250,1019,255,1005,268,996,281,986,293,971,305,940,318,909,325,908,320,939,313,968,300,983,289,992,278,1001,265,1016,251,1024,246"/>
+<area shape="rect" href="pci__bus_8c.html#a29224ec664b5d9c291284bb448569703" title=" " alt="" coords="540,66,687,91"/>
+<area shape="poly" title=" " alt="" coords="823,163,757,130,734,117,710,105,674,94,676,89,712,100,736,112,760,126,825,158"/>
+<area shape="rect" href="pci__bus_8c.html#af7c9f00a18a2cae449e2387e15a80b95" title=" " alt="" coords="360,117,468,142"/>
+<area shape="poly" title=" " alt="" coords="548,97,517,105,464,119,462,114,515,100,547,92"/>
+<area shape="rect" href="pci__bridge_8c.html#ad7fccdb631dd84822d64dd0df4c846ee" title=" " alt="" coords="179,166,312,191"/>
+<area shape="poly" title=" " alt="" coords="358,149,291,168,289,163,356,143"/>
+<area shape="rect" href="pci__bus_8c.html#a7bef58cef9f660430255890e5ef50d20" title=" " alt="" coords="186,117,305,142"/>
+<area shape="poly" title=" " alt="" coords="346,132,305,132,305,127,346,127"/>
+<area shape="rect" href="pci__bus_8c.html#a2c02c862f88674318bfb90afa61c1d5e" title=" " alt="" coords="5,117,131,142"/>
+<area shape="poly" title=" " alt="" coords="172,132,131,132,131,127,172,127"/>
+<area shape="poly" title=" " alt="" coords="803,226,779,219,757,206,745,194,738,180,732,154,726,128,720,116,709,105,685,91,688,87,712,101,724,113,731,127,737,153,743,179,749,190,760,202,781,214,804,221"/>
+<area shape="poly" title=" " alt="" coords="804,218,515,155,468,144,469,139,517,149,805,213"/>
+<area shape="poly" title=" " alt="" coords="803,226,312,187,312,181,804,221"/>
+<area shape="rect" href="pci__bus_8c.html#a74d6215b3d9b55f51bbbdc6b8831f8db" title=" " alt="" coords="535,317,691,357"/>
+<area shape="poly" title=" " alt="" coords="805,239,760,256,745,268,737,280,728,294,712,308,690,320,687,315,709,303,723,291,732,277,741,264,757,251,803,234"/>
+<area shape="rect" href="pci__bus_8c.html#a2e6ce79ae0a8e5d8a395371a44e91ac7" title=" " alt="" coords="516,267,711,293"/>
+<area shape="poly" title=" " alt="" coords="805,243,676,270,675,265,803,238"/>
+<area shape="rect" href="pci__bus_8c.html#a91a738b096f01d45105b642c6dd28b4a" title=" " alt="" coords="542,115,685,141"/>
+<area shape="poly" title=" " alt="" coords="803,222,757,206,742,195,732,184,723,173,709,162,665,143,667,138,712,158,727,169,736,181,746,192,760,202,805,217"/>
+<area shape="poly" title=" " alt="" coords="807,101,687,89,687,83,808,96"/>
+<area shape="poly" title=" " alt="" coords="807,96,758,81,734,67,710,56,656,43,613,38,570,41,517,56,490,68,466,85,429,119,425,115,462,81,487,64,515,51,569,36,613,33,657,38,712,51,736,63,760,76,809,91"/>
+<area shape="poly" title=" " alt="" coords="807,99,782,92,757,81,742,67,733,53,725,40,709,29,658,12,615,9,571,16,517,29,470,42,434,57,362,106,348,119,338,131,329,143,313,156,289,168,286,164,311,151,325,139,334,127,344,115,358,102,432,53,468,37,515,24,570,11,615,4,659,7,712,24,728,36,738,50,746,64,760,76,783,87,808,94"/>
+<area shape="poly" title=" " alt="" coords="808,112,685,124,685,119,807,107"/>
+<area shape="poly" title=" " alt="" coords="803,287,781,294,760,305,745,321,738,338,730,356,712,372,660,392,615,397,570,389,515,372,472,355,431,334,356,283,296,231,257,193,260,189,299,228,359,278,434,329,475,350,517,367,571,383,615,391,659,387,709,367,725,353,733,336,741,318,757,301,779,289,801,282"/>
+<area shape="poly" title=" " alt="" coords="802,295,692,321,691,316,801,290"/>
+<area shape="poly" title=" " alt="" coords="801,281,711,282,711,276,801,275"/>
+<area shape="poly" title=" " alt="" coords="1022,260,1016,255,1001,242,992,229,983,217,968,206,923,189,925,184,971,202,986,214,996,226,1005,238,1019,251,1025,256"/>
+<area shape="poly" title=" " alt="" coords="1003,280,913,280,913,275,1003,275"/>
+<area shape="poly" title=" " alt="" coords="1006,296,970,305,910,320,908,314,969,300,1004,291"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6eedc2ca892d2f095b843bdd5d16d5aa" name="a6eedc2ca892d2f095b843bdd5d16d5aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6eedc2ca892d2f095b843bdd5d16d5aa">&#9670;&#160;</a></span>spinlock_try_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">bool</a> spinlock_try_acquire </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbus.html">struct</a> <a class="el" href="structspinlock.html">spinlock</a> *&#160;</td>
+          <td class="paramname"><em>lock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbus.html">uint64_t</a> *&#160;</td>
+          <td class="paramname"><em>flags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a2ec59b6ec33735e2cfbe3492a0dbaf5.html">intf</a></li><li class="navelem"><a class="el" href="dir_42c46c64c832fe40d87f79dbc00bb1a4.html">smp</a></li><li class="navelem"><a class="el" href="lock_8h.html">lock.h</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_408e3e109cd8ba6803532e2e583521a9.html">public</a></li><li class="navelem"><a class="el" href="dir_edefaed2327c5c7d1c73761ed63c75e6.html">smp</a></li><li class="navelem"><a class="el" href="lock_8h.html">lock.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -1,0 +1,11 @@
+<map id="acpi_find_table" name="acpi_find_table">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,125,56"/>
+<area shape="rect" id="Node000002" href="$namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee" title=" " alt="" coords="173,31,295,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,41,160,41,160,46,126,46"/>
+<area shape="rect" id="Node000003" href="$string_8cpp.html#a9e6df54ee04e18a3772335580e2ed872" title=" " alt="" coords="343,5,427,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="294,31,329,25,330,30,295,36"/>
+<area shape="rect" id="Node000004" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="361,55,408,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="295,50,348,59,347,64,294,56"/>
+<area shape="rect" id="Node000005" href="$uhci_8c.html#a22fb3c31719f623dd4c17f4c9f543b02" title=" " alt="" coords="475,55,528,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="409,65,461,65,461,70,409,70"/>
+</map>

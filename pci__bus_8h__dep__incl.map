@@ -1,0 +1,9 @@
+<map id="src/module/pci_bus/include/pci_bus.h" name="src/module/pci_bus/include/pci_bus.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="195,5,341,45"/>
+<area shape="rect" id="Node000002" href="$pci__bridge_8c.html" title=" " alt="" coords="5,93,171,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,54,129,96,126,91,215,49"/>
+<area shape="rect" id="Node000003" href="$pci__bus_8c.html" title=" " alt="" coords="195,93,341,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="271,59,271,93,265,93,265,59"/>
+<area shape="rect" id="Node000004" href="$uhci_8c.html" title=" " alt="" coords="366,93,514,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="319,49,404,91,401,96,317,54"/>
+</map>

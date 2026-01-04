@@ -1,0 +1,33 @@
+<map id="src/impl/x86_64/module/vmm.cpp" name="src/impl/x86_64/module/vmm.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="161,5,340,45"/>
+<area shape="rect" id="Node000002" href="$public_2mod_2vmm_8h.html" title=" " alt="" coords="5,313,107,339"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,48,201,69,177,95,140,149,109,207,67,301,63,299,104,204,135,147,173,92,197,65,223,44"/>
+<area shape="rect" id="Node000004" href="$intf_2memory_2vmm_8h.html" title=" " alt="" coords="187,93,314,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="253,46,253,79,248,79,248,46"/>
+<area shape="rect" id="Node000012" href="$symbol_8h.html" title=" " alt="" coords="520,93,603,119"/>
+<area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="326,43,507,88,506,93,324,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="357,387,427,412"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,335,344,385,343,390,106,341"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="235,121,213,141,195,168,192,192,199,221,215,264,229,304,238,320,254,337,275,352,298,365,344,384,342,389,295,370,272,357,250,341,234,323,224,307,209,266,194,223,187,192,189,166,209,137,232,117"/>
+<area shape="rect" id="Node000005" href="$lock_8h.html" title=" " alt="" coords="204,167,297,192"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="253,119,253,153,248,153,248,119"/>
+<area shape="rect" id="Node000007" href="$util_8h.html" title="Utility functions and macros." alt="" coords="437,167,491,192"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="286,116,425,162,423,167,284,121"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="243,194,223,227,219,246,222,264,248,302,283,334,320,360,354,378,351,383,317,364,279,338,244,306,218,266,214,246,218,225,238,191"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="232,240,315,265"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="257,192,268,226,263,228,252,193"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="438,193,406,212,391,226,380,241,369,275,369,311,376,345,385,373,379,375,370,346,364,311,364,274,375,239,387,222,402,208,435,189"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="389,240,464,265"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="460,194,441,229,437,227,455,191"/>
+<area shape="rect" id="Node000009" href="$portio_8h.html" title=" " alt="" coords="396,313,468,339"/>
+<area shape="poly" id="edge11_Node000007_Node000009" title=" " alt="" coords="472,192,481,225,482,246,479,266,468,287,455,305,451,302,464,284,473,265,477,246,475,226,466,193"/>
+<area shape="rect" id="Node000010" href="$apic_8h.html" title=" " alt="" coords="539,240,632,265"/>
+<area shape="poly" id="edge13_Node000007_Node000010" title=" " alt="" coords="485,190,555,231,553,235,482,194"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="428,340,408,376,403,373,423,338"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="573,268,482,341,423,381,420,377,478,337,570,264"/>
+<area shape="rect" id="Node000011" href="$idt_8h.html" title=" " alt="" coords="560,313,611,339"/>
+<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="588,266,588,300,583,300,583,266"/>
+<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="561,339,437,384,435,379,559,334"/>
+<area shape="poly" id="edge17_Node000011_Node000007" title=" " alt="" coords="602,311,621,296,637,279,646,259,646,250,642,242,613,215,578,198,540,188,505,184,505,179,541,183,580,193,617,211,646,238,651,249,651,261,642,282,624,300,605,315"/>
+<area shape="poly" id="edge19_Node000012_Node000003" title=" " alt="" coords="577,117,624,166,648,201,667,239,672,270,666,296,649,319,624,341,580,367,531,384,483,394,441,399,440,394,482,389,530,379,578,362,621,337,645,316,661,294,667,270,661,241,644,203,619,169,573,121"/>
+</map>

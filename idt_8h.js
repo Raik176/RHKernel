@@ -3,6 +3,7 @@ var idt_8h =
     [ "idt::idt_entry", "structidt_1_1idt__entry.html", "structidt_1_1idt__entry" ],
     [ "idt::idt_ptr", "structidt_1_1idt__ptr.html", "structidt_1_1idt__ptr" ],
     [ "__attribute__", "idt_8h.html#a05a09d6694d991235f95bfcd7171a85a", null ],
+    [ "get_unused_vector", "idt_8h.html#a252375486e4113736f6b95d35ec7b939", null ],
     [ "init", "idt_8h.html#a6a2f66e62a6c1b073aa94f90a44db50a", null ],
     [ "init_ap", "idt_8h.html#a8673d711311d6c4b6e7920f7e13e34cd", null ],
     [ "set_gate", "idt_8h.html#a241eccc3e87b3e7c19ef23a547c86b88", null ],

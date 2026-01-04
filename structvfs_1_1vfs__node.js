@@ -7,8 +7,8 @@ var structvfs_1_1vfs__node =
     [ "next", "structvfs_1_1vfs__node.html#a528e119d2d46cea2e562d8a3bc77651c", null ],
     [ "parent", "structvfs_1_1vfs__node.html#aa17d0c7cae7196033663afe9728c4454", null ],
     [ "ptr", "structvfs_1_1vfs__node.html#a2ef77340b411fe6bd838e022366e12df", null ],
-    [ "read", "structvfs_1_1vfs__node.html#a80a1f01521e4b034f6ccad79fabbc2a2", null ],
-    [ "size", "structvfs_1_1vfs__node.html#a0fe182f5690c37c4c02c8dc8408fef78", null ],
+    [ "read", "structvfs_1_1vfs__node.html#a32f170259b91d19f3daeada3659a2afe", null ],
+    [ "size", "structvfs_1_1vfs__node.html#a4fa8f8689f65ae89c7c68676d8ff8a99", null ],
     [ "type", "structvfs_1_1vfs__node.html#ae06c73a142658a765bcdb8c478bd504a", null ],
-    [ "write", "structvfs_1_1vfs__node.html#aa895ae652f40cf20f1a7974c71e260b2", null ]
+    [ "write", "structvfs_1_1vfs__node.html#a49e78a88c556f18cf1a64dd74d277eb7", null ]
 ];

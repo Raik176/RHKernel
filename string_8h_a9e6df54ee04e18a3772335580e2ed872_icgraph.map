@@ -1,15 +1,20 @@
 <map id="memcmp" name="memcmp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="443,80,527,105"/>
-<area shape="rect" id="Node000002" href="$namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee" title=" " alt="" coords="273,55,395,80"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,86,394,80,395,75,430,81"/>
-<area shape="rect" id="Node000006" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="279,104,389,129"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="430,104,390,111,389,105,429,99"/>
-<area shape="rect" id="Node000003" href="$namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6" title=" " alt="" coords="125,5,216,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,53,213,33,215,28,279,48"/>
-<area shape="rect" id="Node000005" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,55,225,80"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="260,70,226,70,226,65,260,65"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,55,68,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,38,69,59,67,54,122,33"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="102,70,68,70,68,65,102,65"/>
-<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="265,115,192,108,115,95,68,81,69,76,117,90,193,103,265,110"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="676,105,760,131"/>
+<area shape="rect" id="Node000002" href="$namespaceacpi.html#aad72171e9e0a93d13ae65d40dd94adee" title=" " alt="" coords="507,80,628,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="662,111,628,105,629,100,663,106"/>
+<area shape="rect" id="Node000009" href="$namespaceinitramfs.html#a2762b5396a1ef9dcf76262fcd976c12a" title=" " alt="" coords="512,129,623,155"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="663,129,623,136,622,131,662,124"/>
+<area shape="rect" id="Node000003" href="$module_2acpi_8cpp.html#a692d630aabc8c2e8963c70809a76ed7f" title=" " alt="" coords="339,5,459,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="526,76,458,44,431,33,433,28,460,40,529,72"/>
+<area shape="rect" id="Node000006" href="$namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6" title=" " alt="" coords="353,55,444,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="492,84,444,77,445,71,493,79"/>
+<area shape="rect" id="Node000008" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="344,104,453,129"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="494,106,454,112,453,106,493,101"/>
+<area shape="rect" id="Node000004" href="$pci__bus_8c.html#a665d7c6746fe4b06624653bbb6e71363" title=" " alt="" coords="179,5,291,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="325,21,291,21,291,15,325,15"/>
+<area shape="rect" id="Node000005" href="$pci__bus_8c.html#a2c02c862f88674318bfb90afa61c1d5e" title=" " alt="" coords="5,5,131,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="165,21,131,21,131,15,165,15"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="203,104,266,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="344,87,267,110,265,105,342,81"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="498,149,421,150,338,145,266,129,267,124,339,139,421,145,498,144"/>
 </map>

@@ -98,10 +98,10 @@ $(document).ready(function(){initNavTree('ioapic_8cpp.html',''); initResizable()
   <div class="headertitle"><div class="title">ioapic.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="acpi_8h_source.html">acpi.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;acpi.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="console_8h_source.html">console.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="intf_2memory_2heap_8h_source.html">memory/heap.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="vmm_8h_source.html">memory/vmm.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="intf_2memory_2vmm_8h_source.html">memory/vmm.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="apic_8h_source.html">smp/apic.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -109,53 +109,53 @@ Include dependency graph for ioapic.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="ioapic_8cpp__incl.png" border="0" usemap="#asrc_2impl_2x86__64_2smp_2ioapic_8cpp" alt=""/></div>
 <map name="asrc_2impl_2x86__64_2smp_2ioapic_8cpp" id="asrc_2impl_2x86__64_2smp_2ioapic_8cpp">
-<area shape="rect" title=" " alt="" coords="397,5,555,45"/>
-<area shape="rect" href="acpi_8h.html" title=" " alt="" coords="5,167,67,192"/>
-<area shape="poly" title=" " alt="" coords="398,44,304,65,205,96,130,129,68,162,66,157,128,124,203,91,303,60,397,38"/>
-<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="217,93,301,119"/>
-<area shape="poly" title=" " alt="" coords="425,48,304,91,303,86,423,43"/>
-<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="471,167,596,192"/>
-<area shape="poly" title=" " alt="" coords="486,45,527,153,522,155,481,47"/>
-<area shape="rect" href="vmm_8h.html" title=" " alt="" coords="589,93,715,119"/>
-<area shape="poly" title=" " alt="" coords="519,43,615,85,612,90,517,48"/>
-<area shape="rect" href="apic_8h.html" title=" " alt="" coords="873,240,967,265"/>
-<area shape="poly" title=" " alt="" coords="556,36,641,57,686,72,729,91,782,123,830,161,902,228,898,232,827,165,779,127,727,96,684,77,640,62,555,41"/>
-<area shape="rect" href="string_8h.html" title=" " alt="" coords="366,93,437,119"/>
-<area shape="poly" title=" " alt="" coords="460,47,424,85,420,81,456,44"/>
-<area shape="rect" title=" " alt="" coords="404,240,479,265"/>
-<area shape="poly" title=" " alt="" coords="67,183,391,240,390,245,66,189"/>
-<area shape="rect" title=" " alt="" coords="553,387,623,412"/>
-<area shape="poly" title=" " alt="" coords="38,192,40,222,46,262,61,303,72,321,87,337,121,355,170,369,229,380,296,388,430,395,539,396,539,401,430,400,295,393,229,385,168,375,119,360,84,341,68,324,56,305,41,263,34,222,33,192"/>
-<area shape="poly" title=" " alt="" coords="217,119,182,129,150,145,139,155,131,166,128,177,132,191,147,218,166,243,212,286,266,320,324,346,384,365,443,379,539,392,539,398,442,384,383,371,322,351,263,325,208,290,162,247,143,221,127,193,123,178,126,163,135,151,147,141,180,125,216,113"/>
-<area shape="rect" title=" " alt="" coords="271,167,345,192"/>
-<area shape="poly" title=" " alt="" coords="269,117,294,154,290,157,265,121"/>
-<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="142,167,247,192"/>
-<area shape="poly" title=" " alt="" coords="250,121,216,158,212,155,246,117"/>
-<area shape="poly" title=" " alt="" coords="235,189,392,234,390,239,234,195"/>
-<area shape="poly" title=" " alt="" coords="205,191,259,260,301,301,349,336,397,359,448,374,539,391,538,396,446,380,395,364,347,341,298,306,255,264,200,194"/>
-<area shape="poly" title=" " alt="" coords="520,194,469,234,465,229,517,190"/>
-<area shape="poly" title=" " alt="" coords="536,192,538,225,544,265,561,324,580,373,575,375,556,326,539,266,533,226,531,192"/>
-<area shape="rect" href="lock_8h.html" title=" " alt="" coords="553,240,647,265"/>
-<area shape="poly" title=" " alt="" coords="546,191,582,228,578,232,542,194"/>
-<area shape="poly" title=" " alt="" coords="602,266,593,373,587,373,596,266"/>
-<area shape="poly" title=" " alt="" coords="657,119,666,182,667,224,661,266,651,298,637,328,607,377,602,374,632,325,646,296,656,265,662,224,661,182,652,119"/>
-<area shape="poly" title=" " alt="" coords="650,120,611,228,606,226,645,118"/>
-<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="741,167,795,192"/>
-<area shape="poly" title=" " alt="" coords="672,116,739,157,736,162,669,121"/>
-<area shape="poly" title=" " alt="" coords="741,189,493,243,492,238,740,184"/>
-<area shape="poly" title=" " alt="" coords="774,191,780,220,784,259,780,301,773,322,762,340,736,365,704,382,670,392,637,398,636,393,668,387,702,377,733,361,758,337,768,320,774,300,778,259,775,221,769,193"/>
-<area shape="rect" href="portio_8h.html" title=" " alt="" coords="676,313,748,339"/>
-<area shape="poly" title=" " alt="" coords="766,193,724,301,719,300,761,191"/>
-<area shape="poly" title=" " alt="" coords="794,190,884,232,882,237,791,194"/>
-<area shape="poly" title=" " alt="" coords="693,341,621,382,619,377,691,336"/>
-<area shape="poly" title=" " alt="" coords="921,267,912,303,902,324,887,341,868,352,842,362,776,378,638,396,637,391,775,372,841,357,866,347,884,337,897,321,907,301,916,265"/>
-<area shape="rect" href="idt_8h.html" title=" " alt="" coords="823,313,873,339"/>
-<area shape="poly" title=" " alt="" coords="910,268,871,306,868,302,906,264"/>
-<area shape="poly" title=" " alt="" coords="823,337,637,387,636,382,822,332"/>
-<area shape="poly" title=" " alt="" coords="840,314,802,241,780,205,785,202,806,239,845,312"/>
-<area shape="poly" title=" " alt="" coords="407,118,437,226,432,227,402,120"/>
-<area shape="poly" title=" " alt="" coords="399,120,391,147,384,184,383,225,387,245,394,264,424,304,462,336,504,361,542,379,540,384,501,366,459,340,420,307,390,267,382,247,378,226,378,184,386,146,394,118"/>
-<area shape="poly" title=" " alt="" coords="388,121,336,160,332,156,385,117"/>
+<area shape="rect" title=" " alt="" coords="321,5,479,45"/>
+<area shape="rect" title=" " alt="" coords="5,93,67,119"/>
+<area shape="poly" title=" " alt="" coords="322,46,86,96,81,97,80,92,85,91,320,40"/>
+<area shape="rect" href="console_8h.html" title="Abstraction layer for kernel console output." alt="" coords="737,93,821,119"/>
+<area shape="poly" title=" " alt="" coords="479,40,724,91,723,96,478,46"/>
+<area shape="rect" href="intf_2memory_2heap_8h.html" title=" " alt="" coords="429,167,555,192"/>
+<area shape="poly" title=" " alt="" coords="414,44,480,153,476,156,409,47"/>
+<area shape="rect" href="intf_2memory_2vmm_8h.html" title=" " alt="" coords="265,93,391,119"/>
+<area shape="poly" title=" " alt="" coords="385,47,350,85,346,81,381,44"/>
+<area shape="rect" href="apic_8h.html" title=" " alt="" coords="124,240,217,265"/>
+<area shape="poly" title=" " alt="" coords="335,48,293,67,254,95,227,127,206,163,180,228,175,226,202,160,223,124,250,91,290,63,333,43"/>
+<area shape="rect" href="string_8h.html" title=" " alt="" coords="586,93,657,119"/>
+<area shape="poly" title=" " alt="" coords="454,43,577,86,575,91,452,48"/>
+<area shape="rect" title=" " alt="" coords="684,167,759,192"/>
+<area shape="poly" title=" " alt="" coords="771,121,741,158,737,154,767,117"/>
+<area shape="rect" title=" " alt="" coords="369,387,439,412"/>
+<area shape="poly" title=" " alt="" coords="822,115,855,126,885,142,897,153,905,165,907,178,904,193,887,224,866,251,842,276,815,297,755,333,689,359,622,377,558,389,453,400,453,394,557,384,621,372,688,354,752,328,812,293,838,272,862,248,882,221,899,191,902,178,900,167,893,156,882,147,853,131,820,120"/>
+<area shape="rect" href="multiboot2_8h.html" title="Multiboot2 data structures and tag type definitions." alt="" coords="783,167,889,192"/>
+<area shape="poly" title=" " alt="" coords="790,117,820,154,816,158,786,121"/>
+<area shape="poly" title=" " alt="" coords="831,194,812,224,781,264,741,306,693,341,632,368,567,385,506,395,454,400,453,394,505,390,566,380,630,363,691,336,737,302,777,261,807,221,827,191"/>
+<area shape="rect" title=" " alt="" coords="561,240,636,265"/>
+<area shape="poly" title=" " alt="" coords="799,195,650,239,649,234,797,189"/>
+<area shape="poly" title=" " alt="" coords="503,191,544,252,564,286,576,312,580,327,576,340,550,365,519,382,485,393,453,398,452,393,484,387,517,377,547,361,571,337,574,327,571,314,559,288,539,255,498,194"/>
+<area shape="poly" title=" " alt="" coords="511,190,571,230,568,235,508,194"/>
+<area shape="rect" href="lock_8h.html" title=" " alt="" coords="393,240,487,265"/>
+<area shape="poly" title=" " alt="" coords="486,194,459,230,454,227,481,191"/>
+<area shape="poly" title=" " alt="" coords="440,266,413,374,408,373,434,265"/>
+<area shape="rect" title=" " alt="" coords="479,313,561,339"/>
+<area shape="poly" title=" " alt="" coords="455,263,499,302,495,306,451,267"/>
+<area shape="poly" title=" " alt="" coords="280,121,219,141,159,172,135,191,118,213,110,237,115,264,132,297,156,323,186,344,220,361,292,383,356,392,355,398,291,388,218,366,184,349,153,327,127,300,109,266,105,237,113,210,131,187,156,167,217,136,278,116"/>
+<area shape="poly" title=" " alt="" coords="339,117,425,228,421,231,335,121"/>
+<area shape="rect" href="util_8h.html" title="Utility functions and macros." alt="" coords="279,167,334,192"/>
+<area shape="poly" title=" " alt="" coords="327,120,317,154,311,153,322,118"/>
+<area shape="poly" title=" " alt="" coords="307,193,304,220,303,258,308,299,322,337,342,360,366,378,363,382,338,364,318,340,303,300,298,258,298,220,302,192"/>
+<area shape="poly" title=" " alt="" coords="335,185,549,236,547,242,334,190"/>
+<area shape="rect" href="portio_8h.html" title=" " alt="" coords="332,313,404,339"/>
+<area shape="poly" title=" " alt="" coords="314,191,360,299,355,302,309,193"/>
+<area shape="poly" title=" " alt="" coords="286,194,206,236,204,231,284,190"/>
+<area shape="poly" title=" " alt="" coords="376,338,394,373,390,376,372,340"/>
+<area shape="poly" title=" " alt="" coords="173,265,178,301,185,320,197,337,232,363,274,380,316,390,355,395,354,400,315,395,272,385,230,368,193,341,180,323,173,302,168,266"/>
+<area shape="rect" href="idt_8h.html" title=" " alt="" coords="207,313,257,339"/>
+<area shape="poly" title=" " alt="" coords="183,264,215,301,211,305,179,267"/>
+<area shape="poly" title=" " alt="" coords="258,335,365,379,363,384,256,340"/>
+<area shape="poly" title=" " alt="" coords="236,312,292,203,297,206,240,314"/>
+<area shape="poly" title=" " alt="" coords="639,117,695,156,692,161,636,121"/>
+<area shape="poly" title=" " alt="" coords="629,118,640,144,651,181,657,224,651,266,641,291,630,309,595,341,561,361,523,376,454,394,452,389,522,371,558,356,592,337,626,306,636,289,645,265,651,224,646,183,635,146,624,120"/>
+<area shape="poly" title=" " alt="" coords="622,120,605,227,600,226,617,119"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -173,28 +173,28 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af952a64774441d11306827b26ce5d30e" id="r_af952a64774441d11306827b26ce5d30e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#af952a64774441d11306827b26ce5d30e">ioapic::write</a> (void *<a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint8_t reg, uint32_t val)</td></tr>
+<tr class="memitem:af952a64774441d11306827b26ce5d30e" id="r_af952a64774441d11306827b26ce5d30e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#af952a64774441d11306827b26ce5d30e">ioapic::write</a> (<a class="el" href="structbus.html">void</a> *<a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, <a class="el" href="structbus.html">uint8_t</a> <a class="el" href="structbus.html">reg</a>, <a class="el" href="structbus.html">uint32_t</a> <a class="el" href="structbus.html">val</a>)</td></tr>
 <tr class="separator:af952a64774441d11306827b26ce5d30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412ed2864a0e79dc6b2f92ba0874bedc" id="r_a412ed2864a0e79dc6b2f92ba0874bedc"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a412ed2864a0e79dc6b2f92ba0874bedc">ioapic::read</a> (void *<a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, uint8_t reg)</td></tr>
+<tr class="memitem:a412ed2864a0e79dc6b2f92ba0874bedc" id="r_a412ed2864a0e79dc6b2f92ba0874bedc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a412ed2864a0e79dc6b2f92ba0874bedc">ioapic::read</a> (<a class="el" href="structbus.html">void</a> *<a class="el" href="gdt_8h.html#aeca790c0426654358d031f8180e84aca">base</a>, <a class="el" href="structbus.html">uint8_t</a> <a class="el" href="structbus.html">reg</a>)</td></tr>
 <tr class="separator:a412ed2864a0e79dc6b2f92ba0874bedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23959eb8121e62cbdbdfd51f1d1f5525" id="r_a23959eb8121e62cbdbdfd51f1d1f5525"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a23959eb8121e62cbdbdfd51f1d1f5525">ioapic::resolve_gsi</a> (uint8_t irq)</td></tr>
+<tr class="memitem:a23959eb8121e62cbdbdfd51f1d1f5525" id="r_a23959eb8121e62cbdbdfd51f1d1f5525"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a23959eb8121e62cbdbdfd51f1d1f5525">ioapic::resolve_gsi</a> (<a class="el" href="structbus.html">uint8_t</a> irq)</td></tr>
 <tr class="separator:a23959eb8121e62cbdbdfd51f1d1f5525"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af83d1f9b989ba94daee1c7c76b49b19e" id="r_af83d1f9b989ba94daee1c7c76b49b19e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e">ioapic::init_ioapic</a> (uintptr_t phys, uint32_t gsi_base)</td></tr>
+<tr class="memitem:af83d1f9b989ba94daee1c7c76b49b19e" id="r_af83d1f9b989ba94daee1c7c76b49b19e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#af83d1f9b989ba94daee1c7c76b49b19e">ioapic::init_ioapic</a> (<a class="el" href="structbus.html">uintptr_t</a> <a class="el" href="uhci_8c.html#a22fb3c31719f623dd4c17f4c9f543b02">phys</a>, <a class="el" href="structbus.html">uint32_t</a> gsi_base)</td></tr>
 <tr class="separator:af83d1f9b989ba94daee1c7c76b49b19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac37b7dbf530b5b00d5e5e45ab8d486b6" id="r_ac37b7dbf530b5b00d5e5e45ab8d486b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6">ioapic::init</a> ()</td></tr>
+<tr class="memitem:ac37b7dbf530b5b00d5e5e45ab8d486b6" id="r_ac37b7dbf530b5b00d5e5e45ab8d486b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6">ioapic::init</a> ()</td></tr>
 <tr class="separator:ac37b7dbf530b5b00d5e5e45ab8d486b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac06336108468cf20db5287f12112ace7" id="r_ac06336108468cf20db5287f12112ace7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#ac06336108468cf20db5287f12112ace7">ioapic::set_redirection</a> (uint32_t gsi, uint8_t vector, uint32_t <a class="el" href="acpi_8h.html#a8c23fe12c9a152f779c41b56fef3d8c9">lapic_id</a>, bool mask)</td></tr>
+<tr class="memitem:ac06336108468cf20db5287f12112ace7" id="r_ac06336108468cf20db5287f12112ace7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#ac06336108468cf20db5287f12112ace7">ioapic::set_redirection</a> (<a class="el" href="structbus.html">uint32_t</a> gsi, <a class="el" href="structbus.html">uint8_t</a> <a class="el" href="structbus.html">vector</a>, <a class="el" href="structbus.html">uint32_t</a> <a class="el" href="public_2mod_2acpi_8h.html#a8c23fe12c9a152f779c41b56fef3d8c9">lapic_id</a>, <a class="el" href="structbus.html">bool</a> <a class="el" href="structbus.html">mask</a>)</td></tr>
 <tr class="separator:ac06336108468cf20db5287f12112ace7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a88502e7d0a877fc6be971a113c27c363" id="r_a88502e7d0a877fc6be971a113c27c363"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structioapic_1_1iso.html">iso</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a88502e7d0a877fc6be971a113c27c363">ioapic::overrides</a> = nullptr</td></tr>
+<tr class="memitem:a88502e7d0a877fc6be971a113c27c363" id="r_a88502e7d0a877fc6be971a113c27c363"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structioapic_1_1iso.html">iso</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a88502e7d0a877fc6be971a113c27c363">ioapic::overrides</a> = <a class="el" href="structbus.html">nullptr</a></td></tr>
 <tr class="separator:a88502e7d0a877fc6be971a113c27c363"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54ede6c9ce64baf238ec47e38858fb08" id="r_a54ede6c9ce64baf238ec47e38858fb08"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a54ede6c9ce64baf238ec47e38858fb08">ioapic::iso_count</a> = 0</td></tr>
+<tr class="memitem:a54ede6c9ce64baf238ec47e38858fb08" id="r_a54ede6c9ce64baf238ec47e38858fb08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a54ede6c9ce64baf238ec47e38858fb08">ioapic::iso_count</a> = 0</td></tr>
 <tr class="separator:a54ede6c9ce64baf238ec47e38858fb08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d78ae1eeaba28b8b1a99ebb7708715f" id="r_a8d78ae1eeaba28b8b1a99ebb7708715f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structioapic_1_1controller.html">controller</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a8d78ae1eeaba28b8b1a99ebb7708715f">ioapic::controllers</a> = nullptr</td></tr>
+<tr class="memitem:a8d78ae1eeaba28b8b1a99ebb7708715f" id="r_a8d78ae1eeaba28b8b1a99ebb7708715f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structioapic_1_1controller.html">controller</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#a8d78ae1eeaba28b8b1a99ebb7708715f">ioapic::controllers</a> = <a class="el" href="structbus.html">nullptr</a></td></tr>
 <tr class="separator:a8d78ae1eeaba28b8b1a99ebb7708715f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afddf9ff5217c74b9f0a354b1634f3e9f" id="r_afddf9ff5217c74b9f0a354b1634f3e9f"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#afddf9ff5217c74b9f0a354b1634f3e9f">ioapic::count</a> = 0</td></tr>
+<tr class="memitem:afddf9ff5217c74b9f0a354b1634f3e9f" id="r_afddf9ff5217c74b9f0a354b1634f3e9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">static</a> <a class="el" href="structbus.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceioapic.html#afddf9ff5217c74b9f0a354b1634f3e9f">ioapic::count</a> = 0</td></tr>
 <tr class="separator:afddf9ff5217c74b9f0a354b1634f3e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

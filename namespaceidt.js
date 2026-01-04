@@ -3,6 +3,7 @@ var namespaceidt =
     [ "idt_entry", "structidt_1_1idt__entry.html", "structidt_1_1idt__entry" ],
     [ "idt_ptr", "structidt_1_1idt__ptr.html", "structidt_1_1idt__ptr" ],
     [ "__attribute__", "namespaceidt.html#a05a09d6694d991235f95bfcd7171a85a", null ],
+    [ "get_unused_vector", "namespaceidt.html#a252375486e4113736f6b95d35ec7b939", null ],
     [ "init", "namespaceidt.html#a6a2f66e62a6c1b073aa94f90a44db50a", null ],
     [ "init_ap", "namespaceidt.html#a8673d711311d6c4b6e7920f7e13e34cd", null ],
     [ "load", "namespaceidt.html#a11b4853d5e7b5eedb57e2c8c531c7df4", null ],

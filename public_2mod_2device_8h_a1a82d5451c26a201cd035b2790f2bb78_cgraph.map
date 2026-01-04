@@ -1,0 +1,45 @@
+<map id="devfs_unregister" name="devfs_unregister">
+<area shape="rect" id="Node000001" title="Unregister a device and clean up empty parent directories." alt="" coords="5,222,136,248"/>
+<area shape="rect" id="Node000002" href="$namespaceheap.html#a10b9e8469bdca98b345adf04f0586f98" title="Free previously allocated memory." alt="" coords="217,149,313,174"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,220,216,177,218,182,106,225"/>
+<area shape="rect" id="Node000015" href="$namespacevfs.html#a9a8b6eb6bf2363f5b0e3485583109a2d" title=" " alt="" coords="184,272,345,297"/>
+<area shape="poly" id="edge18_Node000001_Node000015" title=" " alt="" coords="122,245,201,266,200,271,121,250"/>
+<area shape="rect" id="Node000003" href="$namespacepmm.html#aaafd3da45c639b539e0554f5634aba1e" title="Free previously allocated physical memory." alt="" coords="417,100,508,125"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="312,147,403,124,404,130,313,153"/>
+<area shape="rect" id="Node000012" href="$namespaceheap.html#ac719b36c7cd898d205a3e1f6b37d436e" title=" " alt="" coords="403,149,523,174"/>
+<area shape="poly" id="edge15_Node000002_Node000012" title=" " alt="" coords="313,159,389,159,389,164,313,164"/>
+<area shape="rect" id="Node000013" href="$namespaceheap.html#a7fdcbb207e5a5f301cd197909d2c9711" title=" " alt="" coords="393,198,532,224"/>
+<area shape="poly" id="edge16_Node000002_Node000013" title=" " alt="" coords="313,171,399,193,397,198,312,176"/>
+<area shape="rect" id="Node000014" href="$util_8h.html#a953aa7d2c54a0688f6968f813988a598" title="Convert a virtual address to a physical address." alt="" coords="439,50,486,76"/>
+<area shape="poly" id="edge17_Node000002_Node000014" title=" " alt="" coords="284,147,332,117,392,85,425,72,427,77,394,90,335,121,287,151"/>
+<area shape="rect" id="Node000004" href="$namespacepmm.html#a24883c3b5ab4cc3db371aabf3e9b0538" title=" " alt="" coords="596,198,720,224"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="509,122,533,134,549,147,558,160,567,172,581,184,595,191,593,196,579,188,563,175,554,163,545,151,531,139,507,127"/>
+<area shape="rect" id="Node000006" href="$uhci_8c.html#a22fb3c31719f623dd4c17f4c9f543b02" title=" " alt="" coords="964,50,1017,76"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="506,97,530,85,544,72,553,59,562,46,579,35,627,18,669,7,708,3,745,4,821,17,917,35,952,45,950,50,915,40,820,22,744,9,708,8,670,12,629,23,581,40,566,50,557,62,548,76,534,89,508,102"/>
+<area shape="rect" id="Node000007" href="$namespacepmm.html#aa924ab4f4397b709fae1b63c1c275ca9" title=" " alt="" coords="589,149,727,174"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="509,121,595,143,593,148,508,126"/>
+<area shape="rect" id="Node000009" href="$namespacepmm.html#a9034de1232543acc88ed4ba9d4d5d764" title=" " alt="" coords="580,100,736,125"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="508,110,566,110,566,115,508,115"/>
+<area shape="rect" id="Node000010" href="$namespacepmm.html#a1a69003868fcf2b5a7cd0da910b14af5" title="Convert a size in bytes to the appropriate order." alt="" coords="583,50,733,76"/>
+<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="508,99,593,77,595,82,509,104"/>
+<area shape="rect" id="Node000005" href="$namespacepmm.html#a090cda5827fca84294fd419db582d837" title=" " alt="" coords="784,149,916,174"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="707,196,786,175,787,181,709,201"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="727,159,770,159,770,164,727,164"/>
+<area shape="rect" id="Node000008" href="$util_8h.html#a8acaea6b0688208fbd70e487393c4a03" title="Convert a physical address to a virtual address." alt="" coords="827,100,873,125"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="707,147,813,119,814,124,709,152"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="873,102,950,74,952,79,874,107"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="709,123,787,143,786,148,707,128"/>
+<area shape="poly" id="edge12_Node000009_Node000008" title=" " alt="" coords="736,110,813,110,813,115,736,115"/>
+<area shape="rect" id="Node000011" href="$util_8h.html#a14103feec4f0f7c368f72540d45be16a" title="Align an address upward to the nearest multiple of align" alt="" coords="811,50,889,76"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="734,60,797,60,797,66,734,66"/>
+<area shape="rect" id="Node000016" href="$namespacevfs.html#a239656d07bb446b6b167328138e14004" title=" " alt="" coords="417,248,508,273"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="345,272,403,265,404,270,346,277"/>
+<area shape="rect" id="Node000018" href="$string_8cpp.html#a9380f4a95b2c4e3d979b1634d3a8bcc9" title=" " alt="" coords="427,297,498,322"/>
+<area shape="poly" id="edge21_Node000015_Node000018" title=" " alt="" coords="346,292,414,301,413,306,345,297"/>
+<area shape="rect" id="Node000019" href="$string_8cpp.html#a3a94cced5881b5d080b7e14305a5b38a" title=" " alt="" coords="427,346,499,372"/>
+<area shape="poly" id="edge22_Node000015_Node000019" title=" " alt="" coords="298,295,394,333,415,340,413,345,392,338,296,300"/>
+<area shape="rect" id="Node000017" href="$string_8cpp.html#a11bd144d7d44914099a3aeddf1c8567d" title=" " alt="" coords="625,248,691,273"/>
+<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="508,258,611,258,611,263,508,263"/>
+<area shape="rect" id="Node000020" href="$string_8cpp.html#ad7c16a2447154107d5ecd28434993443" title=" " alt="" coords="629,346,687,372"/>
+<area shape="poly" id="edge23_Node000019_Node000020" title=" " alt="" coords="499,356,615,356,615,362,499,362"/>
+</map>

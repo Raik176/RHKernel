@@ -1,0 +1,9 @@
+<map id="pci_write16" name="pci_write16">
+<area shape="rect" id="Node000001" title=" " alt="" coords="248,63,345,88"/>
+<area shape="rect" id="Node000002" href="$pci__bridge_8c.html#ad7fccdb631dd84822d64dd0df4c846ee" title=" " alt="" coords="36,5,169,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,61,199,46,154,33,156,28,201,41,247,56"/>
+<area shape="rect" id="Node000003" href="$pci__bus_8c.html#a74d6215b3d9b55f51bbbdc6b8831f8db" title=" " alt="" coords="25,55,181,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,78,181,78,181,73,234,73"/>
+<area shape="rect" id="Node000004" href="$pci__bus_8c.html#a2e6ce79ae0a8e5d8a395371a44e91ac7" title=" " alt="" coords="5,120,200,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="247,95,201,110,156,122,154,117,199,105,246,90"/>
+</map>

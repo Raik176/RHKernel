@@ -12,7 +12,7 @@ var namespacevfs =
     [ "get_root", "namespacevfs.html#a97cc57fd10da78746b300acb28b54908", null ],
     [ "init", "namespacevfs.html#ad7bd70fe8a2dcf9aa532815575a48834", null ],
     [ "open", "namespacevfs.html#ad9c521b7a194d805011246959af57312", null ],
-    [ "read", "namespacevfs.html#a64e654f19e32dde1603eee7aa9788b76", null ],
+    [ "read", "namespacevfs.html#a1ee5ad55bebb74f9452da6fe39f3ff3a", null ],
     [ "traverse_relative", "namespacevfs.html#a9a8b6eb6bf2363f5b0e3485583109a2d", null ],
-    [ "write", "namespacevfs.html#a4cfe96af922efb4598b5ccc507df3a6b", null ]
+    [ "write", "namespacevfs.html#a476f9954a16d3abb595f97ec2d576a98", null ]
 ];

@@ -1,14 +1,11 @@
 <map id="smp::get_core_count" name="smp::get_core_count">
-<area shape="rect" id="Node000001" title=" " alt="" coords="788,18,945,43"/>
-<area shape="rect" id="Node000002" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,18,68,43"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="774,24,640,13,489,8,307,8,174,16,68,29,68,23,173,10,307,3,489,3,640,8,775,18"/>
-<area shape="rect" id="Node000003" href="$namespacesmp.html#a7a97a20af4a8f946826bd24298dd4217" title=" " alt="" coords="615,43,740,69"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="775,46,741,50,740,45,774,40"/>
-<area shape="rect" id="Node000004" href="$namespacesmp.html#a349d84746d119a2580dc12154fcb4112" title=" " alt="" coords="409,43,567,69"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="601,59,567,59,567,53,601,53"/>
-<area shape="rect" id="Node000005" href="$util_8cpp.html#a9c5f045dc696b41acc9162f48f00054d" title=" " alt="" coords="255,43,361,69"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="395,59,362,59,362,53,395,53"/>
-<area shape="rect" id="Node000006" href="$namespaceioapic.html#ac37b7dbf530b5b00d5e5e45ab8d486b6" title=" " alt="" coords="116,43,207,69"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="241,59,207,59,207,53,241,53"/>
-<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="102,47,68,40,69,34,103,41"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="539,31,696,56"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="397,5,459,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="524,34,459,25,460,19,525,28"/>
+<area shape="rect" id="Node000003" href="$namespacesmp.html#a7a97a20af4a8f946826bd24298dd4217" title=" " alt="" coords="365,55,491,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="525,58,491,62,491,57,525,52"/>
+<area shape="rect" id="Node000004" href="$namespacesmp.html#a349d84746d119a2580dc12154fcb4112" title=" " alt="" coords="160,55,317,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="352,70,318,70,318,65,352,65"/>
+<area shape="rect" id="Node000005" href="$util_8cpp.html#a9c5f045dc696b41acc9162f48f00054d" title=" " alt="" coords="5,55,112,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="146,70,112,70,112,65,146,65"/>
 </map>

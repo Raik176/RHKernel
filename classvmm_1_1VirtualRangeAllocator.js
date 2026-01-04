@@ -10,6 +10,6 @@ var classvmm_1_1VirtualRangeAllocator =
     [ "operator=", "classvmm_1_1VirtualRangeAllocator.html#abd8421ba48eaca3916cdf6d5452bd6c8", null ],
     [ "m_base", "classvmm_1_1VirtualRangeAllocator.html#adb69959ac15c5ce946b13f3561602cf9", null ],
     [ "m_head", "classvmm_1_1VirtualRangeAllocator.html#acce905f885e3af8fd6794229ad93acc1", null ],
-    [ "m_lock", "classvmm_1_1VirtualRangeAllocator.html#abbe47dc31df3b7b42cb9b281470fc4c1", null ],
+    [ "m_lock", "classvmm_1_1VirtualRangeAllocator.html#ad24b144d8764799e80cae5b0bacb7102", null ],
     [ "m_total_size", "classvmm_1_1VirtualRangeAllocator.html#ac12251ea658ad20c821d854e29234774", null ]
 ];

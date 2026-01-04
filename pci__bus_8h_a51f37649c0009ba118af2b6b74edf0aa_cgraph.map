@@ -1,0 +1,25 @@
+<map id="pci_write8" name="pci_write8">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,129,95,155"/>
+<area shape="rect" id="Node000002" href="$pci__bus_8c.html#a066cad2238970907750aca2e68b1f7f5" title=" " alt="" coords="288,5,436,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,127,142,89,214,62,287,39,308,33,309,38,289,45,215,67,144,94,73,132"/>
+<area shape="rect" id="Node000003" href="$pci__bus_8c.html#a53a9ed42d5916734dffc9fb36facb24a" title=" " alt="" coords="300,252,424,277"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="75,152,144,188,215,215,289,238,309,245,308,250,287,243,214,220,142,192,72,157"/>
+<area shape="rect" id="Node000004" href="$pci__bus_8c.html#a5e68e7a3985ac144c2e18aa1d3ca7445" title=" " alt="" coords="145,104,238,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="94,131,130,125,131,130,95,137"/>
+<area shape="rect" id="Node000009" href="$pci__bus_8c.html#ae0fbc192964111a02ffb91e4932f524f" title=" " alt="" coords="143,153,240,179"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="95,147,129,153,129,158,94,152"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="204,102,240,71,287,40,300,33,302,38,289,44,243,75,208,106"/>
+<area shape="rect" id="Node000005" href="$portio_8h.html#a9c1c3745e8a1005612597adc3d7d5e47" title=" " alt="" coords="343,55,381,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="235,101,329,74,330,79,237,107"/>
+<area shape="rect" id="Node000006" href="$portio_8h.html#a785816e5be3105279c551e8082a414b8" title=" " alt="" coords="339,104,385,129"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="238,114,325,114,325,119,238,119"/>
+<area shape="rect" id="Node000007" href="$lock_8h.html#ab1369ecdd865a5705b458f2621cce79b" title=" " alt="" coords="297,153,427,179"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="237,127,304,147,303,152,235,132"/>
+<area shape="rect" id="Node000008" href="$lock_8h.html#a9f5a87421604379430dc4d1705cecb3e" title=" " alt="" coords="297,203,427,228"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="223,127,242,139,256,152,266,164,275,176,289,188,303,195,300,200,287,192,271,180,261,168,252,156,238,143,220,132"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="222,151,238,139,254,114,260,89,267,65,286,40,292,36,295,40,290,44,272,67,265,91,259,116,242,142,225,155"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="208,177,243,207,289,238,302,244,300,249,287,243,240,211,204,181"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="235,151,325,124,326,130,237,156"/>
+<area shape="poly" id="edge13_Node000009_Node000007" title=" " alt="" coords="240,163,283,163,283,169,240,169"/>
+<area shape="poly" id="edge14_Node000009_Node000008" title=" " alt="" coords="237,176,304,196,303,201,235,181"/>
+</map>

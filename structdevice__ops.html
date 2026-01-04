@@ -104,36 +104,36 @@ $(document).ready(function(){initNavTree('structdevice__ops.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aec55868c840604578cb14651f7233291" id="r_aec55868c840604578cb14651f7233291"><td class="memItemLeft" align="right" valign="top">uint32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdevice__ops.html#aec55868c840604578cb14651f7233291">read</a> )(void *priv, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, uint8_t *buffer)</td></tr>
-<tr class="separator:aec55868c840604578cb14651f7233291"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad85b12f88f9a17c7856dbf039add71a5" id="r_ad85b12f88f9a17c7856dbf039add71a5"><td class="memItemLeft" align="right" valign="top">uint32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdevice__ops.html#ad85b12f88f9a17c7856dbf039add71a5">write</a> )(void *priv, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, uint8_t *buffer)</td></tr>
-<tr class="separator:ad85b12f88f9a17c7856dbf039add71a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1b3c3a6e59d019916c810348188aeaf" id="r_ad1b3c3a6e59d019916c810348188aeaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">uint64_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdevice__ops.html#ad1b3c3a6e59d019916c810348188aeaf">read</a> )(<a class="el" href="structbus.html">void</a> *priv, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, <a class="el" href="structbus.html">uint8_t</a> *<a class="el" href="uhci_8c.html#ac361fef6bf135953d536299eb0b119c3">buffer</a>)</td></tr>
+<tr class="separator:ad1b3c3a6e59d019916c810348188aeaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186a7a282820c86ca2b11cc455a448da" id="r_a186a7a282820c86ca2b11cc455a448da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbus.html">uint64_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdevice__ops.html#a186a7a282820c86ca2b11cc455a448da">write</a> )(<a class="el" href="structbus.html">void</a> *priv, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, <a class="el" href="structbus.html">uint8_t</a> *<a class="el" href="uhci_8c.html#ac361fef6bf135953d536299eb0b119c3">buffer</a>)</td></tr>
+<tr class="separator:a186a7a282820c86ca2b11cc455a448da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Driver operations provided by the module. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="aec55868c840604578cb14651f7233291" name="aec55868c840604578cb14651f7233291"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec55868c840604578cb14651f7233291">&#9670;&#160;</a></span>read</h2>
+<a id="ad1b3c3a6e59d019916c810348188aeaf" name="ad1b3c3a6e59d019916c810348188aeaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1b3c3a6e59d019916c810348188aeaf">&#9670;&#160;</a></span>read</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t(* device_ops::read) (void *priv, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, uint8_t *buffer)</td>
+          <td class="memname"><a class="el" href="structbus.html">uint64_t</a>(* device_ops::read) (<a class="el" href="structbus.html">void</a> *priv, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, <a class="el" href="structbus.html">uint8_t</a> *<a class="el" href="uhci_8c.html#ac361fef6bf135953d536299eb0b119c3">buffer</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ad85b12f88f9a17c7856dbf039add71a5" name="ad85b12f88f9a17c7856dbf039add71a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad85b12f88f9a17c7856dbf039add71a5">&#9670;&#160;</a></span>write</h2>
+<a id="a186a7a282820c86ca2b11cc455a448da" name="a186a7a282820c86ca2b11cc455a448da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a186a7a282820c86ca2b11cc455a448da">&#9670;&#160;</a></span>write</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint32_t(* device_ops::write) (void *priv, uint32_t <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, uint32_t <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, uint8_t *buffer)</td>
+          <td class="memname"><a class="el" href="structbus.html">uint64_t</a>(* device_ops::write) (<a class="el" href="structbus.html">void</a> *priv, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="elf_8h.html#a612bb2807d848cca89ea1437cceea886">offset</a>, <a class="el" href="structbus.html">uint64_t</a> <a class="el" href="acpi_8cpp.html#af931a8871310b4dad23f0f0b0f623560">size</a>, <a class="el" href="structbus.html">uint8_t</a> *<a class="el" href="uhci_8c.html#ac361fef6bf135953d536299eb0b119c3">buffer</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">

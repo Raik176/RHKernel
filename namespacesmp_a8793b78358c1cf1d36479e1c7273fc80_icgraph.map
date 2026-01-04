@@ -1,11 +1,9 @@
 <map id="smp::setup_cpu_local" name="smp::setup_cpu_local">
-<area shape="rect" id="Node000001" title=" " alt="" coords="655,5,817,31"/>
-<area shape="rect" id="Node000002" href="$namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="444,5,607,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="641,21,607,21,607,15,641,15"/>
-<area shape="rect" id="Node000003" href="$namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="273,5,396,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,21,396,21,396,15,430,15"/>
-<area shape="rect" id="Node000004" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="116,5,225,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="260,21,226,21,226,15,260,15"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#a962b8a3224acb6a8dde4bf209f7a4fe9" title=" " alt="" coords="5,5,68,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="102,21,68,21,68,15,102,15"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="544,5,707,31"/>
+<area shape="rect" id="Node000002" href="$namespacesmp.html#a1686dfe14d1a773edebc128c38747ae6" title=" " alt="" coords="333,5,496,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="530,21,496,21,496,15,530,15"/>
+<area shape="rect" id="Node000003" href="$namespacesmp.html#ae1efeff695c21b26db47a47e762d86c5" title=" " alt="" coords="163,5,285,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,21,285,21,285,15,320,15"/>
+<area shape="rect" id="Node000004" href="$namespacesmp.html#aee094b28dc7da291474eef181f302168" title=" " alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="149,21,115,21,115,15,149,15"/>
 </map>

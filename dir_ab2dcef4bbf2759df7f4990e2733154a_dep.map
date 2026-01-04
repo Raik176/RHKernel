@@ -1,7 +1,7 @@
 <map id="src/intf/memory" name="src/intf/memory">
-<area shape="rect" id="node1" href="dir_42c46c64c832fe40d87f79dbc00bb1a4.html" title="smp" alt="" coords="40,125,91,151"/>
-<area shape="rect" id="node2" href="dir_ab2dcef4bbf2759df7f4990e2733154a.html" title="memory" alt="" coords="27,52,104,77"/>
-<area shape="poly" id="edge1" href="dir_000008_000016.html" alt="" coords="68,78,68,112,63,112,63,78"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000008_000016.html" title="2" alt="" coords="69,100,78,114"/>
-<area shape="rect" id="clust1" href="dir_a2ec59b6ec33735e2cfbe3492a0dbaf5.html" title="intf" alt="" coords="16,16,115,161"/>
+<area shape="rect" id="node1" href="dir_ab2dcef4bbf2759df7f4990e2733154a.html" title="memory" alt="" coords="27,52,104,77"/>
+<area shape="rect" id="node2" href="dir_408e3e109cd8ba6803532e2e583521a9.html" title="public" alt="" coords="35,125,96,151"/>
+<area shape="poly" id="edge1" href="dir_000010_000018.html" alt="" coords="68,78,68,112,63,112,63,78"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000010_000018.html" title="2" alt="" coords="69,100,78,114"/>
+<area shape="rect" id="clust1" href="dir_a2ec59b6ec33735e2cfbe3492a0dbaf5.html" title="intf" alt="" coords="16,16,115,88"/>
 </map>

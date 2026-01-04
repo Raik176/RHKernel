@@ -49,8 +49,8 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
+        [ "Functions", "globals_func.html", "globals_func" ],
+        [ "Variables", "globals_vars.html", "globals_vars" ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
@@ -63,14 +63,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acpi_8cpp.html",
-"elf_8h.html#acfc7f0bb0f897457ad35567b19dc6f0b",
-"idt_8cpp.html#af868664393aedd51c04e3ddd48b8f84f",
-"namespaceapic.html#a980fd1e9be4d02ea8b2530797c88c00fa283b4dd2597b27d2e9d8613a69e6bde9",
-"namespaceserial.html#ae96164e69b6a2e8e622753bbce9197db",
-"smp_8cpp.html#a3906aa488e91bccd1377f1d14dd929d8",
-"structelf_1_1elf__section__header.html#a2ca791237c03f4eadc69d02a50b92a3c",
-"structmultiboot__tag__framebuffer.html#ac8c21c26e2e4d7aa47462f8189dbc1ef",
-"util_8cpp.html"
+"elf_8h.html#ae45fdc9e9e9adb8d900ef28c18104ff0",
+"idt_8cpp.html#a09af768d636144aaeaddd76c92a0a2f5",
+"memory_2heap_8cpp.html#a160dcabc54bbecfc69484678cafadb81",
+"namespaceidt.html#a8673d711311d6c4b6e7920f7e13e34cd",
+"pci__bus_8c.html#a74d6215b3d9b55f51bbbdc6b8831f8db",
+"smp_8h.html#a6a94214a41fd38de081666401f6de757",
+"structframebuffer_1_1FramebufferInfo.html",
+"structpmm_1_1FreeBlock.html#a3b5b7686a144a4b5e3a866b498da9491",
+"syscall_8cpp.html#a67e8884fc5e0e31713826d8b907d8031"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

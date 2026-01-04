@@ -47,7 +47,7 @@ var elf_8h =
     [ "entry", "elf_8h.html#a6aac0a1a7d70f8270f9bb1222445f370", null ],
     [ "entsize", "elf_8h.html#a4d1cef48c7034ea8853ff9bb6143fc32", null ],
     [ "filesz", "elf_8h.html#a13cb0a9e2897cbdb19e974bfea300f85", null ],
-    [ "flags", "elf_8h.html#a899a76dc5f03f0d4ea3793c339e07ee9", null ],
+    [ "flags", "elf_8h.html#a773b39d480759f67926cb18ae2219281", null ],
     [ "header_size", "elf_8h.html#ab940fc0677a85584a447a067439d938d", null ],
     [ "info", "elf_8h.html#ad5e22a6c8c173e5a788a857fe30d02a4", null ],
     [ "link", "elf_8h.html#a6163461798acb053ba062347095330e0", null ],

@@ -16,5 +16,5 @@ var console_8cpp =
     [ "vprintf", "console_8cpp.html#gaff623c949c49c4d39babea0339ebb242", null ],
     [ "write", "console_8cpp.html#ae2713614e37ba234a7af6abc42460964", null ],
     [ "active_backend", "console_8cpp.html#ae57e81d0aaac0c99a42db59e05380069", null ],
-    [ "console_lock", "console_8cpp.html#a4c479c9a26d67cbbff44891c1587ee68", null ]
+    [ "console_lock", "console_8cpp.html#ac3e48b86e0b411ef2f8c5dede539dd5b", null ]
 ];

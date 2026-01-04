@@ -1,13 +1,7 @@
 var annotated_dup =
 [
     [ "acpi", "namespaceacpi.html", [
-      [ "MADT", "structacpi_1_1MADT.html", "structacpi_1_1MADT" ],
-      [ "MADTEntryHeader", "structacpi_1_1MADTEntryHeader.html", "structacpi_1_1MADTEntryHeader" ],
-      [ "MADTEntryLAPIC", "structacpi_1_1MADTEntryLAPIC.html", "structacpi_1_1MADTEntryLAPIC" ],
-      [ "multiboot_tag_acpi", "structacpi_1_1multiboot__tag__acpi.html", "structacpi_1_1multiboot__tag__acpi" ],
-      [ "RSDP", "structacpi_1_1RSDP.html", "structacpi_1_1RSDP" ],
-      [ "SDTHeader", "structacpi_1_1SDTHeader.html", "structacpi_1_1SDTHeader" ],
-      [ "XSDP", "structacpi_1_1XSDP.html", "structacpi_1_1XSDP" ]
+      [ "multiboot_tag_acpi", "structacpi_1_1multiboot__tag__acpi.html", "structacpi_1_1multiboot__tag__acpi" ]
     ] ],
     [ "elf", "namespaceelf.html", [
       [ "elf_header", "structelf_1_1elf__header.html", "structelf_1_1elf__header" ],
@@ -43,9 +37,6 @@ var annotated_dup =
     [ "ksym", "namespaceksym.html", [
       [ "dynamic_symbol", "structksym_1_1dynamic__symbol.html", "structksym_1_1dynamic__symbol" ]
     ] ],
-    [ "lock", "namespacelock.html", [
-      [ "spinlock", "structlock_1_1spinlock.html", "structlock_1_1spinlock" ]
-    ] ],
     [ "pmm", "namespacepmm.html", [
       [ "FreeBlock", "structpmm_1_1FreeBlock.html", "structpmm_1_1FreeBlock" ]
     ] ],
@@ -64,12 +55,20 @@ var annotated_dup =
     [ "vmm", "namespacevmm.html", [
       [ "VirtualRangeAllocator", "classvmm_1_1VirtualRangeAllocator.html", "classvmm_1_1VirtualRangeAllocator" ]
     ] ],
+    [ "bus", "structbus.html", "structbus" ],
     [ "cpio_newc_header", "structcpio__newc__header.html", "structcpio__newc__header" ],
     [ "cpu_features", "structcpu__features.html", "structcpu__features" ],
+    [ "device", "structdevice.html", "structdevice" ],
     [ "device_instance", "structdevice__instance.html", "structdevice__instance" ],
     [ "device_ops", "structdevice__ops.html", "structdevice__ops" ],
+    [ "driver", "structdriver.html", "structdriver" ],
     [ "kbd_device", "structkbd__device.html", "structkbd__device" ],
     [ "kernel_symbol", "structkernel__symbol.html", "structkernel__symbol" ],
+    [ "MADT", "structMADT.html", "structMADT" ],
+    [ "MADTEntryHeader", "structMADTEntryHeader.html", "structMADTEntryHeader" ],
+    [ "MADTEntryLAPIC", "structMADTEntryLAPIC.html", "structMADTEntryLAPIC" ],
+    [ "MCFGEntry", "structMCFGEntry.html", "structMCFGEntry" ],
+    [ "MCFGTable", "structMCFGTable.html", "structMCFGTable" ],
     [ "module_metadata", "structmodule__metadata.html", "structmodule__metadata" ],
     [ "multiboot_color", "structmultiboot__color.html", "structmultiboot__color" ],
     [ "multiboot_mmap_entry", "structmultiboot__mmap__entry.html", "structmultiboot__mmap__entry" ],
@@ -78,6 +77,20 @@ var annotated_dup =
     [ "multiboot_tag_framebuffer", "structmultiboot__tag__framebuffer.html", "structmultiboot__tag__framebuffer" ],
     [ "multiboot_tag_mmap", "structmultiboot__tag__mmap.html", "structmultiboot__tag__mmap" ],
     [ "multiboot_tag_module", "structmultiboot__tag__module.html", "structmultiboot__tag__module" ],
+    [ "pci_device", "structpci__device.html", "structpci__device" ],
+    [ "pci_device_id", "structpci__device__id.html", "structpci__device__id" ],
+    [ "pci_resource", "structpci__resource.html", "structpci__resource" ],
     [ "ps2_keyboard", "structps2__keyboard.html", "structps2__keyboard" ],
-    [ "regs", "structregs.html", "structregs" ]
+    [ "regs", "structregs.html", "structregs" ],
+    [ "RSDP", "structRSDP.html", "structRSDP" ],
+    [ "SDTHeader", "structSDTHeader.html", "structSDTHeader" ],
+    [ "spinlock", "structspinlock.html", "structspinlock" ],
+    [ "uhci_private", "structuhci__private.html", "structuhci__private" ],
+    [ "uhci_qh", "structuhci__qh.html", "structuhci__qh" ],
+    [ "uhci_td", "structuhci__td.html", "structuhci__td" ],
+    [ "usb_device", "structusb__device.html", "structusb__device" ],
+    [ "usb_device_descriptor", "structusb__device__descriptor.html", "structusb__device__descriptor" ],
+    [ "usb_hcd", "structusb__hcd.html", "structusb__hcd" ],
+    [ "usb_setup_packet", "structusb__setup__packet.html", "structusb__setup__packet" ],
+    [ "XSDP", "structXSDP.html", "structXSDP" ]
 ];

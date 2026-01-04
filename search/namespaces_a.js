@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['module_5floader_0',['module_loader',['../namespacemodule__loader.html',1,'']]]
+  ['pmm_0',['pmm',['../namespacepmm.html',1,'']]],
+  ['procfs_1',['procfs',['../namespaceprocfs.html',1,'']]]
 ];

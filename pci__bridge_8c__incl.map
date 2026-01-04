@@ -1,0 +1,22 @@
+<map id="src/module/pci_bridge/src/pci_bridge.c" name="src/module/pci_bridge/src/pci_bridge.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="209,5,375,45"/>
+<area shape="rect" id="Node000002" href="$public_2mod_2device_8h.html" title=" " alt="" coords="374,93,485,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="326,43,398,84,396,89,324,48"/>
+<area shape="rect" id="Node000004" href="$public_2mod_2heap_8h.html" title=" " alt="" coords="5,93,104,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="236,48,103,92,101,87,234,43"/>
+<area shape="rect" id="Node000006" href="$logging_8h.html" title=" " alt="" coords="235,93,349,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="295,46,295,79,289,79,289,46"/>
+<area shape="rect" id="Node000007" href="$module_8h.html" title=" " alt="" coords="509,93,625,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="359,43,514,87,513,92,357,48"/>
+<area shape="rect" id="Node000008" href="$pci__bus_8h.html" title=" " alt="" coords="128,93,211,119"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="264,48,200,88,198,84,261,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="394,167,465,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="432,119,432,153,427,153,427,119"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="24,167,99,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="58,119,62,153,56,153,53,119"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="546,121,465,163,463,158,543,116"/>
+<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="212,116,382,162,380,167,210,121"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="153,121,92,161,89,157,151,116"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="128,167,211,192"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="172,119,172,153,167,153,167,119"/>
+</map>

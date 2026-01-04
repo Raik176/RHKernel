@@ -1,15 +1,11 @@
 <map id="handle_mailbox_ipi" name="handle_mailbox_ipi">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,155,105"/>
-<area shape="rect" id="Node000002" href="$structlock_1_1spinlock.html#aa5e7f611d778a3cf1e8f5ba2668ca3a7" title=" " alt="" coords="203,5,369,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,77,202,39,224,32,226,37,204,45,110,82"/>
-<area shape="rect" id="Node000003" href="$namespaceapic.html#af091bf1a257ef9390e9e4c6891edae31" title=" " alt="" coords="247,55,325,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,81,234,71,234,76,155,86"/>
-<area shape="rect" id="Node000006" href="$namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="231,104,341,129"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="155,99,218,106,217,111,154,104"/>
-<area shape="rect" id="Node000007" href="$structlock_1_1spinlock.html#a930caa1fc13d41cc90d05d80d7f363f4" title=" " alt="" coords="203,153,369,179"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="112,103,204,138,229,147,227,152,202,143,111,108"/>
-<area shape="rect" id="Node000004" href="$namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="417,55,536,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="325,65,404,65,404,70,325,70"/>
-<area shape="rect" id="Node000005" href="$namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="584,55,683,80"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="536,65,570,65,570,70,536,70"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,155,56"/>
+<area shape="rect" id="Node000002" href="$namespaceapic.html#af091bf1a257ef9390e9e4c6891edae31" title=" " alt="" coords="219,5,296,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,30,205,23,205,28,155,35"/>
+<area shape="rect" id="Node000005" href="$namespacesmp.html#aaca0cd29acd84a2f4f12495de16a90cc" title=" " alt="" coords="203,55,312,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="155,51,189,55,189,61,155,56"/>
+<area shape="rect" id="Node000003" href="$namespaceapic.html#aa84718554ccc3eeb5b86adf80c419380" title=" " alt="" coords="360,5,479,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="296,15,346,15,346,21,296,21"/>
+<area shape="rect" id="Node000004" href="$namespaceapic.html#aa832120ecee510360dfe9d946fb348a7" title=" " alt="" coords="527,5,625,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="479,15,513,15,513,21,479,21"/>
 </map>

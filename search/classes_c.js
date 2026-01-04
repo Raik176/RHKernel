@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['task_0',['task',['../structscheduler_1_1task.html',1,'scheduler']]],
-  ['trampoline_5fdata_1',['trampoline_data',['../structsmp_1_1trampoline__data.html',1,'smp']]],
-  ['tss_2',['tss',['../structgdt_1_1tss.html',1,'gdt']]]
+  ['sdtheader_0',['SDTHeader',['../structSDTHeader.html',1,'']]],
+  ['segment_1',['Segment',['../structvmm_1_1VirtualRangeAllocator_1_1Segment.html',1,'vmm::VirtualRangeAllocator']]],
+  ['slabcache_2',['SlabCache',['../structheap_1_1SlabCache.html',1,'heap']]],
+  ['slabheader_3',['SlabHeader',['../structheap_1_1SlabHeader.html',1,'heap']]],
+  ['spinlock_4',['spinlock',['../structspinlock.html',1,'']]]
 ];

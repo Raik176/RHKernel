@@ -1,6 +1,7 @@
 var idt_8cpp =
 [
     [ "dispatch_irq", "idt_8cpp.html#afe17b08d081d2317310198cb8ba41269", null ],
+    [ "get_unused_vector", "idt_8cpp.html#a252375486e4113736f6b95d35ec7b939", null ],
     [ "handle_mailbox_ipi", "idt_8cpp.html#ad8186c55d846e9a131289caa7a9c1a02", null ],
     [ "idt_handler", "idt_8cpp.html#a43b5845a934505293edb714d8cb4d74b", null ],
     [ "init", "idt_8cpp.html#a6a2f66e62a6c1b073aa94f90a44db50a", null ],

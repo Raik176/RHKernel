@@ -1,0 +1,10 @@
+<map id="src/module/usb_core/include/usb_core.h" name="src/module/usb_core/include/usb_core.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="39,5,195,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,80,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,47,65,85,61,81,97,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="129,167,199,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,45,147,118,158,153,153,154,141,119,120,46"/>
+<area shape="rect" id="Node000004" href="$public_2mod_2device_8h.html" title=" " alt="" coords="155,93,266,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,44,188,82,184,86,138,48"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="205,120,181,157,177,154,201,118"/>
+</map>

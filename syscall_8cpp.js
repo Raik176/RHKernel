@@ -18,14 +18,15 @@ var syscall_8cpp =
       [ "SYSCALL_DUP2", "syscall_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fca144c7bc55c5485bf720e72f1f439fab4", null ],
       [ "SYSCALL_CLONE", "syscall_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fcae2c15cf9ca2fd156da38670190ce5d3e", null ],
       [ "SYSCALL_FORK", "syscall_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fca0d5a4a0334182eb5c54e10e04b57829f", null ],
-      [ "SYSCALL_EXEC", "syscall_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fcaff722bd6031a193849968c785b4a26a8", null ]
+      [ "SYSCALL_EXEC", "syscall_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fcaff722bd6031a193849968c785b4a26a8", null ],
+      [ "SYSCALL_GETPID", "syscall_8cpp.html#a78181d6fb6a35b73b990c292eeb9c7fcaada9592e159d2593f0c875dc7a384a1f", null ]
     ] ],
     [ "enable_syscalls", "syscall_8cpp.html#affd548eabce819c41d9620c728720b44", null ],
     [ "sys_close", "syscall_8cpp.html#a9d94cbe3ac3c59ac54d9e884a024d9c5", null ],
     [ "sys_dup2", "syscall_8cpp.html#a1850551082dfa707be9a1dc045de9418", null ],
     [ "sys_open", "syscall_8cpp.html#a67e8884fc5e0e31713826d8b907d8031", null ],
     [ "sys_read", "syscall_8cpp.html#a8b7b3b2157e36216f8ca401e1b7c2aca", null ],
-    [ "sys_write", "syscall_8cpp.html#aebcc0c739e0ba9b3b236b5e5ed712603", null ],
+    [ "sys_write", "syscall_8cpp.html#ae2b02a69f9c2e466706978eb9538efd0", null ],
     [ "syscall_entry", "syscall_8cpp.html#af19c0e594765b520ec48f7458f142fab", null ],
     [ "syscall_handler", "syscall_8cpp.html#ad6dd1f05dac0f0d839f9e6eb0bc3c34f", null ],
     [ "user_access_begin", "syscall_8cpp.html#a86955b8b491f4a3d9cf852d64e66a360", null ],

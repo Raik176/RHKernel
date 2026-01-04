@@ -1,0 +1,7 @@
+<map id="MCFGTable" name="MCFGTable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="64,93,159,119"/>
+<area shape="rect" id="Node000002" href="$structSDTHeader.html" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="71,41,105,91,101,94,66,44"/>
+<area shape="rect" id="Node000003" href="$structMCFGEntry.html" title=" " alt="" coords="124,5,219,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,44,143,71,124,95,119,92,139,68,156,41"/>
+</map>

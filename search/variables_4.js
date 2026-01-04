@@ -1,8 +1,19 @@
 var searchData=
 [
   ['deps_0',['deps',['../structmodule__metadata.html#a251254ee5505ff0796d975738827a5d7',1,'module_metadata']]],
-  ['dev_5froot_1',['dev_root',['../device_8cpp.html#aed03a76377c98a77364f9c9b1a3f266c',1,'device.cpp']]],
-  ['devmajor_2',['devmajor',['../structcpio__newc__header.html#aabb12cd400316bb6ecbe41fd87dd71bf',1,'cpio_newc_header::devmajor'],['../initramfs_8h.html#aa5878423f62a3a211035bc9d0ca9a325',1,'devmajor:&#160;initramfs.h']]],
-  ['devminor_3',['devminor',['../structcpio__newc__header.html#a305f01b3dd4459e16481e54ccabbe411',1,'cpio_newc_header::devminor'],['../initramfs_8h.html#a5f82ae95a2185b5fad3975da2fedb71c',1,'devminor:&#160;initramfs.h']]],
-  ['dynamic_5ftable_4',['dynamic_table',['../namespaceksym.html#a90466cc8e145ea7f717105f63081e387',1,'ksym']]]
+  ['descriptor_1',['descriptor',['../structusb__device.html#a33bbd71be994f58bf95c34f8a56db11f',1,'usb_device']]],
+  ['descriptor_5ftype_2',['descriptor_type',['../structusb__device__descriptor.html#ae03327214fa261f7b620ba70b673473e',1,'usb_device_descriptor::descriptor_type'],['../usb__core_8h.html#a85bf659a6761f004702d2dc626643c24',1,'descriptor_type:&#160;usb_core.h']]],
+  ['dev_3',['dev',['../structusb__device.html#a85dfa30f89201ac0c8af2d775fe8d9a8',1,'usb_device']]],
+  ['dev_5froot_4',['dev_root',['../device_8cpp.html#aed03a76377c98a77364f9c9b1a3f266c',1,'device.cpp']]],
+  ['device_5fclass_5',['device_class',['../structusb__device__descriptor.html#a5756ed276b9d11c3cf06c0c410bcae26',1,'usb_device_descriptor::device_class'],['../usb__core_8h.html#a8c25a335577a09479c7e6c2d6ee70112',1,'device_class:&#160;usb_core.h']]],
+  ['device_5fid_6',['device_id',['../structpci__device.html#a717415deabf77463065ccd972134764f',1,'pci_device::device_id'],['../structpci__device__id.html#ae4de4920b3fdd278a409343bfcdac0f5',1,'pci_device_id::device_id']]],
+  ['device_5flist_7',['device_list',['../device_8cpp.html#a6ec5175eca9ba76c3f2426d0e945781d',1,'device.cpp']]],
+  ['device_5fprotocol_8',['device_protocol',['../structusb__device__descriptor.html#aca4cdb3882116d5ece642febbd9678fa',1,'usb_device_descriptor::device_protocol'],['../usb__core_8h.html#a07ddbffb84f3fbf81963ada65d148d6c',1,'device_protocol:&#160;usb_core.h']]],
+  ['device_5fsubclass_9',['device_subclass',['../structusb__device__descriptor.html#a4caa019bd46a86a7b71639b0e3f721bc',1,'usb_device_descriptor::device_subclass'],['../usb__core_8h.html#aea6ec0459cfd03ca49fb5bf2c96f437b',1,'device_subclass:&#160;usb_core.h']]],
+  ['devmajor_10',['devmajor',['../initramfs_8h.html#aa5878423f62a3a211035bc9d0ca9a325',1,'devmajor:&#160;initramfs.h'],['../structcpio__newc__header.html#aabb12cd400316bb6ecbe41fd87dd71bf',1,'cpio_newc_header::devmajor']]],
+  ['devminor_11',['devminor',['../initramfs_8h.html#a5f82ae95a2185b5fad3975da2fedb71c',1,'devminor:&#160;initramfs.h'],['../structcpio__newc__header.html#a305f01b3dd4459e16481e54ccabbe411',1,'cpio_newc_header::devminor']]],
+  ['driver_12',['driver',['../structdevice.html#a317db6bbf08f45ca68cdd6b6400642e0',1,'device']]],
+  ['driver_5fdata_13',['driver_data',['../structdevice.html#ab873bb9b89d6a69903a13a383c1af54f',1,'device']]],
+  ['driver_5flist_14',['driver_list',['../device_8cpp.html#a8d2bd3686b799d1814c97fda80f75eca',1,'device.cpp']]],
+  ['dynamic_5ftable_15',['dynamic_table',['../namespaceksym.html#a90466cc8e145ea7f717105f63081e387',1,'ksym']]]
 ];
