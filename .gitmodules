@@ -3,4 +3,4 @@
 	url = https://github.com/jothepro/doxygen-awesome-css.git
 [submodule "third_party/newlib"]
 	path = third_party/newlib
-	url = https://sourceware.org/git/newlib-cygwin.git
+	url = https://github.com/bminor/newlib.git
