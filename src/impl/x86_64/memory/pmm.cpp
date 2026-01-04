@@ -26,7 +26,7 @@ extern uint8_t high_pd_table_end[];
 }
 
 namespace {
-    static lock::spinlock pmm_lock;
+    static spinlock_t pmm_lock;
 
     size_t managed_bytes = 0;
     size_t free_bytes = 0;

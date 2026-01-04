@@ -5,6 +5,7 @@
 #include "file/vfs.h"
 #include "memory/heap.h"
 #include "memory/pmm.h"
+#include "mod/logging.h"
 #include "string.h"
 #include "symbol/ksym.h"
 
@@ -14,9 +15,9 @@ struct device_instance {
     void *priv;
 };
 
-static uint32_t null_read(void *, uint32_t, uint32_t, uint8_t *) { return 0; }
-static uint32_t null_write(void *, uint32_t, uint32_t size, uint8_t *) { return size; }
-static uint32_t zero_read(void *, uint32_t, uint32_t size, uint8_t *buffer) {
+static uint64_t null_read(void *, uint64_t, uint64_t, uint8_t *) { return 0; }
+static uint64_t null_write(void *, uint64_t, uint64_t size, uint8_t *) { return size; }
+static uint64_t zero_read(void *, uint64_t, uint64_t size, uint8_t *buffer) {
     memset(buffer, 0, size);
     return size;
 }
@@ -24,8 +25,8 @@ static uint32_t zero_read(void *, uint32_t, uint32_t size, uint8_t *buffer) {
 static device_ops null_ops = {.read = null_read, .write = null_write};
 static device_ops zero_ops = {.read = zero_read, .write = null_write};
 
-static uint32_t console_dev_write(void *, uint32_t, uint32_t size, uint8_t *buffer) {
-    for (uint32_t i = 0; i < size; i++) { console::putchar(buffer[i]); }
+static uint64_t console_dev_write(void *, uint64_t, uint64_t size, uint8_t *buffer) {
+    for (uint64_t i = 0; i < size; i++) { console::putchar(buffer[i]); }
 
     return size;
 }
@@ -39,7 +40,7 @@ void init_virt_fs() {
     procfs::init();
 }
 
-static uint32_t dev_vfs_read(vfs::vfs_node *node, uint32_t offset, uint32_t size, uint8_t *buffer) {
+static uint64_t dev_vfs_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
     device_instance *inst = (device_instance *)node->ptr;
     if (inst && inst->ops && inst->ops->read) {
         return inst->ops->read(inst->priv, offset, size, buffer);
@@ -47,7 +48,7 @@ static uint32_t dev_vfs_read(vfs::vfs_node *node, uint32_t offset, uint32_t size
     return 0;
 }
 
-static uint32_t dev_vfs_write(vfs::vfs_node *node, uint32_t offset, uint32_t size,
+static uint64_t dev_vfs_write(vfs::vfs_node *node, uint64_t offset, uint64_t size,
                               uint8_t *buffer) {
     device_instance *inst = (device_instance *)node->ptr;
     if (inst && inst->ops && inst->ops->write) {
@@ -59,31 +60,31 @@ static uint32_t dev_vfs_write(vfs::vfs_node *node, uint32_t offset, uint32_t siz
 namespace devfs {
     void init() {
         dev_root = vfs::create_node("dev", vfs::VfsType::VFS_DIRECTORY, vfs::get_root());
-        device_register("console", &console_ops, nullptr);
-        device_register("null", &null_ops, nullptr);
-        device_register("zero", &zero_ops, nullptr);
+        devfs_register("console", &console_ops, nullptr);
+        devfs_register("null", &null_ops, nullptr);
+        devfs_register("zero", &zero_ops, nullptr);
     }
 }  // namespace devfs
 
-static uint32_t proc_mem_total_read(vfs::vfs_node *, uint32_t offset, uint32_t size,
+static uint64_t proc_mem_total_read(vfs::vfs_node *, uint64_t offset, uint64_t size,
                                     uint8_t *buffer) {
     char buf[32];
     int len = snprintf(buf, sizeof(buf), "%d\n", pmm::get_total_bytes());
 
-    if (offset >= (uint32_t)len) return 0;
-    if (size > (uint32_t)len - offset) size = (uint32_t)len - offset;
+    if (offset >= (uint64_t)len) return 0;
+    if (size > (uint64_t)len - offset) size = (uint64_t)len - offset;
 
     memcpy(buffer, buf + offset, size);
     return size;
 }
 
-static uint32_t proc_mem_available_read(vfs::vfs_node *, uint32_t offset, uint32_t size,
+static uint64_t proc_mem_available_read(vfs::vfs_node *, uint64_t offset, uint64_t size,
                                         uint8_t *buffer) {
     char buf[32];
     int len = snprintf(buf, sizeof(buf), "%d\n", pmm::get_free_bytes());
 
-    if (offset >= (uint32_t)len) return 0;
-    if (size > (uint32_t)len - offset) size = (uint32_t)len - offset;
+    if (offset >= (uint64_t)len) return 0;
+    if (size > (uint64_t)len - offset) size = (uint64_t)len - offset;
 
     memcpy(buffer, buf + offset, size);
     return size;
@@ -108,7 +109,7 @@ namespace procfs {
     }
 }  // namespace procfs
 
-extern "C" int device_register(const char *path, device_ops *ops, void *priv) {
+extern "C" int devfs_register(const char *path, device_ops *ops, void *priv) {
     if (!dev_root || !path) return -1;
 
     vfs::vfs_node *curr = dev_root;
@@ -144,7 +145,7 @@ extern "C" int device_register(const char *path, device_ops *ops, void *priv) {
     return -1;
 }
 
-extern "C" void device_unregister(const char *path) {
+extern "C" void devfs_unregister(const char *path) {
     if (!dev_root || !path) return;
     vfs::vfs_node *node = vfs::traverse_relative(dev_root, path);
     if (!node || node->type != vfs::VfsType::VFS_CHAR_DEVICE) return;
@@ -176,5 +177,62 @@ extern "C" void device_unregister(const char *path) {
     }
 }
 
-KEXPORT(device_register);
-KEXPORT(device_unregister);
+static struct bus *bus_list = nullptr;
+static struct device *device_list = nullptr;
+static struct driver *driver_list = nullptr;
+
+static void attempt_match(struct device *dev, struct driver *drv) {
+    if (dev->driver || dev->bus != drv->bus) return;
+
+    if (dev->bus->match(dev, drv)) {
+        if (drv->probe(dev) == 0) {
+            dev->driver = drv;
+        } else {
+            klog(LOG_ERR, "DEVICE: Driver %s failed to probe %s\n", drv->name, dev->name);
+        }
+    }
+}
+
+void bus_register(struct bus *bus) {
+    bus->next = bus_list;
+    bus_list = bus;
+}
+
+struct bus *find_bus(const char *name) {
+    struct bus *bus = bus_list;
+    while (bus) {
+        if (strcmp(bus->name, name) == 0) return bus;
+        bus = bus->next;
+    }
+
+    return nullptr;
+}
+
+void device_register(struct device *dev) {
+    dev->next = device_list;
+    device_list = dev;
+
+    struct driver *drv = driver_list;
+    while (drv) {
+        attempt_match(dev, drv);
+        drv = drv->next;
+    }
+}
+
+void driver_register(struct driver *drv) {
+    drv->next = driver_list;
+    driver_list = drv;
+
+    struct device *dev = device_list;
+    while (dev) {
+        attempt_match(dev, drv);
+        dev = dev->next;
+    }
+}
+
+KEXPORT(find_bus)
+KEXPORT(bus_register)
+KEXPORT(device_register)
+KEXPORT(driver_register)
+KEXPORT(devfs_register)
+KEXPORT(devfs_unregister)

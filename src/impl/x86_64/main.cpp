@@ -102,12 +102,19 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     __asm__ volatile("sti");
 
-    smp::init_aps();
+    // smp::init_aps();
     console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
     module_loader::init();
+
     module_loader::load_module("/lib/modules/kbd_core.ko");
     module_loader::load_module("/lib/modules/ps2_kbd.ko");
+
+    module_loader::load_module("/lib/modules/pci_bus.ko");
+    module_loader::load_module("/lib/modules/pci_bridge.ko");
+
+    module_loader::load_module("/lib/modules/usb_core.ko");
+    module_loader::load_module("/lib/modules/uhci.ko");
 
     debug_dump_vfs(vfs::get_root(), 0);
 

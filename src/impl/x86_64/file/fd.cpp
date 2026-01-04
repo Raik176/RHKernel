@@ -45,7 +45,6 @@ namespace fd_manager {
         vfs::open_file *file = get_file(fd, t);
         if (!file) return -1;
 
-        // Remove from table FIRST so other threads don't see it
         t->fd_table[fd] = nullptr;
 
         file->ref_count--;

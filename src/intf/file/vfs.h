@@ -8,7 +8,7 @@ namespace vfs {
     struct vfs_node {
         char *name;
         VfsType type;
-        uint32_t size;
+        uint64_t size;
         uint32_t inode;
         uintptr_t ptr;
 
@@ -17,14 +17,14 @@ namespace vfs {
         struct vfs_node *parent;
 
         struct vfs_node *(*finddir)(struct vfs_node *parent, const char *name);
-        uint32_t (*read)(struct vfs_node *node, uint32_t offset, uint32_t size, uint8_t *buffer);
-        uint32_t (*write)(struct vfs_node *node, uint32_t offset, uint32_t size, uint8_t *buffer);
+        uint64_t (*read)(struct vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer);
+        uint64_t (*write)(struct vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer);
     };
 
     struct open_file {
         vfs_node *node;
-        uint32_t offset;
-        lock::spinlock lock;
+        uint64_t offset;
+        spinlock_t lock;
         uint32_t ref_count;
     };
 
@@ -35,7 +35,7 @@ namespace vfs {
 
     vfs_node *finddir(vfs_node *parent, const char *name);
     vfs_node *open(const char *path);
-    uint32_t read(vfs_node *node, uint32_t offset, uint32_t size, void *buffer);
-    uint32_t write(vfs_node *node, uint32_t offset, uint32_t size, void *buffer);
+    uint64_t read(vfs_node *node, uint64_t offset, uint64_t size, void *buffer);
+    uint64_t write(vfs_node *node, uint64_t offset, uint64_t size, void *buffer);
     vfs_node *get_root();
 }  // namespace vfs

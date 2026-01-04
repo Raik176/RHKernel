@@ -33,14 +33,22 @@ VENV_PYTHON := $(VENV)/bin/python3
 VENV_STAMP  := $(VENV)/.installed
 
 QEMUFLAGS := -d int,cpu_reset \
+            -machine q35 \
             -D qemu.log \
             -m 1G \
             -smp 4 \
+            -netdev user,id=net0 \
+            -netdev user,id=net1 \
+            -device pcie-pci-bridge,id=bridge1,bus=pcie.0,addr=0x6 \
+            -device e1000,netdev=net1,bus=bridge1,addr=0x1 \
+            -device virtio-net-pci,netdev=net0,bus=pcie.0,addr=0x4 \
+            -device qemu-xhci,id=xhci,bus=pcie.0,addr=0x5 \
+            -device piix3-usb-uhci,id=uhci1,bus=pcie.0,addr=0x7 \
+            -device piix3-usb-uhci,id=uhci2,bus=pcie.0,addr=0x8 \
             -cpu qemu64,+pdpe1gb \
             -cdrom dist/x86_64/kernel.iso \
             -serial stdio
 
-# Kernel Specific Flags (Extending GLOBAL_CFLAGS from base.mk)
 COMMON_CFLAGS := $(GLOBAL_CFLAGS) \
     -ffreestanding \
     -fno-unwind-tables \
@@ -68,6 +76,14 @@ endif
 
 CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti -fno-threadsafe-statics -fno-use-cxa-atexit
 
+NEWLIB_SRC := $(TOP_DIR)/third_party/newlib
+NEWLIB_BUILD := $(TOP_DIR)/build/newlib
+
+NEWLIB_STUB_SRC := src/newlib/syscalls.c
+NEWLIB_STUB_OBJ := build/newlib/syscalls.o
+
+NEWLIB_STAMP := $(NEWLIB_BUILD)/.newlib_done
+
 # Discovery for sub-projects
 USER_APPS_DIRS := $(wildcard src/user/*/)
 USER_APPS      := $(filter-out src/user/common.mk, $(USER_APPS_DIRS))
@@ -86,13 +102,39 @@ $(CONFIG_STAMP):
 	@mkdir -p build
 	@echo "$(BUILD_CONFIG)" > $@
 
+.PHONY: newlib
+newlib: $(SYSROOT)/lib/libc.a
+
+$(NEWLIB_STAMP): | $(TOOLS_STAMP)
+	@mkdir -p $(NEWLIB_BUILD) $(SYSROOT)
+	@echo -e "$(YELLOW)[NEWLIB]$(NC) Configuring & Compiling..."
+	$(Q)cd $(NEWLIB_BUILD) && $(NEWLIB_SRC)/configure \
+        --target=x86_64-elf \
+        --prefix=$(shell dirname $(SYSROOT)) \
+        --disable-newlib-supplied-syscalls \
+        --disable-nls \
+        CC_FOR_TARGET=$(CC) \
+        AS_FOR_TARGET=$(TOOLS_DIR)/bin/x86_64-elf-as \
+        LD_FOR_TARGET=$(LD) \
+        RANLIB_FOR_TARGET=$(TOOLS_DIR)/bin/x86_64-elf-ranlib \
+        AR_FOR_TARGET=$(TOOLS_DIR)/bin/x86_64-elf-ar
+	$(Q)$(MAKE) -C $(NEWLIB_BUILD) -j$(shell nproc)
+	$(Q)$(MAKE) -C $(NEWLIB_BUILD) install
+	@touch $@
+
+$(SYSROOT)/lib/libc.a: $(NEWLIB_STUB_SRC) | $(NEWLIB_STAMP)
+	@mkdir -p $(dir $(NEWLIB_STUB_OBJ))
+	@echo -e "$(YELLOW)[NEWLIB]$(NC) Updating syscall stubs..."
+	$(Q)$(CC) --sysroot=$(abspath $(SYSROOT)) -isystem $(abspath $(SYSROOT)/include) -nostdlib -c $< -lc -o $(NEWLIB_STUB_OBJ)
+	$(Q)$(TOOLS_DIR)/bin/x86_64-elf-ar rcs $@ $(NEWLIB_STUB_OBJ)
+
 .PHONY: all
 all: build-x86_64
 
 .PHONY: build-user-apps $(USER_APPS)
 build-user-apps: $(USER_APPS)
 
-$(USER_APPS):
+$(USER_APPS): newlib
 	@echo -e "$(YELLOW)[BUILD]$(NC) User App: $(notdir $(patsubst %/,%,$@))"
 	$(Q)$(MAKE) -C $@ --no-print-directory -s
 

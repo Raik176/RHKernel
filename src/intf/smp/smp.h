@@ -50,7 +50,7 @@ namespace smp {
         scheduler::task *task_queues_head[scheduler::MAX_QUEUES];
         scheduler::task *sleep_list_head;
         scheduler::task *idle_task;
-        lock::spinlock sched_lock;
+        spinlock_t sched_lock;
 
         heap::SlabHeader *heap_cache[heap::CACHE_COUNT];
 
@@ -64,7 +64,7 @@ namespace smp {
         mail *mailbox[MAILBOX_SIZE];
         uint32_t mail_head;
         uint32_t mail_tail;
-        lock::spinlock mail_lock;
+        spinlock_t mail_lock;
 
         struct cpu_features cpu_features;
     };

@@ -496,7 +496,7 @@ namespace vmm {
         map_range(virt, phys_addr, size,
                   PageFlags::NoCache | PageFlags::WriteThrough | PageFlags::Write | PageFlags::NX);
 
-        return (void*)virt;
+        return (void *)virt;
     }
 
     void mmio_unmap(void *virt_addr, uint64_t size) {

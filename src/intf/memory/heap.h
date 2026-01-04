@@ -20,7 +20,7 @@ namespace heap {
     /** @internal Cache for slabs of a specific allocation size */
     struct SlabCache {
         size_t slot_size;  ///< Size of each allocation slot
-        lock::spinlock lock;
+        spinlock_t lock;
         SlabHeader *partial_slabs;  ///< Slabs with some free slots
         SlabHeader *full_slabs;     ///< Slabs completely used
     };

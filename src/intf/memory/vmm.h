@@ -139,7 +139,7 @@ namespace vmm {
         uint64_t m_base;
         uint64_t m_total_size;
         Segment *m_head;
-        lock::spinlock m_lock;
+        spinlock_t m_lock;
     };
 
     void *mmio_map(uint64_t phys_addr, uint64_t size);

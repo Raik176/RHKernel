@@ -88,5 +88,17 @@ extern "C" void free_irq(uint8_t irq, irq_handler_t handler) {
     }
 }
 
+uint8_t get_free_vector() {
+    for (uint16_t vec = 34; vec <= 255; ++vec) {
+        if (interrupt_manager::handler_chains[vec] == nullptr) { return vec; }
+    }
+
+    return 0xFF;
+}
+
+uint8_t get_free_interrupt() {
+    return idt::get_unused_vector();
+}
+
 KEXPORT(request_irq);
 KEXPORT(free_irq);

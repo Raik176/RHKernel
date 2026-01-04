@@ -41,7 +41,7 @@ static const char keymap[128][2] = {
 
     [0x39] = {' ', ' '},  [0x1C] = {'\n', '\n'}, [0x0E] = {'\b', '\b'}};
 
-static uint32_t kbd_read(void *priv, uint32_t off, uint32_t size, uint8_t *buf) {
+static uint64_t kbd_read(void *priv, uint64_t off, uint64_t size, uint8_t *buf) {
     (void)off;
 
     struct kbd_device *kbd = (struct kbd_device *)priv;
@@ -52,7 +52,7 @@ static uint32_t kbd_read(void *priv, uint32_t off, uint32_t size, uint8_t *buf) 
         buf[read_bytes++] = kbd->buffer[kbd->tail];
         kbd->tail = (kbd->tail + 1) % kbd_BUFFER_SIZE;
     }
-    return (uint32_t)read_bytes;
+    return (uint64_t)read_bytes;
 }
 
 static struct device_ops kbd_ops = {.read = kbd_read, .write = NULL};
@@ -67,7 +67,7 @@ struct kbd_device *kbd_register(const char *name) {
     char path[64];
     snprintf(path, sizeof(path), "input/kbd%d", kbd->index);
 
-    if (device_register(path, &kbd_ops, kbd) != 0) {
+    if (devfs_register(path, &kbd_ops, kbd) != 0) {
         kfree(kbd);
         return NULL;
     }
@@ -78,7 +78,7 @@ struct kbd_device *kbd_register(const char *name) {
 void kbd_unregister(struct kbd_device *kbd) {
     char path[64];
     snprintf(path, sizeof(path), "input/kbd%d", kbd->index);
-    device_unregister(path);
+    devfs_unregister(path);
     kfree(kbd);
 }
 

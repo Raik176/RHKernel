@@ -233,5 +233,16 @@ namespace idt {
         init_ap();
     }
 
+    uint8_t get_unused_vector() {
+        for (uint16_t i = 34; i <= 255; ++i) {
+            if (i == YIELD_VECTOR || i == MAILBOX_VECTOR) continue;
+
+            if (idt[i].offset_low == 0 && idt[i].offset_mid == 0 && idt[i].offset_high == 0) {
+                return i;
+            }
+        }
+        return 0xFF;
+    }
+
     void init_ap(void) { idt::load(); }
 }  // namespace idt

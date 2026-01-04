@@ -148,7 +148,7 @@ namespace smp {
 
         auto *data = (trampoline_data *)p2v(
             TRAM_PHYS + ((uintptr_t)ap_data_start - (uintptr_t)trampoline_start));
-        auto *madt = (acpi::MADT *)acpi::find_table("APIC");
+        auto *madt = (MADT *)acpi::find_table("APIC");
         if (!madt) {
             console::printf("[SMP] MADT not found. Single core mode.\n");
             return;
@@ -156,15 +156,15 @@ namespace smp {
 
         uint8_t bsp_id = apic::get_id();
 
-        uintptr_t start = (uintptr_t)madt + sizeof(acpi::MADT);
+        uintptr_t start = (uintptr_t)madt + sizeof(MADT);
         uintptr_t current = start;
         uintptr_t end = (uintptr_t)madt + madt->header.length;
 
         while (current < end) {
-            auto *header = (acpi::MADTEntryHeader *)current;
+            auto *header = (MADTEntryHeader *)current;
 
             if (header->type == 0) {
-                auto *lapic = (acpi::MADTEntryLAPIC *)current;
+                auto *lapic = (MADTEntryLAPIC *)current;
                 bool ready = (lapic->flags & 1) || (lapic->flags & 2);
 
                 if (ready && lapic->lapic_id != bsp_id) core_count++;
@@ -179,10 +179,10 @@ namespace smp {
         current = start;
         core_count = 1;
         while (current < end) {
-            auto *header = (acpi::MADTEntryHeader *)current;
+            auto *header = (MADTEntryHeader *)current;
 
             if (header->type == 0) {  // Type 0 = Processor Local APIC
-                auto *lapic = (acpi::MADTEntryLAPIC *)current;
+                auto *lapic = (MADTEntryLAPIC *)current;
                 // Flags bit 0 = Enabled, bit 1 = Online Capable
                 bool ready = (lapic->flags & 1) || (lapic->flags & 2);
 

@@ -61,7 +61,7 @@ namespace vfs {
         return traverse_relative(root_node, path + 1);
     }
 
-    uint32_t read(vfs_node *node, uint32_t offset, uint32_t size, void *buffer) {
+    uint64_t read(vfs_node *node, uint64_t offset, uint64_t size, void *buffer) {
         if (!node) return 0;
 
         if (node->type == VfsType::VFS_CHAR_DEVICE && node->read) {
@@ -70,14 +70,14 @@ namespace vfs {
 
         if (node->type == VfsType::VFS_FILE) {
             if (offset >= node->size) return 0;
-            uint32_t read_size = (offset + size > node->size) ? (node->size - offset) : size;
+            uint64_t read_size = (offset + size > node->size) ? (node->size - offset) : size;
             memcpy(buffer, (void *)(node->ptr + offset), read_size);
             return read_size;
         }
         return 0;
     }
 
-    uint32_t write(vfs_node *node, uint32_t offset, uint32_t size, void *buffer) {
+    uint64_t write(vfs_node *node, uint64_t offset, uint64_t size, void *buffer) {
         if (!node) return 0;
         if (node->type == VfsType::VFS_CHAR_DEVICE && node->write) {
             return node->write(node, offset, size, (uint8_t *)buffer);

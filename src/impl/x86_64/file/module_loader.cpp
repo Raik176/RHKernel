@@ -193,18 +193,18 @@ namespace module_loader {
 
 
             vmm::map_range(section_addresses[i], v2p((void *)section_addresses[i]), //TODO: fix
-            address calculation here align_up(sh.size, pmm::PAGE_SIZE), flags);
+            address calculation address calculation here align_up(sh.size, pmm::PAGE_SIZE), flags);
             */
         }
 
         // 7. Initialization
         if (meta && meta->init) {
-            console::printf("[MODULE] Initializing %s... ", meta->name);
+            console::printf("[MODULE] Initializing %s...\n", meta->name);
             int res = meta->init();
-            if (res == 0) {
-                console::printf("Success.\n");
-            } else {
-                console::printf("Failed: %d.\n", meta->name, res);
+            if (res != 0) {
+                console::printf(
+                    "[MODULE] Failed to load module %s, returned non zero exit code in init: %d.\n",
+                    meta->name, res);
             }
         } else {
             console::printf("[MODULE] No metadata or init function in %s\n", path);

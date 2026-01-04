@@ -1,6 +1,9 @@
 include $(abspath $(TOP_DIR)/base.mk)
 
-CFLAGS   := $(GLOBAL_CFLAGS) -ffreestanding -fno-stack-protector -O2 -Iinclude
+CFLAGS   := $(GLOBAL_CFLAGS) \
+			--sysroot=$(abspath $(SYSROOT)) \
+			-isystem $(abspath $(SYSROOT)/include) \
+			-fno-stack-protector -O2 -Iinclude
 CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti
 LDFLAGS  := -n -T $(abspath $(TOP_DIR)/src/user/linker.ld) -static
 
@@ -15,7 +18,7 @@ all: $(BIN)
 $(BIN): $(OBJ_FILES)
 	@mkdir -p bin
 	@echo -e "$(BLUE)[LD]$(NC) $(BIN)"
-	$(Q)$(LD) $(LDFLAGS) $(OBJ_FILES) -o $(BIN)
+	$(Q)$(CXX) -nostdlib $(LDFLAGS) $(OBJ_FILES) -L$(abspath $(SYSROOT)/lib) -lc -o $(BIN)
 
 build/%.cpp.o: src/%.cpp
 	@mkdir -p $(dir $@)

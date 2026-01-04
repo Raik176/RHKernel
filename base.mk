@@ -18,6 +18,7 @@ TOOLS_DIR := $(TOP_DIR)/tools
 CC  := $(TOOLS_DIR)/bin/x86_64-elf-gcc
 CXX := $(TOOLS_DIR)/bin/x86_64-elf-g++
 LD  := $(TOOLS_DIR)/bin/x86_64-elf-ld
+SYSROOT := $(TOP_DIR)/build/sysroot/x86_64-elf
 
 ifeq ($(V),1)
     Q :=

@@ -53,4 +53,6 @@ namespace idt {
 
     void init_ap(void);
 
+    uint8_t get_unused_vector();
+
 }  // namespace idt

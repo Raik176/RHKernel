@@ -57,18 +57,18 @@ namespace ioapic {
     }
 
     void init() {
-        auto *madt_ptr = (acpi::MADT *)acpi::find_table("APIC");
+        auto *madt_ptr = (MADT *)acpi::find_table("APIC");
         if (!madt_ptr) return;
 
-        uintptr_t entry_ptr = (uintptr_t)madt_ptr + sizeof(acpi::MADT);
+        uintptr_t entry_ptr = (uintptr_t)madt_ptr + sizeof(MADT);
         uintptr_t end = (uintptr_t)madt_ptr + madt_ptr->header.length;
 
         while (entry_ptr < end) {
-            auto *header = (acpi::MADTEntryHeader *)entry_ptr;
+            auto *header = (MADTEntryHeader *)entry_ptr;
 
             if (header->type == 1) {  // IOAPIC
                 struct IOAPIC_Entry {
-                    acpi::MADTEntryHeader h;
+                    MADTEntryHeader h;
                     uint8_t id;
                     uint8_t res;
                     uint32_t addr;
@@ -77,7 +77,7 @@ namespace ioapic {
                 init_ioapic(io->addr, io->gsi_base);
             } else if (header->type == 2) {  // ISO
                 struct ISO_Entry {
-                    acpi::MADTEntryHeader h;
+                    MADTEntryHeader h;
                     uint8_t bus;
                     uint8_t source;
                     uint32_t gsi;

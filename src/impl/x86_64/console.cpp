@@ -17,7 +17,7 @@
 #endif
 
 namespace console {
-    static lock::spinlock console_lock;
+    static spinlock_t console_lock;
 
     /** @internal Currently active console backend */
     static Backend active_backend;

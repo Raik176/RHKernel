@@ -41,12 +41,9 @@ int read_line(char *buf, int max_len) {
     int pos = 0;
     while (pos < max_len - 1) {
         char c;
-        // Read exactly 1 byte
         int64_t n = syscall3(SYSCALL_READ, STDIN, (uintptr_t)&c, 1);
 
         if (n <= 0) {
-            // If kernel is non-blocking, we MUST yield here
-            // to prevent freezing the system.
             syscall0(SYSCALL_YIELD);
             continue;
         }

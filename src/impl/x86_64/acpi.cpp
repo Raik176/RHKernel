@@ -82,7 +82,7 @@ namespace acpi {
             }
 
             SDTHeader *header = (SDTHeader *)p2v(phys_addr);
-            if (header->length < sizeof(acpi::MADTEntryHeader)) break;
+            if (header->length < sizeof(MADTEntryHeader)) break;
 
             if (memcmp(header->signature, signature, 4) == 0) return header;
         }

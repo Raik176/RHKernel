@@ -27,7 +27,8 @@ enum SyscallNumbers {
     SYSCALL_DUP2,
     SYSCALL_CLONE,
     SYSCALL_FORK,
-    SYSCALL_EXEC
+    SYSCALL_EXEC,
+    SYSCALL_GETPID
 };
 
 extern "C" {
@@ -72,7 +73,7 @@ int sys_read(int fd, void *buf, uint32_t size) {
     return (int)bytes_read;
 }
 
-int sys_write(int fd, const void *buf, uint32_t size) {
+int sys_write(int fd, const void *buf, uint64_t size) {
     vfs::open_file *file = fd_manager::get_file(fd);
     if (!file) return -1;
 
@@ -125,11 +126,11 @@ uint64_t syscall_handler(struct regs *r) {
 
     switch (syscall) {
         case SYSCALL_WRITE:
-            return sys_write((int)arg1, (const void *)arg2, (uint32_t)arg3);
+            return sys_write((int)arg1, (const void *)arg2, (uint64_t)arg3);
         case SYSCALL_OPEN:
             return sys_open((const char *)arg1);
         case SYSCALL_READ:
-            return sys_read((int)arg1, (void *)arg2, (uint32_t)arg3);
+            return sys_read((int)arg1, (void *)arg2, (uint64_t)arg3);
         case SYSCALL_CLOSE:
             return sys_close((int)arg1);
         case SYSCALL_DUP2:
@@ -163,6 +164,8 @@ uint64_t syscall_handler(struct regs *r) {
 
             return ret;
         }
+        case SYSCALL_GETPID:
+            return smp::get_cpu()->current_task->id;
         default:
             return -1;
     }
