@@ -16,10 +16,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        submodules: true
+        submodules: recursive
 
     - name: Set up build tools
       run: sudo apt update && sudo apt install -y doxygen graphviz make curl unzip
+
+    - name: Cache Doxygen output
+      uses: actions/cache@v3
+      with:
+        path: doc/html
+        key: ${{ runner.os }}-doxygen-${{ hashFiles('**/*.h', '**/*.c', '**/*.S') }}
+        restore-keys: |
+          ${{ runner.os }}-doxygen-
+
 
     - name: Generate documentation
       run: make doc
