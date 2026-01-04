@@ -17,6 +17,14 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y unzip curl build-essential nasm qemu-system grub-pc-bin xorriso mtools python3-venv cpio clang-format bear
 
+    - name: Cache build
+      uses: actions/cache@v3
+      with:
+        path: build
+        key: ${{ runner.os }}-build-${{ hashFiles('**/*.c', '**/*.h', '**/*.S') }}
+        restore-keys: |
+          ${{ runner.os }}-build-
+
     - name: Build kernel
       run: make build-x86_64
     - name: Upload ISO
