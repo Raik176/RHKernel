@@ -279,6 +279,9 @@ static void pci_check_function(uint16_t seg, uint8_t bus, uint8_t slot, uint8_t 
     gdev->bus_data = (void *)pdev;
 
     device_register(gdev);
+
+    klog(LOG_INFO, "PCI: Device %04x:%04x class %02x:%02x rev %02x\n",
+         pdev->vendor_id, pdev->device_id, pdev->class_code, pdev->subclass, pdev->prog_if);
 }
 
 void pci_scan_bus(uint16_t seg, uint8_t bus) {

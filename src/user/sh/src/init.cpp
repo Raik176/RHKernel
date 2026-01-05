@@ -1,4 +1,7 @@
+#include <sched.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <unistd.h>
 
 #define SYSCALL_WRITE 0
 #define SYSCALL_OPEN 1
@@ -66,21 +69,19 @@ int read_line(char *buf, int max_len) {
     return pos;
 }
 
-extern "C" void _start() {
+int main() {
+    setvbuf(stdout, NULL, _IONBF, 0);  // TODO: remove once sbrk is implemented.
+
     char cmd_buffer[128];
     char *argv[16];
-    const char *newline = "\n";
     const char *prompt = "minsh> ";
 
     while (1) {
-        syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)prompt, 7);
+        printf(prompt);
 
         int len = read_line(cmd_buffer, sizeof(cmd_buffer));
-        if (len <= 0) {
-            syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)newline, 1);
-            continue;
-        }
-        syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)newline, 1);
+        puts("");
+        if (len <= 0) { continue; }
 
         int argc = 0;
         char *ptr = cmd_buffer;
@@ -100,12 +101,11 @@ extern "C" void _start() {
         argv[argc] = nullptr;
 
         if (argc > 0) {
-            uint64_t pid = syscall0(SYSCALL_FORK);
+            uint64_t pid = fork();
             if (pid == 0) {
                 syscall3(SYSCALL_EXEC, (uintptr_t)argv[0], (uintptr_t)argv, 0);
 
-                const char *err = "Unknown command\n";
-                syscall3(SYSCALL_WRITE, STDOUT, (uintptr_t)err, 16);
+                printf("command not found: %s\n", argv[0]);
                 syscall1(SYSCALL_EXIT, 1);
             } else {
                 syscall1(SYSCALL_WAIT, 0);

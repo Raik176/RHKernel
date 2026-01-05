@@ -96,9 +96,7 @@ uint8_t get_free_vector() {
     return 0xFF;
 }
 
-uint8_t get_free_interrupt() {
-    return idt::get_unused_vector();
-}
+uint8_t get_free_interrupt() { return idt::get_unused_vector(); }
 
 KEXPORT(request_irq);
 KEXPORT(free_irq);

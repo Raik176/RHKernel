@@ -36,7 +36,7 @@ static inline uint64_t syscall3(uint64_t num, uint64_t a1, uint64_t a2, uint64_t
     return ret;
 }
 
-extern "C" void _start() {
+int main() {
     uint64_t pid = syscall0(SYSCALL_FORK);
     if (pid == 0) {
         int fd = syscall1(SYSCALL_OPEN, (uintptr_t)"/dev/input/kbd0");

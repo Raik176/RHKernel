@@ -11,9 +11,6 @@
 #include "util.h"
 
 namespace module_loader {
-    static constexpr uint64_t MODULE_BASE = 0xFFFFFFFFA0000000ULL;
-    static constexpr uint64_t MODULE_SIZE = 0x20000000ULL;  // 512MB space for modules
-
     static vmm::VirtualRangeAllocator *module_v_alloc = nullptr;
 
     void init() { module_v_alloc = new vmm::VirtualRangeAllocator(MODULE_BASE, MODULE_SIZE); }

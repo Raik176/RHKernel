@@ -36,6 +36,8 @@ static void debug_dump_vfs(vfs::vfs_node *node, int depth) {
     }
 }
 
+extern "C" void kmain(uint64_t mb_phys_addr) __attribute__((used));
+
 extern "C" void kmain(uint64_t mb_phys_addr) {
     {
         uint8_t *mb_info = (uint8_t *)(uintptr_t)mb_phys_addr;
@@ -112,9 +114,6 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     module_loader::load_module("/lib/modules/pci_bus.ko");
     module_loader::load_module("/lib/modules/pci_bridge.ko");
-
-    module_loader::load_module("/lib/modules/usb_core.ko");
-    module_loader::load_module("/lib/modules/uhci.ko");
 
     debug_dump_vfs(vfs::get_root(), 0);
 

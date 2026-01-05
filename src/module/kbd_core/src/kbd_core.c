@@ -124,5 +124,4 @@ KEXPORT(kbd_unregister)
 KEXPORT(kbd_handle_scancode)
 
 static int kbd_init() { return 0; }
-static void kbd_exit() {}
-MODULE_INFO("kbd_core", kbd_init, kbd_exit);
+MODULE_INFO("kbd_core", kbd_init, NULL);

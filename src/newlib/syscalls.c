@@ -1,5 +1,8 @@
-#include "stdint.h"
+#include <sys/types.h>
+#include <unistd.h>
+
 #include "stddef.h"
+#include "stdint.h"
 
 enum SyscallNumbers {
     SYSCALL_WRITE = 0,
@@ -17,7 +20,6 @@ enum SyscallNumbers {
     SYSCALL_GETPID
 };
 
-
 uint64_t syscall3(uint64_t num, uint64_t a1, uint64_t a2, uint64_t a3) {
     uint64_t ret;
     asm volatile("syscall"
@@ -32,27 +34,23 @@ void _exit(int code) {
     __builtin_unreachable();
 }
 
-int write(int fd, const void *buf, unsigned int count) {
+int write(int fd, const void *buf, size_t count) {
     return (int)syscall3(SYSCALL_WRITE, (uint64_t)fd, (uint64_t)buf, (uint64_t)count);
 }
 
-int read(int fd, void *buf, unsigned int count) {
+int read(int fd, void *buf, size_t count) {
     return (int)syscall3(SYSCALL_READ, (uint64_t)fd, (uint64_t)buf, (uint64_t)count);
 }
 
-int close(int fd) {
-    return (int)syscall3(SYSCALL_CLOSE, (uint64_t)fd, 0, 0);
-}
+int close(int fd) { return (int)syscall3(SYSCALL_CLOSE, (uint64_t)fd, 0, 0); }
 
-int getpid(void) {
-    return (int)syscall3(SYSCALL_GETPID, 0, 0, 0);
-}
+int getpid(void) { return (int)syscall3(SYSCALL_GETPID, 0, 0, 0); }
 
 void *sbrk(ptrdiff_t increment) {
-    return NULL; //TODO
+    return NULL;  // TODO
 }
 
-int lseek(int fd, int ptr, int dir) {
+off_t lseek(int fd, off_t offset, int whence) {
     // Requires a SYSCALL_LSEEK in your kernel to modify file->offset
     return 0;
 }
@@ -72,14 +70,9 @@ int kill(int pid, int sig) {
     return -1;
 }
 
-int _open(const char *name, int flags, int mode) {
-    return (int)syscall3(SYSCALL_OPEN, (uint64_t)name, (uint64_t)flags, (uint64_t)mode);
-}
+pid_t fork(void) { return syscall3(SYSCALL_FORK, 0, 0, 0); }
 
-int _wait(int *status) {
-    return (int)syscall3(SYSCALL_WAIT, (uint64_t)status, 0, 0);
-}
-
-int _fork(void) {
-    return (int)syscall3(SYSCALL_FORK, 0, 0, 0);
+int sched_yield(void) {
+    syscall3(SYSCALL_YIELD, 0, 0, 0);
+    return 0;
 }

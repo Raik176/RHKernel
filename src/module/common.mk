@@ -3,38 +3,38 @@ include $(abspath $(TOP_DIR)/base.mk)
 MODULE_INC_DIRS := $(shell find $(abspath $(TOP_DIR)/src/module) -type d -name "include" 2>/dev/null)
 MODULE_INC_FLAGS := $(addprefix -I, $(MODULE_INC_DIRS))
 
-CFLAGS   := $(GLOBAL_CFLAGS) -ffreestanding -fno-stack-protector -O2 \
-            -fPIC -fno-pie -fno-plt -mcmodel=large \
+CFLAGS := $(GLOBAL_CFLAGS) -ffreestanding -fno-stack-protector -O2 \
+			-fno-function-sections -fno-data-sections \
+            -fPIC -fno-pie -fno-plt -mcmodel=large -fno-lto \
             -I$(abspath $(TOP_DIR)/src/public) \
             $(MODULE_INC_FLAGS)
 
 CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti
-LDFLAGS  := -static -r
-
-SRC_FILES := $(shell find src -name '*.cpp' -o -name '*.c')
-OBJ_FILES := $(patsubst src/%, build/%.o, $(SRC_FILES))
+LDFLAGS := -static -r
 
 APP_NAME := $(shell basename $(CURDIR))
-KO := bin/$(APP_NAME).ko
 
-all: $(KO)
+SRC_FILES := $(shell find src -name '*.cpp' -o -name '*.c' 2>/dev/null)
+OBJ_FILES := $(patsubst src/%, $(TOP_DIR)/build/modules/$(APP_NAME)/%.o, $(SRC_FILES))
 
-$(KO): $(OBJ_FILES)
-	@mkdir -p bin
+KO := $(MODULE_BINARIES_DIR)/$(APP_NAME).ko
+
+.PHONY: all
+all: $(TOOLCHAIN_STAMP) $(KO)
+
+$(KO): $(OBJ_FILES) $(TOOLCHAIN_STAMP)
+	@mkdir -p $(dir $@)
 	@echo -e "$(BLUE)[LD]$(NC) $(APP_NAME).ko"
 	$(Q)$(LD) $(LDFLAGS) $(OBJ_FILES) -o $(KO)
 
-build/%.cpp.o: src/%.cpp
+$(TOP_DIR)/build/modules/$(APP_NAME)/%.cpp.o: src/%.cpp | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
 	@echo -e "$(GREEN)[CXX]$(NC) $<"
 	$(Q)$(CXX) $(CXXFLAGS) -c $< -o $@
 
-build/%.c.o: src/%.c
+$(TOP_DIR)/build/modules/$(APP_NAME)/%.c.o: src/%.c | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
 	@echo -e "$(GREEN)[CC]$(NC) $<"
 	$(Q)$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	$(Q)rm -rf bin build
 
 -include $(OBJ_FILES:.o=.d)

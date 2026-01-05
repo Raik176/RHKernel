@@ -5,6 +5,9 @@
 #include "mod/module.h"
 
 namespace module_loader {
+    static constexpr uint64_t MODULE_BASE = 0xFFFFFFFFA0000000ULL;
+    static constexpr uint64_t MODULE_SIZE = 0x20000000ULL;  // 512MB space for modules
+
     void init();
 
     void load_module(const char *path);
