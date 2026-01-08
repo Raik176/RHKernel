@@ -24,17 +24,17 @@ all: $(TOOLCHAIN_STAMP) $(KO)
 
 $(KO): $(OBJ_FILES) $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(BLUE)[LD]$(NC) $(APP_NAME).ko"
+	@printf "$(BLUE)[LD]$(NC) $(APP_NAME).ko\n"
 	$(Q)$(LD) $(LDFLAGS) $(OBJ_FILES) -o $(KO)
 
 $(TOP_DIR)/build/modules/$(APP_NAME)/%.cpp.o: src/%.cpp | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(GREEN)[CXX]$(NC) $<"
+	@printf "$(GREEN)[CXX]$(NC) $<\n"
 	$(Q)$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(TOP_DIR)/build/modules/$(APP_NAME)/%.c.o: src/%.c | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(GREEN)[CC]$(NC) $<"
+	@printf "$(GREEN)[CC]$(NC) $<\n"
 	$(Q)$(CC) $(CFLAGS) -c $< -o $@
 
 -include $(OBJ_FILES:.o=.d)

@@ -53,27 +53,34 @@ RANLIB := $(TOOLCHAIN_DIR)/bin/x86_64-elf-ranlib
 MODULE_BINARIES_DIR := $(TOP_DIR)/build/bin/modules
 USER_BINARIES_DIR := $(TOP_DIR)/build/bin/user
 
+SUBMODULE_STAMP := build/.submodules_updated
+
 $(TOOLCHAIN_STAMP):
 	@mkdir -p $(TOOLCHAIN_DIR)
-	@echo -e "$(BLUE)[TOOLS]$(NC) Downloading x86_64-elf toolchain..."
+	@printf  "$(BLUE)[TOOLS]$(NC) Downloading x86_64-elf toolchain...\n"
 	$(Q)curl -fsSL $(TOOLCHAIN_URL) -o $(TOOLCHAIN_ZIP)
-	@echo -e "$(BLUE)[TOOLS]$(NC) Extracting..."
+	@printf  "$(BLUE)[TOOLS]$(NC) Extracting...\n"
 	$(Q)unzip -oqq $(TOOLCHAIN_ZIP) -d $(TOOLCHAIN_DIR)
 	@touch $@
 
 $(VENV_STAMP): $(REQUIREMENTS)
-	@echo -e "$(BLUE)[VENV]$(NC) Ensuring Python environment..."
+	@printf "$(BLUE)[VENV]$(NC) Ensuring Python environment...\n"
 	$(Q)test -d $(VENV) || python3 -m venv $(VENV)
 	$(Q)PIP_DISABLE_PIP_VERSION_CHECK=1 \
 		$(VENV_PIP) install -q -r $(REQUIREMENTS)
 	@touch $@
 
+$(SUBMODULE_STAMP): 
+	@git submodule update --init --recursive
+	@mkdir -p build
+	@touch $(SUBMODULE_STAMP)
+
 .PHONY: format
 format:
-	@echo -e "$(BLUE)[FORMAT]$(NC) Formatting C/C++ files..."
+	@printf "$(BLUE)[FORMAT]$(NC) Formatting C/C++ files...\n"
 	$(Q)clang-format -i $(FORMAT_SOURCES)
 
 .PHONY: check-format
 check-format:
-	@echo -e "$(BLUE)[FORMAT]$(NC) Checking formatting..."
+	@printf "$(BLUE)[FORMAT]$(NC) Checking formatting...\n"
 	$(Q)clang-format --dry-run --Werror $(FORMAT_SOURCES)

@@ -81,9 +81,9 @@ MODULES := $(filter-out $(TOP_DIR)/src/module/common.mk, $(MODULE_DIRS))
 .PHONY: newlib
 newlib: $(SYSROOT)/lib/libc.a
 
-$(NEWLIB_STAMP): | $(TOOLCHAIN_STAMP)
+$(NEWLIB_STAMP): | $(TOOLCHAIN_STAMP) $(SUBMODULE_STAMP)
 	@mkdir -p $(NEWLIB_BUILD) $(SYSROOT)
-	@echo -e "$(YELLOW)[NEWLIB]$(NC) Configuring & Compiling..."
+	@printf "$(YELLOW)[NEWLIB]$(NC) Configuring & Compiling...\n"
 	$(Q)cd $(NEWLIB_BUILD) && $(NEWLIB_SRC)/configure \
 		--target=x86_64-elf \
 		--prefix=$(shell dirname $(SYSROOT)) \
@@ -100,7 +100,7 @@ $(NEWLIB_STAMP): | $(TOOLCHAIN_STAMP)
 		AR_FOR_TARGET=$(AR)
 	$(Q)$(MAKE) -C $(NEWLIB_BUILD) -j$(shell nproc) --quiet
 	$(Q)$(MAKE) -C $(NEWLIB_BUILD) install
-	@echo -e "$(YELLOW)[NEWLIB]$(NC) Done."
+	@printf "$(YELLOW)[NEWLIB]$(NC) Done.\n"
 	@touch $@
 
 $(SYSROOT)/lib/libc.a: $(NEWLIB_STUB_OBJ_FILES)
@@ -116,48 +116,48 @@ build/newlib/%.o: src/newlib/%.c $(TOOLCHAIN_STAMP) $(NEWLIB_STAMP)
 build-user-apps: $(USER_APPS)
 
 $(USER_APPS): newlib
-	@echo -e "$(YELLOW)[BUILD]$(NC) User App: $(notdir $(patsubst %/,%,$@))"
+	@printf "$(YELLOW)[BUILD]$(NC) User App: $(notdir $(patsubst %/,%,$@))\n"
 	$(Q)$(MAKE) -C $@ all --no-print-directory -s
 
 .PHONY: build-modules $(MODULES)
 build-modules: $(MODULES)
 
 $(MODULES):
-	@echo -e "$(YELLOW)[BUILD]$(NC) Module: $(notdir $(patsubst %/,%,$@))"
+	@printf "$(YELLOW)[BUILD]$(NC) Module: $(notdir $(patsubst %/,%,$@))\n"
 	$(Q)$(MAKE) -C $@ all --no-print-directory -s
 
 $(INITRAMFS_BIN): build-user-apps build-modules $(shell find $(INITRAMFS_SRC) -type f -not -path "$(INITRAMFS_SRC)/bin/*" 2>/dev/null)
 	@mkdir -p build $(INITRAMFS_SRC)/bin $(INITRAMFS_SRC)/lib/modules
-	@echo -e "$(YELLOW)[RAMDISK]$(NC) Preparing initramfs..."
+	@printf "$(YELLOW)[RAMDISK]$(NC) Preparing initramfs...\n"
 	$(Q)$(foreach dir,$(USER_APPS),cp $(USER_BINARIES_DIR)/$(shell basename $(dir)) $(INITRAMFS_SRC)/bin/ ;)
 	$(Q)$(foreach dir,$(MODULES),cp $(MODULE_BINARIES_DIR)/$(shell basename $(dir)).ko $(INITRAMFS_SRC)/lib/modules/ ;)
-	@echo -e "$(YELLOW)[RAMDISK]$(NC) Building $(INITRAMFS_BIN)"
+	@printf "$(YELLOW)[RAMDISK]$(NC) Building $(INITRAMFS_BIN)\n"
 	$(Q)cd $(INITRAMFS_SRC) && find . | cpio -o -H newc > ../$(INITRAMFS_BIN) 2>/dev/null
 
 $(FONT_BIN): $(FONT_TTF) $(FONT_SCRIPT) | $(VENV_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(BLUE)[FONT]$(NC) Generating $(notdir $@)"
+	@printf "$(BLUE)[FONT]$(NC) Generating $(notdir $@)\n"
 	$(Q)$(VENV_PYTHON) $(FONT_SCRIPT) $(FONT_TTF) $@
 
 build/x86_64/%.asm.o: src/impl/x86_64/%.asm $(FONT_BIN)
 	@mkdir -p $(dir $@)
-	@echo -e "$(BLUE)[AS]$(NC) $<"
+	@printf "$(BLUE)[AS]$(NC) $<\n"
 	$(Q)nasm $(NASMFLAGS) $< -o $@
 
 build/x86_64/%.c.o: src/impl/x86_64/%.c | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(GREEN)[CC]$(NC) $<"
+	@printf "$(GREEN)[CC]$(NC) $<\n"
 	$(Q)$(CC) -c $(CFLAGS) $< -o $@
 
 build/x86_64/%.cpp.o: src/impl/x86_64/%.cpp | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(GREEN)[CXX]$(NC) $<"
+	@printf "$(GREEN)[CXX]$(NC) $<\n"
 	$(Q)$(CXX) -c $(CXXFLAGS) $< -o $@
 
 .PHONY: build-x86_64
 build-x86_64: $(TOOLCHAIN_STAMP) $(x86_64_object_files) $(INITRAMFS_BIN)
 	@mkdir -p dist/x86_64
-	@echo -e "$(BLUE)[LD]$(NC) dist/x86_64/kernel.bin"
+	@printf "$(BLUE)[LD]$(NC) dist/x86_64/kernel.bin\n"
 	$(Q)$(CC) $(CFLAGS) -nostdlib -o dist/x86_64/kernel.bin \
         -T targets/x86_64/linker.ld \
         -Wl,-n $(foreach flag,$(LDFLAGS),-Wl$\,$(flag)) \
@@ -165,18 +165,18 @@ build-x86_64: $(TOOLCHAIN_STAMP) $(x86_64_object_files) $(INITRAMFS_BIN)
 	$(Q)mkdir -p targets/x86_64/iso/boot
 	$(Q)cp dist/x86_64/kernel.bin targets/x86_64/iso/boot/kernel.bin
 	$(Q)cp $(INITRAMFS_BIN) targets/x86_64/iso/boot/initramfs.cpio
-	@echo -e "$(YELLOW)[ISO]$(NC) Generating dist/x86_64/kernel.iso"
+	@printf "$(YELLOW)[ISO]$(NC) Generating dist/x86_64/kernel.iso\n"
 	$(Q)grub-mkrescue /usr/lib/grub/i386-pc \
 		-o dist/x86_64/kernel.iso targets/x86_64/iso 2>/dev/null
 
 .PHONY: run
 run: build-x86_64
-	@echo -e "$(GREEN)--- Starting QEMU ---$(NC)"
+	@printf "$(GREEN)--- Starting QEMU ---$(NC)\n"
 	$(Q)qemu-system-x86_64 $(QEMUFLAGS)
 
 .PHONY: debug
 debug: build-x86_64
-	@echo -e "$(YELLOW)[DEBUG]$(NC) Starting QEMU in debug mode..."
+	@printf "$(YELLOW)[DEBUG]$(NC) Starting QEMU in debug mode...\n"
 	$(Q)qemu-system-x86_64 $(QEMUFLAGS) -S -s -no-shutdown -no-reboot & \
 	QEMU_PID=$$!; \
 	gdb dist/x86_64/kernel.bin \
@@ -187,12 +187,12 @@ debug: build-x86_64
 
 .PHONY: clean
 clean:
-	@echo -e "$(RED)[CLEAN]$(NC) Removing root build artifacts..."
+	@printf "$(RED)[CLEAN]$(NC) Removing root build artifacts...\n"
 	$(Q)rm -rf build dist initramfs/bin initramfs/lib/modules
 
 .PHONY: clean-all
 clean-all: clean
-	@echo -e "$(RED)[CLEAN]$(NC) Removing toolchain and venv..."
+	@printf "$(RED)[CLEAN]$(NC) Removing toolchain and venv...\n"
 	$(Q)rm -rf $(TOOLCHAIN_DIR) $(VENV)
 
 -include $(x86_64_object_files:.o=.d)

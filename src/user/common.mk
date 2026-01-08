@@ -19,17 +19,17 @@ all: $(BIN)
 
 $(BIN): $(OBJ_FILES) $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(BLUE)[LD]$(NC) $(BIN)"
+	@printf "$(BLUE)[LD]$(NC) $(BIN)\n"
 	$(Q)$(CXX) -nostdlib $(foreach flag,$(LDFLAGS),-Wl$\,$(flag)) $(NEWLIB_BUILD)/crt0.o $(OBJ_FILES) -L$(abspath $(SYSROOT)/lib) -lc -o $(BIN)
 
 $(TOP_DIR)/build/user/$(APP_NAME)/%.cpp.o: src/%.cpp | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(GREEN)[CXX]$(NC) $<"
+	@printf "$(GREEN)[CXX]$(NC) $<\n"
 	$(Q)$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(TOP_DIR)/build/user/$(APP_NAME)/%.c.o: src/%.c | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	@echo -e "$(GREEN)[CC]$(NC) $<"
+	@printf "$(GREEN)[CC]$(NC) $<\n"
 	$(Q)$(CC) $(CFLAGS) -c $< -o $@
 
 -include $(OBJ_FILES:.o=.d)
