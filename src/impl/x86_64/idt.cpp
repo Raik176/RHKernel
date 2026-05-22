@@ -53,8 +53,21 @@ extern void isr31();
 
 extern void isr32();
 extern void isr33();
+extern void isr34();
+extern void isr35();
+extern void isr36();
+extern void isr37();
+extern void isr38();
+extern void isr39();
+extern void isr40();
+extern void isr41();
+extern void isr42();
+extern void isr43();
+extern void isr44();
+extern void isr45();
+extern void isr46();
+extern void isr47();
 
-extern void isr129();
 extern void isr254();
 
 extern "C" void dispatch_irq(struct regs *r);
@@ -63,27 +76,48 @@ void handle_mailbox_ipi(struct regs *r) {
     (void)r;
 
     auto *cpu = smp::get_cpu();
-    uint64_t flags;
-    cpu->mail_lock.acquire(flags);
 
-    while (cpu->mail_head != cpu->mail_tail) {
+    for (;;) {
+        uint64_t flags;
+        cpu->mail_lock.acquire(flags);
+
+        if (cpu->mail_head == cpu->mail_tail) {
+            cpu->mail_lock.release(flags);
+            break;
+        }
+
         smp::mail *msg = cpu->mailbox[cpu->mail_head];
+        cpu->mailbox[cpu->mail_head] = nullptr;
+        cpu->mail_head = (cpu->mail_head + 1) % smp::MAILBOX_SIZE;
+        cpu->mail_lock.release(flags);
+
         switch (msg->type) {
             case smp::mail_type::HALT:
-                cpu->mail_lock.release(flags);  // cpu is dead anyways, might aswell release
                 for (;;) __asm__ volatile("cli; hlt");
                 break;
+            case smp::mail_type::TLB_SHOOTDOWN: {
+                uint64_t cr3;
+                asm volatile("mov %%cr3, %0" : "=r"(cr3));
+                if (msg->tlb.cr3 == 0 || msg->tlb.cr3 == cr3) {
+                    if (msg->tlb.pages == 0) {
+                        asm volatile("mov %0, %%cr3" : : "r"(cr3) : "memory");
+                    } else {
+                        for (uint32_t i = 0; i < msg->tlb.pages; i++) {
+                            uint64_t addr = msg->tlb.addr + (uint64_t)i * 4096ULL;
+                            asm volatile("invlpg (%0)" : : "r"(addr) : "memory");
+                        }
+                    }
+                }
+                break;
+            }
             default:
                 kpanic("Unhandled mail type!");
                 break;
         }
 
         if (msg->handled) { *(msg->handled) = true; }
-
-        cpu->mail_head = (cpu->mail_head + 1) % smp::MAILBOX_SIZE;
     }
 
-    cpu->mail_lock.release(flags);
     apic::eoi();
 }
 
@@ -93,7 +127,7 @@ uint64_t idt_handler(struct regs *r) {
             uint64_t faulting_address;
             asm volatile("mov %%cr2, %0" : "=r"(faulting_address));
 
-            if (vmm::handle_fault(faulting_address, r->err_code)) { return (uint64_t)r; }
+            if (vmm::handle_fault(faulting_address, r->err_code, r)) { return (uint64_t)r; }
         }
 
         static const char exception_messages[32][30] = {"Division By Zero",
@@ -128,13 +162,14 @@ uint64_t idt_handler(struct regs *r) {
                                                         "Reserved",
                                                         "Reserved"};
 
-        kpanic(exception_messages[r->int_no], r);
+        KPANIC_REGS(exception_messages[r->int_no], r);
     }
 
     if (r->int_no >= 32 && r->int_no <= 255) {
-        if (r->int_no == idt::MAILBOX_VECTOR) { handle_mailbox_ipi(r); }
-        if (r->int_no == idt::YIELD_VECTOR) { scheduler::schedule(r, false); }
-
+        if (r->int_no == idt::MAILBOX_VECTOR) {
+            handle_mailbox_ipi(r);
+            return (uint64_t)r;
+        }
         dispatch_irq(r);
         if (r->int_no == 32) {
             apic::tick();
@@ -226,8 +261,21 @@ namespace idt {
 
         set_gate(32, reinterpret_cast<uint64_t>(isr32), 0x08, 0x8E);
         set_gate(33, reinterpret_cast<uint64_t>(isr33), 0x08, 0x8E);
+        set_gate(34, reinterpret_cast<uint64_t>(isr34), 0x08, 0x8E);
+        set_gate(35, reinterpret_cast<uint64_t>(isr35), 0x08, 0x8E);
+        set_gate(36, reinterpret_cast<uint64_t>(isr36), 0x08, 0x8E);
+        set_gate(37, reinterpret_cast<uint64_t>(isr37), 0x08, 0x8E);
+        set_gate(38, reinterpret_cast<uint64_t>(isr38), 0x08, 0x8E);
+        set_gate(39, reinterpret_cast<uint64_t>(isr39), 0x08, 0x8E);
+        set_gate(40, reinterpret_cast<uint64_t>(isr40), 0x08, 0x8E);
+        set_gate(41, reinterpret_cast<uint64_t>(isr41), 0x08, 0x8E);
+        set_gate(42, reinterpret_cast<uint64_t>(isr42), 0x08, 0x8E);
+        set_gate(43, reinterpret_cast<uint64_t>(isr43), 0x08, 0x8E);
+        set_gate(44, reinterpret_cast<uint64_t>(isr44), 0x08, 0x8E);
+        set_gate(45, reinterpret_cast<uint64_t>(isr45), 0x08, 0x8E);
+        set_gate(46, reinterpret_cast<uint64_t>(isr46), 0x08, 0x8E);
+        set_gate(47, reinterpret_cast<uint64_t>(isr47), 0x08, 0x8E);
 
-        set_gate(YIELD_VECTOR, reinterpret_cast<uint64_t>(isr129), 0x08, 0x8E);
         set_gate(MAILBOX_VECTOR, reinterpret_cast<uint64_t>(isr254), 0x08, 0x8E);
 
         init_ap();
@@ -235,7 +283,7 @@ namespace idt {
 
     uint8_t get_unused_vector() {
         for (uint16_t i = 34; i <= 255; ++i) {
-            if (i == YIELD_VECTOR || i == MAILBOX_VECTOR) continue;
+            if (i == MAILBOX_VECTOR) continue;
 
             if (idt[i].offset_low == 0 && idt[i].offset_mid == 0 && idt[i].offset_high == 0) {
                 return i;

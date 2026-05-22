@@ -21,11 +21,20 @@ section .text
 trampoline:
     call enable_cpu_features
     mov rdi, rbx                 ; multiboot pointer
+    ; Enter C++ with the SysV AMD64 stack convention.
+    ; RSP is 16-byte aligned here; CALL makes C++ function entry RSP % 16 == 8.
+    ; A JMP leaves C++ with the wrong alignment and GCC may fault on movaps.
     mov rax, kmain
-    jmp rax
+    call rax
+.hang_after_kmain:
+    hlt
+    jmp .hang_after_kmain
 
 section .early_text
 long_mode_start:
+    ; Canonicalize the 32-bit Multiboot info pointer passed in EBX.
+    mov ebx, ebx
+
     mov ax, 0
     mov ss, ax
     mov ds, ax
@@ -46,40 +55,46 @@ long_mode_start:
     mov rax, trampoline
     jmp rax
 
+%define PHYS_MAP_GIB 64
+
 setup_direct_physical_mapping:
-    ; 1. Link PML4 entry 272 to the PDP table
+    ; Link PML4 entry 256 to a PDPT for the kernel physical direct map.
+    ;
+    ; This is deliberately only a bootstrap map. PMM now defers usable spans
+    ; above this range until after vmm::init() installs the full direct map, so
+    ; the boot page tables no longer impose the kernel's maximum supported RAM.
+    ; 64 GiB is kept here because it is plenty for early allocations while
+    ; keeping .early_bss page-table storage small.
     mov rax, phys_map_pdp_table
     or rax, 0x03                 ; Present | Writable
-    mov [pml4_table + 272 * 8], rax
+    mov [pml4_table + 256 * 8], rax
 
-    ; 2. Link the first 4 entries of the PDP table to 4 Page Directories
-    ; Each PD maps 1GB using 2MB pages (512 * 2MB = 1GB)
+    ; Each PD maps 1 GiB using 512 2 MiB entries.
     xor rcx, rcx
 .link_pdp_loop:
-    mov rax, phys_map_pd_table   ; Base of our PD array
+    mov rax, phys_map_pd_table
     mov rdx, rcx
-    shl rdx, 12                  ; Multiply index by 4096 (size of one PD)
+    shl rdx, 12                  ; rcx * 4096, one page directory per GiB
     add rax, rdx
-    
+
     or rax, 0x03                 ; Present | Writable
     mov [phys_map_pdp_table + rcx * 8], rax
-    
+
     inc rcx
-    cmp rcx, 4                   ; We only need 4 GB
+    cmp rcx, PHYS_MAP_GIB
     jne .link_pdp_loop
 
-    ; 3. Fill the Page Directories (2048 entries total for 4GB)
-    xor rcx, rcx                 ; Counter for total 2MB pages (0 to 2047)
+    ; Fill PHYS_MAP_GIB page directories.
+    xor rcx, rcx
 .fill_pd_loop:
     mov rax, rcx
-    shl rax, 21                  ; rcx * 2MB (2^21)
-    or rax, 0x83                 ; Present | Writable | Huge Page (2MB)
-    
-    ; Write to the contiguous block of 4 Page Directories
+    shl rax, 21                  ; rcx * 2 MiB
+    or rax, 0x83                 ; Present | Writable | Huge Page (2 MiB)
+
     mov [phys_map_pd_table + rcx * 8], rax
 
     inc rcx
-    cmp rcx, 2048                ; 512 entries * 4 tables = 2048
+    cmp rcx, PHYS_MAP_GIB * 512
     jne .fill_pd_loop
 
     ret
@@ -120,7 +135,7 @@ phys_map_pdp_table:
 phys_map_pdp_table_end:
 align 4096
 phys_map_pd_table:
-    resb 4096 * 4
+    resb 4096 * PHYS_MAP_GIB
 phys_map_pd_table_end:
 align 4096
 high_pdp_table:

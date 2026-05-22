@@ -27,9 +27,9 @@ header_start:
         dw 0              ; Flags = 0 (Required)
         dd .framebuffer_tag_end - .framebuffer_tag
 
-        dd 0              ; Width  = 0 (no preference)
-        dd 0              ; Height = 0 (no preference)
-        dd 0              ; Depth  = 0 (no preference)
+        dd 0                 ; Width
+        dd 0                 ; Height
+        dd 32                ; Depth
 
     .framebuffer_tag_end:
 

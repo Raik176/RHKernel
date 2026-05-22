@@ -47,14 +47,14 @@ namespace fd_manager {
 
         t->fd_table[fd] = nullptr;
 
-        file->ref_count--;
-        if (file->ref_count == 0) {
-            // IMPORTANT: Only free the 'open_file' wrapper.
-            // Do NOT call a destructor on file->node unless your VFS
-            // specifically tracks node-wide open counts.
-            heap::kfree(file);
-        }
+        bool free_file = false;
+        uint64_t flags;
+        spinlock_acquire(&file->lock, &flags);
+        if (file->ref_count > 0) file->ref_count--;
+        free_file = file->ref_count == 0;
+        spinlock_release(&file->lock, flags);
 
+        if (free_file) heap::kfree(file);
         return 0;
     }
 }  // namespace fd_manager

@@ -5,7 +5,7 @@
 #include "util.h"
 
 namespace vmm {
-    static constexpr uint64_t MMIO_BASE = 0xFFFFC00000000000ULL;
+    static constexpr uint64_t MMIO_BASE = 0xFFFFFF0000000000ULL;
     static constexpr uint64_t MMIO_SIZE = 0x2000000000ULL;
 
     /**
@@ -101,8 +101,12 @@ namespace vmm {
 
     uint64_t clone_address_space(uint64_t old_pml4_phys);
 
-    bool handle_fault(uint64_t fault_addr, uint64_t error_code);
+    bool handle_fault(uint64_t fault_addr, uint64_t error_code, regs *r = nullptr);
 
+    uint64_t get_mapping(uint64_t virt, uint64_t pagemap = get_kernel_pagemap());
+    bool user_range_mapped(uint64_t virt, uint64_t size, bool write,
+                           uint64_t pagemap = get_kernel_pagemap());
+    void flush_tlb(uint64_t pagemap, uint64_t virt, uint64_t pages);
     uint64_t get_phys_addr_mask();
 
     class VirtualRangeAllocator {

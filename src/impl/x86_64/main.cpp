@@ -10,6 +10,7 @@
 #include "memory/pmm.h"
 #include "memory/vmm.h"
 #include "multiboot2.h"
+#include "mod/fs.h"
 #include "smp/apic.h"
 #include "smp/ioapic.h"
 #include "smp/scheduler.h"
@@ -71,17 +72,20 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     console::printf("[ OK ] IDT initialized.\n");
 
     pmm::init(mb_phys_addr);
+    console::printf("[ OK ] PMM bootstrap initialized.\n");
+
+    vmm::init();
+    console::printf("[ OK ] VMM initialized.\n");
+
+    pmm::release_deferred_memory();
 
     uint64_t total_kb = (uint64_t)pmm::get_total_bytes() / 1024;
     uint64_t free_kb = (uint64_t)pmm::get_free_bytes() / 1024;
     uint64_t used_kb = total_kb - free_kb;
 
-    console::printf("[ OK ] PMM initialized.\n");
-    console::printf("       Memory: %d KiB / %d KiB used\n", (int)used_kb, (int)(total_kb));
-    console::printf("       Free:   %d KiB\n", (int)free_kb);
-
-    vmm::init();
-    console::printf("[ OK ] VMM initialized.\n");
+    console::printf("[ OK ] PMM high memory released.\n");
+    console::printf("       Memory: %d KiB / %d KiB used\n", used_kb, total_kb);
+    console::printf("       Free:   %d KiB\n", free_kb);
 
     vfs::init();
     init_virt_fs();
@@ -104,7 +108,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     __asm__ volatile("sti");
 
-    // smp::init_aps();
+    smp::init_aps();
     console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
     module_loader::init();
@@ -114,12 +118,21 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
 
     module_loader::load_module("/lib/modules/pci_bus.ko");
     module_loader::load_module("/lib/modules/pci_bridge.ko");
+    module_loader::load_module("/lib/modules/ahci.ko");
+    module_loader::load_module("/lib/modules/ext2.ko");
+
+    vfs::vfs_node *mnt = vfs::finddir(vfs::get_root(), "mnt");
+    if (!mnt) mnt = vfs::create_node("mnt", vfs::VfsType::VFS_DIRECTORY, vfs::get_root());
+    if (mnt && !vfs::finddir(mnt, "ext2")) {
+        vfs::create_node("ext2", vfs::VfsType::VFS_DIRECTORY, mnt);
+    }
+    fs_mount("/dev/sdc", "/mnt/ext2", "ext2", "rw");
 
     debug_dump_vfs(vfs::get_root(), 0);
 
     auto info = elf::load("/bin/init");
     if (info.pml4 != 0) {
-        scheduler::spawn(scheduler::task_type::USER, (void (*)())info.entry, info.pml4);
+        scheduler::spawn(scheduler::task_type::USER, (void (*)())info.entry, info.pml4, info.heap_start);
     }
 
     for (;;) { asm volatile("hlt"); }

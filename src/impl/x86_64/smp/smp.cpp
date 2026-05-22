@@ -208,37 +208,54 @@ namespace smp {
         }
     }
 
-    void send_mail(int64_t target_cpu, mail *message) {  // TOOD: check for overflow
+    static bool enqueue_mail(cpu_local *target, mail *message) {
+        if (!target || !message) return false;
+
+        uint64_t flags;
+        target->mail_lock.acquire(flags);
+
+        uint32_t next = (target->mail_tail + 1) % MAILBOX_SIZE;
+        if (next == target->mail_head) {
+            target->mail_lock.release(flags);
+            return false;
+        }
+
+        target->mailbox[target->mail_tail] = message;
+        target->mail_tail = next;
+        target->mail_lock.release(flags);
+        return true;
+    }
+
+    void send_mail(int64_t target_cpu, mail *message) {
         auto *current_cpu = get_cpu();
-        message->sender_core = current_cpu->cpu_index;
+        message->sender_core = current_cpu ? current_cpu->cpu_index : 0;
 
         if (target_cpu < 0) {
             for (uint64_t i = 0; i < get_core_count(); i++) {
-                if (i == current_cpu->cpu_index && target_cpu == MAIL_RECEIVER_OTHERS) continue;
-
-                cpu_local *target = get_cpu_by_index(i);
-
-                uint64_t flags;
-                target->mail_lock.acquire(flags);
-
-                uint32_t next = (target->mail_tail + 1) % MAILBOX_SIZE;
-                target->mailbox[target->mail_tail] = message;
-                target->mail_tail = next;
-
-                target->mail_lock.release(flags);
+                if (current_cpu && i == current_cpu->cpu_index &&
+                    target_cpu == MAIL_RECEIVER_OTHERS)
+                    continue;
+                if (!enqueue_mail(get_cpu_by_index(i), message)) { kpanic("SMP: mailbox full"); }
             }
-        } else {
-            cpu_local *target = get_cpu_by_index(target_cpu);
-
-            uint64_t flags;
-            target->mail_lock.acquire(flags);
-
-            uint32_t next = (target->mail_tail + 1) % MAILBOX_SIZE;
-            target->mailbox[target->mail_tail] = message;
-            target->mail_tail = next;
-
-            target->mail_lock.release(flags);
+            return;
         }
+
+        if (!enqueue_mail(get_cpu_by_index(target_cpu), message)) { kpanic("SMP: mailbox full"); }
+    }
+
+    bool send_tlb_shootdown_mail(int64_t target_cpu, mail *message, uint64_t cr3, uint64_t addr,
+                                  uint32_t pages, volatile bool *handled) {
+        if (!message) return false;
+
+        memset(message, 0, sizeof(*message));
+        message->type = mail_type::TLB_SHOOTDOWN;
+        message->handled = handled;
+        message->tlb.cr3 = cr3;
+        message->tlb.addr = addr;
+        message->tlb.pages = pages;
+
+        send_mail(target_cpu, message);
+        return true;
     }
 
     void send_halt_mail(int64_t target_cpu) {

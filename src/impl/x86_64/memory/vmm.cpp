@@ -24,7 +24,6 @@ extern uint8_t _bss_start[];
 extern uint8_t _bss_end[];
 }
 
-// TODO: implement TLB shootdown
 namespace vmm {
     static_assert(pmm::PAGE_SIZE == 4096, "VMM assumes 4 KiB base pages");
     static_assert((pmm::PAGE_SIZE / sizeof(uint64_t)) == 512,
@@ -35,11 +34,80 @@ namespace vmm {
 
     static bool supports_2mb_pages = false;
     static bool supports_1gb_pages = false;
+    static bool supports_nx = false;
     static uint64_t phys_addr_mask = 0;
 
     static uint64_t current_pml4_phys = 0;
 
     static VirtualRangeAllocator *mmio_allocator = nullptr;
+
+    static inline void invlpg(uint64_t virt) {
+        asm volatile("invlpg (%0)" : : "r"(virt) : "memory");
+    }
+
+    void flush_tlb(uint64_t pagemap, uint64_t virt, uint64_t pages) {
+        uint64_t cr3;
+        asm volatile("mov %%cr3, %0" : "=r"(cr3));
+
+        if (pagemap == 0 || pagemap == cr3) {
+            if (pages == 1) {
+                invlpg(virt);
+            } else {
+                asm volatile("mov %0, %%cr3" : : "r"(cr3) : "memory");
+            }
+        }
+
+        uint64_t cores = smp::get_core_count();
+        if (cores <= 1) return;
+
+        volatile bool *handled = (volatile bool *)heap::kmalloc(sizeof(bool) * cores);
+        smp::mail *messages = (smp::mail *)heap::kmalloc(sizeof(smp::mail) * cores);
+        if (!handled || !messages) kpanic("VMM: failed to allocate TLB shootdown state");
+
+        for (uint64_t i = 0; i < cores; i++) handled[i] = true;
+
+        smp::cpu_local *cpu = smp::get_cpu();
+        uint64_t self = cpu ? cpu->cpu_index : UINT64_MAX;
+        uint64_t pending = 0;
+        uint32_t page_count = pages > UINT32_MAX ? 0 : (uint32_t)pages;
+        if (pages > 256) page_count = 0;
+
+        for (uint64_t i = 0; i < cores; i++) {
+            if (i == self) continue;
+            smp::cpu_local *target = smp::get_cpu_by_index(i);
+            if (!target) continue;
+
+            if (pagemap != 0) {
+                scheduler::task *remote = target->current_task;
+                if (!remote || remote->cr3 != pagemap) continue;
+            }
+
+            handled[i] = false;
+            if (!smp::send_tlb_shootdown_mail((int64_t)i, &messages[i], pagemap, virt, page_count,
+                                             &handled[i])) {
+                heap::kfree(messages);
+                heap::kfree((void *)handled);
+                kpanic("VMM: failed to enqueue TLB shootdown");
+            }
+            pending++;
+        }
+
+        if (pending == 0) {
+            heap::kfree(messages);
+            heap::kfree((void *)handled);
+            return;
+        }
+
+        smp::flush_mail(smp::MAIL_RECEIVER_OTHERS);
+
+        for (uint64_t i = 0; i < cores; i++) {
+            if (i == self) continue;
+            while (!handled[i]) asm volatile("pause");
+        }
+
+        heap::kfree(messages);
+        heap::kfree((void *)handled);
+    }
 
     static inline uint64_t *get_table_ptr(uint64_t phys_addr) {
         return reinterpret_cast<uint64_t *>(p2v(phys_addr & get_phys_addr_mask()));
@@ -69,18 +137,49 @@ namespace vmm {
 
     uint64_t get_phys_addr_mask() { return phys_addr_mask; }
 
+    static inline void cpuid(uint32_t leaf, uint32_t subleaf, uint32_t &eax, uint32_t &ebx,
+                             uint32_t &ecx, uint32_t &edx) {
+        asm volatile("cpuid"
+                     : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx)
+                     : "a"(leaf), "c"(subleaf));
+    }
+
     // assumes heap is ready after end of vmm init, which it really should be.
     void init() {
-        uint32_t eax, ebx, ecx, edx;
+        uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
 
-        asm volatile("cpuid" : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx) : "a"(0x01));
-        supports_2mb_pages = edx & (1 << 3);
+        cpuid(0x00000000, 0, eax, ebx, ecx, edx);
+        uint32_t max_basic_leaf = eax;
 
-        asm volatile("cpuid" : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx) : "a"(0x80000001));
-        supports_1gb_pages = edx & (1 << 26);
+        if (max_basic_leaf >= 0x00000001) {
+            cpuid(0x00000001, 0, eax, ebx, ecx, edx);
+            supports_2mb_pages = edx & (1 << 3);
+        }
 
-        asm volatile("cpuid" : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx) : "a"(0x80000008));
-        phys_addr_mask = ((1ULL << (eax & 0xFF)) - 1) & ~0xFFFULL;
+        cpuid(0x80000000, 0, eax, ebx, ecx, edx);
+        uint32_t max_extended_leaf = eax;
+
+        if (max_extended_leaf >= 0x80000001) {
+            cpuid(0x80000001, 0, eax, ebx, ecx, edx);
+            supports_nx = edx & (1 << 20);
+            supports_1gb_pages = edx & (1 << 26);
+        }
+
+        if (max_extended_leaf >= 0x80000008) {
+            cpuid(0x80000008, 0, eax, ebx, ecx, edx);
+            uint32_t phys_bits = eax & 0xFF;
+            if (phys_bits == 0 || phys_bits > 52) phys_bits = 52;
+            phys_addr_mask = ((1ULL << phys_bits) - 1) & ~0xFFFULL;
+        } else {
+            phys_addr_mask = 0x000FFFFFFFFFF000ULL;
+        }
+
+#ifdef DEBUG
+        console::printf("[CPU] pages: 2M=%d 1G=%d NX=%d phys_bits_mask=%x:%x\n",
+                        supports_2mb_pages ? 1 : 0, supports_1gb_pages ? 1 : 0,
+                        supports_nx ? 1 : 0, (uint32_t)(phys_addr_mask >> 32),
+                        (uint32_t)phys_addr_mask);
+#endif
 
         current_pml4_phys = pmm::alloc(pmm::PAGE_SIZE);
         memset(p2v(current_pml4_phys), 0, pmm::PAGE_SIZE);
@@ -97,13 +196,31 @@ namespace vmm {
                   (uint64_t)_bss_end - (uint64_t)_bss_start,
                   PageFlags::Write | PageFlags::NX | PageFlags::Global);
 
-        map_range(PHYS_MAP_BASE, 0, pmm::get_system_bytes(), PageFlags::Write);
+        // Keep the physical direct map large enough for both RAM and early MMIO.
+        //
+        // pmm::get_physical_limit_bytes() is derived from usable RAM entries. It can be
+        // much smaller than device/MMIO physical addresses such as the QEMU framebuffer
+        // at ~0xFD000000. console::init() stores the framebuffer as p2v(fb_phys), so
+        // after switching to the final CR3 the framebuffer must still be covered by
+        // the direct map. Otherwise the first printk after this point page-faults,
+        // then the panic path recurses/triple-faults before anything useful is shown.
+        constexpr uint64_t MIN_DIRECT_MAP_BYTES = 4ULL * 1024 * 1024 * 1024;
+        uint64_t direct_map_bytes = pmm::get_physical_limit_bytes();
+        if (direct_map_bytes < MIN_DIRECT_MAP_BYTES) direct_map_bytes = MIN_DIRECT_MAP_BYTES;
+        if (direct_map_bytes > PHYS_DIRECT_MAP_SIZE) {
+            kpanic("VMM: physical direct map window exhausted");
+        }
+
+        map_range(PHYS_MAP_BASE, 0, direct_map_bytes, PageFlags::Write);
         map_range(0, 0, 0x100000, PageFlags::Write);
 
         asm volatile("mov %0, %%cr3" : : "r"(current_pml4_phys) : "memory");
 
         mmio_allocator = new VirtualRangeAllocator(MMIO_BASE, MMIO_SIZE);
     }
+
+    static void map_page_internal(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size,
+                                  uint64_t pagemap, bool do_flush);
 
     void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags, uint64_t pml4) {
         const uint64_t GIB = 1024ULL * 1024 * 1024;
@@ -119,20 +236,23 @@ namespace vmm {
 
             if (supports_1gb_pages && remaining >= GIB && (curr_v % GIB == 0) &&
                 (curr_p % GIB == 0)) {
-                map_page(curr_v, curr_p, flags, PageSize::Size1G, pml4);
+                map_page_internal(curr_v, curr_p, flags, PageSize::Size1G, pml4, false);
                 mapped += GIB;
             } else if (supports_2mb_pages && remaining >= MIB && (curr_v % MIB == 0) &&
                        (curr_p % MIB == 0)) {
-                map_page(curr_v, curr_p, flags, PageSize::Size2M, pml4);
+                map_page_internal(curr_v, curr_p, flags, PageSize::Size2M, pml4, false);
                 mapped += MIB;
             } else {
-                map_page(curr_v, curr_p, flags, PageSize::Size4K, pml4);
+                map_page_internal(curr_v, curr_p, flags, PageSize::Size4K, pml4, false);
                 mapped += KIB;
             }
         }
+
+        if (size != 0) flush_tlb(pml4, virt, ((size - 1) / pmm::PAGE_SIZE) + 1);
     }
 
-    void map_page(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size, uint64_t pagemap) {
+    static void map_page_internal(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size,
+                                  uint64_t pagemap, bool do_flush) {
         uint64_t pml4_idx = (virt >> 39) & 0x1FF;
         uint64_t pdpt_idx = (virt >> 30) & 0x1FF;
         uint64_t pd_idx = (virt >> 21) & 0x1FF;
@@ -143,8 +263,9 @@ namespace vmm {
 
         if (size == PageSize::Size1G) {
             if (!supports_1gb_pages) kpanic("VMM: 1GB pages unsupported");
-            pdpt[pdpt_idx] = (phys & get_phys_addr_mask()) |
-                             static_cast<uint64_t>(flags | PageFlags::Present | PageFlags::Huge);
+            uint64_t hw_flags = static_cast<uint64_t>(flags | PageFlags::Present | PageFlags::Huge);
+            if (!supports_nx) hw_flags &= ~static_cast<uint64_t>(PageFlags::NX);
+            pdpt[pdpt_idx] = (phys & get_phys_addr_mask()) | hw_flags;
             goto flush;
         }
 
@@ -152,21 +273,27 @@ namespace vmm {
             uint64_t *pd = get_next_table(pdpt, pdpt_idx, true);
             if (size == PageSize::Size2M) {
                 if (!supports_2mb_pages) kpanic("VMM: 2MB pages unsupported");
-                pd[pd_idx] = (phys & get_phys_addr_mask()) |
-                             static_cast<uint64_t>(flags | PageFlags::Present | PageFlags::Huge);
+                uint64_t hw_flags = static_cast<uint64_t>(flags | PageFlags::Present | PageFlags::Huge);
+                if (!supports_nx) hw_flags &= ~static_cast<uint64_t>(PageFlags::NX);
+                pd[pd_idx] = (phys & get_phys_addr_mask()) | hw_flags;
                 goto flush;
             }
 
             uint64_t *pt = get_next_table(pd, pd_idx, true);
-            pt[pt_idx] =
-                (phys & get_phys_addr_mask()) | static_cast<uint64_t>(flags | PageFlags::Present);
+            uint64_t hw_flags = static_cast<uint64_t>(flags | PageFlags::Present);
+            if (!supports_nx) hw_flags &= ~static_cast<uint64_t>(PageFlags::NX);
+            pt[pt_idx] = (phys & get_phys_addr_mask()) | hw_flags;
         }
 
     flush:
-        asm volatile("invlpg (%0)" : : "r"(virt) : "memory");
+        if (do_flush) flush_tlb(pagemap, virt, 1);
     }
 
-    void unmap_page(uint64_t virt, uint64_t pagemap) {
+    void map_page(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size, uint64_t pagemap) {
+        map_page_internal(virt, phys, flags, size, pagemap, true);
+    }
+
+    static void unmap_page_internal(uint64_t virt, uint64_t pagemap, bool do_flush) {
         if (virt % pmm::PAGE_SIZE != 0) {
             kpanic("VMM: unmap_page called with unaligned virtual address.");
         }
@@ -208,16 +335,20 @@ namespace vmm {
         }
 
     flush:
-        asm volatile("invlpg (%0)" : : "r"(virt) : "memory");
+        if (do_flush) flush_tlb(pagemap, virt, 1);
     }
+
+    void unmap_page(uint64_t virt, uint64_t pagemap) { unmap_page_internal(virt, pagemap, true); }
 
     void unmap_range(uint64_t virt, uint64_t size, uint64_t pagemap) {
         uint64_t start = virt & ~0xFFFULL;
         uint64_t end = (virt + size + 4095) & ~0xFFFULL;
 
         for (uintptr_t curr = start; curr < end; curr += pmm::PAGE_SIZE) {
-            unmap_page(curr, pagemap);
+            unmap_page_internal(curr, pagemap, false);
         }
+
+        if (end > start) flush_tlb(pagemap, start, (end - start) / pmm::PAGE_SIZE);
     }
 
     uint64_t create_user_address_space() {
@@ -281,7 +412,7 @@ namespace vmm {
                 }
             }
         }
-        asm volatile("mov %%cr3, %%rax; mov %%rax, %%cr3" ::: "rax", "memory");
+        flush_tlb(old_pml4_phys, 0, 0);
         return new_pml4_phys;
     }
 
@@ -304,7 +435,108 @@ namespace vmm {
         return &pt[pt_idx];
     }
 
-    bool handle_fault(uint64_t fault_addr, uint64_t error_code) {
+    uint64_t get_mapping(uint64_t virt, uint64_t pml4_phys) {
+        uint64_t *pte = get_pte_ptr(virt, pml4_phys);
+        if (!pte || !(*pte & static_cast<uint64_t>(PageFlags::Present))) return 0;
+        return *pte & get_phys_addr_mask();
+    }
+
+    static bool user_page_accessible(uint64_t virt, bool write, uint64_t pml4_phys) {
+        constexpr uint64_t USER_TOP = 0x0000800000000000ULL;
+        constexpr uint64_t PRESENT = static_cast<uint64_t>(PageFlags::Present);
+        constexpr uint64_t USER = static_cast<uint64_t>(PageFlags::User);
+        constexpr uint64_t WRITE = static_cast<uint64_t>(PageFlags::Write);
+        constexpr uint64_t HUGE = static_cast<uint64_t>(PageFlags::Huge);
+
+        if (virt >= USER_TOP) return false;
+
+        uint64_t pml4_idx = (virt >> 39) & 0x1FF;
+        uint64_t pdpt_idx = (virt >> 30) & 0x1FF;
+        uint64_t pd_idx = (virt >> 21) & 0x1FF;
+        uint64_t pt_idx = (virt >> 12) & 0x1FF;
+
+        uint64_t *pml4 = (uint64_t *)p2v(pml4_phys);
+        uint64_t pml4e = pml4[pml4_idx];
+        if ((pml4e & (PRESENT | USER)) != (PRESENT | USER)) return false;
+        if (write && !(pml4e & WRITE)) return false;
+
+        uint64_t *pdpt = get_table_ptr(pml4e);
+        uint64_t pdpte = pdpt[pdpt_idx];
+        if ((pdpte & (PRESENT | USER)) != (PRESENT | USER)) return false;
+        if (write && !(pdpte & WRITE)) return false;
+        if (pdpte & HUGE) return true;
+
+        uint64_t *pd = get_table_ptr(pdpte);
+        uint64_t pde = pd[pd_idx];
+        if ((pde & (PRESENT | USER)) != (PRESENT | USER)) return false;
+        if (write && !(pde & WRITE)) return false;
+        if (pde & HUGE) return true;
+
+        uint64_t *pt = get_table_ptr(pde);
+        uint64_t pte = pt[pt_idx];
+        if ((pte & (PRESENT | USER)) != (PRESENT | USER)) return false;
+        if (write && !(pte & (WRITE | static_cast<uint64_t>(PageFlags::CoW)))) return false;
+        return true;
+    }
+
+    bool user_range_mapped(uint64_t virt, uint64_t size, bool write, uint64_t pml4_phys) {
+        constexpr uint64_t USER_TOP = 0x0000800000000000ULL;
+        if (size == 0) return true;
+        if (virt == 0 || virt >= USER_TOP) return false;
+        if (size > USER_TOP - virt) return false;
+
+        uint64_t start = virt & ~(pmm::PAGE_SIZE - 1);
+        uint64_t last = (virt + size - 1) & ~(pmm::PAGE_SIZE - 1);
+
+        for (uint64_t page = start;; page += pmm::PAGE_SIZE) {
+            if (!user_page_accessible(page, write, pml4_phys)) return false;
+            if (page == last) break;
+        }
+        return true;
+    }
+
+    static bool handle_user_stack_growth(uint64_t fault_addr, uint64_t error_code) {
+        // Only grow on non-present faults. Permission faults inside the stack
+        // window should still be reported as bugs.
+        constexpr uint64_t PF_PRESENT = 1ULL << 0;
+        if (error_code & PF_PRESENT) return false;
+
+        smp::cpu_local *cpu = smp::get_cpu();
+        if (!cpu || !cpu->current_task) return false;
+
+        scheduler::task *current = cpu->current_task;
+        if (current->type != scheduler::task_type::USER) return false;
+        if (!current->user_stack || current->user_stack_limit == 0 || current->user_stack_top == 0) {
+            return false;
+        }
+
+        uint64_t fault_page = fault_addr & ~(pmm::PAGE_SIZE - 1);
+        uint64_t committed_base = (uint64_t)current->user_stack;
+
+        // Stack grows downward. The reserved growable window is:
+        //   [user_stack_limit, user_stack_top)
+        // and the currently committed part is:
+        //   [user_stack, user_stack_top)
+        // Leave the page below user_stack_limit unmapped as a hard guard.
+        if (fault_page < current->user_stack_limit || fault_page >= committed_base) {
+            return false;
+        }
+
+        for (uint64_t page = fault_page; page < committed_base; page += pmm::PAGE_SIZE) {
+            uint64_t phys = pmm::alloc(pmm::PAGE_SIZE);
+            if (!phys) return false;
+            memset(p2v(phys), 0, pmm::PAGE_SIZE);
+            map_page(page, phys, PageFlags::Write | PageFlags::User, PageSize::Size4K,
+                     current->cr3);
+        }
+
+        current->user_stack = (void *)fault_page;
+        return true;
+    }
+
+    bool handle_fault(uint64_t fault_addr, uint64_t error_code, regs *) {
+        if (handle_user_stack_growth(fault_addr, error_code)) { return true; }
+
         // Error code bit 1: 0 = Read, 1 = Write
         bool is_write = error_code & (1 << 1);
         if (!is_write) return false;
@@ -332,8 +564,7 @@ namespace vmm {
                        static_cast<uint64_t>(PageFlags::Write);
             }
 
-            // Flush TLB for this address
-            asm volatile("invlpg (%0)" : : "r"(fault_addr) : "memory");
+            flush_tlb(current->cr3, fault_addr & ~(pmm::PAGE_SIZE - 1), 1);
             return true;
         }
 
@@ -487,22 +718,35 @@ namespace vmm {
     }
 
     void *mmio_map(uint64_t phys_addr, uint64_t size) {
-        uint64_t virt = mmio_allocator->allocate(size);
+        if (!mmio_allocator || size == 0) return nullptr;
+
+        uint64_t offset = phys_addr & (pmm::PAGE_SIZE - 1);
+        uint64_t phys_page = phys_addr & ~(pmm::PAGE_SIZE - 1);
+        uint64_t map_size = (size + offset + pmm::PAGE_SIZE - 1) & ~(pmm::PAGE_SIZE - 1);
+        if (map_size < size) return nullptr;
+
+        uint64_t virt = mmio_allocator->allocate(map_size);
         if (!virt) {
-            console::printf("[ VMM ] Ran out of space to map mmio!");
+            console::printf("[ VMM ] Ran out of space to map mmio!\n");
             return nullptr;
         }
 
-        map_range(virt, phys_addr, size,
+        map_range(virt, phys_page, map_size,
                   PageFlags::NoCache | PageFlags::WriteThrough | PageFlags::Write | PageFlags::NX);
 
-        return (void *)virt;
+        return (void *)(virt + offset);
     }
 
     void mmio_unmap(void *virt_addr, uint64_t size) {
-        uint64_t virt = reinterpret_cast<uint64_t>(virt_addr);
+        if (!mmio_allocator || !virt_addr || size == 0) return;
 
-        unmap_range(virt, size);
-        mmio_allocator->free(virt);
+        uint64_t virt = reinterpret_cast<uint64_t>(virt_addr);
+        uint64_t offset = virt & (pmm::PAGE_SIZE - 1);
+        uint64_t virt_page = virt & ~(pmm::PAGE_SIZE - 1);
+        uint64_t map_size = (size + offset + pmm::PAGE_SIZE - 1) & ~(pmm::PAGE_SIZE - 1);
+        if (map_size < size) return;
+
+        unmap_range(virt_page, map_size);
+        mmio_allocator->free(virt_page);
     }
 }  // namespace vmm

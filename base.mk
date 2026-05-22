@@ -1,6 +1,6 @@
 TOP_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
-ifneq ($(shell test "$$(tput colors 2>/dev/null)" -ge 8 && echo yes),)
+ifneq ($(shell tput colors 2>/dev/null | awk '$$1 >= 8 { print "yes" }'),)
     GREEN  := \033[1;32m
     BLUE   := \033[1;34m
     YELLOW := \033[1;33m
@@ -30,6 +30,7 @@ TOOLCHAIN_DIR := $(TOOLS_DIR)/x86_64-elf-toolchain
 TOOLCHAIN_ZIP := $(TOOLCHAIN_DIR)/tools.zip
 TOOLCHAIN_URL := https://github.com/lordmilko/i686-elf-tools/releases/download/15.2.0/x86_64-elf-tools-linux.zip
 TOOLCHAIN_STAMP := $(TOOLCHAIN_DIR)/.installed
+TOOLCHAIN_LOCK := $(TOOLCHAIN_DIR)/.install.lock
 
 VENV ?= $(TOOLS_DIR)/.venv
 VENV_PYTHON := $(VENV)/bin/python3
@@ -57,11 +58,24 @@ SUBMODULE_STAMP := build/.submodules_updated
 
 $(TOOLCHAIN_STAMP):
 	@mkdir -p $(TOOLCHAIN_DIR)
-	@printf  "$(BLUE)[TOOLS]$(NC) Downloading x86_64-elf toolchain...\n"
-	$(Q)curl -fsSL $(TOOLCHAIN_URL) -o $(TOOLCHAIN_ZIP)
-	@printf  "$(BLUE)[TOOLS]$(NC) Extracting...\n"
-	$(Q)unzip -oqq $(TOOLCHAIN_ZIP) -d $(TOOLCHAIN_DIR)
-	@touch $@
+	$(Q)if [ -x "$(CC)" ] && [ -x "$(CXX)" ] && [ -x "$(LD)" ]; then \
+		touch "$@"; \
+	elif command -v flock >/dev/null 2>&1; then \
+		flock "$(TOOLCHAIN_LOCK)" sh -c ' \
+			if [ -x "$(CC)" ] && [ -x "$(CXX)" ] && [ -x "$(LD)" ]; then touch "$@"; exit 0; fi; \
+			printf "$(BLUE)[TOOLS]$(NC) Downloading x86_64-elf toolchain...\n"; \
+			curl -fsSL "$(TOOLCHAIN_URL)" -o "$(TOOLCHAIN_ZIP)"; \
+			printf "$(BLUE)[TOOLS]$(NC) Extracting...\n"; \
+			unzip -oqq "$(TOOLCHAIN_ZIP)" -d "$(TOOLCHAIN_DIR)"; \
+			touch "$@" \
+		'; \
+	else \
+		printf "$(BLUE)[TOOLS]$(NC) Downloading x86_64-elf toolchain...\n"; \
+		curl -fsSL "$(TOOLCHAIN_URL)" -o "$(TOOLCHAIN_ZIP)"; \
+		printf "$(BLUE)[TOOLS]$(NC) Extracting...\n"; \
+		unzip -oqq "$(TOOLCHAIN_ZIP)" -d "$(TOOLCHAIN_DIR)"; \
+		touch "$@"; \
+	fi
 
 $(VENV_STAMP): $(REQUIREMENTS)
 	@printf "$(BLUE)[VENV]$(NC) Ensuring Python environment...\n"

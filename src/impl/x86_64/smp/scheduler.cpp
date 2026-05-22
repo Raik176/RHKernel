@@ -10,8 +10,124 @@
 #include "smp/smp.h"
 #include "string.h"
 
+extern "C" void scheduler_yield_context();
+
+extern "C" void scheduler_schedule_from_context(regs *current_state) {
+    scheduler::schedule(current_state, false);
+}
+
 namespace scheduler {
     static uint64_t next_tid = 1;
+    static task *all_tasks_head = nullptr;
+
+    static void enqueue(smp::cpu_local *cpu, task *t);
+
+    static const char *state_name(task_state state) {
+        switch (state) {
+            case task_state::READY: return "READY";
+            case task_state::RUNNING: return "RUNNING";
+            case task_state::SLEEPING: return "SLEEPING";
+            case task_state::WAITING: return "WAITING";
+            case task_state::ZOMBIE: return "ZOMBIE";
+            case task_state::BLOCKED: return "BLOCKED";
+        }
+        return "UNKNOWN";
+    }
+
+    static const char *type_name(task_type type) {
+        switch (type) {
+            case task_type::KERNEL: return "KERNEL";
+            case task_type::USER: return "USER";
+        }
+        return "UNKNOWN";
+    }
+
+    static task *find_init_task() {
+        for (task *t = all_tasks_head; t; t = t->global_next) {
+            if (t->id == 1) return t;
+        }
+        return nullptr;
+    }
+
+    static bool address_space_used_by_other(uint64_t cr3, task *owner) {
+        if (cr3 == 0 || cr3 == vmm::get_kernel_pagemap()) return true;
+        for (task *t = all_tasks_head; t; t = t->global_next) {
+            if (t != owner && t->cr3 == cr3) return true;
+        }
+        return false;
+    }
+
+    static void detach_from_parent(task *t) {
+        if (!t || !t->parent) return;
+        task **link = &t->parent->first_child;
+        while (*link) {
+            if (*link == t) {
+                *link = t->next_sibling;
+                break;
+            }
+            link = &(*link)->next_sibling;
+        }
+        t->parent = nullptr;
+        t->next_sibling = nullptr;
+    }
+
+    static void reparent_children(task *old_parent) {
+        if (!old_parent || !old_parent->first_child) return;
+
+        task *adopter = find_init_task();
+        if (adopter == old_parent) adopter = nullptr;
+
+        task *child = old_parent->first_child;
+        old_parent->first_child = nullptr;
+
+        while (child) {
+            task *next = child->next_sibling;
+            child->parent = adopter;
+            if (adopter) {
+                child->next_sibling = adopter->first_child;
+                adopter->first_child = child;
+            } else {
+                child->next_sibling = nullptr;
+            }
+            child = next;
+        }
+
+        if (adopter && adopter->state == task_state::BLOCKED) {
+            adopter->state = task_state::READY;
+            enqueue(smp::get_cpu(), adopter);
+        }
+    }
+
+    static void free_task_resources(task *t) {
+        if (!t) return;
+
+        if (t->type == task_type::USER && t->cr3 != 0 && t->cr3 != vmm::get_kernel_pagemap() &&
+            !address_space_used_by_other(t->cr3, t)) {
+            vmm::destroy_user_address_space(t->cr3);
+        }
+
+        if (t->kernel_stack) heap::kfree(t->kernel_stack);
+        if (t->fd_table) heap::kfree(t->fd_table);
+        heap::kfree(t);
+    }
+
+    static void link_global(task *t) {
+        t->global_prev = nullptr;
+        t->global_next = all_tasks_head;
+        if (all_tasks_head) { all_tasks_head->global_prev = t; }
+        all_tasks_head = t;
+    }
+
+    static void unlink_global(task *t) {
+        if (t->global_prev)
+            t->global_prev->global_next = t->global_next;
+        else if (all_tasks_head == t)
+            all_tasks_head = t->global_next;
+
+        if (t->global_next) { t->global_next->global_prev = t->global_prev; }
+        t->global_next = nullptr;
+        t->global_prev = nullptr;
+    }
 
     static inline void fxsave_task(task *t) {
         asm volatile("fxsave (%0)" : : "r"(t->fxsave_area) : "memory");
@@ -22,7 +138,7 @@ namespace scheduler {
 
     static void enqueue(smp::cpu_local *cpu, task *t) {
         if (t->state != task_state::READY) {
-            console::printf("[SCHED] Tried to enqueue not-ready task %d", t->id);
+            console::printf("[SCHED] Tried to enqueue not-ready task %d", (uint64_t)t->id);
         }
 
         int p = t->priority;
@@ -72,12 +188,15 @@ namespace scheduler {
         idle->type = task_type::KERNEL;
         idle->kernel_stack = heap::kmalloc(KERNEL_STACK_SIZE);
 
+        link_global(idle);
+
         cpu->idle_task = idle;
         cpu->current_task = idle;
-        cpu->kernel_stack = idle->kernel_stack;
+        cpu->kernel_stack = (void *)((uintptr_t)idle->kernel_stack + KERNEL_STACK_SIZE);
+        cpu->tss_entry.rsp0 = (uint64_t)cpu->kernel_stack;
     }
 
-    task *spawn(task_type type, void (*entry_point)(), uint64_t pml4) {
+    task *spawn(task_type type, void (*entry_point)(), uint64_t pml4, uint64_t heap_start) {
         if (type == task_type::USER && pml4 == 0) { kpanic("User task requires a valid PML4"); }
 
         smp::cpu_local *cpu = smp::get_cpu();
@@ -93,6 +212,10 @@ namespace scheduler {
         t->type = type;
         t->id = next_tid++;
         t->context = r;
+
+        t->heap_start = heap_start;
+        t->program_break = heap_start;
+        t->mmap_next = 0x0000400000000000ULL;
 
         t->parent = cpu->current_task;
         if (t->parent) {
@@ -111,6 +234,7 @@ namespace scheduler {
                 file->node = con;
                 file->offset = 0;
                 file->ref_count = 2;
+                spinlock_init(&file->lock);
 
                 t->fd_table[0] = nullptr;  // stdin
                 t->fd_table[1] = file;     // stdout
@@ -121,14 +245,16 @@ namespace scheduler {
         if (type == task_type::USER) {
             uint64_t stack_pages = INITIAL_USER_STACK_SIZE / pmm::PAGE_SIZE;
             uint64_t stack_phys = pmm::alloc(stack_pages * pmm::PAGE_SIZE);
-            uint64_t stack_virt = 0x00007FFFFFFFF000 - INITIAL_USER_STACK_SIZE;
+            uint64_t stack_virt = USER_STACK_TOP - INITIAL_USER_STACK_SIZE;
 
             vmm::map_range(stack_virt, stack_phys, INITIAL_USER_STACK_SIZE,
                            vmm::PageFlags::Write | vmm::PageFlags::User, pml4);
 
             t->user_stack = (void *)stack_virt;
+            t->user_stack_limit = USER_STACK_TOP - MAX_USER_STACK_SIZE;
+            t->user_stack_top = USER_STACK_TOP;
             r->rip = (uint64_t)entry_point;
-            r->rsp = (uint64_t)stack_virt + INITIAL_USER_STACK_SIZE;
+            r->rsp = USER_STACK_TOP - 8;
             r->cs = gdt::selectors::UCODE64_SEL;  // User Code
             r->ss = gdt::selectors::UDATA64_SEL;  // User Data
             t->cr3 = pml4;
@@ -149,6 +275,7 @@ namespace scheduler {
 
         uint64_t flags;
         cpu->sched_lock.acquire(flags);
+        link_global(t);
         enqueue(cpu, t);
         cpu->sched_lock.release(flags);
 
@@ -180,17 +307,19 @@ namespace scheduler {
             child->cr3 = vmm::clone_address_space(parent->cr3);
         }
 
-        // 3. Handle File Descriptors
-        if (flags & 0x2) {  // CLONE_FILES
-            // Task already points to parent's table via memcpy, just need to manage it
-            // usually you'd implement a ref-count for the whole table if sharing
-        } else {
-            child->fd_table =
-                (vfs::open_file **)heap::kmalloc(sizeof(vfs::open_file *) * parent->fd_capacity);
-            child->fd_capacity = parent->fd_capacity;
-            for (uint32_t i = 0; i < parent->fd_capacity; i++) {
-                child->fd_table[i] = parent->fd_table[i];
-                if (child->fd_table[i]) child->fd_table[i]->ref_count++;
+        // 3. Handle File Descriptors. CLONE_FILES is deliberately not shared until
+        // descriptor-table refcounts exist. Sharing the raw table corrupts the parent
+        // on child exit.
+        child->fd_table =
+            (vfs::open_file **)heap::kmalloc(sizeof(vfs::open_file *) * parent->fd_capacity);
+        child->fd_capacity = parent->fd_capacity;
+        for (uint32_t i = 0; i < parent->fd_capacity; i++) {
+            child->fd_table[i] = parent->fd_table[i];
+            if (child->fd_table[i]) {
+                uint64_t file_flags;
+                spinlock_acquire(&child->fd_table[i]->lock, &file_flags);
+                child->fd_table[i]->ref_count++;
+                spinlock_release(&child->fd_table[i]->lock, file_flags);
             }
         }
 
@@ -220,86 +349,202 @@ namespace scheduler {
         // 8. Enqueue child
         uint64_t f;
         cpu->sched_lock.acquire(f);
+        link_global(child);
         enqueue(cpu, child);
         cpu->sched_lock.release(f);
 
         return child->id;
     }
 
-    int exec(const char *path, char **argv) {  // TODO: safer
-        smp::cpu_local *cpu = smp::get_cpu();
-        task *current = cpu->current_task;
+    struct exec_arg {
+        char *data;
+        size_t len;
+    };
+
+    static bool bounded_strlen(const char *s, size_t max_len, size_t *out_len) {
+        if (!s || !out_len || max_len == 0) return false;
+        for (size_t i = 0; i < max_len; i++) {
+            if (s[i] == 0) {
+                *out_len = i + 1;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static void free_exec_args(exec_arg *args, int argc) {
+        if (!args) return;
+        for (int i = 0; i < argc; i++) heap::kfree(args[i].data);
+        heap::kfree(args);
+    }
+
+    static bool copy_exec_args(char **argv, exec_arg **out_args, int *out_argc) {
+        constexpr int MAX_EXEC_ARGC = 64;
+        constexpr size_t MAX_EXEC_ARG_LEN = 4096;
+
+        if (!out_args || !out_argc) return false;
+        *out_args = nullptr;
+        *out_argc = 0;
+        if (!argv) return true;
 
         int argc = 0;
-        char **temp_argv = nullptr;
+        while (argc < MAX_EXEC_ARGC && argv[argc]) argc++;
+        if (argc == MAX_EXEC_ARGC && argv[argc]) return false;
 
-        if (argv != nullptr) {
-            while (argv[argc] != nullptr) argc++;
+        exec_arg *args = (exec_arg *)heap::kmalloc(sizeof(exec_arg) * argc);
+        if (argc != 0 && !args) return false;
+        if (argc != 0) memset(args, 0, sizeof(exec_arg) * argc);
 
-            temp_argv = (char **)heap::kmalloc(sizeof(char *) * (argc + 1));
-            for (int i = 0; i < argc; i++) {
-                size_t len = strlen(argv[i]) + 1;
-                temp_argv[i] = (char *)heap::kmalloc(len);
-                memcpy(temp_argv[i], argv[i], len);
+        for (int i = 0; i < argc; i++) {
+            size_t len = 0;
+            if (!bounded_strlen(argv[i], MAX_EXEC_ARG_LEN, &len)) {
+                free_exec_args(args, argc);
+                return false;
             }
-            temp_argv[argc] = nullptr;
+
+            args[i].data = (char *)heap::kmalloc(len);
+            if (!args[i].data) {
+                free_exec_args(args, argc);
+                return false;
+            }
+            memcpy(args[i].data, argv[i], len);
+            args[i].len = len;
         }
 
-        elf::elf_info info = elf::load(path);
-        if (info.entry == 0) {
-            // free temp_argv
+        *out_args = args;
+        *out_argc = argc;
+        return true;
+    }
+
+    static void *user_stack_to_kernel(uint64_t stack_phys, uint64_t stack_base, uint64_t addr,
+                                      uint64_t len) {
+        if (addr < stack_base || len > USER_STACK_TOP - addr) return nullptr;
+        uint64_t off = addr - stack_base;
+        if (off >= INITIAL_USER_STACK_SIZE || len > INITIAL_USER_STACK_SIZE - off) return nullptr;
+        return (void *)((uintptr_t)p2v(stack_phys) + off);
+    }
+
+    int exec(const char *path, char **argv, regs *return_frame) {
+        smp::cpu_local *cpu = smp::get_cpu();
+        task *current = cpu ? cpu->current_task : nullptr;
+        if (!current || !path || !return_frame) {
+            console::printf("[EXEC] bad call current=%p path=%p frame=%p\n", current, path, return_frame);
             return -1;
         }
 
-        uint64_t old_cr3 = current->cr3;
-        current->cr3 = info.pml4;
+        exec_arg *args = nullptr;
+        int argc = 0;
+        if (!copy_exec_args(argv, &args, &argc)) {
+            console::printf("[EXEC] argv copy failed for %s argv=%p\n", path, argv);
+            return -1;
+        }
 
-        asm volatile("mov %0, %%cr3" : : "r"(current->cr3) : "memory");
+        elf::elf_info info = elf::load(path);
+        if (info.entry == 0 || info.pml4 == 0) {
+            console::printf("[EXEC] elf load failed for %s entry=%p pml4=%p argc=%d\n", path,
+                            info.entry, info.pml4, (uint64_t)argc);
+            free_exec_args(args, argc);
+            return -1;
+        }
 
         uint64_t stack_pages = INITIAL_USER_STACK_SIZE / pmm::PAGE_SIZE;
         uint64_t stack_phys = pmm::alloc(stack_pages * pmm::PAGE_SIZE);
-        uint64_t stack_virt = 0x00007FFFFFFFF000 - INITIAL_USER_STACK_SIZE;
+        if (!stack_phys) {
+            console::printf("[EXEC] stack allocation failed for %s\n", path);
+            free_exec_args(args, argc);
+            vmm::destroy_user_address_space(info.pml4);
+            return -1;
+        }
+        memset(p2v(stack_phys), 0, INITIAL_USER_STACK_SIZE);
 
+        uint64_t stack_virt = USER_STACK_TOP - INITIAL_USER_STACK_SIZE;
         vmm::map_range(stack_virt, stack_phys, INITIAL_USER_STACK_SIZE,
-                       vmm::PageFlags::Write | vmm::PageFlags::User, current->cr3);
+                       vmm::PageFlags::Write | vmm::PageFlags::User, info.pml4);
 
-        uint64_t *stack_ptr = (uint64_t *)((uintptr_t)stack_virt + INITIAL_USER_STACK_SIZE);
-        uint64_t user_argv_ptrs[argc + 1];
+        constexpr int MAX_EXEC_ARGC = 64;
+        uint64_t stack_ptr = USER_STACK_TOP;
+        uint64_t user_argv_ptrs[MAX_EXEC_ARGC + 1];
+        memset(user_argv_ptrs, 0, sizeof(user_argv_ptrs));
 
         for (int i = argc - 1; i >= 0; i--) {
-            size_t len = strlen(temp_argv[i]) + 1;
-            stack_ptr = (uint64_t *)((uintptr_t)stack_ptr - len);
-            memcpy(stack_ptr, temp_argv[i], len);
-            user_argv_ptrs[i] = (uint64_t)stack_ptr;
-            heap::kfree(temp_argv[i]);
-        }
+            size_t len = args[i].len;
+            if (len == 0 || len > stack_ptr - stack_virt) {
+                console::printf("[EXEC] arg %d does not fit for %s len=%d stack_left=%d\n",
+                                (uint64_t)i, path, len, stack_ptr - stack_virt);
+                free_exec_args(args, argc);
+                vmm::destroy_user_address_space(info.pml4);
+                return -1;
+            }
 
+            stack_ptr -= len;
+            void *dst = user_stack_to_kernel(stack_phys, stack_virt, stack_ptr, len);
+            if (!dst) {
+                console::printf("[EXEC] arg stack translation failed for %s ptr=%p len=%d\n",
+                                path, stack_ptr, len);
+                free_exec_args(args, argc);
+                vmm::destroy_user_address_space(info.pml4);
+                return -1;
+            }
+            memcpy(dst, args[i].data, len);
+            user_argv_ptrs[i] = stack_ptr;
+        }
         user_argv_ptrs[argc] = 0;
-        if (temp_argv) heap::kfree(temp_argv);
+        free_exec_args(args, argc);
 
-        stack_ptr = (uint64_t *)((uintptr_t)stack_ptr & ~0xF);
-        for (int i = argc; i >= 0; i--) {
-            stack_ptr--;
-            *stack_ptr = user_argv_ptrs[i];
+        stack_ptr &= ~0xFULL;
+        if (((argc + 1) & 1) == 0) {
+            stack_ptr -= sizeof(uint64_t);
+            void *slot = user_stack_to_kernel(stack_phys, stack_virt, stack_ptr, sizeof(uint64_t));
+            if (!slot) {
+                console::printf("[EXEC] align slot translation failed for %s ptr=%p\n", path,
+                                stack_ptr);
+                vmm::destroy_user_address_space(info.pml4);
+                return -1;
+            }
+            *(uint64_t *)slot = 0;
         }
-        uint64_t argv_ptr_for_rdi = (uint64_t)stack_ptr;
 
+        for (int i = argc; i >= 0; i--) {
+            stack_ptr -= sizeof(uint64_t);
+            void *slot = user_stack_to_kernel(stack_phys, stack_virt, stack_ptr, sizeof(uint64_t));
+            if (!slot) {
+                console::printf("[EXEC] argv slot translation failed for %s ptr=%p index=%d\n",
+                                path, stack_ptr, (uint64_t)i);
+                vmm::destroy_user_address_space(info.pml4);
+                return -1;
+            }
+            *(uint64_t *)slot = user_argv_ptrs[i];
+        }
+        uint64_t argv_ptr_for_rdi = stack_ptr;
+
+        uint64_t old_cr3 = current->cr3;
+        current->cr3 = info.pml4;
+        current->heap_start = info.heap_start;
+        current->program_break = info.heap_start;
+        current->mmap_next = 0x0000400000000000ULL;
         current->user_stack = (void *)stack_virt;
+        current->user_stack_limit = USER_STACK_TOP - MAX_USER_STACK_SIZE;
+        current->user_stack_top = USER_STACK_TOP;
 
-        regs *r = current->context;
+        regs *r = return_frame;
+        current->context = r;
         memset(r, 0, sizeof(regs));
 
         r->rip = info.entry;
-        r->rsp = (uintptr_t)stack_ptr;
+        r->rsp = stack_ptr;
         r->rdi = (uint64_t)argc;
         r->rsi = argv_ptr_for_rdi;
-        r->rflags = 0x202;                    // IF = 1
-        r->cs = gdt::selectors::UCODE64_SEL;  // User Code Selector
-        r->ss = gdt::selectors::UDATA64_SEL;  // User Data Selector
+        r->rax = 0;
+        r->rflags = 0x202;
+        r->cs = gdt::selectors::UCODE64_SEL;
+        r->ss = gdt::selectors::UDATA64_SEL;
 
         asm volatile("fninit; fxsave (%0)" : : "r"(current->fxsave_area) : "memory");
+        asm volatile("mov %0, %%cr3" : : "r"(current->cr3) : "memory");
 
-        if (old_cr3 != vmm::get_kernel_pagemap()) { vmm::destroy_user_address_space(old_cr3); }
+        if (old_cr3 != vmm::get_kernel_pagemap() && !address_space_used_by_other(old_cr3, current)) {
+            vmm::destroy_user_address_space(old_cr3);
+        }
 
         return 0;
     }
@@ -405,7 +650,36 @@ namespace scheduler {
         context_switch(next->context);
     }
 
-    void yield() { asm volatile("int $0x81"); }
+    task *get_task_by_id(uint64_t id) {
+        for (task *t = all_tasks_head; t; t = t->global_next) {
+            if (t->id == id) { return t; }
+        }
+        return nullptr;
+    }
+
+    void dump_task(task *t) {
+        if (!t) {
+            console::printf("  TASK  : <none>\n");
+            return;
+        }
+
+        console::printf(
+            "  TASK  : id=%d state=%s type=%s parent=%d cr3=%p kstack=%p ctx=%p\n", (uint64_t)t->id,
+            state_name(t->state), type_name(t->type), t->parent ? (uint64_t)t->parent->id : 0, t->cr3,
+            t->kernel_stack, t->context);
+        console::printf("          prio=%d quantum=%d age=%d wakeup=%d exit=%d heap=[%p..%p] mmap_next=%p\n",
+                        (uint64_t)t->priority, t->quantum, t->age, t->wakeup_time, (uint64_t)t->exit_code,
+                        t->heap_start, t->program_break, t->mmap_next);
+        console::printf("          ustack=[%p..%p) limit=%p fd_capacity=%d\n", t->user_stack,
+                        t->user_stack_top, t->user_stack_limit, t->fd_capacity);
+    }
+
+    void dump_all_tasks() {
+        console::printf("--- TASK LIST ---\n");
+        for (task *t = all_tasks_head; t; t = t->global_next) { dump_task(t); }
+    }
+
+    void yield() { scheduler_yield_context(); }
 
     void sleep(uint64_t ticks) {
         smp::cpu_local *cpu = smp::get_cpu();
@@ -426,11 +700,17 @@ namespace scheduler {
         smp::cpu_local *cpu = smp::get_cpu();
         task *current = cpu->current_task;
 
+        if (current && current->id == 1) {
+            console::printf("[SCHED] init process exited with status %d; panicking.\n", (uint64_t)code);
+            kpanic("init process exited");
+        }
+
         uint64_t flags;
         cpu->sched_lock.acquire(flags);
 
         current->exit_code = code;
         current->state = task_state::ZOMBIE;
+        reparent_children(current);
 
         if (current->parent) {
             if (current->parent->state == task_state::BLOCKED) {
@@ -474,11 +754,10 @@ namespace scheduler {
                         current->first_child = child->next_sibling;
                     }
 
-                    if (child->kernel_stack) heap::kfree(child->kernel_stack);
-                    if (child->fd_table) heap::kfree(child->fd_table);
-                    heap::kfree(child);
+                    unlink_global(child);
 
                     cpu->sched_lock.release(flags);
+                    free_task_resources(child);
                     return child_id;
                 }
                 prev_sibling = child;

@@ -109,8 +109,8 @@ namespace console {
         uint64_t temp = n;
 
         do {
-            buf[i++] = (temp % 10) + '0';
-            temp /= 10;
+            buf[i++] = (temp % 10ULL) + '0';
+            temp /= 10ULL;
         } while (temp > 0);
 
         while (i < width) {

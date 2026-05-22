@@ -18,9 +18,6 @@ int pci_bridge_probe(struct device *dev) {
 
     uint8_t secondary_bus =
         pci_read8(pdev->segment, pdev->bus, pdev->slot, pdev->func, PCI_BRIDGE_SECONDARY_BUS);
-    uint8_t subordinate_bus =
-        pci_read8(pdev->segment, pdev->bus, pdev->slot, pdev->func, PCI_BRIDGE_SUBORDINATE_BUS);
-
     if (secondary_bus == 0) {
         klog(LOG_WARN, "PCI: Bridge %02x:%02x.%d has no secondary bus assigned!\n", pdev->bus,
              pdev->slot, pdev->func);

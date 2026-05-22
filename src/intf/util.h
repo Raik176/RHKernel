@@ -51,13 +51,21 @@ struct regs {
     uint64_t ss;      ///< Stack segment
 } __attribute__((packed));
 
+static_assert(sizeof(regs) == 176, "regs layout is used by x86_64 assembly");
+static_assert(offsetof(regs, r15) == 0, "regs.r15 offset changed");
+static_assert(offsetof(regs, rax) == 112, "regs.rax offset changed");
+static_assert(offsetof(regs, int_no) == 120, "regs.int_no offset changed");
+static_assert(offsetof(regs, rip) == 136, "regs.rip offset changed");
+static_assert(offsetof(regs, ss) == 168, "regs.ss offset changed");
+
 /**
  * @brief Kernel virtual memory offset
  *
  * All physical addresses are mapped at this offset in the virtual address space
  */
 #define KERNEL_VIRT_OFFSET 0xFFFFFFFF80000000ULL
-#define PHYS_MAP_BASE 0xFFFF880000000000ULL
+#define PHYS_MAP_BASE 0xFFFF800000000000ULL
+#define PHYS_DIRECT_MAP_SIZE 0x00007F0000000000ULL
 
 /**
  * @brief Convert a physical address to a virtual address
@@ -110,7 +118,22 @@ static inline uint64_t align_up(uint64_t addr, uint64_t align) {
  */
 static inline uint64_t align_down(uint64_t addr, uint64_t align) { return addr & ~(align - 1); }
 
+#define KPANIC(message) kpanic_at((message), __FILE__, __LINE__, __func__, nullptr)
+#define KPANIC_REGS(message, regs) kpanic_at((message), __FILE__, __LINE__, __func__, (regs))
+#define KASSERT(expr)                                                                          \
+    do {                                                                                       \
+        if (!(expr)) { kpanic_at("assertion failed: " #expr, __FILE__, __LINE__, __func__); } \
+    } while (0)
+
 void __attribute__((noreturn)) kpanic(const char *message, struct regs *r = nullptr);
+void __attribute__((noreturn)) kpanic_at(const char *message, const char *file, int line,
+                                         const char *function, struct regs *r = nullptr);
 void print_stacktrace();
+void print_stacktrace_from(uint64_t rbp);
 void busy_sleep(uint64_t ms);
 void dump_regs(struct regs *r);
+void dump_control_regs();
+void dump_page_fault_error(uint64_t error_code);
+void hexdump(const void *data, size_t len);
+void dump_memory(const void *data, size_t len);
+const char *symbolicate(uint64_t address, uintptr_t *offset = nullptr);

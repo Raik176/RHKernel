@@ -17,6 +17,16 @@ extern uint8_t font_bitmap_start;  ///< Start of embedded font bitmap
 extern uint8_t font_bitmap_end;    ///< End of embedded font bitmap
 }
 
+#ifndef KERNEL_FONT_WIDTH
+#define KERNEL_FONT_WIDTH 8
+#endif
+#ifndef KERNEL_FONT_HEIGHT
+#define KERNEL_FONT_HEIGHT 12
+#endif
+
+static_assert(KERNEL_FONT_WIDTH >= 1 && KERNEL_FONT_WIDTH <= 32, "bad font width");
+static_assert(KERNEL_FONT_HEIGHT >= 1 && KERNEL_FONT_HEIGHT <= 64, "bad font height");
+
 namespace framebuffer {
     static volatile uint32_t current_fg = 0xFFFFFFFF;  // White
     static volatile uint32_t current_bg = 0x00000000;  // Black
@@ -51,8 +61,29 @@ namespace framebuffer {
     static uint32_t cursor_y = 0;       ///< Cursor Y
     static bool cursor_visible = true;  ///< Cursor Visible
 
+    static constexpr uint32_t font_w = KERNEL_FONT_WIDTH;
+    static constexpr uint32_t font_h = KERNEL_FONT_HEIGHT;
+    static constexpr uint32_t font_row_bytes = (font_w + 7) / 8;
+    static constexpr uint32_t font_glyph_bytes = font_row_bytes * font_h;
+
     /// Function pointer for mode-specific putpixel
     static void (*putpixel_raw)(uint32_t x, uint32_t y, uint32_t color) = nullptr;
+
+    static uint32_t cell_w() { return (fb.type == 2) ? 1 : font_w; }
+    static uint32_t cell_h() { return (fb.type == 2) ? 1 : font_h; }
+
+    static uint32_t font_glyph_count() {
+        uint8_t *font_start = &font_bitmap_start;
+        uint8_t *font_end = &font_bitmap_end;
+        size_t font_blob_size = (size_t)(font_end - font_start);
+        if (font_glyph_bytes == 0 || (font_blob_size % font_glyph_bytes) != 0) return 0;
+        return font_blob_size / font_glyph_bytes;
+    }
+
+    static bool font_bit_set(uint8_t *glyph, uint32_t row, uint32_t col) {
+        uint8_t byte = glyph[row * font_row_bytes + (col >> 3)];
+        return (byte & (0x80 >> (col & 7))) != 0;
+    }
 
     /**
      * @internal
@@ -88,9 +119,10 @@ namespace framebuffer {
             buf[cursor_y * fb.width + cursor_x] ^= 0x7700;  // XOR Attribute Flip
         } else {
             uint32_t color = show ? pack_color(255, 255, 255) : pack_color(0, 0, 0);
-            for (uint32_t i = 0; i < 8; i++) {
-                putpixel_raw(cursor_x + i, cursor_y + 14, color);
-                putpixel_raw(cursor_x + i, cursor_y + 15, color);
+            uint32_t underline_h = font_h >= 12 ? 2 : 1;
+            uint32_t y0 = cursor_y + font_h - underline_h;
+            for (uint32_t y = y0; y < cursor_y + font_h; y++) {
+                for (uint32_t x = 0; x < font_w; x++) putpixel_raw(cursor_x + x, y, color);
             }
         }
     }
@@ -133,7 +165,6 @@ namespace framebuffer {
             uint16_t *last_line = ((uint16_t *)fb.addr) + total_cells;
             for (uint32_t x = 0; x < fb.width; x++) last_line[x] = clear_val;
         } else {  // RGB / Indexed Graphics Modes
-            uint32_t font_h = 16;
             uint32_t bytes_per_row = fb.pitch;
 
             uint8_t *dest = fb.addr;
@@ -183,6 +214,11 @@ namespace framebuffer {
                 putpixel_raw = putpixel_ega;
                 break;
         }
+
+        if (fb.type != MULTIBOOT_FRAMEBUFFER_TYPE_EGA && font_glyph_count() < 128) {
+            kpanic("framebuffer: invalid font bitmap");
+        }
+
         clear();
     }
 
@@ -195,26 +231,20 @@ namespace framebuffer {
     void putchar(char c) {
         update_cursor_visual(false);
 
-        const uint32_t font_h = 16;
-        const uint32_t font_w = 8;
-
         uint8_t *font_start = &font_bitmap_start;
-        uint8_t *font_end = &font_bitmap_end;
-
-        size_t font_blob_size = (size_t)(font_end - font_start);
-        uint32_t max_chars = font_blob_size / font_h;
+        uint32_t max_chars = font_glyph_count();
 
         if (c == '\n') {
             cursor_x = 0;
-            cursor_y += (fb.type == 2) ? 1 : font_h;
+            cursor_y += cell_h();
         } else if (c == '\r') {
             cursor_x = 0;
         } else if (c == '\t') {
-            cursor_x += (fb.type == 2) ? 4 : (font_w * 4);
+            cursor_x += cell_w() * 4;
         } else {
-            if (cursor_x + font_w > fb.width) {
+            if (cursor_x + cell_w() > fb.width) {
                 cursor_x = 0;
-                cursor_y += (fb.type == 2) ? 1 : font_h;
+                cursor_y += cell_h();
             }
 
             if (fb.type == 2) {  // EGA Text Mode
@@ -225,11 +255,11 @@ namespace framebuffer {
                 uint8_t index = (uint8_t)c;
 
                 if (index < max_chars) {
-                    uint8_t *char_data = &font_start[index * font_h];
+                    uint8_t *char_data = &font_start[index * font_glyph_bytes];
                     for (uint32_t r = 0; r < font_h; r++) {
-                        uint8_t row_byte = char_data[r];
                         for (uint32_t col = 0; col < font_w; col++) {
-                            uint32_t color = (row_byte & (0x80 >> col)) ? current_fg : current_bg;
+                            uint32_t color =
+                                font_bit_set(char_data, r, col) ? current_fg : current_bg;
                             putpixel_raw(cursor_x + col, cursor_y + r, color);
                         }
                     }
@@ -243,11 +273,11 @@ namespace framebuffer {
                         }
                     }
                 }
-                cursor_x += font_w;
+                cursor_x += cell_w();
             }
         }
 
-        uint32_t line_step = (fb.type == 2) ? 1 : font_h;
+        uint32_t line_step = cell_h();
         while (cursor_y + line_step > fb.height) {
             scroll();
             cursor_y -= line_step;
@@ -259,10 +289,8 @@ namespace framebuffer {
     void backspace() {
         update_cursor_visual(false);
 
-        const uint32_t font_h = 16;
-        const uint32_t font_w = 8;
-        uint32_t step_x = (fb.type == 2) ? 1 : font_w;
-        uint32_t step_y = (fb.type == 2) ? 1 : font_h;
+        uint32_t step_x = cell_w();
+        uint32_t step_y = cell_h();
 
         if (cursor_x >= step_x) {
             cursor_x -= step_x;

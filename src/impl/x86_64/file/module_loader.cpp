@@ -157,6 +157,16 @@ namespace module_loader {
 
         module_metadata *meta = nullptr;
 
+        // Track permissions per mapped page, not per section.  Even though this
+        // loader currently page-aligns SHF_ALLOC sections, doing the permission
+        // pass per page prevents accidentally making a shared/overlapping page
+        // non-writable or non-executable when future linker layouts change.
+        // Default padding pages are read-only and NX.
+        uint8_t *page_writable = (uint8_t *)heap::kmalloc(page_count);
+        uint8_t *page_executable = (uint8_t *)heap::kmalloc(page_count);
+        memset(page_writable, 0, page_count);
+        memset(page_executable, 0, page_count);
+
         for (int i = 0; i < header.sh_count; i++) {
             elf::elf_section_header sh;
             vfs::read(file, header.shoff + (i * header.sh_entry_size), sizeof(sh), &sh);
@@ -180,19 +190,32 @@ namespace module_loader {
                 }
             }
 
-            /*
-            vmm::PageFlags flags = vmm::PageFlags::Global;
+            if (sh.size == 0) continue;
 
-            if (sh.flags & SHF_WRITE)
-                flags |= vmm::PageFlags::Write;
-            if (!(sh.flags & SHF_EXECINSTR))
-                flags |= vmm::PageFlags::NX;
+            uintptr_t section_virt = section_addresses[i];
+            uint64_t first_page = (section_virt - virt_base) / pmm::PAGE_SIZE;
+            uint64_t last_page = (section_virt + sh.size - 1 - virt_base) / pmm::PAGE_SIZE;
+            if (last_page >= page_count) last_page = page_count - 1;
 
-
-            vmm::map_range(section_addresses[i], v2p((void *)section_addresses[i]), //TODO: fix
-            address calculation address calculation here align_up(sh.size, pmm::PAGE_SIZE), flags);
-            */
+            for (uint64_t page = first_page; page <= last_page; page++) {
+                if (sh.flags & SHF_WRITE) page_writable[page] = 1;
+                if (sh.flags & SHF_EXECINSTR) page_executable[page] = 1;
+            }
         }
+
+        for (uint64_t page = 0; page < page_count; page++) {
+            uintptr_t page_virt = virt_base + page * pmm::PAGE_SIZE;
+            uint64_t page_phys = phys_base + page * pmm::PAGE_SIZE;
+
+            vmm::PageFlags flags = vmm::PageFlags::Global;
+            if (page_writable[page]) flags |= vmm::PageFlags::Write;
+            if (!page_executable[page]) flags |= vmm::PageFlags::NX;
+
+            vmm::map_page(page_virt, page_phys, flags, vmm::PageSize::Size4K);
+        }
+
+        heap::kfree(page_writable);
+        heap::kfree(page_executable);
 
         // 7. Initialization
         if (meta && meta->init) {

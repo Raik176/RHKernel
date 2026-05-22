@@ -48,9 +48,16 @@ ISR_NO_ERROR 29
 ISR_NO_ERROR 30
 ISR_NO_ERROR 31
 
-ISR_NO_ERROR 32
-ISR_NO_ERROR 33
-ISR_NO_ERROR 129
+; External IRQ vectors. The IOAPIC code currently maps legacy IRQ n to
+; vector 32+n, so install stubs for all legacy IRQs 0..15.  Without
+; these, a device interrupt such as AHCI IRQ10 -> vector 42 causes a
+; #GP while the CPU tries to use a non-present IDT gate.
+%assign IRQVEC 32
+%rep 16
+ISR_NO_ERROR IRQVEC
+%assign IRQVEC IRQVEC+1
+%endrep
+
 ISR_NO_ERROR 254
 
 idt_common_stub:

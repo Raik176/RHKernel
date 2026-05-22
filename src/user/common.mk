@@ -5,7 +5,7 @@ CFLAGS := $(GLOBAL_CFLAGS) \
             -isystem $(abspath $(SYSROOT)/include) \
             -fno-stack-protector -O2 -Iinclude
 CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti
-LDFLAGS := $(GLOBAL_LDFLAGS) -n -T $(abspath $(TOP_DIR)/src/user/linker.ld) -static
+LDFLAGS := $(GLOBAL_LDFLAGS) -T $(abspath $(TOP_DIR)/src/user/linker.ld) -static
 
 APP_NAME := $(shell basename $(CURDIR))
 

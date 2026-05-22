@@ -12,18 +12,36 @@ bits 32
 
 %include "src/assets/gdt_constants.inc"
 
+%define CPUID_BASIC_FEATURES     0x00000001
+%define CPUID_EXTENDED_MAX       0x80000000
+%define CPUID_EXTENDED_FEATURES  0x80000001
+
+%define FEAT_EDX_MSR             (1 << 5)
+%define FEAT_EDX_PAE             (1 << 6)
+%define FEAT_EDX_APIC            (1 << 9)
+%define FEAT_EDX_PSE             (1 << 3)
+%define FEAT_EDX_FXSR            (1 << 24)
+%define FEAT_EDX_SSE             (1 << 25)
+%define FEAT_EDX_SSE2            (1 << 26)
+%define EXT_EDX_LONG_MODE        (1 << 29)
+
 start:
     mov esp, stack_top
-    
+
+    ; Bring up serial before CPU checks so early failures are debuggable with
+    ; `qemu -serial stdio` or a real COM1 console.
+    call serial_init
+
     call check_cpuid
+    call check_x86_64_baseline
     call setup_page_tables
     call enable_paging
 
     lgdt [gdt64_ptr]
 
-    jmp KCODE_SEL:long_mode_start  
+    jmp KCODE_SEL:long_mode_start
 
-setup_page_tables:    
+setup_page_tables:
     mov eax, pdp_table
     or eax, 0b11
     mov [pml4_table + 0*8], eax
@@ -33,7 +51,7 @@ setup_page_tables:
     mov [pdp_table + 0*8], eax
 
     mov eax, 0
-    or eax, 0b10000011      ; Present | Writable | Huge Page
+    or eax, 0b10000011      ; Present | Writable | 2 MiB page
     mov [page_directory + 0*8], eax
 
     ret
@@ -43,16 +61,16 @@ enable_paging:
     mov cr3, eax
 
     mov eax, cr4
-    or eax, 1 << 5
+    or eax, 1 << 5          ; PAE is required before enabling long mode.
     mov cr4, eax
 
-    mov ecx, 0xC0000080
+    mov ecx, 0xC0000080     ; IA32_EFER
     rdmsr
-    or eax, 1 << 8
+    or eax, 1 << 8          ; LME
     wrmsr
 
     mov eax, cr0
-    or eax, 1 << 31
+    or eax, 1 << 31         ; PG
     mov cr0, eax
     ret
 
@@ -67,12 +85,153 @@ check_cpuid:
     pop eax
     push ecx
     popfd
-    cmp eax, ecx
-    je .no_cpuid
+    xor eax, ecx
+    test eax, 1 << 21
+    jz .no_cpuid
     ret
 .no_cpuid:
-    mov dword [0xb8000], 0x4f454f4e
+    mov esi, msg_no_cpuid
+    jmp boot_fail
+
+check_x86_64_baseline:
+    push ebx
+    mov eax, 0
+    cpuid
+    cmp eax, CPUID_BASIC_FEATURES
+    jb .no_basic_leaf
+
+    mov eax, CPUID_BASIC_FEATURES
+    cpuid
+    test edx, FEAT_EDX_MSR
+    jz .no_msr
+    test edx, FEAT_EDX_PAE
+    jz .no_pae
+    test edx, FEAT_EDX_PSE
+    jz .no_pse
+    test edx, FEAT_EDX_FXSR
+    jz .no_fxsr
+    test edx, FEAT_EDX_SSE
+    jz .no_sse
+    test edx, FEAT_EDX_SSE2
+    jz .no_sse2
+    test edx, FEAT_EDX_APIC
+    jz .no_apic
+
+    mov eax, CPUID_EXTENDED_MAX
+    cpuid
+    cmp eax, CPUID_EXTENDED_FEATURES
+    jb .no_ext_leaf
+
+    mov eax, CPUID_EXTENDED_FEATURES
+    cpuid
+    test edx, EXT_EDX_LONG_MODE
+    jz .no_long_mode
+    pop ebx
+    ret
+
+.no_basic_leaf:
+    mov esi, msg_no_basic_leaf
+    jmp boot_fail
+.no_msr:
+    mov esi, msg_no_msr
+    jmp boot_fail
+.no_pae:
+    mov esi, msg_no_pae
+    jmp boot_fail
+.no_pse:
+    mov esi, msg_no_pse
+    jmp boot_fail
+.no_fxsr:
+    mov esi, msg_no_fxsr
+    jmp boot_fail
+.no_sse:
+    mov esi, msg_no_sse
+    jmp boot_fail
+.no_sse2:
+    mov esi, msg_no_sse2
+    jmp boot_fail
+.no_apic:
+    mov esi, msg_no_apic
+    jmp boot_fail
+.no_ext_leaf:
+    mov esi, msg_no_ext_leaf
+    jmp boot_fail
+.no_long_mode:
+    mov esi, msg_no_long_mode
+    jmp boot_fail
+
+serial_init:
+    mov dx, 0x3F8 + 1
+    xor al, al
+    out dx, al
+    mov dx, 0x3F8 + 3
+    mov al, 0x80
+    out dx, al
+    mov dx, 0x3F8 + 0
+    mov al, 0x03
+    out dx, al
+    mov dx, 0x3F8 + 1
+    xor al, al
+    out dx, al
+    mov dx, 0x3F8 + 3
+    mov al, 0x03
+    out dx, al
+    mov dx, 0x3F8 + 2
+    mov al, 0xC7
+    out dx, al
+    mov dx, 0x3F8 + 4
+    mov al, 0x0B
+    out dx, al
+    ret
+
+serial_putchar:
+    push eax
+    push edx
+.wait:
+    mov dx, 0x3F8 + 5
+    in al, dx
+    test al, 0x20
+    jz .wait
+    mov dx, 0x3F8
+    mov al, bl
+    out dx, al
+    pop edx
+    pop eax
+    ret
+
+boot_fail:
+    ; ESI points to a zero-terminated ASCII reason.
+    push esi
+    mov edi, 0xB8000
+    mov ah, 0x4F
+    mov esi, msg_boot_prefix
+.print_prefix:
+    lodsb
+    test al, al
+    jz .print_reason_setup
+    mov bl, al
+    call serial_putchar
+    stosw
+    jmp .print_prefix
+.print_reason_setup:
+    pop esi
+.print_reason:
+    lodsb
+    test al, al
+    jz .newline
+    mov bl, al
+    call serial_putchar
+    stosw
+    jmp .print_reason
+.newline:
+    mov bl, 13
+    call serial_putchar
+    mov bl, 10
+    call serial_putchar
+.hang:
+    cli
     hlt
+    jmp .hang
 
 section .early_bss
 align 4096
@@ -88,10 +247,23 @@ page_directory:
     resb 4096
 page_directory_end:
 stack_bottom:
-    resb 512
+    resb 4096
 stack_top:
 
 section .early_rodata
+msg_boot_prefix: db 'BOOT FAIL: ', 0
+msg_no_cpuid: db 'CPUID not supported', 0
+msg_no_basic_leaf: db 'CPUID leaf 1 unavailable', 0
+msg_no_msr: db 'MSR instructions unavailable', 0
+msg_no_pae: db 'PAE unavailable', 0
+msg_no_pse: db '2 MiB pages unavailable', 0
+msg_no_fxsr: db 'FXSAVE/FXRSTOR unavailable', 0
+msg_no_sse: db 'SSE unavailable', 0
+msg_no_sse2: db 'SSE2 unavailable', 0
+msg_no_apic: db 'local APIC unavailable', 0
+msg_no_ext_leaf: db 'extended CPUID leaf unavailable', 0
+msg_no_long_mode: db 'long mode unavailable', 0
+
 gdt64:
     dq 0                             ; Null
     dq 0x00209A0000000000            ; Code segment, 64-bit, present

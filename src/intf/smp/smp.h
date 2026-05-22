@@ -21,7 +21,7 @@ namespace smp {
 
     enum class mail_type {
         HALT,
-        TLB_SHOOTDOWN  // TODO: implement
+        TLB_SHOOTDOWN
     };
 
     struct mail {
@@ -78,11 +78,16 @@ namespace smp {
     static_assert(offsetof(cpu_local, user_rsp) == 24,
                   "Assembly syscall_entry expects user_rsp at GS:24");
 
+    static_assert(offsetof(cpu_local, current_task) == 32,
+                  "Assembly syscall_entry expects current_task at GS:32");
+
     void init_aps();
     void init_bsp();
     uint64_t get_core_count();
     cpu_local *get_cpu_by_index(uint64_t index);
 
+    bool send_tlb_shootdown_mail(int64_t target_cpu, mail *message, uint64_t cr3, uint64_t addr,
+                                  uint32_t pages, volatile bool *handled);
     void send_halt_mail(int64_t target_cpu);
     void flush_mail(int64_t target_cpu);
 

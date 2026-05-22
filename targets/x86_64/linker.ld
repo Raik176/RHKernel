@@ -9,6 +9,7 @@ SECTIONS
 {
   . = 1M;
 
+  _boot_start = .;
   .boot : {
     KEEP(*(.multiboot_header))
     *(.early_text .early_text.*)
@@ -16,6 +17,7 @@ SECTIONS
     *(.early_data .early_data.*)
     *(.early_bss .early_bss.*)
   } :boot
+  _boot_end = ADDR(.boot) + SIZEOF(.boot);
 
   . = 0xFFFFFFFF80000000;
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 #include <stdint.h>
 
 /**
@@ -51,6 +52,12 @@ extern "C" {
  * Supports nested paths like "input/mouse0".
  */
 int devfs_register(const char *path, struct device_ops *ops, void *priv);
+
+/**
+ * @brief Register a block device into /dev.
+ * Supports nested paths like "disk/sda".
+ */
+int devfs_register_block(const char *path, struct device_ops *ops, void *priv, uint64_t size);
 
 /**
  * @brief Unregister a device and clean up empty parent directories.

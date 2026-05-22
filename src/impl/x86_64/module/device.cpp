@@ -6,6 +6,7 @@
 #include "memory/heap.h"
 #include "memory/pmm.h"
 #include "mod/logging.h"
+#include "power.h"
 #include "string.h"
 #include "symbol/ksym.h"
 
@@ -33,7 +34,98 @@ static uint64_t console_dev_write(void *, uint64_t, uint64_t size, uint8_t *buff
 
 static device_ops console_ops = {.read = null_read, .write = console_dev_write};
 
+enum class PowerCommand {
+    Invalid,
+    Poweroff,
+    Restart,
+};
+
+static PowerCommand parse_power_command(const uint8_t *buffer, uint64_t size) {
+    if (!buffer || size == 0) return PowerCommand::Invalid;
+
+    char cmd[32];
+    uint64_t n = size;
+    if (n >= sizeof(cmd)) n = sizeof(cmd) - 1;
+    memcpy(cmd, buffer, n);
+    cmd[n] = 0;
+
+    while (n > 0 && (cmd[n - 1] == '\n' || cmd[n - 1] == '\r' || cmd[n - 1] == ' ' || cmd[n - 1] == '\t')) {
+        cmd[--n] = 0;
+    }
+
+    char *begin = cmd;
+    while (*begin == ' ' || *begin == '\t' || *begin == '\n' || *begin == '\r') begin++;
+
+    if (strcmp(begin, "poweroff") == 0 || strcmp(begin, "shutdown") == 0 || strcmp(begin, "off") == 0 ||
+        strcmp(begin, "halt") == 0 || strcmp(begin, "0") == 0) {
+        return PowerCommand::Poweroff;
+    }
+
+    if (strcmp(begin, "restart") == 0 || strcmp(begin, "reboot") == 0 || strcmp(begin, "reset") == 0 ||
+        strcmp(begin, "1") == 0) {
+        return PowerCommand::Restart;
+    }
+
+    return PowerCommand::Invalid;
+}
+
+static uint64_t power_device_write(void *, uint64_t, uint64_t size, uint8_t *buffer) {
+    switch (parse_power_command(buffer, size)) {
+        case PowerCommand::Poweroff:
+            power::shutdown();
+            __builtin_unreachable();
+        case PowerCommand::Restart:
+            power::restart();
+            __builtin_unreachable();
+        case PowerCommand::Invalid:
+        default:
+            console::printf("power: invalid command; write 'poweroff' or 'restart' to /dev/power\n");
+            return 0;
+    }
+}
+
+static uint64_t power_device_read(void *, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    static const char msg[] =
+        "power control device\n"
+        "write 'poweroff' to power off\n"
+        "write 'restart' to reboot\n";
+    uint64_t len = sizeof(msg) - 1;
+    if (offset >= len) return 0;
+    if (size > len - offset) size = len - offset;
+    memcpy(buffer, msg + offset, size);
+    return size;
+}
+
+static device_ops power_ops = {.read = power_device_read, .write = power_device_write};
+
 static vfs::vfs_node *dev_root = nullptr;
+
+
+static bool path_component_valid(const char *s) {
+    return s && s[0] != '\0' && strcmp(s, ".") != 0 && strcmp(s, "..") != 0;
+}
+
+static void vfs_unlink_and_free(vfs::vfs_node *node) {
+    if (!node || !node->parent) return;
+    vfs::vfs_node *parent = node->parent;
+    if (parent->child == node) {
+        parent->child = node->next;
+    } else {
+        vfs::vfs_node *prev = parent->child;
+        while (prev && prev->next != node) prev = prev->next;
+        if (prev) prev->next = node->next;
+    }
+    if (node->name) heap::kfree(node->name);
+    heap::kfree(node);
+}
+
+static void cleanup_empty_dev_dirs(vfs::vfs_node *dir) {
+    while (dir && dir != dev_root && dir->type == vfs::VfsType::VFS_DIRECTORY && !dir->child) {
+        vfs::vfs_node *parent = dir->parent;
+        vfs_unlink_and_free(dir);
+        dir = parent;
+    }
+}
 
 void init_virt_fs() {
     devfs::init();
@@ -63,6 +155,7 @@ namespace devfs {
         devfs_register("console", &console_ops, nullptr);
         devfs_register("null", &null_ops, nullptr);
         devfs_register("zero", &zero_ops, nullptr);
+        devfs_register("power", &power_ops, nullptr);
     }
 }  // namespace devfs
 
@@ -90,6 +183,53 @@ static uint64_t proc_mem_available_read(vfs::vfs_node *, uint64_t offset, uint64
     return size;
 }
 
+
+static void proc_devices_append(char *buf, uint64_t cap, uint64_t *pos, const char *s) {
+    while (*s && *pos + 1 < cap) buf[(*pos)++] = *s++;
+    if (*pos < cap) buf[*pos] = '\0';
+}
+
+static void proc_devices_append_node(char *buf, uint64_t cap, uint64_t *pos,
+                                     vfs::vfs_node *node, const char *prefix) {
+    if (!node) return;
+
+    char path[256];
+    if (prefix && prefix[0]) {
+        snprintf(path, sizeof(path), "%s/%s", prefix, node->name);
+    } else {
+        snprintf(path, sizeof(path), "%s", node->name);
+    }
+
+    if (node->type == vfs::VfsType::VFS_CHAR_DEVICE || node->type == vfs::VfsType::VFS_BLOCK_DEVICE) {
+        char line[320];
+        const char *kind = (node->type == vfs::VfsType::VFS_BLOCK_DEVICE) ? "block" : "char";
+        snprintf(line, sizeof(line), "%s %s %x:%x\n", kind, path,
+                 (uint32_t)(node->size >> 32), (uint32_t)node->size);
+        proc_devices_append(buf, cap, pos, line);
+    }
+
+    for (vfs::vfs_node *child = node->child; child; child = child->next) {
+        proc_devices_append_node(buf, cap, pos, child, path);
+    }
+}
+
+static uint64_t proc_devices_read(vfs::vfs_node *, uint64_t offset, uint64_t size,
+                                  uint8_t *buffer) {
+    char buf[4096];
+    uint64_t len = 0;
+    buf[0] = '\0';
+    if (dev_root) {
+        for (vfs::vfs_node *child = dev_root->child; child; child = child->next) {
+            proc_devices_append_node(buf, sizeof(buf), &len, child, "");
+        }
+    }
+
+    if (offset >= len) return 0;
+    if (size > len - offset) size = len - offset;
+    memcpy(buffer, buf + offset, size);
+    return size;
+}
+
 namespace procfs {
     void init() {
         vfs::vfs_node *proc_root =
@@ -106,38 +246,54 @@ namespace procfs {
         vfs::vfs_node *avail_node =
             vfs::create_node("available", vfs::VfsType::VFS_CHAR_DEVICE, mem_dir);
         if (avail_node) { avail_node->read = proc_mem_available_read; }
+
+        vfs::vfs_node *devices_node =
+            vfs::create_node("devices", vfs::VfsType::VFS_CHAR_DEVICE, proc_root);
+        if (devices_node) { devices_node->read = proc_devices_read; }
+
     }
 }  // namespace procfs
 
-extern "C" int devfs_register(const char *path, device_ops *ops, void *priv) {
-    if (!dev_root || !path) return -1;
+static int devfs_register_typed(const char *path, device_ops *ops, void *priv,
+                                vfs::VfsType type, uint64_t size) {
+    if (!dev_root || !path || !ops) return -1;
 
     vfs::vfs_node *curr = dev_root;
     char path_buf[256];
-    strncpy(path_buf, path, 255);
+    strncpy(path_buf, path, sizeof(path_buf) - 1);
+    path_buf[sizeof(path_buf) - 1] = '\0';
 
-    char *saveptr;
+    char *saveptr = nullptr;
     char *token = strtok_r(path_buf, "/", &saveptr);
 
     while (token != nullptr) {
+        if (!path_component_valid(token)) return -1;
         char *next_token = strtok_r(nullptr, "/", &saveptr);
 
         if (next_token == nullptr) {
-            vfs::vfs_node *node = vfs::create_node(token, vfs::VfsType::VFS_CHAR_DEVICE, curr);
+            if (vfs::finddir(curr, token)) return -1;
+
+            vfs::vfs_node *node = vfs::create_node(token, type, curr);
             if (!node) return -1;
 
-            // Allocate the bridge instance
             device_instance *inst = (device_instance *)heap::kmalloc(sizeof(device_instance));
+            if (!inst) {
+                vfs_unlink_and_free(node);
+                return -1;
+            }
             inst->ops = ops;
             inst->priv = priv;
 
             node->ptr = (uintptr_t)inst;
+            node->size = size;
             node->read = dev_vfs_read;
             node->write = dev_vfs_write;
             return 0;
         } else {
             vfs::vfs_node *dir = vfs::finddir(curr, token);
+            if (dir && dir->type != vfs::VfsType::VFS_DIRECTORY) return -1;
             if (!dir) dir = vfs::create_node(token, vfs::VfsType::VFS_DIRECTORY, curr);
+            if (!dir) return -1;
             curr = dir;
             token = next_token;
         }
@@ -145,36 +301,25 @@ extern "C" int devfs_register(const char *path, device_ops *ops, void *priv) {
     return -1;
 }
 
+extern "C" int devfs_register(const char *path, device_ops *ops, void *priv) {
+    return devfs_register_typed(path, ops, priv, vfs::VfsType::VFS_CHAR_DEVICE, 0);
+}
+
+extern "C" int devfs_register_block(const char *path, device_ops *ops, void *priv, uint64_t size) {
+    return devfs_register_typed(path, ops, priv, vfs::VfsType::VFS_BLOCK_DEVICE, size);
+}
+
 extern "C" void devfs_unregister(const char *path) {
     if (!dev_root || !path) return;
     vfs::vfs_node *node = vfs::traverse_relative(dev_root, path);
-    if (!node || node->type != vfs::VfsType::VFS_CHAR_DEVICE) return;
+    if (!node || (node->type != vfs::VfsType::VFS_CHAR_DEVICE &&
+                  node->type != vfs::VfsType::VFS_BLOCK_DEVICE))
+        return;
 
-    // Free the bridge instance
+    vfs::vfs_node *parent = node->parent;
     if (node->ptr) heap::kfree((void *)node->ptr);
-
-    vfs::vfs_node *curr = node;
-    while (curr != dev_root) {
-        vfs::vfs_node *parent = curr->parent;
-        if (!parent) break;
-
-        if (parent->child == curr)
-            parent->child = curr->next;
-        else {
-            vfs::vfs_node *prev = parent->child;
-            while (prev && prev->next != curr) prev = prev->next;
-            if (prev) prev->next = curr->next;
-        }
-
-        heap::kfree(curr->name);
-        vfs::vfs_node *to_free = curr;
-        if (parent->child != nullptr || parent == dev_root) {
-            heap::kfree(to_free);
-            break;
-        }
-        heap::kfree(to_free);
-        curr = parent;
-    }
+    vfs_unlink_and_free(node);
+    cleanup_empty_dev_dirs(parent);
 }
 
 static struct bus *bus_list = nullptr;
@@ -235,4 +380,5 @@ KEXPORT(bus_register)
 KEXPORT(device_register)
 KEXPORT(driver_register)
 KEXPORT(devfs_register)
+KEXPORT(devfs_register_block)
 KEXPORT(devfs_unregister)

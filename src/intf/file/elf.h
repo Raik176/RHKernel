@@ -92,6 +92,7 @@ namespace elf {
     struct elf_info {
         uint64_t entry;
         uint64_t pml4;
+        uint64_t heap_start;
     };
 
     elf_info load(const char *path);

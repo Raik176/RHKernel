@@ -21,7 +21,7 @@ namespace pmm {
     static_assert(pmm::PAGE_SIZE == 4096, "PMM assumes 4 KiB hardware pages");
 
     /** @brief Maximum order for buddy allocator (2^MAX_ORDER pages per block) */
-    constexpr size_t MAX_ORDER = 11;  ///< 2^11 pages = 8 MiB blocks
+    constexpr size_t MAX_ORDER = 14;  ///< 2^14 pages = 64 MiB blocks
     static_assert(pmm::MAX_ORDER > 0, "MAX_ORDER must be > 0");
     static_assert(pmm::MAX_ORDER < 63, "MAX_ORDER too large for 64-bit math");
 
@@ -34,6 +34,16 @@ namespace pmm {
      * @param mb_phys_addr Physical address of the Multiboot memory map
      */
     void init(uint64_t mb_phys_addr);
+
+    /**
+     * @brief Release usable RAM that was above the temporary boot direct-map.
+     *
+     * PMM initialization runs before the final VMM page tables exist, so it can
+     * only write free-list nodes into pages covered by the small boot-time
+     * direct map.  After vmm::init() installs the full direct map, this folds
+     * the deferred high-memory spans into the buddy allocator.
+     */
+    void release_deferred_memory();
 
     /**
      * @brief Convert a size in bytes to the appropriate order
@@ -89,6 +99,16 @@ namespace pmm {
      * @return Total system memory in bytes
      */
     size_t get_system_bytes();
+
+    /**
+     * @brief Highest physical address limit that must be direct-mapped.
+     *
+     * This is not the same as total RAM. Machines with a PCI/MMIO hole below
+     * 4 GiB can have usable RAM above 4 GiB, so the direct map must cover up
+     * to the maximum address reported by the memory map, not just the sum of
+     * usable/reserved byte counts.
+     */
+    size_t get_physical_limit_bytes();
 
     void ref_page(uint64_t phys);
     void unref_page(uint64_t phys);

@@ -45,8 +45,17 @@ KEXPORT(strcpy)
 
 char *strncpy(char *dest, const char *src, size_t n) {
     char *d = dest;
-    while (n-- && (*d++ = *src++));
-    while (n--) *d++ = '\0';
+
+    while (n > 0 && *src) {
+        *d++ = *src++;
+        n--;
+    }
+
+    while (n > 0) {
+        *d++ = '\0';
+        n--;
+    }
+
     return dest;
 }
 KEXPORT(strncpy)
@@ -127,9 +136,15 @@ static void itoa(char **buf, size_t *limit, uint64_t n, int base, int width, cha
     int i = 0;
     const char *digits = "0123456789abcdef";
 
+    // Never let a damaged/unsupported format path turn into a CPU #DE while
+    // formatting diagnostics.  Valid callers pass 10 or 16, but this guard keeps
+    // panic/printf paths from recursively faulting if a format string or va_list
+    // is bad.
+    if (base < 2 || base > 16) base = 10;
+
     do {
-        tmp[i++] = digits[n % base];
-        n /= base;
+        tmp[i++] = digits[n % (uint64_t)base];
+        n /= (uint64_t)base;
     } while (n > 0);
 
     while (i < width && i < 63) { tmp[i++] = pad; }
@@ -162,6 +177,11 @@ int vsnprintf(char *buf, size_t size, const char *fmt, va_list args) {
                 fmt++;
             }
 
+            // Accept the common kernel format length modifiers.  This printf
+            // implementation stores integer arguments as 64-bit values anyway,
+            // so the modifiers only need to be skipped before the conversion.
+            while (*fmt == 'l' || *fmt == 'z' || *fmt == 't') fmt++;
+
             switch (*fmt) {
                 case 's': {
                     const char *s = va_arg(args, const char *);
@@ -173,9 +193,11 @@ int vsnprintf(char *buf, size_t size, const char *fmt, va_list args) {
                     break;
                 }
                 case 'd':
+                case 'u':
                     itoa(&buf, &limit, va_arg(args, uint64_t), 10, width, pad);
                     break;
                 case 'x':
+                case 'X':
                 case 'p':
                     itoa(&buf, &limit, va_arg(args, uint64_t), 16, width, pad);
                     break;

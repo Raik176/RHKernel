@@ -52,6 +52,8 @@ namespace heap {
      * @return Pointer to the newly created SlabHeader, or nullptr on failure
      */
     static SlabHeader *create_slab(size_t slot_size) {
+        if (slot_size == 0) return nullptr;
+
         uint64_t phys = pmm::alloc(pmm::PAGE_SIZE);
         if (!phys) return nullptr;
 
@@ -63,6 +65,10 @@ namespace heap {
         size_t header_size = align_up(sizeof(SlabHeader), 16);
         size_t available_space = pmm::PAGE_SIZE - header_size;
         slab->total_slots = available_space / slot_size;
+        if (slab->total_slots == 0) {
+            pmm::free(phys, pmm::PAGE_SIZE);
+            return nullptr;
+        }
 
         uint8_t *first_slot = (uint8_t *)slab + header_size;
         slab->free_list = (void *)first_slot;
@@ -79,6 +85,13 @@ namespace heap {
     }
 
     void *kmalloc(size_t size) {
+        // C permits malloc(0) to return either nullptr or a unique pointer, but
+        // this slab allocator cannot create a zero-byte slot.  After /bin/sh
+        // exec fails, libc/process cleanup can legitimately request zero-sized
+        // allocations/reallocations; without this guard create_slab(0) divides
+        // 4048 bytes of slab payload by slot_size == 0 and raises CPU #DE.
+        if (size == 0) return nullptr;
+
         size_t cache_idx = 0xFFFFFFFF;
         SlabCache *cache = nullptr;
 
