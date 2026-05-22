@@ -22,9 +22,20 @@
 #define EXT2_REV_GOOD_OLD 0u
 #define EXT2_REV_DYNAMIC 1u
 #define EXT2_FEATURE_COMPAT_HAS_JOURNAL 0x0004u
+#define EXT2_FEATURE_INCOMPAT_COMPRESSION 0x0001u
 #define EXT2_FEATURE_INCOMPAT_FILETYPE 0x0002u
+#define EXT2_FEATURE_INCOMPAT_RECOVER 0x0004u
+#define EXT2_FEATURE_INCOMPAT_JOURNAL_DEV 0x0008u
+#define EXT2_FEATURE_INCOMPAT_META_BG 0x0010u
 #define EXT2_FEATURE_RO_COMPAT_SPARSE_SUPER 0x0001u
 #define EXT2_FEATURE_RO_COMPAT_LARGE_FILE 0x0002u
+#define EXT2_FEATURE_RO_COMPAT_BTREE_DIR 0x0004u
+
+#define EXT2_FEATURE_COMPAT_SUPPORTED 0u
+#define EXT2_FEATURE_INCOMPAT_SUPPORTED EXT2_FEATURE_INCOMPAT_FILETYPE
+#define EXT2_FEATURE_RO_COMPAT_SUPPORTED \
+    (EXT2_FEATURE_RO_COMPAT_SPARSE_SUPER | EXT2_FEATURE_RO_COMPAT_LARGE_FILE | \
+     EXT2_FEATURE_RO_COMPAT_BTREE_DIR)
 
 #define EXT2_BGD_BLOCK_BITMAP 0u
 #define EXT2_BGD_INODE_BITMAP 4u
@@ -90,6 +101,25 @@ static void wr32(uint8_t *p, uint32_t v) { p[0] = (uint8_t)v; p[1] = (uint8_t)(v
 static uint16_t rec_len_for(uint8_t name_len) { return (uint16_t)((8u + name_len + 3u) & ~3u); }
 static int ext2_read_bgd(struct ext2_fs *fs, uint32_t group, uint8_t gd[32]);
 
+static uint32_t ext2_group_first_block(struct ext2_fs *fs, uint32_t group) {
+    (void)fs;
+    return group * fs->blocks_per_group;
+}
+
+static uint32_t ext2_group_block_count(struct ext2_fs *fs, uint32_t group) {
+    uint32_t first = ext2_group_first_block(fs, group);
+    if (first >= fs->blocks_count) return 0;
+    uint32_t count = fs->blocks_count - first;
+    return count < fs->blocks_per_group ? count : fs->blocks_per_group;
+}
+
+static uint32_t ext2_group_inode_count(struct ext2_fs *fs, uint32_t group) {
+    uint64_t first = (uint64_t)group * fs->inodes_per_group;
+    if (first >= fs->inodes_count) return 0;
+    uint64_t count = fs->inodes_count - first;
+    return count < fs->inodes_per_group ? (uint32_t)count : fs->inodes_per_group;
+}
+
 static int ext2_block_valid(struct ext2_fs *fs, uint32_t block_no) {
     return block_no >= fs->first_data_block && block_no < fs->blocks_count;
 }
@@ -98,6 +128,12 @@ static int ext2_block_range_valid(struct ext2_fs *fs, uint32_t first, uint32_t c
     if (!count || !ext2_block_valid(fs, first)) return 0;
     if (UINT32_MAX - first < count - 1) return 0;
     return first + count - 1 < fs->blocks_count;
+}
+
+static int ext2_block_in_group(struct ext2_fs *fs, uint32_t group, uint32_t block) {
+    uint32_t first = ext2_group_first_block(fs, group);
+    uint32_t count = ext2_group_block_count(fs, group);
+    return count && block >= first && block < first + count;
 }
 
 static int ext2_inode_mode_supported(uint16_t mode) {
@@ -116,7 +152,7 @@ static int ext2_validate_dirent(struct ext2_fs *fs, const uint8_t *de, uint32_t 
     uint8_t file_type = de[7];
 
     if (rec_len < 8 || (rec_len & 3u) || boff + rec_len > fs->block_size) return -1;
-    if (name_len > rec_len - 8 || name_len > EXT2_NAME_LEN) return -1;
+    if (name_len > rec_len - 8) return -1;
     if (ino > fs->inodes_count) return -1;
     if (!ext2_dir_file_type_valid(file_type)) return -1;
     if (ino == 0 && name_len != 0) return -1;
@@ -144,21 +180,16 @@ static int ext2_validate_bgd(struct ext2_fs *fs) {
         uint32_t block_bitmap = rd32(gd + EXT2_BGD_BLOCK_BITMAP);
         uint32_t inode_bitmap = rd32(gd + EXT2_BGD_INODE_BITMAP);
         uint32_t inode_table = rd32(gd + EXT2_BGD_INODE_TABLE);
-        uint32_t group_first = fs->first_data_block + g * fs->blocks_per_group;
-        uint32_t group_blocks = fs->blocks_per_group;
-        uint32_t group_inodes = fs->inodes_per_group;
+        uint32_t group_blocks = ext2_group_block_count(fs, g);
+        uint32_t group_inodes = ext2_group_inode_count(fs, g);
 
-        if (group_first >= fs->blocks_count) return -1;
-        if (group_blocks > fs->blocks_count - group_first) group_blocks = fs->blocks_count - group_first;
-        if ((uint64_t)g * fs->inodes_per_group + group_inodes > fs->inodes_count)
-            group_inodes = fs->inodes_count - g * fs->inodes_per_group;
-
-        if (!ext2_block_range_valid(fs, group_first, group_blocks)) return -1;
+        if (!group_blocks || !group_inodes) return -1;
         if (!ext2_block_valid(fs, block_bitmap) || !ext2_block_valid(fs, inode_bitmap)) return -1;
         if (!ext2_block_range_valid(fs, inode_table, (uint32_t)inode_table_blocks)) return -1;
-        if (block_bitmap < group_first || block_bitmap >= group_first + group_blocks) return -1;
-        if (inode_bitmap < group_first || inode_bitmap >= group_first + group_blocks) return -1;
-        if (inode_table < group_first || inode_table + inode_table_blocks > group_first + group_blocks) return -1;
+        if (!ext2_block_in_group(fs, g, block_bitmap) || !ext2_block_in_group(fs, g, inode_bitmap)) return -1;
+        if (!ext2_block_in_group(fs, g, inode_table) ||
+            !ext2_block_in_group(fs, g, inode_table + (uint32_t)inode_table_blocks - 1))
+            return -1;
         if (rd16(gd + EXT2_BGD_FREE_BLOCKS) > group_blocks) return -1;
         if (rd16(gd + EXT2_BGD_FREE_INODES) > group_inodes) return -1;
         if (rd16(gd + EXT2_BGD_USED_DIRS) > group_inodes) return -1;
@@ -357,14 +388,16 @@ static uint32_t ext2_alloc_block(struct ext2_fs *fs) {
         uint8_t gd[32]; if (ext2_read_bgd(fs, g, gd) != 0) continue;
         uint16_t free_blocks = rd16(gd + EXT2_BGD_FREE_BLOCKS); if (!free_blocks) continue;
         uint32_t bitmap = rd32(gd + EXT2_BGD_BLOCK_BITMAP); if (!bitmap || ext2_read_block(fs, bitmap, bm) != 0) continue;
-        for (uint32_t bit = 0; bit < fs->blocks_per_group; bit++) {
+        uint32_t group_blocks = ext2_group_block_count(fs, g);
+        for (uint32_t bit = 0; bit < group_blocks; bit++) {
             uint32_t byte = bit / 8, mask = 1u << (bit % 8); if (bm[byte] & mask) continue;
-            uint32_t block_no = fs->first_data_block + g * fs->blocks_per_group + bit;
-            if (block_no == 0 || block_no >= fs->blocks_count) break;
+            uint32_t block_no = ext2_group_first_block(fs, g) + bit;
+            if (!ext2_block_valid(fs, block_no)) continue;
             bm[byte] |= mask;
             if (ext2_write_block(fs, bitmap, bm) != 0) break;
             wr16(gd + EXT2_BGD_FREE_BLOCKS, free_blocks - 1); ext2_write_bgd(fs, g, gd);
-            if (fs->free_blocks_count) fs->free_blocks_count--; ext2_update_super_counts(fs);
+            if (fs->free_blocks_count) fs->free_blocks_count--;
+            ext2_update_super_counts(fs);
             ext2_write_block(fs, block_no, zero);
             kfree(bm); kfree(zero); return block_no;
         }
@@ -374,9 +407,8 @@ static uint32_t ext2_alloc_block(struct ext2_fs *fs) {
 
 static int ext2_free_block(struct ext2_fs *fs, uint32_t block_no) {
     if (!block_no || block_no >= fs->blocks_count || block_no < fs->first_data_block) return -1;
-    uint32_t rel = block_no - fs->first_data_block;
-    uint32_t g = rel / fs->blocks_per_group;
-    uint32_t bit = rel % fs->blocks_per_group;
+    uint32_t g = block_no / fs->blocks_per_group;
+    uint32_t bit = block_no % fs->blocks_per_group;
     uint8_t gd[32]; uint8_t *bm = (uint8_t *)kmalloc(fs->block_size); if (!bm) return -1;
     if (ext2_read_bgd(fs, g, gd) != 0) { kfree(bm); return -1; }
     uint32_t bitmap = rd32(gd + EXT2_BGD_BLOCK_BITMAP); if (ext2_read_block(fs, bitmap, bm) != 0) { kfree(bm); return -1; }
@@ -395,7 +427,8 @@ static uint32_t ext2_alloc_inode(struct ext2_fs *fs, uint16_t mode) {
         uint8_t gd[32]; if (ext2_read_bgd(fs, g, gd) != 0) continue;
         uint16_t free_inodes = rd16(gd + EXT2_BGD_FREE_INODES); if (!free_inodes) continue;
         uint32_t bitmap = rd32(gd + EXT2_BGD_INODE_BITMAP); if (!bitmap || ext2_read_block(fs, bitmap, bm) != 0) continue;
-        for (uint32_t bit = 0; bit < fs->inodes_per_group; bit++) {
+        uint32_t group_inodes = ext2_group_inode_count(fs, g);
+        for (uint32_t bit = 0; bit < group_inodes; bit++) {
             uint32_t byte = bit / 8, mask = 1u << (bit % 8); if (bm[byte] & mask) continue;
             uint32_t ino = g * fs->inodes_per_group + bit + 1; if (ino < 11 || ino > fs->inodes_count) continue;
             bm[byte] |= mask; if (ext2_write_block(fs, bitmap, bm) != 0) break;
@@ -505,7 +538,11 @@ static int ext2_dir_find_entry(struct ext2_node *dir, const char *name, uint32_t
             uint8_t *de = buf + boff; uint32_t ino = rd32(de); uint16_t rec_len = rd16(de + 4); uint8_t name_len = de[6]; uint8_t ft = de[7];
             if (ext2_validate_dirent(fs, de, boff) != 0) { kfree(buf); return -1; }
             if (ino && name_len && ext2_name_eq(name, de + 8, name_len)) {
-                if (ino_out) *ino_out = ino; if (block_out) *block_out = disk_block; if (off_out) *off_out = boff; if (rec_out) *rec_out = rec_len; if (type_out) *type_out = ft;
+                if (ino_out) *ino_out = ino;
+                if (block_out) *block_out = disk_block;
+                if (off_out) *off_out = boff;
+                if (rec_out) *rec_out = rec_len;
+                if (type_out) *type_out = ft;
                 kfree(buf); return 0;
             }
             boff += rec_len;
@@ -696,7 +733,8 @@ static int ext2_unlink(struct vfs_node *parent, const char *name) {
     struct ext2_node tmp; ext2_node_from_inode(&tmp, dir->fs, ino, &in);
     if ((tmp.mode & 0xF000) == EXT2_S_IFDIR && !ext2_dir_is_empty(&tmp)) return -1;
     if (ext2_dir_remove_entry(dir, name, 0) != 0) return -1;
-    if (in.links_count > 0) in.links_count--; in.dtime = 1;
+    if (in.links_count > 0) in.links_count--;
+    in.dtime = 1;
     if (in.links_count == 0) { if ((tmp.mode & 0xF000) == EXT2_S_IFREG) ext2_truncate_node(&tmp, 0); ext2_free_inode(dir->fs, ino, tmp.mode); memset(&in, 0, sizeof(in)); }
     return ext2_write_inode(dir->fs, ino, &in);
 }
@@ -737,13 +775,39 @@ static int ext2_mount(struct vfs_node *blockdev, struct vfs_node *mountpoint, co
     (void)flags;
     uint8_t sb[1024]; if (block_read(blockdev, EXT2_SUPER_OFFSET, sizeof(sb), sb) != sizeof(sb)) return -1;
     if (rd16(sb + 56) != EXT2_SUPER_MAGIC) return -2;
+
+    uint32_t rev = rd32(sb + 76);
+    uint16_t state = rd16(sb + 58);
+    uint16_t errors = rd16(sb + 60);
+    uint32_t first_ino = rev == EXT2_REV_GOOD_OLD ? 11 : rd32(sb + 84);
+    uint32_t compat = rd32(sb + 92);
+    uint32_t incompat = rd32(sb + 96);
+    uint32_t ro_compat = rd32(sb + 100);
+    uint32_t log_block_size = rd32(sb + 24);
+
+    if (rev != EXT2_REV_GOOD_OLD && rev != EXT2_REV_DYNAMIC) return -3;
+    if (state != EXT2_STATE_VALID || errors == EXT2_ERRORS_PANIC) return -3;
+    if ((compat & ~EXT2_FEATURE_COMPAT_SUPPORTED) != 0 ||
+        (incompat & ~EXT2_FEATURE_INCOMPAT_SUPPORTED) != 0 ||
+        (ro_compat & ~EXT2_FEATURE_RO_COMPAT_SUPPORTED) != 0) {
+        klog(LOG_ERR, "ext2: unsupported features compat=%x incompat=%x ro_compat=%x\n", compat, incompat, ro_compat);
+        return -3;
+    }
+    if ((compat & EXT2_FEATURE_COMPAT_HAS_JOURNAL) || (incompat & EXT2_FEATURE_INCOMPAT_RECOVER) ||
+        (incompat & EXT2_FEATURE_INCOMPAT_JOURNAL_DEV))
+        return -3;
+    if (log_block_size > 2) return -3;
+
     struct ext2_fs *fs = (struct ext2_fs *)kmalloc(sizeof(*fs)); if (!fs) return -3; memset(fs, 0, sizeof(*fs));
     fs->dev = blockdev; fs->inodes_count = rd32(sb + 0); fs->blocks_count = rd32(sb + 4); fs->free_blocks_count = rd32(sb + 12); fs->free_inodes_count = rd32(sb + 16);
-    fs->first_data_block = rd32(sb + 20); fs->block_size = 1024u << rd32(sb + 24); fs->blocks_per_group = rd32(sb + 32); fs->inodes_per_group = rd32(sb + 40); fs->inode_size = rd16(sb + 88); if (!fs->inode_size) fs->inode_size = 128;
+    fs->first_data_block = rd32(sb + 20); fs->block_size = 1024u << log_block_size; fs->blocks_per_group = rd32(sb + 32); fs->inodes_per_group = rd32(sb + 40); fs->inode_size = rev == EXT2_REV_GOOD_OLD ? 128 : rd16(sb + 88); if (!fs->inode_size) fs->inode_size = 128;
     uint32_t max_blocks_per_group = fs->block_size * 8u;
-    if (fs->block_size < 1024 || fs->block_size > 4096 || fs->inodes_per_group == 0 || fs->blocks_per_group == 0 ||
-        fs->blocks_per_group > max_blocks_per_group || fs->free_blocks_count > fs->blocks_count ||
-        fs->free_inodes_count > fs->inodes_count || fs->inode_size < 128 || fs->inode_size > 256) {
+    if (fs->inodes_count < EXT2_ROOT_INO || fs->blocks_count == 0 || first_ino < 11 ||
+        first_ino > fs->inodes_count || fs->first_data_block != (fs->block_size == 1024 ? 1u : 0u) ||
+        fs->inodes_per_group == 0 || fs->blocks_per_group == 0 || fs->blocks_per_group > max_blocks_per_group ||
+        fs->inodes_per_group > fs->block_size * 8u || fs->free_blocks_count > fs->blocks_count ||
+        fs->free_inodes_count > fs->inodes_count || fs->inode_size < 128 || fs->inode_size > 256 ||
+        (fs->inode_size & 3u) != 0) {
         klog(LOG_ERR, "ext2: invalid superblock block_size=%d blocks=%d inodes=%d bpg=%d ipg=%d free_blocks=%d free_inodes=%d inode_size=%d\n",
              fs->block_size, fs->blocks_count, fs->inodes_count, fs->blocks_per_group, fs->inodes_per_group,
              fs->free_blocks_count, fs->free_inodes_count, fs->inode_size);
@@ -751,6 +815,7 @@ static int ext2_mount(struct vfs_node *blockdev, struct vfs_node *mountpoint, co
         return -4;
     }
     fs->groups_count = (fs->blocks_count + fs->blocks_per_group - 1) / fs->blocks_per_group;
+    if (fs->groups_count == 0 || ext2_validate_bgd(fs) != 0) { kfree(fs); return -5; }
     struct ext2_node *root = ext2_make_node(fs, EXT2_ROOT_INO); if (!root || (root->mode & 0xF000) != EXT2_S_IFDIR) { if (root) kfree(root); kfree(fs); return -6; }
     vfs_set_fs_data(mountpoint, root); vfs_set_finddir(mountpoint, ext2_finddir); vfs_set_readdir(mountpoint, ext2_readdir); vfs_set_create(mountpoint, ext2_create); vfs_set_unlink(mountpoint, ext2_unlink); vfs_set_rename(mountpoint, ext2_rename); vfs_set_size(mountpoint, root->size);
     ext2_cache_root_names(mountpoint);

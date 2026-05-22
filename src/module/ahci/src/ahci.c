@@ -14,11 +14,21 @@
 #define AHCI_IS  0x08
 #define AHCI_PI  0x0C
 #define AHCI_VS  0x10
+#define AHCI_CAP2 0x24
 #define AHCI_BOHC 0x28
+
+#define AHCI_CAP_NCS_SHIFT 8
+#define AHCI_CAP_NCS_MASK  (0x1Fu << AHCI_CAP_NCS_SHIFT)
+#define AHCI_CAP_S64A      (1u << 31)
+#define AHCI_CAP2_BOH       (1u << 0)
 
 #define AHCI_GHC_HR (1u << 0)
 #define AHCI_GHC_IE (1u << 1)
 #define AHCI_GHC_AE (1u << 31)
+
+#define AHCI_BOHC_BOS (1u << 0)
+#define AHCI_BOHC_OOS (1u << 1)
+#define AHCI_BOHC_BB  (1u << 4)
 
 #define AHCI_PxCLB  0x00
 #define AHCI_PxCLBU 0x04
@@ -92,7 +102,9 @@
 #define AHCI_MAX_GPT_PARTITION_SCAN 4096u
 #define AHCI_MAX_EBR_CHAIN_SCAN 256
 #define AHCI_TIMEOUT 1000000u
+#define AHCI_RESET_TIMEOUT 10000000u
 #define AHCI_IRQ_NONE 0xFFu
+#define AHCI_GPT_MAX_ENTRY_SIZE 1024u
 
 struct hba_cmd_header {
     uint8_t cfl;
@@ -171,6 +183,8 @@ struct ahci_controller {
     volatile uint32_t irq_pending;
     volatile uint32_t port_irq[32];
     struct ahci_disk *ports[32];
+    uint8_t command_slots;
+    bool supports_64bit_dma;
 };
 
 static uint64_t ahci_next_disk_index = 0;
@@ -240,7 +254,8 @@ static int ahci_start_port(struct ahci_controller *ctrl, int port) {
 
 static int ahci_find_slot(struct ahci_controller *ctrl, int port) {
     uint32_t slots = *ahci_port_reg(ctrl, port, AHCI_PxSACT) | *ahci_port_reg(ctrl, port, AHCI_PxCI);
-    for (int i = 0; i < 32; i++) {
+    uint8_t command_slots = ctrl->command_slots ? ctrl->command_slots : 1;
+    for (uint8_t i = 0; i < command_slots; i++) {
         if ((slots & (1u << i)) == 0) return i;
     }
     return -1;
@@ -279,13 +294,27 @@ static void ahci_clear_interrupts(struct ahci_controller *ctrl) {
     *ahci_reg(ctrl, AHCI_IS) = 0xFFFFFFFFu;
 }
 
+static bool ahci_dma_range_supported(struct ahci_controller *ctrl, uint64_t phys, uint32_t bytes) {
+    if (!bytes) return false;
+    if (UINT64_MAX - phys < bytes - 1) return false;
+    if (ctrl->supports_64bit_dma) return true;
+    return phys + bytes - 1 <= UINT32_MAX;
+}
+
+static void ahci_recover_port(struct ahci_controller *ctrl, int port) {
+    ahci_stop_port(ctrl, port);
+    *ahci_port_reg(ctrl, port, AHCI_PxSERR) = 0xFFFFFFFFu;
+    *ahci_port_reg(ctrl, port, AHCI_PxIS) = 0xFFFFFFFFu;
+    ahci_start_port(ctrl, port);
+}
+
+
 static int ahci_command(struct ahci_disk *disk, uint8_t command, uint64_t lba, uint16_t count,
                         void *buffer, uint32_t bytes, int write) {
     struct ahci_controller *ctrl = disk->ctrl;
     int port = disk->port_no;
 
-    /* ATA READ/WRITE DMA EXT uses a sector count of 0 to mean 256 sectors. */
-    if (bytes == 0) return -1;
+    if (bytes == 0 || bytes > AHCI_BOUNCE_SIZE || lba > 0x0000FFFFFFFFFFFFULL) return -1;
 
     volatile uint32_t *tfd = ahci_port_reg(ctrl, port, AHCI_PxTFD);
     uint32_t spin = AHCI_TIMEOUT;
@@ -310,6 +339,7 @@ static int ahci_command(struct ahci_disk *disk, uint8_t command, uint64_t lba, u
     hdr->prdbc = 0;
 
     uint64_t buf_phys = ahci_v2p(buffer);
+    if (!ahci_dma_range_supported(ctrl, buf_phys, bytes)) return -1;
     tbl->prdt[0].dba = (uint32_t)buf_phys;
     tbl->prdt[0].dbau = (uint32_t)(buf_phys >> 32);
     tbl->prdt[0].dbc_i = (bytes - 1) | (1u << 31);
@@ -337,16 +367,16 @@ static int ahci_command(struct ahci_disk *disk, uint8_t command, uint64_t lba, u
     while (timeout--) {
         uint32_t ci = *ahci_port_reg(ctrl, port, AHCI_PxCI);
         uint32_t is = *ahci_port_reg(ctrl, port, AHCI_PxIS) | ctrl->port_irq[port];
-        if (is & AHCI_PxIS_ERROR) return -1;
+        if (is & AHCI_PxIS_ERROR) { ahci_recover_port(ctrl, port); return -1; }
         if ((ci & (1u << slot)) == 0) break;
         if (ctrl->irq_pending & (1u << port)) {
             ctrl->irq_pending &= ~(1u << port);
         }
         asm volatile("pause");
     }
-    if (*ahci_port_reg(ctrl, port, AHCI_PxCI) & (1u << slot)) return -1;
+    if (*ahci_port_reg(ctrl, port, AHCI_PxCI) & (1u << slot)) { ahci_recover_port(ctrl, port); return -1; }
 
-    if ((*ahci_port_reg(ctrl, port, AHCI_PxIS) | ctrl->port_irq[port]) & AHCI_PxIS_ERROR) return -1;
+    if ((*ahci_port_reg(ctrl, port, AHCI_PxIS) | ctrl->port_irq[port]) & AHCI_PxIS_ERROR) { ahci_recover_port(ctrl, port); return -1; }
     return 0;
 }
 
@@ -529,6 +559,12 @@ static bool lba_range_valid(struct ahci_disk *disk, uint64_t start, uint64_t sec
     return start + sectors <= disk->sectors;
 }
 
+static bool byte_range_for_lba_valid(struct ahci_disk *disk, uint64_t start_lba, uint64_t sectors) {
+    if (!lba_range_valid(disk, start_lba, sectors)) return false;
+    if (start_lba > UINT64_MAX / AHCI_SECTOR_SIZE || sectors > UINT64_MAX / AHCI_SECTOR_SIZE) return false;
+    return true;
+}
+
 static bool lba_ranges_overlap(uint64_t a_start, uint64_t a_count, uint64_t b_start, uint64_t b_count) {
     return a_start < b_start + b_count && b_start < a_start + a_count;
 }
@@ -595,12 +631,16 @@ static bool ahci_read_gpt_header(struct ahci_disk *disk, uint64_t lba, uint8_t h
     if (current_lba != lba || backup_lba >= disk->sectors || backup_lba == current_lba) return false;
     if (first_usable > last_usable || last_usable >= disk->sectors) return false;
     if (entry_count == 0 || entry_count > AHCI_MAX_GPT_PARTITION_SCAN ||
-        entry_size < 128 || (entry_size & 7u) != 0) return false;
+        entry_size < 128 || entry_size > AHCI_GPT_MAX_ENTRY_SIZE || (entry_size & 7u) != 0) return false;
     if (u64_add_overflows((uint64_t)entry_count, entry_size - 1)) return false;
 
     uint64_t entries_bytes = (uint64_t)entry_count * entry_size;
     uint64_t entries_sectors = (entries_bytes + AHCI_SECTOR_SIZE - 1) / AHCI_SECTOR_SIZE;
-    if (!lba_range_valid(disk, entries_lba, entries_sectors)) return false;
+    if (!byte_range_for_lba_valid(disk, entries_lba, entries_sectors)) return false;
+    if (lba_ranges_overlap(entries_lba, entries_sectors, current_lba, 1) ||
+        lba_ranges_overlap(entries_lba, entries_sectors, backup_lba, 1) ||
+        lba_ranges_overlap(entries_lba, entries_sectors, first_usable, last_usable - first_usable + 1))
+        return false;
     return true;
 }
 
@@ -618,8 +658,13 @@ static bool ahci_gpt_protective_mbr_valid(struct ahci_disk *disk) {
     for (int i = 0; i < 4; i++) {
         uint8_t *ent = mbr + 446 + (i * 16);
         if (!mbr_entry_valid(disk, ent)) return false;
-        if (ent[4] == 0xEE) protective++;
-        else if (ent[4] != 0) return false;
+        if (ent[4] == 0xEE) {
+            uint32_t start = rd_le32(ent + 8);
+            uint32_t count = rd_le32(ent + 12);
+            uint32_t expected = disk->sectors - 1 > UINT32_MAX ? UINT32_MAX : (uint32_t)(disk->sectors - 1);
+            if (start != 1 || count != expected) return false;
+            protective++;
+        } else if (ent[4] != 0) return false;
     }
     return protective == 1;
 }
@@ -641,8 +686,10 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
         klog(LOG_WARN, "AHCI: invalid backup GPT header on /dev/%s\n", disk->name);
         return;
     }
-    if (rd_le64(backup_hdr + 32) != 1 || rd_le32(backup_hdr + 80) != rd_le32(hdr + 80) ||
-        rd_le32(backup_hdr + 84) != rd_le32(hdr + 84) || rd_le32(backup_hdr + 88) != rd_le32(hdr + 88)) {
+    if (rd_le64(backup_hdr + 32) != 1 || rd_le64(backup_hdr + 40) != rd_le64(hdr + 40) ||
+        rd_le64(backup_hdr + 48) != rd_le64(hdr + 48) || memcmp(backup_hdr + 56, hdr + 56, 16) != 0 ||
+        rd_le32(backup_hdr + 80) != rd_le32(hdr + 80) || rd_le32(backup_hdr + 84) != rd_le32(hdr + 84) ||
+        rd_le32(backup_hdr + 88) != rd_le32(hdr + 88)) {
         klog(LOG_WARN, "AHCI: inconsistent GPT headers on /dev/%s\n", disk->name);
         return;
     }
@@ -683,9 +730,12 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
         for (int j = 0; j < 16; j++) if (entry[j]) { present = true; break; }
         if (!present) continue;
 
+        bool unique_guid_present = false;
+        for (int j = 16; j < 32; j++) if (entry[j]) { unique_guid_present = true; break; }
+
         uint64_t first = rd_le64(entry + 32);
         uint64_t last = rd_le64(entry + 40);
-        if (last < first || first < first_usable || last > last_usable) {
+        if (!unique_guid_present || last < first || first < first_usable || last > last_usable) {
             klog(LOG_WARN, "AHCI: invalid GPT partition %d on /dev/%s\n", i + 1, disk->name);
             kfree(starts);
             kfree(counts);
@@ -752,7 +802,8 @@ static void ahci_scan_ebr(struct ahci_disk *disk, uint32_t base_lba, uint32_t ba
         uint32_t logical_count = rd_le32(logical + 12);
         if (logical_type != 0 && logical_count != 0 && !mbr_type_is_extended(logical_type)) {
             uint64_t start = (uint64_t)ebr_lba + logical_rel;
-            if (start < base_lba || start + logical_count > (uint64_t)base_lba + base_count) return;
+            if (logical_rel == 0 || !lba_range_valid(disk, start, logical_count) ||
+                start < base_lba || start + logical_count > (uint64_t)base_lba + base_count) return;
             if (ahci_register_partition(disk, start, logical_count, *part_no) != 0) return;
             (*part_no)++;
         }
@@ -763,7 +814,7 @@ static void ahci_scan_ebr(struct ahci_disk *disk, uint32_t base_lba, uint32_t ba
         uint32_t next_count = rd_le32(next + 12);
         if (next_type == 0 && next_count == 0 && next_rel == 0) break;
         if (!mbr_type_is_extended(next_type) || next_count == 0 || next_rel == 0) return;
-        if (next_rel >= base_count || next_rel + next_count > base_count) return;
+        if (next_rel >= base_count || u64_add_overflows(next_rel, next_count) || next_rel + next_count > base_count) return;
         ebr_lba = base_lba + next_rel;
     }
 }
@@ -912,6 +963,27 @@ static int ahci_probe_port(struct ahci_controller *ctrl, int port) {
     return 0;
 }
 
+static int ahci_controller_prepare(struct ahci_controller *ctrl) {
+    uint32_t cap2 = *ahci_reg(ctrl, AHCI_CAP2);
+    *ahci_reg(ctrl, AHCI_GHC) |= AHCI_GHC_AE;
+
+    if ((cap2 & AHCI_CAP2_BOH) != 0) {
+        volatile uint32_t *bohc = ahci_reg(ctrl, AHCI_BOHC);
+        uint32_t v = *bohc;
+        if ((v & AHCI_BOHC_BOS) != 0) {
+            *bohc = v | AHCI_BOHC_OOS;
+            for (uint32_t i = 0; i < AHCI_RESET_TIMEOUT; i++) {
+                v = *bohc;
+                if ((v & (AHCI_BOHC_BOS | AHCI_BOHC_BB)) == 0) break;
+                asm volatile("pause");
+            }
+            if ((*bohc & (AHCI_BOHC_BOS | AHCI_BOHC_BB)) != 0) return -1;
+        }
+    }
+
+    return 0;
+}
+
 static int ahci_probe(struct device *dev) {
     struct pci_device *pdev = (struct pci_device *)dev->bus_data;
     struct pci_resource *bar = &pdev->bars[5];
@@ -934,6 +1006,13 @@ static int ahci_probe(struct device *dev) {
 
     pci_enable_bus_mastering(pdev->segment, pdev->bus, pdev->slot, pdev->func);
 
+    if (ahci_controller_prepare(ctrl) != 0) {
+        klog(LOG_ERR, "AHCI: BIOS/OS handoff failed\n");
+        vmm_mmio_unmap((void *)ctrl->abar, ctrl->abar_size);
+        kfree(ctrl);
+        return -1;
+    }
+
     ctrl->irq = pci_read8(pdev->segment, pdev->bus, pdev->slot, pdev->func, 0x3C);
 
     uint32_t ghc = *ahci_reg(ctrl, AHCI_GHC);
@@ -944,6 +1023,8 @@ static int ahci_probe(struct device *dev) {
 
     uint32_t pi = *ahci_reg(ctrl, AHCI_PI);
     uint32_t cap = *ahci_reg(ctrl, AHCI_CAP);
+    ctrl->command_slots = (uint8_t)(((cap & AHCI_CAP_NCS_MASK) >> AHCI_CAP_NCS_SHIFT) + 1);
+    ctrl->supports_64bit_dma = (cap & AHCI_CAP_S64A) != 0;
     int max_ports = (int)((cap & 0x1F) + 1);
     if (max_ports > 32) max_ports = 32;
 
