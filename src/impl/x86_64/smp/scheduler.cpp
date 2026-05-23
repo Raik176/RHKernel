@@ -253,7 +253,7 @@ namespace scheduler {
         }
         clear_vmas(t);
 
-        if (t->kernel_stack) heap::kfree(t->kernel_stack);
+        if (t->kernel_stack) vmm::free_kernel_stack(t->kernel_stack, KERNEL_STACK_SIZE);
         if (t->fpu_storage) heap::kfree(t->fpu_storage);
         if (t->fd_table) heap::kfree(t->fd_table);
         if (t->cwd_path) heap::kfree(t->cwd_path);
@@ -425,7 +425,8 @@ namespace scheduler {
         idle->cr3 = vmm::get_kernel_pagemap();
         idle->state = task_state::RUNNING;
         idle->type = task_type::KERNEL;
-        idle->kernel_stack = heap::kmalloc(KERNEL_STACK_SIZE);
+        idle->kernel_stack = vmm::alloc_kernel_stack(KERNEL_STACK_SIZE);
+        if (!idle->kernel_stack) kpanic("Idle kernel stack allocation failed");
         idle->cwd = vfs::get_root();
         idle->cwd_path = strdup("/");
         init_fpu_state(idle);
@@ -446,7 +447,8 @@ namespace scheduler {
         task *t = (task *)heap::kmalloc(sizeof(task));
         memset(t, 0, sizeof(task));
 
-        void *kstack = heap::kmalloc(KERNEL_STACK_SIZE);
+        void *kstack = vmm::alloc_kernel_stack(KERNEL_STACK_SIZE);
+        if (!kstack) kpanic("Kernel stack allocation failed");
         t->kernel_stack = kstack;
 
         regs *r = (regs *)((uintptr_t)kstack + KERNEL_STACK_SIZE - sizeof(regs));
@@ -625,7 +627,8 @@ namespace scheduler {
         }
 
         // 4. Set up Kernel Stack and Context
-        child->kernel_stack = heap::kmalloc(KERNEL_STACK_SIZE);
+        child->kernel_stack = vmm::alloc_kernel_stack(KERNEL_STACK_SIZE);
+        if (!child->kernel_stack) kpanic("Child kernel stack allocation failed");
 
         // We need to find where the regs struct sits relative to the parent's stack base
         uint64_t stack_offset = (uintptr_t)current_regs - (uintptr_t)parent->kernel_stack;

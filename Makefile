@@ -39,7 +39,8 @@ COMMON_CFLAGS := $(GLOBAL_CFLAGS) \
     -ffreestanding \
     -fno-unwind-tables \
     -fno-asynchronous-unwind-tables \
-    -fno-stack-protector \
+    -fstack-protector-strong \
+    -mstack-protector-guard=global \
     -fno-pic \
 	-fno-builtin \
     -mcmodel=kernel \
@@ -325,6 +326,11 @@ build/x86_64/%.asm.o: src/impl/x86_64/%.asm Makefile base.mk $(KERNEL_BUILD_CFG)
 	$(Q)nasm $(NASMFLAGS) $(NASMDEPFLAGS) $< -o $@
 
 build/x86_64/framebuffer.cpp.o: $(FONT_BIN)
+
+build/x86_64/security/stack_protector.cpp.o: src/impl/x86_64/security/stack_protector.cpp Makefile base.mk $(KERNEL_BUILD_CFG) | $(TOOLCHAIN_STAMP)
+	@mkdir -p $(dir $@)
+	@printf "$(GREEN)[CXX]$(NC) $<\n"
+	$(Q)$(CXX) $(DEPFLAGS) -c $(filter-out -flto -fstack-protector-strong -mstack-protector-guard=global,$(CXXFLAGS)) -fno-lto -fno-stack-protector $< -o $@
 
 build/x86_64/%.c.o: src/impl/x86_64/%.c Makefile base.mk $(KERNEL_BUILD_CFG) | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)

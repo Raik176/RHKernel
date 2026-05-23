@@ -22,6 +22,7 @@ extern uint8_t _data_end[];
 
 extern uint8_t _bss_start[];
 extern uint8_t _bss_end[];
+extern uint8_t higher_stack_guard[];
 }
 
 namespace vmm {
@@ -30,6 +31,9 @@ namespace vmm {
                   "Page tables must contain exactly 512 entries");
     static_assert(sizeof(uint64_t) * 8 >= 52,
                   "Physical address calculations assume at least 52-bit addresses");
+    static_assert((KSTACK_BASE & (pmm::PAGE_SIZE - 1)) == 0, "KSTACK_BASE must be page-aligned");
+    static_assert((KSTACK_SIZE & (pmm::PAGE_SIZE - 1)) == 0, "KSTACK_SIZE must be page-aligned");
+    static_assert(KSTACK_BASE + KSTACK_SIZE <= MMIO_BASE, "Kernel stacks must not overlap MMIO");
     static_assert(512 == (1 << 9), "Page table indexing assumes 9-bit levels");
 
     static bool supports_2mb_pages = false;
@@ -43,6 +47,7 @@ namespace vmm {
     static uint64_t current_pml4_phys = 0;
 
     static VirtualRangeAllocator *mmio_allocator = nullptr;
+    static VirtualRangeAllocator *kstack_allocator = nullptr;
     static spinlock_t tlb_shootdown_lock;
 
     static inline void invlpg(uint64_t virt) {
@@ -199,9 +204,12 @@ namespace vmm {
         map_range((uint64_t)_data_start, (uint64_t)_data_start - KERNEL_VIRT_OFFSET,
                   (uint64_t)_data_end - (uint64_t)_data_start,
                   PageFlags::Write | PageFlags::NX | PageFlags::Global);
-        map_range((uint64_t)_bss_start, (uint64_t)_bss_start - KERNEL_VIRT_OFFSET,
-                  (uint64_t)_bss_end - (uint64_t)_bss_start,
-                  PageFlags::Write | PageFlags::NX | PageFlags::Global);
+        for (uint64_t virt = (uint64_t)_bss_start; virt < (uint64_t)_bss_end;
+             virt += pmm::PAGE_SIZE) {
+            if (virt == (uint64_t)higher_stack_guard) continue;
+            map_page(virt, virt - KERNEL_VIRT_OFFSET,
+                     PageFlags::Write | PageFlags::NX | PageFlags::Global, PageSize::Size4K);
+        }
 
         // Keep the physical direct map large enough for both RAM and early MMIO.
         //
@@ -224,6 +232,7 @@ namespace vmm {
 
         asm volatile("mov %0, %%cr3" : : "r"(current_pml4_phys) : "memory");
 
+        kstack_allocator = new VirtualRangeAllocator(KSTACK_BASE, KSTACK_SIZE);
         mmio_allocator = new VirtualRangeAllocator(MMIO_BASE, MMIO_SIZE);
     }
 
@@ -767,6 +776,67 @@ namespace vmm {
             if (seg->next) seg->next->prev = prev_seg;
             heap::kfree(seg);
         }
+    }
+
+    bool kernel_stack_range(void *stack_base, uint64_t usable_size, uint64_t *low_guard,
+                            uint64_t *top) {
+        if (!stack_base || usable_size == 0 || (usable_size & (pmm::PAGE_SIZE - 1)) != 0) {
+            return false;
+        }
+        uint64_t base = reinterpret_cast<uint64_t>(stack_base);
+        if ((base & (pmm::PAGE_SIZE - 1)) != 0) return false;
+        if (base < KSTACK_BASE + pmm::PAGE_SIZE) return false;
+        if (base + usable_size < base) return false;
+        uint64_t high_guard = base + usable_size;
+        if (high_guard + pmm::PAGE_SIZE < high_guard) return false;
+        if (high_guard + pmm::PAGE_SIZE > KSTACK_BASE + KSTACK_SIZE) return false;
+        if (low_guard) *low_guard = base - pmm::PAGE_SIZE;
+        if (top) *top = high_guard;
+        return true;
+    }
+
+    void *alloc_kernel_stack(uint64_t usable_size) {
+        if (!kstack_allocator || usable_size == 0 || (usable_size & (pmm::PAGE_SIZE - 1)) != 0) {
+            return nullptr;
+        }
+
+        uint64_t total_size = usable_size + 2 * pmm::PAGE_SIZE;
+        if (total_size < usable_size) return nullptr;
+
+        uint64_t region = kstack_allocator->allocate(total_size);
+        if (!region) return nullptr;
+
+        uint64_t phys = pmm::alloc(usable_size);
+        if (!phys) {
+            kstack_allocator->free(region);
+            return nullptr;
+        }
+
+        uint64_t base = region + pmm::PAGE_SIZE;
+        map_range(base, phys, usable_size, PageFlags::Write | PageFlags::NX | PageFlags::Global);
+        memset(reinterpret_cast<void *>(base), 0, usable_size);
+        return reinterpret_cast<void *>(base);
+    }
+
+    void free_kernel_stack(void *stack_base, uint64_t usable_size) {
+        uint64_t low_guard = 0;
+        uint64_t top = 0;
+        if (!kernel_stack_range(stack_base, usable_size, &low_guard, &top)) {
+            kpanic("VMM: invalid kernel stack free");
+        }
+
+        uint64_t base = reinterpret_cast<uint64_t>(stack_base);
+        uint64_t first_phys = get_mapping(base);
+        if (!first_phys) kpanic("VMM: kernel stack missing mapping");
+
+        for (uint64_t off = 0; off < usable_size; off += pmm::PAGE_SIZE) {
+            uint64_t phys = get_mapping(base + off);
+            if (!phys || phys != first_phys + off) kpanic("VMM: corrupt kernel stack mapping");
+            unmap_page(base + off);
+        }
+
+        pmm::free(first_phys, usable_size);
+        kstack_allocator->free(low_guard);
     }
 
     static void *mmio_map_with_flags(uint64_t phys_addr, uint64_t size, PageFlags flags) {

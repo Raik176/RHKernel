@@ -12,6 +12,7 @@
 #include "memory/vmm.h"
 #include "multiboot2.h"
 #include "security/random.h"
+#include "security/stack_protector.h"
 #include "mod/fs.h"
 #include "smp/apic.h"
 #include "smp/ioapic.h"
@@ -21,9 +22,10 @@
 #include "util.h"
 #include "vga.h"
 
-extern "C" void kmain(uint64_t mb_phys_addr) __attribute__((used));
+extern "C" void kmain(uint64_t mb_phys_addr) __attribute__((used, no_stack_protector));
 
 extern "C" void kmain(uint64_t mb_phys_addr) {
+    stack_protector::init(mb_phys_addr);
     {
         uint8_t *mb_info = (uint8_t *)(uintptr_t)mb_phys_addr;
         multiboot_tag_framebuffer *fb_tag = nullptr;

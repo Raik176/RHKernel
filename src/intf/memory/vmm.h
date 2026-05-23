@@ -7,6 +7,8 @@
 namespace vmm {
     static constexpr uint64_t MMIO_BASE = 0xFFFFFF0000000000ULL;
     static constexpr uint64_t MMIO_SIZE = 0x2000000000ULL;
+    static constexpr uint64_t KSTACK_BASE = 0xFFFFFE8000000000ULL;
+    static constexpr uint64_t KSTACK_SIZE = 0x8000000000ULL;
 
     /**
      * @brief Page table entry flags for x86-64 paging.
@@ -153,6 +155,11 @@ namespace vmm {
         Segment *m_head;
         spinlock_t m_lock;
     };
+
+    void *alloc_kernel_stack(uint64_t usable_size);
+    void free_kernel_stack(void *stack_base, uint64_t usable_size);
+    bool kernel_stack_range(void *stack_base, uint64_t usable_size, uint64_t *low_guard,
+                            uint64_t *top);
 
     void *mmio_map(uint64_t phys_addr, uint64_t size);
     void *mmio_map_wc(uint64_t phys_addr, uint64_t size);

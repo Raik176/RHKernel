@@ -165,8 +165,9 @@ namespace smp {
 
     void boot_core(uint8_t lapic_id, uintptr_t trampoline_phys, trampoline_data *data_ptr,
                    uint64_t cpu_index) {
-        static constexpr size_t STACK_SIZE = 1024 * 8;
-        void *stack_base = heap::kmalloc(STACK_SIZE);
+        static constexpr size_t STACK_SIZE = scheduler::KERNEL_STACK_SIZE;
+        void *stack_base = vmm::alloc_kernel_stack(STACK_SIZE);
+        if (!stack_base) kpanic("SMP: AP stack allocation failed");
         uintptr_t stack_top = ((uintptr_t)stack_base + STACK_SIZE) & ~0xF;
 
         data_ptr->cr3 = vmm::get_kernel_pagemap();

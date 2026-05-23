@@ -9,6 +9,7 @@ global high_pd_table
 global high_pd_table_end
 global higher_stack_top
 global higher_stack_bottom
+global higher_stack_guard
 extern kmain
 extern pml4_table
 extern page_directory
@@ -107,7 +108,9 @@ setup_higher_half_mapping:
     ret
 
 section .bss
-align 16
+align 4096
+higher_stack_guard:
+    resb 4096
 higher_stack_bottom:
     resb 1024 * 8
 higher_stack_top:
