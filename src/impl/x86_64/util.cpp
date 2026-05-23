@@ -1,6 +1,7 @@
 #include "util.h"
 
 #include "console.h"
+#include "file/module_loader.h"
 #include "smp/apic.h"
 #include "smp/scheduler.h"
 #include "smp/smp.h"
@@ -11,6 +12,22 @@ extern "C" {
 extern uint8_t higher_stack_top[];
 extern uint8_t higher_stack_bottom[];
 }
+
+struct panic_origin {
+    const char *kind;
+    const char *name;
+    bool executable;
+};
+
+static panic_origin classify_code_address(uint64_t address) {
+    const module_loader::LoadedModule *m = module_loader::find_module_containing(address);
+    if (m) return {"module", m->name, module_loader::address_in_module_text(m, address)};
+    if (module_loader::address_in_kernel(address)) {
+        return {"kernel", "kernel", module_loader::address_in_kernel_text(address)};
+    }
+    return {"unknown", "unknown", false};
+}
+
 
 void busy_sleep(uint64_t ms) {
     uint32_t scale = apic::get_tick_scale();
@@ -172,7 +189,7 @@ void hexdump(const void *data, size_t len) {
         console::printf("  %p: ", bytes + i);
         for (size_t j = 0; j < 16; ++j) {
             if (i + j < len)
-                console::printf("%x ", (uint64_t)bytes[i + j]);
+                console::printf("%02x ", (uint64_t)bytes[i + j]);
             else
                 console::printf("   ");
         }
@@ -186,6 +203,59 @@ void hexdump(const void *data, size_t len) {
 }
 
 void dump_memory(const void *data, size_t len) { hexdump(data, len); }
+
+
+static void print_address_origin(const char *label, uint64_t address) {
+    panic_origin o = classify_code_address(address);
+    uintptr_t offset = 0;
+    const char *symbol = symbolicate(address, &offset);
+    console::printf("  %s: %p %s:%s exec=%s <%s+%p>\n", label, address, o.kind, o.name,
+                    o.executable ? "yes" : "no", symbol ? symbol : "unknown", offset);
+}
+
+static void dump_panic_origin(struct regs *r) {
+    panic_origin rip = classify_code_address(r ? r->rip : 0);
+    console::printf("  primary: %s:%s exec=%s\n", rip.kind, rip.name, rip.executable ? "yes" : "no");
+    if (r) {
+        print_address_origin("rip", r->rip);
+        if (r->int_no == 14) print_address_origin("cr2", read_cr2());
+    }
+
+    const char *seen[16];
+    uint64_t seen_count = 0;
+    bool kernel_seen = false;
+    uint64_t rbp = r ? r->rbp : 0;
+    struct stack_frame {
+        struct stack_frame *next;
+        uint64_t return_address;
+    };
+
+    for (stack_frame *frame = (stack_frame *)rbp; frame && seen_count < 16;) {
+        if (!valid_kernel_stack_frame((uint64_t)frame)) break;
+        panic_origin o = classify_code_address(frame->return_address);
+        if (strcmp(o.kind, "kernel") == 0) {
+            kernel_seen = true;
+        } else if (strcmp(o.kind, "module") == 0) {
+            bool exists = false;
+            for (uint64_t i = 0; i < seen_count; i++) {
+                if (strcmp(seen[i], o.name) == 0) { exists = true; break; }
+            }
+            if (!exists) seen[seen_count++] = o.name;
+        }
+        if ((uint64_t)frame->next <= (uint64_t)frame) break;
+        frame = frame->next;
+    }
+
+    console::printf("  stack: kernel=%s modules=", kernel_seen ? "yes" : "no");
+    if (seen_count == 0) {
+        console::printf("none\n");
+        return;
+    }
+    for (uint64_t i = 0; i < seen_count; i++) {
+        console::printf("%s%s", i ? "," : "", seen[i]);
+    }
+    console::printf("\n");
+}
 
 static void dump_current_task_summary() {
     smp::cpu_local *cpu = smp::get_cpu();
@@ -234,6 +304,17 @@ void __attribute__((noreturn)) kpanic_at(const char *message, const char *file, 
 
     dump_current_task_summary();
 
+    console::printf("\n--- IMAGE SIZES ---\n");
+    console::printf("  kernel_image_bytes: %d\n", module_loader::kernel_image_size());
+    console::printf("  modules_mapped_bytes: %d\n", module_loader::module_total_mapped_size());
+    for (const module_loader::LoadedModule *m = module_loader::first_module(); m; m = m->next) {
+        console::printf("  module %s: base=%p end=%p mapped=%d image=%d symbols=%d\n",
+                        m->name, m->base, m->end, m->mapped_size, m->image_size, m->symbol_count);
+    }
+
+    console::printf("\n--- PANIC ORIGIN ---\n");
+    dump_panic_origin(r);
+
     console::printf("\n--- FAULT LOCATION ---\n");
     print_symbol_line("RIP", r->rip);
     print_symbol_line("RBP", r->rbp);
@@ -255,13 +336,6 @@ void __attribute__((noreturn)) kpanic_at(const char *message, const char *file, 
         print_stacktrace_from(r->rbp);
     } else {
         print_stacktrace();
-    }
-
-    console::printf("\n--- STACK BYTES NEAR RSP ---\n");
-    if (valid_kernel_stack_frame(r->rsp)) {
-        hexdump((const void *)r->rsp, 128);
-    } else {
-        console::printf("  skipped: RSP %p is not inside the current kernel stack window\n", r->rsp);
     }
 
     console::printf(

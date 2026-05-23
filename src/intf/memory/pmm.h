@@ -110,6 +110,18 @@ namespace pmm {
      */
     size_t get_physical_limit_bytes();
 
+    struct DebugInfo {
+        size_t managed_bytes;
+        size_t free_bytes;
+        size_t system_bytes;
+        size_t physical_limit_bytes;
+        size_t deferred_span_count;
+        size_t free_blocks[MAX_ORDER + 1];
+        size_t free_bytes_by_order[MAX_ORDER + 1];
+    };
+
+    void get_debug_info(DebugInfo *info);
+
     void ref_page(uint64_t phys);
     void unref_page(uint64_t phys);
     uint32_t get_ref(uint64_t phys);

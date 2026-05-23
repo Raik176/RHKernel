@@ -6,7 +6,6 @@
 #include "util.h"
 
 namespace acpi {
-
     static SDTHeader *root_table = nullptr;
     static bool is_xsdt = false;
 

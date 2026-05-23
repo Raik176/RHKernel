@@ -27,7 +27,10 @@ enum SyscallNumbers {
     SYSCALL_CREATE,
     SYSCALL_UNLINK,
     SYSCALL_RENAME,
-    SYSCALL_READDIR
+    SYSCALL_READDIR,
+    SYSCALL_CHDIR,
+    SYSCALL_GETCWD,
+    SYSCALL_FSCTL
 };
 
 #define PROT_READ 0x1
@@ -124,6 +127,10 @@ int isatty(int fd) {
 
 int unlink(const char *path) { return (int)syscall3(SYSCALL_UNLINK, (uint64_t)path, 0, 0); }
 int rename(const char *old_path, const char *new_path) { return (int)syscall3(SYSCALL_RENAME, (uint64_t)old_path, (uint64_t)new_path, 0); }
+int chdir(const char *path) { return (int)syscall3(SYSCALL_CHDIR, (uint64_t)path, 0, 0); }
+char *getcwd(char *buf, size_t size) {
+    return syscall3(SYSCALL_GETCWD, (uint64_t)buf, (uint64_t)size, 0) == 0 ? buf : 0;
+}
 
 int kill(int pid, int sig) {
     // Requires a SYSCALL_KILL

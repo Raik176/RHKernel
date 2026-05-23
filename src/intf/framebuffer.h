@@ -13,6 +13,7 @@ namespace framebuffer {
      * @param fb_tag Pointer to the Multiboot2 framebuffer tag
      */
     void init(multiboot_tag_framebuffer *fb_tag);
+    void remap_wc();
 
     /**
      * @brief Write a single character to the framebuffer

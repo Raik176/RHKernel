@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, sys, struct, math, time
+import os, sys, struct, time
 
 EXT2_SUPER_MAGIC = 0xEF53
 EXT2_GOOD_OLD_REV = 0

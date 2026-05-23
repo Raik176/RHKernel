@@ -5,12 +5,10 @@
 
 static vfs::vfs_node *root_node = nullptr;
 static spinlock_t vfs_lock;
-static constexpr uint64_t VFS_MAX_PATH = 4096;
-static constexpr uint64_t VFS_MAX_NAME = 255;
 
 namespace vfs {
     static char *dup_component(const char *s, uint64_t n) {
-        if (!s || n == 0 || n > VFS_MAX_NAME) return nullptr;
+        if (!s || n == 0) return nullptr;
         char *out = (char *)heap::kmalloc(n + 1);
         if (!out) return nullptr;
         memcpy(out, s, n);
@@ -18,45 +16,49 @@ namespace vfs {
         return out;
     }
 
-    static bool valid_path(const char *path) {
-        if (!path || path[0] != '/') return false;
-        uint64_t len = 0;
-        while (path[len]) {
-            len++;
-            if (len >= VFS_MAX_PATH) return false;
-        }
-        return true;
-    }
+    static bool valid_path(const char *path) { return path && path[0] != 0; }
 
-    static int split_parent(const char *path, vfs_node **parent_out, char **name_out) {
-        if (!valid_path(path) || !parent_out || !name_out) return -1;
+    static const char *trim_trailing_slashes(const char *path, uint64_t *len_out) {
+        if (!path || !len_out) return nullptr;
         uint64_t len = strlen(path);
         while (len > 1 && path[len - 1] == '/') len--;
-        if (len <= 1) return -1;
+        *len_out = len;
+        return path;
+    }
 
-        uint64_t slash = len - 1;
-        while (slash > 0 && path[slash] != '/') slash--;
-        uint64_t name_start = slash + 1;
+    static int split_parent_at(vfs_node *cwd, const char *path, vfs_node **parent_out,
+                               char **name_out) {
+        if (!valid_path(path) || !parent_out || !name_out) return -1;
+
+        uint64_t len = 0;
+        trim_trailing_slashes(path, &len);
+        if (len == 0) return -1;
+        if (len == 1 && path[0] == '/') return -1;
+
+        uint64_t slash = len;
+        while (slash > 0 && path[slash - 1] != '/') slash--;
+
+        uint64_t name_start = slash;
         uint64_t name_len = len - name_start;
-        if (name_len == 0 || name_len > VFS_MAX_NAME) return -1;
+        if (name_len == 0) return -1;
         if ((name_len == 1 && path[name_start] == '.') ||
             (name_len == 2 && path[name_start] == '.' && path[name_start + 1] == '.'))
             return -1;
 
-        char *parent_path = nullptr;
+        vfs_node *parent = nullptr;
         if (slash == 0) {
-            parent_path = dup_component("/", 1);
+            parent = path[0] == '/' ? root_node : cwd;
+        } else if (slash == 1 && path[0] == '/') {
+            parent = root_node;
         } else {
-            parent_path = (char *)heap::kmalloc(slash + 1);
-            if (parent_path) {
-                memcpy(parent_path, path, slash);
-                parent_path[slash] = 0;
-            }
+            uint64_t parent_len = slash;
+            while (parent_len > 1 && path[parent_len - 1] == '/') parent_len--;
+            char *parent_path = dup_component(path, parent_len);
+            if (!parent_path) return -1;
+            parent = open_at(cwd, parent_path);
+            heap::kfree(parent_path);
         }
-        if (!parent_path) return -1;
 
-        vfs_node *parent = open(parent_path);
-        heap::kfree(parent_path);
         if (!parent || parent->type != VfsType::VFS_DIRECTORY) return -1;
 
         char *name = dup_component(path + name_start, name_len);
@@ -109,7 +111,7 @@ namespace vfs {
     vfs_node *get_root() { return root_node; }
 
     vfs_node *finddir(vfs_node *parent, const char *name) {
-        if (!parent || !name || strlen(name) > VFS_MAX_NAME) return nullptr;
+        if (!parent || !name || name[0] == 0) return nullptr;
 
         uint64_t flags;
         vfs_lock.acquire(flags);
@@ -135,11 +137,17 @@ namespace vfs {
         uint64_t i = 0;
         while (curr) {
             if (i == index) {
+                const char *name = curr->name ? curr->name : "";
+                uint64_t len = strlen(name);
+                char *dst = out->name;
+                uint64_t cap = out->name_capacity;
                 memset(out, 0, sizeof(*out));
                 out->inode = curr->inode;
                 out->type = (uint32_t)curr->type;
-                strncpy(out->name, curr->name ? curr->name : "", sizeof(out->name) - 1);
-                out->name[sizeof(out->name) - 1] = 0;
+                out->name_len = len;
+                out->name = dst;
+                out->name_capacity = cap;
+                if (dst && cap > len) memcpy(dst, name, len + 1);
                 return 0;
             }
             i++;
@@ -160,10 +168,7 @@ namespace vfs {
 
             const char *component = p;
             uint64_t len = 0;
-            while (p[len] && p[len] != '/') {
-                len++;
-                if (len > VFS_MAX_NAME) return nullptr;
-            }
+            while (p[len] && p[len] != '/') len++;
 
             if (len == 1 && component[0] == '.') {
                 p += len;
@@ -185,16 +190,21 @@ namespace vfs {
         return curr;
     }
 
-    vfs_node *open(const char *path) {
+    vfs_node *open_at(vfs_node *cwd, const char *path) {
         if (!valid_path(path)) return nullptr;
-        if (strcmp(path, "/") == 0) return root_node;
-        return traverse_relative(root_node, path + 1);
+        if (path[0] == '/') {
+            if (strcmp(path, "/") == 0) return root_node;
+            return traverse_relative(root_node, path + 1);
+        }
+        return traverse_relative(cwd ? cwd : root_node, path);
     }
 
-    vfs_node *create(const char *path, VfsType type) {
+    vfs_node *open(const char *path) { return open_at(root_node, path); }
+
+    vfs_node *create_at(vfs_node *cwd, const char *path, VfsType type) {
         vfs_node *parent = nullptr;
         char *name = nullptr;
-        if (split_parent(path, &parent, &name) != 0) return nullptr;
+        if (split_parent_at(cwd ? cwd : root_node, path, &parent, &name) != 0) return nullptr;
         vfs_node *existing = finddir(parent, name);
         if (existing) {
             heap::kfree(name);
@@ -211,23 +221,28 @@ namespace vfs {
         return rc == 0 ? out : nullptr;
     }
 
-    int unlink(const char *path) {
+    vfs_node *create(const char *path, VfsType type) { return create_at(root_node, path, type); }
+
+    int unlink_at(vfs_node *cwd, const char *path) {
         vfs_node *parent = nullptr;
         char *name = nullptr;
-        if (split_parent(path, &parent, &name) != 0) return -1;
+        if (split_parent_at(cwd ? cwd : root_node, path, &parent, &name) != 0) return -1;
         int rc = parent->unlink ? parent->unlink(parent, name) : -1;
         if (rc == 0) remove_cached_child(parent, name);
         heap::kfree(name);
         return rc;
     }
 
-    int rename(const char *old_path, const char *new_path) {
+    int unlink(const char *path) { return unlink_at(root_node, path); }
+
+    int rename_at(vfs_node *cwd, const char *old_path, const char *new_path) {
+        vfs_node *base = cwd ? cwd : root_node;
         vfs_node *old_parent = nullptr;
         vfs_node *new_parent = nullptr;
         char *old_name = nullptr;
         char *new_name = nullptr;
-        if (split_parent(old_path, &old_parent, &old_name) != 0) return -1;
-        if (split_parent(new_path, &new_parent, &new_name) != 0) {
+        if (split_parent_at(base, old_path, &old_parent, &old_name) != 0) return -1;
+        if (split_parent_at(base, new_path, &new_parent, &new_name) != 0) {
             heap::kfree(old_name);
             return -1;
         }
@@ -239,6 +254,10 @@ namespace vfs {
         heap::kfree(old_name);
         heap::kfree(new_name);
         return rc;
+    }
+
+    int rename(const char *old_path, const char *new_path) {
+        return rename_at(root_node, old_path, new_path);
     }
 
     int truncate(vfs_node *node, uint64_t size) {

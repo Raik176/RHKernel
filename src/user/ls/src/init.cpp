@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 #define SYSCALL_WRITE 0
 #define SYSCALL_READDIR 19
@@ -15,7 +16,9 @@
 struct dirent64 {
     uint32_t inode;
     uint32_t type;
-    char name[256];
+    uint64_t name_len;
+    char *name;
+    uint64_t name_capacity;
 };
 
 static inline uint64_t syscall3(uint64_t num, uint64_t a1, uint64_t a2, uint64_t a3) {
@@ -46,6 +49,27 @@ static void print_usage(void) {
     err("usage: ls [-a] [-1] [-F] [path...]\n");
 }
 
+static int read_dirent(const char *path, uint64_t index, struct dirent64 *de) {
+    de->name = nullptr;
+    de->name_capacity = 0;
+    int64_t r = (int64_t)syscall3(SYSCALL_READDIR, (uintptr_t)path, index, (uintptr_t)de);
+    if (r == -1) return -1;
+
+    uint64_t cap = de->name_len + 1;
+    char *name = (char *)malloc(cap ? cap : 1);
+    if (!name) return -1;
+
+    de->name = name;
+    de->name_capacity = cap;
+    r = (int64_t)syscall3(SYSCALL_READDIR, (uintptr_t)path, index, (uintptr_t)de);
+    if (r < 0) {
+        free(name);
+        de->name = nullptr;
+        return -1;
+    }
+    return 0;
+}
+
 static int list_one(const char *path, int show_all, int one_per_line, int classify, int print_header) {
     struct dirent64 de;
     uint64_t idx = 0;
@@ -58,17 +82,20 @@ static int list_one(const char *path, int show_all, int one_per_line, int classi
     }
 
     for (;;) {
-        int64_t r = (int64_t)syscall3(SYSCALL_READDIR, (uintptr_t)path, idx, (uintptr_t)&de);
-        if (r < 0) break;
+        if (read_dirent(path, idx, &de) != 0) break;
         idx++;
 
-        if (!show_all && is_hidden(de.name)) continue;
+        if (!show_all && is_hidden(de.name)) {
+            free(de.name);
+            continue;
+        }
 
         if (any && !one_per_line) out("  ");
         out(de.name);
         out(type_suffix(de.type, classify));
         if (one_per_line) out("\n");
         any = 1;
+        free(de.name);
     }
 
     if (idx == 0) {
@@ -102,7 +129,7 @@ int main(int argc, char **argv) {
     }
 
     int path_count = argc - first_path;
-    if (path_count <= 0) return list_one("/", show_all, one_per_line, classify, 0);
+    if (path_count <= 0) return list_one(".", show_all, one_per_line, classify, 0);
 
     int rc = 0;
     for (int i = first_path; i < argc; i++) {

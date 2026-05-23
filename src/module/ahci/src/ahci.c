@@ -93,9 +93,10 @@
 
 #define FIS_TYPE_REG_H2D 0x27
 
-#define AHCI_SECTOR_SIZE 512u
+#define AHCI_LEGACY_SECTOR_SIZE 512u
+#define AHCI_MAX_LOGICAL_SECTOR_SIZE 4096u
 #define AHCI_MAX_SECTORS 256u
-#define AHCI_BOUNCE_SIZE (AHCI_SECTOR_SIZE * AHCI_MAX_SECTORS)
+#define AHCI_BOUNCE_SIZE (AHCI_MAX_LOGICAL_SECTOR_SIZE * AHCI_MAX_SECTORS)
 #define AHCI_PORT_DMA_SIZE 16384u
 #define AHCI_DISK_NAME_MAX 40
 #define AHCI_PART_NAME_MAX 48
@@ -171,6 +172,8 @@ struct ahci_disk {
     void *bounce_raw;
     void *port_dma_raw;
     spinlock_t lock;
+    spinlock_t bounce_lock;
+    uint32_t active_slots;
     struct ahci_partition *partitions;
 };
 
@@ -252,13 +255,29 @@ static int ahci_start_port(struct ahci_controller *ctrl, int port) {
     return 0;
 }
 
-static int ahci_find_slot(struct ahci_controller *ctrl, int port) {
-    uint32_t slots = *ahci_port_reg(ctrl, port, AHCI_PxSACT) | *ahci_port_reg(ctrl, port, AHCI_PxCI);
+static int ahci_reserve_slot(struct ahci_disk *disk) {
+    struct ahci_controller *ctrl = disk->ctrl;
+    int port = disk->port_no;
+    uint64_t flags;
+    spinlock_acquire(&disk->lock, &flags);
+    uint32_t slots = *ahci_port_reg(ctrl, port, AHCI_PxSACT) | *ahci_port_reg(ctrl, port, AHCI_PxCI) | disk->active_slots;
     uint8_t command_slots = ctrl->command_slots ? ctrl->command_slots : 1;
     for (uint8_t i = 0; i < command_slots; i++) {
-        if ((slots & (1u << i)) == 0) return i;
+        if ((slots & (1u << i)) == 0) {
+            disk->active_slots |= 1u << i;
+            spinlock_release(&disk->lock, flags);
+            return i;
+        }
     }
+    spinlock_release(&disk->lock, flags);
     return -1;
+}
+
+static void ahci_release_slot(struct ahci_disk *disk, int slot) {
+    uint64_t flags;
+    spinlock_acquire(&disk->lock, &flags);
+    disk->active_slots &= ~(1u << slot);
+    spinlock_release(&disk->lock, flags);
 }
 
 static enum irq_return ahci_irq_handler(void *priv) {
@@ -294,11 +313,32 @@ static void ahci_clear_interrupts(struct ahci_controller *ctrl) {
     *ahci_reg(ctrl, AHCI_IS) = 0xFFFFFFFFu;
 }
 
-static bool ahci_dma_range_supported(struct ahci_controller *ctrl, uint64_t phys, uint32_t bytes) {
+static bool ahci_dma_range_supported(struct ahci_controller *ctrl, uint64_t phys, uint64_t bytes) {
     if (!bytes) return false;
     if (UINT64_MAX - phys < bytes - 1) return false;
     if (ctrl->supports_64bit_dma) return true;
     return phys + bytes - 1 <= UINT32_MAX;
+}
+
+static bool ahci_size_mul_ok(uint64_t a, uint64_t b, uint64_t *out) {
+    if (a && b > UINT64_MAX / a) return false;
+    *out = a * b;
+    return true;
+}
+
+static bool ahci_sector_buffer_valid(struct ahci_disk *disk, uint32_t sectors, uint32_t *bytes_out) {
+    uint64_t bytes;
+    if (!disk || sectors == 0) return false;
+    if (!ahci_size_mul_ok(sectors, disk->sector_size, &bytes)) return false;
+    if (bytes > AHCI_BOUNCE_SIZE || bytes > UINT32_MAX) return false;
+    *bytes_out = (uint32_t)bytes;
+    return true;
+}
+
+static uint32_t ahci_max_transfer_sectors(struct ahci_disk *disk) {
+    if (!disk || disk->sector_size == 0) return 0;
+    uint32_t max = AHCI_BOUNCE_SIZE / disk->sector_size;
+    return max > AHCI_MAX_SECTORS ? AHCI_MAX_SECTORS : max;
 }
 
 static void ahci_recover_port(struct ahci_controller *ctrl, int port) {
@@ -314,6 +354,7 @@ static int ahci_command(struct ahci_disk *disk, uint8_t command, uint64_t lba, u
     struct ahci_controller *ctrl = disk->ctrl;
     int port = disk->port_no;
 
+    if (count == 0) count = AHCI_MAX_SECTORS;
     if (bytes == 0 || bytes > AHCI_BOUNCE_SIZE || lba > 0x0000FFFFFFFFFFFFULL) return -1;
 
     volatile uint32_t *tfd = ahci_port_reg(ctrl, port, AHCI_PxTFD);
@@ -321,7 +362,7 @@ static int ahci_command(struct ahci_disk *disk, uint8_t command, uint64_t lba, u
     while ((*tfd & (AHCI_TFD_BSY | AHCI_TFD_DRQ)) && spin--) asm volatile("pause");
     if (*tfd & (AHCI_TFD_BSY | AHCI_TFD_DRQ)) return -1;
 
-    int slot = ahci_find_slot(ctrl, port);
+    int slot = ahci_reserve_slot(disk);
     if (slot < 0) return -1;
 
     uint64_t cmdlist_phys = ((uint64_t)(*ahci_port_reg(ctrl, port, AHCI_PxCLBU)) << 32) |
@@ -339,7 +380,7 @@ static int ahci_command(struct ahci_disk *disk, uint8_t command, uint64_t lba, u
     hdr->prdbc = 0;
 
     uint64_t buf_phys = ahci_v2p(buffer);
-    if (!ahci_dma_range_supported(ctrl, buf_phys, bytes)) return -1;
+    if (!ahci_dma_range_supported(ctrl, buf_phys, bytes)) { ahci_release_slot(disk, slot); return -1; }
     tbl->prdt[0].dba = (uint32_t)buf_phys;
     tbl->prdt[0].dbau = (uint32_t)(buf_phys >> 32);
     tbl->prdt[0].dbc_i = (bytes - 1) | (1u << 31);
@@ -367,22 +408,23 @@ static int ahci_command(struct ahci_disk *disk, uint8_t command, uint64_t lba, u
     while (timeout--) {
         uint32_t ci = *ahci_port_reg(ctrl, port, AHCI_PxCI);
         uint32_t is = *ahci_port_reg(ctrl, port, AHCI_PxIS) | ctrl->port_irq[port];
-        if (is & AHCI_PxIS_ERROR) { ahci_recover_port(ctrl, port); return -1; }
+        if (is & AHCI_PxIS_ERROR) { ahci_recover_port(ctrl, port); ahci_release_slot(disk, slot); return -1; }
         if ((ci & (1u << slot)) == 0) break;
         if (ctrl->irq_pending & (1u << port)) {
             ctrl->irq_pending &= ~(1u << port);
         }
         asm volatile("pause");
     }
-    if (*ahci_port_reg(ctrl, port, AHCI_PxCI) & (1u << slot)) { ahci_recover_port(ctrl, port); return -1; }
+    if (*ahci_port_reg(ctrl, port, AHCI_PxCI) & (1u << slot)) { ahci_recover_port(ctrl, port); ahci_release_slot(disk, slot); return -1; }
 
-    if ((*ahci_port_reg(ctrl, port, AHCI_PxIS) | ctrl->port_irq[port]) & AHCI_PxIS_ERROR) { ahci_recover_port(ctrl, port); return -1; }
+    if ((*ahci_port_reg(ctrl, port, AHCI_PxIS) | ctrl->port_irq[port]) & AHCI_PxIS_ERROR) { ahci_recover_port(ctrl, port); ahci_release_slot(disk, slot); return -1; }
+    ahci_release_slot(disk, slot);
     return 0;
 }
 
 static int ahci_identify(struct ahci_disk *disk) {
-    memset(disk->bounce, 0, AHCI_SECTOR_SIZE);
-    if (ahci_command(disk, ATA_CMD_IDENTIFY, 0, 1, disk->bounce, AHCI_SECTOR_SIZE, 0) != 0) {
+    memset(disk->bounce, 0, AHCI_LEGACY_SECTOR_SIZE);
+    if (ahci_command(disk, ATA_CMD_IDENTIFY, 0, 1, disk->bounce, AHCI_LEGACY_SECTOR_SIZE, 0) != 0) {
         return -1;
     }
 
@@ -393,92 +435,139 @@ static int ahci_identify(struct ahci_disk *disk) {
     } else {
         disk->sectors = ((uint32_t)id[61] << 16) | id[60];
     }
-    disk->sector_size = AHCI_SECTOR_SIZE;
+    disk->sector_size = AHCI_LEGACY_SECTOR_SIZE;
+    if ((id[106] & (1u << 14)) && !(id[106] & (1u << 15)) && (id[106] & (1u << 12))) {
+        uint32_t words = ((uint32_t)id[118] << 16) | id[117];
+        uint64_t bytes = (uint64_t)words * 2u;
+        if (bytes < AHCI_LEGACY_SECTOR_SIZE || bytes > AHCI_MAX_LOGICAL_SECTOR_SIZE ||
+            (bytes & (bytes - 1)) != 0) {
+            klog(LOG_WARN, "AHCI: unsupported logical sector size %x:%x on port %d\n",
+                 (uint32_t)(bytes >> 32), (uint32_t)bytes, disk->port_no);
+            return -1;
+        }
+        disk->sector_size = (uint32_t)bytes;
+    }
     return disk->sectors ? 0 : -1;
 }
 
 static int ahci_rw_sectors(struct ahci_disk *disk, uint64_t lba, uint32_t sectors, int write) {
     uint8_t cmd = write ? ATA_CMD_WRITE_DMA_EXT : ATA_CMD_READ_DMA_EXT;
-    uint16_t count = (sectors == 256) ? 0 : (uint16_t)sectors;
-    return ahci_command(disk, cmd, lba, count, disk->bounce, sectors * AHCI_SECTOR_SIZE, write);
+    uint32_t bytes = 0;
+    if (!ahci_sector_buffer_valid(disk, sectors, &bytes)) return -1;
+    uint16_t count = (sectors == AHCI_MAX_SECTORS) ? 0 : (uint16_t)sectors;
+    return ahci_command(disk, cmd, lba, count, disk->bounce, bytes, write);
+}
+
+static int ahci_rw_sectors_into(struct ahci_disk *disk, uint64_t lba, uint32_t sectors, int write, void *buffer) {
+    uint8_t cmd = write ? ATA_CMD_WRITE_DMA_EXT : ATA_CMD_READ_DMA_EXT;
+    uint32_t bytes = 0;
+    if (!ahci_sector_buffer_valid(disk, sectors, &bytes)) return -1;
+    uint64_t phys = ahci_v2p(buffer);
+    if ((((uintptr_t)buffer & 4095u) + bytes > 4096u) || !ahci_dma_range_supported(disk->ctrl, phys, bytes)) return -1;
+    uint16_t count = (sectors == AHCI_MAX_SECTORS) ? 0 : (uint16_t)sectors;
+    return ahci_command(disk, cmd, lba, count, buffer, bytes, write);
 }
 
 static uint64_t ahci_read_dev(void *priv, uint64_t offset, uint64_t size, uint8_t *buffer) {
     struct ahci_disk *disk = (struct ahci_disk *)priv;
     if (!disk || !buffer || size == 0) return 0;
-    if (offset >= disk->sectors * (uint64_t)disk->sector_size) return 0;
+    uint64_t disk_bytes;
+    if (!ahci_size_mul_ok(disk->sectors, disk->sector_size, &disk_bytes)) return 0;
+    if (offset >= disk_bytes) return 0;
 
-    uint64_t max = disk->sectors * (uint64_t)disk->sector_size - offset;
+    uint64_t max = disk_bytes - offset;
     if (size > max) size = max;
-
-    uint64_t flags;
-    spinlock_acquire(&disk->lock, &flags);
 
     uint64_t done = 0;
     while (done < size) {
         uint64_t abs = offset + done;
-        uint64_t lba = abs / AHCI_SECTOR_SIZE;
-        uint32_t in_sector = (uint32_t)(abs % AHCI_SECTOR_SIZE);
-        uint32_t sectors = AHCI_MAX_SECTORS;
+        uint64_t lba = abs / disk->sector_size;
+        uint32_t in_sector = (uint32_t)(abs % disk->sector_size);
+        uint32_t sectors = ahci_max_transfer_sectors(disk);
         uint64_t remaining = size - done;
 
-        if (in_sector != 0 || remaining < AHCI_SECTOR_SIZE) {
+        if (in_sector != 0 || remaining < disk->sector_size) {
             sectors = 1;
         } else {
-            uint64_t whole = remaining / AHCI_SECTOR_SIZE;
+            uint64_t whole = remaining / disk->sector_size;
             if (whole < sectors) sectors = (uint32_t)whole;
             if (sectors == 0) sectors = 1;
         }
 
-        if (ahci_rw_sectors(disk, lba, sectors, 0) != 0) break;
-
-        uint64_t copy = (uint64_t)sectors * AHCI_SECTOR_SIZE - in_sector;
+        uint64_t copy = (uint64_t)sectors * disk->sector_size - in_sector;
         if (copy > remaining) copy = remaining;
+
+        if (in_sector == 0 && copy == (uint64_t)sectors * disk->sector_size &&
+            ahci_rw_sectors_into(disk, lba, sectors, 0, buffer + done) == 0) {
+            done += copy;
+            continue;
+        }
+
+        uint64_t flags;
+        spinlock_acquire(&disk->bounce_lock, &flags);
+        if (ahci_rw_sectors(disk, lba, sectors, 0) != 0) {
+            spinlock_release(&disk->bounce_lock, flags);
+            break;
+        }
         memcpy(buffer + done, disk->bounce + in_sector, copy);
+        spinlock_release(&disk->bounce_lock, flags);
         done += copy;
     }
 
-    spinlock_release(&disk->lock, flags);
     return done;
 }
 
 static uint64_t ahci_write_dev(void *priv, uint64_t offset, uint64_t size, uint8_t *buffer) {
     struct ahci_disk *disk = (struct ahci_disk *)priv;
     if (!disk || !buffer || size == 0) return 0;
-    if (offset >= disk->sectors * (uint64_t)disk->sector_size) return 0;
+    uint64_t disk_bytes;
+    if (!ahci_size_mul_ok(disk->sectors, disk->sector_size, &disk_bytes)) return 0;
+    if (offset >= disk_bytes) return 0;
 
-    uint64_t max = disk->sectors * (uint64_t)disk->sector_size - offset;
+    uint64_t max = disk_bytes - offset;
     if (size > max) size = max;
-
-    uint64_t flags;
-    spinlock_acquire(&disk->lock, &flags);
 
     uint64_t done = 0;
     while (done < size) {
         uint64_t abs = offset + done;
-        uint64_t lba = abs / AHCI_SECTOR_SIZE;
-        uint32_t in_sector = (uint32_t)(abs % AHCI_SECTOR_SIZE);
+        uint64_t lba = abs / disk->sector_size;
+        uint32_t in_sector = (uint32_t)(abs % disk->sector_size);
         uint64_t remaining = size - done;
-        uint32_t sectors = AHCI_MAX_SECTORS;
+        uint32_t sectors = ahci_max_transfer_sectors(disk);
 
-        if (in_sector != 0 || remaining < AHCI_SECTOR_SIZE) {
+        if (in_sector != 0 || remaining < disk->sector_size) {
             sectors = 1;
-            if (ahci_rw_sectors(disk, lba, 1, 0) != 0) break;
         } else {
-            uint64_t whole = remaining / AHCI_SECTOR_SIZE;
+            uint64_t whole = remaining / disk->sector_size;
             if (whole < sectors) sectors = (uint32_t)whole;
             if (sectors == 0) sectors = 1;
         }
 
-        uint64_t copy = (uint64_t)sectors * AHCI_SECTOR_SIZE - in_sector;
+        uint64_t copy = (uint64_t)sectors * disk->sector_size - in_sector;
         if (copy > remaining) copy = remaining;
+
+        if (in_sector == 0 && copy == (uint64_t)sectors * disk->sector_size &&
+            ahci_rw_sectors_into(disk, lba, sectors, 1, buffer + done) == 0) {
+            done += copy;
+            continue;
+        }
+
+        uint64_t flags;
+        spinlock_acquire(&disk->bounce_lock, &flags);
+        if (ahci_rw_sectors(disk, lba, sectors, 0) != 0) {
+            spinlock_release(&disk->bounce_lock, flags);
+            break;
+        }
         memcpy(disk->bounce + in_sector, buffer + done, copy);
 
-        if (ahci_rw_sectors(disk, lba, sectors, 1) != 0) break;
+        if (ahci_rw_sectors(disk, lba, sectors, 1) != 0) {
+            spinlock_release(&disk->bounce_lock, flags);
+            break;
+        }
+        spinlock_release(&disk->bounce_lock, flags);
         done += copy;
     }
 
-    spinlock_release(&disk->lock, flags);
     return done;
 }
 
@@ -504,20 +593,26 @@ static uint64_t ahci_part_read(void *priv, uint64_t offset, uint64_t size, uint8
     struct ahci_partition *part = (struct ahci_partition *)priv;
     if (!part || !part->disk || !buffer || size == 0) return 0;
 
-    uint64_t bytes = part->sectors * AHCI_SECTOR_SIZE;
+    uint64_t bytes;
+    if (!ahci_size_mul_ok(part->sectors, part->disk->sector_size, &bytes)) return 0;
     if (offset >= bytes) return 0;
     if (size > bytes - offset) size = bytes - offset;
-    return ahci_read_dev(part->disk, part->start_lba * AHCI_SECTOR_SIZE + offset, size, buffer);
+    uint64_t base;
+    if (!ahci_size_mul_ok(part->start_lba, part->disk->sector_size, &base)) return 0;
+    return ahci_read_dev(part->disk, base + offset, size, buffer);
 }
 
 static uint64_t ahci_part_write(void *priv, uint64_t offset, uint64_t size, uint8_t *buffer) {
     struct ahci_partition *part = (struct ahci_partition *)priv;
     if (!part || !part->disk || !buffer || size == 0) return 0;
 
-    uint64_t bytes = part->sectors * AHCI_SECTOR_SIZE;
+    uint64_t bytes;
+    if (!ahci_size_mul_ok(part->sectors, part->disk->sector_size, &bytes)) return 0;
     if (offset >= bytes) return 0;
     if (size > bytes - offset) size = bytes - offset;
-    return ahci_write_dev(part->disk, part->start_lba * AHCI_SECTOR_SIZE + offset, size, buffer);
+    uint64_t base;
+    if (!ahci_size_mul_ok(part->start_lba, part->disk->sector_size, &base)) return 0;
+    return ahci_write_dev(part->disk, base + offset, size, buffer);
 }
 
 static struct device_ops ahci_part_ops = {.read = ahci_part_read, .write = ahci_part_write};
@@ -535,7 +630,13 @@ static int ahci_register_partition(struct ahci_disk *disk, uint64_t start_lba, u
     part->sectors = sectors;
     snprintf(part->name, sizeof(part->name), "%s%d", disk->name, number);
 
-    if (devfs_register_block(part->name, &ahci_part_ops, part, sectors * AHCI_SECTOR_SIZE) != 0) {
+    uint64_t part_bytes;
+    if (!ahci_size_mul_ok(sectors, disk->sector_size, &part_bytes)) {
+        kfree(part);
+        return -1;
+    }
+
+    if (devfs_register_block(part->name, &ahci_part_ops, part, part_bytes) != 0) {
         kfree(part);
         return -1;
     }
@@ -561,7 +662,7 @@ static bool lba_range_valid(struct ahci_disk *disk, uint64_t start, uint64_t sec
 
 static bool byte_range_for_lba_valid(struct ahci_disk *disk, uint64_t start_lba, uint64_t sectors) {
     if (!lba_range_valid(disk, start_lba, sectors)) return false;
-    if (start_lba > UINT64_MAX / AHCI_SECTOR_SIZE || sectors > UINT64_MAX / AHCI_SECTOR_SIZE) return false;
+    if (start_lba > UINT64_MAX / disk->sector_size || sectors > UINT64_MAX / disk->sector_size) return false;
     return true;
 }
 
@@ -608,9 +709,11 @@ static bool gpt_crc_ok(uint8_t *buf, uint32_t size, uint32_t crc_off, uint32_t e
     return actual == expected;
 }
 
-static bool ahci_read_gpt_header(struct ahci_disk *disk, uint64_t lba, uint8_t hdr[AHCI_SECTOR_SIZE]) {
-    if (!disk || lba >= disk->sectors) return false;
-    if (ahci_read_dev(disk, lba * AHCI_SECTOR_SIZE, AHCI_SECTOR_SIZE, hdr) != AHCI_SECTOR_SIZE) return false;
+static bool ahci_read_gpt_header(struct ahci_disk *disk, uint64_t lba, uint8_t *hdr) {
+    if (!disk || !hdr || lba >= disk->sectors) return false;
+    uint64_t off;
+    if (!ahci_size_mul_ok(lba, disk->sector_size, &off)) return false;
+    if (ahci_read_dev(disk, off, disk->sector_size, hdr) != disk->sector_size) return false;
     if (memcmp(hdr, "EFI PART", 8) != 0) return false;
 
     uint32_t revision = rd_le32(hdr + 8);
@@ -625,8 +728,8 @@ static bool ahci_read_gpt_header(struct ahci_disk *disk, uint64_t lba, uint8_t h
     uint32_t entry_size = rd_le32(hdr + 84);
 
     if (revision != 0x00010000u) return false;
-    if (header_size < 92 || header_size > AHCI_SECTOR_SIZE) return false;
-    for (uint32_t i = header_size; i < AHCI_SECTOR_SIZE; i++) if (hdr[i]) return false;
+    if (header_size < 92 || header_size > disk->sector_size) return false;
+    for (uint32_t i = header_size; i < disk->sector_size; i++) if (hdr[i]) return false;
     if (!gpt_crc_ok(hdr, header_size, 16, header_crc)) return false;
     if (current_lba != lba || backup_lba >= disk->sectors || backup_lba == current_lba) return false;
     if (first_usable > last_usable || last_usable >= disk->sectors) return false;
@@ -635,7 +738,7 @@ static bool ahci_read_gpt_header(struct ahci_disk *disk, uint64_t lba, uint8_t h
     if (u64_add_overflows((uint64_t)entry_count, entry_size - 1)) return false;
 
     uint64_t entries_bytes = (uint64_t)entry_count * entry_size;
-    uint64_t entries_sectors = (entries_bytes + AHCI_SECTOR_SIZE - 1) / AHCI_SECTOR_SIZE;
+    uint64_t entries_sectors = (entries_bytes + disk->sector_size - 1) / disk->sector_size;
     if (!byte_range_for_lba_valid(disk, entries_lba, entries_sectors)) return false;
     if (lba_ranges_overlap(entries_lba, entries_sectors, current_lba, 1) ||
         lba_ranges_overlap(entries_lba, entries_sectors, backup_lba, 1) ||
@@ -645,45 +748,71 @@ static bool ahci_read_gpt_header(struct ahci_disk *disk, uint64_t lba, uint8_t h
 }
 
 static bool ahci_has_gpt(struct ahci_disk *disk) {
-    uint8_t hdr[AHCI_SECTOR_SIZE];
-    return ahci_read_gpt_header(disk, 1, hdr);
+    uint8_t *hdr = (uint8_t *)kmalloc(disk->sector_size);
+    if (!hdr) return false;
+    bool ok = ahci_read_gpt_header(disk, 1, hdr);
+    kfree(hdr);
+    return ok;
 }
 
 static bool ahci_gpt_protective_mbr_valid(struct ahci_disk *disk) {
-    uint8_t mbr[AHCI_SECTOR_SIZE];
-    if (ahci_read_dev(disk, 0, AHCI_SECTOR_SIZE, mbr) != AHCI_SECTOR_SIZE) return false;
-    if (mbr[510] != 0x55 || mbr[511] != 0xAA) return false;
+    uint8_t *mbr = (uint8_t *)kmalloc(disk->sector_size);
+    if (!mbr) return false;
+    if (ahci_read_dev(disk, 0, disk->sector_size, mbr) != disk->sector_size) { kfree(mbr); return false; }
+    if (mbr[510] != 0x55 || mbr[511] != 0xAA) { kfree(mbr); return false; }
 
     int protective = 0;
     for (int i = 0; i < 4; i++) {
         uint8_t *ent = mbr + 446 + (i * 16);
-        if (!mbr_entry_valid(disk, ent)) return false;
+        if (!mbr_entry_valid(disk, ent)) { kfree(mbr); return false; }
         if (ent[4] == 0xEE) {
             uint32_t start = rd_le32(ent + 8);
             uint32_t count = rd_le32(ent + 12);
             uint32_t expected = disk->sectors - 1 > UINT32_MAX ? UINT32_MAX : (uint32_t)(disk->sectors - 1);
-            if (start != 1 || count != expected) return false;
+            if (start != 1 || count != expected) { kfree(mbr); return false; }
             protective++;
-        } else if (ent[4] != 0) return false;
+        } else if (ent[4] != 0) { kfree(mbr); return false; }
     }
-    return protective == 1;
+    bool ok = protective == 1;
+    kfree(mbr);
+    return ok;
+}
+
+static bool ahci_mbr_has_protective(struct ahci_disk *disk) {
+    uint8_t *mbr = (uint8_t *)kmalloc(disk->sector_size);
+    if (!mbr) return false;
+    if (ahci_read_dev(disk, 0, disk->sector_size, mbr) != disk->sector_size) { kfree(mbr); return false; }
+    bool protective = false;
+    if (mbr[510] == 0x55 && mbr[511] == 0xAA) {
+        for (int i = 0; i < 4; i++) {
+            if (mbr[446 + i * 16 + 4] == 0xEE) { protective = true; break; }
+        }
+    }
+    kfree(mbr);
+    return protective;
 }
 
 static void ahci_scan_gpt(struct ahci_disk *disk) {
-    uint8_t hdr[AHCI_SECTOR_SIZE];
+    uint8_t *hdr = (uint8_t *)kmalloc(disk->sector_size);
+    if (!hdr) return;
     if (!ahci_gpt_protective_mbr_valid(disk)) {
         klog(LOG_WARN, "AHCI: invalid protective MBR on /dev/%s\n", disk->name);
+        kfree(hdr);
         return;
     }
     if (!ahci_read_gpt_header(disk, 1, hdr)) {
         klog(LOG_WARN, "AHCI: invalid GPT header on /dev/%s\n", disk->name);
+        kfree(hdr);
         return;
     }
 
     uint64_t backup_lba = rd_le64(hdr + 32);
-    uint8_t backup_hdr[AHCI_SECTOR_SIZE];
+    uint8_t *backup_hdr = (uint8_t *)kmalloc(disk->sector_size);
+    if (!backup_hdr) { kfree(hdr); return; }
     if (!ahci_read_gpt_header(disk, backup_lba, backup_hdr)) {
         klog(LOG_WARN, "AHCI: invalid backup GPT header on /dev/%s\n", disk->name);
+        kfree(backup_hdr);
+        kfree(hdr);
         return;
     }
     if (rd_le64(backup_hdr + 32) != 1 || rd_le64(backup_hdr + 40) != rd_le64(hdr + 40) ||
@@ -691,6 +820,8 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
         rd_le32(backup_hdr + 80) != rd_le32(hdr + 80) || rd_le32(backup_hdr + 84) != rd_le32(hdr + 84) ||
         rd_le32(backup_hdr + 88) != rd_le32(hdr + 88)) {
         klog(LOG_WARN, "AHCI: inconsistent GPT headers on /dev/%s\n", disk->name);
+        kfree(backup_hdr);
+        kfree(hdr);
         return;
     }
 
@@ -701,16 +832,28 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
     uint64_t first_usable = rd_le64(hdr + 40);
     uint64_t last_usable = rd_le64(hdr + 48);
     uint64_t entries_bytes = (uint64_t)entry_count * entry_size;
+    uint64_t entries_sectors = (entries_bytes + disk->sector_size - 1) / disk->sector_size;
+    if (rd_le64(backup_hdr + 72) + entries_sectors != backup_lba) {
+        klog(LOG_WARN, "AHCI: invalid backup GPT entry-array placement on /dev/%s\n", disk->name);
+        kfree(backup_hdr);
+        kfree(hdr);
+        return;
+    }
 
+    kfree(backup_hdr);
     uint8_t *entries = (uint8_t *)kmalloc(entries_bytes);
-    if (!entries) return;
-    if (ahci_read_dev(disk, entries_lba * AHCI_SECTOR_SIZE, entries_bytes, entries) != entries_bytes) {
+    if (!entries) { kfree(hdr); return; }
+    uint64_t entries_off;
+    if (!ahci_size_mul_ok(entries_lba, disk->sector_size, &entries_off) ||
+        ahci_read_dev(disk, entries_off, entries_bytes, entries) != entries_bytes) {
         kfree(entries);
+        kfree(hdr);
         return;
     }
     if (crc32_update(0, entries, entries_bytes) != entries_crc) {
         klog(LOG_WARN, "AHCI: invalid GPT entry-array CRC on /dev/%s\n", disk->name);
         kfree(entries);
+        kfree(hdr);
         return;
     }
 
@@ -720,6 +863,7 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
         if (starts) kfree(starts);
         if (counts) kfree(counts);
         kfree(entries);
+        kfree(hdr);
         return;
     }
     uint32_t used = 0;
@@ -740,6 +884,7 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
             kfree(starts);
             kfree(counts);
             kfree(entries);
+            kfree(hdr);
             return;
         }
 
@@ -750,6 +895,7 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
                 kfree(starts);
                 kfree(counts);
                 kfree(entries);
+                kfree(hdr);
                 return;
             }
         }
@@ -762,6 +908,7 @@ static void ahci_scan_gpt(struct ahci_disk *disk) {
     kfree(starts);
     kfree(counts);
     kfree(entries);
+    kfree(hdr);
 }
 
 static bool mbr_type_is_extended(uint8_t type) {
@@ -777,23 +924,32 @@ static bool ahci_mbr_has_overlap(uint64_t starts[4], uint64_t counts[4], int use
     return false;
 }
 
+static bool mbr_entry_basic_valid(const uint8_t *ent) {
+    if (!mbr_boot_valid(ent[0])) return false;
+    if (ent[4] == 0 || rd_le32(ent + 12) == 0) return mbr_entry_is_empty(ent);
+    return true;
+}
+
 static void ahci_scan_ebr(struct ahci_disk *disk, uint32_t base_lba, uint32_t base_count, int *part_no) {
     uint32_t ebr_lba = base_lba;
     uint64_t prev_ebr = 0;
+    uint8_t *ebr = (uint8_t *)kmalloc(disk->sector_size);
+    if (!ebr) return;
     for (int depth = 0; depth < AHCI_MAX_EBR_CHAIN_SCAN && ebr_lba != 0; depth++) {
-        uint8_t ebr[AHCI_SECTOR_SIZE];
-        if (!lba_range_valid(disk, ebr_lba, 1)) return;
-        if (ebr_lba < base_lba || ebr_lba >= (uint64_t)base_lba + base_count) return;
-        if (prev_ebr && ebr_lba <= prev_ebr) return;
+        if (!lba_range_valid(disk, ebr_lba, 1)) break;
+        if (ebr_lba < base_lba || ebr_lba >= (uint64_t)base_lba + base_count) break;
+        if (prev_ebr && ebr_lba <= prev_ebr) break;
         prev_ebr = ebr_lba;
 
-        if (ahci_read_dev(disk, (uint64_t)ebr_lba * AHCI_SECTOR_SIZE, AHCI_SECTOR_SIZE, ebr) != AHCI_SECTOR_SIZE) return;
-        if (ebr[510] != 0x55 || ebr[511] != 0xAA) return;
+        uint64_t ebr_off;
+        if (!ahci_size_mul_ok(ebr_lba, disk->sector_size, &ebr_off) ||
+            ahci_read_dev(disk, ebr_off, disk->sector_size, ebr) != disk->sector_size) break;
+        if (ebr[510] != 0x55 || ebr[511] != 0xAA) break;
 
         for (int i = 0; i < 4; i++) {
             uint8_t *ent = ebr + 446 + i * 16;
-            if (!mbr_entry_valid(disk, ent)) return;
-            if (i >= 2 && !mbr_entry_is_empty(ent)) return;
+            if (!mbr_entry_basic_valid(ent)) goto out;
+            if (i >= 2 && !mbr_entry_is_empty(ent)) goto out;
         }
 
         uint8_t *logical = ebr + 446;
@@ -803,8 +959,8 @@ static void ahci_scan_ebr(struct ahci_disk *disk, uint32_t base_lba, uint32_t ba
         if (logical_type != 0 && logical_count != 0 && !mbr_type_is_extended(logical_type)) {
             uint64_t start = (uint64_t)ebr_lba + logical_rel;
             if (logical_rel == 0 || !lba_range_valid(disk, start, logical_count) ||
-                start < base_lba || start + logical_count > (uint64_t)base_lba + base_count) return;
-            if (ahci_register_partition(disk, start, logical_count, *part_no) != 0) return;
+                start < base_lba || start + logical_count > (uint64_t)base_lba + base_count) goto out;
+            if (ahci_register_partition(disk, start, logical_count, *part_no) != 0) goto out;
             (*part_no)++;
         }
 
@@ -813,16 +969,19 @@ static void ahci_scan_ebr(struct ahci_disk *disk, uint32_t base_lba, uint32_t ba
         uint32_t next_rel = rd_le32(next + 8);
         uint32_t next_count = rd_le32(next + 12);
         if (next_type == 0 && next_count == 0 && next_rel == 0) break;
-        if (!mbr_type_is_extended(next_type) || next_count == 0 || next_rel == 0) return;
-        if (next_rel >= base_count || u64_add_overflows(next_rel, next_count) || next_rel + next_count > base_count) return;
+        if (!mbr_type_is_extended(next_type) || next_count == 0 || next_rel == 0) goto out;
+        if (next_rel >= base_count || u64_add_overflows(next_rel, next_count) || next_rel + next_count > base_count) goto out;
         ebr_lba = base_lba + next_rel;
     }
+out:
+    kfree(ebr);
 }
 
 static void ahci_scan_mbr(struct ahci_disk *disk) {
-    uint8_t mbr[AHCI_SECTOR_SIZE];
-    if (ahci_read_dev(disk, 0, AHCI_SECTOR_SIZE, mbr) != AHCI_SECTOR_SIZE) return;
-    if (mbr[510] != 0x55 || mbr[511] != 0xAA) return;
+    uint8_t *mbr = (uint8_t *)kmalloc(disk->sector_size);
+    if (!mbr) return;
+    if (ahci_read_dev(disk, 0, disk->sector_size, mbr) != disk->sector_size) { kfree(mbr); return; }
+    if (mbr[510] != 0x55 || mbr[511] != 0xAA) { kfree(mbr); return; }
 
     uint64_t starts[4];
     uint64_t counts[4];
@@ -831,6 +990,7 @@ static void ahci_scan_mbr(struct ahci_disk *disk) {
         uint8_t *ent = mbr + 446 + (i * 16);
         if (!mbr_entry_valid(disk, ent)) {
             klog(LOG_WARN, "AHCI: invalid MBR entry on /dev/%s\n", disk->name);
+            kfree(mbr);
             return;
         }
         uint8_t type = ent[4];
@@ -843,6 +1003,7 @@ static void ahci_scan_mbr(struct ahci_disk *disk) {
     }
     if (ahci_mbr_has_overlap(starts, counts, used)) {
         klog(LOG_WARN, "AHCI: overlapping MBR partitions on /dev/%s\n", disk->name);
+        kfree(mbr);
         return;
     }
 
@@ -859,11 +1020,13 @@ static void ahci_scan_mbr(struct ahci_disk *disk) {
         }
         ahci_register_partition(disk, start, count, i + 1);
     }
+    kfree(mbr);
 }
 
 static void ahci_scan_partitions(struct ahci_disk *disk) {
     if (!disk || disk->sectors < 2) return;
     if (ahci_has_gpt(disk)) ahci_scan_gpt(disk);
+    else if (ahci_mbr_has_protective(disk)) klog(LOG_WARN, "AHCI: protective MBR without valid GPT on /dev/%s\n", disk->name);
     else ahci_scan_mbr(disk);
 }
 
@@ -878,6 +1041,11 @@ static int ahci_rebase_port(struct ahci_controller *ctrl, struct ahci_disk *disk
     memset((void *)dma_aligned, 0, AHCI_PORT_DMA_SIZE);
 
     uint64_t phys = ahci_v2p((void *)dma_aligned);
+    if (!ahci_dma_range_supported(ctrl, phys, AHCI_PORT_DMA_SIZE)) {
+        kfree(dma);
+        disk->port_dma_raw = 0;
+        return -1;
+    }
     *ahci_port_reg(ctrl, port, AHCI_PxCLB) = (uint32_t)phys;
     *ahci_port_reg(ctrl, port, AHCI_PxCLBU) = (uint32_t)(phys >> 32);
     *ahci_port_reg(ctrl, port, AHCI_PxFB) = (uint32_t)(phys + 1024);
@@ -914,8 +1082,9 @@ static int ahci_probe_port(struct ahci_controller *ctrl, int port) {
     disk->ctrl = ctrl;
     disk->port_no = port;
     disk->index = ahci_next_disk_index++;
-    disk->sector_size = AHCI_SECTOR_SIZE;
+    disk->sector_size = AHCI_LEGACY_SECTOR_SIZE;
     spinlock_init(&disk->lock);
+    spinlock_init(&disk->bounce_lock);
 
     if (ahci_rebase_port(ctrl, disk) != 0) {
         kfree(disk);
@@ -930,6 +1099,12 @@ static int ahci_probe_port(struct ahci_controller *ctrl, int port) {
         return -1;
     }
     disk->bounce = (uint8_t *)(((uintptr_t)disk->bounce + 4095) & ~4095ULL);
+    if (!ahci_dma_range_supported(ctrl, ahci_v2p(disk->bounce), AHCI_BOUNCE_SIZE)) {
+        if (disk->bounce_raw) kfree(disk->bounce_raw);
+        if (disk->port_dma_raw) kfree(disk->port_dma_raw);
+        kfree(disk);
+        return -1;
+    }
 
     if (ahci_identify(disk) != 0) {
         klog(LOG_WARN, "AHCI: IDENTIFY failed on port %d\n", port);
@@ -948,8 +1123,9 @@ static int ahci_probe_port(struct ahci_controller *ctrl, int port) {
         return -1;
     }
 
-    if (devfs_register_block(disk->name, &ahci_disk_ops, disk,
-                             disk->sectors * AHCI_SECTOR_SIZE) != 0) {
+    uint64_t disk_bytes;
+    if (!ahci_size_mul_ok(disk->sectors, disk->sector_size, &disk_bytes) ||
+        devfs_register_block(disk->name, &ahci_disk_ops, disk, disk_bytes) != 0) {
         if (disk->bounce_raw) kfree(disk->bounce_raw);
         if (disk->port_dma_raw) kfree(disk->port_dma_raw);
         kfree(disk);
@@ -957,8 +1133,8 @@ static int ahci_probe_port(struct ahci_controller *ctrl, int port) {
     }
 
     ctrl->ports[port] = disk;
-    klog(LOG_INFO, "AHCI: registered block /dev/%s port=%d sectors=%x:%x\n", disk->name, port,
-         (uint32_t)(disk->sectors >> 32), (uint32_t)disk->sectors);
+    klog(LOG_INFO, "AHCI: registered block /dev/%s port=%d sectors=%x:%x sector_size=%d\n", disk->name, port,
+         (uint32_t)(disk->sectors >> 32), (uint32_t)disk->sectors, disk->sector_size);
     ahci_scan_partitions(disk);
     return 0;
 }

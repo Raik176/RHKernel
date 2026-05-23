@@ -5,11 +5,13 @@
 #include "file/initramfs.h"
 #include "file/module_loader.h"
 #include "file/vfs.h"
+#include "framebuffer.h"
 #include "gdt.h"
 #include "idt.h"
 #include "memory/pmm.h"
 #include "memory/vmm.h"
 #include "multiboot2.h"
+#include "security/random.h"
 #include "mod/fs.h"
 #include "smp/apic.h"
 #include "smp/ioapic.h"
@@ -18,24 +20,6 @@
 #include "symbol/ksym.h"
 #include "util.h"
 #include "vga.h"
-
-static void debug_dump_vfs(vfs::vfs_node *node, int depth) {
-    while (node) {
-        for (int i = 0; i < depth; i++) console::printf("  ");
-
-        const char *prefix = "- ";
-        if (node->type == vfs::VfsType::VFS_DIRECTORY)
-            prefix = "D ";
-        else if (node->type == vfs::VfsType::VFS_CHAR_DEVICE)
-            prefix = "C ";
-
-        console::printf("%s%s (%d bytes)\n", prefix, node->name, node->size);
-
-        if (node->child) { debug_dump_vfs(node->child, depth + 1); }
-
-        node = node->next;
-    }
-}
 
 extern "C" void kmain(uint64_t mb_phys_addr) __attribute__((used));
 
@@ -75,6 +59,7 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     console::printf("[ OK ] PMM bootstrap initialized.\n");
 
     vmm::init();
+    framebuffer::remap_wc();
     console::printf("[ OK ] VMM initialized.\n");
 
     pmm::release_deferred_memory();
@@ -100,16 +85,14 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     apic::init();
     console::printf("[ OK ] APIC initialized.\n");
     ioapic::init();
-    console::printf("[ OK] IOAPIC initialized.\n");
+    console::printf("[ OK ] IOAPIC initialized.\n");
 
     smp::init_bsp();
 
     scheduler::init_core();
 
-    __asm__ volatile("sti");
-
-    smp::init_aps();
-    console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
+    random::init();
+    console::printf("[ OK ] Random generator initialized.\n");
 
     module_loader::init();
 
@@ -120,19 +103,27 @@ extern "C" void kmain(uint64_t mb_phys_addr) {
     module_loader::load_module("/lib/modules/pci_bridge.ko");
     module_loader::load_module("/lib/modules/ahci.ko");
     module_loader::load_module("/lib/modules/ext2.ko");
+    module_loader::load_module("/lib/modules/vfat.ko");
 
     vfs::vfs_node *mnt = vfs::finddir(vfs::get_root(), "mnt");
     if (!mnt) mnt = vfs::create_node("mnt", vfs::VfsType::VFS_DIRECTORY, vfs::get_root());
-    if (mnt && !vfs::finddir(mnt, "ext2")) {
-        vfs::create_node("ext2", vfs::VfsType::VFS_DIRECTORY, mnt);
-    }
-    fs_mount("/dev/sdc", "/mnt/ext2", "ext2", "rw");
+    if (mnt && !vfs::finddir(mnt, "ext2")) vfs::create_node("ext2", vfs::VfsType::VFS_DIRECTORY, mnt);
+    if (mnt && !vfs::finddir(mnt, "fat12")) vfs::create_node("fat12", vfs::VfsType::VFS_DIRECTORY, mnt);
+    if (mnt && !vfs::finddir(mnt, "fat16")) vfs::create_node("fat16", vfs::VfsType::VFS_DIRECTORY, mnt);
+    if (mnt && !vfs::finddir(mnt, "fat32")) vfs::create_node("fat32", vfs::VfsType::VFS_DIRECTORY, mnt);
+    fs_mount("/dev/sdf", "/mnt/ext2", "ext2", "rw");
+    fs_mount("/dev/sda", "/mnt/fat12", "vfat", "rw");
+    fs_mount("/dev/sdb", "/mnt/fat16", "vfat", "rw");
+    fs_mount("/dev/sdc", "/mnt/fat32", "vfat", "rw");
 
-    debug_dump_vfs(vfs::get_root(), 0);
+    __asm__ volatile("sti");
+    smp::init_aps();
+    console::printf("[ OK ] SMP and scheduler initialized with %d cores.\n", smp::get_core_count());
 
     auto info = elf::load("/bin/init");
     if (info.pml4 != 0) {
-        scheduler::spawn(scheduler::task_type::USER, (void (*)())info.entry, info.pml4, info.heap_start);
+        scheduler::spawn(scheduler::task_type::USER, (void (*)())info.entry, info.pml4,
+                         info.heap_start, &info);
     }
 
     for (;;) { asm volatile("hlt"); }

@@ -34,24 +34,66 @@ namespace smp {
         return cpu_table[index];
     }
 
+    static void cpuid(uint32_t leaf, uint32_t subleaf, uint32_t &eax, uint32_t &ebx,
+                      uint32_t &ecx, uint32_t &edx) {
+        asm volatile("cpuid"
+                     : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx)
+                     : "a"(leaf), "c"(subleaf));
+    }
+
+    static uint64_t xgetbv(uint32_t index) {
+        uint32_t eax = 0, edx = 0;
+        asm volatile("xgetbv" : "=a"(eax), "=d"(edx) : "c"(index));
+        return ((uint64_t)edx << 32) | eax;
+    }
+
     void enable_optional_cpu_features() {
-        uint32_t eax, ebx, ecx, edx;
-
-        eax = 7;
-        ecx = 0;
-        asm volatile("cpuid" : "=b"(ebx), "=a"(eax), "=c"(ecx), "=d"(edx) : "a"(eax), "c"(ecx));
-
+        uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
         cpu_features feat = get_cpu()->cpu_features;
+        bool cpu_xsave = false;
+        bool cpu_avx = false;
+        bool cpu_pat = false;
+        bool cpu_fsgsbase = false;
 
-        feat.smep = (ebx & (1 << 7)) != 0;
-        feat.smap = (ebx & (1 << 20)) != 0;
+        cpuid(0, 0, eax, ebx, ecx, edx);
+        uint32_t max_basic_leaf = eax;
+
+        if (max_basic_leaf >= 1) {
+            cpuid(1, 0, eax, ebx, ecx, edx);
+            feat.pge = (edx & (1u << 13)) != 0;
+            cpu_pat = (edx & (1u << 16)) != 0;
+            cpu_xsave = (ecx & (1u << 26)) != 0;
+            cpu_avx = (ecx & (1u << 28)) != 0;
+        }
+
+        if (max_basic_leaf >= 7) {
+            cpuid(7, 0, eax, ebx, ecx, edx);
+            cpu_fsgsbase = (ebx & (1u << 0)) != 0;
+            feat.smep = (ebx & (1u << 7)) != 0;
+            feat.smap = (ebx & (1u << 20)) != 0;
+            feat.umip = (ecx & (1u << 2)) != 0;
+        }
 
         uint64_t cr4;
         asm volatile("mov %%cr4, %0" : "=r"(cr4));
+        if (feat.pge) { cr4 |= (1ULL << 7); }
+        if (feat.umip) { cr4 |= (1ULL << 11); }
         if (feat.smep) { cr4 |= (1ULL << 20); }
         if (feat.smap) { cr4 |= (1ULL << 21); }
         asm volatile("mov %0, %%cr4" ::"r"(cr4));
+        asm volatile("mov %%cr4, %0" : "=r"(cr4));
 
+        uint64_t xcr0 = (cr4 & (1ULL << 18)) ? xgetbv(0) : 0;
+        feat.pge = (cr4 & (1ULL << 7)) != 0;
+        feat.umip = (cr4 & (1ULL << 11)) != 0;
+        feat.smep = (cr4 & (1ULL << 20)) != 0;
+        feat.smap = (cr4 & (1ULL << 21)) != 0;
+        feat.pat = cpu_pat;
+        feat.wc = cpu_pat;
+        feat.xsave = cpu_xsave && ((xcr0 & 0x3) == 0x3);
+        feat.avx = cpu_xsave && cpu_avx && ((xcr0 & 0x7) == 0x7);
+        feat.fsgsbase_supported = cpu_fsgsbase;
+        feat.fsgsbase = false;
         get_cpu()->cpu_features = feat;
     }
 
@@ -110,9 +152,16 @@ namespace smp {
         apic::wrmsr(0xC0000101, (uintptr_t)local);  // GS_BASE
         apic::wrmsr(0xC0000102, (uintptr_t)local);  // KERNEL_GS_BASE
 
+        core_count = 1;
+        cpu_table = (cpu_local **)heap::kmalloc(sizeof(cpu_local *));
+        if (!cpu_table) kpanic("SMP: failed to allocate BSP CPU table");
+        cpu_table[0] = local;
+
         gdt::init_core();
         enable_optional_cpu_features();
+
     }
+
 
     void boot_core(uint8_t lapic_id, uintptr_t trampoline_phys, trampoline_data *data_ptr,
                    uint64_t cpu_index) {
@@ -141,8 +190,6 @@ namespace smp {
     }
 
     void init_aps() {
-        core_count = 1;  // include BSP
-
         size_t tram_size = (uintptr_t)trampoline_end - (uintptr_t)trampoline_start;
         memcpy(p2v(TRAM_PHYS), (void *)trampoline_start, tram_size);
 
@@ -160,6 +207,7 @@ namespace smp {
         uintptr_t current = start;
         uintptr_t end = (uintptr_t)madt + madt->header.length;
 
+        uint64_t detected_cores = 1;
         while (current < end) {
             auto *header = (MADTEntryHeader *)current;
 
@@ -167,14 +215,20 @@ namespace smp {
                 auto *lapic = (MADTEntryLAPIC *)current;
                 bool ready = (lapic->flags & 1) || (lapic->flags & 2);
 
-                if (ready && lapic->lapic_id != bsp_id) core_count++;
+                if (ready && lapic->lapic_id != bsp_id) detected_cores++;
             }
 
             current += header->length;
         }
 
-        cpu_table = (cpu_local **)heap::kmalloc(sizeof(cpu_local *) * core_count);
-        cpu_table[0] = get_cpu();
+        cpu_local **old_table = cpu_table;
+        cpu_local *bsp_local = get_cpu();
+        cpu_local **new_table = (cpu_local **)heap::kmalloc(sizeof(cpu_local *) * detected_cores);
+        if (!new_table) kpanic("SMP: failed to allocate CPU table");
+        memset(new_table, 0, sizeof(cpu_local *) * detected_cores);
+        new_table[0] = bsp_local;
+        cpu_table = new_table;
+        if (old_table) heap::kfree(old_table);
 
         current = start;
         core_count = 1;
@@ -187,18 +241,22 @@ namespace smp {
                 bool ready = (lapic->flags & 1) || (lapic->flags & 2);
 
                 if (ready && lapic->lapic_id != bsp_id) {
+                    uint64_t cpu_index = core_count;
+
                     console::printf("[SMP] Booting AP (LAPIC %d)... ", lapic->lapic_id);
-                    boot_core(lapic->lapic_id, TRAM_PHYS, data, core_count++);
+                    boot_core(lapic->lapic_id, TRAM_PHYS, data, cpu_index);
 
                     uint32_t wait_count = 0;
                     while (data->status == 0 && wait_count < 100) {
-                        busy_sleep(100);
+                        busy_sleep(10);
                         wait_count++;
                     }
 
-                    if (data->status == 1) {
+                    if (data->status == 1 && cpu_table[cpu_index]) {
+                        core_count = cpu_index + 1;
                         console::printf("Success.\n");
                     } else {
+                        cpu_table[cpu_index] = nullptr;
                         console::printf("Failure.\n");
                     }
                 }

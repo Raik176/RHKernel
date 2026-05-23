@@ -8,7 +8,9 @@ namespace vfs {
     struct vfs_dirent {
         uint32_t inode;
         uint32_t type;
-        char name[256];
+        uint64_t name_len;
+        char *name;
+        uint64_t name_capacity;
     };
 
     struct vfs_node {
@@ -48,9 +50,13 @@ namespace vfs {
     vfs_node *finddir(vfs_node *parent, const char *name);
     int readdir(vfs_node *dir, uint64_t index, vfs_dirent *out);
     vfs_node *open(const char *path);
+    vfs_node *open_at(vfs_node *cwd, const char *path);
     vfs_node *create(const char *path, VfsType type);
+    vfs_node *create_at(vfs_node *cwd, const char *path, VfsType type);
     int unlink(const char *path);
+    int unlink_at(vfs_node *cwd, const char *path);
     int rename(const char *old_path, const char *new_path);
+    int rename_at(vfs_node *cwd, const char *old_path, const char *new_path);
     int truncate(vfs_node *node, uint64_t size);
     uint64_t read(vfs_node *node, uint64_t offset, uint64_t size, void *buffer);
     uint64_t write(vfs_node *node, uint64_t offset, uint64_t size, void *buffer);

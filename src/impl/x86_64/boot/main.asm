@@ -28,8 +28,6 @@ bits 32
 start:
     mov esp, stack_top
 
-    ; Bring up serial before CPU checks so early failures are debuggable with
-    ; `qemu -serial stdio` or a real COM1 console.
     call serial_init
 
     call check_cpuid
@@ -61,7 +59,7 @@ enable_paging:
     mov cr3, eax
 
     mov eax, cr4
-    or eax, 1 << 5          ; PAE is required before enabling long mode.
+    or eax, 1 << 5          ; PAE
     mov cr4, eax
 
     mov ecx, 0xC0000080     ; IA32_EFER
@@ -200,7 +198,7 @@ serial_putchar:
     ret
 
 boot_fail:
-    ; ESI points to a zero-terminated ASCII reason.
+    ; ESI points to a zero terminated reason
     push esi
     mov edi, 0xB8000
     mov ah, 0x4F

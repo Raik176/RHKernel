@@ -21,9 +21,6 @@ section .text
 trampoline:
     call enable_cpu_features
     mov rdi, rbx                 ; multiboot pointer
-    ; Enter C++ with the SysV AMD64 stack convention.
-    ; RSP is 16-byte aligned here; CALL makes C++ function entry RSP % 16 == 8.
-    ; A JMP leaves C++ with the wrong alignment and GCC may fault on movaps.
     mov rax, kmain
     call rax
 .hang_after_kmain:
@@ -32,7 +29,6 @@ trampoline:
 
 section .early_text
 long_mode_start:
-    ; Canonicalize the 32-bit Multiboot info pointer passed in EBX.
     mov ebx, ebx
 
     mov ax, 0
@@ -58,18 +54,10 @@ long_mode_start:
 %define PHYS_MAP_GIB 64
 
 setup_direct_physical_mapping:
-    ; Link PML4 entry 256 to a PDPT for the kernel physical direct map.
-    ;
-    ; This is deliberately only a bootstrap map. PMM now defers usable spans
-    ; above this range until after vmm::init() installs the full direct map, so
-    ; the boot page tables no longer impose the kernel's maximum supported RAM.
-    ; 64 GiB is kept here because it is plenty for early allocations while
-    ; keeping .early_bss page-table storage small.
     mov rax, phys_map_pdp_table
     or rax, 0x03                 ; Present | Writable
     mov [pml4_table + 256 * 8], rax
 
-    ; Each PD maps 1 GiB using 512 2 MiB entries.
     xor rcx, rcx
 .link_pdp_loop:
     mov rax, phys_map_pd_table
@@ -84,7 +72,6 @@ setup_direct_physical_mapping:
     cmp rcx, PHYS_MAP_GIB
     jne .link_pdp_loop
 
-    ; Fill PHYS_MAP_GIB page directories.
     xor rcx, rcx
 .fill_pd_loop:
     mov rax, rcx

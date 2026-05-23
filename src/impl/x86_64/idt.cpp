@@ -173,7 +173,13 @@ uint64_t idt_handler(struct regs *r) {
         dispatch_irq(r);
         if (r->int_no == 32) {
             apic::tick();
-            scheduler::schedule(r, true);
+
+            smp::cpu_local *cpu = smp::get_cpu();
+            bool from_user = (r->cs & 3) == 3;
+            bool from_idle = cpu && cpu->current_task == cpu->idle_task;
+            if (from_user || from_idle) {
+                scheduler::schedule(r, true);
+            }
         }
 
         return (uint64_t)r;

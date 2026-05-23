@@ -46,6 +46,9 @@ namespace vmm {
 
         CoW = 1ULL << 9,
 
+        /** Use PAT write-combining if available. */
+        WriteCombining = 1ULL << 10,
+
         /** Disable instruction fetch (NX bit) */
         NX = 1ULL << 63
     };
@@ -108,6 +111,11 @@ namespace vmm {
                            uint64_t pagemap = get_kernel_pagemap());
     void flush_tlb(uint64_t pagemap, uint64_t virt, uint64_t pages);
     uint64_t get_phys_addr_mask();
+    bool nx_supported();
+    bool pat_supported();
+    bool write_combining_supported();
+    bool page_1g_supported();
+    uint64_t direct_map_bytes();
 
     class VirtualRangeAllocator {
        public:
@@ -147,5 +155,6 @@ namespace vmm {
     };
 
     void *mmio_map(uint64_t phys_addr, uint64_t size);
+    void *mmio_map_wc(uint64_t phys_addr, uint64_t size);
     void mmio_unmap(void *virt_addr, uint64_t size);
 }  // namespace vmm

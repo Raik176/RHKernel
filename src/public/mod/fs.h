@@ -10,7 +10,9 @@ struct vfs_node;
 struct vfs_dirent {
     uint32_t inode;
     uint32_t type;
-    char name[256];
+    uint64_t name_len;
+    char *name;
+    uint64_t name_capacity;
 };
 
 enum vfs_node_type {
@@ -20,15 +22,34 @@ enum vfs_node_type {
     VFS_NODE_BLOCK_DEVICE = 4,
 };
 
+enum fs_probe_result {
+    FS_PROBE_NO = 0,
+    FS_PROBE_YES = 1,
+    FS_PROBE_ERR = -1,
+    FS_PROBE_UNSUPPORTED = -2,
+};
+
 struct fs_driver {
     const char *name;
     int (*mount)(struct vfs_node *blockdev, struct vfs_node *mountpoint, const char *flags);
     struct fs_driver *next;
+    int (*probe)(struct vfs_node *blockdev);
+    int (*unmount)(struct vfs_node *mountpoint);
+};
+
+enum fs_ctl_op {
+    FS_CTL_MOUNT = 1,
+    FS_CTL_UNMOUNT = 2,
+    FS_CTL_PROBE = 3,
 };
 
 int fs_register(struct fs_driver *driver);
 int fs_mount(const char *source, const char *target, const char *fstype, const char *flags);
+int fs_probe_node(struct vfs_node *source, const char *fstype);
+int fs_probe(const char *source, const char *fstype);
 int fs_mount_auto(const char *source, const char *target, const char *flags);
+int fs_unmount(const char *target);
+void fs_publish_proc(void);
 
 struct vfs_node *vfs_open_c(const char *path);
 struct vfs_node *vfs_create_fs_node(const char *name, uint32_t type, uint32_t inode,

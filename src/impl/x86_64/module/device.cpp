@@ -3,10 +3,16 @@
 #include "console.h"
 #include "file/device.h"
 #include "file/vfs.h"
+#include "file/module_loader.h"
 #include "memory/heap.h"
 #include "memory/pmm.h"
+#include "memory/vmm.h"
+#include "mod/fs.h"
 #include "mod/logging.h"
 #include "power.h"
+#include "security/random.h"
+#include "smp/scheduler.h"
+#include "smp/smp.h"
 #include "string.h"
 #include "symbol/ksym.h"
 
@@ -25,6 +31,13 @@ static uint64_t zero_read(void *, uint64_t, uint64_t size, uint8_t *buffer) {
 
 static device_ops null_ops = {.read = null_read, .write = null_write};
 static device_ops zero_ops = {.read = zero_read, .write = null_write};
+
+static uint64_t random_read(void *, uint64_t, uint64_t size, uint8_t *buffer) {
+    random::fill(buffer, size);
+    return size;
+}
+
+static device_ops random_ops = {.read = random_read, .write = null_write};
 
 static uint64_t console_dev_write(void *, uint64_t, uint64_t size, uint8_t *buffer) {
     for (uint64_t i = 0; i < size; i++) { console::putchar(buffer[i]); }
@@ -99,6 +112,9 @@ static uint64_t power_device_read(void *, uint64_t offset, uint64_t size, uint8_
 static device_ops power_ops = {.read = power_device_read, .write = power_device_write};
 
 static vfs::vfs_node *dev_root = nullptr;
+static spinlock_t proc_snapshot_lock;
+static char proc_cpu_debug_buf[8192];
+static char proc_mem_debug_buf[8192];
 
 
 static bool path_component_valid(const char *s) {
@@ -155,6 +171,7 @@ namespace devfs {
         devfs_register("console", &console_ops, nullptr);
         devfs_register("null", &null_ops, nullptr);
         devfs_register("zero", &zero_ops, nullptr);
+        devfs_register("random", &random_ops, nullptr);
         devfs_register("power", &power_ops, nullptr);
     }
 }  // namespace devfs
@@ -230,6 +247,230 @@ static uint64_t proc_devices_read(vfs::vfs_node *, uint64_t offset, uint64_t siz
     return size;
 }
 
+static uint64_t proc_copy_static(char *buf, uint64_t len, uint64_t offset, uint64_t size,
+                                 uint8_t *out) {
+    if (offset >= len) return 0;
+    if (size > len - offset) size = len - offset;
+    memcpy(out, buf + offset, size);
+    return size;
+}
+
+static void proc_append(char *buf, uint64_t cap, uint64_t *pos, const char *s) {
+    while (*s && *pos + 1 < cap) buf[(*pos)++] = *s++;
+    if (*pos < cap) buf[*pos] = 0;
+}
+
+static void proc_appendf(char *buf, uint64_t cap, uint64_t *pos, const char *fmt, ...) {
+    if (!buf || !pos || *pos >= cap) return;
+
+    char line[384];
+    va_list args;
+    va_start(args, fmt);
+    int len = vsnprintf(line, sizeof(line), fmt, args);
+    va_end(args);
+
+    if (len <= 0) return;
+    proc_append(buf, cap, pos, line);
+}
+
+static uint64_t proc_cpu_debug_read(vfs::vfs_node *, uint64_t offset, uint64_t size,
+                                    uint8_t *buffer) {
+    uint64_t flags;
+    proc_snapshot_lock.acquire(flags);
+    uint64_t len = 0;
+    proc_cpu_debug_buf[0] = 0;
+
+    uint64_t cores = smp::get_core_count();
+    proc_appendf(proc_cpu_debug_buf, sizeof(proc_cpu_debug_buf), &len, "cores: %d\n", cores);
+
+    for (uint64_t i = 0; i < cores; i++) {
+        smp::cpu_local *cpu = smp::get_cpu_by_index(i);
+        if (!cpu) continue;
+
+        uint64_t queued[scheduler::MAX_QUEUES];
+        for (int q = 0; q < scheduler::MAX_QUEUES; q++) {
+            queued[q] = 0;
+            for (scheduler::task *t = cpu->task_queues_head[q]; t; t = t->next) queued[q]++;
+        }
+
+        proc_appendf(proc_cpu_debug_buf, sizeof(proc_cpu_debug_buf), &len,
+                     "cpu%d: lapic=%d ticks=%d current=%d mailbox=%d/%d idle=%d features=pge:%d smep:%d smap:%d umip:%d pat:%d wc:%d xsave:%d avx:%d fsgsbase_supported:%d fsgsbase_enabled:%d\n",
+                     i, cpu->lapic_id, cpu->ticks,
+                     cpu->current_task ? cpu->current_task->id : UINT64_MAX, cpu->mail_head,
+                     cpu->mail_tail, cpu->idle_task ? cpu->idle_task->id : UINT64_MAX,
+                     cpu->cpu_features.pge ? 1 : 0, cpu->cpu_features.smep ? 1 : 0,
+                     cpu->cpu_features.smap ? 1 : 0, cpu->cpu_features.umip ? 1 : 0,
+                     cpu->cpu_features.pat ? 1 : 0, cpu->cpu_features.wc ? 1 : 0,
+                     cpu->cpu_features.xsave ? 1 : 0, cpu->cpu_features.avx ? 1 : 0,
+                     cpu->cpu_features.fsgsbase_supported ? 1 : 0,
+                     cpu->cpu_features.fsgsbase ? 1 : 0);
+        proc_appendf(proc_cpu_debug_buf, sizeof(proc_cpu_debug_buf), &len,
+                     "  queues: q0=%d oldest=%d q1=%d oldest=%d q2=%d oldest=%d q3=%d oldest=%d sleep_head=",
+                     queued[0], cpu->task_queue_oldest_tick[0], queued[1],
+                     cpu->task_queue_oldest_tick[1], queued[2], cpu->task_queue_oldest_tick[2],
+                     queued[3], cpu->task_queue_oldest_tick[3]);
+        if (cpu->sleep_list_head) {
+            proc_appendf(proc_cpu_debug_buf, sizeof(proc_cpu_debug_buf), &len,
+                         "%d\n", cpu->sleep_list_head->id);
+        } else {
+            proc_append(proc_cpu_debug_buf, sizeof(proc_cpu_debug_buf), &len, "none\n");
+        }
+    }
+
+    uint64_t ret = proc_copy_static(proc_cpu_debug_buf, len, offset, size, buffer);
+    proc_snapshot_lock.release(flags);
+    return ret;
+}
+
+static uint64_t proc_mem_debug_read(vfs::vfs_node *, uint64_t offset, uint64_t size,
+                                    uint8_t *buffer) {
+    pmm::DebugInfo info;
+    pmm::get_debug_info(&info);
+
+    uint64_t flags;
+    proc_snapshot_lock.acquire(flags);
+    uint64_t len = 0;
+    proc_mem_debug_buf[0] = 0;
+    uint64_t used_bytes = info.managed_bytes - info.free_bytes;
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "system_bytes: %d\n", info.system_bytes);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "managed_bytes: %d\n", info.managed_bytes);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "managed_mib: %d\n", info.managed_bytes / (1024 * 1024));
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "free_bytes: %d\n", info.free_bytes);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "free_mib: %d\n", info.free_bytes / (1024 * 1024));
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "used_bytes: %d\n", used_bytes);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "used_kib: %d\n", used_bytes / 1024);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "used_mib: %d\n", used_bytes / (1024 * 1024));
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "physical_limit_bytes: %d\n", info.physical_limit_bytes);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "direct_map_bytes: %d\n", vmm::direct_map_bytes());
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "page_1g_supported: %d\n", vmm::page_1g_supported() ? 1 : 0);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "pat_supported: %d\n", vmm::pat_supported() ? 1 : 0);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "wc_supported: %d\n", vmm::write_combining_supported() ? 1 : 0);
+    proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "deferred_spans: %d\n", info.deferred_span_count);
+    proc_append(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "buddy_orders:\n");
+
+    for (size_t i = 0; i <= pmm::MAX_ORDER; i++) {
+        proc_appendf(proc_mem_debug_buf, sizeof(proc_mem_debug_buf), &len, "  order%d: blocks=%d bytes=%d\n", i,
+                     info.free_blocks[i], info.free_bytes_by_order[i]);
+    }
+
+    uint64_t ret = proc_copy_static(proc_mem_debug_buf, len, offset, size, buffer);
+    proc_snapshot_lock.release(flags);
+    return ret;
+}
+
+static bool parse_u64_strict(const char *s, uint64_t *out) {
+    if (!s || !*s || !out) return false;
+    uint64_t v = 0;
+    for (; *s; s++) {
+        if (*s < '0' || *s > '9') return false;
+        uint64_t d = (uint64_t)(*s - '0');
+        if (v > (UINT64_MAX - d) / 10) return false;
+        v = v * 10 + d;
+    }
+    *out = v;
+    return true;
+}
+
+static void u64_to_dec(uint64_t v, char *out, uint64_t cap) {
+    if (!out || cap == 0) return;
+    char tmp[32];
+    uint64_t n = 0;
+    do { tmp[n++] = (char)('0' + (v % 10)); v /= 10; } while (v && n < sizeof(tmp));
+    uint64_t p = 0;
+    while (n && p + 1 < cap) out[p++] = tmp[--n];
+    out[p] = 0;
+}
+
+static uint64_t proc_task_status_one_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    char buf[2048];
+    uint64_t len = scheduler::format_task_status(buf, sizeof(buf), node ? node->ptr : UINT64_MAX);
+    return proc_copy_static(buf, len, offset, size, buffer);
+}
+
+static uint64_t proc_task_maps_one_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    char buf[8192];
+    uint64_t len = scheduler::format_task_maps(buf, sizeof(buf), node ? node->ptr : UINT64_MAX);
+    return proc_copy_static(buf, len, offset, size, buffer);
+}
+
+static uint64_t proc_task_fds_one_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    char buf[4096];
+    uint64_t len = scheduler::format_task_fds(buf, sizeof(buf), node ? node->ptr : UINT64_MAX);
+    return proc_copy_static(buf, len, offset, size, buffer);
+}
+
+static vfs::vfs_node *make_transient_node(const char *name, vfs::VfsType type, vfs::vfs_node *parent) {
+    vfs::vfs_node *node = (vfs::vfs_node *)heap::kmalloc(sizeof(vfs::vfs_node));
+    if (!node) return nullptr;
+    memset(node, 0, sizeof(*node));
+    node->name = strdup(name ? name : "");
+    if (!node->name) { heap::kfree(node); return nullptr; }
+    node->type = type;
+    node->parent = parent;
+    return node;
+}
+
+static vfs::vfs_node *proc_task_finddir(vfs::vfs_node *parent, const char *name) {
+    uint64_t pid = parent ? parent->ptr : UINT64_MAX;
+    if (!scheduler::get_task_by_id(pid)) return nullptr;
+
+    uint64_t (*read_fn)(vfs::vfs_node *, uint64_t, uint64_t, uint8_t *) = nullptr;
+    if (strcmp(name, "status") == 0) read_fn = proc_task_status_one_read;
+    else if (strcmp(name, "maps") == 0) read_fn = proc_task_maps_one_read;
+    else if (strcmp(name, "fds") == 0) read_fn = proc_task_fds_one_read;
+    else return nullptr;
+
+    vfs::vfs_node *node = make_transient_node(name, vfs::VfsType::VFS_CHAR_DEVICE, parent);
+    if (!node) return nullptr;
+    node->ptr = pid;
+    node->read = read_fn;
+    return node;
+}
+
+static int proc_task_readdir(vfs::vfs_node *, uint64_t index, vfs::vfs_dirent *out) {
+    static const char *names[] = {"status", "maps", "fds"};
+    if (!out || index >= sizeof(names) / sizeof(names[0])) return -1;
+    const char *name = names[index];
+    char *dst = out->name;
+    uint64_t cap = out->name_capacity;
+    uint64_t len = strlen(name);
+    memset(out, 0, sizeof(*out));
+    out->type = (uint32_t)vfs::VfsType::VFS_CHAR_DEVICE;
+    out->name_len = len;
+    out->name = dst;
+    out->name_capacity = cap;
+    if (dst && cap > len) memcpy(dst, name, len + 1);
+    return 0;
+}
+
+static vfs::vfs_node *proc_tasks_finddir(vfs::vfs_node *parent, const char *name) {
+    uint64_t pid;
+    if (!parse_u64_strict(name, &pid) || pid == 0 || !scheduler::get_task_by_id(pid)) return nullptr;
+    vfs::vfs_node *node = make_transient_node(name, vfs::VfsType::VFS_DIRECTORY, parent);
+    if (!node) return nullptr;
+    node->ptr = pid;
+    node->finddir = proc_task_finddir;
+    node->readdir = proc_task_readdir;
+    return node;
+}
+
+static int proc_tasks_readdir(vfs::vfs_node *, uint64_t index, vfs::vfs_dirent *out) {
+    uint64_t pid;
+    if (!out || !scheduler::task_id_by_index(index, &pid)) return -1;
+    char tmp[32];
+    u64_to_dec(pid, tmp, sizeof(tmp));
+    char *dst = out->name;
+    uint64_t cap = out->name_capacity;
+    uint64_t len = strlen(tmp);
+    memset(out, 0, sizeof(*out));
+    out->type = (uint32_t)vfs::VfsType::VFS_DIRECTORY;
+    out->name_len = len;
+    out->name = dst;
+    out->name_capacity = cap;
+    if (dst && cap > len) memcpy(dst, tmp, len + 1);
+    return 0;
+}
+
 namespace procfs {
     void init() {
         vfs::vfs_node *proc_root =
@@ -250,6 +491,27 @@ namespace procfs {
         vfs::vfs_node *devices_node =
             vfs::create_node("devices", vfs::VfsType::VFS_CHAR_DEVICE, proc_root);
         if (devices_node) { devices_node->read = proc_devices_read; }
+
+        vfs::vfs_node *tasks_node =
+            vfs::create_node("tasks", vfs::VfsType::VFS_DIRECTORY, proc_root);
+        if (tasks_node) {
+            tasks_node->finddir = proc_tasks_finddir;
+            tasks_node->readdir = proc_tasks_readdir;
+        }
+
+        vfs::create_node("modules", vfs::VfsType::VFS_DIRECTORY, proc_root);
+        fs_publish_proc();
+
+        vfs::vfs_node *cpu_dir = vfs::create_node("cpu", vfs::VfsType::VFS_DIRECTORY, proc_root);
+        if (cpu_dir) {
+            vfs::vfs_node *cpu_debug_node =
+                vfs::create_node("debug", vfs::VfsType::VFS_CHAR_DEVICE, cpu_dir);
+            if (cpu_debug_node) { cpu_debug_node->read = proc_cpu_debug_read; }
+        }
+
+        vfs::vfs_node *mem_debug_node =
+            vfs::create_node("debug", vfs::VfsType::VFS_CHAR_DEVICE, mem_dir);
+        if (mem_debug_node) { mem_debug_node->read = proc_mem_debug_read; }
 
     }
 }  // namespace procfs

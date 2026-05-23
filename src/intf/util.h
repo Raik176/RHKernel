@@ -16,6 +16,14 @@
 struct cpu_features {
     bool smap;
     bool smep;
+    bool pge;
+    bool umip;
+    bool pat;
+    bool wc;
+    bool xsave;
+    bool avx;
+    bool fsgsbase_supported;
+    bool fsgsbase;
 };
 
 /**

@@ -439,6 +439,29 @@ namespace pmm {
         return 0;
     }
 
+    void get_debug_info(DebugInfo *info) {
+        if (!info) return;
+
+        uint64_t flags;
+        pmm_lock.acquire(flags);
+
+        memset(info, 0, sizeof(*info));
+        info->managed_bytes = managed_bytes;
+        info->free_bytes = free_bytes;
+        info->system_bytes = system_bytes;
+        info->physical_limit_bytes = physical_limit_bytes;
+        info->deferred_span_count = deferred_span_count;
+
+        for (size_t order = 0; order <= MAX_ORDER; order++) {
+            for (FreeBlock *b = free_lists[order]; b; b = b->next) {
+                info->free_blocks[order]++;
+            }
+            info->free_bytes_by_order[order] = info->free_blocks[order] * block_size(order);
+        }
+
+        pmm_lock.release(flags);
+    }
+
     size_t get_total_bytes() { return managed_bytes; }
     size_t get_free_bytes() { return free_bytes; }
     size_t get_system_bytes() { return system_bytes; }

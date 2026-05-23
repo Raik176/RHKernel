@@ -69,8 +69,15 @@ namespace elf {
         int64_t addend;
     } __attribute__((packed));
 
+    struct elf_dynamic {
+        int64_t tag;
+        uint64_t value;
+    } __attribute__((packed));
+
 #define ELF64_R_SYM(i) ((i) >> 32)
 #define ELF64_R_TYPE(i) ((i) & 0xffffffffL)
+#define ELF64_ST_BIND(i) ((i) >> 4)
+#define ELF64_ST_TYPE(i) ((i) & 0xf)
 
 #define R_X86_64_NONE 0
 #define R_X86_64_64 1
@@ -81,6 +88,7 @@ namespace elf {
 #define R_X86_64_GLOB_DAT 6
 #define R_X86_64_JUMP_SLOT 7
 #define R_X86_64_RELATIVE 8
+#define R_X86_64_IRELATIVE 37
 #define R_X86_64_GOTPCREL 9
 #define R_X86_64_32 10
 #define R_X86_64_32S 11
@@ -88,18 +96,39 @@ namespace elf {
 #define R_X86_64_PC16 13
 #define R_X86_64_8 14
 #define R_X86_64_PC8 15
+#define R_X86_64_GOTPCRELX 41
+#define R_X86_64_REX_GOTPCRELX 42
+
+    static constexpr uint32_t MAX_LOAD_SEGMENTS = 16;
+
+    struct elf_load_segment {
+        uint64_t start;
+        uint64_t end;
+        uint32_t flags;
+    };
 
     struct elf_info {
         uint64_t entry;
         uint64_t pml4;
         uint64_t heap_start;
+        uint64_t load_base;
+        uint64_t load_end;
+        uint32_t segment_count;
+        elf_load_segment segments[MAX_LOAD_SEGMENTS];
+        bool pie;
     };
 
     elf_info load(const char *path);
 }  // namespace elf
 
+#define PT_NULL 0
 #define PT_LOAD 1
+#define PT_DYNAMIC 2
+#define SHT_PROGBITS 1
+#define SHT_SYMTAB 2
 #define SHT_RELA 4
+#define SHT_NOBITS 8
+#define SHT_DYNSYM 11
 #define PF_X 1
 #define PF_W 2
 #define PF_R 4
@@ -108,3 +137,20 @@ namespace elf {
 #define SHF_ALLOC (1 << 1)
 #define SHF_EXECINSTR (1 << 2)
 #define SHF_MASKPROC 0xF0000000
+#define SHN_UNDEF 0
+#define SHN_ABS 0xfff1
+#define STB_WEAK 2
+#define STT_SECTION 3
+#define ET_EXEC 2
+#define ET_DYN 3
+
+#define DT_NULL 0
+#define DT_NEEDED 1
+#define DT_RELA 7
+#define DT_RELASZ 8
+#define DT_RELAENT 9
+#define DT_FLAGS 30
+#define DT_FLAGS_1 0x6ffffffb
+
+#define DF_BIND_NOW 0x8
+#define DF_1_NOW 0x1

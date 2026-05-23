@@ -40,9 +40,23 @@ ap_start_32:
     mov eax, [data_cr3 - trampoline_start + 0x8000]
     mov cr3, eax
 
-    mov ecx, 0xC0000080         ; EFER MSR
+    xor ebx, ebx
+    mov eax, 0x80000000
+    cpuid
+    cmp eax, 0x80000001
+    jb .write_efer
+
+    mov eax, 0x80000001
+    cpuid
+    test edx, 1 << 20
+    jz .write_efer
+    mov ebx, 1 << 11
+
+.write_efer:
+    mov ecx, 0xC0000080
     rdmsr
-    or eax, 1 << 8              ; LME bit
+    or eax, 1 << 8
+    or eax, ebx
     wrmsr
 
     mov eax, cr0

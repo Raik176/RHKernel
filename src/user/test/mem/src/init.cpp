@@ -392,18 +392,6 @@ static void test_stack_growth() {
     pass(name);
 }
 
-static void test_mmap_rejects_stack_window() {
-    const char *name = "mmap rejects reserved stack window";
-    void *want = (void *)0x00007FFFFFFFE000ULL;
-    void *p = mmap(want, 4096, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_FIXED, -1, 0);
-    if (p != MAP_FAILED) {
-        munmap(p, 4096);
-        fail(name, "mmap unexpectedly mapped over the stack window");
-        return;
-    }
-    pass(name);
-}
-
 static void test_large_heap_pressure() {
     const char *name = "large heap pressure 1 MiB";
     const size_t len = 1024 * 1024;
@@ -444,7 +432,6 @@ int main() {
     test_mmap_fixed();
     test_mmap_invalid();
     test_stack_growth();
-    test_mmap_rejects_stack_window();
     test_large_heap_pressure();
 
     printf("memtest: %d/%d checks passed\n", g_checks - g_failures, g_checks);

@@ -4,14 +4,14 @@
 #include <unistd.h>
 
 #define SYSCALL_WRITE 0
-#define SYSCALL_OPEN 1
 #define SYSCALL_READ 2
-#define SYSCALL_CLOSE 3
 #define SYSCALL_YIELD 4
 #define SYSCALL_EXIT 6
 #define SYSCALL_WAIT 7
 #define SYSCALL_FORK 10
 #define SYSCALL_EXEC 11
+#define SYSCALL_CHDIR 20
+#define SYSCALL_GETCWD 21
 
 #define STDIN 0
 #define STDOUT 1
@@ -62,9 +62,17 @@ static void raw_write_fd(int fd, const void *buf, size_t len) {
     syscall3(SYSCALL_WRITE, (uint64_t)fd, (uintptr_t)buf, (uint64_t)len);
 }
 
-static void raw_write_s(const char *s) { raw_write_fd(STDOUT, s, str_len(s)); }
-static void raw_write_err(const char *s) { raw_write_fd(STDERR, s, str_len(s)); }
-static void raw_write_c(char c) { raw_write_fd(STDOUT, &c, 1); }
+static void raw_write_s(const char *s) {
+    raw_write_fd(STDOUT, s, str_len(s));
+}
+
+static void raw_write_err(const char *s) {
+    raw_write_fd(STDERR, s, str_len(s));
+}
+
+static void raw_write_c(char c) {
+    raw_write_fd(STDOUT, &c, 1);
+}
 
 static char *read_line(void) {
     size_t cap = 128;
@@ -101,6 +109,7 @@ static char *read_line(void) {
                 free(buf);
                 return nullptr;
             }
+
             buf = new_buf;
             cap = new_cap;
         }
@@ -128,6 +137,7 @@ static char **split_args(char *line, int *argc_out) {
                 free(argv);
                 return nullptr;
             }
+
             argv = new_argv;
             cap = new_cap;
         }
@@ -142,34 +152,60 @@ static char **split_args(char *line, int *argc_out) {
     return argv;
 }
 
-static char *resolve_command(const char *cmd) {
-    if (!cmd || !*cmd) return nullptr;
+static char *getcwd_alloc(void) {
+    size_t cap = 128;
 
-    if (cmd[0] == '/') {
-        size_t len = str_len(cmd) + 1;
-        char *copy = (char *)malloc(len);
-        if (!copy) return nullptr;
-        for (size_t i = 0; i < len; i++) copy[i] = cmd[i];
-        return copy;
+    for (;;) {
+        char *buf = (char *)malloc(cap);
+        if (!buf) return nullptr;
+
+        int64_t r = (int64_t)syscall3(SYSCALL_GETCWD, (uintptr_t)buf, cap, 0);
+        if (r == 0) return buf;
+
+        free(buf);
+
+        if (cap > (1UL << 20)) return nullptr;
+        cap *= 2;
+    }
+}
+
+static void print_prompt(void) {
+    char *cwd = getcwd_alloc();
+    if (cwd) {
+        raw_write_s(cwd);
+        free(cwd);
+    } else {
+        raw_write_s("?");
     }
 
-    const char *prefix = "/bin/";
-    size_t plen = str_len(prefix);
-    size_t clen = str_len(cmd);
-    char *path = (char *)malloc(plen + clen + 1);
-    if (!path) return nullptr;
-    for (size_t i = 0; i < plen; i++) path[i] = prefix[i];
-    for (size_t i = 0; i < clen; i++) path[plen + i] = cmd[i];
-    path[plen + clen] = '\0';
-    return path;
+    raw_write_s(" > ");
 }
 
 static int run_builtin(int argc, char **argv) {
     if (argc == 0) return 1;
 
     if (str_eq(argv[0], "help")) {
-        raw_write_s("builtins: help, exit\n");
-        raw_write_s("commands: ls, cat, hexdump, lsdev, memtest, touch, rm, mv, ext2test, shutdown, restart, or absolute /bin paths\n");
+        raw_write_s("builtins: help, cd, pwd, exit\n");
+        raw_write_s("external commands: use absolute paths or cd into their directory\n");
+        return 1;
+    }
+
+    if (str_eq(argv[0], "cd")) {
+        const char *path = argc > 1 ? argv[1] : "/";
+        if ((int64_t)syscall1(SYSCALL_CHDIR, (uintptr_t)path) < 0) raw_write_err("cd failed\n");
+        return 1;
+    }
+
+    if (str_eq(argv[0], "pwd")) {
+        char *cwd = getcwd_alloc();
+        if (!cwd) {
+            raw_write_err("pwd failed\n");
+            return 1;
+        }
+
+        raw_write_s(cwd);
+        raw_write_s("\n");
+        free(cwd);
         return 1;
     }
 
@@ -183,7 +219,7 @@ static int run_builtin(int argc, char **argv) {
 
 int main(int, char **) {
     for (;;) {
-        raw_write_s("minsh> ");
+        print_prompt();
 
         char *line = read_line();
         if (!line) {
@@ -207,9 +243,7 @@ int main(int, char **) {
 
         uint64_t pid = syscall0(SYSCALL_FORK);
         if (pid == 0) {
-            char *path = resolve_command(argv[0]);
-            if (path) syscall3(SYSCALL_EXEC, (uintptr_t)path, (uintptr_t)argv, 0);
-
+            syscall3(SYSCALL_EXEC, (uintptr_t)argv[0], (uintptr_t)argv, 0);
             raw_write_err("command not found\n");
             syscall1(SYSCALL_EXIT, 1);
         }

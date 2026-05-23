@@ -48,6 +48,7 @@ namespace smp {
         scheduler::task *current_task;
         scheduler::task *task_queues_tail[scheduler::MAX_QUEUES];
         scheduler::task *task_queues_head[scheduler::MAX_QUEUES];
+        uint64_t task_queue_oldest_tick[scheduler::MAX_QUEUES];
         scheduler::task *sleep_list_head;
         scheduler::task *idle_task;
         spinlock_t sched_lock;
@@ -65,6 +66,8 @@ namespace smp {
         uint32_t mail_head;
         uint32_t mail_tail;
         spinlock_t mail_lock;
+        mail tlb_shootdown_mail;
+        volatile bool tlb_shootdown_handled;
 
         struct cpu_features cpu_features;
     };

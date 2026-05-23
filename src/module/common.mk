@@ -18,23 +18,35 @@ SRC_FILES := $(shell find src -name '*.cpp' -o -name '*.c' 2>/dev/null)
 OBJ_FILES := $(patsubst src/%, $(TOP_DIR)/build/modules/$(APP_NAME)/%.o, $(SRC_FILES))
 
 KO := $(MODULE_BINARIES_DIR)/$(APP_NAME).ko
+APP_BUILD_CFG := $(TOP_DIR)/build/modules/$(APP_NAME)/.build.cfg
 
-.PHONY: all
+.PHONY: all FORCE
+FORCE:
+
 all: $(TOOLCHAIN_STAMP) $(KO)
 
-$(KO): $(OBJ_FILES) $(TOOLCHAIN_STAMP)
+$(APP_BUILD_CFG): FORCE
+	@mkdir -p $(dir $@)
+	$(Q){ \
+		printf 'CFLAGS=%s\n' '$(CFLAGS)'; \
+		printf 'CXXFLAGS=%s\n' '$(CXXFLAGS)'; \
+		printf 'LDFLAGS=%s\n' '$(LDFLAGS)'; \
+	} > $@.tmp
+	$(Q)if test -r $@ && cmp -s $@ $@.tmp; then rm -f $@.tmp; else mv $@.tmp $@; fi
+
+$(KO): $(OBJ_FILES) $(APP_BUILD_CFG) $(TOOLCHAIN_STAMP) $(TOP_DIR)/src/module/common.mk $(TOP_DIR)/base.mk
 	@mkdir -p $(dir $@)
 	@printf "$(BLUE)[LD]$(NC) $(APP_NAME).ko\n"
 	$(Q)$(LD) $(LDFLAGS) $(OBJ_FILES) -o $(KO)
 
-$(TOP_DIR)/build/modules/$(APP_NAME)/%.cpp.o: src/%.cpp | $(TOOLCHAIN_STAMP)
+$(TOP_DIR)/build/modules/$(APP_NAME)/%.cpp.o: src/%.cpp $(APP_BUILD_CFG) $(TOP_DIR)/src/module/common.mk $(TOP_DIR)/base.mk | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
 	@printf "$(GREEN)[CXX]$(NC) $<\n"
-	$(Q)$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(Q)$(CXX) $(DEPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-$(TOP_DIR)/build/modules/$(APP_NAME)/%.c.o: src/%.c | $(TOOLCHAIN_STAMP)
+$(TOP_DIR)/build/modules/$(APP_NAME)/%.c.o: src/%.c $(APP_BUILD_CFG) $(TOP_DIR)/src/module/common.mk $(TOP_DIR)/base.mk | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
 	@printf "$(GREEN)[CC]$(NC) $<\n"
-	$(Q)$(CC) $(CFLAGS) -c $< -o $@
+	$(Q)$(CC) $(DEPFLAGS) $(CFLAGS) -c $< -o $@
 
 -include $(OBJ_FILES:.o=.d)

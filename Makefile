@@ -14,7 +14,13 @@ x86_64_object_files := \
     $(x86_64_c_object_files) \
     $(x86_64_cpp_object_files)
 
-FORMAT_SOURCES := $(shell find $(TOP_DIR)/src -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp' 2>/dev/null)
+KERNEL_BIN := dist/x86_64/kernel.bin
+KERNEL_ISO := dist/x86_64/kernel.iso
+KERNEL_BUILD_CFG := build/.kernel-build.cfg
+ISO_SRC_DIR := targets/x86_64/iso
+ISO_BUILD_DIR := build/x86_64/iso
+ISO_CFG_FILES := $(shell find $(TOP_DIR)/$(ISO_SRC_DIR) -type f ! -name 'kernel.bin' ! -name 'initramfs.cpio' 2>/dev/null)
+ASM_INCLUDE_FILES := $(shell find $(TOP_DIR)/src/assets -name '*.inc' 2>/dev/null)
 
 DEBUG ?= 0
 
@@ -22,6 +28,7 @@ FONT_BDF ?= src/assets/font.bdf
 FONT_WIDTH ?= 8
 FONT_HEIGHT ?= 14
 FONT_BIN := build/assets/font.bin
+FONT_CFG := build/assets/font.cfg
 FONT_SCRIPT := tools/scripts/gen_font.py
 
 COMMON_CFLAGS := $(GLOBAL_CFLAGS) \
@@ -40,10 +47,11 @@ COMMON_CFLAGS := $(GLOBAL_CFLAGS) \
     -I src/intf \
     -I src/public
 
-NASMFLAGS := -f elf64 -w-zeroing
+NASMFLAGS := -f elf64 -w-zeroing -I$(TOP_DIR)/
 LDFLAGS := $(GLOBAL_LDFLAGS)
 
 INITRAMFS_SRC := initramfs
+INITRAMFS_STAGE_DIR := build/initramfs-root
 INITRAMFS_BIN := build/initramfs.cpio
 
 ifeq ($(DEBUG),1)
@@ -69,6 +77,7 @@ QEMU_EXTRA ?=
 PYTHON ?= python3
 AHCI_DISK_TOOL := tools/scripts/mk_ahci_disk.py
 EXT2_DISK_TOOL := tools/scripts/mk_ext2_disk.py
+FAT_DISK_TOOL := tools/scripts/mk_fat_disk.py
 
 # AHCI test disks.
 #
@@ -94,12 +103,19 @@ AHCI_MBR_DISK := $(AHCI_TEST_DISK_DIR)/ahci-mbr.img
 AHCI_GPT_DISK := $(AHCI_TEST_DISK_DIR)/ahci-gpt.img
 AHCI_EXT2_DISK := $(AHCI_TEST_DISK_DIR)/ahci-ext2.img
 AHCI_EXT2_DISK_SIZE ?= 32M
-AHCI_TEST_DISK_IMAGES := $(AHCI_MBR_DISK) $(AHCI_GPT_DISK) $(AHCI_EXT2_DISK)
+FAT12_TEST_DISK := $(AHCI_TEST_DISK_DIR)/fat12.img
+FAT16_TEST_DISK := $(AHCI_TEST_DISK_DIR)/fat16.img
+FAT32_TEST_DISK := $(AHCI_TEST_DISK_DIR)/fat32.img
+FAT12_TEST_DISK_SIZE ?= 1440K
+FAT16_TEST_DISK_SIZE ?= 16M
+FAT32_TEST_DISK_SIZE ?= 64M
+FAT_TEST_DISK_IMAGES := $(FAT12_TEST_DISK) $(FAT16_TEST_DISK) $(FAT32_TEST_DISK)
+AHCI_TEST_DISK_IMAGES := $(AHCI_MBR_DISK) $(AHCI_GPT_DISK) $(AHCI_EXT2_DISK) $(FAT_TEST_DISK_IMAGES)
 
 ifeq ($(AHCI_TEST),1)
-# Keep QEMU to one AHCI controller. Plain -cdrom on q35 can create a second
-# default ICH9 SATA/AHCI controller, which makes interrupt testing noisy.
-# Attach the boot ISO as an ATAPI CD on port 5 of the same controller.
+# Use explicit AHCI controllers only. Plain -cdrom on q35 can create an
+# implicit storage controller, which makes interrupt testing noisy.
+# Keep the boot ISO as an ATAPI CD on ahci0 port 5.
 QEMU_AHCI_FLAGS := -device ich9-ahci,id=ahci0,bus=pcie.0,addr=0x9 \
     -drive if=none,id=bootiso,file=dist/x86_64/kernel.iso,media=cdrom,readonly=on \
     -device ide-cd,drive=bootiso,bus=ahci0.5,bootindex=0 \
@@ -108,7 +124,14 @@ QEMU_AHCI_FLAGS := -device ich9-ahci,id=ahci0,bus=pcie.0,addr=0x9 \
     -drive if=none,id=ahci_gpt,file=$(AHCI_GPT_DISK),format=raw \
     -device ide-hd,drive=ahci_gpt,bus=ahci0.1 \
     -drive if=none,id=ahci_ext2,file=$(AHCI_EXT2_DISK),format=raw \
-    -device ide-hd,drive=ahci_ext2,bus=ahci0.2
+    -device ide-hd,drive=ahci_ext2,bus=ahci0.2 \
+    -device ich9-ahci,id=ahci1,bus=pcie.0,addr=0xa \
+    -drive if=none,id=fat12,file=$(FAT12_TEST_DISK),format=raw \
+    -device ide-hd,drive=fat12,bus=ahci1.0 \
+    -drive if=none,id=fat16,file=$(FAT16_TEST_DISK),format=raw \
+    -device ide-hd,drive=fat16,bus=ahci1.1 \
+    -drive if=none,id=fat32,file=$(FAT32_TEST_DISK),format=raw \
+    -device ide-hd,drive=fat32,bus=ahci1.2
 
 QEMU_AHCI_DEPS := $(AHCI_TEST_DISK_IMAGES)
 QEMU_BOOT_FLAGS := -boot d
@@ -124,7 +147,8 @@ QEMU_BOOT_FLAGS := -boot d
 endif
 
 QEMUFLAGS := -nodefaults \
-            -d cpu_reset \
+            -d cpu_reset,guest_errors \
+            -no-reboot -no-shutdown \
             -machine q35,sata=off \
             -device VGA \
             -D qemu.log \
@@ -142,18 +166,21 @@ QEMUFLAGS := -nodefaults \
             $(QEMU_BOOT_FLAGS) \
             -serial stdio \
             $(QEMU_AHCI_FLAGS) \
+            -debugcon file:debugcon.log \
             $(QEMU_EXTRA)
 
-USER_APPS_DIRS := $(wildcard $(TOP_DIR)/src/user/*/)
-USER_APPS := $(filter-out $(TOP_DIR)/src/user/common.mk, $(USER_APPS_DIRS))
-USER_APP_SOURCE_FILES := $(shell find $(TOP_DIR)/src/user -path '*/src/*' \( -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp' \) 2>/dev/null)
-USER_APP_MAKEFILES := $(foreach dir,$(USER_APPS),$(dir)Makefile) $(TOP_DIR)/src/user/common.mk
+USER_APP_MAKEFILE_FILES := $(shell find $(TOP_DIR)/src/user -mindepth 2 -name Makefile 2>/dev/null)
+USER_APPS := $(patsubst %Makefile,%,$(USER_APP_MAKEFILE_FILES))
+USER_APP_SOURCE_FILES := $(shell find $(TOP_DIR)/src/user \( -path '*/src/*' -o -path '*/include/*' \) \( -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp' \) 2>/dev/null)
+USER_APP_PUBLIC_HEADERS := $(shell find $(TOP_DIR)/src/public \( -name '*.h' -o -name '*.hpp' \) 2>/dev/null)
+USER_APP_MAKEFILES := $(USER_APP_MAKEFILE_FILES) $(TOP_DIR)/src/user/common.mk $(TOP_DIR)/src/user/linker.ld $(TOP_DIR)/base.mk
 USER_APPS_STAMP := build/.user-apps.stamp
 
 MODULE_DIRS := $(wildcard $(TOP_DIR)/src/module/*/)
 MODULES := $(filter-out $(TOP_DIR)/src/module/common.mk, $(MODULE_DIRS))
-MODULE_SOURCE_FILES := $(shell find $(TOP_DIR)/src/module -path '*/src/*' \( -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp' \) -o -path '*/include/*' \( -name '*.h' -o -name '*.hpp' \) 2>/dev/null)
-MODULE_MAKEFILES := $(foreach dir,$(MODULES),$(dir)Makefile) $(TOP_DIR)/src/module/common.mk
+MODULE_SOURCE_FILES := $(shell find $(TOP_DIR)/src/module \( -path '*/src/*' -o -path '*/include/*' \) \( -name '*.cpp' -o -name '*.c' -o -name '*.h' -o -name '*.hpp' \) 2>/dev/null)
+MODULE_PUBLIC_HEADERS := $(shell find $(TOP_DIR)/src/public \( -name '*.h' -o -name '*.hpp' \) 2>/dev/null)
+MODULE_MAKEFILES := $(foreach dir,$(MODULES),$(dir)Makefile) $(TOP_DIR)/src/module/common.mk $(TOP_DIR)/base.mk
 MODULES_STAMP := build/.modules.stamp
 
 .PHONY: FORCE newlib
@@ -161,47 +188,76 @@ FORCE:
 
 newlib: $(SYSROOT)/lib/libc.a
 
-$(NEWLIB_STAMP): | $(TOOLCHAIN_STAMP) $(SUBMODULE_STAMP)
+$(NEWLIB_CONFIG): FORCE | $(TOOLCHAIN_STAMP)
+	@mkdir -p $(dir $@)
+	$(Q){ \
+		printf 'NEWLIB_SRC=%s\n' '$(NEWLIB_SRC)'; \
+		printf 'NEWLIB_BUILD=%s\n' '$(NEWLIB_BUILD)'; \
+		printf 'NEWLIB_PREFIX=%s\n' '$(NEWLIB_PREFIX)'; \
+		printf 'SYSROOT=%s\n' '$(SYSROOT)'; \
+		printf 'CC=%s\n' '$(CC)'; \
+		printf 'CXX=%s\n' '$(CXX)'; \
+		printf 'AS=%s\n' '$(AS)'; \
+		printf 'LD=%s\n' '$(LD)'; \
+		printf 'AR=%s\n' '$(AR)'; \
+		printf 'RANLIB=%s\n' '$(RANLIB)'; \
+		printf 'NM=%s\n' '$(NM)'; \
+		printf 'OBJCOPY=%s\n' '$(OBJCOPY)'; \
+		printf 'OBJDUMP=%s\n' '$(OBJDUMP)'; \
+		printf 'READELF=%s\n' '$(READELF)'; \
+		printf 'STRIP=%s\n' '$(STRIP)'; \
+		printf 'NEWLIB_TARGET_CFLAGS=%s\n' '$(NEWLIB_TARGET_CFLAGS)'; \
+		printf 'CONFIGURE_FLAGS=%s\n' '--target=x86_64-elf --prefix=$(NEWLIB_PREFIX) --disable-newlib-supplied-syscalls --disable-nls --enable-newlib-reent-check-verify --enable-newlib-retargetable-locking'; \
+	} > $@.tmp
+	$(Q)if test -r $@ && cmp -s $@ $@.tmp; then rm -f $@.tmp; else mv $@.tmp $@; fi
+
+$(NEWLIB_STAMP): $(NEWLIB_CONFIG) Makefile base.mk | $(TOOLCHAIN_STAMP) $(SUBMODULE_STAMP)
+	$(Q)rm -rf $(NEWLIB_BUILD) $(SYSROOT)
 	@mkdir -p $(NEWLIB_BUILD) $(SYSROOT)
 	@printf "$(YELLOW)[NEWLIB]$(NC) Configuring & Compiling...\n"
-	$(Q)cd $(NEWLIB_BUILD) && env PATH=$(TOOLCHAIN_DIR)/bin:$$PATH $(NEWLIB_SRC)/configure \
+	$(Q)cd $(NEWLIB_BUILD) && env PATH="$(TOOLCHAIN_DIR)/bin:$$PATH" $(NEWLIB_SRC)/configure \
 		--target=x86_64-elf \
-		--prefix=$(shell dirname $(SYSROOT)) \
+		--prefix=$(NEWLIB_PREFIX) \
 		--disable-newlib-supplied-syscalls \
 		--disable-nls \
 		--enable-newlib-reent-check-verify \
 		--enable-newlib-retargetable-locking \
 		--quiet \
 		--silent \
-		CC_FOR_TARGET=$(CC) \
-		AS_FOR_TARGET=$(AS) \
-		LD_FOR_TARGET=$(LD) \
-		RANLIB_FOR_TARGET=$(RANLIB) \
-		AR_FOR_TARGET=$(AR)
-	$(Q)$(MAKE) -C $(NEWLIB_BUILD) -j$(shell nproc) --quiet
-	$(Q)$(MAKE) -C $(NEWLIB_BUILD) install
+		CC_FOR_TARGET="$(CC)" \
+		CXX_FOR_TARGET="$(CXX)" \
+		AS_FOR_TARGET="$(AS)" \
+		LD_FOR_TARGET="$(LD)" \
+		AR_FOR_TARGET="$(AR)" \
+		RANLIB_FOR_TARGET="$(RANLIB)" \
+		NM_FOR_TARGET="$(NM)" \
+		OBJCOPY_FOR_TARGET="$(OBJCOPY)" \
+		OBJDUMP_FOR_TARGET="$(OBJDUMP)" \
+		READELF_FOR_TARGET="$(READELF)" \
+		STRIP_FOR_TARGET="$(STRIP)" \
+		CFLAGS_FOR_TARGET="$(NEWLIB_TARGET_CFLAGS)" \
+		CXXFLAGS_FOR_TARGET="$(NEWLIB_TARGET_CFLAGS)"
+	+$(Q)$(MAKE) -C $(NEWLIB_BUILD) --quiet
+	+$(Q)$(MAKE) -C $(NEWLIB_BUILD) install
 	@printf "$(YELLOW)[NEWLIB]$(NC) Done.\n"
 	@touch $@
 
-$(SYSROOT)/lib/libc.a: $(NEWLIB_STUB_OBJ_FILES)
-	@mkdir -p $(dir $(NEWLIB_STUB_OBJ_FILES))
-	$(Q)$(AR) rcs $@ $(NEWLIB_STUB_OBJ_FILES)
+$(SYSROOT)/lib/libc.a: $(NEWLIB_STAMP)
+	$(Q)test -r $@
+	$(Q)$(AR) t $@ >/dev/null
 
-build/newlib/%.o: src/newlib/%.c $(TOOLCHAIN_STAMP) $(NEWLIB_STAMP)
-	$(Q)$(CC) --sysroot=$(abspath $(SYSROOT)) \
-		-isystem $(abspath $(SYSROOT)/include) \
-		-nostdlib -c $< -lc -o $@
+$(NEWLIB_STUB_OBJ_FILES): | $(NEWLIB_STAMP)
 
 .PHONY: build-user-apps $(USER_APPS)
 build-user-apps: $(USER_APPS)
 
-$(USER_APPS): newlib | $(TOOLCHAIN_STAMP)
+$(USER_APPS): newlib $(NEWLIB_CRT0) $(NEWLIB_STUB_LIB_OBJ_FILES) | $(TOOLCHAIN_STAMP)
 	@printf "$(YELLOW)[BUILD]$(NC) User App: $(notdir $(patsubst %/,%,$@))\n"
-	$(Q)$(MAKE) -C $@ all --no-print-directory -s
+	+$(Q)$(MAKE) -C $@ all --no-print-directory -s
 
-$(USER_APPS_STAMP): $(USER_APP_SOURCE_FILES) $(USER_APP_MAKEFILES) $(NEWLIB_STAMP) | $(TOOLCHAIN_STAMP)
+$(USER_APPS_STAMP): $(USER_APP_SOURCE_FILES) $(USER_APP_PUBLIC_HEADERS) $(USER_APP_MAKEFILES) $(NEWLIB_STAMP) $(NEWLIB_CRT0) $(NEWLIB_STUB_LIB_OBJ_FILES) | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	$(Q)$(MAKE) build-user-apps --no-print-directory
+	+$(Q)$(MAKE) build-user-apps --no-print-directory
 	$(Q)touch $@
 
 .PHONY: build-modules $(MODULES)
@@ -209,61 +265,104 @@ build-modules: $(MODULES)
 
 $(MODULES): | $(TOOLCHAIN_STAMP)
 	@printf "$(YELLOW)[BUILD]$(NC) Module: $(notdir $(patsubst %/,%,$@))\n"
-	$(Q)$(MAKE) -C $@ all --no-print-directory -s
+	+$(Q)$(MAKE) -C $@ all --no-print-directory -s
 
-$(MODULES_STAMP): $(MODULE_SOURCE_FILES) $(MODULE_MAKEFILES) | $(TOOLCHAIN_STAMP)
+$(MODULES_STAMP): $(MODULE_SOURCE_FILES) $(MODULE_PUBLIC_HEADERS) $(MODULE_MAKEFILES) | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	$(Q)$(MAKE) build-modules --no-print-directory
+	+$(Q)$(MAKE) build-modules --no-print-directory
 	$(Q)touch $@
 
-$(INITRAMFS_BIN): $(USER_APPS_STAMP) $(MODULES_STAMP) $(shell find $(INITRAMFS_SRC) -type f -not -path "$(INITRAMFS_SRC)/bin/*" -not -path "$(INITRAMFS_SRC)/lib/modules/*" 2>/dev/null)
-	@mkdir -p build $(INITRAMFS_SRC)/bin $(INITRAMFS_SRC)/lib/modules
+$(INITRAMFS_BIN): $(USER_APPS_STAMP) $(MODULES_STAMP) Makefile $(shell find $(INITRAMFS_SRC) -type f -not -path "$(INITRAMFS_SRC)/bin/*" -not -path "$(INITRAMFS_SRC)/lib/modules/*" 2>/dev/null)
+	@mkdir -p $(dir $@)
 	@printf "$(YELLOW)[RAMDISK]$(NC) Preparing initramfs...\n"
-	$(Q)$(foreach dir,$(USER_APPS),cp $(USER_BINARIES_DIR)/$(shell basename $(dir)) $(INITRAMFS_SRC)/bin/ ;)
-	$(Q)$(foreach dir,$(MODULES),cp $(MODULE_BINARIES_DIR)/$(shell basename $(dir)).ko $(INITRAMFS_SRC)/lib/modules/ ;)
+	$(Q)rm -rf $(INITRAMFS_STAGE_DIR)
+	$(Q)mkdir -p $(INITRAMFS_STAGE_DIR)/bin $(INITRAMFS_STAGE_DIR)/lib/modules
+	$(Q)if test -d $(INITRAMFS_SRC); then cp -a $(INITRAMFS_SRC)/. $(INITRAMFS_STAGE_DIR)/; fi
+	$(Q)rm -rf $(INITRAMFS_STAGE_DIR)/bin $(INITRAMFS_STAGE_DIR)/lib/modules
+	$(Q)mkdir -p $(INITRAMFS_STAGE_DIR)/bin $(INITRAMFS_STAGE_DIR)/lib/modules
+	$(Q)for dir in $(USER_APPS); do \
+		rel=$${dir#$(TOP_DIR)/src/user/}; \
+		rel=$${rel%/}; \
+		mkdir -p $(INITRAMFS_STAGE_DIR)/bin/$$(dirname "$$rel"); \
+		cp $(USER_BINARIES_DIR)/$$rel $(INITRAMFS_STAGE_DIR)/bin/$$rel; \
+	done
+	$(Q)$(foreach dir,$(MODULES),cp $(MODULE_BINARIES_DIR)/$(shell basename $(dir)).ko $(INITRAMFS_STAGE_DIR)/lib/modules/ ;)
 	@printf "$(YELLOW)[RAMDISK]$(NC) Building $(INITRAMFS_BIN)\n"
-	$(Q)cd $(INITRAMFS_SRC) && find . | cpio -o -H newc > ../$(INITRAMFS_BIN) 2>/dev/null
+	$(Q)cd $(INITRAMFS_STAGE_DIR) && find . -print | LC_ALL=C sort | cpio -o -H newc > $(TOP_DIR)/$(INITRAMFS_BIN).tmp 2>/dev/null
+	$(Q)mv $(INITRAMFS_BIN).tmp $(INITRAMFS_BIN)
 
-$(FONT_BIN): $(FONT_BDF) $(FONT_SCRIPT) FORCE
+$(KERNEL_BUILD_CFG): FORCE
+	@mkdir -p $(dir $@)
+	$(Q){ \
+		printf 'DEBUG=%s\n' '$(DEBUG)'; \
+		printf 'CFLAGS=%s\n' '$(CFLAGS)'; \
+		printf 'CXXFLAGS=%s\n' '$(CXXFLAGS)'; \
+		printf 'NASMFLAGS=%s\n' '$(NASMFLAGS)'; \
+		printf 'LDFLAGS=%s\n' '$(LDFLAGS)'; \
+	} > $@.tmp
+	$(Q)if test -r $@ && cmp -s $@ $@.tmp; then rm -f $@.tmp; else mv $@.tmp $@; fi
+
+$(FONT_CFG): FORCE
+	@mkdir -p $(dir $@)
+	$(Q){ \
+		printf 'FONT_BDF=%s\n' '$(FONT_BDF)'; \
+		printf 'FONT_WIDTH=%s\n' '$(FONT_WIDTH)'; \
+		printf 'FONT_HEIGHT=%s\n' '$(FONT_HEIGHT)'; \
+	} > $@.tmp
+	$(Q)if test -r $@ && cmp -s $@ $@.tmp; then rm -f $@.tmp; else mv $@.tmp $@; fi
+
+$(FONT_BIN): $(FONT_BDF) $(FONT_SCRIPT) $(FONT_CFG)
 	@mkdir -p $(dir $@)
 	@printf "$(BLUE)[FONT]$(NC) Generating $(notdir $@)\n"
 	$(Q)test $(FONT_WIDTH) -ge 1 && test $(FONT_WIDTH) -le 32
 	$(Q)test $(FONT_HEIGHT) -ge 1 && test $(FONT_HEIGHT) -le 64
-	$(Q)$(PYTHON) $(FONT_SCRIPT) $(FONT_BDF) $@ $(FONT_WIDTH) $(FONT_HEIGHT)
+	$(Q)$(PYTHON) $(FONT_SCRIPT) $(FONT_BDF) $@.tmp $(FONT_WIDTH) $(FONT_HEIGHT)
+	$(Q)if test -r $@ && cmp -s $@ $@.tmp; then rm -f $@.tmp; else mv $@.tmp $@; fi
 
-build/x86_64/%.asm.o: src/impl/x86_64/%.asm $(FONT_BIN)
+build/x86_64/%.asm.o: src/impl/x86_64/%.asm Makefile base.mk $(KERNEL_BUILD_CFG) $(ASM_INCLUDE_FILES) $(FONT_BIN)
 	@mkdir -p $(dir $@)
 	@printf "$(BLUE)[AS]$(NC) $<\n"
-	$(Q)nasm $(NASMFLAGS) $< -o $@
+	$(Q)nasm $(NASMFLAGS) $(NASMDEPFLAGS) $< -o $@
 
 build/x86_64/framebuffer.cpp.o: $(FONT_BIN)
 
-build/x86_64/%.c.o: src/impl/x86_64/%.c | $(TOOLCHAIN_STAMP)
+build/x86_64/%.c.o: src/impl/x86_64/%.c Makefile base.mk $(KERNEL_BUILD_CFG) | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
 	@printf "$(GREEN)[CC]$(NC) $<\n"
-	$(Q)$(CC) -c $(CFLAGS) $< -o $@
+	$(Q)$(CC) $(DEPFLAGS) -c $(CFLAGS) $< -o $@
 
-build/x86_64/%.cpp.o: src/impl/x86_64/%.cpp | $(TOOLCHAIN_STAMP)
+build/x86_64/%.cpp.o: src/impl/x86_64/%.cpp Makefile base.mk $(KERNEL_BUILD_CFG) | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
 	@printf "$(GREEN)[CXX]$(NC) $<\n"
-	$(Q)$(CXX) -c $(CXXFLAGS) $< -o $@
+	$(Q)$(CXX) $(DEPFLAGS) -c $(CXXFLAGS) $< -o $@
 
 .PHONY: build-x86_64
-build-x86_64: $(TOOLCHAIN_STAMP) $(x86_64_object_files) $(INITRAMFS_BIN)
-	@mkdir -p dist/x86_64
-	@printf "$(BLUE)[LD]$(NC) dist/x86_64/kernel.bin\n"
-	$(Q)$(CC) $(CFLAGS) -nostdlib -o dist/x86_64/kernel.bin \
+build-x86_64: $(SYSROOT)/lib/libc.a $(KERNEL_ISO)
+
+$(KERNEL_BIN): $(TOOLCHAIN_STAMP) $(x86_64_object_files) targets/x86_64/linker.ld Makefile base.mk $(KERNEL_BUILD_CFG)
+	@mkdir -p $(dir $@)
+	@printf "$(BLUE)[LD]$(NC) $@\n"
+	$(Q)$(CC) $(CFLAGS) -nostdlib -o $@.tmp \
         -T targets/x86_64/linker.ld \
         -Wl,-n $(foreach flag,$(LDFLAGS),-Wl$\,$(flag)) \
         $(x86_64_object_files)
-	$(Q)mkdir -p targets/x86_64/iso/boot
-	$(Q)cp dist/x86_64/kernel.bin targets/x86_64/iso/boot/kernel.bin
-	$(Q)cp $(INITRAMFS_BIN) targets/x86_64/iso/boot/initramfs.cpio
-	@printf "$(YELLOW)[ISO]$(NC) Generating dist/x86_64/kernel.iso\n"
-	$(Q)grub-mkrescue /usr/lib/grub/i386-pc \
-		-o dist/x86_64/kernel.iso targets/x86_64/iso 2>/dev/null
+	$(Q)mv $@.tmp $@
 
-.PHONY: ahci-test-disks clean-ahci-test-disks recreate-ahci-test-disks check-host-tools print-qemu
+$(KERNEL_ISO): $(KERNEL_BIN) $(INITRAMFS_BIN) $(ISO_CFG_FILES) Makefile
+	$(Q)rm -rf $(ISO_BUILD_DIR)
+	$(Q)mkdir -p $(ISO_BUILD_DIR)
+	$(Q)cp -a $(ISO_SRC_DIR)/. $(ISO_BUILD_DIR)/
+	$(Q)rm -f $(ISO_BUILD_DIR)/boot/kernel.bin $(ISO_BUILD_DIR)/boot/initramfs.cpio
+	$(Q)mkdir -p $(ISO_BUILD_DIR)/boot
+	$(Q)cp $(KERNEL_BIN) $(ISO_BUILD_DIR)/boot/kernel.bin
+	$(Q)cp $(INITRAMFS_BIN) $(ISO_BUILD_DIR)/boot/initramfs.cpio
+	@printf "$(YELLOW)[ISO]$(NC) Generating $@\n"
+	$(Q)mkdir -p $(dir $@)
+	$(Q)grub-mkrescue --compress=xz /usr/lib/grub/i386-pc \
+		-o $@.tmp $(ISO_BUILD_DIR) 2>/dev/null
+	$(Q)mv $@.tmp $@
+
+.PHONY: ahci-test-disks fat-test-disks clean-ahci-test-disks recreate-ahci-test-disks recreate-fat-test-disks check-host-tools print-qemu
 
 check-host-tools:
 	@command -v qemu-system-x86_64 >/dev/null || { echo "missing qemu-system-x86_64"; exit 1; }
@@ -272,7 +371,13 @@ check-host-tools:
 
 ahci-test-disks: $(AHCI_TEST_DISK_IMAGES)
 
+fat-test-disks: $(FAT_TEST_DISK_IMAGES)
+
 recreate-ahci-test-disks: clean-ahci-test-disks ahci-test-disks
+
+recreate-fat-test-disks:
+	$(Q)rm -f $(FAT_TEST_DISK_IMAGES)
+	+$(Q)$(MAKE) fat-test-disks --no-print-directory
 
 $(AHCI_MBR_DISK): Makefile $(AHCI_DISK_TOOL)
 	@mkdir -p $(dir $@)
@@ -288,6 +393,21 @@ $(AHCI_EXT2_DISK): Makefile $(EXT2_DISK_TOOL)
 	@mkdir -p $(dir $@)
 	@printf "$(YELLOW)[DISK]$(NC) Creating ext2 AHCI test disk $@ ($(AHCI_EXT2_DISK_SIZE))\n"
 	$(Q)$(PYTHON) $(EXT2_DISK_TOOL) $@ $(AHCI_EXT2_DISK_SIZE)
+
+$(FAT12_TEST_DISK): Makefile $(FAT_DISK_TOOL)
+	@mkdir -p $(dir $@)
+	@printf "$(YELLOW)[DISK]$(NC) Creating FAT12 test disk $@ ($(FAT12_TEST_DISK_SIZE))\n"
+	$(Q)$(PYTHON) $(FAT_DISK_TOOL) fat12 $@ $(FAT12_TEST_DISK_SIZE)
+
+$(FAT16_TEST_DISK): Makefile $(FAT_DISK_TOOL)
+	@mkdir -p $(dir $@)
+	@printf "$(YELLOW)[DISK]$(NC) Creating FAT16 test disk $@ ($(FAT16_TEST_DISK_SIZE))\n"
+	$(Q)$(PYTHON) $(FAT_DISK_TOOL) fat16 $@ $(FAT16_TEST_DISK_SIZE)
+
+$(FAT32_TEST_DISK): Makefile $(FAT_DISK_TOOL)
+	@mkdir -p $(dir $@)
+	@printf "$(YELLOW)[DISK]$(NC) Creating FAT32 test disk $@ ($(FAT32_TEST_DISK_SIZE))\n"
+	$(Q)$(PYTHON) $(FAT_DISK_TOOL) fat32 $@ $(FAT32_TEST_DISK_SIZE)
 
 clean-ahci-test-disks:
 	@printf "$(RED)[CLEAN]$(NC) Removing AHCI test disks...\n"
@@ -318,11 +438,11 @@ clear: clean
 
 clean:
 	@printf "$(RED)[CLEAN]$(NC) Removing root build artifacts...\n"
-	$(Q)rm -rf build dist initramfs/bin initramfs/lib/modules
+	$(Q)rm -rf build dist
 
 .PHONY: clean-all
 clean-all: clean
-	@printf "$(RED)[CLEAN]$(NC) Removing toolchain and venv...\n"
-	$(Q)rm -rf $(TOOLCHAIN_DIR) $(VENV)
+	@printf "$(RED)[CLEAN]$(NC) Removing cached host tools...\n"
+	$(Q)rm -rf $(TOOL_CACHE_DIR)
 
 -include $(x86_64_object_files:.o=.d)

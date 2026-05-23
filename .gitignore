@@ -7,11 +7,7 @@ tools/*
 qemu.log
 .vscode/
 .idea/
+.cache/
 doc/
 tools/.venv/
-targets/x86_64/iso/boot/**
-!targets/x86_64/iso/boot/grub/grub.cfg
 compile_commands.json
-
-initramfs/bin/
-initramfs/lib/modules/

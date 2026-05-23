@@ -10,6 +10,7 @@
 #include "framebuffer.h"
 
 #include "string.h"
+#include "memory/vmm.h"
 #include "util.h"
 
 extern "C" {
@@ -42,6 +43,8 @@ namespace framebuffer {
      */
     struct FramebufferInfo {
         uint8_t *addr;    ///< Framebuffer base address
+        uint64_t phys;     ///< Physical framebuffer base
+        uint64_t bytes;    ///< Mapped framebuffer bytes
         uint32_t pitch;   ///< Bytes per row
         uint32_t width;   ///< Screen width in pixels
         uint32_t height;  ///< Screen height in pixels
@@ -190,6 +193,8 @@ namespace framebuffer {
 
     void init(multiboot_tag_framebuffer *tag) {
         if (!tag) return;
+        fb.phys = tag->addr;
+        fb.bytes = (uint64_t)tag->pitch * (uint64_t)tag->height;
         fb.addr = (uint8_t *)p2v(tag->addr);
         fb.pitch = tag->pitch;
         fb.width = tag->width;
@@ -220,6 +225,13 @@ namespace framebuffer {
         }
 
         clear();
+    }
+
+
+    void remap_wc() {
+        if (!fb.phys || !fb.bytes || fb.type == MULTIBOOT_FRAMEBUFFER_TYPE_EGA) return;
+        void *mapped = vmm::mmio_map_wc(fb.phys, fb.bytes);
+        if (mapped) fb.addr = (uint8_t *)mapped;
     }
 
     /**

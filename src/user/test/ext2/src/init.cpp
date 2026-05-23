@@ -20,7 +20,9 @@
 struct dirent64 {
     uint32_t inode;
     uint32_t type;
-    char name[256];
+    uint64_t name_len;
+    char *name;
+    uint64_t name_capacity;
 };
 
 static inline uint64_t syscall1(uint64_t num, uint64_t a1) {
@@ -103,16 +105,20 @@ static int read_verify(const char *path, const char *expected) {
 
 static int exists_in_dir(const char *dir, const char *name) {
     struct dirent64 de;
+    char namebuf[512];
+
     for (uint64_t i = 0;; ++i) {
+        de.name = namebuf;
+        de.name_capacity = sizeof(namebuf);
         int64_t r = (int64_t)syscall3(SYSCALL_READDIR, (uintptr_t)dir, i, (uintptr_t)&de);
-        if (r < 0) return 0;
+        if (r == -1) return 0;
+        if (r < 0) continue;
         if (streq(de.name, name)) return 1;
     }
 }
 
 static int one_iteration(const char *root, int iter) {
     char n1[32], n2[32];
-    // Keep names short enough for ext2 and readable in shell output.
     n1[0] = 'e'; n1[1] = '2'; n1[2] = 't'; n1[3] = '_';
     n2[0] = 'e'; n2[1] = '2'; n2[2] = 'r'; n2[3] = '_';
     int x = iter;
@@ -126,7 +132,6 @@ static int one_iteration(const char *root, int iter) {
 
     const char *payload = "abcdefghijklmnopqrstuvwxyz ext2 write/read test\n";
 
-    // Clean up stale files from interrupted previous runs.
     syscall1(SYSCALL_UNLINK, (uintptr_t)p1);
     syscall1(SYSCALL_UNLINK, (uintptr_t)p2);
 

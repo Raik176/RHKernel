@@ -35,11 +35,15 @@ namespace vmm {
     static bool supports_2mb_pages = false;
     static bool supports_1gb_pages = false;
     static bool supports_nx = false;
+    static bool supports_pat = false;
+    static bool supports_wc = false;
     static uint64_t phys_addr_mask = 0;
+    static uint64_t mapped_direct_map_bytes = 0;
 
     static uint64_t current_pml4_phys = 0;
 
     static VirtualRangeAllocator *mmio_allocator = nullptr;
+    static spinlock_t tlb_shootdown_lock;
 
     static inline void invlpg(uint64_t virt) {
         asm volatile("invlpg (%0)" : : "r"(virt) : "memory");
@@ -60,17 +64,19 @@ namespace vmm {
         uint64_t cores = smp::get_core_count();
         if (cores <= 1) return;
 
-        volatile bool *handled = (volatile bool *)heap::kmalloc(sizeof(bool) * cores);
-        smp::mail *messages = (smp::mail *)heap::kmalloc(sizeof(smp::mail) * cores);
-        if (!handled || !messages) kpanic("VMM: failed to allocate TLB shootdown state");
-
-        for (uint64_t i = 0; i < cores; i++) handled[i] = true;
+        uint64_t flags;
+        tlb_shootdown_lock.acquire(flags);
 
         smp::cpu_local *cpu = smp::get_cpu();
         uint64_t self = cpu ? cpu->cpu_index : UINT64_MAX;
         uint64_t pending = 0;
         uint32_t page_count = pages > UINT32_MAX ? 0 : (uint32_t)pages;
         if (pages > 256) page_count = 0;
+
+        for (uint64_t i = 0; i < cores; i++) {
+            smp::cpu_local *target = smp::get_cpu_by_index(i);
+            if (target) target->tlb_shootdown_handled = true;
+        }
 
         for (uint64_t i = 0; i < cores; i++) {
             if (i == self) continue;
@@ -82,31 +88,27 @@ namespace vmm {
                 if (!remote || remote->cr3 != pagemap) continue;
             }
 
-            handled[i] = false;
-            if (!smp::send_tlb_shootdown_mail((int64_t)i, &messages[i], pagemap, virt, page_count,
-                                             &handled[i])) {
-                heap::kfree(messages);
-                heap::kfree((void *)handled);
+            target->tlb_shootdown_handled = false;
+            if (!smp::send_tlb_shootdown_mail((int64_t)i, &target->tlb_shootdown_mail, pagemap,
+                                             virt, page_count, &target->tlb_shootdown_handled)) {
+                tlb_shootdown_lock.release(flags);
                 kpanic("VMM: failed to enqueue TLB shootdown");
             }
             pending++;
         }
 
-        if (pending == 0) {
-            heap::kfree(messages);
-            heap::kfree((void *)handled);
-            return;
+        if (pending != 0) {
+            smp::flush_mail(smp::MAIL_RECEIVER_OTHERS);
+
+            for (uint64_t i = 0; i < cores; i++) {
+                if (i == self) continue;
+                smp::cpu_local *target = smp::get_cpu_by_index(i);
+                if (!target) continue;
+                while (!target->tlb_shootdown_handled) asm volatile("pause");
+            }
         }
 
-        smp::flush_mail(smp::MAIL_RECEIVER_OTHERS);
-
-        for (uint64_t i = 0; i < cores; i++) {
-            if (i == self) continue;
-            while (!handled[i]) asm volatile("pause");
-        }
-
-        heap::kfree(messages);
-        heap::kfree((void *)handled);
+        tlb_shootdown_lock.release(flags);
     }
 
     static inline uint64_t *get_table_ptr(uint64_t phys_addr) {
@@ -137,6 +139,16 @@ namespace vmm {
 
     uint64_t get_phys_addr_mask() { return phys_addr_mask; }
 
+    bool nx_supported() { return supports_nx; }
+
+    bool pat_supported() { return supports_pat; }
+
+    bool write_combining_supported() { return supports_wc; }
+
+    bool page_1g_supported() { return supports_1gb_pages; }
+
+    uint64_t direct_map_bytes() { return mapped_direct_map_bytes; }
+
     static inline void cpuid(uint32_t leaf, uint32_t subleaf, uint32_t &eax, uint32_t &ebx,
                              uint32_t &ecx, uint32_t &edx) {
         asm volatile("cpuid"
@@ -154,6 +166,8 @@ namespace vmm {
         if (max_basic_leaf >= 0x00000001) {
             cpuid(0x00000001, 0, eax, ebx, ecx, edx);
             supports_2mb_pages = edx & (1 << 3);
+            supports_pat = edx & (1 << 16);
+            supports_wc = supports_pat;
         }
 
         cpuid(0x80000000, 0, eax, ebx, ecx, edx);
@@ -173,13 +187,6 @@ namespace vmm {
         } else {
             phys_addr_mask = 0x000FFFFFFFFFF000ULL;
         }
-
-#ifdef DEBUG
-        console::printf("[CPU] pages: 2M=%d 1G=%d NX=%d phys_bits_mask=%x:%x\n",
-                        supports_2mb_pages ? 1 : 0, supports_1gb_pages ? 1 : 0,
-                        supports_nx ? 1 : 0, (uint32_t)(phys_addr_mask >> 32),
-                        (uint32_t)phys_addr_mask);
-#endif
 
         current_pml4_phys = pmm::alloc(pmm::PAGE_SIZE);
         memset(p2v(current_pml4_phys), 0, pmm::PAGE_SIZE);
@@ -211,7 +218,8 @@ namespace vmm {
             kpanic("VMM: physical direct map window exhausted");
         }
 
-        map_range(PHYS_MAP_BASE, 0, direct_map_bytes, PageFlags::Write);
+        mapped_direct_map_bytes = direct_map_bytes;
+        map_range(PHYS_MAP_BASE, 0, direct_map_bytes, PageFlags::Write | PageFlags::NX);
         map_range(0, 0, 0x100000, PageFlags::Write);
 
         asm volatile("mov %0, %%cr3" : : "r"(current_pml4_phys) : "memory");
@@ -251,6 +259,22 @@ namespace vmm {
         if (size != 0) flush_tlb(pml4, virt, ((size - 1) / pmm::PAGE_SIZE) + 1);
     }
 
+    static uint64_t make_leaf_flags(PageFlags flags, PageSize size) {
+        uint64_t hw_flags = static_cast<uint64_t>(flags | PageFlags::Present);
+        hw_flags &= ~static_cast<uint64_t>(PageFlags::WriteCombining);
+
+        if (size != PageSize::Size4K) hw_flags |= static_cast<uint64_t>(PageFlags::Huge);
+        if (!supports_nx) hw_flags &= ~static_cast<uint64_t>(PageFlags::NX);
+
+        if ((flags & PageFlags::WriteCombining) != PageFlags::None && supports_wc) {
+            hw_flags &= ~(static_cast<uint64_t>(PageFlags::WriteThrough) |
+                          static_cast<uint64_t>(PageFlags::NoCache));
+            hw_flags |= size == PageSize::Size4K ? (1ULL << 7) : (1ULL << 12);
+        }
+
+        return hw_flags;
+    }
+
     static void map_page_internal(uint64_t virt, uint64_t phys, PageFlags flags, PageSize size,
                                   uint64_t pagemap, bool do_flush) {
         uint64_t pml4_idx = (virt >> 39) & 0x1FF;
@@ -263,8 +287,7 @@ namespace vmm {
 
         if (size == PageSize::Size1G) {
             if (!supports_1gb_pages) kpanic("VMM: 1GB pages unsupported");
-            uint64_t hw_flags = static_cast<uint64_t>(flags | PageFlags::Present | PageFlags::Huge);
-            if (!supports_nx) hw_flags &= ~static_cast<uint64_t>(PageFlags::NX);
+            uint64_t hw_flags = make_leaf_flags(flags, size);
             pdpt[pdpt_idx] = (phys & get_phys_addr_mask()) | hw_flags;
             goto flush;
         }
@@ -273,15 +296,13 @@ namespace vmm {
             uint64_t *pd = get_next_table(pdpt, pdpt_idx, true);
             if (size == PageSize::Size2M) {
                 if (!supports_2mb_pages) kpanic("VMM: 2MB pages unsupported");
-                uint64_t hw_flags = static_cast<uint64_t>(flags | PageFlags::Present | PageFlags::Huge);
-                if (!supports_nx) hw_flags &= ~static_cast<uint64_t>(PageFlags::NX);
+                uint64_t hw_flags = make_leaf_flags(flags, size);
                 pd[pd_idx] = (phys & get_phys_addr_mask()) | hw_flags;
                 goto flush;
             }
 
             uint64_t *pt = get_next_table(pd, pd_idx, true);
-            uint64_t hw_flags = static_cast<uint64_t>(flags | PageFlags::Present);
-            if (!supports_nx) hw_flags &= ~static_cast<uint64_t>(PageFlags::NX);
+            uint64_t hw_flags = make_leaf_flags(flags, size);
             pt[pt_idx] = (phys & get_phys_addr_mask()) | hw_flags;
         }
 
@@ -353,6 +374,8 @@ namespace vmm {
 
     uint64_t create_user_address_space() {
         uint64_t pml4_phys = pmm::alloc(pmm::PAGE_SIZE);
+        if (!pml4_phys) return 0;
+
         uint64_t *new_pml4 = (uint64_t *)p2v(pml4_phys);
         uint64_t *kernel_pml4 = (uint64_t *)p2v(current_pml4_phys);
 
@@ -360,58 +383,97 @@ namespace vmm {
 
         for (int i = 256; i < 512; i++) { new_pml4[i] = kernel_pml4[i]; }
 
+        map_range(0, 0, 0x100000, PageFlags::Write, pml4_phys);
         return pml4_phys;
+    }
+
+    static PageFlags clone_leaf_flags(uint64_t entry) {
+        uint64_t keep = static_cast<uint64_t>(PageFlags::Write) |
+                        static_cast<uint64_t>(PageFlags::User) |
+                        static_cast<uint64_t>(PageFlags::WriteThrough) |
+                        static_cast<uint64_t>(PageFlags::NoCache) |
+                        static_cast<uint64_t>(PageFlags::WriteCombining) |
+                        static_cast<uint64_t>(PageFlags::CoW) |
+                        static_cast<uint64_t>(PageFlags::NX);
+        return static_cast<PageFlags>(entry & keep);
     }
 
     uint64_t clone_address_space(uint64_t old_pml4_phys) {
         uint64_t new_pml4_phys = create_user_address_space();
+        if (!new_pml4_phys) return 0;
+
         uint64_t *old_pml4 = (uint64_t *)p2v(old_pml4_phys);
-        uint64_t *new_pml4 = (uint64_t *)p2v(new_pml4_phys);
+        constexpr uint64_t PRESENT = static_cast<uint64_t>(PageFlags::Present);
+        constexpr uint64_t USER = static_cast<uint64_t>(PageFlags::User);
+        constexpr uint64_t WRITE = static_cast<uint64_t>(PageFlags::Write);
+        constexpr uint64_t HUGE = static_cast<uint64_t>(PageFlags::Huge);
+        constexpr uint64_t COW = static_cast<uint64_t>(PageFlags::CoW);
 
-        // Only clone the user half (0-255)
-        for (int i = 0; i < 256; i++) {
-            if (old_pml4[i] & (uint64_t)PageFlags::Present) {
-                uint64_t *old_pdpt = (uint64_t *)p2v(old_pml4[i] & get_phys_addr_mask());
-                uint64_t new_pdpt_phys = pmm::alloc(pmm::PAGE_SIZE);
-                uint64_t *new_pdpt = (uint64_t *)p2v(new_pdpt_phys);
-                memset(new_pdpt, 0, pmm::PAGE_SIZE);
-                new_pml4[i] = new_pdpt_phys | (old_pml4[i] & 0xFFF);
+        for (uint64_t i = 0; i < 256; i++) {
+            uint64_t pml4e = old_pml4[i];
+            if ((pml4e & (PRESENT | USER)) != (PRESENT | USER)) continue;
 
-                for (int j = 0; j < 512; j++) {
-                    if (old_pdpt[j] & (uint64_t)PageFlags::Present) {
-                        uint64_t *old_pd = (uint64_t *)p2v(old_pdpt[j] & get_phys_addr_mask());
-                        uint64_t new_pd_phys = pmm::alloc(pmm::PAGE_SIZE);
-                        uint64_t *new_pd = (uint64_t *)p2v(new_pd_phys);
-                        memset(new_pd, 0, pmm::PAGE_SIZE);
-                        new_pdpt[j] = new_pd_phys | (old_pdpt[j] & 0xFFF);
+            uint64_t *old_pdpt = (uint64_t *)p2v(pml4e & get_phys_addr_mask());
+            for (uint64_t j = 0; j < 512; j++) {
+                uint64_t *leaf = &old_pdpt[j];
+                uint64_t entry = *leaf;
+                uint64_t virt = (i << 39) | (j << 30);
 
-                        for (int k = 0; k < 512; k++) {
-                            if (old_pd[k] & (uint64_t)PageFlags::Present) {
-                                uint64_t *old_pt =
-                                    (uint64_t *)p2v(old_pd[k] & get_phys_addr_mask());
-                                uint64_t new_pt_phys = pmm::alloc(pmm::PAGE_SIZE);
-                                uint64_t *new_pt = (uint64_t *)p2v(new_pt_phys);
-                                memset(new_pt, 0, pmm::PAGE_SIZE);
-                                new_pd[k] = new_pt_phys | (old_pd[k] & 0xFFF);
+                if (!(entry & PRESENT)) continue;
+                if (entry & HUGE) {
+                    if ((entry & USER) != USER) continue;
+                    if (entry & WRITE) {
+                        entry = (entry & ~WRITE) | COW;
+                        *leaf = entry;
+                    }
+                    pmm::ref_page(entry & get_phys_addr_mask());
+                    map_page(virt, entry & get_phys_addr_mask(), clone_leaf_flags(entry),
+                             PageSize::Size1G, new_pml4_phys);
+                    continue;
+                }
+                if ((entry & USER) != USER) continue;
 
-                                for (int l = 0; l < 512; l++) {
-                                    if (old_pt[l] & (uint64_t)PageFlags::Present) {
-                                        // CoW: If page is Write, remove Write, leave User/Present
-                                        if (old_pt[l] & (uint64_t)PageFlags::Write) {
-                                            old_pt[l] &= ~(uint64_t)PageFlags::Write;
-                                            // We use bit 9 (Available) as our "Was Writable" flag
-                                            old_pt[l] |= (uint64_t)PageFlags::CoW;
-                                        }
-                                        new_pt[l] = old_pt[l];
-                                        pmm::ref_page(new_pt[l] & get_phys_addr_mask());
-                                    }
-                                }
-                            }
+                uint64_t *old_pd = (uint64_t *)p2v(entry & get_phys_addr_mask());
+                for (uint64_t k = 0; k < 512; k++) {
+                    leaf = &old_pd[k];
+                    entry = *leaf;
+                    virt = (i << 39) | (j << 30) | (k << 21);
+
+                    if (!(entry & PRESENT)) continue;
+                    if (entry & HUGE) {
+                        if ((entry & USER) != USER) continue;
+                        if (entry & WRITE) {
+                            entry = (entry & ~WRITE) | COW;
+                            *leaf = entry;
                         }
+                        pmm::ref_page(entry & get_phys_addr_mask());
+                        map_page(virt, entry & get_phys_addr_mask(), clone_leaf_flags(entry),
+                                 PageSize::Size2M, new_pml4_phys);
+                        continue;
+                    }
+                    if ((entry & USER) != USER) continue;
+
+                    uint64_t *old_pt = (uint64_t *)p2v(entry & get_phys_addr_mask());
+                    for (uint64_t l = 0; l < 512; l++) {
+                        leaf = &old_pt[l];
+                        entry = *leaf;
+                        if ((entry & (PRESENT | USER)) != (PRESENT | USER)) continue;
+
+                        if (entry & WRITE) {
+                            entry = (entry & ~WRITE) | COW;
+                            *leaf = entry;
+                        }
+
+                        uint64_t phys = entry & get_phys_addr_mask();
+                        pmm::ref_page(phys);
+                        virt = (i << 39) | (j << 30) | (k << 21) | (l << 12);
+                        map_page(virt, phys, clone_leaf_flags(entry), PageSize::Size4K,
+                                 new_pml4_phys);
                     }
                 }
             }
         }
+
         flush_tlb(old_pml4_phys, 0, 0);
         return new_pml4_phys;
     }
@@ -505,32 +567,24 @@ namespace vmm {
         if (!cpu || !cpu->current_task) return false;
 
         scheduler::task *current = cpu->current_task;
-        if (current->type != scheduler::task_type::USER) return false;
-        if (!current->user_stack || current->user_stack_limit == 0 || current->user_stack_top == 0) {
-            return false;
-        }
+        if (current->type != scheduler::task_type::USER || !current->stack_vma) return false;
+
+        scheduler::vm_area *stack = current->stack_vma;
+        if ((stack->flags & scheduler::VMA_GROWSDOWN) == 0) return false;
 
         uint64_t fault_page = fault_addr & ~(pmm::PAGE_SIZE - 1);
-        uint64_t committed_base = (uint64_t)current->user_stack;
-
-        // Stack grows downward. The reserved growable window is:
-        //   [user_stack_limit, user_stack_top)
-        // and the currently committed part is:
-        //   [user_stack, user_stack_top)
-        // Leave the page below user_stack_limit unmapped as a hard guard.
-        if (fault_page < current->user_stack_limit || fault_page >= committed_base) {
-            return false;
-        }
+        uint64_t committed_base = stack->committed_start;
+        if (fault_page < stack->start || fault_page >= committed_base) return false;
 
         for (uint64_t page = fault_page; page < committed_base; page += pmm::PAGE_SIZE) {
             uint64_t phys = pmm::alloc(pmm::PAGE_SIZE);
             if (!phys) return false;
             memset(p2v(phys), 0, pmm::PAGE_SIZE);
-            map_page(page, phys, PageFlags::Write | PageFlags::User, PageSize::Size4K,
-                     current->cr3);
+            map_page(page, phys, PageFlags::Write | PageFlags::User | PageFlags::NX,
+                     PageSize::Size4K, current->cr3);
         }
 
-        current->user_stack = (void *)fault_page;
+        stack->committed_start = fault_page;
         return true;
     }
 
@@ -582,15 +636,13 @@ namespace vmm {
 
             // If it's a huge page (1GB in PDPT or 2MB in PD), it's a leaf
             if (entry & static_cast<uint64_t>(PageFlags::Huge)) {
-                pmm::unref_page(child_phys);
+                if (entry & static_cast<uint64_t>(PageFlags::User)) pmm::unref_page(child_phys);
                 continue;
             }
 
             if (level > 0) {
-                // Not a leaf yet (PML4=3, PDPT=2, PD=1), go deeper
                 destroy_table_level(child_phys, level - 1);
-            } else {
-                // We are at the PT level (Level 0), the entry is a 4KB page
+            } else if (entry & static_cast<uint64_t>(PageFlags::User)) {
                 pmm::unref_page(child_phys);
             }
         }
@@ -618,7 +670,7 @@ namespace vmm {
 
     VirtualRangeAllocator::VirtualRangeAllocator(uint64_t base, uint64_t size)
         : m_base(base), m_total_size(size) {
-        // Initial segment representing the entire range
+        spinlock_init(&m_lock);
         m_head = static_cast<Segment *>(heap::kmalloc(sizeof(Segment)));
         m_head->start = base;
         m_head->size = size;
@@ -717,7 +769,7 @@ namespace vmm {
         }
     }
 
-    void *mmio_map(uint64_t phys_addr, uint64_t size) {
+    static void *mmio_map_with_flags(uint64_t phys_addr, uint64_t size, PageFlags flags) {
         if (!mmio_allocator || size == 0) return nullptr;
 
         uint64_t offset = phys_addr & (pmm::PAGE_SIZE - 1);
@@ -731,10 +783,18 @@ namespace vmm {
             return nullptr;
         }
 
-        map_range(virt, phys_page, map_size,
-                  PageFlags::NoCache | PageFlags::WriteThrough | PageFlags::Write | PageFlags::NX);
-
+        map_range(virt, phys_page, map_size, flags | PageFlags::Write | PageFlags::NX);
         return (void *)(virt + offset);
+    }
+
+    void *mmio_map(uint64_t phys_addr, uint64_t size) {
+        return mmio_map_with_flags(phys_addr, size, PageFlags::NoCache | PageFlags::WriteThrough);
+    }
+
+    void *mmio_map_wc(uint64_t phys_addr, uint64_t size) {
+        PageFlags flags = supports_wc ? PageFlags::WriteCombining
+                                      : PageFlags::NoCache | PageFlags::WriteThrough;
+        return mmio_map_with_flags(phys_addr, size, flags);
     }
 
     void mmio_unmap(void *virt_addr, uint64_t size) {
