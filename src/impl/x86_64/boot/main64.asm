@@ -1,4 +1,6 @@
 global long_mode_start
+global phys_map_pml4_table
+global phys_map_pml4_table_end
 global phys_map_pdp_table
 global phys_map_pdp_table_end
 global phys_map_pd_table
@@ -13,7 +15,10 @@ global higher_stack_guard
 extern kmain
 extern pml4_table
 extern page_directory
+extern pml5_table
+extern paging_mode_la57
 extern _kernel_phys_start
+extern _kernel_phys_end
 extern enable_cpu_features
 
 [bits 64]
@@ -55,9 +60,24 @@ long_mode_start:
 %define PHYS_MAP_GIB 64
 
 setup_direct_physical_mapping:
+    cmp qword [paging_mode_la57], 0
+    jne .map_5l
+
     mov rax, phys_map_pdp_table
     or rax, 0x03                 ; Present | Writable
     mov [pml4_table + 256 * 8], rax
+    jmp .link_pdp
+
+.map_5l:
+    mov rax, phys_map_pml4_table
+    or rax, 0x03                 ; Present | Writable
+    mov [pml5_table + 256 * 8], rax
+
+    mov rax, phys_map_pdp_table
+    or rax, 0x03                 ; Present | Writable
+    mov [phys_map_pml4_table + 0 * 8], rax
+
+.link_pdp:
 
     xor rcx, rcx
 .link_pdp_loop:
@@ -96,16 +116,35 @@ setup_higher_half_mapping:
     or rax, 0x03
     mov [high_pdp_table + 510*8], rax
 
-    mov rax, 0x00000000 | 0x83
-    mov [high_pd_table + 0*8], rax
-    
-    mov rax, 0x00200000 | 0x83
-    mov [high_pd_table + 1*8], rax
-    
-    mov rax, 0x00400000 | 0x83
-    mov [high_pd_table + 2*8], rax
+    mov rax, _kernel_phys_start
+    test rax, 0x1FFFFF
+    jnz .bad_kernel_mapping
 
+    mov rdx, _kernel_phys_end
+    add rdx, 0x1FFFFF
+    and rdx, -0x200000
+
+    xor rcx, rcx
+.map_kernel_loop:
+    cmp rax, rdx
+    jae .done_kernel_mapping
+    cmp rcx, 512
+    jae .bad_kernel_mapping
+
+    mov rsi, rax
+    or rsi, 0x83
+    mov [high_pd_table + rcx * 8], rsi
+
+    add rax, 0x200000
+    inc rcx
+    jmp .map_kernel_loop
+
+.done_kernel_mapping:
     ret
+
+.bad_kernel_mapping:
+    hlt
+    jmp .bad_kernel_mapping
 
 section .bss
 align 4096
@@ -119,6 +158,10 @@ align 16
 stack_bottom:
     resb 1024 * 2
 stack_top:
+align 4096
+phys_map_pml4_table:
+    resb 4096
+phys_map_pml4_table_end:
 align 4096
 phys_map_pdp_table:
     resb 4096

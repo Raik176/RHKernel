@@ -1,15 +1,12 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-#define SYSCALL_WRITE 0
-#define SYSCALL_WAIT 7
-#define SYSCALL_FORK 10
-#define SYSCALL_EXEC 11
-#define SYSCALL_READDIR 19
 
-#define STDOUT 1
-#define STDERR 2
+#define STDOUT_FILENO 1
+#define STDERR_FILENO 2
 
 struct dirent64 {
     uint32_t inode;
@@ -19,37 +16,11 @@ struct dirent64 {
     uint64_t name_capacity;
 };
 
-static uint64_t sc0(uint64_t n) {
-    uint64_t r;
-    asm volatile("syscall" : "=a"(r) : "a"(n), "D"(0ULL), "S"(0ULL), "d"(0ULL) : "rcx", "r11", "memory");
-    return r;
-}
 
-static uint64_t sc1(uint64_t n, uint64_t a) {
-    uint64_t r;
-    asm volatile("syscall" : "=a"(r) : "a"(n), "D"(a), "S"(0ULL), "d"(0ULL) : "rcx", "r11", "memory");
-    return r;
-}
 
-static uint64_t sc3(uint64_t n, uint64_t a, uint64_t b, uint64_t c) {
-    uint64_t r;
-    asm volatile("syscall" : "=a"(r) : "a"(n), "D"(a), "S"(b), "d"(c) : "rcx", "r11", "memory");
-    return r;
-}
 
-static size_t slen(const char *s) {
-    size_t n = 0;
-    while (s && s[n]) n++;
-    return n;
-}
 
-static int streq(const char *a, const char *b) {
-    while (*a && *b && *a == *b) {
-        a++;
-        b++;
-    }
-    return *a == *b;
-}
+static int streq(const char *a, const char *b) { return strcmp(a, b) == 0; }
 
 static int cmp(const char *a, const char *b) {
     while (*a && *b && *a == *b) {
@@ -59,12 +30,10 @@ static int cmp(const char *a, const char *b) {
     return (unsigned char)*a - (unsigned char)*b;
 }
 
-static void wr(int fd, const char *s) {
-    sc3(SYSCALL_WRITE, (uint64_t)fd, (uintptr_t)s, slen(s));
-}
+static void wr(int fd, const char *s) { write(fd, s, strlen(s)); }
 
-static void out(const char *s) { wr(STDOUT, s); }
-static void err(const char *s) { wr(STDERR, s); }
+static void out(const char *s) { wr(STDOUT_FILENO, s); }
+static void err(const char *s) { wr(STDERR_FILENO, s); }
 
 static void dec(uint64_t v) {
     char b[32];
@@ -80,11 +49,11 @@ static void dec(uint64_t v) {
         }
         while (m) b[n++] = t[--m];
     }
-    sc3(SYSCALL_WRITE, STDOUT, (uintptr_t)b, (uint64_t)n);
+    write(STDOUT_FILENO, b, (size_t)n);
 }
 
 static char *dup_s(const char *s) {
-    size_t len = slen(s);
+    size_t len = strlen(s);
     char *outp = (char *)malloc(len + 1);
     if (!outp) return 0;
     for (size_t i = 0; i <= len; i++) outp[i] = s[i];
@@ -92,8 +61,8 @@ static char *dup_s(const char *s) {
 }
 
 static char *join_path(const char *dir, const char *name) {
-    size_t dlen = slen(dir);
-    size_t nlen = slen(name);
+    size_t dlen = strlen(dir);
+    size_t nlen = strlen(name);
     int slash = dlen && dir[dlen - 1] != '/';
     char *path = (char *)malloc(dlen + (size_t)slash + nlen + 1);
     if (!path) return 0;
@@ -109,14 +78,14 @@ static char *join_path(const char *dir, const char *name) {
 static int read_dirent_name(const char *dir, uint64_t index, struct dirent64 *de) {
     de->name = 0;
     de->name_capacity = 0;
-    int64_t r = (int64_t)sc3(SYSCALL_READDIR, (uintptr_t)dir, index, (uintptr_t)de);
+    int64_t r = (int64_t)readdir(dir, index, de);
     if (r == -1) return -1;
 
     de->name = (char *)malloc(de->name_len + 1);
     if (!de->name) return -1;
     de->name_capacity = de->name_len + 1;
 
-    r = (int64_t)sc3(SYSCALL_READDIR, (uintptr_t)dir, index, (uintptr_t)de);
+    r = (int64_t)readdir(dir, index, de);
     if (r < 0) {
         free(de->name);
         de->name = 0;
@@ -192,14 +161,14 @@ static int run_one(const char *dir, const char *name) {
     out(path);
     out("\n");
 
-    uint64_t pid = sc0(SYSCALL_FORK);
+    pid_t pid = fork();
     if (pid == 0) {
         char *argv[] = {path, 0};
-        sc3(SYSCALL_EXEC, (uintptr_t)path, (uintptr_t)argv, 0);
+        exec(path, argv);
         err("testall: exec failed: ");
         err(path);
         err("\n");
-        sc1(6, 127);
+        _exit(127);
     }
 
     if ((int64_t)pid < 0) {
@@ -211,7 +180,7 @@ static int run_one(const char *dir, const char *name) {
     }
 
     int status = -1;
-    int64_t waited = (int64_t)sc1(SYSCALL_WAIT, (uintptr_t)&status);
+    pid_t waited = wait(&status);
     if (waited != (int64_t)pid) {
         out("[FAIL] wait failed: ");
         out(path);
@@ -243,7 +212,7 @@ int main(int argc, char **argv) {
         return argc > 2 ? 1 : 0;
     }
 
-    const char *dir = argc == 2 ? argv[1] : "test";
+    const char *dir = argc == 2 ? argv[1] : "/bin/test";
     char **names = 0;
     size_t total = 0;
 

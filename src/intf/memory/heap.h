@@ -7,13 +7,13 @@
 namespace heap {
     /** @internal Represents a single slab (page) in the allocator */
     struct SlabHeader {
-        uint32_t slot_size;  ///< Size of each allocation slot
+        uint32_t magic;
+        uint32_t slot_size;
         uint32_t cache_index;
-        uint32_t used_slots;      ///< Number of slots currently in use
-        uint32_t total_slots;     ///< Total number of slots in the slab
-        void *free_list;          ///< Linked list of free slots
-        SlabHeader *next, *prev;  ///< Links for partial/full slab lists
-
+        uint32_t used_slots;
+        uint32_t total_slots;
+        void *free_list;
+        SlabHeader *next, *prev;
         void *owner;
     };
 
@@ -44,6 +44,9 @@ namespace heap {
      * @return Pointer to the allocated memory, or nullptr if allocation fails
      */
     void *kmalloc(size_t size);
+    void *kzalloc(size_t size);
+    void *kmalloc_array(size_t count, size_t size);
+    void *kcalloc(size_t count, size_t size);
 
     /**
      * @brief Free previously allocated memory
@@ -55,6 +58,15 @@ namespace heap {
     void kfree(void *ptr);
 
     void *krealloc(void *ptr, size_t new_size);
+    void *kreallocarray(void *ptr, size_t count, size_t size);
+
+    struct DebugInfo {
+        size_t slab_page_bytes;
+        size_t large_alloc_bytes;
+        size_t large_alloc_count;
+    };
+
+    void get_debug_info(DebugInfo *info);
 
 }  // namespace heap
 

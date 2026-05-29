@@ -33,10 +33,12 @@ namespace apic {
     void tick();
     uint32_t get_tick_scale();
     uint64_t get_ticks();
+    uint64_t get_global_ticks();
     void stop();
     bool is_bsp();
     uint32_t get_bsp_id();
     uint32_t get_id();
+    void send_ipi(uint32_t lapic_id, uint32_t icr_low);
 
     static inline uint64_t rdmsr(uint32_t msr) {
         uint32_t low, high;

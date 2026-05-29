@@ -6,6 +6,7 @@
 #include "memory/heap.h"
 #include "memory/pmm.h"
 #include "memory/vmm.h"
+#include "smp/workqueue.h"
 #include "string.h"
 #include "symbol/ksym.h"
 #include "util.h"
@@ -27,7 +28,31 @@ extern uint8_t _kernel_phys_end[];
 namespace module_loader {
     static vmm::VirtualRangeAllocator *module_v_alloc = nullptr;
     static LoadedModule *module_list = nullptr;
-    static vfs::vfs_node *proc_modules_dir = nullptr;
+    static vfs::vfs_node *debug_modules_dir = nullptr;
+
+
+    static const char *runtime_state_name(module_runtime_state state) {
+        switch (state) {
+            case module_runtime_state::INIT_PENDING: return "init_pending";
+            case module_runtime_state::INIT_FAILED: return "init_failed";
+            case module_runtime_state::START_PENDING: return "start_pending";
+            case module_runtime_state::STARTING: return "starting";
+            case module_runtime_state::RUNNING: return "running";
+            case module_runtime_state::START_FAILED: return "start_failed";
+        }
+        return "unknown";
+    }
+
+    static void module_start_work(void *arg) {
+        LoadedModule *m = (LoadedModule *)arg;
+        if (!m || !m->start) return;
+        m->state = module_runtime_state::STARTING;
+        console::printf("[MODULE] Starting %s...\n", m->name);
+        int res = m->start();
+        m->start_result = res;
+        m->state = res == 0 ? module_runtime_state::RUNNING : module_runtime_state::START_FAILED;
+        if (res != 0) console::printf("[MODULE] Start failed for %s: %d\n", m->name, res);
+    }
 
     static bool add_overflow(uint64_t a, uint64_t b, uint64_t *out) {
         *out = a + b;
@@ -244,19 +269,20 @@ namespace module_loader {
         return size;
     }
 
-    static uint64_t proc_module_info_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    static uint64_t debug_module_info_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
         LoadedModule *m = (LoadedModule *)node->ptr;
         if (!m) return 0;
         char buf[1024];
         uint64_t len = 0;
         buf[0] = 0;
-        appendf(buf, sizeof(buf), &len, "name: %s\npath: %s\nbase: %p\nend: %p\nimage_size: %d\nmapped_size: %d\nfile_size: %d\nexec_start: %p\nexec_end: %p\nsections: %d\nsymbols: %d\n",
-                m->name, m->path, m->base, m->end, m->image_size, m->mapped_size, m->file_size,
-                m->exec_start, m->exec_end, m->section_count, m->symbol_count);
+        appendf(buf, sizeof(buf), &len, "name: %s\npath: %s\nstate: %s\ninit_result: %d\nstart_result: %d\nbase: %p\nend: %p\nimage_size: %d\nmapped_size: %d\nfile_size: %d\nexec_start: %p\nexec_end: %p\nsections: %d\nsymbols: %d\n",
+                m->name, m->path, runtime_state_name(m->state), (uint64_t)m->init_result,
+                (uint64_t)m->start_result, m->base, m->end, m->image_size, m->mapped_size,
+                m->file_size, m->exec_start, m->exec_end, m->section_count, m->symbol_count);
         return proc_copy(buf, len, offset, size, buffer);
     }
 
-    static uint64_t proc_module_maps_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    static uint64_t debug_module_maps_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
         LoadedModule *m = (LoadedModule *)node->ptr;
         if (!m) return 0;
         char buf[4096];
@@ -273,7 +299,7 @@ namespace module_loader {
         return proc_copy(buf, len, offset, size, buffer);
     }
 
-    static uint64_t proc_module_symbols_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    static uint64_t debug_module_symbols_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, uint8_t *buffer) {
         LoadedModule *m = (LoadedModule *)node->ptr;
         if (!m) return 0;
         char buf[8192];
@@ -286,36 +312,39 @@ namespace module_loader {
         return proc_copy(buf, len, offset, size, buffer);
     }
 
-    static vfs::vfs_node *proc_child(vfs::vfs_node *parent, const char *name, vfs::VfsType type) {
+    static vfs::vfs_node *debug_child(vfs::vfs_node *parent, const char *name, vfs::VfsType type) {
         vfs::vfs_node *node = vfs::finddir(parent, name);
         if (node) return node;
         return vfs::create_node(name, type, parent);
     }
 
-    static void publish_proc_root() {
-        vfs::vfs_node *proc = vfs::open("/proc");
-        if (!proc || proc->type != vfs::VfsType::VFS_DIRECTORY) return;
-        proc_modules_dir = proc_child(proc, "modules", vfs::VfsType::VFS_DIRECTORY);
-        if (!proc_modules_dir) return;
+    static void publish_debug_root() {
+        vfs::vfs_node *sys = vfs::open("/sys");
+        if (!sys || sys->type != vfs::VfsType::VFS_DIRECTORY) return;
+        vfs::vfs_node *kernel = debug_child(sys, "kernel", vfs::VfsType::VFS_DIRECTORY);
+        if (!kernel) return;
+        vfs::vfs_node *debug = debug_child(kernel, "debug", vfs::VfsType::VFS_DIRECTORY);
+        if (!debug) return;
+        debug_modules_dir = debug_child(debug, "modules", vfs::VfsType::VFS_DIRECTORY);
     }
 
-    static void publish_proc_module(LoadedModule *m) {
+    static void publish_debug_module(LoadedModule *m) {
         if (!m || !valid_component(m->name)) return;
-        if (!proc_modules_dir) publish_proc_root();
-        if (!proc_modules_dir) return;
-        vfs::vfs_node *dir = proc_child(proc_modules_dir, m->name, vfs::VfsType::VFS_DIRECTORY);
+        if (!debug_modules_dir) publish_debug_root();
+        if (!debug_modules_dir) return;
+        vfs::vfs_node *dir = debug_child(debug_modules_dir, m->name, vfs::VfsType::VFS_DIRECTORY);
         if (!dir) return;
         struct Entry { const char *name; uint64_t (*read)(vfs::vfs_node *, uint64_t, uint64_t, uint8_t *); };
-        Entry entries[] = {{"info", proc_module_info_read}, {"maps", proc_module_maps_read}, {"symbols", proc_module_symbols_read}};
+        Entry entries[] = {{"info", debug_module_info_read}, {"maps", debug_module_maps_read}, {"symbols", debug_module_symbols_read}};
         for (uint64_t i = 0; i < sizeof(entries) / sizeof(entries[0]); i++) {
-            vfs::vfs_node *n = proc_child(dir, entries[i].name, vfs::VfsType::VFS_CHAR_DEVICE);
+            vfs::vfs_node *n = debug_child(dir, entries[i].name, vfs::VfsType::VFS_CHAR_DEVICE);
             if (n) { n->ptr = (uintptr_t)m; n->read = entries[i].read; }
         }
     }
 
     void init() {
         module_v_alloc = new vmm::VirtualRangeAllocator(MODULE_BASE, MODULE_SIZE);
-        publish_proc_root();
+        publish_debug_root();
     }
 
     MODULE_NOIPA void load_module(const char *path) {
@@ -328,6 +357,11 @@ namespace module_loader {
         elf::elf_header header;
         if (!read_exact(file, 0, sizeof(header), &header) || header.magic != ELF_MAGIC) {
             console::printf("[MODULE] %s is not a valid ELF file\n", path);
+            return;
+        }
+
+        if (header.bit_width != 2 || header.machine != 0x3E) {
+            console::printf("[MODULE] %s has unsupported module ABI\n", path);
             return;
         }
 
@@ -570,11 +604,9 @@ namespace module_loader {
             }
         }
 
-        page_writable = (uint8_t *)heap::kmalloc(page_count);
-        page_executable = (uint8_t *)heap::kmalloc(page_count);
+        page_writable = (uint8_t *)heap::kzalloc(page_count);
+        page_executable = (uint8_t *)heap::kzalloc(page_count);
         if (!page_writable || !page_executable) goto fail;
-        memset(page_writable, 0, page_count);
-        memset(page_executable, 0, page_count);
 
         for (uint16_t i = 0; i < header.sh_count; i++) {
             elf::elf_section_header sh;
@@ -633,6 +665,10 @@ namespace module_loader {
             console::printf("[MODULE] Init pointer is not executable in %s\n", path);
             goto fail_perm;
         }
+        if (meta->start && !address_executable_in_sections(sections, section_count, (uintptr_t)meta->start)) {
+            console::printf("[MODULE] Start pointer is not executable in %s\n", path);
+            goto fail_perm;
+        }
 
         for (uint64_t j = 0; j < pending_symbol_count; j++) {
             kernel_symbol *sym = &pending_symbols[j];
@@ -672,9 +708,8 @@ namespace module_loader {
             vmm::map_page(page_virt, page_phys, flags, vmm::PageSize::Size4K);
         }
 
-        loaded = (LoadedModule *)heap::kmalloc(sizeof(LoadedModule));
+        loaded = (LoadedModule *)heap::kzalloc(sizeof(LoadedModule));
         if (!loaded) goto fail_perm;
-        memset(loaded, 0, sizeof(*loaded));
         if (pending_symbol_count) {
             symbols = (kernel_symbol *)heap::kmalloc(sizeof(kernel_symbol) * pending_symbol_count);
             if (!symbols) { heap::kfree(loaded); goto fail_perm; }
@@ -693,6 +728,11 @@ namespace module_loader {
         loaded->symbol_count = pending_symbol_count;
         loaded->sections = sections;
         loaded->symbols = symbols;
+        loaded->start = meta->start;
+        loaded->state = module_runtime_state::INIT_PENDING;
+        loaded->init_result = 0;
+        loaded->start_result = 0;
+        kernel_work_init(&loaded->start_work, module_start_work, loaded);
         if (!loaded->name || !loaded->path) goto fail_loaded;
 
         for (uint64_t j = 0; j < pending_symbol_count; j++) {
@@ -710,7 +750,7 @@ namespace module_loader {
 
         loaded->next = module_list;
         module_list = loaded;
-        publish_proc_module(loaded);
+        publish_debug_module(loaded);
 
         heap::kfree(page_writable);
         heap::kfree(page_executable);
@@ -718,12 +758,32 @@ namespace module_loader {
         if (meta->init) {
             console::printf("[MODULE] Initializing %s...\n", meta->name);
             int res = meta->init();
+            loaded->init_result = res;
             if (res != 0) {
-                console::printf("[MODULE] Failed to load module %s, returned non zero exit code in init: %d.\n",
-                                meta->name, res);
+                loaded->state = module_runtime_state::INIT_FAILED;
+                console::printf("[MODULE] Init failed for %s: %d\n", meta->name, res);
+            } else if (loaded->start) {
+                loaded->state = module_runtime_state::START_PENDING;
+                int qres = workqueue::queue(&loaded->start_work);
+                if (qres != 0) {
+                    loaded->start_result = qres;
+                    loaded->state = module_runtime_state::START_FAILED;
+                    console::printf("[MODULE] Failed to queue start for %s: %d\n", meta->name, qres);
+                }
+            } else {
+                loaded->state = module_runtime_state::RUNNING;
             }
         } else {
+            loaded->state = loaded->start ? module_runtime_state::START_PENDING : module_runtime_state::RUNNING;
             console::printf("[MODULE] No init function in %s\n", path);
+            if (loaded->start) {
+                int qres = workqueue::queue(&loaded->start_work);
+                if (qres != 0) {
+                    loaded->start_result = qres;
+                    loaded->state = module_runtime_state::START_FAILED;
+                    console::printf("[MODULE] Failed to queue start for %s: %d\n", meta->name, qres);
+                }
+            }
         }
 
         heap::kfree(section_sizes);

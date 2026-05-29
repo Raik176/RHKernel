@@ -7,10 +7,11 @@ namespace gdt {
     enum selectors : uint16_t {
         KCODE_SEL = 0x08,        // Index 1, RPL 0
         KDATA_SEL = 0x10,        // Index 2, RPL 0
-        UDATA32_SEL = 0x18 | 3,  // Index 3, RPL 3
-        UCODE32_SEL = 0x20 | 3,  // Index 4, RPL 3
-        UDATA64_SEL = 0x28 | 3,  // Index 5, RPL 3
-        UCODE64_SEL = 0x30 | 3,  // Index 6, RPL 3
+        UCODE32_SEL = 0x18 | 3,
+        UDATA32_SEL = 0x20 | 3,
+        UDATA64_SEL = 0x28 | 3,
+        UCODE64_SEL = 0x30 | 3,
+        SYSRET_USER_BASE = 0x20,
         TSS_SEL = 0x38           // Index 7 (TSS is 16 bytes, uses 7 & 8)
     };
 
@@ -64,6 +65,7 @@ namespace gdt {
     void init_early();
 
     void init_core();
+    void set_panic_ist(void *stack_top);
 
     extern "C" void gdt_load(uint64_t gdt_ptr_addr);
 

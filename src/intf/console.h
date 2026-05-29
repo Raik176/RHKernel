@@ -108,6 +108,7 @@ namespace console {
      */
     void printf(const char *fmt, ...);
     void vprintf(const char *fmt, va_list args);
+    void panic_unlock_output();
 
     void hexdump(const void *data, size_t size);
 

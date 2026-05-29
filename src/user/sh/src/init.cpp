@@ -1,77 +1,79 @@
-#include <stdint.h>
+#include <fcntl.h>
+#include <input.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
-#define SYSCALL_WRITE 0
-#define SYSCALL_READ 2
-#define SYSCALL_YIELD 4
-#define SYSCALL_EXIT 6
-#define SYSCALL_WAIT 7
-#define SYSCALL_FORK 10
-#define SYSCALL_EXEC 11
-#define SYSCALL_CHDIR 20
-#define SYSCALL_GETCWD 21
+static int str_eq(const char *a, const char *b) { return strcmp(a, b) == 0; }
 
-#define STDIN 0
-#define STDOUT 1
-#define STDERR 2
+static void raw_write_fd(int fd, const void *buf, size_t len) { write(fd, buf, len); }
+static void raw_write_s(const char *s) { write(STDOUT_FILENO, s, strlen(s)); }
+static void raw_write_err(const char *s) { write(STDERR_FILENO, s, strlen(s)); }
+static void raw_write_c(char c) { write(STDOUT_FILENO, &c, 1); }
 
-static inline uint64_t syscall0(uint64_t num) {
-    uint64_t ret;
-    asm volatile("syscall"
-                 : "=a"(ret)
-                 : "a"(num), "D"(0ULL), "S"(0ULL), "d"(0ULL)
-                 : "rcx", "r11", "memory");
-    return ret;
-}
+static int read_launch_search(void) {
+    int fd = open("/task/self/launch/search", O_RDWR);
+    if (fd < 0) return -1;
 
-static inline uint64_t syscall1(uint64_t num, uint64_t a1) {
-    uint64_t ret;
-    asm volatile("syscall"
-                 : "=a"(ret)
-                 : "a"(num), "D"(a1), "S"(0ULL), "d"(0ULL)
-                 : "rcx", "r11", "memory");
-    return ret;
-}
-
-static inline uint64_t syscall3(uint64_t num, uint64_t a1, uint64_t a2, uint64_t a3) {
-    uint64_t ret;
-    asm volatile("syscall"
-                 : "=a"(ret)
-                 : "a"(num), "D"(a1), "S"(a2), "d"(a3)
-                 : "rcx", "r11", "memory");
-    return ret;
-}
-
-static size_t str_len(const char *s) {
-    size_t n = 0;
-    while (s && s[n]) n++;
-    return n;
-}
-
-static int str_eq(const char *a, const char *b) {
-    while (*a && *b && *a == *b) {
-        a++;
-        b++;
+    char buf[256];
+    for (;;) {
+        ssize_t n = read(fd, buf, sizeof(buf));
+        if (n < 0) {
+            close(fd);
+            return -1;
+        }
+        if (n == 0) break;
+        raw_write_fd(STDOUT_FILENO, buf, (size_t)n);
     }
-    return *a == *b;
+
+    close(fd);
+    return 0;
 }
 
-static void raw_write_fd(int fd, const void *buf, size_t len) {
-    syscall3(SYSCALL_WRITE, (uint64_t)fd, (uintptr_t)buf, (uint64_t)len);
+static int write_launch_search(int argc, char **argv) {
+    size_t len = 0;
+    for (int i = 1; i < argc; i++) len += strlen(argv[i]) + 1;
+    if (len == 0 || len > 4096) return -1;
+
+    char *buf = (char *)malloc(len);
+    if (!buf) return -1;
+
+    size_t p = 0;
+    for (int i = 1; i < argc; i++) {
+        size_t n = strlen(argv[i]);
+        for (size_t j = 0; j < n; j++) buf[p++] = argv[i][j];
+        buf[p++] = '\n';
+    }
+
+    int fd = open("/task/self/launch/search", O_RDWR);
+    if (fd < 0) {
+        free(buf);
+        return -1;
+    }
+
+    ssize_t written = write(fd, buf, len);
+    close(fd);
+    free(buf);
+    return written == (int64_t)len ? 0 : -1;
 }
 
-static void raw_write_s(const char *s) {
-    raw_write_fd(STDOUT, s, str_len(s));
-}
-
-static void raw_write_err(const char *s) {
-    raw_write_fd(STDERR, s, str_len(s));
-}
-
-static void raw_write_c(char c) {
-    raw_write_fd(STDOUT, &c, 1);
+static int read_input_char(char *out) {
+    for (;;) {
+        struct input_event ev;
+        ssize_t n = read(STDIN_FILENO, &ev, sizeof(ev));
+        if (n <= 0) {
+            sched_yield();
+            continue;
+        }
+        if ((size_t)n != sizeof(ev)) continue;
+        if (ev.type != INPUT_EVENT_KEY) continue;
+        if (ev.value != INPUT_KEY_PRESSED && ev.value != INPUT_KEY_REPEATED) continue;
+        if (ev.text == 0 || ev.text > 0x7f) continue;
+        *out = (char)ev.text;
+        return 0;
+    }
 }
 
 static char *read_line(void) {
@@ -82,11 +84,7 @@ static char *read_line(void) {
 
     for (;;) {
         char c = 0;
-        int64_t n = (int64_t)syscall3(SYSCALL_READ, STDIN, (uintptr_t)&c, 1);
-        if (n <= 0) {
-            syscall0(SYSCALL_YIELD);
-            continue;
-        }
+        if (read_input_char(&c) != 0) continue;
 
         if (c == '\n' || c == '\r') {
             buf[len] = '\0';
@@ -101,6 +99,8 @@ static char *read_line(void) {
             }
             continue;
         }
+
+        if (c < 0x20 || c == 0x7f) continue;
 
         if (len + 1 >= cap) {
             size_t new_cap = cap * 2;
@@ -159,8 +159,7 @@ static char *getcwd_alloc(void) {
         char *buf = (char *)malloc(cap);
         if (!buf) return nullptr;
 
-        int64_t r = (int64_t)syscall3(SYSCALL_GETCWD, (uintptr_t)buf, cap, 0);
-        if (r == 0) return buf;
+        if (getcwd(buf, cap)) return buf;
 
         free(buf);
 
@@ -185,14 +184,23 @@ static int run_builtin(int argc, char **argv) {
     if (argc == 0) return 1;
 
     if (str_eq(argv[0], "help")) {
-        raw_write_s("builtins: help, cd, pwd, exit\n");
-        raw_write_s("external commands: use absolute paths or cd into their directory\n");
+        raw_write_s("builtins: help, cd, pwd, launch, exit\n");
+        raw_write_s("external commands: bare names use /task/self/launch/search\n");
         return 1;
     }
 
     if (str_eq(argv[0], "cd")) {
         const char *path = argc > 1 ? argv[1] : "/";
-        if ((int64_t)syscall1(SYSCALL_CHDIR, (uintptr_t)path) < 0) raw_write_err("cd failed\n");
+        if (chdir(path) != 0) raw_write_err("cd failed\n");
+        return 1;
+    }
+
+    if (str_eq(argv[0], "launch")) {
+        if (argc == 1) {
+            if (read_launch_search() != 0) raw_write_err("launch read failed\n");
+        } else if (write_launch_search(argc, argv) != 0) {
+            raw_write_err("launch write failed\n");
+        }
         return 1;
     }
 
@@ -210,7 +218,7 @@ static int run_builtin(int argc, char **argv) {
     }
 
     if (str_eq(argv[0], "exit")) {
-        syscall1(SYSCALL_EXIT, 0);
+        _exit(0);
         return 1;
     }
 
@@ -241,17 +249,17 @@ int main(int, char **) {
             continue;
         }
 
-        uint64_t pid = syscall0(SYSCALL_FORK);
+        pid_t pid = fork();
         if (pid == 0) {
-            syscall3(SYSCALL_EXEC, (uintptr_t)argv[0], (uintptr_t)argv, 0);
+            exec(argv[0], argv);
             raw_write_err("command not found\n");
-            syscall1(SYSCALL_EXIT, 1);
+            _exit(1);
         }
 
-        if ((int64_t)pid < 0) {
+        if (pid < 0) {
             raw_write_err("fork failed\n");
         } else {
-            syscall1(SYSCALL_WAIT, 0);
+            wait(0);
         }
 
         free(argv);

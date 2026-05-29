@@ -2,6 +2,7 @@
 
 #include "console.h"
 #include "file/module_loader.h"
+#include "memory/vmm.h"
 #include "smp/apic.h"
 #include "smp/scheduler.h"
 #include "smp/smp.h"
@@ -11,6 +12,91 @@
 extern "C" {
 extern uint8_t higher_stack_top[];
 extern uint8_t higher_stack_bottom[];
+}
+
+namespace {
+    static uint64_t cached_paging_phys_map_base = PHYS_MAP_BASE_4L;
+    static uint64_t cached_paging_phys_direct_map_size = PHYS_DIRECT_MAP_SIZE_4L;
+    static uint64_t cached_paging_mode_la57 = 0;
+    static uint64_t cached_paging_user_top = 0x0000800000000000ULL;
+    static bool paging_values_cached = false;
+    static volatile uint32_t panic_started = 0;
+    static volatile uint32_t panic_owner = UINT32_MAX;
+    static volatile uint32_t panic_depth = 0;
+
+    static inline uint64_t read_early_phys_map_base() {
+        uint64_t *ptr;
+        asm volatile("movabsq $paging_phys_map_base, %0" : "=r"(ptr));
+        return *ptr;
+    }
+
+    static inline uint64_t read_early_phys_direct_map_size() {
+        uint64_t *ptr;
+        asm volatile("movabsq $paging_phys_direct_map_size, %0" : "=r"(ptr));
+        return *ptr;
+    }
+
+    static inline uint64_t read_early_mode_la57() {
+        uint64_t *ptr;
+        asm volatile("movabsq $paging_mode_la57, %0" : "=r"(ptr));
+        return *ptr;
+    }
+
+    static inline uint64_t read_early_user_top() {
+        uint64_t *ptr;
+        asm volatile("movabsq $paging_user_top, %0" : "=r"(ptr));
+        return *ptr;
+    }
+}
+
+static inline void cpu_halt_loop() {
+    asm volatile("cli" ::: "memory");
+    for (;;) { asm volatile("hlt" ::: "memory"); }
+}
+
+void __attribute__((noreturn)) panic_halt_forever() {
+    cpu_halt_loop();
+    __builtin_unreachable();
+}
+
+static smp::cpu_local *panic_cpu_local() {
+    uint32_t lo = 0, hi = 0;
+    asm volatile("rdmsr" : "=a"(lo), "=d"(hi) : "c"(apic::MSR_GS_BASE));
+    uint64_t gs_base = ((uint64_t)hi << 32) | lo;
+    if (!gs_base) return nullptr;
+
+    smp::cpu_local *cpu = (smp::cpu_local *)gs_base;
+    if (cpu->self != cpu) return nullptr;
+    return cpu;
+}
+
+static uint32_t panic_cpu_id() {
+    smp::cpu_local *cpu = panic_cpu_local();
+    return cpu ? cpu->cpu_index : UINT32_MAX - 1;
+}
+
+extern "C" void paging_runtime_cache_values() {
+    cached_paging_phys_map_base = read_early_phys_map_base();
+    cached_paging_phys_direct_map_size = read_early_phys_direct_map_size();
+    cached_paging_mode_la57 = read_early_mode_la57();
+    cached_paging_user_top = read_early_user_top();
+    paging_values_cached = true;
+}
+
+extern "C" uint64_t paging_phys_map_base_value() {
+    return paging_values_cached ? cached_paging_phys_map_base : read_early_phys_map_base();
+}
+
+extern "C" uint64_t paging_phys_direct_map_size_value() {
+    return paging_values_cached ? cached_paging_phys_direct_map_size : read_early_phys_direct_map_size();
+}
+
+extern "C" uint64_t paging_mode_la57_value() {
+    return paging_values_cached ? cached_paging_mode_la57 : read_early_mode_la57();
+}
+
+extern "C" uint64_t paging_user_top_value() {
+    return paging_values_cached ? cached_paging_user_top : read_early_user_top();
 }
 
 struct panic_origin {
@@ -111,8 +197,8 @@ static bool valid_kernel_stack_frame(uint64_t frame) {
         return true;
     }
 
-    smp::cpu_local *cpu = smp::get_cpu();
-    if (cpu && cpu->self == cpu && cpu->current_task && cpu->current_task->kernel_stack) {
+    smp::cpu_local *cpu = panic_cpu_local();
+    if (cpu && cpu->current_task && cpu->current_task->kernel_stack) {
         uint64_t bottom = (uint64_t)cpu->current_task->kernel_stack;
         uint64_t top = bottom + scheduler::KERNEL_STACK_SIZE;
         return frame >= bottom && frame < top;
@@ -181,6 +267,44 @@ void dump_page_fault_error(uint64_t error_code) {
                     (error_code & (1ULL << 2)) ? "user" : "supervisor",
                     (error_code & (1ULL << 3)) ? "reserved-bit" : "no-reserved-bit",
                     (error_code & (1ULL << 4)) ? "instruction-fetch" : "data-access");
+}
+
+static void dump_kernel_stack_fault(uint64_t fault_addr, const regs *r) {
+    smp::cpu_local *cpu = panic_cpu_local();
+    if (!cpu || !cpu->current_task || !cpu->current_task->kernel_stack) return;
+
+    uint64_t base = (uint64_t)cpu->current_task->kernel_stack;
+    uint64_t low_guard = 0;
+    uint64_t top = 0;
+    if (!vmm::kernel_stack_range(cpu->current_task->kernel_stack, scheduler::KERNEL_STACK_SIZE,
+                                 &low_guard, &top)) {
+        return;
+    }
+
+    bool low_guard_hit = fault_addr >= low_guard && fault_addr < base;
+    bool high_guard_hit = fault_addr >= top && fault_addr < top + 4096;
+    bool rsp_low = r && r->rsp < base;
+    bool rsp_high = r && r->rsp > top;
+    if (!low_guard_hit && !high_guard_hit && !rsp_low && !rsp_high) return;
+
+    const char *kind = low_guard_hit ? "low guard" :
+                       high_guard_hit ? "high guard" :
+                       rsp_low ? "below stack" : "above stack";
+    uint64_t used = 0;
+    if (r && r->rsp >= base && r->rsp <= top) used = top - r->rsp;
+
+    console::printf("\n--- KERNEL STACK OVERFLOW ---\n");
+    console::printf("  Classification: %s hit for current task kernel stack\n", kind);
+    console::printf("  Stack usable : [%p..%p) size=%d bytes\n", base, top, scheduler::KERNEL_STACK_SIZE);
+    console::printf("  Guard pages  : low=[%p..%p) high=[%p..%p)\n", low_guard, base, top, top + 4096);
+    if (r) {
+        console::printf("  RSP          : %p", r->rsp);
+        if (r->rsp >= base && r->rsp <= top) {
+            console::printf(" used=%d bytes free=%d bytes", used, r->rsp - base);
+        }
+        console::printf("\n");
+    }
+    console::printf("  Fault address: %p\n", fault_addr);
 }
 
 void hexdump(const void *data, size_t len) {
@@ -258,8 +382,8 @@ static void dump_panic_origin(struct regs *r) {
 }
 
 static void dump_current_task_summary() {
-    smp::cpu_local *cpu = smp::get_cpu();
-    if (!cpu || cpu->self != cpu) {
+    smp::cpu_local *cpu = panic_cpu_local();
+    if (!cpu) {
         console::printf("  CPU   : <not initialized>\n");
         return;
     }
@@ -272,18 +396,39 @@ void __attribute__((noreturn)) kpanic(const char *message, struct regs *r) {
     kpanic_at(message, nullptr, 0, nullptr, r);
 }
 
+void __attribute__((noreturn)) kfatal_at(const char *message, const char *file, int line,
+                                          const char *function) {
+    kpanic_at(message, file, line, function, nullptr);
+}
+
 void __attribute__((noreturn)) kpanic_at(const char *message, const char *file, int line,
                                          const char *function, struct regs *r) {
-    asm volatile("cli");
+    asm volatile("cli" ::: "memory");
+
+    uint32_t cpu_id = panic_cpu_id();
+    uint32_t expected = 0;
+    if (__atomic_compare_exchange_n(&panic_started, &expected, 1, false, __ATOMIC_ACQ_REL,
+                                    __ATOMIC_ACQUIRE)) {
+        __atomic_store_n(&panic_owner, cpu_id, __ATOMIC_RELEASE);
+        __atomic_store_n(&panic_depth, 1, __ATOMIC_RELEASE);
+        if (panic_cpu_local()) smp::panic_stop_others();
+        console::panic_unlock_output();
+    } else {
+        uint32_t owner = __atomic_load_n(&panic_owner, __ATOMIC_ACQUIRE);
+        if (owner != cpu_id) panic_halt_forever();
+        uint32_t depth = __atomic_add_fetch(&panic_depth, 1, __ATOMIC_ACQ_REL);
+        if (depth > 1) {
+            console::panic_unlock_output();
+            console::printf("\nrecursive panic: %s\n", message ? message : "<null>");
+            panic_halt_forever();
+        }
+    }
 
     regs captured_regs;
     if (r == nullptr) {
         fill_regs(&captured_regs);
         r = &captured_regs;
     }
-
-    smp::send_halt_mail(-1);
-    smp::flush_mail(-1);
 
     console::set_color(console::Color::Red);
     console::printf(
@@ -326,9 +471,11 @@ void __attribute__((noreturn)) kpanic_at(const char *message, const char *file, 
     dump_control_regs();
 
     if (r->int_no == 14) {
+        uint64_t fault_addr = read_cr2();
         console::printf("\n--- PAGE FAULT ---\n");
-        console::printf("  Faulting virtual address: %p\n", read_cr2());
+        console::printf("  Faulting virtual address: %p\n", fault_addr);
         dump_page_fault_error(r->err_code);
+        dump_kernel_stack_fault(fault_addr, r);
     }
 
     console::printf("\n--- STACKTRACE ---\n");
@@ -342,5 +489,5 @@ void __attribute__((noreturn)) kpanic_at(const char *message, const char *file, 
         "\n================================================================================\n");
     console::printf("  SYSTEM HALTED.\n");
 
-    for (;;) asm volatile("hlt");
+    panic_halt_forever();
 }

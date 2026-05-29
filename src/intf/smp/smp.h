@@ -7,27 +7,41 @@
 #include "util.h"
 
 namespace smp {
-    static constexpr int MAILBOX_SIZE = 32;
+    static constexpr uint64_t PANIC_STACK_SIZE = 16 * 1024;
     static constexpr int64_t MAIL_RECEIVER_ALL = -2;
     static constexpr int64_t MAIL_RECEIVER_OTHERS = -1;
 
     struct trampoline_data {
         uint32_t cr3;
+        uint32_t flags;
         uint64_t cpu_index;
         uint64_t stack_top;
         uint64_t entry_point;
         volatile uint64_t status;
+        uint64_t cpu_local_ptr;
+        uint32_t lapic_id;
     } __attribute__((packed));
 
     enum class mail_type {
         HALT,
-        TLB_SHOOTDOWN
+        TLB_SHOOTDOWN,
+        RESCHEDULE
+    };
+
+    enum class mail_status {
+        QUEUED,
+        ALREADY_PENDING,
+        INVALID_TARGET,
+        INVALID_MESSAGE,
+        BUSY
     };
 
     struct mail {
         mail_type type;
         uint64_t sender_core;
-        volatile bool *handled;
+        mail *next;
+        volatile bool queued;
+        volatile bool handled;
 
         union {
             struct {
@@ -46,9 +60,16 @@ namespace smp {
         void *user_rsp;
 
         scheduler::task *current_task;
+        void *panic_stack;
         scheduler::task *task_queues_tail[scheduler::MAX_QUEUES];
         scheduler::task *task_queues_head[scheduler::MAX_QUEUES];
         uint64_t task_queue_oldest_tick[scheduler::MAX_QUEUES];
+        uint32_t task_queue_count[scheduler::MAX_QUEUES];
+        uint32_t runnable_count;
+        uint64_t steal_attempts;
+        uint64_t steal_successes;
+        uint64_t steal_locked;
+        uint64_t steal_empty;
         scheduler::task *sleep_list_head;
         scheduler::task *idle_task;
         spinlock_t sched_lock;
@@ -62,12 +83,23 @@ namespace smp {
         uint32_t lapic_id;
         uint32_t cpu_index;
 
-        mail *mailbox[MAILBOX_SIZE];
-        uint32_t mail_head;
-        uint32_t mail_tail;
+        mail *mail_head;
+        mail *mail_tail;
+        uint64_t mail_depth;
         spinlock_t mail_lock;
         mail tlb_shootdown_mail;
-        volatile bool tlb_shootdown_handled;
+        mail reschedule_mail;
+        mail halt_mail;
+        volatile bool reschedule_pending;
+        uint64_t mail_enqueued;
+        uint64_t mail_handled;
+        uint64_t mail_busy;
+        uint64_t mail_invalid;
+        uint64_t mail_coalesced;
+        uint64_t reschedule_requests;
+        uint64_t reschedule_ipis;
+        uint64_t reschedule_deferred;
+        uint64_t reschedule_switches;
 
         struct cpu_features cpu_features;
     };
@@ -90,9 +122,11 @@ namespace smp {
     cpu_local *get_cpu_by_index(uint64_t index);
 
     bool send_tlb_shootdown_mail(int64_t target_cpu, mail *message, uint64_t cr3, uint64_t addr,
-                                  uint32_t pages, volatile bool *handled);
+                                  uint32_t pages);
+    bool send_reschedule_mail(uint64_t target_cpu);
     void send_halt_mail(int64_t target_cpu);
     void flush_mail(int64_t target_cpu);
+    void panic_stop_others();
 
     static inline cpu_local *get_cpu() {
         cpu_local *p;

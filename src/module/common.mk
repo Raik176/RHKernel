@@ -3,7 +3,7 @@ include $(abspath $(TOP_DIR)/base.mk)
 MODULE_INC_DIRS := $(shell find $(abspath $(TOP_DIR)/src/module) -type d -name "include" 2>/dev/null)
 MODULE_INC_FLAGS := $(addprefix -I, $(MODULE_INC_DIRS))
 
-CFLAGS := $(GLOBAL_CFLAGS) -ffreestanding -fno-stack-protector -O2 \
+CFLAGS := $(GLOBAL_CFLAGS) $(KERNEL_CODEGEN_CFLAGS) -ffreestanding -fno-stack-protector -O2 \
 			-fno-function-sections -fno-data-sections \
             -fPIC -fno-pie -fno-plt -mcmodel=large -fno-lto \
             -I$(abspath $(TOP_DIR)/src/public) \

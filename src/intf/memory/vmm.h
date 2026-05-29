@@ -5,10 +5,18 @@
 #include "util.h"
 
 namespace vmm {
-    static constexpr uint64_t MMIO_BASE = 0xFFFFFF0000000000ULL;
-    static constexpr uint64_t MMIO_SIZE = 0x2000000000ULL;
-    static constexpr uint64_t KSTACK_BASE = 0xFFFFFE8000000000ULL;
-    static constexpr uint64_t KSTACK_SIZE = 0x8000000000ULL;
+    static constexpr uint64_t MMIO_BASE_4L = 0xFFFFFF0000000000ULL;
+    static constexpr uint64_t MMIO_SIZE_4L = 0x2000000000ULL;
+    static constexpr uint64_t KSTACK_BASE_4L = 0xFFFFFE8000000000ULL;
+    static constexpr uint64_t KSTACK_SIZE_4L = 0x8000000000ULL;
+    static constexpr uint64_t MMIO_BASE_5L = 0xFFFFF00000000000ULL;
+    static constexpr uint64_t MMIO_SIZE_5L = 0x00000F0000000000ULL;
+    static constexpr uint64_t KSTACK_BASE_5L = 0xFFFFE00000000000ULL;
+    static constexpr uint64_t KSTACK_SIZE_5L = 0x0000100000000000ULL;
+    static constexpr uint64_t MMIO_BASE = MMIO_BASE_4L;
+    static constexpr uint64_t MMIO_SIZE = MMIO_SIZE_4L;
+    static constexpr uint64_t KSTACK_BASE = KSTACK_BASE_4L;
+    static constexpr uint64_t KSTACK_SIZE = KSTACK_SIZE_4L;
 
     /**
      * @brief Page table entry flags for x86-64 paging.
@@ -50,6 +58,12 @@ namespace vmm {
 
         /** Use PAT write-combining if available. */
         WriteCombining = 1ULL << 10,
+
+        DemandZero = 1ULL << 11,
+
+        Guard = 1ULL << 52,
+
+        PKeyMask = 0xFULL << 59,
 
         /** Disable instruction fetch (NX bit) */
         NX = 1ULL << 63
@@ -97,6 +111,10 @@ namespace vmm {
 
     void map_range(uint64_t virt, uint64_t phys, uint64_t size, PageFlags flags,
                    uint64_t pagemap = get_kernel_pagemap());
+    void map_demand_zero_range(uint64_t virt, uint64_t size, PageFlags flags,
+                               uint64_t pagemap = get_kernel_pagemap());
+    void map_guard_page(uint64_t virt, PageFlags flags = PageFlags::User | PageFlags::NX,
+                        uint64_t pagemap = get_kernel_pagemap());
 
     void unmap_page(uint64_t virt, uint64_t pagemap = get_kernel_pagemap());
     void unmap_range(uint64_t virt, uint64_t size, uint64_t pagemap = get_kernel_pagemap());
@@ -107,17 +125,30 @@ namespace vmm {
     uint64_t clone_address_space(uint64_t old_pml4_phys);
 
     bool handle_fault(uint64_t fault_addr, uint64_t error_code, regs *r = nullptr);
+    bool fault_address_is_guard(uint64_t fault_addr, uint64_t pagemap = 0);
 
     uint64_t get_mapping(uint64_t virt, uint64_t pagemap = get_kernel_pagemap());
     bool user_range_mapped(uint64_t virt, uint64_t size, bool write,
                            uint64_t pagemap = get_kernel_pagemap());
+    bool set_user_pkey_range(uint64_t virt, uint64_t size, uint8_t pkey,
+                             uint64_t pagemap = get_kernel_pagemap());
     void flush_tlb(uint64_t pagemap, uint64_t virt, uint64_t pages);
     uint64_t get_phys_addr_mask();
     bool nx_supported();
     bool pat_supported();
     bool write_combining_supported();
     bool page_1g_supported();
+    bool five_level_paging_enabled();
+    uint64_t paging_level_count();
+    uint64_t virtual_address_bits();
+    bool demand_zero_supported();
+    bool guard_page_supported();
+    uint64_t user_top();
+    uint64_t user_stack_top();
+    uint64_t user_mmap_base_min();
+    uint64_t user_mmap_aslr_window();
     uint64_t direct_map_bytes();
+    uint64_t page_table_bytes();
 
     class VirtualRangeAllocator {
        public:

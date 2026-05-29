@@ -13,16 +13,31 @@ namespace vfs {
         uint64_t name_capacity;
     };
 
+    constexpr uint64_t VFS_NODE_MAGIC = 0x5646534E4F444531ULL;
+
     struct vfs_node {
+        uint64_t magic;
         char *name;
+        uint64_t name_len;
+        uint64_t name_hash;
         VfsType type;
         uint64_t size;
         uint32_t inode;
         uintptr_t ptr;
+        uint32_t ref_count;
+        bool unlinked;
 
         struct vfs_node *next;
+        struct vfs_node *hash_next;
         struct vfs_node *child;
         struct vfs_node *parent;
+        struct vfs_node **child_hash;
+        uint32_t child_hash_buckets;
+        uint64_t child_count;
+        uint64_t child_seq;
+        uint32_t neg_cache_next;
+        uint32_t neg_cache_count;
+        struct vfs_negative_entry *neg_cache;
 
         struct vfs_node *(*finddir)(struct vfs_node *parent, const char *name);
         int (*readdir)(struct vfs_node *dir, uint64_t index, struct vfs_dirent *out);
@@ -33,6 +48,14 @@ namespace vfs {
         int (*rename)(struct vfs_node *old_parent, const char *old_name,
                       struct vfs_node *new_parent, const char *new_name);
         int (*truncate)(struct vfs_node *node, uint64_t size);
+        void (*release)(struct vfs_node *node);
+    };
+
+    struct vfs_negative_entry {
+        uint64_t hash;
+        uint64_t seq;
+        uint16_t len;
+        char name[32];
     };
 
     struct open_file {
@@ -40,12 +63,18 @@ namespace vfs {
         uint64_t offset;
         spinlock_t lock;
         uint32_t ref_count;
+        void *device_ctx;
     };
 
     void init();
 
     vfs_node *create_node(const char *name, VfsType type, vfs_node *parent);
     vfs_node *traverse_relative(vfs_node *start, const char *path);
+    vfs_node *get_node(vfs_node *node);
+    void put_node(vfs_node *node);
+    vfs_node *detach_child(vfs_node *parent, const char *name);
+    void detach_node(vfs_node *node);
+    int add_child(vfs_node *parent, vfs_node *child);
 
     vfs_node *finddir(vfs_node *parent, const char *name);
     int readdir(vfs_node *dir, uint64_t index, vfs_dirent *out);
@@ -60,5 +89,6 @@ namespace vfs {
     int truncate(vfs_node *node, uint64_t size);
     uint64_t read(vfs_node *node, uint64_t offset, uint64_t size, void *buffer);
     uint64_t write(vfs_node *node, uint64_t offset, uint64_t size, void *buffer);
+    bool valid_node(vfs_node *node);
     vfs_node *get_root();
 }  // namespace vfs

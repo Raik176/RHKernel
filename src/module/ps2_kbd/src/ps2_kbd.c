@@ -20,11 +20,7 @@ static enum irq_return ps2_irq(void *priv) {
     struct ps2_keyboard *ps2 = (struct ps2_keyboard *)priv;
     uint8_t sc = inb(PS2_DATA);
 
-    // Simple PS/2 Set 1: Bit 7 set means Key Released
-    int pressed = !(sc & 0x80);
-    uint8_t code = sc & 0x7F;
-
-    kbd_handle_scancode(ps2->kbd, code, pressed);
+    kbd_handle_scancode(ps2->kbd, sc, 0);
 
     return IRQ_HANDLED;
 }
@@ -54,4 +50,4 @@ static void ps2_exit() {
     kfree(kbd);
 }
 
-MODULE_INFO("ps2_kbd", ps2_init, ps2_exit, "kbd_core");
+MODULE_INFO("ps2_kbd", ps2_init, 0, ps2_exit, "kbd_core");

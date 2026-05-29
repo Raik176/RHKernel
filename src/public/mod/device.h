@@ -5,9 +5,53 @@
 /**
  * @brief Driver operations provided by the module.
  */
+struct device_mmap_result {
+    uint64_t phys;
+    uint64_t size;
+    uint32_t flags;
+};
+
+#define DEVICE_INFO_VERSION 1u
+#define DEVICE_INFO_KIND_GENERIC 0u
+#define DEVICE_INFO_KIND_BLOCK 1u
+#define DEVICE_INFO_KIND_PARTITION 2u
+
+#define DEVICE_INFO_FLAG_READONLY (1u << 0)
+#define DEVICE_INFO_FLAG_REMOVABLE (1u << 1)
+
+struct device_info {
+    uint32_t version;
+    uint32_t kind;
+    uint32_t flags;
+    uint32_t logical_block_size;
+    uint32_t physical_block_size;
+    uint32_t max_transfer_bytes;
+    uint64_t block_count;
+    uint64_t size_bytes;
+    uint64_t max_size_bytes;
+    uint64_t start_lba;
+    uint64_t parent_size_bytes;
+    char driver[32];
+    char media_type[32];
+    char scheme[16];
+    char type[64];
+    char uuid[40];
+    char parent[64];
+};
+
+#define DEVICE_MMAP_WRITE_COMBINING (1u << 0)
+#define DEVICE_MMAP_NO_CACHE (1u << 1)
+
 struct device_ops {
     uint64_t (*read)(void *priv, uint64_t offset, uint64_t size, uint8_t *buffer);
     uint64_t (*write)(void *priv, uint64_t offset, uint64_t size, uint8_t *buffer);
+    int (*mmap)(void *priv, uint64_t offset, uint64_t size, struct device_mmap_result *out);
+    int (*open)(void *priv, void **ctx);
+    void (*close)(void *priv, void *ctx);
+    uint64_t (*read_file)(void *priv, void *ctx, uint64_t offset, uint64_t size, uint8_t *buffer);
+    uint64_t (*write_file)(void *priv, void *ctx, uint64_t offset, uint64_t size, uint8_t *buffer);
+    int (*mmap_file)(void *priv, void *ctx, uint64_t offset, uint64_t size, struct device_mmap_result *out);
+    int (*info)(void *priv, struct device_info *out);
 };
 
 struct device;

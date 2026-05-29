@@ -1,11 +1,11 @@
 include $(abspath $(TOP_DIR)/base.mk)
 
 CFLAGS := $(GLOBAL_CFLAGS) \
-            --sysroot=$(abspath $(SYSROOT)) \
+            -ffreestanding -nostdinc \
             -isystem $(abspath $(SYSROOT)/include) \
-            $(USER_RUNTIME_CFLAGS) -Iinclude
-CXXFLAGS := $(CFLAGS) -fno-exceptions -fno-rtti
-LDFLAGS := $(GLOBAL_LDFLAGS) -T $(abspath $(TOP_DIR)/src/user/linker.ld) -static -pie
+            $(USER_RUNTIME_CFLAGS) -iquote include
+CXXFLAGS := $(CFLAGS) -fexceptions -frtti
+LDFLAGS := $(GLOBAL_LDFLAGS) --eh-frame-hdr -T $(abspath $(TOP_DIR)/src/user/linker.ld) -static -pie
 
 USER_SRC_ROOT := $(abspath $(TOP_DIR)/src/user)
 APP_REL_PATH := $(patsubst $(USER_SRC_ROOT)/%,%,$(abspath $(CURDIR)))
@@ -32,10 +32,10 @@ $(APP_BUILD_CFG): FORCE
 	} > $@.tmp
 	$(Q)if test -r $@ && cmp -s $@ $@.tmp; then rm -f $@.tmp; else mv $@.tmp $@; fi
 
-$(BIN): $(OBJ_FILES) $(APP_BUILD_CFG) $(TOOLCHAIN_STAMP) $(NEWLIB_CRT0) $(NEWLIB_STUB_LIB_OBJ_FILES) $(TOP_DIR)/src/user/linker.ld $(TOP_DIR)/src/user/common.mk $(TOP_DIR)/base.mk
+$(BIN): $(OBJ_FILES) $(APP_BUILD_CFG) $(TOOLCHAIN_STAMP) $(LIBC_CRT0) $(SYSROOT)/lib/libc.a $(SYSROOT)/lib/libcppabi.a $(TOP_DIR)/src/user/linker.ld $(TOP_DIR)/src/user/common.mk $(TOP_DIR)/base.mk
 	@mkdir -p $(dir $@)
 	@printf "$(BLUE)[LD]$(NC) $(BIN)\n"
-	$(Q)$(CXX) -nostdlib $(foreach flag,$(LDFLAGS),-Wl$\,$(flag)) $(NEWLIB_CRT0) $(OBJ_FILES) -L$(abspath $(SYSROOT)/lib) -Wl,--start-group -lc $(NEWLIB_STUB_LIB_OBJ_FILES) -Wl,--end-group -o $(BIN)
+	$(Q)$(CXX) -nostdlib $(foreach flag,$(LDFLAGS),-Wl$\,$(flag)) $(LIBC_CRT0) $(OBJ_FILES) -L$(abspath $(SYSROOT)/lib) -Wl,--start-group -lcppabi -lc -lgcc -Wl,--end-group -o $(BIN)
 
 $(APP_BUILD_DIR)/%.cpp.o: src/%.cpp $(APP_BUILD_CFG) $(TOP_DIR)/src/user/common.mk $(TOP_DIR)/base.mk | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)

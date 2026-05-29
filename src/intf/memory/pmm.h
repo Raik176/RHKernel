@@ -20,10 +20,12 @@ namespace pmm {
     static_assert(pmm::PAGE_SIZE >= alignof(void *), "PAGE_SIZE must be pointer-aligned");
     static_assert(pmm::PAGE_SIZE == 4096, "PMM assumes 4 KiB hardware pages");
 
-    /** @brief Maximum order for buddy allocator (2^MAX_ORDER pages per block) */
-    constexpr size_t MAX_ORDER = 14;  ///< 2^14 pages = 64 MiB blocks
-    static_assert(pmm::MAX_ORDER > 0, "MAX_ORDER must be > 0");
-    static_assert(pmm::MAX_ORDER < 63, "MAX_ORDER too large for 64-bit math");
+    constexpr size_t MIN_ORDER = 8;
+    constexpr size_t MAX_ORDER_LIMIT = 18;
+    constexpr size_t MAX_ORDER = MAX_ORDER_LIMIT;
+    static_assert(pmm::MIN_ORDER > 0, "MIN_ORDER must be > 0");
+    static_assert(pmm::MIN_ORDER <= pmm::MAX_ORDER_LIMIT, "invalid PMM order bounds");
+    static_assert(pmm::MAX_ORDER_LIMIT < 63, "MAX_ORDER_LIMIT too large for 64-bit math");
 
     /**
      * @brief Initialize the physical memory manager
@@ -44,6 +46,9 @@ namespace pmm {
      * the deferred high-memory spans into the buddy allocator.
      */
     void release_deferred_memory();
+    uint64_t get_ap_trampoline_page();
+    size_t get_ap_trampoline_size();
+    size_t get_max_order();
 
     /**
      * @brief Convert a size in bytes to the appropriate order
@@ -65,6 +70,22 @@ namespace pmm {
      * @return Physical address of the allocated block, or 0 if allocation failed
      */
     uint64_t alloc(size_t size);
+
+    struct AllocConstraints {
+        uint64_t min_phys;
+        uint64_t max_phys_exclusive;
+        size_t align;
+        bool zero;
+    };
+
+    /**
+     * @brief Allocate physical memory with address and alignment constraints.
+     *
+     * The returned span has buddy allocation size. `allocated_size`, when not
+     * null, receives the exact size that must be passed to free().
+     */
+    uint64_t alloc_constrained(size_t size, const AllocConstraints &constraints,
+                               size_t *allocated_size = nullptr);
 
     /**
      * @brief Free previously allocated physical memory
@@ -110,14 +131,18 @@ namespace pmm {
      */
     size_t get_physical_limit_bytes();
 
+    using DirectMapSpanCallback = void (*)(uint64_t start, uint64_t end, void *ctx);
+    void for_each_direct_map_span(DirectMapSpanCallback cb, void *ctx);
+
     struct DebugInfo {
         size_t managed_bytes;
         size_t free_bytes;
         size_t system_bytes;
         size_t physical_limit_bytes;
         size_t deferred_span_count;
-        size_t free_blocks[MAX_ORDER + 1];
-        size_t free_bytes_by_order[MAX_ORDER + 1];
+        size_t max_order;
+        size_t free_blocks[MAX_ORDER_LIMIT + 1];
+        size_t free_bytes_by_order[MAX_ORDER_LIMIT + 1];
     };
 
     void get_debug_info(DebugInfo *info);

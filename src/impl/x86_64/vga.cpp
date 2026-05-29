@@ -27,6 +27,7 @@ namespace vga {
 
     /** @internal Current text color (foreground | background << 4) */
     static uint8_t color = (uint8_t)console::Color::White | ((uint8_t)console::Color::Black << 4);
+    static bool cursor_enabled = true;
 
     /**
      * @internal
@@ -41,6 +42,7 @@ namespace vga {
      * Update hardware cursor to current `cursor_x` and `cursor_y`
      */
     static void update_hardware_cursor() {
+        if (!cursor_enabled) return;
         uint16_t pos = cursor_y * WIDTH + cursor_x;
         outb(0x3D4, 0x0F);
         outb(0x3D5, pos & 0xFF);
@@ -70,11 +72,7 @@ namespace vga {
     void clear() {
         uint16_t entry = make_entry(' ');
 
-        for (uint16_t x = 0; x < WIDTH; x++) { buffer[x] = entry; }
-
-        for (uint16_t y = 1; y < HEIGHT; y++) {
-            memcpy((void *)&buffer[y * WIDTH], (void *)&buffer[0], WIDTH * 2);
-        }
+        for (uint16_t i = 0; i < WIDTH * HEIGHT; i++) buffer[i] = entry;
 
         cursor_x = 0;
         cursor_y = 0;
@@ -90,8 +88,8 @@ namespace vga {
         cursor_y++;
 
         if (cursor_y >= HEIGHT) {
-            size_t bytes_to_move = (HEIGHT - 1) * WIDTH * 2;
-            memcpy((void *)buffer, (void *)(buffer + WIDTH), bytes_to_move);
+            size_t cells_to_move = (HEIGHT - 1) * WIDTH;
+            for (size_t i = 0; i < cells_to_move; i++) buffer[i] = buffer[i + WIDTH];
 
             uint16_t entry = make_entry(' ');
             uint16_t *last_line = (uint16_t *)(buffer + (HEIGHT - 1) * WIDTH);
@@ -124,6 +122,7 @@ namespace vga {
     }
 
     void enable_cursor(uint8_t start, uint8_t end) {
+        cursor_enabled = true;
         outb(0x3D4, 0x0A);
         outb(0x3D5, (inb(0x3D5) & 0xC0) | start);
         outb(0x3D4, 0x0B);
@@ -132,9 +131,10 @@ namespace vga {
     }
 
     void disable_cursor() {
+        cursor_enabled = false;
         outb(0x3D4, 0x0A);
         outb(0x3D5, 0x20);
     }
 
-    void set_color(uint8_t fg, uint8_t bg) { color = fg | (bg << 4); }
+    void set_color(uint8_t fg, uint8_t bg) { color = (fg & 0x0F) | ((bg & 0x0F) << 4); }
 }  // namespace vga

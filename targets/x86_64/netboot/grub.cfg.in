@@ -1,0 +1,17 @@
+set timeout=0
+set default=0
+
+insmod net
+insmod http
+insmod multiboot2
+net_bootp
+
+set rhkernel_root=(http,@NETBOOT_HOST@:@NETBOOT_HTTP_PORT@)
+
+menuentry "RHKernel netboot" {
+    echo Loading RHKernel from ${rhkernel_root}/@NETBOOT_NAME@/boot/kernel.bin
+    multiboot2 ${rhkernel_root}/@NETBOOT_NAME@/boot/kernel.bin
+    echo Loading initramfs from ${rhkernel_root}/@NETBOOT_NAME@/boot/initramfs.cpio
+    module2 ${rhkernel_root}/@NETBOOT_NAME@/boot/initramfs.cpio initramfs
+    boot
+}

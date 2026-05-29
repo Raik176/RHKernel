@@ -1,0 +1,2 @@
+set prefix=(http,@NETBOOT_HOST@:@NETBOOT_HTTP_PORT@)/@NETBOOT_NAME@/grub
+configfile $prefix/grub.cfg

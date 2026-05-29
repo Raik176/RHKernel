@@ -42,6 +42,12 @@ struct vfat_fs {
     uint8_t readonly;
     uint32_t cluster_bytes;
     uint64_t image_bytes;
+    uint8_t *fat_cache;
+    uint32_t fat_cache_sector;
+    uint8_t fat_cache_valid;
+    uint8_t free_count_valid;
+    uint32_t next_free_cluster;
+    uint32_t free_clusters;
 };
 
 struct vfat_dir_pos {
@@ -148,24 +154,51 @@ static uint32_t fat_eoc_value(struct vfat_fs *fs) { return fs->fat_type == 12 ? 
 static int fat_eoc(struct vfat_fs *fs, uint32_t v) { return fs->fat_type == 12 ? v >= VFAT_EOC12 : (fs->fat_type == 16 ? v >= VFAT_EOC16 : v >= VFAT_EOC32); }
 static int fat_bad(struct vfat_fs *fs, uint32_t v) { return fs->fat_type == 12 ? v == VFAT_BAD12 : (fs->fat_type == 16 ? v == VFAT_BAD16 : v == VFAT_BAD32); }
 
+static int fat_cache_load(struct vfat_fs *fs, uint32_t sector) {
+    if (!fs->fat_cache) return -1;
+    if (fs->fat_cache_valid && fs->fat_cache_sector == sector) return 0;
+    if (sector >= fs->fat_sectors) return -1;
+    if (read_bytes(fs, fs_off(fs, fs->first_fat_sector + sector), fs->bytes_per_sector, fs->fat_cache) != 0) return -1;
+    fs->fat_cache_sector = sector;
+    fs->fat_cache_valid = 1;
+    return 0;
+}
+
+static int fat_cached_read(struct vfat_fs *fs, uint64_t fat_byte_off, uint32_t size, uint8_t *out) {
+    uint32_t bps = fs->bytes_per_sector;
+    for (uint32_t done = 0; done < size;) {
+        uint32_t sector = (uint32_t)(fat_byte_off / bps);
+        uint32_t off = (uint32_t)(fat_byte_off - (uint64_t)sector * bps);
+        uint32_t n = bps - off;
+        if (n > size - done) n = size - done;
+        if (fat_cache_load(fs, sector) != 0) return -1;
+        memcpy(out + done, fs->fat_cache + off, n);
+        fat_byte_off += n;
+        done += n;
+    }
+    return 0;
+}
+
+static void fat_cache_drop(struct vfat_fs *fs) { fs->fat_cache_valid = 0; }
+
 static uint32_t fat_get_raw(struct vfat_fs *fs, uint32_t cluster) {
     uint8_t raw[4];
     uint64_t off;
     uint32_t v;
     if (cluster >= fs->cluster_count + 2) return UINT32_MAX;
     if (fs->fat_type == 12) {
-        off = fs_off(fs, fs->first_fat_sector) + cluster + cluster / 2u;
-        if (read_bytes(fs, off, 2, raw) != 0) return UINT32_MAX;
+        off = cluster + cluster / 2u;
+        if (fat_cached_read(fs, off, 2, raw) != 0) return UINT32_MAX;
         v = rd16(raw);
         return (cluster & 1u) ? ((v >> 4) & 0x0FFFu) : (v & 0x0FFFu);
     }
     if (fs->fat_type == 16) {
-        off = fs_off(fs, fs->first_fat_sector) + (uint64_t)cluster * 2u;
-        if (read_bytes(fs, off, 2, raw) != 0) return UINT32_MAX;
+        off = (uint64_t)cluster * 2u;
+        if (fat_cached_read(fs, off, 2, raw) != 0) return UINT32_MAX;
         return rd16(raw);
     }
-    off = fs_off(fs, fs->first_fat_sector) + (uint64_t)cluster * 4u;
-    if (read_bytes(fs, off, 4, raw) != 0) return UINT32_MAX;
+    off = (uint64_t)cluster * 4u;
+    if (fat_cached_read(fs, off, 4, raw) != 0) return UINT32_MAX;
     return rd32(raw) & 0x0FFFFFFFu;
 }
 
@@ -207,32 +240,58 @@ static int fat_set_one(struct vfat_fs *fs, uint32_t fat_index, uint32_t cluster,
 
 static int fat_set(struct vfat_fs *fs, uint32_t cluster, uint32_t value) {
     for (uint32_t i = 0; i < fs->fat_count; i++) if (fat_set_one(fs, i, cluster, value) != 0) return -1;
+    fat_cache_drop(fs);
     return 0;
+}
+
+static int fat_scan_free_range(struct vfat_fs *fs, uint32_t first, uint32_t last, uint32_t *out) {
+    for (uint32_t c = first; c < last; c++) {
+        uint32_t v = fat_get_raw(fs, c);
+        if (v == UINT32_MAX) return -1;
+        if (v == 0) { *out = c; return 0; }
+    }
+    return 1;
 }
 
 static int fat_alloc_cluster(struct vfat_fs *fs, uint32_t *out) {
     if (!out || fs->readonly) return -1;
-    for (uint32_t c = 2; c < fs->cluster_count + 2; c++) {
-        uint32_t v = fat_get_raw(fs, c);
-        if (v == UINT32_MAX) return -1;
-        if (v == 0) {
-            if (fat_set(fs, c, fat_eoc_value(fs)) != 0) return -1;
-            if (zero_bytes(fs, cluster_off(fs, c), fs->cluster_bytes) != 0) return -1;
-            *out = c;
-            return 0;
-        }
-    }
-    return -1;
+    if (fs->free_count_valid && !fs->free_clusters) return -1;
+    uint32_t end = fs->cluster_count + 2u;
+    uint32_t start = cluster_valid(fs, fs->next_free_cluster) ? fs->next_free_cluster : 2u;
+    uint32_t c = 0;
+    int r = fat_scan_free_range(fs, start, end, &c);
+    if (r == 1 && start > 2u) r = fat_scan_free_range(fs, 2u, start, &c);
+    if (r != 0) return -1;
+    if (fat_set(fs, c, fat_eoc_value(fs)) != 0) return -1;
+    if (zero_bytes(fs, cluster_off(fs, c), fs->cluster_bytes) != 0) { fat_set(fs, c, 0); return -1; }
+    fs->next_free_cluster = (c + 1u < end) ? c + 1u : 2u;
+    if (fs->free_count_valid && fs->free_clusters) fs->free_clusters--;
+    *out = c;
+    return 0;
 }
 
 static void fat_free_chain(struct vfat_fs *fs, uint32_t first) {
     uint32_t c = first;
     for (uint32_t guard = 0; cluster_valid(fs, c) && guard < fs->cluster_count; guard++) {
         uint32_t next = fat_next(fs, c);
-        fat_set(fs, c, 0);
+        if (fat_set(fs, c, 0) != 0) break;
+        if (c < fs->next_free_cluster || !cluster_valid(fs, fs->next_free_cluster)) fs->next_free_cluster = c;
+        if (fs->free_count_valid && fs->free_clusters < fs->cluster_count) fs->free_clusters++;
         if (!next || next == UINT32_MAX) break;
         c = next;
     }
+}
+
+static int vfat_next_cluster(struct vfat_fs *fs, uint32_t current, int alloc, uint32_t *out) {
+    uint32_t next = fat_next(fs, current);
+    if (next == UINT32_MAX) return -1;
+    if (!next) {
+        if (!alloc) return -1;
+        if (fat_alloc_cluster(fs, &next) != 0) return -1;
+        if (fat_set(fs, current, next) != 0) { fat_set(fs, next, 0); return -1; }
+    }
+    *out = next;
+    return 0;
 }
 
 static int chain_cluster_at(struct vfat_node *n, uint32_t index, int alloc, uint32_t *out) {
@@ -243,16 +302,7 @@ static int chain_cluster_at(struct vfat_node *n, uint32_t index, int alloc, uint
         n->first_cluster = c;
     }
     if (!cluster_valid(fs, c)) return -1;
-    for (uint32_t i = 0; i < index; i++) {
-        uint32_t next = fat_next(fs, c);
-        if (next == UINT32_MAX) return -1;
-        if (!next) {
-            if (!alloc) return -1;
-            if (fat_alloc_cluster(fs, &next) != 0) return -1;
-            if (fat_set(fs, c, next) != 0) { fat_set(fs, next, 0); return -1; }
-        }
-        c = next;
-    }
+    for (uint32_t i = 0; i < index; i++) if (vfat_next_cluster(fs, c, alloc, &c) != 0) return -1;
     *out = c;
     return 0;
 }
@@ -473,16 +523,18 @@ static uint64_t vfat_read(struct vfs_node *vnode, uint64_t off, uint64_t size, u
     if (!size) return 0;
     struct vfat_fs *fs = n->fs;
     if (!n->first_cluster) return 0;
+    uint32_t cluster_index = (uint32_t)(off / fs->cluster_bytes);
+    uint32_t cluster;
+    if (chain_cluster_at(n, cluster_index, 0, &cluster) != 0) return 0;
     uint64_t done = 0;
+    uint64_t in_cluster = off % fs->cluster_bytes;
     while (done < size) {
-        uint64_t abs = off + done;
-        uint32_t cluster;
-        if (chain_cluster_at(n, (uint32_t)(abs / fs->cluster_bytes), 0, &cluster) != 0) break;
-        uint64_t in_cluster = abs % fs->cluster_bytes;
         uint64_t take = fs->cluster_bytes - in_cluster;
         if (take > size - done) take = size - done;
         if (read_bytes(fs, cluster_off(fs, cluster) + in_cluster, take, buf + done) != 0) break;
         done += take;
+        in_cluster = 0;
+        if (done < size && vfat_next_cluster(fs, cluster, 0, &cluster) != 0) break;
     }
     return done;
 }
@@ -492,16 +544,18 @@ static uint64_t vfat_write(struct vfs_node *vnode, uint64_t off, uint64_t size, 
     if (!n || !buf || (n->attr & VFAT_ATTR_DIR) || n->fs->readonly) return 0;
     if (off > 0xFFFFFFFFULL || size > 0xFFFFFFFFULL - off) return 0;
     struct vfat_fs *fs = n->fs;
+    uint32_t cluster_index = (uint32_t)(off / fs->cluster_bytes);
+    uint32_t cluster;
+    if (chain_cluster_at(n, cluster_index, 1, &cluster) != 0) return 0;
     uint64_t done = 0;
+    uint64_t in_cluster = off % fs->cluster_bytes;
     while (done < size) {
-        uint64_t abs = off + done;
-        uint32_t cluster;
-        if (chain_cluster_at(n, (uint32_t)(abs / fs->cluster_bytes), 1, &cluster) != 0) break;
-        uint64_t in_cluster = abs % fs->cluster_bytes;
         uint64_t take = fs->cluster_bytes - in_cluster;
         if (take > size - done) take = size - done;
         if (write_bytes(fs, cluster_off(fs, cluster) + in_cluster, take, buf + done) != 0) break;
         done += take;
+        in_cluster = 0;
+        if (done < size && vfat_next_cluster(fs, cluster, 1, &cluster) != 0) break;
     }
     if (done && off + done > n->size) {
         n->size = off + done;
@@ -757,7 +811,9 @@ static int dir_mark_deleted(struct vfat_fs *fs, uint64_t abs, uint8_t slots) {
 static int vfat_create(struct vfs_node *parent, const char *name, uint32_t type, struct vfs_node **out) {
     struct vfat_node *dir = (struct vfat_node *)vfs_get_fs_data(parent);
     if (!dir || !(dir->attr & VFAT_ATTR_DIR) || dir->fs->readonly || type != VFS_NODE_FILE) return -1;
-    if (scan_dir(dir, name, 0, &(struct vfat_dir_entry){0}) == 0) return -1;
+    struct vfat_dir_entry exists;
+    memset(&exists, 0, sizeof(exists));
+    if (scan_dir(dir, name, 0, &exists) == 0) return -1;
     uint8_t *entries = 0; uint32_t bytes = 0;
     if (build_name_entries(dir, name, VFAT_ATTR_ARCHIVE, 0, 0, &entries, &bytes) != 0) return -1;
     struct vfat_dir_pos pos;
@@ -794,7 +850,9 @@ static int vfat_rename(struct vfs_node *old_parent, const char *old_name, struct
     if (!odir || !ndir || !(odir->attr & VFAT_ATTR_DIR) || !(ndir->attr & VFAT_ATTR_DIR) || odir->fs != ndir->fs || odir->fs->readonly) return -1;
     struct vfat_dir_entry olde;
     if (scan_dir(odir, old_name, 0, &olde) != 0) return -1;
-    if (scan_dir(ndir, new_name, 0, &(struct vfat_dir_entry){0}) == 0) return -1;
+    struct vfat_dir_entry exists;
+    memset(&exists, 0, sizeof(exists));
+    if (scan_dir(ndir, new_name, 0, &exists) == 0) return -1;
     if (!valid_name(new_name)) return -1;
     uint8_t *entries = 0; uint32_t bytes = 0;
     uint32_t size = (olde.attr & VFAT_ATTR_DIR) ? 0 : olde.size;
@@ -877,12 +935,15 @@ static int vfat_mount(struct vfs_node *blockdev, struct vfs_node *mountpoint, co
     fs->dev = blockdev;
     fs->readonly = !mount_flags_rw(flags);
     if (parse_bpb(fs, bs) != 0) { kfree(fs); return -2; }
+    fs->fat_cache = (uint8_t *)kmalloc(fs->bytes_per_sector);
+    if (!fs->fat_cache) { kfree(fs); return -4; }
+    fs->next_free_cluster = 2;
     uint64_t dev_size = block_size(blockdev);
-    if (dev_size && fs->image_bytes > dev_size) { kfree(fs); return -3; }
+    if (dev_size && fs->image_bytes > dev_size) { kfree(fs->fat_cache); kfree(fs); return -3; }
     uint32_t first_data = 0;
     if (fs->fat_type == 32) first_data = fs->root_cluster;
     struct vfat_node *root = (struct vfat_node *)kmalloc(sizeof(*root));
-    if (!root) { kfree(fs); return -4; }
+    if (!root) { kfree(fs->fat_cache); kfree(fs); return -4; }
     memset(root, 0, sizeof(*root));
     root->fs = fs;
     root->first_cluster = first_data;
@@ -895,14 +956,55 @@ static int vfat_mount(struct vfs_node *blockdev, struct vfs_node *mountpoint, co
     return 0;
 }
 
+static void vfat_copy_text(char *dst, uint64_t cap, const char *src) {
+    if (!dst || !cap) return;
+    uint64_t i = 0;
+    if (src) while (src[i] && i + 1 < cap) { dst[i] = src[i]; i++; }
+    dst[i] = 0;
+}
+
+static int vfat_info(struct vfs_node *mountpoint, struct fs_info *out) {
+    if (!mountpoint || !out) return -1;
+    struct vfat_node *root = (struct vfat_node *)vfs_get_fs_data(mountpoint);
+    if (!root || !root->fs) return -1;
+    struct vfat_fs *fs = root->fs;
+    memset(out, 0, sizeof(*out));
+    out->version = FS_INFO_VERSION;
+    out->block_size = fs->cluster_bytes;
+    out->total_bytes = (uint64_t)fs->cluster_count * fs->cluster_bytes;
+    out->max_file_size = 0xFFFFFFFFULL;
+    if (fs->readonly) out->flags |= FS_INFO_FLAG_READONLY;
+    vfat_copy_text(out->driver, sizeof(out->driver), "vfat");
+    if (fs->fat_type == 12) vfat_copy_text(out->type, sizeof(out->type), "FAT12");
+    else if (fs->fat_type == 16) vfat_copy_text(out->type, sizeof(out->type), "FAT16");
+    else vfat_copy_text(out->type, sizeof(out->type), "FAT32");
+
+    if (!fs->free_count_valid) {
+        uint32_t free_clusters = 0;
+        for (uint32_t c = 2; c < fs->cluster_count + 2; c++) {
+            uint32_t raw = fat_get_raw(fs, c);
+            if (raw == UINT32_MAX) return -1;
+            if (raw == 0) free_clusters++;
+        }
+        fs->free_clusters = free_clusters;
+        fs->free_count_valid = 1;
+    }
+    out->free_bytes = (uint64_t)fs->free_clusters * fs->cluster_bytes;
+    out->used_bytes = out->total_bytes >= out->free_bytes ? out->total_bytes - out->free_bytes : 0;
+    return 0;
+}
+
 static int vfat_unmount(struct vfs_node *mountpoint) {
     struct vfat_node *root = (struct vfat_node *)vfs_get_fs_data(mountpoint);
     if (!root) return -1;
-    if (root->fs) kfree(root->fs);
+    if (root->fs) {
+        if (root->fs->fat_cache) kfree(root->fs->fat_cache);
+        kfree(root->fs);
+    }
     kfree(root);
     return 0;
 }
 
-static struct fs_driver vfat_driver = { .name = "vfat", .mount = vfat_mount, .next = 0, .probe = vfat_probe, .unmount = vfat_unmount };
+static struct fs_driver vfat_driver = { .name = "vfat", .mount = vfat_mount, .next = 0, .probe = vfat_probe, .unmount = vfat_unmount, .info = vfat_info };
 static int vfat_init(void) { return fs_register(&vfat_driver); }
-MODULE_INFO("vfat", vfat_init, 0, "fs");
+MODULE_INFO("vfat", vfat_init, 0, 0, "fs");

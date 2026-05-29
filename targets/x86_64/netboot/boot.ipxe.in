@@ -1,0 +1,23 @@
+#!ipxe
+
+ifopen net0 || goto failed
+isset ${net0/ip} || dhcp net0 || goto failed
+set base-url @NETBOOT_URL@
+
+prompt --key 0x02 --timeout 1500 Press Ctrl-B for iPXE shell... && shell ||
+
+echo Booting RHKernel via ${platform} iPXE from ${base-url}
+echo net0: ${net0/ip}/${net0/netmask} gateway ${net0/gateway}
+iseq ${platform} efi && goto efi || goto bios
+
+:efi
+chain --autofree ${base-url}/grubnetx64.efi || goto failed
+
+:bios
+chain --autofree ${base-url}/grub.pxe || goto failed
+
+:failed
+echo RHKernel netboot failed
+ifstat
+route
+shell

@@ -8,6 +8,7 @@
 
 #include "gdt.h"
 
+#include "idt.h"
 #include "smp/smp.h"
 
 namespace gdt {
@@ -65,8 +66,13 @@ namespace gdt {
     void init_core() {
         smp::cpu_local *local = smp::get_cpu();
 
+        if (!local || local->self != local) kpanic("GDT: CPU-local missing");
+        if (!local->kernel_stack) kpanic("GDT: kernel stack missing");
+        if (!local->panic_stack) kpanic("GDT: panic stack missing");
+
         local->tss_entry.iopb_offset = sizeof(tss);
         local->tss_entry.rsp0 = reinterpret_cast<uint64_t>(local->kernel_stack);
+        local->tss_entry.ist1 = reinterpret_cast<uint64_t>(local->panic_stack);
 
         // Index 0: Null
         set_entry(&local->gdt_entries[0], 0, 0, 0, 0);
@@ -110,6 +116,13 @@ namespace gdt {
         gdt_load(reinterpret_cast<uint64_t>(&local->gdt_ptr));
 
         asm volatile("ltr %0" : : "a"(static_cast<uint16_t>(TSS_SEL)) : "memory");
+    }
+
+    void set_panic_ist(void *stack_top) {
+        smp::cpu_local *local = smp::get_cpu();
+        if (!local || local->self != local) return;
+        local->panic_stack = stack_top;
+        local->tss_entry.ist1 = reinterpret_cast<uint64_t>(stack_top);
     }
 
 }  // namespace gdt

@@ -40,93 +40,258 @@ struct fs_mount_record {
 static fs_mount_record *fs_mounts = nullptr;
 static spinlock_t fs_mount_lock;
 
+static uint64_t fs_hash_name_len(const char *s, uint64_t n) {
+    uint64_t h = 1469598103934665603ULL;
+    for (uint64_t i = 0; i < n; i++) {
+        h ^= (uint8_t)s[i];
+        h *= 1099511628211ULL;
+    }
+    return h ? h : 1;
+}
+
+static bool fs_driver_name_valid(const char *name) {
+    if (!name || !name[0]) return false;
+    for (const unsigned char *p = (const unsigned char *)name; *p; p++) {
+        if (*p <= 0x20 || *p == 0x7f || *p == '/' || *p == '.') return false;
+    }
+    return true;
+}
+
+static vfs::vfs_node *fs_devfs_root(void) {
+    vfs::vfs_node *dev = vfs::open("/dev");
+    if (!dev || dev->type != vfs::VfsType::VFS_DIRECTORY) return nullptr;
+
+    vfs::vfs_node *fs = vfs::finddir(dev, "fs");
+    if (fs) return fs->type == vfs::VfsType::VFS_DIRECTORY ? fs : nullptr;
+    return vfs::create_node("fs", vfs::VfsType::VFS_DIRECTORY, dev);
+}
+
+static vfs::vfs_node *fs_create_nodev_source(fs_driver *driver) {
+    if (!driver || !fs_driver_name_valid(driver->name)) return nullptr;
+
+    vfs::vfs_node *fs = fs_devfs_root();
+    if (!fs) return nullptr;
+
+    if (vfs::finddir(fs, driver->name)) return nullptr;
+    vfs::vfs_node *node = vfs::create_node(driver->name, vfs::VfsType::VFS_FILE, fs);
+    if (!node) return nullptr;
+    node->ptr = (uintptr_t)driver;
+    return node;
+}
+
 static constexpr uint64_t BLOCK_CACHE_BLOCK_SIZE = 4096;
-static constexpr uint64_t BLOCK_CACHE_ENTRIES = 64;
+static constexpr uint64_t BLOCK_CACHE_ENTRIES = 128;
+static constexpr uint64_t BLOCK_CACHE_HASH_BUCKETS = 256;
 static constexpr uint64_t BLOCK_READAHEAD_BLOCKS = 2;
+static constexpr uint64_t BLOCK_CACHE_DIRECT_THRESHOLD = BLOCK_CACHE_BLOCK_SIZE * 8;
+static constexpr uint64_t BLOCK_CACHE_DIRECT_TAIL_MIN = BLOCK_CACHE_DIRECT_THRESHOLD;
+static constexpr uint64_t BLOCK_CACHE_BATCH_READ_BLOCKS = 16;
+static constexpr uint64_t BLOCK_CACHE_BATCH_READ_MIN = 2;
 
 struct block_cache_entry {
     vfs::vfs_node *node;
     uint64_t block;
     uint64_t last_used;
+    block_cache_entry *hash_next;
+    block_cache_entry *lru_prev;
+    block_cache_entry *lru_next;
+    block_cache_entry *free_next;
     bool valid;
     bool loading;
+    bool hashed;
+    bool lru_linked;
+    bool free_linked;
+    bool discard_after_load;
     uint8_t data[BLOCK_CACHE_BLOCK_SIZE];
 };
 
 static block_cache_entry block_cache[BLOCK_CACHE_ENTRIES];
+static block_cache_entry *block_cache_hash[BLOCK_CACHE_HASH_BUCKETS];
+static block_cache_entry *block_cache_lru_head;
+static block_cache_entry *block_cache_lru_tail;
+static block_cache_entry *block_cache_free_head;
 static spinlock_t block_cache_lock;
+static bool block_cache_ready;
 static uint64_t block_cache_clock;
+static uint64_t block_cache_hits;
+static uint64_t block_cache_misses;
+static uint64_t block_cache_waits;
+static uint64_t block_cache_evictions;
+static uint64_t block_cache_direct_reads;
+static uint64_t block_cache_direct_writes;
+static uint64_t block_cache_prefetch_hits;
+static uint64_t block_cache_prefetch_loads;
+
+
+static void block_cache_lru_remove_locked(block_cache_entry *entry) {
+    if (!entry || !entry->lru_linked) return;
+    if (entry->lru_prev) entry->lru_prev->lru_next = entry->lru_next;
+    else block_cache_lru_head = entry->lru_next;
+    if (entry->lru_next) entry->lru_next->lru_prev = entry->lru_prev;
+    else block_cache_lru_tail = entry->lru_prev;
+    entry->lru_prev = nullptr;
+    entry->lru_next = nullptr;
+    entry->lru_linked = false;
+}
+
+static void block_cache_lru_front_locked(block_cache_entry *entry) {
+    if (!entry) return;
+    block_cache_lru_remove_locked(entry);
+    entry->lru_prev = nullptr;
+    entry->lru_next = block_cache_lru_head;
+    if (block_cache_lru_head) block_cache_lru_head->lru_prev = entry;
+    else block_cache_lru_tail = entry;
+    block_cache_lru_head = entry;
+    entry->lru_linked = true;
+}
+
+static void block_cache_free_push_locked(block_cache_entry *entry) {
+    if (!entry || entry->loading || entry->free_linked) return;
+    block_cache_lru_remove_locked(entry);
+    entry->free_next = block_cache_free_head;
+    block_cache_free_head = entry;
+    entry->free_linked = true;
+}
+
+static block_cache_entry *block_cache_free_pop_locked() {
+    block_cache_entry *entry = block_cache_free_head;
+    if (!entry) return nullptr;
+    block_cache_free_head = entry->free_next;
+    entry->free_next = nullptr;
+    entry->free_linked = false;
+    return entry;
+}
+
+static void block_cache_init_locked() {
+    if (block_cache_ready) return;
+    for (uint64_t i = 0; i < BLOCK_CACHE_ENTRIES; i++) block_cache_free_push_locked(&block_cache[i]);
+    block_cache_ready = true;
+}
+
+static uint64_t block_cache_hash_index(vfs::vfs_node *node, uint64_t block) {
+    uint64_t x = ((uint64_t)(uintptr_t)node >> 4) ^ block ^ (block >> 32);
+    x ^= x >> 33;
+    x *= 0xff51afd7ed558ccdULL;
+    x ^= x >> 33;
+    return x & (BLOCK_CACHE_HASH_BUCKETS - 1);
+}
+
+static void block_cache_unhash_locked(block_cache_entry *entry) {
+    if (!entry || !entry->hashed) return;
+    uint64_t bucket = block_cache_hash_index(entry->node, entry->block);
+    block_cache_entry **link = &block_cache_hash[bucket];
+    while (*link) {
+        if (*link == entry) {
+            *link = entry->hash_next;
+            break;
+        }
+        link = &(*link)->hash_next;
+    }
+    entry->hash_next = nullptr;
+    entry->hashed = false;
+}
+
+static void block_cache_hash_locked(block_cache_entry *entry) {
+    if (!entry || entry->hashed) return;
+    uint64_t bucket = block_cache_hash_index(entry->node, entry->block);
+    entry->hash_next = block_cache_hash[bucket];
+    block_cache_hash[bucket] = entry;
+    entry->hashed = true;
+}
 
 static block_cache_entry *block_cache_find_locked(vfs::vfs_node *node, uint64_t block) {
-    for (uint64_t i = 0; i < BLOCK_CACHE_ENTRIES; i++) {
-        if (block_cache[i].valid && block_cache[i].node == node && block_cache[i].block == block)
-            return &block_cache[i];
+    uint64_t bucket = block_cache_hash_index(node, block);
+    for (block_cache_entry *entry = block_cache_hash[bucket]; entry; entry = entry->hash_next) {
+        if ((entry->valid || entry->loading) && entry->node == node && entry->block == block) return entry;
     }
     return nullptr;
 }
 
 static block_cache_entry *block_cache_pick_locked() {
-    block_cache_entry *best = &block_cache[0];
-    for (uint64_t i = 0; i < BLOCK_CACHE_ENTRIES; i++) {
-        if (!block_cache[i].valid && !block_cache[i].loading) return &block_cache[i];
-        if (!block_cache[i].loading && block_cache[i].last_used < best->last_used) best = &block_cache[i];
+    block_cache_init_locked();
+    block_cache_entry *entry = block_cache_free_pop_locked();
+    if (entry) return entry;
+    for (entry = block_cache_lru_tail; entry; entry = entry->lru_prev) {
+        if (!entry->loading) {
+            block_cache_evictions++;
+            return entry;
+        }
     }
-    return best->loading ? nullptr : best;
+    return nullptr;
 }
 
 static bool block_cache_load(vfs::vfs_node *node, uint64_t block, block_cache_entry **out) {
+    if (!out || !node || block > UINT64_MAX / BLOCK_CACHE_BLOCK_SIZE) return false;
+
     uint64_t flags;
     for (;;) {
         block_cache_lock.acquire(flags);
         block_cache_entry *entry = block_cache_find_locked(node, block);
         if (entry && !entry->loading) {
+            block_cache_hits++;
             entry->last_used = ++block_cache_clock;
+            block_cache_lru_front_locked(entry);
             *out = entry;
             block_cache_lock.release(flags);
             return true;
         }
         if (entry && entry->loading) {
+            block_cache_waits++;
             block_cache_lock.release(flags);
             asm volatile("pause");
             continue;
         }
+        block_cache_misses++;
         entry = block_cache_pick_locked();
         if (!entry) {
             block_cache_lock.release(flags);
             asm volatile("pause");
             continue;
         }
+        block_cache_unhash_locked(entry);
         entry->valid = false;
         entry->loading = true;
+        entry->discard_after_load = false;
         entry->node = node;
         entry->block = block;
+        entry->last_used = ++block_cache_clock;
+        block_cache_lru_front_locked(entry);
+        block_cache_hash_locked(entry);
         block_cache_lock.release(flags);
 
         uint64_t got = vfs::read(node, block * BLOCK_CACHE_BLOCK_SIZE, BLOCK_CACHE_BLOCK_SIZE, entry->data);
 
         block_cache_lock.acquire(flags);
         entry->loading = false;
-        if (got == BLOCK_CACHE_BLOCK_SIZE) {
+        if (got == BLOCK_CACHE_BLOCK_SIZE && !entry->discard_after_load) {
             entry->valid = true;
             entry->last_used = ++block_cache_clock;
+            block_cache_lru_front_locked(entry);
             *out = entry;
             block_cache_lock.release(flags);
             return true;
         }
         entry->valid = false;
+        entry->discard_after_load = false;
+        block_cache_unhash_locked(entry);
+        block_cache_free_push_locked(entry);
         block_cache_lock.release(flags);
         return false;
     }
 }
 
-static void block_cache_prefetch(vfs::vfs_node *node, uint64_t first_block) {
+static void block_cache_prefetch(vfs::vfs_node *node, uint64_t first_block, uint64_t max_block) {
     for (uint64_t i = 0; i < BLOCK_READAHEAD_BLOCKS; i++) {
+        if (first_block > UINT64_MAX - i) return;
         uint64_t block = first_block + i;
+        if (block > max_block) return;
         uint64_t flags;
         block_cache_lock.acquire(flags);
         bool present = block_cache_find_locked(node, block) != nullptr;
+        if (present) block_cache_prefetch_hits++;
         block_cache_lock.release(flags);
         if (!present) {
+            block_cache_prefetch_loads++;
             block_cache_entry *unused;
             (void)block_cache_load(node, block, &unused);
         }
@@ -137,9 +302,14 @@ static void block_cache_invalidate(vfs::vfs_node *node, uint64_t first_block, ui
     uint64_t flags;
     block_cache_lock.acquire(flags);
     for (uint64_t i = 0; i < BLOCK_CACHE_ENTRIES; i++) {
-        if (block_cache[i].valid && block_cache[i].node == node && block_cache[i].block >= first_block &&
-            block_cache[i].block <= last_block) {
-            block_cache[i].valid = false;
+        block_cache_entry *entry = &block_cache[i];
+        if (entry->node == node && entry->block >= first_block && entry->block <= last_block) {
+            entry->valid = false;
+            if (entry->loading) entry->discard_after_load = true;
+            else {
+                block_cache_unhash_locked(entry);
+                block_cache_free_push_locked(entry);
+            }
         }
     }
     block_cache_lock.release(flags);
@@ -149,21 +319,145 @@ static void block_cache_invalidate_node(vfs::vfs_node *node) {
     uint64_t flags;
     block_cache_lock.acquire(flags);
     for (uint64_t i = 0; i < BLOCK_CACHE_ENTRIES; i++) {
-        if (block_cache[i].valid && block_cache[i].node == node) block_cache[i].valid = false;
+        block_cache_entry *entry = &block_cache[i];
+        if (entry->node == node) {
+            entry->valid = false;
+            if (entry->loading) entry->discard_after_load = true;
+            else {
+                block_cache_unhash_locked(entry);
+                block_cache_free_push_locked(entry);
+            }
+        }
     }
     block_cache_lock.release(flags);
 }
 
+static bool block_cache_direct_io(uint64_t offset, uint64_t size) {
+    return size >= BLOCK_CACHE_DIRECT_THRESHOLD &&
+           (offset & (BLOCK_CACHE_BLOCK_SIZE - 1)) == 0 &&
+           (size & (BLOCK_CACHE_BLOCK_SIZE - 1)) == 0;
+}
+
+static uint64_t block_cache_aligned_tail(uint64_t offset, uint64_t size) {
+    if ((offset & (BLOCK_CACHE_BLOCK_SIZE - 1)) != 0 || size < BLOCK_CACHE_DIRECT_TAIL_MIN) return 0;
+    return size & ~(BLOCK_CACHE_BLOCK_SIZE - 1);
+}
+
+
+static uint64_t block_cache_uncached_run(vfs::vfs_node *node, uint64_t first_block, uint64_t max_blocks) {
+    if (!node || !max_blocks) return 0;
+    if (max_blocks > BLOCK_CACHE_BATCH_READ_BLOCKS) max_blocks = BLOCK_CACHE_BATCH_READ_BLOCKS;
+    uint64_t flags;
+    uint64_t run = 0;
+    block_cache_lock.acquire(flags);
+    while (run < max_blocks && !block_cache_find_locked(node, first_block + run)) run++;
+    block_cache_lock.release(flags);
+    return run;
+}
+
+static void block_cache_install_read_run(vfs::vfs_node *node, uint64_t first_block, uint64_t blocks, const uint8_t *src) {
+    if (!node || !src || !blocks) return;
+    if (blocks > BLOCK_CACHE_BATCH_READ_BLOCKS) blocks = BLOCK_CACHE_BATCH_READ_BLOCKS;
+
+    uint64_t flags;
+    block_cache_lock.acquire(flags);
+    for (uint64_t i = 0; i < blocks; i++) {
+        uint64_t block = first_block + i;
+        block_cache_entry *entry = block_cache_find_locked(node, block);
+        if (entry && entry->loading) {
+            entry->discard_after_load = true;
+            continue;
+        }
+        if (!entry) {
+            entry = block_cache_pick_locked();
+            if (!entry) break;
+            block_cache_unhash_locked(entry);
+            entry->node = node;
+            entry->block = block;
+            entry->hashed = false;
+            block_cache_hash_locked(entry);
+        }
+        memcpy(entry->data, src + i * BLOCK_CACHE_BLOCK_SIZE, BLOCK_CACHE_BLOCK_SIZE);
+        entry->valid = true;
+        entry->loading = false;
+        entry->discard_after_load = false;
+        entry->last_used = ++block_cache_clock;
+        block_cache_lru_front_locked(entry);
+    }
+    block_cache_lock.release(flags);
+}
+
+static uint64_t block_cache_copy_hot_run(vfs::vfs_node *node, uint64_t first_block, uint64_t blocks, uint8_t *out) {
+    if (!node || !out || !blocks) return 0;
+    if (blocks > 16) blocks = 16;
+    uint64_t copied = 0;
+    uint64_t flags;
+    block_cache_lock.acquire(flags);
+    while (copied < blocks) {
+        block_cache_entry *entry = block_cache_find_locked(node, first_block + copied);
+        if (!entry || entry->loading || !entry->valid) break;
+        memcpy(out + copied * BLOCK_CACHE_BLOCK_SIZE, entry->data, BLOCK_CACHE_BLOCK_SIZE);
+        entry->last_used = ++block_cache_clock;
+        block_cache_lru_front_locked(entry);
+        copied++;
+    }
+    block_cache_lock.release(flags);
+    return copied * BLOCK_CACHE_BLOCK_SIZE;
+}
+
 static uint64_t cached_block_read(vfs::vfs_node *node, uint64_t offset, uint64_t size, void *buffer) {
     if (!node || !buffer || node->type != vfs::VfsType::VFS_BLOCK_DEVICE) return vfs::read(node, offset, size, buffer);
+    if (size > UINT64_MAX - offset) return 0;
+    if (block_cache_direct_io(offset, size)) {
+        uint64_t flags;
+        block_cache_lock.acquire(flags);
+        block_cache_direct_reads++;
+        block_cache_lock.release(flags);
+        return vfs::read(node, offset, size, buffer);
+    }
+
     uint8_t *out = (uint8_t *)buffer;
     uint64_t done = 0;
     while (done < size) {
         uint64_t abs = offset + done;
+        uint64_t left = size - done;
+        uint64_t direct = block_cache_aligned_tail(abs, left);
+        if (direct) {
+            uint64_t got = vfs::read(node, abs, direct, out + done);
+            if (!got) break;
+            uint64_t flags;
+            block_cache_lock.acquire(flags);
+            block_cache_direct_reads++;
+            block_cache_lock.release(flags);
+            done += got;
+            if (got != direct) break;
+            continue;
+        }
+
         uint64_t block = abs / BLOCK_CACHE_BLOCK_SIZE;
-        uint64_t in_block = abs % BLOCK_CACHE_BLOCK_SIZE;
+        uint64_t in_block = abs & (BLOCK_CACHE_BLOCK_SIZE - 1);
+        if (in_block == 0 && left >= BLOCK_CACHE_BLOCK_SIZE) {
+            uint64_t whole_blocks = left / BLOCK_CACHE_BLOCK_SIZE;
+            uint64_t hot = block_cache_copy_hot_run(node, block, whole_blocks, out + done);
+            if (hot) {
+                done += hot;
+                continue;
+            }
+
+            uint64_t run = block_cache_uncached_run(node, block, whole_blocks);
+            if (run >= BLOCK_CACHE_BATCH_READ_MIN) {
+                uint64_t bytes = run * BLOCK_CACHE_BLOCK_SIZE;
+                uint64_t got = vfs::read(node, abs, bytes, out + done);
+                if (!got) break;
+                uint64_t full = got / BLOCK_CACHE_BLOCK_SIZE;
+                if (full) block_cache_install_read_run(node, block, full, out + done);
+                done += got;
+                if (got != bytes) break;
+                continue;
+            }
+        }
         uint64_t chunk = BLOCK_CACHE_BLOCK_SIZE - in_block;
-        if (chunk > size - done) chunk = size - done;
+        if (chunk > left) chunk = left;
 
         block_cache_entry *entry;
         if (!block_cache_load(node, block, &entry)) break;
@@ -177,16 +471,35 @@ static uint64_t cached_block_read(vfs::vfs_node *node, uint64_t offset, uint64_t
         }
         memcpy(out + done, entry->data + in_block, chunk);
         entry->last_used = ++block_cache_clock;
+        block_cache_lru_front_locked(entry);
         block_cache_lock.release(flags);
         done += chunk;
 
-        if (in_block + chunk == BLOCK_CACHE_BLOCK_SIZE) block_cache_prefetch(node, block + 1);
+        if (in_block + chunk == BLOCK_CACHE_BLOCK_SIZE && done < size) {
+            uint64_t max_block = (offset + size - 1) / BLOCK_CACHE_BLOCK_SIZE;
+            block_cache_prefetch(node, block + 1, max_block);
+        }
     }
     return done;
 }
 
 static uint64_t cached_block_write(vfs::vfs_node *node, uint64_t offset, uint64_t size, const void *buffer) {
     if (!node || !buffer || node->type != vfs::VfsType::VFS_BLOCK_DEVICE) return vfs::write(node, offset, size, (void *)buffer);
+    if (size > UINT64_MAX - offset) return 0;
+    if (block_cache_direct_io(offset, size)) {
+        uint64_t flags;
+        block_cache_lock.acquire(flags);
+        block_cache_direct_writes++;
+        block_cache_lock.release(flags);
+        uint64_t written = vfs::write(node, offset, size, (void *)buffer);
+        if (written) {
+            uint64_t first = offset / BLOCK_CACHE_BLOCK_SIZE;
+            uint64_t last = (offset + written - 1) / BLOCK_CACHE_BLOCK_SIZE;
+            block_cache_invalidate(node, first, last);
+        }
+        return written;
+    }
+
     uint64_t written = vfs::write(node, offset, size, (void *)buffer);
     if (written) {
         uint64_t first = offset / BLOCK_CACHE_BLOCK_SIZE;
@@ -197,13 +510,24 @@ static uint64_t cached_block_write(vfs::vfs_node *node, uint64_t offset, uint64_
 }
 
 extern "C" int fs_register(fs_driver *driver) {
-    if (!driver || !driver->name || !driver->mount) return -1;
+    if (!driver || !driver->name || !driver->mount || !fs_driver_name_valid(driver->name)) return -1;
     for (fs_driver *d = fs_drivers; d; d = d->next) {
         if (strcmp(d->name, driver->name) == 0) return -1;
     }
+
+    driver->source_node = nullptr;
+    if (driver->flags & FS_DRIVER_NODEV) {
+        driver->source_node = (struct vfs_node *)fs_create_nodev_source(driver);
+        if (!driver->source_node) return -1;
+    }
+
     driver->next = fs_drivers;
     fs_drivers = driver;
-    klog(LOG_INFO, "FS: registered %s\n", driver->name);
+    if (driver->source_node) {
+        klog(LOG_INFO, "FS: registered %s source=/dev/fs/%s\n", driver->name, driver->name);
+    } else {
+        klog(LOG_INFO, "FS: registered %s\n", driver->name);
+    }
     return 0;
 }
 
@@ -242,9 +566,8 @@ static void fs_restore_node(vfs::vfs_node *node, const fs_mount_snapshot *snap) 
 
 static fs_mount_record *fs_alloc_mount_record(const char *source, const char *target,
                                               const char *type, const char *flags) {
-    fs_mount_record *rec = (fs_mount_record *)heap::kmalloc(sizeof(*rec));
+    fs_mount_record *rec = (fs_mount_record *)heap::kzalloc(sizeof(*rec));
     if (!rec) return nullptr;
-    memset(rec, 0, sizeof(*rec));
     rec->source = strdup(source ? source : "");
     rec->target = strdup(target ? target : "");
     rec->type = strdup(type ? type : "");
@@ -290,6 +613,26 @@ static void fs_append(char *buf, uint64_t cap, uint64_t *pos, const char *s) {
     buf[*pos < cap ? *pos : cap - 1] = 0;
 }
 
+static void fs_append_u64(char *buf, uint64_t cap, uint64_t *pos, uint64_t value) {
+    char tmp[21];
+    uint64_t n = 0;
+    do {
+        tmp[n++] = (char)('0' + (value % 10));
+        value /= 10;
+    } while (value && n < sizeof(tmp));
+    while (n) {
+        char c[2] = {tmp[--n], 0};
+        fs_append(buf, cap, pos, c);
+    }
+}
+
+static void fs_append_stat(char *buf, uint64_t cap, uint64_t *pos, const char *name, uint64_t value) {
+    fs_append(buf, cap, pos, name);
+    fs_append(buf, cap, pos, " ");
+    fs_append_u64(buf, cap, pos, value);
+    fs_append(buf, cap, pos, "\n");
+}
+
 static uint64_t proc_filesystems_read(vfs::vfs_node *, uint64_t offset, uint64_t size, uint8_t *buffer) {
     char buf[1024];
     uint64_t len = 0;
@@ -324,6 +667,83 @@ static uint64_t proc_mounts_read(vfs::vfs_node *, uint64_t offset, uint64_t size
     return fs_proc_copy(buf, len, offset, size, buffer);
 }
 
+static uint64_t proc_fsinfo_read(vfs::vfs_node *, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    char buf[8192];
+    uint64_t len = 0;
+    uint64_t flags;
+    fs_mount_lock.acquire(flags);
+    for (fs_mount_record *m = fs_mounts; m; m = m->next) {
+        fs_info info;
+        memset(&info, 0, sizeof(info));
+        info.version = FS_INFO_VERSION;
+        if (m->driver && m->driver->name) {
+            uint64_t n = strlen(m->driver->name);
+            if (n >= sizeof(info.driver)) n = sizeof(info.driver) - 1;
+            memcpy(info.driver, m->driver->name, n);
+            info.driver[n] = 0;
+        }
+        if (m->driver && m->driver->info) (void)m->driver->info((struct vfs_node *)m->mountpoint, &info);
+        if (!info.type[0] && m->type) {
+            uint64_t n = strlen(m->type);
+            if (n >= sizeof(info.type)) n = sizeof(info.type) - 1;
+            memcpy(info.type, m->type, n);
+            info.type[n] = 0;
+        }
+        if (!info.driver[0] && m->driver && m->driver->name) {
+            uint64_t n = strlen(m->driver->name);
+            if (n >= sizeof(info.driver)) n = sizeof(info.driver) - 1;
+            memcpy(info.driver, m->driver->name, n);
+            info.driver[n] = 0;
+        }
+        fs_append(buf, sizeof(buf), &len, "source=");
+        fs_append(buf, sizeof(buf), &len, m->source ? m->source : "-");
+        fs_append(buf, sizeof(buf), &len, " target=");
+        fs_append(buf, sizeof(buf), &len, m->target ? m->target : "-");
+        fs_append(buf, sizeof(buf), &len, " driver=");
+        fs_append(buf, sizeof(buf), &len, info.driver[0] ? info.driver : "?");
+        fs_append(buf, sizeof(buf), &len, " type=");
+        fs_append(buf, sizeof(buf), &len, info.type[0] ? info.type : "?");
+        fs_append(buf, sizeof(buf), &len, " total=");
+        fs_append_u64(buf, sizeof(buf), &len, info.total_bytes);
+        fs_append(buf, sizeof(buf), &len, " used=");
+        fs_append_u64(buf, sizeof(buf), &len, info.used_bytes);
+        fs_append(buf, sizeof(buf), &len, " free=");
+        fs_append_u64(buf, sizeof(buf), &len, info.free_bytes);
+        fs_append(buf, sizeof(buf), &len, " block=");
+        fs_append_u64(buf, sizeof(buf), &len, info.block_size);
+        fs_append(buf, sizeof(buf), &len, " max_file=");
+        fs_append_u64(buf, sizeof(buf), &len, info.max_file_size);
+        fs_append(buf, sizeof(buf), &len, " flags=");
+        fs_append_u64(buf, sizeof(buf), &len, info.flags);
+        if (info.volume_label[0]) {
+            fs_append(buf, sizeof(buf), &len, " label=");
+            fs_append(buf, sizeof(buf), &len, info.volume_label);
+        }
+        fs_append(buf, sizeof(buf), &len, "\n");
+    }
+    fs_mount_lock.release(flags);
+    return fs_proc_copy(buf, len, offset, size, buffer);
+}
+
+static uint64_t proc_block_cache_read(vfs::vfs_node *, uint64_t offset, uint64_t size, uint8_t *buffer) {
+    char buf[768];
+    uint64_t len = 0;
+    uint64_t flags;
+    block_cache_lock.acquire(flags);
+    fs_append_stat(buf, sizeof(buf), &len, "entries", BLOCK_CACHE_ENTRIES);
+    fs_append_stat(buf, sizeof(buf), &len, "block_size", BLOCK_CACHE_BLOCK_SIZE);
+    fs_append_stat(buf, sizeof(buf), &len, "hits", block_cache_hits);
+    fs_append_stat(buf, sizeof(buf), &len, "misses", block_cache_misses);
+    fs_append_stat(buf, sizeof(buf), &len, "waits", block_cache_waits);
+    fs_append_stat(buf, sizeof(buf), &len, "evictions", block_cache_evictions);
+    fs_append_stat(buf, sizeof(buf), &len, "direct_reads", block_cache_direct_reads);
+    fs_append_stat(buf, sizeof(buf), &len, "direct_writes", block_cache_direct_writes);
+    fs_append_stat(buf, sizeof(buf), &len, "prefetch_hits", block_cache_prefetch_hits);
+    fs_append_stat(buf, sizeof(buf), &len, "prefetch_loads", block_cache_prefetch_loads);
+    block_cache_lock.release(flags);
+    return fs_proc_copy(buf, len, offset, size, buffer);
+}
+
 extern "C" void fs_publish_proc(void) {
     vfs::vfs_node *proc = vfs::open("/proc");
     if (!proc || proc->type != vfs::VfsType::VFS_DIRECTORY) return;
@@ -335,6 +755,14 @@ extern "C" void fs_publish_proc(void) {
     vfs::vfs_node *mounts = vfs::finddir(proc, "mounts");
     if (!mounts) mounts = vfs::create_node("mounts", vfs::VfsType::VFS_CHAR_DEVICE, proc);
     if (mounts) mounts->read = proc_mounts_read;
+
+    vfs::vfs_node *fsinfo = vfs::finddir(proc, "fsinfo");
+    if (!fsinfo) fsinfo = vfs::create_node("fsinfo", vfs::VfsType::VFS_CHAR_DEVICE, proc);
+    if (fsinfo) fsinfo->read = proc_fsinfo_read;
+
+    vfs::vfs_node *block_cache = vfs::finddir(proc, "block_cache");
+    if (!block_cache) block_cache = vfs::create_node("block_cache", vfs::VfsType::VFS_CHAR_DEVICE, proc);
+    if (block_cache) block_cache->read = proc_block_cache_read;
 }
 
 static fs_driver *fs_find_driver(const char *fstype) {
@@ -373,6 +801,10 @@ extern "C" int fs_probe(const char *source, const char *fstype) {
 static int fs_mount_driver(fs_driver *driver, vfs::vfs_node *src, vfs::vfs_node *dst,
                            const char *source, const char *target, const char *flags) {
     if (!driver || !src || !dst || !source || !target) return -1;
+    if ((driver->flags & FS_DRIVER_NODEV) && src != (vfs::vfs_node *)driver->source_node) {
+        klog(LOG_ERR, "FS: %s rejects mount source %s\n", driver->name, source);
+        return -1;
+    }
 
     uint64_t lock_flags;
     fs_mount_lock.acquire(lock_flags);
@@ -416,15 +848,15 @@ static int fs_mount_driver(fs_driver *driver, vfs::vfs_node *src, vfs::vfs_node 
 
 extern "C" int fs_mount(const char *source, const char *target, const char *fstype, const char *flags) {
     if (!source || !target || !fstype) return -1;
+    fs_driver *driver = fs_find_driver(fstype);
+    if (!driver) {
+        klog(LOG_ERR, "FS: unknown filesystem %s\n", fstype);
+        return -1;
+    }
     vfs::vfs_node *src = vfs::open(source);
     vfs::vfs_node *dst = vfs::open(target);
     if (!src || !dst || dst->type != vfs::VfsType::VFS_DIRECTORY) {
         klog(LOG_ERR, "FS: mount %s on %s failed: bad source or target\n", source, target);
-        return -1;
-    }
-    fs_driver *driver = fs_find_driver(fstype);
-    if (!driver) {
-        klog(LOG_ERR, "FS: unknown filesystem %s\n", fstype);
         return -1;
     }
     return fs_mount_driver(driver, src, dst, source, target, flags);
@@ -482,7 +914,7 @@ extern "C" int fs_unmount(const char *target) {
         }
     }
     fs_restore_node(rec->mountpoint, &rec->original);
-    block_cache_invalidate_node(rec->source_node);
+    if (rec->source_node) block_cache_invalidate_node(rec->source_node);
     klog(LOG_INFO, "FS: unmounted %s\n", rec->target);
     fs_free_mount_record(rec);
     return 0;
@@ -497,10 +929,16 @@ extern "C" struct vfs_node *vfs_create_fs_node(const char *name, uint32_t type, 
     else if (type == VFS_NODE_CHAR_DEVICE) vt = vfs::VfsType::VFS_CHAR_DEVICE;
     else if (type == VFS_NODE_BLOCK_DEVICE) vt = vfs::VfsType::VFS_BLOCK_DEVICE;
 
-    vfs::vfs_node *node = (vfs::vfs_node *)heap::kmalloc(sizeof(vfs::vfs_node));
+    vfs::vfs_node *node = (vfs::vfs_node *)heap::kzalloc(sizeof(vfs::vfs_node));
     if (!node) return nullptr;
-    memset(node, 0, sizeof(*node));
+    node->magic = vfs::VFS_NODE_MAGIC;
     node->name = strdup(name ? name : "");
+    if (!node->name) {
+        heap::kfree(node);
+        return nullptr;
+    }
+    node->name_len = strlen(node->name);
+    node->name_hash = fs_hash_name_len(node->name, node->name_len);
     node->type = vt;
     node->inode = inode;
     node->size = size;
@@ -509,28 +947,23 @@ extern "C" struct vfs_node *vfs_create_fs_node(const char *name, uint32_t type, 
 }
 
 extern "C" int vfs_add_child(struct vfs_node *parent_raw, struct vfs_node *child_raw) {
-    vfs::vfs_node *parent = (vfs::vfs_node *)parent_raw;
-    vfs::vfs_node *child = (vfs::vfs_node *)child_raw;
-    if (!parent || !child) return -1;
-    child->parent = parent;
-    child->next = parent->child;
-    parent->child = child;
-    return 0;
+    return vfs::add_child((vfs::vfs_node *)parent_raw, (vfs::vfs_node *)child_raw);
 }
 
-extern "C" void *vfs_get_fs_data(struct vfs_node *node_raw) { auto *node = (vfs::vfs_node *)node_raw; return node ? (void *)node->ptr : nullptr; }
-extern "C" void vfs_set_fs_data(struct vfs_node *node_raw, void *data) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->ptr = (uintptr_t)data; }
-extern "C" void vfs_set_size(struct vfs_node *node_raw, uint64_t size) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->size = size; }
-extern "C" void vfs_set_finddir(struct vfs_node *node_raw, struct vfs_node *(*finddir)(struct vfs_node *, const char *)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->finddir = (vfs::vfs_node *(*)(vfs::vfs_node *, const char *))finddir; }
-extern "C" void vfs_set_readdir(struct vfs_node *node_raw, int (*readdir)(struct vfs_node *, uint64_t, struct vfs_dirent *)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->readdir = (int (*)(vfs::vfs_node *, uint64_t, vfs::vfs_dirent *))readdir; }
-extern "C" void vfs_set_read(struct vfs_node *node_raw, uint64_t (*read)(struct vfs_node *, uint64_t, uint64_t, uint8_t *)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->read = (uint64_t (*)(vfs::vfs_node *, uint64_t, uint64_t, uint8_t *))read; }
-extern "C" void vfs_set_write(struct vfs_node *node_raw, uint64_t (*write)(struct vfs_node *, uint64_t, uint64_t, uint8_t *)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->write = (uint64_t (*)(vfs::vfs_node *, uint64_t, uint64_t, uint8_t *))write; }
-extern "C" void vfs_set_create(struct vfs_node *node_raw, int (*create)(struct vfs_node *, const char *, uint32_t, struct vfs_node **)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->create = (int (*)(vfs::vfs_node *, const char *, uint32_t, vfs::vfs_node **))create; }
-extern "C" void vfs_set_unlink(struct vfs_node *node_raw, int (*unlink)(struct vfs_node *, const char *)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->unlink = (int (*)(vfs::vfs_node *, const char *))unlink; }
-extern "C" void vfs_set_rename(struct vfs_node *node_raw, int (*rename)(struct vfs_node *, const char *, struct vfs_node *, const char *)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->rename = (int (*)(vfs::vfs_node *, const char *, vfs::vfs_node *, const char *))rename; }
-extern "C" void vfs_set_truncate(struct vfs_node *node_raw, int (*truncate)(struct vfs_node *, uint64_t)) { auto *node = (vfs::vfs_node *)node_raw; if (node) node->truncate = (int (*)(vfs::vfs_node *, uint64_t))truncate; }
+extern "C" void *vfs_get_fs_data(struct vfs_node *node_raw) { auto *node = (vfs::vfs_node *)node_raw; return vfs::valid_node(node) ? (void *)node->ptr : nullptr; }
+extern "C" void vfs_set_fs_data(struct vfs_node *node_raw, void *data) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node)) node->ptr = (uintptr_t)data; }
+extern "C" void vfs_set_size(struct vfs_node *node_raw, uint64_t size) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node)) node->size = size; }
+extern "C" void vfs_set_finddir(struct vfs_node *node_raw, struct vfs_node *(*finddir)(struct vfs_node *, const char *)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && finddir) node->finddir = (vfs::vfs_node *(*)(vfs::vfs_node *, const char *))finddir; }
+extern "C" void vfs_set_readdir(struct vfs_node *node_raw, int (*readdir)(struct vfs_node *, uint64_t, struct vfs_dirent *)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && readdir) node->readdir = (int (*)(vfs::vfs_node *, uint64_t, vfs::vfs_dirent *))readdir; }
+extern "C" void vfs_set_read(struct vfs_node *node_raw, uint64_t (*read)(struct vfs_node *, uint64_t, uint64_t, uint8_t *)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && read) node->read = (uint64_t (*)(vfs::vfs_node *, uint64_t, uint64_t, uint8_t *))read; }
+extern "C" void vfs_set_write(struct vfs_node *node_raw, uint64_t (*write)(struct vfs_node *, uint64_t, uint64_t, uint8_t *)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && write) node->write = (uint64_t (*)(vfs::vfs_node *, uint64_t, uint64_t, uint8_t *))write; }
+extern "C" void vfs_set_create(struct vfs_node *node_raw, int (*create)(struct vfs_node *, const char *, uint32_t, struct vfs_node **)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && create) node->create = (int (*)(vfs::vfs_node *, const char *, uint32_t, vfs::vfs_node **))create; }
+extern "C" void vfs_set_unlink(struct vfs_node *node_raw, int (*unlink)(struct vfs_node *, const char *)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && unlink) node->unlink = (int (*)(vfs::vfs_node *, const char *))unlink; }
+extern "C" void vfs_set_rename(struct vfs_node *node_raw, int (*rename)(struct vfs_node *, const char *, struct vfs_node *, const char *)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && rename) node->rename = (int (*)(vfs::vfs_node *, const char *, vfs::vfs_node *, const char *))rename; }
+extern "C" void vfs_set_truncate(struct vfs_node *node_raw, int (*truncate)(struct vfs_node *, uint64_t)) { auto *node = (vfs::vfs_node *)node_raw; if (vfs::valid_node(node) && truncate) node->truncate = (int (*)(vfs::vfs_node *, uint64_t))truncate; }
 extern "C" uint64_t vfs_read_c(struct vfs_node *node, uint64_t offset, uint64_t size, void *buffer) { return vfs::read((vfs::vfs_node *)node, offset, size, buffer); }
 extern "C" uint64_t vfs_write_c(struct vfs_node *node, uint64_t offset, uint64_t size, const void *buffer) { return vfs::write((vfs::vfs_node *)node, offset, size, (void *)buffer); }
+extern "C" uint64_t vfs_size_c(struct vfs_node *node_raw) { auto *node = (vfs::vfs_node *)node_raw; return vfs::valid_node(node) ? node->size : 0; }
 extern "C" uint64_t block_read(struct vfs_node *node, uint64_t offset, uint64_t size, void *buffer) { return cached_block_read((vfs::vfs_node *)node, offset, size, buffer); }
 extern "C" uint64_t block_write(struct vfs_node *node, uint64_t offset, uint64_t size, const void *buffer) { return cached_block_write((vfs::vfs_node *)node, offset, size, buffer); }
 extern "C" uint64_t block_size(struct vfs_node *node_raw) { auto *node = (vfs::vfs_node *)node_raw; return node ? node->size : 0; }
@@ -558,6 +991,7 @@ KEXPORT(vfs_set_rename)
 KEXPORT(vfs_set_truncate)
 KEXPORT(vfs_read_c)
 KEXPORT(vfs_write_c)
+KEXPORT(vfs_size_c)
 KEXPORT(block_read)
 KEXPORT(block_write)
 KEXPORT(block_size)

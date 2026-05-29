@@ -140,6 +140,13 @@ struct multiboot_tag_framebuffer {
  * @brief Multiboot2 Module tag
  * * Reports the location and command line of a loaded module (like an initramfs).
  */
+
+struct multiboot_tag_string {
+    uint32_t type;
+    uint32_t size;
+    char string[0];
+};
+
 struct multiboot_tag_module {
     uint32_t type;       ///< Tag type (MULTIBOOT_TAG_TYPE_MODULE)
     uint32_t size;       ///< Total size of the tag

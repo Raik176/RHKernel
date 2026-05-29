@@ -29,12 +29,36 @@ enum fs_probe_result {
     FS_PROBE_UNSUPPORTED = -2,
 };
 
+enum fs_driver_flags {
+    FS_DRIVER_NODEV = 1u << 0,
+};
+
+#define FS_INFO_VERSION 1u
+#define FS_INFO_FLAG_READONLY (1u << 0)
+
+struct fs_info {
+    uint32_t version;
+    uint32_t flags;
+    uint32_t block_size;
+    uint32_t reserved;
+    uint64_t total_bytes;
+    uint64_t used_bytes;
+    uint64_t free_bytes;
+    uint64_t max_file_size;
+    char driver[32];
+    char type[32];
+    char volume_label[64];
+};
+
 struct fs_driver {
     const char *name;
     int (*mount)(struct vfs_node *blockdev, struct vfs_node *mountpoint, const char *flags);
     struct fs_driver *next;
     int (*probe)(struct vfs_node *blockdev);
     int (*unmount)(struct vfs_node *mountpoint);
+    int (*info)(struct vfs_node *mountpoint, struct fs_info *out);
+    uint32_t flags;
+    struct vfs_node *source_node;
 };
 
 enum fs_ctl_op {
@@ -74,6 +98,7 @@ void vfs_set_rename(struct vfs_node *node,
 void vfs_set_truncate(struct vfs_node *node, int (*truncate)(struct vfs_node *, uint64_t));
 uint64_t vfs_read_c(struct vfs_node *node, uint64_t offset, uint64_t size, void *buffer);
 uint64_t vfs_write_c(struct vfs_node *node, uint64_t offset, uint64_t size, const void *buffer);
+uint64_t vfs_size_c(struct vfs_node *node);
 uint64_t block_read(struct vfs_node *node, uint64_t offset, uint64_t size, void *buffer);
 uint64_t block_write(struct vfs_node *node, uint64_t offset, uint64_t size, const void *buffer);
 uint64_t block_size(struct vfs_node *node);

@@ -1,0 +1,17 @@
+interface=@NETBOOT_IFACE@
+bind-interfaces
+
+dhcp-range=@NETBOOT_DHCP_START@,@NETBOOT_DHCP_END@,255.255.255.0,12h
+dhcp-option=option:router,@NETBOOT_HOST@
+dhcp-option=option:dns-server,@NETBOOT_HOST@
+
+enable-tftp
+tftp-root=@NETBOOT_TFTP_ROOT@
+
+dhcp-match=set:efi-x86_64,option:client-arch,7
+dhcp-match=set:efi-x86_64,option:client-arch,9
+
+dhcp-boot=tag:efi-x86_64,snponly.efi
+dhcp-boot=undionly.kpxe
+
+log-dhcp

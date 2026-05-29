@@ -4,6 +4,7 @@
 
 #include "file/vfs.h"
 #include "mod/module.h"
+#include "mod/workqueue.h"
 #include "symbol.h"
 
 namespace module_loader {
@@ -16,6 +17,8 @@ namespace module_loader {
         uintptr_t end;
         uint64_t flags;
     };
+
+    enum class module_runtime_state { INIT_PENDING, INIT_FAILED, START_PENDING, STARTING, RUNNING, START_FAILED };
 
     struct LoadedModule {
         const char *name;
@@ -31,6 +34,11 @@ namespace module_loader {
         uint64_t symbol_count;
         ModuleSection *sections;
         kernel_symbol *symbols;
+        module_start_t start;
+        kernel_work start_work;
+        module_runtime_state state;
+        int init_result;
+        int start_result;
         LoadedModule *next;
     };
 

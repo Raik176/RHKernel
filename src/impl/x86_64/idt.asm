@@ -58,6 +58,7 @@ ISR_NO_ERROR IRQVEC
 %assign IRQVEC IRQVEC+1
 %endrep
 
+ISR_NO_ERROR 128
 ISR_NO_ERROR 254
 
 idt_common_stub:
@@ -79,10 +80,18 @@ push r15
 
 mov rdi, rsp ; Argument 1 for C++ (regs*)
 mov rbp, rsp ; Save original stack pointer in callee-saved RBP
+test qword [rsp + 144], 3
+jz .no_entry_swapgs
+swapgs
+.no_entry_swapgs:
 and rsp, -16 ; Align stack to 16 bytes
 call idt_handler
 
 mov rsp, rax
+test qword [rsp + 144], 3
+jz .no_exit_swapgs
+swapgs
+.no_exit_swapgs:
 
 pop r15
 pop r14

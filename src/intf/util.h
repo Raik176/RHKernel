@@ -22,8 +22,14 @@ struct cpu_features {
     bool wc;
     bool xsave;
     bool avx;
-    bool fsgsbase_supported;
+    bool avx2;
+    bool fma;
+    bool f16c;
+    bool avx512;
     bool fsgsbase;
+    bool pku;
+    bool mce;
+    bool mca;
 };
 
 /**
@@ -72,22 +78,32 @@ static_assert(offsetof(regs, ss) == 168, "regs.ss offset changed");
  * All physical addresses are mapped at this offset in the virtual address space
  */
 #define KERNEL_VIRT_OFFSET 0xFFFFFFFF80000000ULL
-#define PHYS_MAP_BASE 0xFFFF800000000000ULL
-#define PHYS_DIRECT_MAP_SIZE 0x00007F0000000000ULL
+#define PHYS_MAP_BASE_4L 0xFFFF800000000000ULL
+#define PHYS_DIRECT_MAP_SIZE_4L 0x00007F0000000000ULL
+#define PHYS_MAP_BASE_5L 0xFF00000000000000ULL
+#define PHYS_DIRECT_MAP_SIZE_5L 0x00FF800000000000ULL
+#define PHYS_MAP_BASE PHYS_MAP_BASE_4L
+#define PHYS_DIRECT_MAP_SIZE PHYS_DIRECT_MAP_SIZE_4L
+
+extern "C" uint64_t paging_phys_map_base_value();
+extern "C" uint64_t paging_phys_direct_map_size_value();
+extern "C" uint64_t paging_mode_la57_value();
+extern "C" uint64_t paging_user_top_value();
+extern "C" void paging_runtime_cache_values();
 
 /**
  * @brief Convert a physical address to a virtual address
  * @param phys The physical address
  * @return The corresponding virtual address
  */
-static inline void *p2v(uint64_t phys) { return (void *)(phys + PHYS_MAP_BASE); }
+static inline void *p2v(uint64_t phys) { return (void *)(phys + paging_phys_map_base_value()); }
 
 /**
  * @brief Convert a virtual address to a physical address
  * @param virt The virtual address
  * @return The corresponding physical address
  */
-static inline uint64_t v2p(void *virt) { return (uint64_t)virt - PHYS_MAP_BASE; }
+static inline uint64_t v2p(void *virt) { return (uint64_t)virt - paging_phys_map_base_value(); }
 
 /**
  * @brief Convert a physical address to a kernel virtual address
@@ -128,12 +144,16 @@ static inline uint64_t align_down(uint64_t addr, uint64_t align) { return addr &
 
 #define KPANIC(message) kpanic_at((message), __FILE__, __LINE__, __func__, nullptr)
 #define KPANIC_REGS(message, regs) kpanic_at((message), __FILE__, __LINE__, __func__, (regs))
+#define KFATAL(message) kfatal_at((message), __FILE__, __LINE__, __func__)
 #define KASSERT(expr)                                                                          \
     do {                                                                                       \
         if (!(expr)) { kpanic_at("assertion failed: " #expr, __FILE__, __LINE__, __func__); } \
     } while (0)
 
 void __attribute__((noreturn)) kpanic(const char *message, struct regs *r = nullptr);
+void __attribute__((noreturn)) kfatal_at(const char *message, const char *file, int line,
+                                         const char *function);
+void __attribute__((noreturn)) panic_halt_forever();
 void __attribute__((noreturn)) kpanic_at(const char *message, const char *file, int line,
                                          const char *function, struct regs *r = nullptr);
 void print_stacktrace();

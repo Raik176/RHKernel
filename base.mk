@@ -26,13 +26,12 @@ CURL_FLAGS ?= -fL --connect-timeout 20 --retry 5 --retry-delay 2 --retry-connref
 GLOBAL_CFLAGS  := -m64 -Wall -Wextra -flto -ffunction-sections -fdata-sections
 GLOBAL_LDFLAGS := --gc-sections
 
-USER_PIE_CFLAGS := -fPIE
-USER_RUNTIME_CFLAGS := $(USER_PIE_CFLAGS)
-NEWLIB_TARGET_CFLAGS := $(USER_RUNTIME_CFLAGS)
+KERNEL_CODEGEN_CFLAGS := -mno-red-zone -mgeneral-regs-only -mno-mmx -mno-sse -mno-sse2
 
-# Dependency and safety helpers used by every Makefile.  Keep dependency files
-# next to their object files and make the generated .d target match the real
-# object path, so moving sources under nested directories stays correct.
+USER_PIE_CFLAGS := -fPIE
+USER_OPT_CFLAGS ?= -O2 -fomit-frame-pointer -fno-plt -fno-semantic-interposition
+USER_RUNTIME_CFLAGS := $(USER_PIE_CFLAGS) $(USER_OPT_CFLAGS)
+
 DEPFLAGS = -MMD -MP -MF $(@:.o=.d) -MT $@
 NASMDEPFLAGS = -MD $(@:.o=.d) -MT $@
 
@@ -58,21 +57,30 @@ VENV_PIP := $(VENV)/bin/pip
 VENV_STAMP := $(VENV)/.installed
 REQUIREMENTS := $(TOOLS_DIR)/requirements.txt
 
-NEWLIB_SRC := $(TOP_DIR)/third_party/newlib
-NEWLIB_BUILD := $(TOP_DIR)/build/third_party/newlib
-NEWLIB_CONFIG := $(TOP_DIR)/build/.newlib-build.cfg
-NEWLIB_PREFIX := $(abspath $(SYSROOT)/..)
-NEWLIB_STUB_BUILD := $(TOP_DIR)/build/newlib-stubs
-NEWLIB_STUB_SRC_FILES := $(shell find $(TOP_DIR)/src/newlib -name '*.c' 2>/dev/null)
-NEWLIB_STUB_OBJ_FILES := $(patsubst $(TOP_DIR)/src/newlib/%.c, $(NEWLIB_STUB_BUILD)/%.o, $(NEWLIB_STUB_SRC_FILES))
-NEWLIB_CRT0 := $(NEWLIB_STUB_BUILD)/crt0.o
-NEWLIB_STUB_LIB_OBJ_FILES := $(filter-out $(NEWLIB_CRT0),$(NEWLIB_STUB_OBJ_FILES))
-NEWLIB_STAMP := $(NEWLIB_BUILD)/.newlib_done
+LIBC_SRC_DIR := $(TOP_DIR)/src/libc
+LIBC_BUILD := $(TOP_DIR)/build/libc
+LIBC_SRC_FILES := $(shell find $(LIBC_SRC_DIR)/src -name '*.c' 2>/dev/null)
+LIBC_OBJ_FILES := $(patsubst $(LIBC_SRC_DIR)/src/%.c,$(LIBC_BUILD)/%.o,$(LIBC_SRC_FILES))
+LIBC_CRT0 := $(LIBC_BUILD)/crt0.o
+LIBC_LIB_OBJ_FILES := $(filter-out $(LIBC_CRT0),$(LIBC_OBJ_FILES))
+LIBC_HEADERS := $(shell find $(LIBC_SRC_DIR)/include -name '*.h' 2>/dev/null)
+USERSPACE_PUBLIC_HEADERS := $(TOP_DIR)/src/public/display.h $(TOP_DIR)/src/public/input.h $(TOP_DIR)/src/public/event.h $(TOP_DIR)/src/public/usb.h
+LIBC_STAMP := $(LIBC_BUILD)/.libc_done
 
-$(NEWLIB_STUB_BUILD)/%.o: $(TOP_DIR)/src/newlib/%.c $(TOP_DIR)/base.mk | $(TOOLCHAIN_STAMP)
+LIBCPPABI_SRC_DIR := $(TOP_DIR)/src/libcppabi
+LIBCPPABI_BUILD := $(TOP_DIR)/build/libcppabi
+LIBCPPABI_SRC_FILES := $(shell find $(LIBCPPABI_SRC_DIR)/src -name '*.cpp' 2>/dev/null)
+LIBCPPABI_OBJ_FILES := $(patsubst $(LIBCPPABI_SRC_DIR)/src/%.cpp,$(LIBCPPABI_BUILD)/%.o,$(LIBCPPABI_SRC_FILES))
+LIBCPPABI_STAMP := $(LIBCPPABI_BUILD)/.libcppabi_done
+
+$(LIBCPPABI_BUILD)/%.o: $(LIBCPPABI_SRC_DIR)/src/%.cpp $(LIBC_HEADERS) $(TOP_DIR)/base.mk | $(TOOLCHAIN_STAMP)
 	@mkdir -p $(dir $@)
-	$(Q)$(CC) --sysroot=$(abspath $(SYSROOT)) \
-		-isystem $(abspath $(SYSROOT)/include) \
+	$(Q)$(CXX) -ffreestanding -nostdinc -isystem $(LIBC_SRC_DIR)/include \
+		$(DEPFLAGS) $(USER_RUNTIME_CFLAGS) -fno-exceptions -fno-rtti -nostdlib -c $< -o $@
+
+$(LIBC_BUILD)/%.o: $(LIBC_SRC_DIR)/src/%.c $(LIBC_HEADERS) $(TOP_DIR)/base.mk | $(TOOLCHAIN_STAMP)
+	@mkdir -p $(dir $@)
+	$(Q)$(CC) -ffreestanding -nostdinc -isystem $(LIBC_SRC_DIR)/include \
 		$(DEPFLAGS) $(USER_RUNTIME_CFLAGS) -nostdlib -c $< -o $@
 
 CC := $(TOOLCHAIN_DIR)/bin/x86_64-elf-gcc

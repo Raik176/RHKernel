@@ -4,6 +4,7 @@
 #include "util.h"
 
 namespace idt {
+    static constexpr uint32_t PANIC_IST = 1;
     static constexpr uint32_t MAILBOX_VECTOR = 0xFE;
 
     /**
@@ -42,6 +43,7 @@ namespace idt {
      * @param flags Type and attribute flags for the entry
      */
     void set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags);
+    void set_gate_ist(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags, uint8_t ist);
 
     /**
      * @brief Initialize the IDT
@@ -53,5 +55,6 @@ namespace idt {
     void init_ap(void);
 
     uint8_t get_unused_vector();
+    void enable_panic_ist();
 
 }  // namespace idt

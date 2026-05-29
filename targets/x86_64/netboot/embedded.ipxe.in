@@ -1,0 +1,16 @@
+#!ipxe
+
+echo RHKernel embedded iPXE starting
+ifopen net0 || goto failed
+dhcp net0 || goto failed
+
+set base-url @NETBOOT_URL@
+echo net0: ${net0/ip}/${net0/netmask} gateway ${net0/gateway}
+echo chain ${base-url}/boot.ipxe
+chain --autofree ${base-url}/boot.ipxe || goto failed
+
+:failed
+echo RHKernel embedded iPXE failed
+ifstat
+route
+shell

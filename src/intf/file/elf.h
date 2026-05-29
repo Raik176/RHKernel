@@ -41,6 +41,49 @@ namespace elf {
         uint64_t align;
     } __attribute__((packed));
 
+    struct elf32_header {
+        uint32_t magic;
+        uint8_t bit_width;
+        uint8_t endianness;
+        uint8_t version;
+        uint8_t abi;
+        uint8_t unused[8];
+        uint16_t type;
+        uint16_t machine;
+        uint32_t version2;
+        uint32_t entry;
+        uint32_t phoff;
+        uint32_t shoff;
+        uint32_t flags;
+        uint16_t header_size;
+        uint16_t ph_entry_size;
+        uint16_t ph_count;
+        uint16_t sh_entry_size;
+        uint16_t sh_count;
+        uint16_t shstrndx;
+    } __attribute__((packed));
+
+    struct elf32_program_header {
+        uint32_t type;
+        uint32_t offset;
+        uint32_t vaddr;
+        uint32_t paddr;
+        uint32_t filesz;
+        uint32_t memsz;
+        uint32_t flags;
+        uint32_t align;
+    } __attribute__((packed));
+
+    struct elf32_rel {
+        uint32_t offset;
+        uint32_t info;
+    } __attribute__((packed));
+
+    struct elf32_dynamic {
+        int32_t tag;
+        uint32_t value;
+    } __attribute__((packed));
+
     struct elf_section_header {
         uint32_t name;
         uint32_t type;
@@ -76,6 +119,8 @@ namespace elf {
 
 #define ELF64_R_SYM(i) ((i) >> 32)
 #define ELF64_R_TYPE(i) ((i) & 0xffffffffL)
+#define ELF32_R_SYM(i) ((i) >> 8)
+#define ELF32_R_TYPE(i) ((uint8_t)(i))
 #define ELF64_ST_BIND(i) ((i) >> 4)
 #define ELF64_ST_TYPE(i) ((i) & 0xf)
 
@@ -98,6 +143,10 @@ namespace elf {
 #define R_X86_64_PC8 15
 #define R_X86_64_GOTPCRELX 41
 #define R_X86_64_REX_GOTPCRELX 42
+#define R_386_NONE 0
+#define R_386_32 1
+#define R_386_PC32 2
+#define R_386_RELATIVE 8
 
     static constexpr uint32_t MAX_LOAD_SEGMENTS = 16;
 
@@ -116,6 +165,7 @@ namespace elf {
         uint32_t segment_count;
         elf_load_segment segments[MAX_LOAD_SEGMENTS];
         bool pie;
+        bool is_32bit;
     };
 
     elf_info load(const char *path);
@@ -149,6 +199,9 @@ namespace elf {
 #define DT_RELA 7
 #define DT_RELASZ 8
 #define DT_RELAENT 9
+#define DT_REL 17
+#define DT_RELSZ 18
+#define DT_RELENT 19
 #define DT_FLAGS 30
 #define DT_FLAGS_1 0x6ffffffb
 

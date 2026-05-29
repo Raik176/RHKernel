@@ -46,4 +46,4 @@ static int pci_bridge_init() {
     return 0;
 }
 
-MODULE_INFO("pci_bridge", pci_bridge_init, NULL);
+MODULE_INFO("pci_bridge", pci_bridge_init, 0, NULL);

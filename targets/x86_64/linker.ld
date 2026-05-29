@@ -19,9 +19,11 @@ SECTIONS
   } :boot
   _boot_end = ADDR(.boot) + SIZEOF(.boot);
 
+  _kernel_load_start = (LOADADDR(.boot) + SIZEOF(.boot) + 0x1FFFFF) & ~0x1FFFFF;
+
   . = 0xFFFFFFFF80000000;
 
-  .text ALIGN(4096) : AT(ALIGN(ADDR(.boot) + SIZEOF(.boot))) {
+  .text ALIGN(4096) : AT(_kernel_load_start) {
       _text_start = .;
       *(.text .text.*)
       . = ALIGN(4096);
@@ -50,7 +52,7 @@ SECTIONS
       _data_end = .;
   } :k_data
 
-  .bss ALIGN(4096) (NOLOAD) : {
+  .bss ALIGN(4096) (NOLOAD) : AT(LOADADDR(.data) + SIZEOF(.data)) {
       _bss_start = .;
       *(.bss .bss.*)
       *(COMMON)

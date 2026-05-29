@@ -1,28 +1,33 @@
-#include <stdint.h>
+#include <fcntl.h>
 #include <stddef.h>
+#include <string.h>
+#include <unistd.h>
 
-#define SYSCALL_WRITE 0
-#define SYSCALL_OPEN 1
-#define SYSCALL_READ 2
-#define SYSCALL_CLOSE 3
-#define STDOUT 1
-#define STDERR 2
+static void out(int fd, const char *s) { write(fd, s, strlen(s)); }
 
-static inline uint64_t sc1(uint64_t n, uint64_t a) { uint64_t r; asm volatile("syscall" : "=a"(r) : "a"(n), "D"(a), "S"(0ULL), "d"(0ULL) : "rcx", "r11", "memory"); return r; }
-static inline uint64_t sc3(uint64_t n, uint64_t a, uint64_t b, uint64_t c) { uint64_t r; asm volatile("syscall" : "=a"(r) : "a"(n), "D"(a), "S"(b), "d"(c) : "rcx", "r11", "memory"); return r; }
-static size_t slen(const char *s) { size_t n = 0; while (s && s[n]) n++; return n; }
-static void out(int fd, const char *s) { sc3(SYSCALL_WRITE, (uint64_t)fd, (uintptr_t)s, slen(s)); }
-
-int main(int, char **) {
-    int fd = (int)sc3(SYSCALL_OPEN, (uintptr_t)"/proc/cpu/debug", 0, 0);
-    if (fd < 0) { out(STDERR, "cpudbg: cannot open /proc/cpu/debug\n"); return 1; }
+static int dump_file(const char *path, int required) {
+    int fd = open(path, O_RDONLY);
+    if (fd < 0) {
+        if (required) { out(STDERR_FILENO, "cpudbg: cannot open "); out(STDERR_FILENO, path); out(STDERR_FILENO, "\n"); }
+        return -1;
+    }
     char buf[1024];
     for (;;) {
-        int64_t n = (int64_t)sc3(SYSCALL_READ, (uint64_t)fd, (uintptr_t)buf, sizeof(buf));
-        if (n < 0) { out(STDERR, "cpudbg: read failed\n"); sc1(SYSCALL_CLOSE, (uint64_t)fd); return 1; }
+        ssize_t n = read(fd, buf, sizeof(buf));
+        if (n < 0) { out(STDERR_FILENO, "cpudbg: read failed\n"); close(fd); return -1; }
         if (n == 0) break;
-        sc3(SYSCALL_WRITE, STDOUT, (uintptr_t)buf, (uint64_t)n);
+        write(STDOUT_FILENO, buf, (size_t)n);
     }
-    sc1(SYSCALL_CLOSE, (uint64_t)fd);
+    close(fd);
+    return 0;
+}
+
+int main(int, char **) {
+    out(STDOUT_FILENO, "cpu_count:\n");
+    if (dump_file("/proc/cpu/count", 1) != 0) return 1;
+    out(STDOUT_FILENO, "vendor:\n");
+    if (dump_file("/proc/cpu/vendor", 1) != 0) return 1;
+    out(STDOUT_FILENO, "features:\n");
+    if (dump_file("/proc/cpu/features", 1) != 0) return 1;
     return 0;
 }

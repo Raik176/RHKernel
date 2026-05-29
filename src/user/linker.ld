@@ -4,6 +4,7 @@ PHDRS
 {
     text   PT_LOAD FLAGS(5); /* PF_R | PF_X */
     rodata PT_LOAD FLAGS(4); /* PF_R */
+    eh_frame_hdr PT_GNU_EH_FRAME FLAGS(4);
     data   PT_LOAD FLAGS(6); /* PF_R | PF_W */
     dynamic PT_DYNAMIC FLAGS(6);
 }
@@ -22,7 +23,21 @@ SECTIONS
     .rodata : {
         *(.rodata .rodata.*)
         *(.gnu.linkonce.r.*)
-        *(.eh_frame*)
+    } :rodata
+
+    .eh_frame_hdr : {
+        *(.eh_frame_hdr)
+    } :rodata :eh_frame_hdr
+
+    .eh_frame : {
+        PROVIDE_HIDDEN(__eh_frame_start = .);
+        KEEP(*(.eh_frame))
+        KEEP(*(.eh_frame.*))
+        PROVIDE_HIDDEN(__eh_frame_end = .);
+    } :rodata
+
+    .gcc_except_table : {
+        KEEP(*(.gcc_except_table .gcc_except_table.*))
     } :rodata
 
     .interp : { *(.interp) } :rodata

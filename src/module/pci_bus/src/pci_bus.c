@@ -353,4 +353,4 @@ KEXPORT(pci_find_extended_capability)
 KEXPORT(pci_scan_bus)
 KEXPORT(pci_enable_bus_mastering)
 
-MODULE_INFO("pci_bus", pci_module_init, pci_module_exit);
+MODULE_INFO("pci_bus", pci_module_init, 0, pci_module_exit);

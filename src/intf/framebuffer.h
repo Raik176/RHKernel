@@ -2,6 +2,7 @@
 #include <stdint.h>
 
 #include "multiboot2.h"
+#include "display.h"
 
 namespace framebuffer {
 
@@ -14,6 +15,12 @@ namespace framebuffer {
      */
     void init(multiboot_tag_framebuffer *fb_tag);
     void remap_wc();
+    bool info(struct fb_mode *out);
+    bool map_region(uint64_t offset, uint64_t size, uint64_t *phys_out, uint64_t *bytes_out);
+    void claim_console(bool claimed);
+    void release_console_claim(uint64_t owner);
+    bool dirty(uint32_t x, uint32_t y, uint32_t width, uint32_t height);
+    bool present(uint32_t flags);
 
     /**
      * @brief Write a single character to the framebuffer

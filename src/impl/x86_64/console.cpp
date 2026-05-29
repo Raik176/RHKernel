@@ -43,7 +43,7 @@ namespace console {
 #endif
     }
 
-    void backspace() {
+    static void backspace_internal() {
         switch (active_backend) {
             case Backend::VGA:
                 vga::backspace();
@@ -62,7 +62,7 @@ namespace console {
 
     void putchar_internal(char c) {
         if (c == '\b') {
-            backspace();
+            backspace_internal();
             return;
         }
 
@@ -87,9 +87,15 @@ namespace console {
      */
     void putchar(char c) {
         uint64_t flags;
-
         console_lock.acquire(flags);
         putchar_internal(c);
+        console_lock.release(flags);
+    }
+
+    void backspace() {
+        uint64_t flags;
+        console_lock.acquire(flags);
+        backspace_internal();
         console_lock.release(flags);
     }
 
@@ -99,8 +105,15 @@ namespace console {
      *
      * @param str Pointer to string
      */
-    void write(const char *str) {
+    static void write_internal(const char *str) {
         while (*str) putchar_internal(*str++);
+    }
+
+    void write(const char *str) {
+        uint64_t flags;
+        console_lock.acquire(flags);
+        write_internal(str);
+        console_lock.release(flags);
     }
 
     void putnum(uint64_t n, int width = 0, char pad = ' ') {
@@ -121,8 +134,18 @@ namespace console {
         while (--i >= 0) putchar_internal(buf[i]);
     }
 
+    void putint(int64_t n, int width = 0, char pad = ' ') {
+        if (n < 0) {
+            putchar_internal('-');
+            if (width > 0) width--;
+            putnum(0ULL - (uint64_t)n, width, pad);
+            return;
+        }
+        putnum((uint64_t)n, width, pad);
+    }
+
     void puthex(uint64_t n, int width = 0, char pad = ' ') {
-        write("0x");
+        write_internal("0x");
 
         char buf[16];
         int i = 0;
@@ -151,18 +174,18 @@ namespace console {
 
         for (size_t i = 0; i < size; i += bytes_per_line) {
             puthex(i, 8, '0');
-            write(": ");
+            write_internal(": ");
 
             size_t line_bytes = (i + bytes_per_line <= size) ? bytes_per_line : size - i;
 
             for (size_t j = 0; j < line_bytes; j++) {
                 puthex(ptr[i + j], 2, '0');
-                write(" ");
+                write_internal(" ");
             }
 
-            for (size_t j = line_bytes; j < bytes_per_line; j++) { write("     "); }
+            for (size_t j = line_bytes; j < bytes_per_line; j++) { write_internal("     "); }
 
-            write(" |");
+            write_internal(" |");
             for (size_t j = 0; j < line_bytes; j++) {
                 char c = ptr[i + j];
                 putchar_internal((c >= 32 && c <= 126) ? c : '.');
@@ -170,10 +193,15 @@ namespace console {
 
             for (size_t j = line_bytes; j < bytes_per_line; j++) { putchar_internal(' '); }
 
-            write("|\n");
+            write_internal("|\n");
         }
 
         console_lock.release(flags);
+    }
+
+
+    void panic_unlock_output() {
+        __atomic_clear(&console_lock.locked, __ATOMIC_RELEASE);
     }
 
     void printf(const char *fmt, ...) {
@@ -219,19 +247,42 @@ namespace console {
                     fmt++;
                 }
 
+                int long_count = 0;
+                bool size_arg = false;
+                while (*fmt == 'l' || *fmt == 'z' || *fmt == 't') {
+                    if (*fmt == 'l') long_count++;
+                    else size_arg = true;
+                    fmt++;
+                }
+
                 switch (*fmt) {
                     case 's': {
                         const char *s = va_arg(args, const char *);
-                        write(s);
+                        write_internal(s ? s : "(null)");
                         break;
                     }
                     case 'd': {
-                        uint64_t n = va_arg(args, uint64_t);
+                        int64_t n;
+                        if (size_arg || long_count >= 2) n = va_arg(args, int64_t);
+                        else if (long_count == 1) n = va_arg(args, long);
+                        else n = va_arg(args, int);
+                        putint(n, width, pad);
+                        break;
+                    }
+                    case 'u': {
+                        uint64_t n;
+                        if (size_arg || long_count >= 2) n = va_arg(args, uint64_t);
+                        else if (long_count == 1) n = va_arg(args, unsigned long);
+                        else n = va_arg(args, unsigned int);
                         putnum(n, width, pad);
                         break;
                     }
-                    case 'x': {
-                        uint64_t n = va_arg(args, uint64_t);
+                    case 'x':
+                    case 'X': {
+                        uint64_t n;
+                        if (size_arg || long_count >= 2) n = va_arg(args, uint64_t);
+                        else if (long_count == 1) n = va_arg(args, unsigned long);
+                        else n = va_arg(args, unsigned int);
                         puthex(n, width, pad);
                         break;
                     }
@@ -261,6 +312,8 @@ namespace console {
      * Clear the console using the currently active backend.
      */
     void clear() {
+        uint64_t flags;
+        console_lock.acquire(flags);
         switch (active_backend) {
             case Backend::VGA:
                 vga::clear();
@@ -269,6 +322,7 @@ namespace console {
                 framebuffer::clear();
                 break;
         }
+        console_lock.release(flags);
     }
 
     /**
@@ -279,6 +333,8 @@ namespace console {
      * @param y Row (0-based)
      */
     void move_cursor(uint16_t x, uint16_t y) {
+        uint64_t flags;
+        console_lock.acquire(flags);
         switch (active_backend) {
             case Backend::VGA:
                 vga::move_cursor(x, y);
@@ -287,6 +343,7 @@ namespace console {
                 framebuffer::move_cursor(x, y);
                 break;
         }
+        console_lock.release(flags);
     }
 
     /**
@@ -294,6 +351,8 @@ namespace console {
      * Enable the cursor on the active backend.
      */
     void enable_cursor() {
+        uint64_t flags;
+        console_lock.acquire(flags);
         switch (active_backend) {
             case Backend::VGA:
                 vga::enable_cursor();
@@ -302,6 +361,7 @@ namespace console {
                 framebuffer::enable_cursor();
                 break;
         }
+        console_lock.release(flags);
     }
 
     /**
@@ -309,6 +369,8 @@ namespace console {
      * Disable the hardware cursor on the active backend.
      */
     void disable_cursor() {
+        uint64_t flags;
+        console_lock.acquire(flags);
         switch (active_backend) {
             case Backend::VGA:
                 vga::disable_cursor();
@@ -317,6 +379,7 @@ namespace console {
                 framebuffer::disable_cursor();
                 break;
         }
+        console_lock.release(flags);
     }
 
     void set_color(Color fg, Color bg) {

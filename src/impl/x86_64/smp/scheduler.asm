@@ -22,6 +22,10 @@ context_switch:
     pop rbx
     pop rax
     add rsp, 16
+    test qword [rsp + 8], 3
+    jz .iret
+    swapgs
+.iret:
     iretq 
 
 ; extern "C" void scheduler_yield_context();

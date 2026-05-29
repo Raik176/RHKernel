@@ -1,10 +1,16 @@
 global start
+global pml5_table
+global pml5_table_end
 global pml4_table
 global pml4_table_end
 global pdp_table
 global pdp_table_end
 global page_directory
 global page_directory_end
+global paging_mode_la57
+global paging_phys_map_base
+global paging_phys_direct_map_size
+global paging_user_top
 extern long_mode_start
 
 section .early_text
@@ -15,6 +21,7 @@ bits 32
 %define CPUID_BASIC_FEATURES     0x00000001
 %define CPUID_EXTENDED_MAX       0x80000000
 %define CPUID_EXTENDED_FEATURES  0x80000001
+%define CPUID_STRUCTURED_FEATURES 0x00000007
 
 %define FEAT_EDX_MSR             (1 << 5)
 %define FEAT_EDX_PAE             (1 << 6)
@@ -24,6 +31,7 @@ bits 32
 %define FEAT_EDX_SSE             (1 << 25)
 %define FEAT_EDX_SSE2            (1 << 26)
 %define EXT_EDX_LONG_MODE        (1 << 29)
+%define FEAT7_ECX_LA57            (1 << 16)
 
 start:
     mov esp, stack_top
@@ -40,6 +48,30 @@ start:
     jmp KCODE_SEL:long_mode_start
 
 setup_page_tables:
+    cmp byte [boot_la57_supported], 0
+    je .four_level
+
+    mov eax, pml4_table
+    or eax, 0b11
+    mov [pml5_table + 0*8], eax
+    mov [pml5_table + 511*8], eax
+
+    mov dword [paging_mode_la57], 1
+    mov dword [paging_mode_la57 + 4], 0
+    mov dword [paging_phys_map_base], 0x00000000
+    mov dword [paging_phys_map_base + 4], 0xFF000000
+    mov dword [paging_phys_direct_map_size], 0x00000000
+    mov dword [paging_phys_direct_map_size + 4], 0x00FF8000
+    mov dword [paging_user_top], 0x00000000
+    mov dword [paging_user_top + 4], 0x01000000
+    jmp .link_pml4
+
+.four_level:
+    mov eax, pdp_table
+    or eax, 0b11
+    mov [pml4_table + 0*8], eax
+
+.link_pml4:
     mov eax, pdp_table
     or eax, 0b11
     mov [pml4_table + 0*8], eax
@@ -56,10 +88,18 @@ setup_page_tables:
 
 enable_paging:
     mov eax, pml4_table
+    cmp byte [boot_la57_supported], 0
+    je .set_cr3
+    mov eax, pml5_table
+.set_cr3:
     mov cr3, eax
 
     mov eax, cr4
     or eax, 1 << 5          ; PAE
+    cmp byte [boot_la57_supported], 0
+    je .write_cr4
+    or eax, 1 << 12         ; LA57
+.write_cr4:
     mov cr4, eax
 
     mov ecx, 0xC0000080     ; IA32_EFER
@@ -95,8 +135,11 @@ check_x86_64_baseline:
     push ebx
     mov eax, 0
     cpuid
-    cmp eax, CPUID_BASIC_FEATURES
+    mov edi, eax
+    cmp edi, CPUID_BASIC_FEATURES
     jb .no_basic_leaf
+
+    mov byte [boot_la57_supported], 0
 
     mov eax, CPUID_BASIC_FEATURES
     cpuid
@@ -114,6 +157,16 @@ check_x86_64_baseline:
     jz .no_sse2
     test edx, FEAT_EDX_APIC
     jz .no_apic
+
+    cmp edi, CPUID_STRUCTURED_FEATURES
+    jb .skip_la57
+    mov eax, CPUID_STRUCTURED_FEATURES
+    xor ecx, ecx
+    cpuid
+    test ecx, FEAT7_ECX_LA57
+    jz .skip_la57
+    mov byte [boot_la57_supported], 1
+.skip_la57:
 
     mov eax, CPUID_EXTENDED_MAX
     cpuid
@@ -233,6 +286,10 @@ boot_fail:
 
 section .early_bss
 align 4096
+pml5_table:
+    resb 4096
+pml5_table_end:
+align 4096
 pml4_table:
     resb 4096
 pml4_table_end:
@@ -248,6 +305,16 @@ stack_bottom:
     resb 4096
 stack_top:
 
+section .early_data
+align 8
+boot_la57_supported: db 0
+align 8
+paging_mode_la57: dq 0
+paging_phys_map_base: dq 0xFFFF800000000000
+paging_phys_direct_map_size: dq 0x00007F0000000000
+paging_user_top: dq 0x0000800000000000
+
+; TODO: is this really a good idea..?
 section .early_rodata
 msg_boot_prefix: db 'BOOT FAIL: ', 0
 msg_no_cpuid: db 'CPUID not supported', 0
